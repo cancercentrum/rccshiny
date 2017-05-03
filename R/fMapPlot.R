@@ -55,7 +55,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
             stop("Length of value must be 21")
         }
 
-        suppressMessages(require(sp))
+        #suppressMessages(require(sp))
 
         # Color
         if (is.null(col))

@@ -12,7 +12,7 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
         stop(paste0("Variable of class ", ind_type, " is not supported."))
     }
 
-    suppressMessages(require(plyr))
+    #suppressMessages(require(plyr))
 
     if (is.null(period)) {
         period <- rep(1, length(group))
@@ -75,11 +75,11 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
 
     hideLowVolume <- as.logical(group_hide_less_than)
 
-    tab <- ddply(.data = subset(tabdata, subset), .variables = byvars, .fun = summaryFunction, .drop = FALSE)
+    tab <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars, .fun = summaryFunction, .drop = FALSE)
 
     subsetUniqueGroups <- unique(tabdata$group[tabdata$subset])
     if (!all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subset_lab))) {
-        tab_subset <- ddply(.data = subset(tabdata, subset), .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
+        tab_subset <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
         tab_subset <- tab_subset[intersect(names(tab_subset), names(tab))]
         tab_subset$group <- subset_lab
 
@@ -89,7 +89,7 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
     if (!is.null(all_lab)) {
         # hideLowVolume <- FALSE
 
-        tab_all <- ddply(.data = tabdata, .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
+        tab_all <- plyr::ddply(.data = tabdata, .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
         tab_all <- tab_all[intersect(names(tab_all), names(tab))]
         tab_all$group <- all_lab
 

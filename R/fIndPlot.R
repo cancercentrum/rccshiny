@@ -82,9 +82,9 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
         target_values_high <- TRUE
     }
 
-    suppressMessages(require(gplots))
-    suppressMessages(require(plyr))
-    suppressMessages(require(Hmisc))
+    #suppressMessages(require(gplots))
+    #suppressMessages(require(plyr))
+    #suppressMessages(require(Hmisc))
 
     if (is.null(period)) {
         period <- rep(1, length(group))
@@ -140,7 +140,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
             if (hide) {
                 measurements <- c(NA, NA, NA, NA, NA)
             } else {
-                measurements <- 100 * binconf(sum(x$ind, na.rm = TRUE), sum(!is.na(x$ind), na.rm = TRUE), method = "exact")
+                measurements <- 100 * Hmisc::binconf(sum(x$ind, na.rm = TRUE), sum(!is.na(x$ind), na.rm = TRUE), method = "exact")
                 measurements <- c(measurements, paste0(sum(x$ind, na.rm = TRUE), " av ", sum(!is.na(x$ind), na.rm = TRUE)))
                 measurements <- c(measurements, sum(!is.na(x$ind)))
             }
@@ -176,14 +176,14 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
 
     hideLowVolume <- as.logical(group_hide_less_than)
 
-    tab <- ddply(.data = subset(tabdata, subset), .variables = byvars, .fun = summaryFunction, .drop = FALSE)
+    tab <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars, .fun = summaryFunction, .drop = FALSE)
 
     include_groups <- sort(unique(subset(tabdata, period == act_period)$group))
     tab <- subset(tab, group %in% include_groups)
 
     subsetUniqueGroups <- unique(tabdata$group[tabdata$subset & tabdata$period == act_period])
     if (!all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subset_lab))) {
-        tab_subset <- ddply(.data = subset(tabdata, subset), .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
+        tab_subset <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
         tab_subset <- tab_subset[intersect(names(tab_subset), names(tab))]
         tab_subset$group <- subset_lab
 
@@ -193,7 +193,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
     if (!is.null(all_lab)) {
         # hideLowVolume <- FALSE
 
-        tab_all <- ddply(.data = tabdata, .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
+        tab_all <- plyr::ddply(.data = tabdata, .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
         tab_all <- tab_all[intersect(names(tab_all), names(tab))]
         tab_all$group <- all_lab
 
@@ -211,7 +211,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
         temp_x[is.na(temp_x)] <- 0
         temp_n[is.na(temp_n)] <- 0
         for (i in 1:length(funnelplot_probs)) {
-            temp_binconf <- binconf(x = temp_x, n = temp_n, method = "exact", alpha = funnelplot_probs[i])
+            temp_binconf <- Hmisc::binconf(x = temp_x, n = temp_n, method = "exact", alpha = funnelplot_probs[i])
             colnames(temp_binconf) <- paste0("funnelplot_p", i, "_", c("est", "lo", "hi"))
             tab <- cbind(tab, 100 * temp_binconf)
         }
@@ -387,7 +387,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
         }
 
         for (i in 1:num_periods) {
-            plotCI(x = rev(tab_list[[i]]$ind), y = y_bp + (num_periods - i) * barheight, li = rev(tab_list[[i]]$lower), ui = rev(tab_list[[i]]$upper), col = rev(tab_list[[i]]$col),
+          gplots::plotCI(x = rev(tab_list[[i]]$ind), y = y_bp + (num_periods - i) * barheight, li = rev(tab_list[[i]]$lower), ui = rev(tab_list[[i]]$upper), col = rev(tab_list[[i]]$col),
                 pt.bg = par("bg"), lwd = 2.5 * point_cex, add = TRUE, pch = 21, cex = point_cex, err = "x", sfrac = 0, gap = 0.75 * point_cex/2.25)
         }
     } else if (ind_type == "factor") {
