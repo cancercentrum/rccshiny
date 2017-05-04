@@ -1,3 +1,4 @@
+#' @export
 fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars = NULL, ind = NULL, period = NULL, max_periods = 99, ind_type = class(ind), ind_numeric = ind_type %in%
     c("difftime", "numeric", "integer"), ind_numeric_exclude_neg = TRUE, ind_numeric_percentiles = c(0.25, 0.5, 0.75), ind_factor_hide = NULL, ind_factor_sortbycols = NULL,
     ind_factor_shownN = ifelse(!is.null(ind_factor_hide), TRUE, FALSE), legend_ncol = NULL, legend_fixedtextwidth = TRUE, ind_showpct = ifelse(ind_type == "factor", FALSE,

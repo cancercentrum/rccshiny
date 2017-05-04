@@ -1,7 +1,8 @@
+#' @export
 rccShinyDecimals <- function() {
     return(1)
 }
-
+#' @export
 rccShinyCounties <- function(language = "sv", lkf = FALSE) {
     if (lkf) {
         data.frame(landstingCode = c(1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25), landsting = c("Stockholm", "Uppsala", "Södermanland", "Östergötland",
@@ -18,12 +19,12 @@ rccShinyCounties <- function(language = "sv", lkf = FALSE) {
                 }, rccShinyRegionNames(language = language))), stringsAsFactors = FALSE)
     }
 }
-
+#' @export
 rccShinyRegionNumToText <- function(var = NULL, language = "sv") {
     var <- factor(var, levels = 1:6, labels = fRegionNames(language = language))
     as.character(var)
 }
-
+#' @export
 rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
     if (language == "en") {
         if (all) {
@@ -43,7 +44,7 @@ rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
     }
     return(regions)
 }
-
+#' @export
 rccShinyLevelNames <- function(level = "region", language = "sv") {
     if (level == "region") {
         levelName <- "Region"
@@ -74,7 +75,7 @@ rccShinyLevelNames <- function(level = "region", language = "sv") {
     }
     return(levelName)
 }
-
+#' @export
 rccShinyGroupVariable <- function(label = "sjukhus") {
     if (tolower(label) %in% c("region")) {
         "region"
@@ -86,7 +87,7 @@ rccShinyGroupVariable <- function(label = "sjukhus") {
         "sjukhus"
     }
 }
-
+#' @export
 rccShinyNoObservationsText <- function(language = "sv") {
     if (language == "en") {
         return("Not enough observations available for current selection criteria")
@@ -94,13 +95,13 @@ rccShinyNoObservationsText <- function(language = "sv") {
         return("Ej tillräckligt med observationer för aktuellt urval")
     }
 }
-
+#' @export
 rccShinyTabsNames <- function(language = "sv") {
     tab <- data.frame(tab_language = c("sv", "en"), fig_compare = c("Jämförelse", "Comparison"), fig_trend = c("Trend", "Trend"), tab_n = c("Tabell (antal)", "Table (number)"),
         tab_p = c("Tabell (andel)", "Table (proportion)"), tab = c("Tabell", "Table"), map = c("Karta", "Map"), description = c("Beskrivning", "Description"), stringsAsFactors = FALSE)
     subset(tab, tab_language == language)
 }
-
+#' @export
 rccShinyTXT <- function(language = "sv") {
     tab <- data.frame(tab_language = c("sv", "en"), all = c("Alla", "All"), missing = c("Uppgift saknas", "Missing"), outcome = c("Variabel", "Variable"), presentation = c("Redovisning",
         "Presentation"), levelofcomparison = c("Jämförelsenivå", "Level of comparison"), hospitalinterest = c("Sjukhus av intresse", "Hospital of interest"), periodSplit1 = c("Redovisa varje",
@@ -119,7 +120,7 @@ rccShinyTXT <- function(language = "sv") {
 }
 
 # # # # # # NPCR # # # # #
-
+#' @export
 npcrPreparePeriodRegionCountyHospitalVariables <- function(prefix = "d0", data = NULL, language = c("sv", "en"), returnPrivateOthersNames = FALSE) {
     if (returnPrivateOthersNames) {
         privateOthersNames <- list()

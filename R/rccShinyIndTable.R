@@ -1,3 +1,4 @@
+#' @export
 rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL, group_hide_less_than = FALSE, ind = NULL, ind_type = class(ind), ind_numeric_percentiles = c(0.25,
     0.5, 0.75), ind_factor_pct = FALSE, period = NULL, period_factors = NULL, period_alwaysinclude = TRUE, all_lab = rccShinyTXT(language = language)$RIKET, lab_percentiles = c(rccShinyTXT(language = language)$q1,
     rccShinyTXT(language = language)$median, rccShinyTXT(language = language)$q3), lab_noofcases = rccShinyTXT(language = language)$noofcases, lab_numerator = rccShinyTXT(language = language)$numerator,
