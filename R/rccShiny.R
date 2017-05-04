@@ -70,13 +70,12 @@
 #'   path = "C:/Users/552l/test_rccShiny",
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-#'   comment = "Skövde och Lidköping tillhör Skaraborg",
-#'   description = "Ett fall per bröst kan ha rapporterats till det nationella kvalitetsregistret för bröstcancer.
-#'   Det innebär att samma person kan finnas med i statistiken upp till två gånger.",
+#'   comment = "Skovde och Lidkoping tillhor Skaraborg",
+#'   description = "Att tanka pa vid tolkning ....",
 #'   userInputList = list(
 #'     list(
 #'       var = "age",
-#'       label = "Ålder vid diagnos"
+#'       label = "Alder vid diagnos"
 #'     ),
 #'     list(
 #'       var = "stage",
@@ -97,13 +96,13 @@
 #'   data = rccShinyData,
 #'   folder = "Indikator2",
 #'   outcome = "outcome1",
-#'   outcomeTitle = c("Kontaktsjuksköterska", "Contact nurse"),
-#'   titleTextBeforeSubtitle = c("Något på svenska","Something in English"),
+#'   outcomeTitle = c("Kontaktsjukskoterska", "Contact nurse"),
+#'   titleTextBeforeSubtitle = c("Nagot på svenska","Something in English"),
 #'   description = c("Superbra att ha!","Supergood to have!"),
 #'   userInputList = list(
 #'     list(
 #'       var = "age",
-#'      label = c("Ålder vid diagnos","Age at diagnosis"),
+#'      label = c("Alder vid diagnos","Age at diagnosis"),
 #'       choices = c(0,120)
 #'     )
 #'   ),
