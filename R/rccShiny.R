@@ -20,7 +20,8 @@
 #' @param period numeric vector with time periods, for example year of diagnosis. Default is "period".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is c("Diagnosår", "Year of diagnosis").
 #' @param userInputList list with variables (other than period and geoUnits) to be shown in sidebar panel. Arguments to the list are: var (variable name in dataset), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continous variables).
-#' @param targetValues optional vector of 1-2 targetvalues ("målnivåer") to be plotted.
+#' @param targetValues optional vector of 1-2 targetvalues ("målnivåer") to be plotted. Only applicaple for dichotomous variables.
+#' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param targetValuesSortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Deafault is TRUE.
 #' @param hideLessThan optional value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
@@ -82,7 +83,8 @@
 #'       label = "Stadium",
 #'       choices = c("I", "II")
 #'     )
-#'   )
+#'   ),
+#'   funnelplot = TRUE
 #' )
 #' \dontrun{
 #' library(shiny)
@@ -131,6 +133,7 @@ rccShiny <- function(data = NULL,
                      periodLabel = c("Diagnosår", "Year of diagnosis"),
                      userInputList = NULL,
                      targetValues = NULL,
+                     funnelplot = FALSE,
                      targetValuesSortDescending = NULL,
                      hideLessThan = 5,
                      language = c("sv"),
@@ -351,6 +354,7 @@ rccShiny <- function(data = NULL,
         GLOBAL_regionSelected <- rccShinyTXT(language = GLOBAL_language)$all
 
         GLOBAL_targetValues <- targetValues
+        GLOBAL_funnelplot <- funnelplot
         GLOBAL_targetValuesSortDescending <- targetValuesSortDescending
 
         GLOBAL_hideLessThan <- ifelse(hideLessThan < 5, 5, hideLessThan)
@@ -374,7 +378,7 @@ rccShiny <- function(data = NULL,
 
         save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_titleTextBeforeSubtitle, GLOBAL_titleTextAfterSubtitle, GLOBAL_comment, GLOBAL_description,
             GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsFromLKF, GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected,
-            GLOBAL_targetValues, GLOBAL_targetValuesSortDescending, GLOBAL_userInputList, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
+            GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_targetValuesSortDescending, GLOBAL_userInputList, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
             file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
         # Output description to .html-file
