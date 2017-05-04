@@ -72,7 +72,8 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
         value_col[is.na(value)] <- "#bfbfbf"
 
         # Load spatial data
-        gadm <- readRDS(paste0(rds_path, "map_swe_adm1.rds"))
+        gadm <- readRDS(system.file("mapdata", "map_swe_adm1.rds", package = "rccShiny"))
+        #gadm <- readRDS(paste0(rds_path, "map_swe_adm1.rds"))
         gadm <- gadm[gadm$NAME_1 %in% value_order, ]
 
         value_match <- match(gadm$NAME_1, value_order)
@@ -102,7 +103,8 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
         y_lim <- par("usr")[3:4]
 
         # Fix Heby
-        gadm <- readRDS(paste0(rds_path, "map_swe_adm2.rds"))
+        gadm <- readRDS(system.file("mapdata", "map_swe_adm2.rds", package = "rccShiny"))
+        #gadm <- readRDS(paste0(rds_path, "map_swe_adm2.rds"))
 
         plot(gadm[gadm$NAME_2 %in% "Heby", ], col = value_col[value_names == "Uppsala"], border = value_col[value_names == "Uppsala"], add = TRUE)
         temp_y_border <- 59.864  #min(coordinates_heby[,2][coordinates_heby[,1]%in%coordinates_vastmanland[,1] & coordinates_heby[,2]%in%coordinates_vastmanland[,2]]) #59.864
@@ -112,7 +114,8 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
         match <- coordinates_heby[, 1] <= 16.85 & coordinates_heby[, 2] >= temp_y_border
         lines(coordinates_heby[match, 1], coordinates_heby[match, 2], lwd = 1, col = col_border)
 
-        gadm <- readRDS(paste0(rds_path, "map_swe_adm1.rds"))
+        #gadm <- readRDS(paste0(rds_path, "map_swe_adm1.rds"))
+        gadm <- readRDS(system.file("mapdata", "map_swe_adm1.rds", package = "rccShiny"))
 
         coordinates_vastmanland <- gadm[gadm$NAME_1 %in% "Västmanland", ]@polygons[[1]]@Polygons[[2]]@coords
         match <- coordinates_vastmanland[, 1] <= 16.85 & coordinates_vastmanland[, 1] >= 16.8 & coordinates_vastmanland[, 2] <= temp_y_border & coordinates_vastmanland[, 2] >=
