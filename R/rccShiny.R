@@ -11,9 +11,9 @@
 #' @param titleTextAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
 #' @param description description shown in the tab Beskrivning/Description.
-#' @param geoUnitsHospital optional character vector with hospital names. To be implemented: Hospital codes.
-#' @param geoUnitsCounty optional numeric vector with county codes. Can be either county of residence for the patient or the county the hospital belongs to. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion FREDRIK: ska denna vara optional? numeric vector with region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsHospital optional character vector with hospital names. At least one geoUnit needs to be given. To be implemented: Hospital codes.
+#' @param geoUnitsCounty optional numeric vector with county codes. Can be either county of residence for the patient or the county the hospital belongs to. At least one geoUnit needs to be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegion optional numeric vector with region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). At least one geoUnit needs to be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsFromLKF if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is choosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel used if regionSelection = TRUE. Label of widget shown in the sidebar panel. Default is c("Begränsa till region", "Limit to region").
