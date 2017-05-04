@@ -12,7 +12,7 @@
 #' @param comment optional comment printed under the sidebar panel.
 #' @param description description shown in the tab Beskrivning/Description.
 #' @param geoUnitsHospital optional character vector with hospital names. At least one geoUnit needs to be given. To be implemented: Hospital codes.
-#' @param geoUnitsCounty optional numeric vector with county codes. Can be either county of residence for the patient or the county the hospital belongs to. At least one geoUnit needs to be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsCounty optional numeric vector with county codes. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit needs to be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsRegion optional numeric vector with region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). At least one geoUnit needs to be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsFromLKF if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is choosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
@@ -20,12 +20,12 @@
 #' @param period numeric vector with time periods, for example year of diagnosis. Default is "period".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is c("Diagnosår", "Year of diagnosis").
 #' @param userInputList list with variables (other than period and geoUnits) to be shown in sidebar panel. Arguments to the list are: var (variable name in dataset), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continous variables).
-#' @param targetValues optional vector of 1-2 targetvalues ("målnivåer") to be plotted. Only applicaple for dichotomous variables.
-#' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot. Only applicaple for dichotomous variables. Default is FALSE.
+#' @param targetValues optional vector of 1-2 targetvalues ("målnivåer") to be plotted in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables.
+#' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE. Currently not implemented and always set to TRUE.
 #' @param targetValuesSortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Deafault is TRUE.
 #' @param hideLessThan optional value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
-#' @param npcrGroupPrivateOthers Applicable for NPCR only. FREDRIK: Ska default vara TRUE?
+#' @param npcrGroupPrivateOthers Applicable for NPCR only. FREDRIK: vad ska stå? Ska default vara TRUE?
 #'
 #' @details Valid values for geoUnitsCounty are:
 #'   \tabular{lll}{
