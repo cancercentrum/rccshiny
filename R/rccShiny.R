@@ -6,7 +6,7 @@
 #' @param outcomeTitle label(s) of the outcome(s). Must be the same lenght as argument outcome. Default is argument outcome (name(s) of the outcome(s) in the dataset).
 #' @param folder name of folder where the results are placed.
 #' @param folderLinkText short name used in html lank??? glunkiglunk. Fredrik: HJÄLP SÖKES!
-#' @param path searchpath to folder
+#' @param path searchpath to folder. Default is working directory.
 #' @param titleTextBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param titleTextAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
@@ -31,26 +31,26 @@
 #' geoUnitsFromLKF   \tab !geoUnitsFromLKF \tab Text\cr
 #' 1\tab 10,11 \tab  Stockholm\cr
 #' 3\tab 12 \tab  Uppsala\cr
-#' 4\tab 13    \tab  Södermanland\cr
-#' 5\tab 21    \tab  Östergötland\cr
-#' 6\tab 22     \tab Jönköping\cr
-#' 7\tab 23     \tab  Kronoberg\cr
-#' 8\tab 24,25   \tab  Kalmar\cr
+#' 4\tab 13 \tab  Södermanland\cr
+#' 5\tab 21 \tab  Östergötland\cr
+#' 6\tab 22 \tab Jönköping\cr
+#' 7\tab 23 \tab  Kronoberg\cr
+#' 8\tab 24,25 \tab  Kalmar\cr
 #' 9\tab 26 \tab  Gotland\cr
-#' 10\tab 27   \tab  Blekinge\cr
+#' 10\tab 27 \tab  Blekinge\cr
 #' 12\tab 28,30,41   \tab  Skåne\cr
-#' 13\tab 42   \tab  Halland\cr
+#' 13\tab 42 \tab  Halland\cr
 #' 14\tab 50,51,52,53   \tab  Västra Götaland\cr
-#' 17\tab 54   \tab  Värmland\cr
-#' 18\tab 55   \tab  Örebro\cr
-#' 19\tab 56   \tab  Västmanland\cr
-#' 20\tab 57   \tab  Dalarna\cr
-#' 21\tab 61   \tab  Gävleborg\cr
-#' 22\tab 62   \tab  Västernorrland\cr
-#' 23\tab 63   \tab  Jämtland\cr
-#' 24\tab 64   \tab  Västerbotten\cr
-#' 25\tab 65   \tab  Norrbotten\cr
-#' -\tab 91,92,93,94,95,96   \tab  Övriga/privata - region
+#' 17\tab 54 \tab  Värmland\cr
+#' 18\tab 55 \tab  Örebro\cr
+#' 19\tab 56 \tab  Västmanland\cr
+#' 20\tab 57 \tab  Dalarna\cr
+#' 21\tab 61 \tab  Gävleborg\cr
+#' 22\tab 62 \tab  Västernorrland\cr
+#' 23\tab 63 \tab  Jämtland\cr
+#' 24\tab 64 \tab  Västerbotten\cr
+#' 25\tab 65 \tab  Norrbotten\cr
+#' -\tab 91,92,93,94,95,96 \tab  Övriga/privata - region
 #' }
 #'
 #'
@@ -66,6 +66,7 @@
 #' rccShiny(
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
+#'   path = "C:/Users/552l/test_rccShiny",
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
 #'   comment = "Skövde och Lidköping tillhör Skaraborg",
@@ -83,26 +84,31 @@
 #'     )
 #'   )
 #' )
+#' \dontrun{
+#' library(shiny)
+#' runApp("C:/Users/552l/test_rccShiny/apps/sv/Indikator1")
+#' }
 #'
-#' # For Swedish/English version
-#' rccShinyData$outcome_en <- rccShinyData$outcome
+#'# For Swedish/English version
+#' rccShinyData$outcome1_en <- rccShinyData$outcome1
 #' rccShiny(
 #'   data = rccShinyData,
 #'   folder = "Indikator2",
-#'   outcome = "outcome",
+#'   outcome = "outcome1",
 #'   outcomeTitle = c("Kontaktsjuksköterska", "Contact nurse"),
 #'   titleTextBeforeSubtitle = c("Något på svenska","Something in English"),
 #'   description = c("Superbra att ha!","Supergood to have!"),
 #'   userInputList = list(
 #'     list(
 #'       var = "age",
-#'       label = c("Ålder vid diagnos","Age at diagnosis"),
+#'      label = c("Ålder vid diagnos","Age at diagnosis"),
 #'       choices = c(0,120)
 #'     )
 #'   ),
 #'   targetValues = c(95,99),
 #'   language = c("sv", "en")
 #' )
+#'
 #' @export
 
 rccShiny <- function(data = NULL,
@@ -110,7 +116,7 @@ rccShiny <- function(data = NULL,
                      outcomeTitle = outcome,
                      folder = "ind",
                      folderLinkText = outcomeTitle,
-                     path = "",
+                     path = getwd(),
                      titleTextBeforeSubtitle = NULL,
                      titleTextAfterSubtitle = NULL,
                      comment = "",
