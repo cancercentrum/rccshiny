@@ -1,0 +1,20 @@
+Package: rccShiny
+Type: Package
+Version: 1.0.0
+Title: Shiny apps for RCC
+Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
+Depends: R (>= 3.3.3)
+Imports: DT (>= 0.2),
+    gplots (>= 3.0.1),
+    Hmisc (>= 4.0.2),
+    plyr (>= 1.8.4),
+    shiny (>= 1.0.2),
+    sp (>= 1.2.4)
+Encoding: UTF-8
+LazyData: TRUE
+License: GPL (>= 3)
+RoxygenNote: 6.0.1
+Author: Fredrik Sandin, RCC Uppsala-Örebro
+Maintainer: Lina Benson <lina.enqvist-benson@sll.se>
+Repository: Bitbucket
+Date: 2017-05-xx
