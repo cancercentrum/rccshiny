@@ -22,7 +22,9 @@ Imports: DT (>= 0.2),
         base64enc, latticeExtra, gridExtra, htmlTable,
         data.table, caTools,
         gtable, bitops,
-        colorspace, RColorBrewer, dichromat, munsell, labeling, scales
+        colorspace, RColorBrewer, dichromat, munsell, labeling, scales, 
+        lazyeval, tibble, checkmate, backports,
+        knitr, stringi, evaluate, highr, markdown, stringr
 Encoding: UTF-8
 LazyData: TRUE
 License: GPL (>= 3)
