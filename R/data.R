@@ -4,8 +4,8 @@
 #'
 #' @format A data frame with 20000 rows and 9 variables:
 #' \describe{
-#'   \item{sjukhus}{a character vector contining hospitals names.}
-#'   \item{landsting}{a numeric vector containg codes for the 'landsting' for the respective hospitals.}
+#'   \item{sjukhus}{a character vector containing hospitals names.}
+#'   \item{landsting}{a numeric vector containing codes for the 'landsting' for the respective hospitals.}
 #'   \item{region}{a numeric vector containg codes (1-6) for the region for the respective hospitals.}
 #'   \item{period}{year of diagnosis (2012-2016).}
 #'   \item{age}{patients age at diagnosis.}

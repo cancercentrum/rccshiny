@@ -2,9 +2,6 @@
 library(shiny)
 library(DT)
 
-#file.sources = list.files(path="../_functions/",pattern="*.R",full.names=TRUE,ignore.case=TRUE)
-#sapply(file.sources,source,.GlobalEnv,encoding="UTF-8")
-
 shinyUI(fluidPage(
 
   #tags$head(tags$script(src="/npcr/_libs/ga.js")),
@@ -15,13 +12,13 @@ shinyUI(fluidPage(
 
   fluidRow(
     column(
-      width=3,
+      width = 3,
       wellPanel(
         conditionalPanel(
-          condition = ifelse(length(GLOBAL_outcomeTitle)>1,"true","false"),
+          condition = ifelse(length(GLOBAL_outcomeTitle) > 1,"true","false"),
           selectInput(
             inputId = "param_outcome",
-            label = rccShinyTXT(language=GLOBAL_language)$outcome,
+            label = rccShinyTXT(language = GLOBAL_language)$outcome,
             choices = GLOBAL_outcomeTitle,
             selected = GLOBAL_outcomeTitle[1]
           )
@@ -36,11 +33,11 @@ shinyUI(fluidPage(
         uiOutput("userInput"),
         uiOutput("funnelPlotInput")
       ),
-      h4(ifelse(GLOBAL_comment=="","",rccShinyTXT(language=GLOBAL_language)$comment)),
+      h4(ifelse(GLOBAL_comment == "", "", rccShinyTXT(language = GLOBAL_language)$comment)),
       p(GLOBAL_comment)
     ),
     column(
-      width=9,
+      width = 9,
       uiOutput("theTabs")
     )
   )

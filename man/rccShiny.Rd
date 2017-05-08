@@ -6,67 +6,66 @@
 \usage{
 rccShiny(data = NULL, outcome = "outcome", outcomeTitle = outcome,
   folder = "ind", folderLinkText = outcomeTitle, path = getwd(),
-  titleTextBeforeSubtitle = NULL, titleTextAfterSubtitle = NULL,
-  comment = "", description = c("(beskrivning saknas)",
-  "(description missing)"), geoUnitsHospital = "sjukhus",
-  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
-  geoUnitsFromLKF = FALSE, regionSelection = TRUE,
-  regionLabel = c("Begränsa till region", "Limit to region"),
-  period = "period", periodLabel = c("Diagnosår", "Year of diagnosis"),
-  userInputList = NULL, targetValues = NULL, funnelplot = FALSE,
-  targetValuesSortDescending = NULL, hideLessThan = 5, language = c("sv"),
-  npcrGroupPrivateOthers = TRUE)
+  textBeforeSubtitle = NULL, textAfterSubtitle = NULL, comment = "",
+  description = c("(beskrivning saknas)", "(description missing)"),
+  geoUnitsHospital = "sjukhus", geoUnitsCounty = "landsting",
+  geoUnitsRegion = "region", geoUnitsPatient = FALSE,
+  regionSelection = TRUE, regionLabel = c("Begränsa till region",
+  "Limit to region"), period = "period", periodLabel = c("Diagnosår",
+  "Year of diagnosis"), varOther = NULL, targetValues = NULL,
+  funnelplot = FALSE, sortDescending = NULL, hideLessThan = 5,
+  language = c("sv"), npcrGroupPrivateOthers = TRUE)
 }
 \arguments{
 \item{data}{data frame containing the variables used in the app.}
 
-\item{outcome}{vector with the name(s) of the variable(s) of interest, for example a "kvalitetsindikator". Default is "outcome".}
+\item{outcome}{vector with names(s) of variable(s) in data containing the variable to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".}
 
-\item{outcomeTitle}{label(s) of the outcome(s). Must be the same lenght as argument outcome. Default is argument outcome (name(s) of the outcome(s) in the dataset).}
+\item{outcomeTitle}{label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.}
 
 \item{folder}{name of folder where the results are placed.}
 
-\item{folderLinkText}{short name used in html lank??? glunkiglunk. Fredrik: HJÄLP SÖKES!}
+\item{folderLinkText}{short name displayed in ready-to-use html link returned by the function.}
 
-\item{path}{searchpath to folder. Default is working directory.}
+\item{path}{search path to folder returned by the function. Default is working directory.}
 
-\item{titleTextBeforeSubtitle}{optional text placed before the subtitles in the tabs.}
+\item{textBeforeSubtitle}{optional text placed before the subtitles in the tabs.}
 
-\item{titleTextAfterSubtitle}{optional text placed after the subtitles in the tabs.}
+\item{textAfterSubtitle}{optional text placed after the subtitles in the tabs.}
 
 \item{comment}{optional comment printed under the sidebar panel.}
 
 \item{description}{description shown in the tab Beskrivning/Description.}
 
-\item{geoUnitsHospital}{optional character vector with hospital names. At least one geoUnit needs to be given. To be implemented: Hospital codes.}
+\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.}
 
-\item{geoUnitsCounty}{optional numeric vector with county codes. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit needs to be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
 
-\item{geoUnitsRegion}{optional numeric vector with region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). At least one geoUnit needs to be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
 
-\item{geoUnitsFromLKF}{if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is choosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
+\item{geoUnitsPatient}{if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
 
 \item{regionSelection}{adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.}
 
 \item{regionLabel}{used if regionSelection = TRUE. Label of widget shown in the sidebar panel. Default is c("Begränsa till region", "Limit to region").}
 
-\item{period}{numeric vector with time periods, for example year of diagnosis. Default is "period".}
+\item{period}{name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".}
 
 \item{periodLabel}{label for the period widget in the sidebar panal. Default is c("Diagnosår", "Year of diagnosis").}
 
-\item{userInputList}{list with variables (other than period and geoUnits) to be shown in sidebar panel. Arguments to the list are: var (variable name in dataset), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continous variables).}
+\item{varOther}{list of variable(s) (other than period and geoUnits) to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).}
 
-\item{targetValues}{optional vector of 1-2 targetvalues ("målnivåer") to be plotted in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables.}
+\item{targetValues}{optional vector of 1-2 target levels to be plotted in the tab Jämförelse/Comparison. Only applicable for dichotomous variables.}
 
 \item{funnelplot}{adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE. Currently not implemented and always set to TRUE.}
 
-\item{targetValuesSortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order. Deafault is TRUE.}
+\item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.}
 
 \item{hideLessThan}{optional value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
 
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
 
-\item{npcrGroupPrivateOthers}{Applicable for NPCR only. FREDRIK: vad ska stå? Ska default vara TRUE?}
+\item{npcrGroupPrivateOthers}{should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is TRUE.}
 }
 \value{
 A folder path/apps/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
@@ -77,7 +76,7 @@ returns shiny apps used as a complement to the annual reports from the cancer qu
 \details{
 Valid values for geoUnitsCounty are:
   \tabular{lll}{
-geoUnitsFromLKF   \tab !geoUnitsFromLKF \tab Text\cr
+\strong{geoUnitsPatient}   \tab \strong{!geoUnitsPatient} \tab \strong{Text shown}\cr
 1\tab 10,11 \tab  Stockholm\cr
 3\tab 12 \tab  Uppsala\cr
 4\tab 13 \tab  Södermanland\cr
@@ -104,20 +103,20 @@ geoUnitsFromLKF   \tab !geoUnitsFromLKF \tab Text\cr
 
 
 
-If language = c("sv", "en") the following applies to arguments: outcomeTitle, titleTextBeforeSubtitle, titleTextAfterSubtitle, comment, description,
-regionLabel, label in list userInputList: if there are two values the first is used in the swedish version and the second in the english version. These must be given in order sv, en. If there is only one value this is recycled in both versions.
-The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list userInputList: in the english version rccShiny will use the variable name with the suffix _en (for example "outcome_en") if this exists and otherwise recycle the swedish variable name.
+If language = c("sv", "en") the following applies to arguments: textBeforeSubtitle, textAfterSubtitle, comment, description,
+regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. These must be given in order sv, en. If there is only one value this is recycled in both versions.
+The following applies to argument outcomeTitle: the titles should be given in a list in order sv, en. If only one listargument is given this will be recycled in both versions.
+The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version rccShiny will use the variable name with the suffix _en (for example "outcome_en") if this exists and otherwise recycle the Swedish variable name.
 }
 \examples{
 rccShiny(
   data = rccShinyData,
   folder = "Indikator1",
-  path = "C:/Users/552l/test_rccShiny",
   outcome = paste0("outcome",1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
   comment = "Skovde och Lidkoping tillhor Skaraborg",
   description = "Att tanka pa vid tolkning ....",
-  userInputList = list(
+  varOther = list(
     list(
       var = "age",
       label = "Alder vid diagnos"
@@ -132,7 +131,7 @@ rccShiny(
 )
 \dontrun{
 library(shiny)
-runApp("C:/Users/552l/test_rccShiny/apps/sv/Indikator1")
+runApp("./apps/sv/Indikator1")
 }
 
 # For Swedish/English version
@@ -141,10 +140,10 @@ rccShiny(
   data = rccShinyData,
   folder = "Indikator2",
   outcome = "outcome1",
-  outcomeTitle = c("Kontaktsjukskoterska", "Contact nurse"),
-  titleTextBeforeSubtitle = c("Nagot pÃ¥ svenska","Something in English"),
+  outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
+  textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
   description = c("Superbra att ha!","Supergood to have!"),
-  userInputList = list(
+  varOther = list(
     list(
       var = "age",
      label = c("Alder vid diagnos","Age at diagnosis"),

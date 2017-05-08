@@ -2,34 +2,34 @@
 #' @description returns shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
 #'
 #' @param data data frame containing the variables used in the app.
-#' @param outcome vector with the name(s) of the variable(s) of interest, for example a "kvalitetsindikator". Default is "outcome".
-#' @param outcomeTitle label(s) of the outcome(s). Must be the same lenght as argument outcome. Default is argument outcome (name(s) of the outcome(s) in the dataset).
+#' @param outcome vector with names(s) of variable(s) in data containing the variable to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".
+#' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param folder name of folder where the results are placed.
-#' @param folderLinkText short name used in html lank??? glunkiglunk. Fredrik: HJÄLP SÖKES!
-#' @param path searchpath to folder. Default is working directory.
-#' @param titleTextBeforeSubtitle optional text placed before the subtitles in the tabs.
-#' @param titleTextAfterSubtitle optional text placed after the subtitles in the tabs.
+#' @param folderLinkText short name displayed in ready-to-use html link returned by the function.
+#' @param path search path to folder returned by the function. Default is working directory.
+#' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
+#' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
 #' @param description description shown in the tab Beskrivning/Description.
-#' @param geoUnitsHospital optional character vector with hospital names. At least one geoUnit needs to be given. To be implemented: Hospital codes.
-#' @param geoUnitsCounty optional numeric vector with county codes. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit needs to be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion optional numeric vector with region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). At least one geoUnit needs to be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsFromLKF if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is choosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
+#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.
+#' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsPatient if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel used if regionSelection = TRUE. Label of widget shown in the sidebar panel. Default is c("Begränsa till region", "Limit to region").
-#' @param period numeric vector with time periods, for example year of diagnosis. Default is "period".
+#' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is c("Diagnosår", "Year of diagnosis").
-#' @param userInputList list with variables (other than period and geoUnits) to be shown in sidebar panel. Arguments to the list are: var (variable name in dataset), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continous variables).
-#' @param targetValues optional vector of 1-2 targetvalues ("målnivåer") to be plotted in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables.
+#' @param varOther list of variable(s) (other than period and geoUnits) to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).
+#' @param targetValues optional vector of 1-2 target levels to be plotted in the tab Jämförelse/Comparison. Only applicable for dichotomous variables.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE. Currently not implemented and always set to TRUE.
-#' @param targetValuesSortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Deafault is TRUE.
+#' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.
 #' @param hideLessThan optional value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
-#' @param npcrGroupPrivateOthers Applicable for NPCR only. FREDRIK: vad ska stå? Ska default vara TRUE?
+#' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is TRUE.
 #'
 #' @details Valid values for geoUnitsCounty are:
 #'   \tabular{lll}{
-#' geoUnitsFromLKF   \tab !geoUnitsFromLKF \tab Text\cr
+#' \strong{geoUnitsPatient}   \tab \strong{!geoUnitsPatient} \tab \strong{Text shown}\cr
 #' 1\tab 10,11 \tab  Stockholm\cr
 #' 3\tab 12 \tab  Uppsala\cr
 #' 4\tab 13 \tab  Södermanland\cr
@@ -56,9 +56,10 @@
 #'
 #'
 #'
-#' If language = c("sv", "en") the following applies to arguments: outcomeTitle, titleTextBeforeSubtitle, titleTextAfterSubtitle, comment, description,
-#' regionLabel, label in list userInputList: if there are two values the first is used in the swedish version and the second in the english version. These must be given in order sv, en. If there is only one value this is recycled in both versions.
-#' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list userInputList: in the english version rccShiny will use the variable name with the suffix _en (for example "outcome_en") if this exists and otherwise recycle the swedish variable name.
+#' If language = c("sv", "en") the following applies to arguments: textBeforeSubtitle, textAfterSubtitle, comment, description,
+#' regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. These must be given in order sv, en. If there is only one value this is recycled in both versions.
+#' The following applies to argument outcomeTitle: the titles should be given in a list in order sv, en. If only one listargument is given this will be recycled in both versions.
+#' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version rccShiny will use the variable name with the suffix _en (for example "outcome_en") if this exists and otherwise recycle the Swedish variable name.
 #'
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #'
@@ -67,12 +68,11 @@
 #' rccShiny(
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
-#'   path = "C:/Users/552l/test_rccShiny",
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
 #'   comment = "Skovde och Lidkoping tillhor Skaraborg",
 #'   description = "Att tanka pa vid tolkning ....",
-#'   userInputList = list(
+#'   varOther = list(
 #'     list(
 #'       var = "age",
 #'       label = "Alder vid diagnos"
@@ -87,7 +87,7 @@
 #' )
 #' \dontrun{
 #' library(shiny)
-#' runApp("C:/Users/552l/test_rccShiny/apps/sv/Indikator1")
+#' runApp("./apps/sv/Indikator1")
 #' }
 #'
 #'# For Swedish/English version
@@ -96,10 +96,10 @@
 #'   data = rccShinyData,
 #'   folder = "Indikator2",
 #'   outcome = "outcome1",
-#'   outcomeTitle = c("Kontaktsjukskoterska", "Contact nurse"),
-#'   titleTextBeforeSubtitle = c("Nagot på svenska","Something in English"),
+#'   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
+#'   textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
 #'   description = c("Superbra att ha!","Supergood to have!"),
-#'   userInputList = list(
+#'   varOther = list(
 #'     list(
 #'       var = "age",
 #'      label = c("Alder vid diagnos","Age at diagnosis"),
@@ -118,22 +118,22 @@ rccShiny <- function(data = NULL,
                      folder = "ind",
                      folderLinkText = outcomeTitle,
                      path = getwd(),
-                     titleTextBeforeSubtitle = NULL,
-                     titleTextAfterSubtitle = NULL,
+                     textBeforeSubtitle = NULL,
+                     textAfterSubtitle = NULL,
                      comment = "",
                      description = c("(beskrivning saknas)", "(description missing)"),
                      geoUnitsHospital = "sjukhus",
                      geoUnitsCounty = "landsting",
                      geoUnitsRegion = "region",
-                     geoUnitsFromLKF = FALSE,
+                     geoUnitsPatient = FALSE,
                      regionSelection = TRUE,
                      regionLabel = c("Begränsa till region", "Limit to region"),
                      period = "period",
                      periodLabel = c("Diagnosår", "Year of diagnosis"),
-                     userInputList = NULL,
+                     varOther = NULL,
                      targetValues = NULL,
                      funnelplot = FALSE,
-                     targetValuesSortDescending = NULL,
+                     sortDescending = NULL,
                      hideLessThan = 5,
                      language = c("sv"),
                      npcrGroupPrivateOthers = TRUE) {
@@ -187,9 +187,9 @@ rccShiny <- function(data = NULL,
     if (!(geoUnitsCounty %in% colnames(data)))
         stop(paste0("Column '", geoUnitsCounty, "' not found in 'data'"), call. = FALSE)
     data$landstingCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsCounty])))
-    if (any(is.na(data$landstingCode)) | !(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsFromLKF)$landstingCode)))
-        stop(paste0("'", geoUnitsCounty, "' contains missing or invalid values. When 'geoUnitsFromLKF'=", geoUnitsFromLKF, ", '", geoUnitsCounty, "' should only contain the values (",
-            paste(rccShinyCounties(lkf = geoUnitsFromLKF)$landstingCode, collapse = ", "), ")."), call. = FALSE)
+    if (any(is.na(data$landstingCode)) | !(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
+        stop(paste0("'", geoUnitsCounty, "' contains missing or invalid values. When 'geoUnitsPatient'=", geoUnitsPatient, ", '", geoUnitsCounty, "' should only contain the values (",
+            paste(rccShinyCounties(lkf = geoUnitsPatient)$landstingCode, collapse = ", "), ")."), call. = FALSE)
 
 
 
@@ -215,9 +215,13 @@ rccShiny <- function(data = NULL,
 
     tempLinks <- vector()
 
+    masterData <- data
+
     # Save folder for each language
 
     for (loop_language in language) {
+
+        data <- masterData
 
         which_language <- which(language == loop_language)
 
@@ -245,7 +249,7 @@ rccShiny <- function(data = NULL,
 
         # Add county names
         data <- data[, colnames(data) != "landsting"]
-        data <- merge(data, rccShinyCounties(language = loop_language, lkf = geoUnitsFromLKF), by = "landstingCode", all.x = TRUE)
+        data <- merge(data, rccShinyCounties(language = loop_language, lkf = geoUnitsPatient), by = "landstingCode", all.x = TRUE)
 
         # Check for hospital variable in data
         if (is.null(geoUnitsHospital))
@@ -263,50 +267,50 @@ rccShiny <- function(data = NULL,
         includeVariables <- c("period", "region", "landsting", "sjukhus")
 
         # Check for user variable(s) in data
-        GLOBAL_userInputList <- userInputList
-        if (!is.null(GLOBAL_userInputList)) {
+        GLOBAL_varOther <- varOther
+        if (!is.null(GLOBAL_varOther)) {
             userInputVariables <- vector()
-            for (i in 1:length(GLOBAL_userInputList)) {
-                if (is.null(GLOBAL_userInputList[[i]]$var))
-                  stop(paste0("'var' is missing from userInputList[[", i, "]]"), call. = FALSE)
-                temp_var <- GLOBAL_userInputList[[i]]$var
+            for (i in 1:length(GLOBAL_varOther)) {
+                if (is.null(GLOBAL_varOther[[i]]$var))
+                  stop(paste0("'var' is missing from varOther[[", i, "]]"), call. = FALSE)
+                temp_var <- GLOBAL_varOther[[i]]$var
                 if (!(temp_var %in% colnames(data)))
-                  stop(paste0("The variable '", temp_var, "' from userInputList[[", i, "]] is missing in 'data'"), call. = FALSE)
+                  stop(paste0("The variable '", temp_var, "' from varOther[[", i, "]] is missing in 'data'"), call. = FALSE)
 
                 if (paste0(temp_var, "_", loop_language) %in% colnames(data))
                   data[, temp_var] <- data[, paste0(temp_var, "_", loop_language)]
                 userInputVariables <- c(userInputVariables, temp_var)
 
-                if (is.null(GLOBAL_userInputList[[i]]$label))
-                  GLOBAL_userInputList[[i]]$label <- temp_var
-                GLOBAL_userInputList[[i]]$label <- ifelse(length(GLOBAL_userInputList[[i]]$label) >= which_language, GLOBAL_userInputList[[i]]$label[which_language], GLOBAL_userInputList[[i]]$label[1])
+                if (is.null(GLOBAL_varOther[[i]]$label))
+                  GLOBAL_varOther[[i]]$label <- temp_var
+                GLOBAL_varOther[[i]]$label <- ifelse(length(GLOBAL_varOther[[i]]$label) >= which_language, GLOBAL_varOther[[i]]$label[which_language], GLOBAL_varOther[[i]]$label[1])
 
-                GLOBAL_userInputList[[i]]$classNumeric <- class(data[, temp_var]) %in% c("difftime", "numeric", "integer")
+                GLOBAL_varOther[[i]]$classNumeric <- class(data[, temp_var]) %in% c("difftime", "numeric", "integer")
 
-                if (is.null(GLOBAL_userInputList[[i]]$choices)) {
-                  if (GLOBAL_userInputList[[i]]$classNumeric) {
-                    GLOBAL_userInputList[[i]]$choices <- range(data[, temp_var], na.rm = TRUE)
+                if (is.null(GLOBAL_varOther[[i]]$choices)) {
+                  if (GLOBAL_varOther[[i]]$classNumeric) {
+                    GLOBAL_varOther[[i]]$choices <- range(data[, temp_var], na.rm = TRUE)
                   } else {
-                    GLOBAL_userInputList[[i]]$choices <- levels(factor(data[, temp_var]))
+                    GLOBAL_varOther[[i]]$choices <- levels(factor(data[, temp_var]))
                   }
                 }
-                if (is.list(GLOBAL_userInputList[[i]]$choices)) {
-                  GLOBAL_userInputList[[i]]$choices <- GLOBAL_userInputList[[i]]$choices[[ifelse(length(GLOBAL_userInputList[[i]]$choices) >= which_language, which_language,
+                if (is.list(GLOBAL_varOther[[i]]$choices)) {
+                  GLOBAL_varOther[[i]]$choices <- GLOBAL_varOther[[i]]$choices[[ifelse(length(GLOBAL_varOther[[i]]$choices) >= which_language, which_language,
                     1)]]
                 }
 
-                if (is.null(GLOBAL_userInputList[[i]]$selected))
-                  GLOBAL_userInputList[[i]]$selected <- GLOBAL_userInputList[[i]]$choices
-                if (is.list(GLOBAL_userInputList[[i]]$selected)) {
-                  GLOBAL_userInputList[[i]]$selected <- GLOBAL_userInputList[[i]]$selected[[ifelse(length(GLOBAL_userInputList[[i]]$selected) >= which_language, which_language,
+                if (is.null(GLOBAL_varOther[[i]]$selected))
+                  GLOBAL_varOther[[i]]$selected <- GLOBAL_varOther[[i]]$choices
+                if (is.list(GLOBAL_varOther[[i]]$selected)) {
+                  GLOBAL_varOther[[i]]$selected <- GLOBAL_varOther[[i]]$selected[[ifelse(length(GLOBAL_varOther[[i]]$selected) >= which_language, which_language,
                     1)]]
                 }
 
-                if (is.null(GLOBAL_userInputList[[i]]$multiple))
-                  GLOBAL_userInputList[[i]]$multiple <- TRUE
+                if (is.null(GLOBAL_varOther[[i]]$multiple))
+                  GLOBAL_varOther[[i]]$multiple <- TRUE
 
-                if (is.null(GLOBAL_userInputList[[i]]$showInTitle))
-                  GLOBAL_userInputList[[i]]$showInTitle <- TRUE
+                if (is.null(GLOBAL_varOther[[i]]$showInTitle))
+                  GLOBAL_varOther[[i]]$showInTitle <- TRUE
             }
             includeVariables <- c(includeVariables, userInputVariables)
         }
@@ -326,15 +330,15 @@ rccShiny <- function(data = NULL,
             outcomeTitle
         }
 
-        GLOBAL_titleTextBeforeSubtitle <- if (length(titleTextBeforeSubtitle) >= which_language) {
-            titleTextBeforeSubtitle[which_language]
+        GLOBAL_textBeforeSubtitle <- if (length(textBeforeSubtitle) >= which_language) {
+            textBeforeSubtitle[which_language]
         } else {
-            titleTextBeforeSubtitle[1]
+            textBeforeSubtitle[1]
         }
-        GLOBAL_titleTextAfterSubtitle <- if (length(titleTextAfterSubtitle) >= which_language) {
-            titleTextAfterSubtitle[which_language]
+        GLOBAL_textAfterSubtitle <- if (length(textAfterSubtitle) >= which_language) {
+            textAfterSubtitle[which_language]
         } else {
-            titleTextAfterSubtitle[1]
+            textAfterSubtitle[1]
         }
 
         GLOBAL_comment <- ifelse(length(comment) >= which_language, comment[which_language], comment[1])
@@ -345,7 +349,7 @@ rccShiny <- function(data = NULL,
         GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
         GLOBAL_periodEnd <- max(data$period, na.rm = TRUE)
 
-        GLOBAL_geoUnitsFromLKF <- geoUnitsFromLKF
+        GLOBAL_geoUnitsPatient <- geoUnitsPatient
 
         GLOBAL_regionSelection <- regionSelection
         GLOBAL_regionLabel <- ifelse(length(regionLabel) >= which_language, regionLabel[which_language], regionLabel[1])
@@ -354,7 +358,7 @@ rccShiny <- function(data = NULL,
 
         GLOBAL_targetValues <- targetValues
         GLOBAL_funnelplot <- funnelplot
-        GLOBAL_targetValuesSortDescending <- targetValuesSortDescending
+        GLOBAL_sortDescending <- sortDescending
 
         GLOBAL_hideLessThan <- ifelse(hideLessThan < 5, 5, hideLessThan)
 
@@ -375,9 +379,9 @@ rccShiny <- function(data = NULL,
         file.copy(system.file("source", "server.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/server.R"), overwrite = TRUE)
         file.copy(system.file("source", "ui.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/ui.R"), overwrite = TRUE)
 
-        save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_titleTextBeforeSubtitle, GLOBAL_titleTextAfterSubtitle, GLOBAL_comment, GLOBAL_description,
-            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsFromLKF, GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected,
-            GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_targetValuesSortDescending, GLOBAL_userInputList, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
+        save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
+            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsPatient, GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected,
+            GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
             file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
         # Output description to .html-file

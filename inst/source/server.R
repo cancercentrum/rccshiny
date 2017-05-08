@@ -2,31 +2,28 @@
 library(shiny)
 library(DT)
 
-#file.sources = list.files(path="../_functions/",pattern="*.R",full.names=TRUE,ignore.case=TRUE)
-#sapply(file.sources,source,.GlobalEnv,encoding="UTF-8")
-
 shinyServer(function(input, output, clientData) {
 
   whichOutcome <-
     reactive({
-      which(GLOBAL_outcomeTitle==input$param_outcome)
+      which(GLOBAL_outcomeTitle == input$param_outcome)
     })
 
   outcomeClassNumeric <-
     reactive({
-      GLOBAL_outcomeClass[whichOutcome()]%in%c("difftime","numeric","integer")
+      GLOBAL_outcomeClass[whichOutcome()] %in% c("difftime","numeric","integer")
     })
 
   output$numericTypeInput <-
     renderUI({
       tagList(
         conditionalPanel(
-          condition = ifelse(outcomeClassNumeric(),"true","false"),
+          condition = ifelse(outcomeClassNumeric(), "true", "false"),
           radioButtons(
-            inputId="param_numerictype",
-            label = rccShinyTXT(language=GLOBAL_language)$presentation,
-            choices = c(rccShinyTXT(language=GLOBAL_language)$median,rccShinyTXT(language=GLOBAL_language)$numericchoices_prop),
-            selected = rccShinyTXT(language=GLOBAL_language)$median
+            inputId = "param_numerictype",
+            label = rccShinyTXT(language = GLOBAL_language)$presentation,
+            choices = c(rccShinyTXT(language = GLOBAL_language)$median, rccShinyTXT(language = GLOBAL_language)$numericchoices_prop),
+            selected = rccShinyTXT(language = GLOBAL_language)$median
           )
         )
       )
@@ -34,14 +31,14 @@ shinyServer(function(input, output, clientData) {
 
   numericTypeProp <-
     reactive({
-      input$param_numerictype==rccShinyTXT(language=GLOBAL_language)$numericchoices_prop
+      input$param_numerictype == rccShinyTXT(language = GLOBAL_language)$numericchoices_prop
     })
 
   output$numericTypePropInput <-
     renderUI({
       tagList(
         conditionalPanel(
-          condition = ifelse(outcomeClassNumeric(),paste0("input.param_numerictype == '",rccShinyTXT(language=GLOBAL_language)$numericchoices_prop,"'"),"false"),
+          condition = ifelse(outcomeClassNumeric(), paste0("input.param_numerictype == '",rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, "'"), "false"),
           numericInput(
             inputId = "param_numerictype_prop",
             label = NULL,
@@ -58,11 +55,11 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = ifelse(GLOBAL_regionSelection,"true","false"),
+          condition = ifelse(GLOBAL_regionSelection, "true", "false"),
           selectizeInput(
             inputId = "param_region",
             label = GLOBAL_regionLabel,
-            choices = c(rccShinyTXT(language=GLOBAL_language)$all,GLOBAL_regionChoices),
+            choices = c(rccShinyTXT(language = GLOBAL_language)$all,GLOBAL_regionChoices),
             selected = GLOBAL_regionSelected,
             multiple = FALSE
           )
@@ -78,34 +75,34 @@ shinyServer(function(input, output, clientData) {
             paste0(
               "input.tab!='fig_trend' & input.tab!='fig_map' & ",
               ifelse(
-                GLOBAL_outcomeClass[whichOutcome()]=="factor",
+                GLOBAL_outcomeClass[whichOutcome()] == "factor",
                 "true",
                 "input.tab!='fig_trend'"
               )
             ),
           selectInput(
             inputId = "param_levelpresent",
-            label = rccShinyTXT(language=GLOBAL_language)$levelofcomparison,
+            label = rccShinyTXT(language = GLOBAL_language)$levelofcomparison,
             choices = c(
-              rccShinyLevelNames("region",language=GLOBAL_language),
+              rccShinyLevelNames("region",language = GLOBAL_language),
               rccShinyLevelNames(
                 ifelse(
-                  GLOBAL_geoUnitsFromLKF,
+                  GLOBAL_geoUnitsPatient,
                   "county_lkf",
                   "county"
                 ),
-                language=GLOBAL_language
+                language = GLOBAL_language
               ),
-              rccShinyLevelNames("hospital",language=GLOBAL_language)
+              rccShinyLevelNames("hospital", language = GLOBAL_language)
             ),
-            selected=
+            selected =
               rccShinyLevelNames(
                 ifelse(
-                  GLOBAL_geoUnitsFromLKF,
+                  GLOBAL_geoUnitsPatient,
                   "county_lkf",
                   "county"
                 ),
-                language=GLOBAL_language
+                language = GLOBAL_language
               )
           )
         )
@@ -119,7 +116,7 @@ shinyServer(function(input, output, clientData) {
           condition = "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table'",
           selectInput(
             inputId = "param_ownhospital",
-            label = rccShinyTXT(language=GLOBAL_language)$hospitalinterest,
+            label = rccShinyTXT(language = GLOBAL_language)$hospitalinterest,
             choices = hospitalChoices(),
             selected = ""
           )
@@ -135,7 +132,7 @@ shinyServer(function(input, output, clientData) {
             paste0(
               "input.tab!='fig_trend' & ",
               ifelse(
-                GLOBAL_periodStart==GLOBAL_periodEnd,
+                GLOBAL_periodStart == GLOBAL_periodEnd,
                 "false",
                 "true"
               )
@@ -147,7 +144,7 @@ shinyServer(function(input, output, clientData) {
             max = GLOBAL_periodEnd,
             step = 1,
             ticks = FALSE,
-            value = rep(GLOBAL_periodEnd,2),
+            value = rep(GLOBAL_periodEnd, 2),
             sep = ""
           )
         )
@@ -162,9 +159,9 @@ shinyServer(function(input, output, clientData) {
           checkboxInput(
             inputId = "param_periodSplit",
             label = paste(
-              rccShinyTXT(language=GLOBAL_language)$periodSplit1,
+              rccShinyTXT(language = GLOBAL_language)$periodSplit1,
               tolower(GLOBAL_periodLabel),
-              rccShinyTXT(language=GLOBAL_language)$periodSplit2
+              rccShinyTXT(language = GLOBAL_language)$periodSplit2
             ),
             value = FALSE
           )
@@ -174,25 +171,25 @@ shinyServer(function(input, output, clientData) {
 
   output$userInput <-
     renderUI({
-      if (!is.null(GLOBAL_userInputList)) {
-        userInputList <-
+      if (!is.null(GLOBAL_varOther)) {
+        varOther <-
           lapply(
-            1:length(GLOBAL_userInputList),
+            1:length(GLOBAL_varOther),
             function(i) {
-              tempList <- GLOBAL_userInputList[[i]]
+              tempList <- GLOBAL_varOther[[i]]
               if (tempList$classNumeric) {
                 sliderInput(
                   inputId = paste0("userInputId",i),
                   label = tempList$label,
-                  min = min(tempList$choices[1],na.rm=TRUE),
-                  max = max(tempList$choices[2],na.rm=TRUE),
+                  min = min(tempList$choices[1], na.rm = TRUE),
+                  max = max(tempList$choices[2], na.rm = TRUE),
                   step = 1,
                   ticks = FALSE,
-                  value = range(tempList$choices,na.rm=TRUE)
+                  value = range(tempList$choices, na.rm = TRUE)
                 )
               } else {
                 selectizeInput(
-                  inputId = paste0("userInputId",i),
+                  inputId = paste0("userInputId", i),
                   label = tempList$label,
                   choices = tempList$choices,
                   selected = tempList$selected,
@@ -202,19 +199,19 @@ shinyServer(function(input, output, clientData) {
             }
           )
       } else {
-        userInputList <- list()
+        varOther <- list()
       }
-      do.call(tagList,userInputList)
+      do.call(tagList,varOther)
     })
 
   output$funnelPlotInput <-
     renderUI({
       tagList(
         conditionalPanel(
-          condition = paste0("input.tab=='fig_compare' & ",if(outcomeClassNumeric()){ifelse(numericTypeProp(),"true","false")}else if(GLOBAL_outcomeClass[whichOutcome()]=="factor"){"false"}else{"true"}),
+          condition = paste0("input.tab=='fig_compare' & ", if(outcomeClassNumeric()){ifelse(numericTypeProp(), "true", "false")}else if(GLOBAL_outcomeClass[whichOutcome()]=="factor"){"false"}else{"true"}),
           checkboxInput(
             inputId = "param_funnelplot",
-            label = rccShinyTXT(language=GLOBAL_language)$funnelplot,
+            label = rccShinyTXT(language = GLOBAL_language)$funnelplot,
             value = FALSE
           )
         )
@@ -224,8 +221,8 @@ shinyServer(function(input, output, clientData) {
   hospitalChoices <- reactive({
     tempHospitals <- sort(unique(GLOBAL_data$sjukhus))
     if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-      if (!(rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]])) {
-        tempHospitals <- tempHospitals[tempHospitals%in%GLOBAL_data$sjukhus[GLOBAL_data$region%in%input[["param_region"]]]]
+      if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+        tempHospitals <- tempHospitals[tempHospitals %in% GLOBAL_data$sjukhus[GLOBAL_data$region %in% input[["param_region"]]]]
       }
     }
 
@@ -236,19 +233,19 @@ shinyServer(function(input, output, clientData) {
       if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
         showPrivateHospitals <- FALSE
       } else {
-        if (rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]]) {
+        if (rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]]) {
           showPrivateHospitals <- FALSE
         }
       }
 
       if (!showPrivateHospitals) {
-        privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language=GLOBAL_language,returnPrivateOthersNames=TRUE)
+        privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
         landstingName <- privateOthersName[[GLOBAL_language]]$landsting
         sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-        tempHospitals <- tempHospitals[!(tempHospitals%in%GLOBAL_data$sjukhus[substr(GLOBAL_data$landsting,1,nchar(landstingName))==landstingName])]
+        tempHospitals <- tempHospitals[!(tempHospitals %in% GLOBAL_data$sjukhus[substr(GLOBAL_data$landsting,1,nchar(landstingName)) == landstingName])]
         tempHospitals <- c(
           tempHospitals,
-          paste0(sjukhusName," - ",rccShinyRegionNames(language=GLOBAL_language))
+          paste0(sjukhusName," - ",rccShinyRegionNames(language = GLOBAL_language))
         )
         tempHospitals <- sort(tempHospitals)
       }
@@ -265,7 +262,7 @@ shinyServer(function(input, output, clientData) {
         paste0(
           GLOBAL_outcomeTitle[whichOutcome()],
           ", ",
-          rccShinyTXT(language=GLOBAL_language)$numeric_proportionwithin,
+          rccShinyTXT(language = GLOBAL_language)$numeric_proportionwithin,
           input$param_numerictype_prop
         )
       } else {
@@ -281,7 +278,7 @@ shinyServer(function(input, output, clientData) {
       GLOBAL_periodLabel,
       ": ",
       ifelse(
-        input[["param_period"]][1]==input[["param_period"]][2],
+        input[["param_period"]][1] == input[["param_period"]][2],
         input[["param_period"]][1],
         paste0(
           input[["param_period"]][1],
@@ -295,11 +292,11 @@ shinyServer(function(input, output, clientData) {
 
   indSubtitleGroupLessThan <- reactive({
     paste0(
-      rccShinyTXT(language=GLOBAL_language)$fewcases1,
+      rccShinyTXT(language = GLOBAL_language)$fewcases1,
       " ",
       GLOBAL_hideLessThan,
       " ",
-      rccShinyTXT(language=GLOBAL_language)$fewcases2,
+      rccShinyTXT(language = GLOBAL_language)$fewcases2,
       "."
     )
   })
@@ -311,8 +308,8 @@ shinyServer(function(input, output, clientData) {
     ) {
       paste0(
         ifelse(
-          !is.null(GLOBAL_titleTextBeforeSubtitle),
-          paste0(GLOBAL_titleTextBeforeSubtitle," "),
+          !is.null(GLOBAL_textBeforeSubtitle),
+          paste0(GLOBAL_textBeforeSubtitle," "),
           ""
         ),
         ifelse(
@@ -326,8 +323,8 @@ shinyServer(function(input, output, clientData) {
           ""
         ),
         ifelse(
-          !is.null(GLOBAL_titleTextAfterSubtitle),
-          paste0(GLOBAL_titleTextAfterSubtitle," "),
+          !is.null(GLOBAL_textAfterSubtitle),
+          paste0(GLOBAL_textAfterSubtitle," "),
           ""
         )
       )
@@ -335,9 +332,9 @@ shinyServer(function(input, output, clientData) {
 
   indSubtitleUserInput <- reactive({
     tempText <- ""
-    if (!is.null(GLOBAL_userInputList)) {
-      for (i in 1:length(GLOBAL_userInputList)) {
-        tempList <- GLOBAL_userInputList[[i]]
+    if (!is.null(GLOBAL_varOther)) {
+      for (i in 1:length(GLOBAL_varOther)) {
+        tempList <- GLOBAL_varOther[[i]]
         tempValues <- input[[paste0("userInputId",i)]]
         if (tempList$showInTitle) {
           if (tempList$classNumeric) {
@@ -347,7 +344,7 @@ shinyServer(function(input, output, clientData) {
                 tempList$label,
                 ": ",
                 ifelse(
-                  tempValues[1]==tempValues[2],
+                  tempValues[1] == tempValues[2],
                   tempValues[1],
                   paste0(
                     tempValues[1],
@@ -357,13 +354,13 @@ shinyServer(function(input, output, clientData) {
                 ),
                 ". "
               )
-          } else if (!(all(tempList$choices%in%tempValues))) {
+          } else if (!(all(tempList$choices %in% tempValues))) {
             tempText <-
               paste0(
                 tempText,
                 tempList$label,
                 ": ",
-                paste(tempValues,collapse="/"),
+                paste(tempValues,collapse = "/"),
                 ". "
               )
           }
@@ -378,7 +375,7 @@ shinyServer(function(input, output, clientData) {
   })
 
   output$text1 <- renderText({
-    indSubtitle(hideLessThan=GLOBAL_hideLessThan)
+    indSubtitle(hideLessThan = GLOBAL_hideLessThan)
   })
 
   output$text2 <- renderText({
@@ -390,7 +387,7 @@ shinyServer(function(input, output, clientData) {
   })
 
   output$tableSubtitle1 <- renderText({
-    indSubtitle(hideLessThan=GLOBAL_hideLessThan)
+    indSubtitle(hideLessThan = GLOBAL_hideLessThan)
   })
 
   output$tableSubtitle2 <- renderText({
@@ -401,26 +398,26 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       theTabs <-
         list(
-          tabPanel(rccShinyTabsNames(language=GLOBAL_language)$fig_compare, value="fig_compare", plotOutput("indPlot"))
+          tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot"))
         )
-      if (GLOBAL_outcomeClass[whichOutcome()]=="factor") {
-        theTabs[[length(theTabs)+1]] <- tabPanel(rccShinyTabsNames(language=GLOBAL_language)$tab_n, value="table_num", dataTableOutput("indTableNum"))
-        theTabs[[length(theTabs)+1]] <- tabPanel(rccShinyTabsNames(language=GLOBAL_language)$tab_p, value="table_pct", dataTableOutput("indTablePct"))
+      if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"))
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"))
       } else {
-        theTabs[[length(theTabs)+1]] <-
+        theTabs[[length(theTabs) + 1]] <-
           tabPanel(
-            title=rccShinyTabsNames(language=GLOBAL_language)$tab,
-            value="table",
+            title = rccShinyTabsNames(language = GLOBAL_language)$tab,
+            value = "table",
             h2(textOutput("tableTitle")),
             p(textOutput("tableSubtitle1")),
             p(textOutput("tableSubtitle2")),
             dataTableOutput("indTable")
           )
-        theTabs[[length(theTabs)+1]] <- tabPanel(rccShinyTabsNames(language=GLOBAL_language)$map, value="fig_map", plotOutput("indMap"))
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
       }
-      theTabs[[length(theTabs)+1]] <- tabPanel(rccShinyTabsNames(language=GLOBAL_language)$fig_trend, value="fig_trend", plotOutput("indPlotTrend"))
-      theTabs[[length(theTabs)+1]] <- tabPanel(rccShinyTabsNames(language=GLOBAL_language)$description, includeHTML("./docs/description.html"))
-      do.call(tabsetPanel,c(theTabs,id="tab"))
+      theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
+      theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, includeHTML("./docs/description.html"))
+      do.call(tabsetPanel,c(theTabs,id = "tab"))
     })
 
   dfInput <- reactive({
@@ -429,49 +426,49 @@ shinyServer(function(input, output, clientData) {
 
     dftemp$outcome <- dftemp[,GLOBAL_outcome[whichOutcome()]]
     if (outcomeClassNumeric() & numericTypeProp()) {
-      dftemp$outcome <- dftemp$outcome<=input$param_numerictype_prop
+      dftemp$outcome <- dftemp$outcome <= input$param_numerictype_prop
     }
 
-    if (input$tab!="fig_trend") {
-      dftemp <- subset(dftemp,!is.na(period) & period%in%input[["param_period"]][1]:input[["param_period"]][2])
+    if (input$tab != "fig_trend") {
+      dftemp <- subset(dftemp, !is.na(period) & period %in% input[["param_period"]][1]:input[["param_period"]][2])
     }
 
-    if (!(all(rccShinyRegionNames(language=GLOBAL_language)[4:5]%in%input[["param_region"]])) & (rccShinyRegionNames(language=GLOBAL_language)[4]%in%input[["param_region"]] | rccShinyRegionNames(language=GLOBAL_language)[5]%in%input[["param_region"]])) {
-      dftemp$landsting[dftemp$landsting=="Halland" & dftemp$region==rccShinyRegionNames(language=GLOBAL_language)[4]] <- "Södra Halland"
-      dftemp$landsting[dftemp$landsting=="Halland" & dftemp$region==rccShinyRegionNames(language=GLOBAL_language)[5]] <- "Norra Halland"
+    if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
+      dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "Södra Halland"
+      dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
     }
 
-    dftemp$group <- dftemp[,rccShinyGroupVariable(label=input$param_levelpresent)]
-    dftemp$group_ownhospital <- dftemp[,"sjukhus"]==input$param_ownhospital
+    dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
+    dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
 
     # Speciallösning för NPCR
     # -----------------------
-    if (GLOBAL_npcrGroupPrivateOthers & rccShinyGroupVariable(label=input$param_levelpresent)==rccShinyGroupVariable("sjukhus")) {
+    if (GLOBAL_npcrGroupPrivateOthers & rccShinyGroupVariable(label = input$param_levelpresent) == rccShinyGroupVariable("sjukhus")) {
       showPrivateHospitals <- TRUE
       if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
         showPrivateHospitals <- FALSE
       } else {
-        if (rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]]) {
+        if (rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]]) {
           showPrivateHospitals <- FALSE
         }
       }
 
       if (!showPrivateHospitals) {
-        privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language=GLOBAL_language,returnPrivateOthersNames=TRUE)
+        privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
         landstingName <- privateOthersName[[GLOBAL_language]]$landsting
         sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-        changeName <- substr(dftemp$landsting,1,nchar(landstingName))==landstingName
+        changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName
         dftemp$group[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
       }
     }
     # -----------------------
 
-    if (!is.null(GLOBAL_userInputList)) {
-      for (i in 1:length(GLOBAL_userInputList)) {
-        if (GLOBAL_userInputList[[i]]$classNumeric) {
-          dftemp <- dftemp[!is.na(dftemp[,GLOBAL_userInputList[[i]]$var]) & dftemp[,GLOBAL_userInputList[[i]]$var]%in%input[[paste0("userInputId",i)]][1]:input[[paste0("userInputId",i)]][2],]
+    if (!is.null(GLOBAL_varOther)) {
+      for (i in 1:length(GLOBAL_varOther)) {
+        if (GLOBAL_varOther[[i]]$classNumeric) {
+          dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] %in% input[[paste0("userInputId",i)]][1]:input[[paste0("userInputId",i)]][2],]
         } else {
-          dftemp <- dftemp[!is.na(dftemp[,GLOBAL_userInputList[[i]]$var]) & dftemp[,GLOBAL_userInputList[[i]]$var]%in%input[[paste0("userInputId",i)]],]
+          dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] %in% input[[paste0("userInputId",i)]],]
         }
       }
     }
@@ -483,13 +480,13 @@ shinyServer(function(input, output, clientData) {
   hallandLabel <- reactive({
     if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
       if (
-        rccShinyRegionNames(language=GLOBAL_language)[4]%in%input[["param_region"]] &
-        !(rccShinyRegionNames(language=GLOBAL_language)[5]%in%input[["param_region"]])
+        rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] &
+        !(rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])
       ) {
         hallandLabel <- "Södra Halland"
       } else if (
-        rccShinyRegionNames(language=GLOBAL_language)[5]%in%input[["param_region"]] &
-        !(rccShinyRegionNames(language=GLOBAL_language)[4]%in%input[["param_region"]])
+        rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]] &
+        !(rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]])
       ) {
         hallandLabel <- "Norra Halland"
       } else {
@@ -501,17 +498,17 @@ shinyServer(function(input, output, clientData) {
   })
 
   emphLabel <- reactive({
-    if (input$param_levelpresent==rccShinyLevelNames("hospital",language=GLOBAL_language)) {
+    if (input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language)) {
       emph_lab <- input$param_ownhospital
-    } else if (GLOBAL_geoUnitsFromLKF) {
+    } else if (GLOBAL_geoUnitsPatient) {
       emph_lab <- ""
-    } else if (input$param_levelpresent==rccShinyLevelNames("county",language=GLOBAL_language) & nrow(GLOBAL_data)>0) {
-      emph_lab <- GLOBAL_data$landsting[GLOBAL_data$sjukhus==input$param_ownhospital][1]
-      if (!is.na(emph_lab) & emph_lab=="Halland") {
+    } else if (input$param_levelpresent == rccShinyLevelNames("county",language = GLOBAL_language) & nrow(GLOBAL_data) > 0) {
+      emph_lab <- GLOBAL_data$landsting[GLOBAL_data$sjukhus == input$param_ownhospital][1]
+      if (!is.na(emph_lab) & emph_lab == "Halland") {
         emph_lab <- hallandLabel()
       }
-    } else if (input$param_levelpresent==rccShinyLevelNames("region",language=GLOBAL_language) & nrow(GLOBAL_data)>0) {
-      emph_lab <- GLOBAL_data$region[GLOBAL_data$sjukhus==input$param_ownhospital][1]
+    } else if (input$param_levelpresent == rccShinyLevelNames("region",language = GLOBAL_language) & nrow(GLOBAL_data) > 0) {
+      emph_lab <- GLOBAL_data$region[GLOBAL_data$sjukhus == input$param_ownhospital][1]
     } else {
       emph_lab <- ""
     }
@@ -528,100 +525,100 @@ shinyServer(function(input, output, clientData) {
 
       tempSubset <- NULL
       if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-        if (!(rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]])) {
-          tempSubset <- dfuse$region%in%input[["param_region"]]
+        if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+          tempSubset <- dfuse$region %in% input[["param_region"]]
         }
       }
 
-      outfile <- tempfile(fileext=".png")
+      outfile <- tempfile(fileext = ".png")
 
-      png(filename=outfile,width=9,height=9*yx_ratio,units="in",res=144)
+      png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 144)
 
-      if(nrow(dfuse)>=GLOBAL_hideLessThan) {
+      if (nrow(dfuse) >= GLOBAL_hideLessThan) {
         fIndPlot(
-          group=dfuse$group,
-          group_hide_less_than=GLOBAL_hideLessThan,
-          all_lab=rccShinyTXT(language=GLOBAL_language)$RIKET,
-          emph_lab=emphLabel(),
-          ind=dfuse$outcome,
-          ind_title=ifelse(
-            class(dfuse$outcome)%in%c("difftime","numeric","integer"),
-            rccShinyTXT(language=GLOBAL_language)$median,
-            rccShinyTXT(language=GLOBAL_language)$percent
+          group = dfuse$group,
+          group_hide_less_than = GLOBAL_hideLessThan,
+          all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+          emph_lab = emphLabel(),
+          ind = dfuse$outcome,
+          ind_title = ifelse(
+            class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
+            rccShinyTXT(language = GLOBAL_language)$median,
+            rccShinyTXT(language = GLOBAL_language)$percent
           ),
-          ind_noofcasestxt=rccShinyTXT(language=GLOBAL_language)$noofcases,
-          period=if(input$param_periodSplit){dfuse$period}else{NULL},
-          x_lab=ifelse(
-            class(dfuse$outcome)%in%c("difftime","numeric","integer"),
-            rccShinyTXT(language=GLOBAL_language)$medianiqr,
-            rccShinyTXT(language=GLOBAL_language)$percent
+          ind_noofcasestxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
+          period = if (input$param_periodSplit) {dfuse$period} else {NULL},
+          x_lab = ifelse(
+            class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
+            rccShinyTXT(language = GLOBAL_language)$medianiqr,
+            rccShinyTXT(language = GLOBAL_language)$percent
           ),
-          legend_fixedtextwidth=TRUE,
-          title=indTitle(),
-          subtitle=if(indSubtitle()==""){NULL}else{indSubtitle()},
-          subtitle2=if(indSubtitleUserInput()==""){NULL}else{indSubtitleUserInput()},
-          text_cex=ifelse(
-            input$param_levelpresent==rccShinyLevelNames("hospital",language=GLOBAL_language),
+          legend_fixedtextwidth = TRUE,
+          title = indTitle(),
+          subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
+          subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+          text_cex = ifelse(
+            input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
             0.8,
             1
           ),
-          point_cex=ifelse(
-            input$param_levelpresent==rccShinyLevelNames("hospital",language=GLOBAL_language),
+          point_cex = ifelse(
+            input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
             1.8,
             3
           ),
-          target_values=GLOBAL_targetValues,
-          target_values_high=GLOBAL_targetValuesSortDescending,
-          funnelplot=input$param_funnelplot,
-          subset=tempSubset,
-          subset_lab=paste(input[["param_region"]],collapse="/")
+          target_values = GLOBAL_targetValues,
+          target_values_high = GLOBAL_sortDescending,
+          funnelplot = input$param_funnelplot,
+          subset = tempSubset,
+          subset_lab = paste(input[["param_region"]], collapse = "/")
         )
       } else {
-        plot(1,1,type="n",axes=FALSE,xlab="",ylab="",frame.plot=FALSE)
-        text(1,1,rccShinyNoObservationsText(language=GLOBAL_language))
+        plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
+        text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
       }
 
       dev.off()
 
-      list(src=outfile,
-           contentType="image/png",
-           width=x_width,
-           height=x_width*yx_ratio)
+      list(src = outfile,
+           contentType = "image/png",
+           width = x_width,
+           height = x_width * yx_ratio)
 
     }, deleteFile = TRUE)
 
   output$indPlotTrend <-
     renderImage({
 
-      x_width <- min(clientData$output_indPlotTrend_width,700)
+      x_width <- min(clientData$output_indPlotTrend_width, 700)
       yx_ratio <- 0.9
 
       dfuse <- dfInput()
 
-      outfile <- tempfile(fileext=".png")
+      outfile <- tempfile(fileext = ".png")
 
-      if(nrow(dfuse)>=GLOBAL_hideLessThan) {
+      if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
         tab <-
           rccShinyIndTable(
-            group=dfuse[,rccShinyGroupVariable("hospital")],
-            group_hide_less_than=GLOBAL_hideLessThan,
-            all_lab=rccShinyTXT(language=GLOBAL_language)$RIKET,
-            ind=dfuse$outcome,
-            ind_factor_pct=GLOBAL_outcomeClass[whichOutcome()]=="factor",
-            period=dfuse$period,
-            period_factors=GLOBAL_periodStart:GLOBAL_periodEnd,
-            period_alwaysinclude=TRUE
+            group = dfuse[, rccShinyGroupVariable("hospital")],
+            group_hide_less_than = GLOBAL_hideLessThan,
+            all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+            ind = dfuse$outcome,
+            ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
+            period = dfuse$period,
+            period_factors = GLOBAL_periodStart:GLOBAL_periodEnd,
+            period_alwaysinclude = TRUE
           )
 
-        tab_group <- subset(tab,group==input$param_ownhospital)
-        tab_total <- subset(tab,group==rccShinyTXT(language=GLOBAL_language)$RIKET)
+        tab_group <- subset(tab,group == input$param_ownhospital)
+        tab_total <- subset(tab,group == rccShinyTXT(language = GLOBAL_language)$RIKET)
 
-        tab <- rbind(tab_total,tab_group)
+        tab <- rbind(tab_total, tab_group)
 
-        if (GLOBAL_outcomeClass[whichOutcome()]=="factor") {
+        if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
 
-          if (nrow(tab_group)>0) {
+          if (nrow(tab_group) > 0) {
             yx_ratio <- 1.8
           }
 
@@ -629,59 +626,59 @@ shinyServer(function(input, output, clientData) {
 
           tab_region <-
             rccShinyIndTable(
-              group=dfuse[,rccShinyGroupVariable("region")],
-              group_hide_less_than=GLOBAL_hideLessThan,
-              all_lab=NULL,
-              ind=dfuse$outcome,
-              period=dfuse$period,
-              period_factors=GLOBAL_periodStart:GLOBAL_periodEnd,
-              period_alwaysinclude=TRUE
+              group = dfuse[,rccShinyGroupVariable("region")],
+              group_hide_less_than = GLOBAL_hideLessThan,
+              all_lab = NULL,
+              ind = dfuse$outcome,
+              period = dfuse$period,
+              period_factors = GLOBAL_periodStart:GLOBAL_periodEnd,
+              period_alwaysinclude = TRUE
             )
-          tab <- rbind(tab_region,tab)
+          tab <- rbind(tab_region, tab)
 
         }
 
       }
 
-      png(filename=outfile,width=9,height=9*yx_ratio,units="in",res=144)
+      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 144)
 
-      if(nrow(dfuse)>=GLOBAL_hideLessThan) {
+      if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
-        if (GLOBAL_outcomeClass[whichOutcome()]=="factor") {
+        if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
 
-          if (nrow(tab_group)>0) {
+          if (nrow(tab_group) > 0) {
 
-            par(mfrow=c(2,1))
+            par(mfrow = c(2, 1))
 
             x <- list()
             y <- list()
             legend <- vector()
 
             for (i in levels(dfuse$outcome)) {
-              x <- append(x,list(as.numeric(tab_group$Period)))
-              y <- append(y,list(as.numeric(tab_group[,i])))
-              legend <- c(legend,i)
+              x <- append(x, list(as.numeric(tab_group$Period)))
+              y <- append(y, list(as.numeric(tab_group[,i])))
+              legend <- c(legend, i)
             }
 
             fLinePlot(
-              x=x,
-              y=y,
-              legend=legend,
+              x = x,
+              y = y,
+              legend = legend,
               #legend_textwidth=15,
-              x_lim=c(GLOBAL_periodStart,GLOBAL_periodEnd),
-              x_by=1,
-              y_lim=range(pretty(c(0,max(unlist(y),na.rm=TRUE)))),
-              title=indTitle(),
-              subtitle=paste0(
+              x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
+              x_by = 1,
+              y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+              title = indTitle(),
+              subtitle = paste0(
                 input$param_ownhospital,
                 ". ",
-                indSubtitle(period=FALSE)
+                indSubtitle(period = FALSE)
               ),
-              subtitle2=if(indSubtitleUserInput()==""){NULL}else{indSubtitleUserInput()},
-              x_lab=GLOBAL_periodLabel,
-              y_lab=rccShinyTXT(language=GLOBAL_language)$percent,
-              target_values=GLOBAL_targetValues,
-              target_values_high=GLOBAL_targetValuesSortDescending
+              subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+              x_lab = GLOBAL_periodLabel,
+              y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
+              target_values = GLOBAL_targetValues,
+              target_values_high = GLOBAL_sortDescending
             )
 
           }
@@ -691,30 +688,30 @@ shinyServer(function(input, output, clientData) {
           legend <- vector()
 
           for (i in levels(dfuse$outcome)) {
-            x <- append(x,list(as.numeric(tab_total$Period)))
-            y <- append(y,list(as.numeric(tab_total[,i])))
-            legend <- c(legend,i)
+            x <- append(x, list(as.numeric(tab_total$Period)))
+            y <- append(y, list(as.numeric(tab_total[,i])))
+            legend <- c(legend, i)
           }
 
           fLinePlot(
-            x=x,
-            y=y,
-            legend=legend,
+            x = x,
+            y = y,
+            legend = legend,
             #legend_textwidth=15,
-            x_lim=c(GLOBAL_periodStart,GLOBAL_periodEnd),
-            x_by=1,
-            y_lim=range(pretty(c(0,max(unlist(y),na.rm=TRUE)))),
-            title=indTitle(),
-            subtitle=paste0(
-              rccShinyTXT(language=GLOBAL_language)$RIKET,
+            x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
+            x_by = 1,
+            y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+            title = indTitle(),
+            subtitle = paste0(
+              rccShinyTXT(language = GLOBAL_language)$RIKET,
               ". ",
-              indSubtitle(period=FALSE)
+              indSubtitle(period = FALSE)
             ),
-            subtitle2=if(indSubtitleUserInput()==""){NULL}else{indSubtitleUserInput()},
-            x_lab=GLOBAL_periodLabel,
-            y_lab=rccShinyTXT(language=GLOBAL_language)$percent,
-            target_values=GLOBAL_targetValues,
-            target_values_high=GLOBAL_targetValuesSortDescending
+            subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+            x_lab = GLOBAL_periodLabel,
+            y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
+            target_values = GLOBAL_targetValues,
+            target_values_high = GLOBAL_sortDescending
           )
 
         } else {
@@ -725,73 +722,73 @@ shinyServer(function(input, output, clientData) {
 
           if (outcomeClassNumeric() & !numericTypeProp()) {
             y_varinterest <- "Median"
-            y_varinterest_txt <- rccShinyTXT(language=GLOBAL_language)$median
+            y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$median
           } else {
             y_varinterest <- "Procent"
-            y_varinterest_txt <-rccShinyTXT(language=GLOBAL_language)$percent
+            y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$percent
           }
 
           for (i in unique(tab$group)) {
-            x <- append(x,list(as.numeric(tab$Period[tab$group==i])))
-            y <- append(y,list(as.numeric(tab[tab$group==i,y_varinterest])))
-            legend <- c(legend,i)
+            x <- append(x, list(as.numeric(tab$Period[tab$group == i])))
+            y <- append(y, list(as.numeric(tab[tab$group == i, y_varinterest])))
+            legend <- c(legend, i)
           }
 
-          master_col <- c("#e5e5e5","#cccccc","#b2b2b2","#999999","#7f7f7f","#666666","#055fa4","#c20841","#c02f9d")
+          master_col <- c("#e5e5e5", "#cccccc", "#b2b2b2", "#999999", "#7f7f7f", "#666666", "#055fa4", "#c20841", "#c02f9d")
 
-          col <- rep("#000000",length(legend))
-          tempRegionNames <- rccShinyRegionNames(language=GLOBAL_language,sort=TRUE)
-          col[legend==tempRegionNames[1]] <- master_col[1]
-          col[legend==tempRegionNames[2]] <- master_col[2]
-          col[legend==tempRegionNames[3]] <- master_col[3]
-          col[legend==tempRegionNames[4]] <- master_col[4]
-          col[legend==tempRegionNames[5]] <- master_col[5]
-          col[legend==tempRegionNames[6]] <- master_col[6]
-          col[legend==rccShinyTXT(language=GLOBAL_language)$RIKET] <- master_col[7]
-          col[legend==input$param_ownhospital] <- master_col[8]
-          col[legend%in%input[["param_region"]]] <- master_col[9]
+          col <- rep("#000000", length(legend))
+          tempRegionNames <- rccShinyRegionNames(language = GLOBAL_language, sort = TRUE)
+          col[legend == tempRegionNames[1]] <- master_col[1]
+          col[legend == tempRegionNames[2]] <- master_col[2]
+          col[legend == tempRegionNames[3]] <- master_col[3]
+          col[legend == tempRegionNames[4]] <- master_col[4]
+          col[legend == tempRegionNames[5]] <- master_col[5]
+          col[legend == tempRegionNames[6]] <- master_col[6]
+          col[legend == rccShinyTXT(language = GLOBAL_language)$RIKET] <- master_col[7]
+          col[legend == input$param_ownhospital] <- master_col[8]
+          col[legend %in% input[["param_region"]]] <- master_col[9]
 
           fLinePlot(
-            x=x,
-            y=y,
-            legend=legend,
-            legend_textwidth=15,
-            x_lim=c(GLOBAL_periodStart,GLOBAL_periodEnd),
-            x_by=1,
-            y_lim=range(
+            x = x,
+            y = y,
+            legend = legend,
+            legend_textwidth = 15,
+            x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
+            x_by = 1,
+            y_lim = range(
               pretty(
                 c(0,
                   ifelse(
-                    y_varinterest==rccShinyTXT(language=GLOBAL_language)$median,
-                    max(unlist(y),na.rm=TRUE),
+                    y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
+                    max(unlist(y),na.rm = TRUE),
                     100
                   )
                 )
               )
             ),
-            title=indTitle(),
-            subtitle=if(indSubtitle(period=FALSE)==""){NULL}else{indSubtitle(period=FALSE)},
-            subtitle2=if(indSubtitleUserInput()==""){NULL}else{indSubtitleUserInput()},
-            x_lab=GLOBAL_periodLabel,
-            y_lab=y_varinterest_txt,
-            target_values=GLOBAL_targetValues,
-            target_values_high=GLOBAL_targetValuesSortDescending,
-            col=col
+            title = indTitle(),
+            subtitle = if (indSubtitle(period = FALSE) == "") {NULL} else {indSubtitle(period = FALSE)},
+            subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+            x_lab = GLOBAL_periodLabel,
+            y_lab = y_varinterest_txt,
+            target_values = GLOBAL_targetValues,
+            target_values_high = GLOBAL_sortDescending,
+            col = col
           )
 
         }
 
       } else {
-        plot(1,1,type="n",axes=FALSE,xlab="",ylab="",frame.plot=FALSE)
-        text(1,1,rccShinyNoObservationsText(language=GLOBAL_language))
+        plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
+        text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
       }
 
       dev.off()
 
-      list(src=outfile,
-           contentType="image/png",
-           width=x_width,
-           height=x_width*yx_ratio)
+      list(src = outfile,
+           contentType = "image/png",
+           width = x_width,
+           height = x_width * yx_ratio)
 
     }, deleteFile = TRUE)
 
@@ -801,13 +798,13 @@ shinyServer(function(input, output, clientData) {
 
     tempSubset <- NULL
     if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-      if (!(rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]])) {
-        tempSubset <- dfuse$region%in%input[["param_region"]]
+      if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+        tempSubset <- dfuse$region %in% input[["param_region"]]
       }
     }
 
-    if(nrow(dfuse)>=GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()]=="factor") {
-      if (!input$param_periodSplit & input[["param_period"]][1]!=input[["param_period"]][2]) {
+    if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+      if (!input$param_periodSplit & input[["param_period"]][1] != input[["param_period"]][2]) {
         dfuse$period <-
           paste0(
             input[["param_period"]][1],
@@ -818,14 +815,14 @@ shinyServer(function(input, output, clientData) {
 
       tab <-
         rccShinyIndTable(
-          language=GLOBAL_language,
-          group=dfuse$group,
-          group_hide_less_than=GLOBAL_hideLessThan,
-          ind=dfuse$outcome,
-          period=dfuse$period,
-          lab_period=GLOBAL_periodLabel,
-          subset=tempSubset,
-          subset_lab=paste(input[["param_region"]],collapse="/")
+          language = GLOBAL_language,
+          group = dfuse$group,
+          group_hide_less_than = GLOBAL_hideLessThan,
+          ind = dfuse$outcome,
+          period = dfuse$period,
+          lab_period = GLOBAL_periodLabel,
+          subset = tempSubset,
+          subset_lab = paste(input[["param_region"]], collapse = "/")
         )
 
       colnames(tab)[1] <- input$param_levelpresent
@@ -833,11 +830,11 @@ shinyServer(function(input, output, clientData) {
       tab <-
         subset(
           data.frame(
-            rccShinyNoObservationsText(language=GLOBAL_language)
+            rccShinyNoObservationsText(language = GLOBAL_language)
           ),
           FALSE
         )
-      colnames(tab) <- rccShinyTXT(language=GLOBAL_language)$message
+      colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
     }
 
     tab
@@ -846,7 +843,7 @@ shinyServer(function(input, output, clientData) {
   extensions = 'Buttons',
   options = list(
     columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = '_all')),
-    language=list(emptyTable = rccShinyNoObservationsText(language=GLOBAL_language)),
+    language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
     searching = TRUE,
     paging = FALSE,
     dom = 'Bfrtip',
@@ -861,13 +858,13 @@ shinyServer(function(input, output, clientData) {
 
     tempSubset <- NULL
     if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-      if (!(rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]])) {
-        tempSubset <- dfuse$region%in%input[["param_region"]]
+      if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+        tempSubset <- dfuse$region %in% input[["param_region"]]
       }
     }
 
-    if(nrow(dfuse)>=GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()]=="factor") {
-      if (!input$param_periodSplit & input[["param_period"]][1]!=input[["param_period"]][2]) {
+    if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+      if (!input$param_periodSplit & input[["param_period"]][1] != input[["param_period"]][2]) {
         dfuse$period <-
           paste0(
             input[["param_period"]][1],
@@ -878,15 +875,15 @@ shinyServer(function(input, output, clientData) {
 
       tab <-
         rccShinyIndTable(
-          language=GLOBAL_language,
-          group=dfuse$group,
-          group_hide_less_than=GLOBAL_hideLessThan,
-          ind=dfuse$outcome,
-          ind_factor_pct=TRUE,
-          period=dfuse$period,
-          lab_period=GLOBAL_periodLabel,
-          subset=tempSubset,
-          subset_lab=paste(input[["param_region"]],collapse="/")
+          language = GLOBAL_language,
+          group = dfuse$group,
+          group_hide_less_than = GLOBAL_hideLessThan,
+          ind = dfuse$outcome,
+          ind_factor_pct = TRUE,
+          period = dfuse$period,
+          lab_period = GLOBAL_periodLabel,
+          subset = tempSubset,
+          subset_lab = paste(input[["param_region"]], collapse = "/")
         )
 
       colnames(tab)[1] <- input$param_levelpresent
@@ -895,11 +892,11 @@ shinyServer(function(input, output, clientData) {
       tab <-
         subset(
           data.frame(
-            rccShinyNoObservationsText(language=GLOBAL_language)
+            rccShinyNoObservationsText(language = GLOBAL_language)
           ),
           FALSE
         )
-      colnames(tab) <- rccShinyTXT(language=GLOBAL_language)$message
+      colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
     }
 
     tab
@@ -908,7 +905,7 @@ shinyServer(function(input, output, clientData) {
   extensions = 'Buttons',
   options = list(
     columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = '_all')),
-    language=list(emptyTable = rccShinyNoObservationsText(language=GLOBAL_language)),
+    language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
     searching = TRUE,
     paging = FALSE,
     dom = 'Bfrtip',
@@ -923,13 +920,13 @@ shinyServer(function(input, output, clientData) {
 
     tempSubset <- NULL
     if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-      if (!(rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]])) {
-        tempSubset <- dfuse$region%in%input[["param_region"]]
+      if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+        tempSubset <- dfuse$region %in% input[["param_region"]]
       }
     }
 
-    if(nrow(dfuse)>=GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()]!="factor") {
-      if (!input$param_periodSplit & input[["param_period"]][1]!=input[["param_period"]][2]) {
+    if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
+      if (!input$param_periodSplit & input[["param_period"]][1] != input[["param_period"]][2]) {
         dfuse$period <-
           paste0(
             input[["param_period"]][1],
@@ -940,14 +937,14 @@ shinyServer(function(input, output, clientData) {
 
       tab <-
         rccShinyIndTable(
-          language=GLOBAL_language,
-          group=dfuse$group,
-          group_hide_less_than=GLOBAL_hideLessThan,
-          ind=dfuse$outcome,
-          period=dfuse$period,
-          lab_period=GLOBAL_periodLabel,
-          subset=tempSubset,
-          subset_lab=paste(input[["param_region"]],collapse="/")
+          language = GLOBAL_language,
+          group = dfuse$group,
+          group_hide_less_than = GLOBAL_hideLessThan,
+          ind = dfuse$outcome,
+          period = dfuse$period,
+          lab_period = GLOBAL_periodLabel,
+          subset = tempSubset,
+          subset_lab = paste(input[["param_region"]], collapse = "/")
         )
 
       colnames(tab)[1] <- input$param_levelpresent
@@ -955,11 +952,11 @@ shinyServer(function(input, output, clientData) {
       tab <-
         subset(
           data.frame(
-            rccShinyNoObservationsText(language=GLOBAL_language)
+            rccShinyNoObservationsText(language = GLOBAL_language)
           ),
           FALSE
         )
-      colnames(tab) <- rccShinyTXT(language=GLOBAL_language)$message
+      colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
     }
 
     tab
@@ -968,7 +965,7 @@ shinyServer(function(input, output, clientData) {
   extensions = 'Buttons',
   options = list(
     columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = '_all')),
-    language=list(emptyTable = rccShinyNoObservationsText(language=GLOBAL_language)),
+    language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
     searching = TRUE,
     paging = FALSE,
     dom = 'Bfrtip',
@@ -980,30 +977,30 @@ shinyServer(function(input, output, clientData) {
   output$indMap <-
     renderImage({
 
-      x_width <- min(clientData$output_indMap_width,700)
+      x_width <- min(clientData$output_indMap_width, 700)
       yx_ratio <- 1.4
 
-      tab_order <- fMapPlot(value_order_return=TRUE)
+      tab_order <- fMapPlot(value_order_return = TRUE)
 
-      tab_order[tab_order=="Halland"] <- hallandLabel()
+      tab_order[tab_order == "Halland"] <- hallandLabel()
 
       dfuse <- dfInput()
 
       if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-        if (!(rccShinyTXT(language=GLOBAL_language)$all%in%input[["param_region"]])) {
-          dfuse <- subset(dfuse,region%in%input[["param_region"]])
+        if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+          dfuse <- subset(dfuse, region %in% input[["param_region"]])
         }
       }
 
-      dfuse$group <- dfuse[,rccShinyGroupVariable(label="landsting")]
+      dfuse$group <- dfuse[, rccShinyGroupVariable(label = "landsting")]
 
-      dfuse <- subset(dfuse,group%in%tab_order)
+      dfuse <- subset(dfuse,group %in% tab_order)
 
-      outfile <- tempfile(fileext=".png")
+      outfile <- tempfile(fileext = ".png")
 
-      png(filename=outfile,width=9,height=9*yx_ratio,units="in",res=144)
+      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 144)
 
-      if(nrow(dfuse)>=GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()]!="factor") {
+      if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
 
         showPercentage <-
           if (outcomeClassNumeric()) {
@@ -1014,50 +1011,50 @@ shinyServer(function(input, output, clientData) {
 
         tab <-
           rccShinyIndTable(
-            group=dfuse$group,
-            group_hide_less_than=GLOBAL_hideLessThan,
-            group_factors=tab_order,
-            all_lab=rccShinyTXT(language=GLOBAL_language)$RIKET,
-            ind=dfuse$outcome
+            group = dfuse$group,
+            group_hide_less_than = GLOBAL_hideLessThan,
+            group_factors = tab_order,
+            all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+            ind = dfuse$outcome
           )
 
-        tab <- tab[match(tab_order,tab$group),]
+        tab <- tab[match(tab_order, tab$group),]
 
         fMapPlot(
-          value=if(showPercentage){as.numeric(tab$Procent)}else{as.numeric(tab$Median)},
-          value_lim=if(showPercentage){c(0,100)}else{NULL},
-          legend=ifelse(
+          value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
+          value_lim = if (showPercentage) {c(0,100)} else {NULL},
+          legend = ifelse(
             showPercentage,
-            rccShinyTXT(language=GLOBAL_language)$percent,
-            rccShinyTXT(language=GLOBAL_language)$median
+            rccShinyTXT(language = GLOBAL_language)$percent,
+            rccShinyTXT(language = GLOBAL_language)$median
           ),
-          title=indTitle(),
-          subtitle=if(indSubtitle()==""){NULL}else{indSubtitle()},
-          subtitle2=if(indSubtitleUserInput()==""){NULL}else{indSubtitleUserInput()},
-          col=if(showPercentage){
-            if(ifelse(is.null(GLOBAL_targetValuesSortDescending),TRUE,GLOBAL_targetValuesSortDescending)){
+          title = indTitle(),
+          subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
+          subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+          col = if (showPercentage){
+            if (ifelse(is.null(GLOBAL_sortDescending), TRUE, GLOBAL_sortDescending)){
               "#055fa4"
-            }else{
+            } else {
               NULL
             }
-          }else{
+          } else {
             NULL
           },
-          ndec=ifelse(showPercentage,0,1),
-          rds_path="../../_data/"
+          ndec = ifelse(showPercentage, 0, 1),
+          rds_path = "../../_data/"
         )
 
       } else {
-        plot(1,1,type="n",axes=FALSE,xlab="",ylab="",frame.plot=FALSE)
-        text(1,1,rccShinyNoObservationsText(language=GLOBAL_language))
+        plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
+        text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
       }
 
       dev.off()
 
-      list(src=outfile,
-           contentType="image/png",
-           width=x_width,
-           height=x_width*yx_ratio)
+      list(src = outfile,
+           contentType = "image/png",
+           width = x_width,
+           height = x_width * yx_ratio)
 
     }, deleteFile = TRUE)
 
