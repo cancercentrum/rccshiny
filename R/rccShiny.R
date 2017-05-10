@@ -1,11 +1,11 @@
 #' Shiny apps for RCC
-#' @description returns shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
+#' @description returns shiny apps that can be used as a complement to the annual reports from the cancer quality registries in Sweden.
 #'
-#' @param data data frame containing the variables used in the app.
-#' @param outcome vector with names(s) of variable(s) in data containing the variable to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".
+#' @param data data frame containing the variables used.
+#' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
-#' @param folder name of folder where the results are placed.
-#' @param folderLinkText short name displayed in ready-to-use html link returned by the function.
+#' @param folder name of folder where the results are placed. Default is "ind".
+#' @param folderLinkText short name displayed in ready-to-use html link returned by the function. Default is argument outcomeTitle.
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
@@ -13,17 +13,17 @@
 #' @param description description shown in the tab Beskrivning/Description.
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsPatient if geoUnitsCounty is county of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
+#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
-#' @param regionLabel used if regionSelection = TRUE. Label of widget shown in the sidebar panel. Default is c("Begränsa till region", "Limit to region").
+#' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is c("Begränsa till region", "Limit to region").
 #' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is c("Diagnosår", "Year of diagnosis").
-#' @param varOther list of variable(s) (other than period and geoUnits) to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).
+#' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).
 #' @param targetValues optional vector of 1-2 target levels to be plotted in the tab Jämförelse/Comparison. Only applicable for dichotomous variables.
-#' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE. Currently not implemented and always set to TRUE.
+#' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.
-#' @param hideLessThan optional value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
+#' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is TRUE.
 #'
@@ -57,9 +57,9 @@
 #'
 #'
 #' If language = c("sv", "en") the following applies to arguments: textBeforeSubtitle, textAfterSubtitle, comment, description,
-#' regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. These must be given in order sv, en. If there is only one value this is recycled in both versions.
-#' The following applies to argument outcomeTitle: the titles should be given in a list in order sv, en. If only one listargument is given this will be recycled in both versions.
-#' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version rccShiny will use the variable name with the suffix _en (for example "outcome_en") if this exists and otherwise recycle the Swedish variable name.
+#' regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
+#' The following applies to argument outcomeTitle: the titles should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
+#' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 #'
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #'

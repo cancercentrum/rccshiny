@@ -208,7 +208,7 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = paste0("input.tab=='fig_compare' & ", if(outcomeClassNumeric()){ifelse(numericTypeProp(), "true", "false")}else if(GLOBAL_outcomeClass[whichOutcome()]=="factor"){"false"}else{"true"}),
+          condition = paste0("input.tab=='fig_compare' & ", if (outcomeClassNumeric()) {ifelse(numericTypeProp() & GLOBAL_funnelplot == TRUE, "true", "false")} else if (GLOBAL_outcomeClass[whichOutcome()] == "factor"  | GLOBAL_funnelplot == FALSE) {"false"} else {"true"}),
           checkboxInput(
             inputId = "param_funnelplot",
             label = rccShinyTXT(language = GLOBAL_language)$funnelplot,
