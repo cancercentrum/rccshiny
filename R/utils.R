@@ -21,7 +21,7 @@ rccShinyCounties <- function(language = "sv", lkf = FALSE) {
 }
 #' @export
 rccShinyRegionNumToText <- function(var = NULL, language = "sv") {
-    var <- factor(var, levels = 1:6, labels = fRegionNames(language = language))
+    var <- factor(var, levels = 1:6, labels = rccShinyRegionNames(language = language))
     as.character(var)
 }
 #' @export
@@ -155,13 +155,13 @@ npcrPreparePeriodRegionCountyHospitalVariables <- function(prefix = "d0", data =
         } else {
             data$period <- data$d0_year
         }
-        data$region <- fRegionNumToText(var = data[, paste0(prefix, "_region")])
+        data$region <- rccShinyRegionNumToText(var = data[, paste0(prefix, "_region")])
         data$landsting = substr(data[, paste0(prefix, "_landstingtxt")], 4, 100)
         # data$sjukhus = substr(data[,paste0(prefix,'_sjukhustxt2')],3,100)
         data$sjukhus = data[, paste0(prefix, "_sjukhustxt")]
 
         for (loop_language in language[language != "sv"]) {
-            data[, paste0("region_", loop_language)] <- fRegionNumToText(language = loop_language, var = data[, paste0(prefix, "_region")])
+            data[, paste0("region_", loop_language)] <- rccShinyRegionNumToText(language = loop_language, var = data[, paste0(prefix, "_region")])
 
             data[, paste0("landsting_", loop_language)] <- data$landsting
             data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Stockholm-Gotland"] <- "Others/private - Stockholm-Gotland"
