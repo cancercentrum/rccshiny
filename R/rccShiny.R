@@ -25,7 +25,7 @@
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
-#' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is TRUE.
+#' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
 #'
 #' @details Valid values for geoUnitsCounty are:
 #'   \tabular{lll}{
@@ -109,7 +109,6 @@
 #'   targetValues = c(95,99),
 #'   language = c("sv", "en")
 #' )
-#'
 #' @export
 
 rccShiny <- function(data = NULL,
@@ -136,7 +135,7 @@ rccShiny <- function(data = NULL,
                      sortDescending = NULL,
                      hideLessThan = 5,
                      language = c("sv"),
-                     npcrGroupPrivateOthers = TRUE) {
+                     npcrGroupPrivateOthers = FALSE) {
 
     # # # # # # # # # # # # # # # # Lägg till felkontroller!  # # # # # # # # # # # # # # #
 

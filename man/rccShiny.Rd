@@ -14,7 +14,7 @@ rccShiny(data = NULL, outcome = "outcome", outcomeTitle = outcome,
   "Limit to region"), period = "period", periodLabel = c("Diagnosår",
   "Year of diagnosis"), varOther = NULL, targetValues = NULL,
   funnelplot = FALSE, sortDescending = NULL, hideLessThan = 5,
-  language = c("sv"), npcrGroupPrivateOthers = TRUE)
+  language = c("sv"), npcrGroupPrivateOthers = FALSE)
 }
 \arguments{
 \item{data}{data frame containing the variables used.}
@@ -65,7 +65,7 @@ rccShiny(data = NULL, outcome = "outcome", outcomeTitle = outcome,
 
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
 
-\item{npcrGroupPrivateOthers}{should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is TRUE.}
+\item{npcrGroupPrivateOthers}{should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.}
 }
 \value{
 A folder path/apps/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
@@ -153,7 +153,6 @@ rccShiny(
   targetValues = c(95,99),
   language = c("sv", "en")
 )
-
 }
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro

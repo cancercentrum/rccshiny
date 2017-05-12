@@ -71,8 +71,8 @@ fLinePlot <- function(x = NULL, y = NULL, legend = NULL, legend_pos = "bottom", 
 
     # Colors
     if (is.null(col)) {
-        col <- c("#438DCC", "#FFCC33", "#EC6698", "#003366", "#339966", "#66CCCC", "#FF9933", "#8A4F71", "#9999CC", "#E94949", "#7f7f7f", "#8c8c8c", "#999999", "#a6a6a6", "#b2b2b2",
-            "#bfbfbf", "#cccccc", "#d9d9d9", "#e5e5e5", "#f2f2f2")
+      col <- c("#00b3f6","#ffb117","#005092","#19975d","#e56284","#66cccc","#db5524","#7f3705","#7c458a","#95bf5d",
+               "#7f7f7f","#8c8c8c","#999999","#a6a6a6","#b2b2b2","#bfbfbf","#cccccc","#d9d9d9","#e5e5e5","#f2f2f2")
     }
     col_target_1 <- lightenCol("#FFCC33", factor = 0.4)
     col_target_2 <- lightenCol("#339966", factor = 0.4)

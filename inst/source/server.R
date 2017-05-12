@@ -1033,7 +1033,7 @@ shinyServer(function(input, output, clientData) {
           subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
           col = if (showPercentage){
             if (ifelse(is.null(GLOBAL_sortDescending), TRUE, GLOBAL_sortDescending)){
-              "#055fa4"
+              "#005092"
             } else {
               NULL
             }

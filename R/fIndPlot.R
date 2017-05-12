@@ -239,16 +239,16 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
 
     # Colors
     col_ind_periods <- "#A29B96"
-    col_ind_act <- "#438DCC"
-    col_ind_all <- "#FF9933"
-    col_ind_emph <- "#E94949"
-    col_ind_subset <- "#339966"
+    col_ind_act <- "#00b3f6"
+    col_ind_all <- "#ffb117"
+    col_ind_emph <- "#db5524"
+    col_ind_subset <- "#19975d"
 
     col_target_1 <- lightenCol("#FFCC33", factor = 0.4)
     col_target_2 <- lightenCol("#339966", factor = 0.4)
 
-    col_factors <- c("#438DCC", "#FFCC33", "#EC6698", "#003366", "#339966", "#66CCCC", "#FF9933", "#8A4F71", "#9999CC", "#E94949", "#7f7f7f", "#8c8c8c", "#999999", "#a6a6a6",
-        "#b2b2b2", "#bfbfbf", "#cccccc", "#d9d9d9", "#e5e5e5", "#f2f2f2")
+    col_factors <- c("#00b3f6","#ffb117","#005092","#19975d","#e56284","#66cccc","#db5524","#7f3705","#7c458a","#95bf5d",
+                     "#7f7f7f","#8c8c8c","#999999","#a6a6a6","#b2b2b2","#bfbfbf","#cccccc","#d9d9d9","#e5e5e5","#f2f2f2")
 
     if (is.null(col)) {
         if (ind_type == "factor") {
