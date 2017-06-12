@@ -60,7 +60,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
 
         # Color
         if (is.null(col))
-            col <- "#db5524"
+            col <- "#ffb117"
 
         temp_value <- value
         temp_value[is.na(value)] <- 0

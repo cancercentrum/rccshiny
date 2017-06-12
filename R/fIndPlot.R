@@ -421,7 +421,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
         # Funnelplot
         if (funnelplot) {
             temp_funnelplot_alphacol <- 255 * seq(0.75, 0.25, length.out = length(funnelplot_probs))
-            temp_funnelplot_col <- rgb(t(col2rgb("#e74903")), alpha = temp_funnelplot_alphacol, maxColorValue = 255)
+            temp_funnelplot_col <- rgb(t(col2rgb("#95bf5d")), alpha = temp_funnelplot_alphacol, maxColorValue = 255)
             temp_funnelplot_data <- tab_list[[num_periods]]
             temp_funnelplot_sectionheight <- barheight * barheight_factor
             temp_funnelplot_prev_lo <- 0

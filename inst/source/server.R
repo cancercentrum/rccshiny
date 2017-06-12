@@ -734,7 +734,7 @@ shinyServer(function(input, output, clientData) {
             legend <- c(legend, i)
           }
 
-          master_col <- c("#e5e5e5", "#cccccc", "#b2b2b2", "#999999", "#7f7f7f", "#666666", "#055fa4", "#c20841", "#c02f9d")
+          master_col <- c("#e5e5e5","#cccccc","#b2b2b2","#999999","#7f7f7f","#666666","#ffb117","#db5524","#19975d")
 
           col <- rep("#000000", length(legend))
           tempRegionNames <- rccShinyRegionNames(language = GLOBAL_language, sort = TRUE)
@@ -1033,7 +1033,7 @@ shinyServer(function(input, output, clientData) {
           subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
           col = if (showPercentage){
             if (ifelse(is.null(GLOBAL_sortDescending), TRUE, GLOBAL_sortDescending)){
-              "#005092"
+              "#00b3f6"
             } else {
               NULL
             }

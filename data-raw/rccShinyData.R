@@ -42,7 +42,7 @@ rccShinyData$age <-
   )
 
 rccShinyData$outcome1 <- runif(nrow(rccShinyData)) > 0.7
-rccShinyData$outcome2 <- round(rnorm(nrow(rccShinyData), 30, 5))
+rccShinyData$outcome2 <- round(rnorm(nrow(rccShinyData), 30, 30))
 rccShinyData$outcome3 <- factor(1*(runif(nrow(rccShinyData)) > 0.2) + 1 *
                                   (runif(nrow(rccShinyData)) > 0.3) + 1 *
                                   (runif(nrow(rccShinyData)) > 0.5) + 1 *
