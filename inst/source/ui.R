@@ -1,6 +1,7 @@
 
 library(shiny)
 library(DT)
+library(rccShiny)
 
 shinyUI(fluidPage(
 

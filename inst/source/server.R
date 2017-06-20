@@ -1,6 +1,7 @@
 
 library(shiny)
 library(DT)
+library(rccShiny)
 
 shinyServer(function(input, output, clientData) {
 
