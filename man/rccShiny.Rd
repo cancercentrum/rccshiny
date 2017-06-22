@@ -115,7 +115,7 @@ rccShiny(
   outcome = paste0("outcome",1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
   comment = "Skovde och Lidkoping tillhor Skaraborg",
-  description = "Att tanka pa vid tolkning ....",
+  description = "Att tanka pa vid tolkning ...",
   varOther = list(
     list(
       var = "age",
