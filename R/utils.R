@@ -109,14 +109,21 @@ rccShinyTXT <- function(language = "sv") {
         "Description"), numericchoices_prop = c("Andel inom ...", "Proportion within ..."), numeric_proportionwithin = c("andel inom ", "proportion within "), fewcases1 = c("Resultat från grupper med färre än",
         "Results from groups with fewer than"), fewcases2 = c("fall redovisas ej separat", "cases are not shown seperately"), median = c("Median", "Median"), medianiqr = c("Median samt kvartilavstånd",
         "Median and interquartile range"), q1 = c("Första kvartil", "First quartile"), q3 = c("Tredje kvartil", "Third quartile"), percent = c("Procent", "Percent"), noofcases = c("Antal fall",
-        "No. of cases"), message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"),
-        period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"), stringsAsFactors = FALSE)
-    language <- language[1]
-    if (language %in% tab$tab_language) {
-        subset(tab, tab_language == language)
-    } else {
-        subset(tab, tab_language == "sv")
+                                                                                                                                                                                    "No. of cases"), message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"),
+        period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"), dxYear = c("Diagnosår", "Year of diagnosis"), limitRegion = c("Begränsa till region", "Limit to region"), stringsAsFactors = FALSE)
+    tempTab <- data.frame()
+    for (i in language) {
+      tempTab <-
+        rbind(
+          tempTab,
+          if (i %in% tab$tab_language) {
+            subset(tab, tab_language == i)
+          } else {
+            subset(tab, tab_language == "sv")
+          }
+        )
     }
+    tempTab
 }
 
 # # # # # # NPCR # # # # #

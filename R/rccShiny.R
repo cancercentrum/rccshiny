@@ -1,6 +1,7 @@
 #' Shiny apps for RCC
 #' @description returns shiny apps that can be used as a complement to the annual reports from the cancer quality registries in Sweden.
 #'
+#' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param data data frame containing the variables used.
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
@@ -16,15 +17,14 @@
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
-#' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is c("Begränsa till region", "Limit to region").
+#' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region", ... depending on language.
 #' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".
-#' @param periodLabel label for the period widget in the sidebar panal. Default is c("Diagnosår", "Year of diagnosis").
+#' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis", ... depending on language.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).
 #' @param targetValues optional vector of 1-2 target levels to be plotted in the tab Jämförelse/Comparison. Only applicable for dichotomous variables.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
-#' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
 #'
 #' @details Valid values for geoUnitsCounty are:
@@ -111,7 +111,8 @@
 #' )
 #' @export
 
-rccShiny <- function(data = NULL,
+rccShiny <- function(language = c("sv"),
+                     data = NULL,
                      outcome = "outcome",
                      outcomeTitle = outcome,
                      folder = "ind",
@@ -120,21 +121,20 @@ rccShiny <- function(data = NULL,
                      textBeforeSubtitle = NULL,
                      textAfterSubtitle = NULL,
                      comment = "",
-                     description = c("(beskrivning saknas)", "(description missing)"),
+                     description = rep("...",3),
                      geoUnitsHospital = "sjukhus",
                      geoUnitsCounty = "landsting",
                      geoUnitsRegion = "region",
                      geoUnitsPatient = FALSE,
                      regionSelection = TRUE,
-                     regionLabel = c("Begränsa till region", "Limit to region"),
+                     regionLabel = rccShinyTXT(language = language)$limitRegion,
                      period = "period",
-                     periodLabel = c("Diagnosår", "Year of diagnosis"),
+                     periodLabel = rccShinyTXT(language = language)$dxYear,
                      varOther = NULL,
                      targetValues = NULL,
                      funnelplot = FALSE,
                      sortDescending = NULL,
                      hideLessThan = 5,
-                     language = c("sv"),
                      npcrGroupPrivateOthers = FALSE) {
 
     # # # # # # # # # # # # # # # # Lägg till felkontroller!  # # # # # # # # # # # # # # #
