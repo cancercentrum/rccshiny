@@ -160,6 +160,10 @@ rccShiny <- function(data = NULL,
     }
     testVariableError("outcome")
     testVariableError("outcomeTitle")
+
+    if (length(outcome)!=length(outcomeTitle))
+      stop(paste0("outcome and outcomeTitle must have the same number of elements"), call. = FALSE)
+
     testVariableError("folder")
     testVariableError("folderLinkText")
 
@@ -196,8 +200,6 @@ rccShiny <- function(data = NULL,
 
 
 
-
-#####
 
 
 
