@@ -4,7 +4,7 @@
 \alias{rccShiny}
 \title{Shiny apps for RCC}
 \usage{
-rccShiny(language = c("sv"), data = NULL, outcome = "outcome",
+rccShiny(language = "sv", data = NULL, outcome = "outcome",
   outcomeTitle = outcome, folder = "ind", folderLinkText = outcomeTitle,
   path = getwd(), textBeforeSubtitle = NULL, textAfterSubtitle = NULL,
   comment = "", description = rep("...", 3), geoUnitsHospital = "sjukhus",

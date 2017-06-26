@@ -114,7 +114,7 @@
 #' )
 #' @export
 
-rccShiny <- function(language = c("sv"),
+rccShiny <- function(language = "sv",
                      data = NULL,
                      outcome = "outcome",
                      outcomeTitle = outcome,
@@ -164,11 +164,22 @@ rccShiny <- function(language = c("sv"),
     testVariableError("outcome")
     testVariableError("outcomeTitle")
 
-    if (length(outcome)!=length(outcomeTitle))
-      stop(paste0("outcome and outcomeTitle must have the same number of elements"), call. = FALSE)
+    if (!is.list(outcomeTitle))
+      outcomeTitle <- list(outcomeTitle)
+    for (i in 1:length(outcomeTitle)) {
+      if (length(outcome)!=length(outcomeTitle[[i]]))
+        stop(paste0("outcome and outcomeTitle must have the same number of elements"), call. = FALSE)
+    }
 
     testVariableError("folder")
     testVariableError("folderLinkText")
+
+    if (!is.list(folderLinkText))
+      folderLinkText <- list(folderLinkText)
+    for (i in 1:length(folderLinkText)) {
+      if (length(outcome)!=length(folderLinkText[[i]]))
+        stop(paste0("outcome and folderLinkText must have the same number of elements"), call. = FALSE)
+    }
 
     if (is.null(comment))
         comment <- ""
@@ -331,11 +342,19 @@ rccShiny <- function(language = c("sv"),
 
         GLOBAL_data <- subset(data, select = includeVariables)
 
-        GLOBAL_outcomeTitle <- if (is.list(outcomeTitle) & length(outcomeTitle) >= which_language) {
+        GLOBAL_outcomeTitle <-
+          if (length(outcomeTitle) >= which_language) {
             outcomeTitle[[which_language]]
-        } else {
-            outcomeTitle
-        }
+          } else {
+            outcomeTitle[[1]]
+          }
+
+        GLOBAL_folderLinkText <-
+          if (length(folderLinkText) >= which_language) {
+            folderLinkText[[which_language]]
+          } else {
+            folderLinkText[[1]]
+          }
 
         GLOBAL_textBeforeSubtitle <- if (length(textBeforeSubtitle) >= which_language) {
             textBeforeSubtitle[which_language]
@@ -350,7 +369,12 @@ rccShiny <- function(language = c("sv"),
 
         GLOBAL_comment <- ifelse(length(comment) >= which_language, comment[which_language], comment[1])
 
-        GLOBAL_description <- ifelse(length(description) >= which_language, description[[which_language]], description[[1]])
+        GLOBAL_description <-
+          if(length(description) >= which_language) {
+            description[[which_language]]
+          } else {
+            description[[1]]
+          }
         if (length(GLOBAL_description)<3)
           GLOBAL_description <- c(
             GLOBAL_description,
@@ -425,8 +449,7 @@ rccShiny <- function(language = c("sv"),
         printRow(paste0("</html>"))
         close(globalOutFile)
 
-        tempLinks <- cbind(tempLinks, paste0("<li class='reportLi'><a data-toggle='pill' href='#reportDiv' class='reportLink' id='", folder, "'>", ifelse(length(folderLinkText) >=
-            which_language, folderLinkText[which_language], folderLinkText[1]), "</a></li>"))
+        tempLinks <- cbind(tempLinks, paste0("<li class='reportLi'><a data-toggle='pill' href='#reportDiv' class='reportLink' id='", folder, "'>", paste(GLOBAL_folderLinkText,collapse=" / "), "</a></li>"))
 
     }
 
