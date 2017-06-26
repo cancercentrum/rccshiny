@@ -11,7 +11,7 @@
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
-#' @param description description shown in the tab Beskrivning/Description.
+#' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
@@ -71,7 +71,7 @@
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
 #'   comment = "Skovde och Lidkoping tillhor Skaraborg",
-#'   description = "Att tanka pa vid tolkning ...",
+#'   description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
 #'   varOther = list(
 #'     list(
 #'       var = "age",
@@ -93,12 +93,16 @@
 #'# For Swedish/English version
 #' rccShinyData$outcome1_en <- rccShinyData$outcome1
 #' rccShiny(
+#'   language = c("sv", "en"),
 #'   data = rccShinyData,
 #'   folder = "Indikator2",
 #'   outcome = "outcome1",
 #'   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
 #'   textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
-#'   description = c("Superbra att ha!","Supergood to have!"),
+#'   description = list(
+#'     c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
+#'     c("Description of the indicator","Important information!","Information on variables etc.")
+#'   ),
 #'   varOther = list(
 #'     list(
 #'       var = "age",
@@ -106,8 +110,7 @@
 #'       choices = c(0,120)
 #'     )
 #'   ),
-#'   targetValues = c(95,99),
-#'   language = c("sv", "en")
+#'   targetValues = c(95,99)
 #' )
 #' @export
 
@@ -174,6 +177,9 @@ rccShiny <- function(language = c("sv"),
         period <- "period"
     if (is.null(outcome))
         outcome <- "outcome"
+
+    if (!is.list(description))
+      description <- list(description)
 
     # Check for region variable in data
     if (is.null(geoUnitsRegion))
@@ -344,7 +350,12 @@ rccShiny <- function(language = c("sv"),
 
         GLOBAL_comment <- ifelse(length(comment) >= which_language, comment[which_language], comment[1])
 
-        GLOBAL_description <- ifelse(length(description) >= which_language, description[which_language], description[1])
+        GLOBAL_description <- ifelse(length(description) >= which_language, description[[which_language]], description[[1]])
+        if (length(GLOBAL_description)<3)
+          GLOBAL_description <- c(
+            GLOBAL_description,
+            rep("...",3-length(GLOBAL_description))
+          )
 
         GLOBAL_periodLabel <- ifelse(length(periodLabel) >= which_language, periodLabel[which_language], periodLabel[1])
         GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
@@ -396,14 +407,20 @@ rccShiny <- function(language = c("sv"),
         printRow(paste0("<html>"))
         printRow(paste0("<body>"))
         for (i in 1:length(GLOBAL_outcome)) {
-            printRow(paste0("<h4>", GLOBAL_outcomeTitle[i], "</h4>"))
+          printRow(paste0("<h4>", GLOBAL_outcomeTitle[i], "</h4>"))
         }
-        if (!is.null(GLOBAL_description)) {
-            printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$description, "</p>"))
-            printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
-            printRow(paste0(GLOBAL_description))
-            printRow(paste0("</div>"))
-        }
+        printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionAbout, "</p>"))
+        printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
+        printRow(paste0(GLOBAL_description[1]))
+        printRow(paste0("</div>"))
+        printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionInterpretation, "</p>"))
+        printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
+        printRow(paste0(GLOBAL_description[2]))
+        printRow(paste0("</div>"))
+        printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionTechnical, "</p>"))
+        printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
+        printRow(paste0(GLOBAL_description[3]))
+        printRow(paste0("</div>"))
         printRow(paste0("</body>"))
         printRow(paste0("</html>"))
         close(globalOutFile)

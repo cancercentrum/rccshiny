@@ -108,9 +108,10 @@ rccShinyTXT <- function(language = "sv") {
         "Present each"), periodSplit2 = c("separat", "seperate"), funnelplot = c("Funnel plot", "Funnel plot"), comment = c("Kommentar", "Comment"), description = c("Beskrivning",
         "Description"), numericchoices_prop = c("Andel inom ...", "Proportion within ..."), numeric_proportionwithin = c("andel inom ", "proportion within "), fewcases1 = c("Resultat från grupper med färre än",
         "Results from groups with fewer than"), fewcases2 = c("fall redovisas ej separat", "cases are not shown seperately"), median = c("Median", "Median"), medianiqr = c("Median samt kvartilavstånd",
-        "Median and interquartile range"), q1 = c("Första kvartil", "First quartile"), q3 = c("Tredje kvartil", "Third quartile"), percent = c("Procent", "Percent"), noofcases = c("Antal fall",
-                                                                                                                                                                                    "No. of cases"), message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"),
-        period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"), dxYear = c("Diagnosår", "Year of diagnosis"), limitRegion = c("Begränsa till region", "Limit to region"), stringsAsFactors = FALSE)
+        "Median and interquartile range"), q1 = c("Första kvartil", "First quartile"), q3 = c("Tredje kvartil", "Third quartile"), percent = c("Procent", "Percent"), noofcases = c("Antal fall", "No. of cases"),
+        message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"), period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"),
+        dxYear = c("Diagnosår", "Year of diagnosis"), limitRegion = c("Begränsa till region", "Limit to region"), descriptionAbout = c("Om indikatorn", "About"),
+        descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"), descriptionTechnical = c("Teknisk beskrivning", "Technical description"), stringsAsFactors = FALSE)
     tempTab <- data.frame()
     for (i in language) {
       tempTab <-

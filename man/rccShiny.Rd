@@ -36,7 +36,7 @@ rccShiny(language = c("sv"), data = NULL, outcome = "outcome",
 
 \item{comment}{optional comment printed under the sidebar panel.}
 
-\item{description}{description shown in the tab Beskrivning/Description.}
+\item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").}
 
 \item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.}
 
@@ -114,7 +114,7 @@ rccShiny(
   outcome = paste0("outcome",1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
   comment = "Skovde och Lidkoping tillhor Skaraborg",
-  description = "Att tanka pa vid tolkning ...",
+  description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
   varOther = list(
     list(
       var = "age",
@@ -136,12 +136,16 @@ runApp("./apps/sv/Indikator1")
 # For Swedish/English version
 rccShinyData$outcome1_en <- rccShinyData$outcome1
 rccShiny(
+  language = c("sv", "en"),
   data = rccShinyData,
   folder = "Indikator2",
   outcome = "outcome1",
   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
   textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
-  description = c("Superbra att ha!","Supergood to have!"),
+  description = list(
+    c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
+    c("Description of the indicator","Important information!","Information on variables etc.")
+  ),
   varOther = list(
     list(
       var = "age",
@@ -149,8 +153,7 @@ rccShiny(
       choices = c(0,120)
     )
   ),
-  targetValues = c(95,99),
-  language = c("sv", "en")
+  targetValues = c(95,99)
 )
 }
 \author{
