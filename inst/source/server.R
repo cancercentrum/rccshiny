@@ -439,12 +439,9 @@ shinyServer(function(input, output, clientData) {
       dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
     }
 
-    dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
-    dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
-
     # Speciallösning för NPCR
     # -----------------------
-    if (GLOBAL_npcrGroupPrivateOthers & rccShinyGroupVariable(label = input$param_levelpresent) == rccShinyGroupVariable("sjukhus")) {
+    if (GLOBAL_npcrGroupPrivateOthers) {
       showPrivateHospitals <- TRUE
       if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
         showPrivateHospitals <- FALSE
@@ -459,10 +456,13 @@ shinyServer(function(input, output, clientData) {
         landstingName <- privateOthersName[[GLOBAL_language]]$landsting
         sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
         changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName
-        dftemp$group[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
+        dftemp$sjukhus[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
       }
     }
     # -----------------------
+
+    dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
+    dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
 
     if (!is.null(GLOBAL_varOther)) {
       for (i in 1:length(GLOBAL_varOther)) {
@@ -498,23 +498,32 @@ shinyServer(function(input, output, clientData) {
     }
   })
 
-  emphLabel <- reactive({
-    if (input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language)) {
-      emph_lab <- input$param_ownhospital
-    } else if (GLOBAL_geoUnitsPatient) {
-      emph_lab <- ""
-    } else if (input$param_levelpresent == rccShinyLevelNames("county",language = GLOBAL_language) & nrow(GLOBAL_data) > 0) {
-      emph_lab <- GLOBAL_data$landsting[GLOBAL_data$sjukhus == input$param_ownhospital][1]
-      if (!is.na(emph_lab) & emph_lab == "Halland") {
-        emph_lab <- hallandLabel()
-      }
-    } else if (input$param_levelpresent == rccShinyLevelNames("region",language = GLOBAL_language) & nrow(GLOBAL_data) > 0) {
-      emph_lab <- GLOBAL_data$region[GLOBAL_data$sjukhus == input$param_ownhospital][1]
-    } else {
-      emph_lab <- ""
-    }
-    emph_lab
+  emphLabelReactive <- reactive({
+    data.frame(
+      param_ownhospital=input$param_ownhospital,
+      param_levelpresent=input$param_levelpresent
+    )
   })
+
+  emphLabel <-
+    function(data) {
+      tempEmphLabelReactive <- emphLabelReactive()
+      if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language)) {
+        emph_lab <- tempEmphLabelReactive$param_ownhospital
+      } else if (GLOBAL_geoUnitsPatient) {
+        emph_lab <- ""
+      } else if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("county",language = GLOBAL_language) & nrow(data) > 0) {
+        emph_lab <- data$landsting[data$sjukhus == tempEmphLabelReactive$param_ownhospital][1]
+        if (!is.na(emph_lab) & emph_lab == "Halland") {
+          emph_lab <- hallandLabel()
+        }
+      } else if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("region",language = GLOBAL_language) & nrow(data) > 0) {
+        emph_lab <- data$region[data$sjukhus == tempEmphLabelReactive$param_ownhospital][1]
+      } else {
+        emph_lab <- ""
+      }
+      emph_lab
+    }
 
   output$indPlot <-
     renderImage({
@@ -540,7 +549,7 @@ shinyServer(function(input, output, clientData) {
           group = dfuse$group,
           group_hide_less_than = GLOBAL_hideLessThan,
           all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
-          emph_lab = emphLabel(),
+          emph_lab = emphLabel(dfuse),
           ind = dfuse$outcome,
           ind_title = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
