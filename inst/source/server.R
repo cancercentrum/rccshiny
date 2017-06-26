@@ -542,7 +542,7 @@ shinyServer(function(input, output, clientData) {
 
       outfile <- tempfile(fileext = ".png")
 
-      png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 144)
+      png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
       if (nrow(dfuse) >= GLOBAL_hideLessThan) {
         fIndPlot(
@@ -650,7 +650,7 @@ shinyServer(function(input, output, clientData) {
 
       }
 
-      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 144)
+      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
       if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
@@ -1008,7 +1008,7 @@ shinyServer(function(input, output, clientData) {
 
       outfile <- tempfile(fileext = ".png")
 
-      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 144)
+      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
       if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
 
