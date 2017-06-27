@@ -13,7 +13,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
   regionLabel = rccShinyTXT(language = language)$limitRegion,
   period = "period", periodLabel = rccShinyTXT(language = language)$dxYear,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sortDescending = TRUE, hideLessThan = 5, npcrGroupPrivateOthers = FALSE)
+  sortDescending = NULL, hideLessThan = 5, npcrGroupPrivateOthers = FALSE)
 }
 \arguments{
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
@@ -60,7 +60,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{funnelplot}{adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.}
 
-\item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.}
+\item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.}
 
 \item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
 

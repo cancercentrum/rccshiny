@@ -1,4 +1,18 @@
 #' @export
+fixEncoding <-
+function(data) {
+  numCols <- ncol(data)
+  for (col in 1:numCols)
+  {
+    if (class(data[,col]) == "character") {
+      data[,col] <- enc2utf8(data[,col])
+    } else if (class(data[,col]) == "factor") {
+      levels(data[,col]) <- enc2utf8(levels(data[,col]))
+    }
+  }
+  data
+}
+#' @export
 rccShinyDecimals <- function() {
     return(1)
 }
@@ -112,6 +126,7 @@ rccShinyTXT <- function(language = "sv") {
         message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"), period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"),
         dxYear = c("Diagnosår", "Year of diagnosis"), limitRegion = c("Begränsa till region", "Limit to region"), descriptionAbout = c("Om indikatorn", "About"),
         descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"), descriptionTechnical = c("Teknisk beskrivning", "Technical description"), stringsAsFactors = FALSE)
+    tab <- fixEncoding(tab)
     tempTab <- data.frame()
     for (i in language) {
       tempTab <-

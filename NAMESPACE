@@ -3,6 +3,7 @@
 export(fIndPlot)
 export(fLinePlot)
 export(fMapPlot)
+export(fixEncoding)
 export(npcrPreparePeriodRegionCountyHospitalVariables)
 export(rccShiny)
 export(rccShinyCounties)

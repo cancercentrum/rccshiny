@@ -583,7 +583,7 @@ shinyServer(function(input, output, clientData) {
             3
           ),
           target_values = GLOBAL_targetValues,
-          target_values_high = GLOBAL_sortDescending,
+          target_values_high = GLOBAL_sortDescending[whichOutcome()],
           funnelplot = input$param_funnelplot,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -693,7 +693,7 @@ shinyServer(function(input, output, clientData) {
               x_lab = GLOBAL_periodLabel,
               y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
               target_values = GLOBAL_targetValues,
-              target_values_high = GLOBAL_sortDescending
+              target_values_high = GLOBAL_sortDescending[whichOutcome()]
             )
 
           }
@@ -726,7 +726,7 @@ shinyServer(function(input, output, clientData) {
             x_lab = GLOBAL_periodLabel,
             y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
             target_values = GLOBAL_targetValues,
-            target_values_high = GLOBAL_sortDescending
+            target_values_high = GLOBAL_sortDescending[whichOutcome()]
           )
 
         } else {
@@ -787,7 +787,7 @@ shinyServer(function(input, output, clientData) {
             x_lab = GLOBAL_periodLabel,
             y_lab = y_varinterest_txt,
             target_values = GLOBAL_targetValues,
-            target_values_high = GLOBAL_sortDescending,
+            target_values_high = GLOBAL_sortDescending[whichOutcome()],
             col = col
           )
 
@@ -1047,7 +1047,7 @@ shinyServer(function(input, output, clientData) {
           subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
           subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
           col = if (showPercentage){
-            if (ifelse(is.null(GLOBAL_sortDescending), TRUE, GLOBAL_sortDescending)){
+            if (ifelse(is.null(GLOBAL_sortDescending), TRUE, GLOBAL_sortDescending[whichOutcome()])){
               "#00b3f6"
             } else {
               NULL

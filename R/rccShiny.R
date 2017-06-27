@@ -23,7 +23,7 @@
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).
 #' @param targetValues optional vector of 1-2 target levels to be plotted in the tab Jämförelse/Comparison. Only applicable for dichotomous variables.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
-#' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order. Default is TRUE.
+#' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
 #'
@@ -138,7 +138,7 @@ rccShiny <-
     varOther = NULL,
     targetValues = NULL,
     funnelplot = FALSE,
-    sortDescending = TRUE,
+    sortDescending = NULL,
     hideLessThan = 5,
     npcrGroupPrivateOthers = FALSE
   ) {
@@ -284,8 +284,13 @@ rccShiny <-
     if (is.null(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
       stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
 
-    if (is.null(sortDescending) | !is.logical(sortDescending) | length(sortDescending) != 1)
-      stop(paste0("'sortDescending' should be a logical vector of length 1"), call. = FALSE)
+    if (!is.null(sortDescending) & (!is.logical(sortDescending) | length(sortDescending) < 1))
+      stop(paste0("'sortDescending' should be either NULL or a logical vector with at least one element"), call. = FALSE)
+    if (!is.null(sortDescending) & length(sortDescending)<length(outcome))
+      sortDescending <- c(
+        sortDescending,
+        rep(TRUE,length(outcome)-length(sortDescending))
+      )
 
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
@@ -488,6 +493,8 @@ rccShiny <-
       file.copy(system.file("source", "global.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/global.R"), overwrite = TRUE)
       file.copy(system.file("source", "server.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/server.R"), overwrite = TRUE)
       file.copy(system.file("source", "ui.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/ui.R"), overwrite = TRUE)
+
+      GLOBAL_data <- fixEncoding(GLOBAL_data)
 
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
