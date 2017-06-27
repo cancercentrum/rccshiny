@@ -522,9 +522,7 @@ rccShiny <-
       printRow(paste0("<!DOCTYPE html>"), append = FALSE)
       printRow(paste0("<html>"))
       printRow(paste0("<body>"))
-      for (i in 1:length(GLOBAL_outcome)) {
-        printRow(paste0("<h4>", GLOBAL_outcomeTitle[i], "</h4>"))
-      }
+      printRow(paste0("<p></p>"))
       printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionAbout, "</p>"))
       printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
       printRow(paste0(GLOBAL_description[1]))
