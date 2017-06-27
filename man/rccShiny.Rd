@@ -38,11 +38,11 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").}
 
-\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes. If NULL or if variable is not found in 'data', hospital is omitted as available level of presentation.}
+\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. If NULL or if variable is not found in 'data', hospital is omitted as available level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.}
 
-\item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is omitted as available level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
 
-\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is omitted as available level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
 
 \item{geoUnitsPatient}{if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
 

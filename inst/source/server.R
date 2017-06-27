@@ -12,7 +12,7 @@ shinyServer(function(input, output, clientData) {
 
   outcomeClassNumeric <-
     reactive({
-      GLOBAL_outcomeClass[whichOutcome()] %in% c("difftime","numeric","integer")
+      GLOBAL_outcomeClass[whichOutcome()] %in% c("difftime", "numeric", "integer")
     })
 
   output$numericTypeInput <-
@@ -56,7 +56,11 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = ifelse(GLOBAL_regionSelection, "true", "false"),
+          condition = paste0(
+            ifelse(GLOBAL_regionSelection, "true", "false"),
+            " & ",
+            ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false")
+          ),
           selectizeInput(
             inputId = "param_region",
             label = GLOBAL_regionLabel,
@@ -75,26 +79,26 @@ shinyServer(function(input, output, clientData) {
           condition =
             paste0(
               "input.tab!='fig_trend' & input.tab!='fig_map' & ",
-              ifelse(
-                GLOBAL_outcomeClass[whichOutcome()] == "factor",
-                "true",
-                "input.tab!='fig_trend'"
-              )
+              ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "input.tab!='fig_trend'"),
+              " & ",
+              ifelse(sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude) > 1, "true", "false")
             ),
           selectInput(
             inputId = "param_levelpresent",
             label = rccShinyTXT(language = GLOBAL_language)$levelofcomparison,
             choices = c(
-              rccShinyLevelNames("region",language = GLOBAL_language),
-              rccShinyLevelNames(
-                ifelse(
-                  GLOBAL_geoUnitsPatient,
-                  "county_lkf",
-                  "county"
-                ),
-                language = GLOBAL_language
-              ),
-              if (GLOBAL_geoUnitsHospitalInclude) {rccShinyLevelNames("hospital", language = GLOBAL_language)}
+              if (GLOBAL_geoUnitsRegionInclude) { rccShinyLevelNames("region", language = GLOBAL_language) },
+              if (GLOBAL_geoUnitsCountyInclude) {
+                rccShinyLevelNames(
+                  ifelse(
+                    GLOBAL_geoUnitsPatient,
+                    "county_lkf",
+                    "county"
+                  ),
+                  language = GLOBAL_language
+                )
+              },
+              if (GLOBAL_geoUnitsHospitalInclude) { rccShinyLevelNames("hospital", language = GLOBAL_language) }
             ),
             selected =
               rccShinyLevelNames(
@@ -116,11 +120,7 @@ shinyServer(function(input, output, clientData) {
         conditionalPanel(
           condition = paste0(
             "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & ",
-            ifelse(
-              GLOBAL_geoUnitsHospitalInclude,
-              "true",
-              "false"
-            )
+            ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false")
           ),
           selectInput(
             inputId = "param_ownhospital",
@@ -139,11 +139,7 @@ shinyServer(function(input, output, clientData) {
           condition =
             paste0(
               "input.tab!='fig_trend' & ",
-              ifelse(
-                GLOBAL_periodStart == GLOBAL_periodEnd,
-                "false",
-                "true"
-              )
+              ifelse(GLOBAL_periodStart == GLOBAL_periodEnd, "false", "true")
             ),
           sliderInput(
             inputId = "param_period",
@@ -421,7 +417,9 @@ shinyServer(function(input, output, clientData) {
             p(textOutput("tableSubtitle2")),
             dataTableOutput("indTable")
           )
-        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
+        if (GLOBAL_geoUnitsCountyInclude) {
+          theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
+        }
       }
       theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
       theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, includeHTML("./docs/description.html"))
@@ -639,7 +637,7 @@ shinyServer(function(input, output, clientData) {
             yx_ratio <- 1.8
           }
 
-        } else {
+        } else if (GLOBAL_geoUnitsRegionInclude) {
 
           tab_region <-
             rccShinyIndTable(

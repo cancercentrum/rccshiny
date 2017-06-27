@@ -12,9 +12,9 @@
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").
-#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes. If NULL or if variable is not found in 'data', hospital is omitted as available level of presentation.
-#' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. If NULL or if variable is not found in 'data', hospital is omitted as available level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.
+#' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is omitted as available level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is omitted as available level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region", ... depending on language.
@@ -213,42 +213,49 @@ rccShiny <- function(language = "sv",
       description <- list(description)
 
     GLOBAL_geoUnitsHospitalInclude <- TRUE
-    if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) > 1))
+    if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) > 1)) {
       stop("'geoUnitsHospital' should to be either NULL or a character vector of length 1", call. = FALSE)
-    if (is.null(geoUnitsHospital)) {
+    } else if (is.null(geoUnitsHospital)) {
       GLOBAL_geoUnitsHospitalInclude <- FALSE
       geoUnitsHospital <- "sjukhus"
-    }
-    if (!(geoUnitsHospital %in% colnames(data)))
+    } else if (!(geoUnitsHospital %in% colnames(data))) {
       GLOBAL_geoUnitsHospitalInclude <- FALSE
+    }
 
-
-
-
-
-
-
-
-
-
-    # Check for region variable in data
-    if (is.null(geoUnitsRegion))
-        geoUnitsRegion <- "region"
-    if (!(geoUnitsRegion %in% colnames(data)))
-        stop(paste0("Column '", geoUnitsRegion, "' not found in 'data'"), call. = FALSE)
-    data$regionCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsRegion])))
-    if (any(is.na(data$regionCode)) | !(all(data$regionCode %in% 1:6)))
-        stop(paste0("'", geoUnitsRegion, "' contains missing or invalid values. '", geoUnitsRegion, "' should only contain the values (", paste(1:6, collapse = ", "), ")."),
-            call. = FALSE)
-
-    if (is.null(geoUnitsCounty))
-        geoUnitsCounty <- "landsting"
-    if (!(geoUnitsCounty %in% colnames(data)))
-        stop(paste0("Column '", geoUnitsCounty, "' not found in 'data'"), call. = FALSE)
-    data$landstingCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsCounty])))
-    if (any(is.na(data$landstingCode)) | !(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
+    GLOBAL_geoUnitsCountyInclude <- TRUE
+    if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) > 1)) {
+      stop("'geoUnitsCounty' should to be either NULL or a character vector of length 1", call. = FALSE)
+    } else if (is.null(geoUnitsCounty)) {
+      GLOBAL_geoUnitsCountyInclude <- FALSE
+      geoUnitsCounty <- "landsting"
+    } else if (!(geoUnitsCounty %in% colnames(data))) {
+      GLOBAL_geoUnitsCountyInclude <- FALSE
+    } else {
+      data$landstingCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsCounty])))
+      if (any(is.na(data$landstingCode)) | !(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
         stop(paste0("'", geoUnitsCounty, "' contains missing or invalid values. When 'geoUnitsPatient'=", geoUnitsPatient, ", '", geoUnitsCounty, "' should only contain the values (",
-            paste(rccShinyCounties(lkf = geoUnitsPatient)$landstingCode, collapse = ", "), ")."), call. = FALSE)
+                    paste(rccShinyCounties(lkf = geoUnitsPatient)$landstingCode, collapse = ", "), ")."), call. = FALSE)
+    }
+
+    GLOBAL_geoUnitsRegionInclude <- TRUE
+    if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) > 1)) {
+      stop("'geoUnitsRegion' should to be either NULL or a character vector of length 1", call. = FALSE)
+    } else if (is.null(geoUnitsRegion)) {
+      GLOBAL_geoUnitsRegionInclude <- FALSE
+      geoUnitsRegion <- "landsting"
+    } else if (!(geoUnitsRegion %in% colnames(data))) {
+      GLOBAL_geoUnitsRegionInclude <- FALSE
+    } else {
+      data$regionCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsRegion])))
+      if (any(is.na(data$regionCode)) | !(all(data$regionCode %in% 1:6)))
+          stop(paste0("'", geoUnitsRegion, "' contains missing or invalid values. '", geoUnitsRegion, "' should only contain the values (", paste(1:6, collapse = ", "), ")."),
+              call. = FALSE)
+    }
+
+    if (sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude) < 1)
+      stop(paste0("At least one level of comparison (hospital/county/region) must be available"), call. = FALSE)
+
+
 
 
 
@@ -304,11 +311,19 @@ rccShiny <- function(language = "sv",
         }
 
         # Add region names
-        data$region <- factor(data$region, levels = 1:6, labels = rccShinyRegionNames(language = loop_language))
+        if (GLOBAL_geoUnitsRegionInclude) {
+          data$region <- factor(data$regionCode, levels = 1:6, labels = rccShinyRegionNames(language = loop_language))
+        } else {
+          data$region <- "(not displayed)"
+        }
 
         # Add county names
-        data <- data[, colnames(data) != "landsting"]
-        data <- merge(data, rccShinyCounties(language = loop_language, lkf = geoUnitsPatient), by = "landstingCode", all.x = TRUE)
+        if (GLOBAL_geoUnitsCountyInclude) {
+          data <- data[, colnames(data) != "landsting"]
+          data <- merge(data, rccShinyCounties(language = loop_language, lkf = geoUnitsPatient), by = "landstingCode", all.x = TRUE)
+        } else {
+          data$landsting <- "(not displayed)"
+        }
 
         # Check for hospital variable in data
         if (GLOBAL_geoUnitsHospitalInclude) {
@@ -457,8 +472,9 @@ rccShiny <- function(language = "sv",
         file.copy(system.file("source", "ui.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/ui.R"), overwrite = TRUE)
 
         save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
-            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsPatient, GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected,
-            GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
+            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
+            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending, GLOBAL_varOther,
+            GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
             file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
         # Output description to .html-file
