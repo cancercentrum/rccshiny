@@ -13,7 +13,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
   regionLabel = rccShinyTXT(language = language)$limitRegion,
   period = "period", periodLabel = rccShinyTXT(language = language)$dxYear,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sortDescending = NULL, hideLessThan = 5, npcrGroupPrivateOthers = FALSE)
+  sortDescending = TRUE, hideLessThan = 5, npcrGroupPrivateOthers = FALSE)
 }
 \arguments{
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
