@@ -582,7 +582,7 @@ shinyServer(function(input, output, clientData) {
             1.8,
             3
           ),
-          target_values = GLOBAL_targetValues,
+          target_values = GLOBAL_targetValues[[whichOutcome()]],
           target_values_high = GLOBAL_sortDescending[whichOutcome()],
           funnelplot = input$param_funnelplot,
           subset = tempSubset,
@@ -692,7 +692,7 @@ shinyServer(function(input, output, clientData) {
               subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
               x_lab = GLOBAL_periodLabel,
               y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
-              target_values = GLOBAL_targetValues,
+              target_values = GLOBAL_targetValues[[whichOutcome()]],
               target_values_high = GLOBAL_sortDescending[whichOutcome()]
             )
 
@@ -725,7 +725,7 @@ shinyServer(function(input, output, clientData) {
             subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
             x_lab = GLOBAL_periodLabel,
             y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
-            target_values = GLOBAL_targetValues,
+            target_values = GLOBAL_targetValues[[whichOutcome()]],
             target_values_high = GLOBAL_sortDescending[whichOutcome()]
           )
 
@@ -786,7 +786,7 @@ shinyServer(function(input, output, clientData) {
             subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
             x_lab = GLOBAL_periodLabel,
             y_lab = y_varinterest_txt,
-            target_values = GLOBAL_targetValues,
+            target_values = GLOBAL_targetValues[[whichOutcome()]],
             target_values_high = GLOBAL_sortDescending[whichOutcome()],
             col = col
           )

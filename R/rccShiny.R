@@ -21,7 +21,7 @@
 #' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis", ... depending on language.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).
-#' @param targetValues optional vector of 1-2 target levels to be plotted in the tab Jämförelse/Comparison. Only applicable for dichotomous variables.
+#' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
@@ -278,8 +278,18 @@ rccShiny <-
     if (!all(sapply(varOther,is.list)))
       stop("The elements of 'varOther' should be lists", call. = FALSE)
 
-    if (!is.null(targetValues) & (!is.numeric(targetValues) | length(targetValues) < 1 | length(targetValues) > 2))
-      stop("'targetValues' should be a numeric vector of length 1 or 2", call. = FALSE)
+    if (!is.list(targetValues))
+      targetValues <- list(targetValues)
+    targetValuesOld <- targetValues
+    targetValues <- rep(list(NULL),length(outcome))
+    for (i in 1:length(targetValues)) {
+      if (i <= length(targetValuesOld)) {
+        if (!is.null(targetValuesOld[[i]]))
+          targetValues[[i]] <- targetValuesOld[[i]]
+        if (!is.null(targetValues[[i]]) & (!is.numeric(targetValues[[i]]) | length(targetValues[[i]]) < 1 | length(targetValues[[i]]) > 2))
+          stop(paste0("'targetValues[[",i,"]]' should be either NULL or a numeric vector of length 1 or 2"), call. = FALSE)
+      }
+    }
 
     if (is.null(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
       stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
