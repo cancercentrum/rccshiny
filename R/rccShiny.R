@@ -142,55 +142,83 @@ rccShiny <- function(language = "sv",
 
     # # # # # # # # # # # # # # # # Lägg till felkontroller!  # # # # # # # # # # # # # # #
 
+    if (is.null(language) | !is.character(language))
+      stop("'language' should be a character vector", call. = FALSE)
+
     if (is.null(data) | !is.data.frame(data))
-        stop("'data' has to be a data.frame", call. = FALSE)
+      stop("'data' should be a data.frame", call. = FALSE)
 
-    testVariableError <- function(var) {
-        if (is.null(get(var)))
-            stop(paste0("'", var, "' is missing"), call. = FALSE)
-        if (any(is.na(get(var))))
-            stop(paste0("'", var, "' is missing"), call. = FALSE)
-        if (is.list(get(var))) {
-            tempList <- get(var)
-            for (i in 1:length(tempList)) {
-                if (!is.character(tempList[[i]]))
-                  stop(paste0("'", var, "' has to be of type character"), call. = FALSE)
-            }
+    testVariableError <- function(var, listAllowed = TRUE) {
+      if (is.null(get(var)))
+        stop(paste0("'", var, "' is missing"), call. = FALSE)
+      if (any(is.na(get(var))))
+        stop(paste0("'", var, "' is missing"), call. = FALSE)
+      if (is.list(get(var))) {
+        if (!listAllowed) {
+          stop(paste0("'", var, "' should not be a list"), call. = FALSE)
         } else {
-            if (!is.character(get(var)))
-                stop(paste0("'", var, "' has to be of type character"), call. = FALSE)
+          tempList <- get(var)
+          for (i in 1:length(tempList)) {
+            if (!is.character(tempList[[i]]))
+              stop(paste0("'", var, "' should be of type character"), call. = FALSE)
+          }
         }
+      } else {
+        if (!is.character(get(var)))
+          stop(paste0("'", var, "' should be of type character"), call. = FALSE)
+      }
     }
-    testVariableError("outcome")
-    testVariableError("outcomeTitle")
 
+    testVariableError("outcome", listAllowed = FALSE)
+
+    testVariableError("outcomeTitle")
     if (!is.list(outcomeTitle))
       outcomeTitle <- list(outcomeTitle)
     for (i in 1:length(outcomeTitle)) {
       if (length(outcome)!=length(outcomeTitle[[i]]))
-        stop(paste0("outcome and outcomeTitle must have the same number of elements"), call. = FALSE)
+        stop(paste0("'outcome' and 'outcomeTitle' should have the same number of elements"), call. = FALSE)
     }
 
-    testVariableError("folder")
-    testVariableError("folderLinkText")
+    testVariableError("folder", listAllowed = FALSE)
+    if (length(folder)>1)
+      stop(paste0("'folder' should be of length 1"), call. = FALSE)
 
+    testVariableError("folderLinkText")
     if (!is.list(folderLinkText))
       folderLinkText <- list(folderLinkText)
     for (i in 1:length(folderLinkText)) {
       if (length(outcome)!=length(folderLinkText[[i]]))
-        stop(paste0("outcome and folderLinkText must have the same number of elements"), call. = FALSE)
+        stop(paste0("'outcome' and 'folderLinkText' should have the same number of elements"), call. = FALSE)
     }
 
+    if (is.null(path) | !is.character(path) | length(path)>1)
+      stop("'path' should to be a character vector of length 1", call. = FALSE)
+    if (!dir.exists(path))
+      stop("The folder '",path,"' does not exist", call. = FALSE)
+
+    if (is.null(textBeforeSubtitle))
+      textBeforeSubtitle <- ""
+    testVariableError("textBeforeSubtitle", listAllowed = FALSE)
+
+    if (is.null(textAfterSubtitle))
+      textAfterSubtitle <- ""
+    testVariableError("textAfterSubtitle", listAllowed = FALSE)
+
     if (is.null(comment))
-        comment <- ""
+      comment <- ""
+    testVariableError("comment", listAllowed = FALSE)
 
-    if (is.null(period))
-        period <- "period"
-    if (is.null(outcome))
-        outcome <- "outcome"
-
+    testVariableError("description")
     if (!is.list(description))
       description <- list(description)
+
+
+
+
+
+
+
+
 
     # Check for region variable in data
     if (is.null(geoUnitsRegion))
@@ -215,6 +243,8 @@ rccShiny <- function(language = "sv",
 
 
 
+    if (is.null(period) | !is.character(period) | length(period)>1)
+      stop("'period' should to be a character vector of length 1", call. = FALSE)
 
 
 
