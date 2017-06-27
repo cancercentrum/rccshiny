@@ -38,7 +38,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").}
 
-\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.}
+\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes. If NULL or if variable is not found in 'data', hospital is omitted as available level of presentation.}
 
 \item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
 

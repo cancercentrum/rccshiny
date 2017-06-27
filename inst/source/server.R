@@ -94,7 +94,7 @@ shinyServer(function(input, output, clientData) {
                 ),
                 language = GLOBAL_language
               ),
-              rccShinyLevelNames("hospital", language = GLOBAL_language)
+              if (GLOBAL_geoUnitsHospitalInclude) {rccShinyLevelNames("hospital", language = GLOBAL_language)}
             ),
             selected =
               rccShinyLevelNames(
@@ -114,7 +114,14 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table'",
+          condition = paste0(
+            "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & ",
+            ifelse(
+              GLOBAL_geoUnitsHospitalInclude,
+              "true",
+              "false"
+            )
+          ),
           selectInput(
             inputId = "param_ownhospital",
             label = rccShinyTXT(language = GLOBAL_language)$hospitalinterest,
@@ -309,7 +316,7 @@ shinyServer(function(input, output, clientData) {
     ) {
       paste0(
         ifelse(
-          !is.null(GLOBAL_textBeforeSubtitle),
+          GLOBAL_textBeforeSubtitle != "",
           paste0(GLOBAL_textBeforeSubtitle," "),
           ""
         ),
@@ -324,7 +331,7 @@ shinyServer(function(input, output, clientData) {
           ""
         ),
         ifelse(
-          !is.null(GLOBAL_textAfterSubtitle),
+          GLOBAL_textAfterSubtitle != "",
           paste0(GLOBAL_textAfterSubtitle," "),
           ""
         )

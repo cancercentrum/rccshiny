@@ -12,7 +12,7 @@
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").
-#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes.
+#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. At least one geoUnit must be given. To be implemented: Hospital codes. If NULL or if variable is not found in 'data', hospital is omitted as available level of presentation.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
@@ -180,7 +180,7 @@ rccShiny <- function(language = "sv",
     }
 
     testVariableError("folder", listAllowed = FALSE)
-    if (length(folder)>1)
+    if (length(folder) > 1)
       stop(paste0("'folder' should be of length 1"), call. = FALSE)
 
     testVariableError("folderLinkText")
@@ -211,6 +211,17 @@ rccShiny <- function(language = "sv",
     testVariableError("description")
     if (!is.list(description))
       description <- list(description)
+
+    GLOBAL_geoUnitsHospitalInclude <- TRUE
+    if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) > 1))
+      stop("'geoUnitsHospital' should to be either NULL or a character vector of length 1", call. = FALSE)
+    if (is.null(geoUnitsHospital)) {
+      GLOBAL_geoUnitsHospitalInclude <- FALSE
+      geoUnitsHospital <- "sjukhus"
+    }
+    if (!(geoUnitsHospital %in% colnames(data)))
+      GLOBAL_geoUnitsHospitalInclude <- FALSE
+
 
 
 
@@ -300,17 +311,17 @@ rccShiny <- function(language = "sv",
         data <- merge(data, rccShinyCounties(language = loop_language, lkf = geoUnitsPatient), by = "landstingCode", all.x = TRUE)
 
         # Check for hospital variable in data
-        if (is.null(geoUnitsHospital))
-            geoUnitsHospital <- "sjukhus"
-        if (!(geoUnitsHospital %in% colnames(data)))
-            stop(paste0("Column '", geoUnitsHospital, "' not found in 'data'"), call. = FALSE)
-        data$sjukhus <- if (paste0(geoUnitsHospital, "_", loop_language) %in% colnames(data)) {
+        if (GLOBAL_geoUnitsHospitalInclude) {
+          data$sjukhus <- if (paste0(geoUnitsHospital, "_", loop_language) %in% colnames(data)) {
             data[, paste0(geoUnitsHospital, "_", loop_language)]
-        } else {
+          } else {
             data[, geoUnitsHospital]
+          }
+          # Fix missing in hospital variable
+          data$sjukhus[is.na(data$sjukhus) | data$sjukhus == ""] <- rccShinyTXT(language = GLOBAL_language)$missing
+        } else {
+          data$sjukhus <- "(not displayed)"
         }
-        # Fix missing in hospital variable
-        data$sjukhus[is.na(data$sjukhus) | data$sjukhus == ""] <- rccShinyTXT(language = GLOBAL_language)$missing
 
         includeVariables <- c("period", "region", "landsting", "sjukhus")
 
@@ -446,7 +457,7 @@ rccShiny <- function(language = "sv",
         file.copy(system.file("source", "ui.R", package = "rccShiny"), paste0(path, "/apps/", loop_language, "/", folder, "/ui.R"), overwrite = TRUE)
 
         save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
-            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsPatient, GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected,
+            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsPatient, GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected,
             GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
             file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
