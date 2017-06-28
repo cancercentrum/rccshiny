@@ -532,6 +532,14 @@ rccShiny <-
       printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionInterpretation, "</p>"))
       printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
       printRow(paste0(GLOBAL_description[2]))
+      printRow(paste0("<p></p>"))
+      printRow(paste0(rccShinyTXT(language = GLOBAL_language)$fewcases1,
+                      " ",
+                      GLOBAL_hideLessThan,
+                      " ",
+                      rccShinyTXT(language = GLOBAL_language)$fewcases2,
+                      "."
+      ))
       printRow(paste0("</div>"))
       printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionTechnical, "</p>"))
       printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))

@@ -294,16 +294,16 @@ shinyServer(function(input, output, clientData) {
     )
   })
 
-  indSubtitleGroupLessThan <- reactive({
-    paste0(
-      rccShinyTXT(language = GLOBAL_language)$fewcases1,
-      " ",
-      GLOBAL_hideLessThan,
-      " ",
-      rccShinyTXT(language = GLOBAL_language)$fewcases2,
-      "."
-    )
-  })
+  #indSubtitleGroupLessThan <- reactive({
+  #  paste0(
+  #    rccShinyTXT(language = GLOBAL_language)$fewcases1,
+  #    " ",
+  #    GLOBAL_hideLessThan,
+  #    " ",
+  #    rccShinyTXT(language = GLOBAL_language)$fewcases2,
+  #    "."
+  #  )
+  #})
 
   indSubtitle <-
     function(
@@ -321,11 +321,11 @@ shinyServer(function(input, output, clientData) {
           indSubtitlePeriod(),
           ""
         ),
-        ifelse(
-          hideLessThan,
-          indSubtitleGroupLessThan(),
-          ""
-        ),
+        #ifelse(
+        #  hideLessThan,
+        #  indSubtitleGroupLessThan(),
+        #  ""
+        #),
         ifelse(
           GLOBAL_textAfterSubtitle != "",
           paste0(GLOBAL_textAfterSubtitle," "),
