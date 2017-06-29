@@ -13,8 +13,9 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
   regionLabel = rccShinyTXT(language = language)$limitRegion,
   period = "period", periodLabel = rccShinyTXT(language = language)$dxYear,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sortDescending = NULL, hideLessThan = 5, showHide = TRUE,
-  npcrGroupPrivateOthers = FALSE)
+  sortDescending = NULL, propWithinUnit = rccShinyTXT(language =
+  language)$propWithinUnit, propWithinValue = 30, hideLessThan = 5,
+  showHide = TRUE, npcrGroupPrivateOthers = FALSE)
 }
 \arguments{
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
@@ -55,13 +56,17 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{periodLabel}{label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis", ... depending on language.}
 
-\item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables).}
+\item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables). Observe that observations with missing values for varOthers are not included in the output.}
 
 \item{targetValues}{optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend.}
 
 \item{funnelplot}{adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.}
 
 \item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.}
+
+\item{propWithinUnit}{Unit shown for continuous variables when "Andel inom..."/"Proportion within..." is selected. Default is dagar/days.}
+
+\item{propWithinValue}{Default value shown for continuous variables when "Andel inom..."/"Proportion within..." is selected. Default is 30.}
 
 \item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
 

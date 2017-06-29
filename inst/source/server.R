@@ -23,7 +23,12 @@ shinyServer(function(input, output, clientData) {
           radioButtons(
             inputId = "param_numerictype",
             label = rccShinyTXT(language = GLOBAL_language)$presentation,
-            choices = c(rccShinyTXT(language = GLOBAL_language)$median, rccShinyTXT(language = GLOBAL_language)$numericchoices_prop),
+            choices = c(rccShinyTXT(language = GLOBAL_language)$median,
+                        paste0(
+                          rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                          GLOBAL_propWithinUnit
+                          )
+                        ),
             selected = rccShinyTXT(language = GLOBAL_language)$median
           )
         )
@@ -32,18 +37,24 @@ shinyServer(function(input, output, clientData) {
 
   numericTypeProp <-
     reactive({
-      input$param_numerictype == rccShinyTXT(language = GLOBAL_language)$numericchoices_prop
+      input$param_numerictype == paste0(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                                        GLOBAL_propWithinUnit
+                                        )
     })
 
   output$numericTypePropInput <-
     renderUI({
       tagList(
         conditionalPanel(
-          condition = ifelse(outcomeClassNumeric(), paste0("input.param_numerictype == '",rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, "'"), "false"),
+          condition = ifelse(outcomeClassNumeric(), paste0("input.param_numerictype == '",
+                                                           paste0(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                                                                                                 GLOBAL_propWithinUnit
+          ),
+          "'"), "false"),
           numericInput(
             inputId = "param_numerictype_prop",
             label = NULL,
-            value = 30,
+            value = GLOBAL_propWithinValue,
             min = 0,
             max = 1000,
             step = 1
@@ -267,7 +278,9 @@ shinyServer(function(input, output, clientData) {
           GLOBAL_outcomeTitle[whichOutcome()],
           ", ",
           rccShinyTXT(language = GLOBAL_language)$numeric_proportionwithin,
-          input$param_numerictype_prop
+          input$param_numerictype_prop,
+          " ",
+          GLOBAL_propWithinUnit
         )
       } else {
         GLOBAL_outcomeTitle[whichOutcome()]

@@ -24,6 +24,8 @@
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
+#' @param propWithinUnit Unit shown for continuous variables when "Andel inom..."/"Proportion within..." is selected. Default is dagar/days.
+#' @param propWithinValue Default value shown for continuous variables when "Andel inom..."/"Proportion within..." is selected. Default is 30.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param showHide To be implemented: Should levels with values < 5 be shown but without values? Default is TRUE.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
@@ -140,6 +142,8 @@ rccShiny <-
     targetValues = NULL,
     funnelplot = FALSE,
     sortDescending = NULL,
+    propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
+    propWithinValue = 30,
     hideLessThan = 5,
     showHide = TRUE,
     npcrGroupPrivateOthers = FALSE
@@ -487,6 +491,9 @@ rccShiny <-
       GLOBAL_funnelplot <- funnelplot
       GLOBAL_sortDescending <- sortDescending
 
+      GLOBAL_propWithinUnit <- ifelse(length(propWithinUnit) >= which_language, propWithinUnit[which_language], propWithinUnit[1])
+      GLOBAL_propWithinValue <- propWithinValue
+
       GLOBAL_hideLessThan <- ifelse(hideLessThan < 5, 5, hideLessThan)
 
       GLOBAL_npcrGroupPrivateOthers <- npcrGroupPrivateOthers
@@ -510,7 +517,9 @@ rccShiny <-
 
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
-           GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending, GLOBAL_varOther,
+           GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
+           GLOBAL_propWithinUnit, GLOBAL_propWithinValue,
+           GLOBAL_varOther,
            GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
