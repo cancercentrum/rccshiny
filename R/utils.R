@@ -56,6 +56,7 @@ rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
     if (sort) {
         regions <- sort(regions)
     }
+    regions <- enc2utf8(regions)
     return(regions)
 }
 #' @export
