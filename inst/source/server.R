@@ -37,9 +37,11 @@ shinyServer(function(input, output, clientData) {
 
   numericTypeProp <-
     reactive({
-      input$param_numerictype == paste0(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
-                                        GLOBAL_propWithinUnit
-                                        )
+      if (is.null(input$param_numerictype)) {
+        FALSE
+      } else {
+        input$param_numerictype == paste0(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, GLOBAL_propWithinUnit)
+      }
     })
 
   output$numericTypePropInput <-
