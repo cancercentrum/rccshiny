@@ -463,7 +463,14 @@ rccShiny <-
         textAfterSubtitle[1]
       }
 
-      GLOBAL_comment <- ifelse(length(comment) >= which_language, comment[which_language], comment[1])
+      GLOBAL_comment <-
+        enc2utf8(
+          ifelse(
+            length(comment) >= which_language,
+            comment[which_language],
+            comment[1]
+          )
+        )
 
       GLOBAL_description <-
         if(length(description) >= which_language) {
