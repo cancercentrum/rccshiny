@@ -106,6 +106,7 @@ Valid values for geoUnitsCounty are:
 24\tab 64 \tab  Västerbotten\cr
 25\tab 65 \tab  Norrbotten\cr
 -\tab 91,92,93,94,95,96 \tab  Övriga/privata - region
+99\tab 99 \tab  Uppgift saknas
 }
 
 
