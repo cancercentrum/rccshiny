@@ -198,11 +198,14 @@ shinyServer(function(input, output, clientData) {
                 sliderInput(
                   inputId = paste0("userInputId",i),
                   label = tempList$label,
-                  min = min(tempList$choices[1], na.rm = TRUE),
-                  max = max(tempList$choices[2], na.rm = TRUE),
+                  min = min(tempList$choices, na.rm = TRUE),
+                  max = max(tempList$choices, na.rm = TRUE),
                   step = 1,
                   ticks = FALSE,
-                  value = range(tempList$choices, na.rm = TRUE)
+                  value = c(
+                    min(tempList$selected, na.rm = TRUE),
+                    max(tempList$selected, na.rm = TRUE)
+                  )
                 )
               } else {
                 selectizeInput(
