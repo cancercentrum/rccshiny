@@ -24,7 +24,7 @@ shinyServer(function(input, output, clientData) {
             inputId = "param_numerictype",
             label = rccShinyTXT(language = GLOBAL_language)$presentation,
             choices = c(rccShinyTXT(language = GLOBAL_language)$median,
-                        paste0(
+                        paste(
                           rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
                           GLOBAL_propWithinUnit
                           )
