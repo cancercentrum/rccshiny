@@ -40,7 +40,7 @@ shinyServer(function(input, output, clientData) {
       if (is.null(input$param_numerictype)) {
         FALSE
       } else {
-        input$param_numerictype == paste0(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, GLOBAL_propWithinUnit)
+        input$param_numerictype == paste(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, GLOBAL_propWithinUnit)
       }
     })
 
@@ -49,7 +49,7 @@ shinyServer(function(input, output, clientData) {
       tagList(
         conditionalPanel(
           condition = ifelse(outcomeClassNumeric(), paste0("input.param_numerictype == '",
-                                                           paste0(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                                                           paste(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
                                                                                                  GLOBAL_propWithinUnit
           ),
           "'"), "false"),
