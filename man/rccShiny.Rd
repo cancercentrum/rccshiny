@@ -5,7 +5,7 @@
 \title{Shiny apps for RCC}
 \usage{
 rccShiny(language = "sv", data = NULL, outcome = "outcome",
-  outcomeTitle = outcome, folder = "ind", folderLinkText = outcomeTitle,
+  outcomeTitle = outcome, folder = "ind", folderLinkText = NULL,
   path = getwd(), textBeforeSubtitle = NULL, textAfterSubtitle = NULL,
   comment = "", description = rep("...", 3), geoUnitsHospital = "sjukhus",
   geoUnitsCounty = "landsting", geoUnitsRegion = "region",
@@ -28,7 +28,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{folder}{name of folder where the results are placed. Default is "ind".}
 
-\item{folderLinkText}{short name displayed in ready-to-use html link returned by the function. Default is argument outcomeTitle.}
+\item{folderLinkText}{short name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.}
 
 \item{path}{search path to folder returned by the function. Default is working directory.}
 

@@ -6,7 +6,7 @@
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param folder name of folder where the results are placed. Default is "ind".
-#' @param folderLinkText short name displayed in ready-to-use html link returned by the function. Default is argument outcomeTitle.
+#' @param folderLinkText short name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
@@ -125,7 +125,7 @@ rccShiny <-
     outcome = "outcome",
     outcomeTitle = outcome,
     folder = "ind",
-    folderLinkText = outcomeTitle,
+    folderLinkText = NULL,
     path = getwd(),
     textBeforeSubtitle = NULL,
     textAfterSubtitle = NULL,
@@ -187,7 +187,7 @@ rccShiny <-
     if (!is.list(outcomeTitle))
       outcomeTitle <- list(outcomeTitle)
     for (i in 1:length(outcomeTitle)) {
-      if (length(outcome)!=length(outcomeTitle[[i]]))
+      if (length(outcome) != length(outcomeTitle[[i]]))
         stop(paste0("'outcome' and 'outcomeTitle' should have the same number of elements"), call. = FALSE)
     }
 
@@ -195,13 +195,16 @@ rccShiny <-
     if (length(folder) != 1)
       stop(paste0("'folder' should be of length 1"), call. = FALSE)
 
-    testVariableError("folderLinkText")
-    if (!is.list(folderLinkText))
-      folderLinkText <- list(folderLinkText)
-    for (i in 1:length(folderLinkText)) {
-      if (length(outcome)!=length(folderLinkText[[i]]))
-        stop(paste0("'outcome' and 'folderLinkText' should have the same number of elements"), call. = FALSE)
+    if (is.null(folderLinkText)) {
+      if (length(outcome) > 1) {
+        folderLinkText <- paste0(folder, "_", language)
+      } else {
+        folderLinkText <- unlist(outcomeTitle)
+      }
     }
+    testVariableError("folderLinkText", listAllowed = FALSE)
+    if (length(language) != length(folderLinkText))
+      stop(paste0("'language' and 'folderLinkText' should have the same number of elements"), call. = FALSE)
 
     if (is.null(path) | !is.character(path) | length(path) != 1)
       stop("'path' should be a character vector of length 1", call. = FALSE)
@@ -447,9 +450,9 @@ rccShiny <-
 
       GLOBAL_folderLinkText <-
         if (length(folderLinkText) >= which_language) {
-          folderLinkText[[which_language]]
+          folderLinkText[which_language]
         } else {
-          folderLinkText[[1]]
+          folderLinkText[1]
         }
 
       GLOBAL_textBeforeSubtitle <- if (length(textBeforeSubtitle) >= which_language) {
