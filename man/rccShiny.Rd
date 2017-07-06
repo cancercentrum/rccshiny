@@ -5,17 +5,18 @@
 \title{Shiny apps for RCC}
 \usage{
 rccShiny(language = "sv", data = NULL, outcome = "outcome",
-  outcomeTitle = outcome, folder = "ind", folderLinkText = NULL,
-  path = getwd(), textBeforeSubtitle = NULL, textAfterSubtitle = NULL,
-  comment = "", description = rep("...", 3), geoUnitsHospital = "sjukhus",
-  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
-  geoUnitsPatient = FALSE, regionSelection = TRUE,
-  regionLabel = rccShinyTXT(language = language)$limitRegion,
-  period = "period", periodLabel = rccShinyTXT(language = language)$dxYear,
-  varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sortDescending = NULL, propWithinUnit = rccShinyTXT(language =
-  language)$propWithinUnit, propWithinValue = 30, hideLessThan = 5,
-  showHide = TRUE, npcrGroupPrivateOthers = FALSE)
+  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome, folder = "ind",
+  folderLinkText = NULL, path = getwd(), textBeforeSubtitle = NULL,
+  textAfterSubtitle = NULL, comment = "", description = rep("...", 3),
+  geoUnitsHospital = "sjukhus", geoUnitsCounty = "landsting",
+  geoUnitsRegion = "region", geoUnitsPatient = FALSE,
+  regionSelection = TRUE, regionLabel = rccShinyTXT(language =
+  language)$limitRegion, period = "period",
+  periodLabel = rccShinyTXT(language = language)$dxYear, varOther = NULL,
+  targetValues = NULL, funnelplot = FALSE, sortDescending = NULL,
+  propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
+  propWithinValue = 30, hideLessThan = 5, showHide = TRUE,
+  npcrGroupPrivateOthers = FALSE)
 }
 \arguments{
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
@@ -23,6 +24,8 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 \item{data}{data frame containing the variables used.}
 
 \item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".}
+
+\item{outcomeNumericExcludeNeg}{should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.}
 
 \item{outcomeTitle}{label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.}
 

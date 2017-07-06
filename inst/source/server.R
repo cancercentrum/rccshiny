@@ -449,8 +449,11 @@ shinyServer(function(input, output, clientData) {
     dftemp <- GLOBAL_data
 
     dftemp$outcome <- dftemp[,GLOBAL_outcome[whichOutcome()]]
-    if (outcomeClassNumeric() & numericTypeProp()) {
-      dftemp$outcome <- dftemp$outcome <= input$param_numerictype_prop
+    if (outcomeClassNumeric()) {
+      if (GLOBAL_outcomeNumericExcludeNeg)
+        dftemp$outcome[!is.na(dftemp$outcome) & dftemp$outcome < 0] <- NA
+      if (numericTypeProp())
+        dftemp$outcome <- dftemp$outcome <= input$param_numerictype_prop
     }
 
     if (input$tab != "fig_trend") {
@@ -574,6 +577,7 @@ shinyServer(function(input, output, clientData) {
           all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
           emph_lab = emphLabel(dfuse),
           ind = dfuse$outcome,
+          ind_numeric_exclude_neg = FALSE,
           ind_title = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
             rccShinyTXT(language = GLOBAL_language)$median,

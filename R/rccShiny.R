@@ -4,6 +4,7 @@
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param data data frame containing the variables used.
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".
+#' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param folder name of folder where the results are placed. Default is "ind".
 #' @param folderLinkText short name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.
@@ -123,6 +124,7 @@ rccShiny <-
     language = "sv",
     data = NULL,
     outcome = "outcome",
+    outcomeNumericExcludeNeg = TRUE,
     outcomeTitle = outcome,
     folder = "ind",
     folderLinkText = NULL,
@@ -182,6 +184,9 @@ rccShiny <-
     }
 
     testVariableError("outcome", listAllowed = FALSE)
+
+    if (is.null(outcomeNumericExcludeNeg) | !is.logical(outcomeNumericExcludeNeg) | length(outcomeNumericExcludeNeg) != 1)
+      stop(paste0("'outcomeNumericExcludeNeg' should a logical vector of length 1"), call. = FALSE)
 
     testVariableError("outcomeTitle")
     if (!is.list(outcomeTitle))
@@ -441,6 +446,8 @@ rccShiny <-
 
       GLOBAL_data <- subset(data, select = includeVariables)
 
+      GLOBAL_outcomeNumericExcludeNeg <- outcomeNumericExcludeNeg
+
       GLOBAL_outcomeTitle <-
         if (length(outcomeTitle) >= which_language) {
           outcomeTitle[[which_language]]
@@ -526,7 +533,7 @@ rccShiny <-
 
       GLOBAL_data <- fixEncoding(GLOBAL_data)
 
-      save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
+      save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
            GLOBAL_propWithinUnit, GLOBAL_propWithinValue,
