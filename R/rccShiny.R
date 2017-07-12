@@ -29,6 +29,7 @@
 #' @param propWithinValue Default value shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is 30.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param showHide To be implemented: Should levels with values < 5 be shown but without values? Default is TRUE.
+#' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
 #'
 #' @details Valid values for geoUnitsCounty are:
@@ -149,6 +150,7 @@ rccShiny <-
     propWithinValue = 30,
     hideLessThan = 5,
     showHide = TRUE,
+    gaPath = NULL,
     npcrGroupPrivateOthers = FALSE
   ) {
 
@@ -322,6 +324,11 @@ rccShiny <-
 
     if (is.null(npcrGroupPrivateOthers) | !is.logical(npcrGroupPrivateOthers) | length(npcrGroupPrivateOthers) != 1)
       stop(paste0("'npcrGroupPrivateOthers' should be a logical vector of length 1"), call. = FALSE)
+
+    if (!is.null(gaPath) & (!is.character(gaPath) | length(gaPath) != 1))
+      stop("'gaPath' should be either NULL or a character vector of length 1", call. = FALSE)
+    if (!is.null(gaPath))
+      gaPath <- ifelse(substr(gaPath,1,1) == "/", gaPath, paste0("/", gaPath))
 
     if (npcrGroupPrivateOthers & sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude) < 3) {
       npcrGroupPrivateOthers <- FALSE
@@ -514,6 +521,8 @@ rccShiny <-
 
       GLOBAL_hideLessThan <- ifelse(hideLessThan < 5, 5, hideLessThan)
 
+      GLOBAL_gaPath <- gaPath
+
       GLOBAL_npcrGroupPrivateOthers <- npcrGroupPrivateOthers
 
       if (!dir.exists(paste0(path,"/apps/"))) {
@@ -536,9 +545,7 @@ rccShiny <-
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
-           GLOBAL_propWithinUnit, GLOBAL_propWithinValue,
-           GLOBAL_varOther,
-           GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_npcrGroupPrivateOthers,
+           GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, gaPath, GLOBAL_npcrGroupPrivateOthers,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
       # Output description to .html-file

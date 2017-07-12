@@ -16,7 +16,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
   targetValues = NULL, funnelplot = FALSE, sortDescending = NULL,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
   propWithinValue = 30, hideLessThan = 5, showHide = TRUE,
-  npcrGroupPrivateOthers = FALSE)
+  gaPath = NULL, npcrGroupPrivateOthers = FALSE)
 }
 \arguments{
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
@@ -74,6 +74,8 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 \item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
 
 \item{showHide}{To be implemented: Should levels with values < 5 be shown but without values? Default is TRUE.}
+
+\item{gaPath}{optional path to Google Analytics .js-file. Default is NULL.}
 
 \item{npcrGroupPrivateOthers}{should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.}
 }

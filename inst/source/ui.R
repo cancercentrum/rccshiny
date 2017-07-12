@@ -5,7 +5,7 @@ library(rccShiny)
 
 shinyUI(fluidPage(
 
-  #tags$head(tags$script(src="/npcr/_libs/ga.js")),
+  if (!is.null(GLOBAL_gaPath)) { tags$head(tags$script(src = GLOBAL_gaPath)) },
 
   h2(textOutput("text0")),
   #p(textOutput("text1")),
