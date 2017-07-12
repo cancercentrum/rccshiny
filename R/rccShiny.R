@@ -545,7 +545,7 @@ rccShiny <-
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
-           GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, gaPath, GLOBAL_npcrGroupPrivateOthers,
+           GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
       # Output description to .html-file
