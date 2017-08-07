@@ -57,7 +57,7 @@
 #' 24\tab 64 \tab  Västerbotten\cr
 #' 25\tab 65 \tab  Norrbotten\cr
 #' -\tab 91,92,93,94,95,96 \tab  Övriga/privata - region\cr
-#' 99\tab 99 \tab  Uppgift saknas
+#' NA\tab NA \tab  Uppgift saknas
 #' }
 #'
 #'
@@ -254,8 +254,8 @@ rccShiny <-
       GLOBAL_geoUnitsCountyInclude <- FALSE
     } else {
       data$landstingCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsCounty])))
-      if (any(is.na(data$landstingCode)) | !(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
-        stop(paste0("'", geoUnitsCounty, "' contains missing or invalid values. When 'geoUnitsPatient'=", geoUnitsPatient, ", '", geoUnitsCounty, "' should only contain the values (",
+      if (!(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
+        stop(paste0("'", geoUnitsCounty, "' contains invalid values. When 'geoUnitsPatient'=", geoUnitsPatient, ", '", geoUnitsCounty, "' should only contain the values (",
                     paste(rccShinyCounties(lkf = geoUnitsPatient)$landstingCode, collapse = ", "), ")."), call. = FALSE)
     }
 

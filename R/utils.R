@@ -20,7 +20,7 @@ rccShinyDecimals <- function() {
 rccShinyCounties <- function(language = "sv", lkf = FALSE) {
   if (lkf) {
     data.frame(
-      landstingCode = c(1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, 99),
+      landstingCode = c(1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, NA),
       landsting = c(
         "Stockholm", "Uppsala", "Södermanland", "Östergötland", "Jönköping", "Kronoberg", "Kalmar", "Gotland", "Blekinge", "Skåne",
         "Halland", "Västra Götaland", "Värmland", "Örebro", "Västmanland", "Dalarna",
@@ -35,7 +35,7 @@ rccShinyCounties <- function(language = "sv", lkf = FALSE) {
     )
   } else {
     data.frame(
-      landstingCode = c(10, 11, 12, 13, 21, 22, 23, 24, 25, 26, 27, 28, 30, 41, 42, 50, 51, 52, 53, 54, 55, 56, 57, 61, 62, 63, 64, 65, 91, 92, 93, 94, 95, 96, 99),
+      landstingCode = c(10, 11, 12, 13, 21, 22, 23, 24, 25, 26, 27, 28, 30, 41, 42, 50, 51, 52, 53, 54, 55, 56, 57, 61, 62, 63, 64, 65, 91, 92, 93, 94, 95, 96, NA),
       landsting = c(
         "Stockholm", "Stockholm", "Uppsala", "Södermanland", "Östergötland", "Jönköping", "Kronoberg", "Kalmar", "Kalmar", "Gotland", "Blekinge", "Skåne",
         "Skåne", "Skåne", "Halland", "Västra Götaland", "Västra Götaland", "Västra Götaland", "Västra Götaland", "Värmland", "Örebro", "Västmanland", "Dalarna",
