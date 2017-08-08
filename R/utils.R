@@ -1,3 +1,6 @@
+#' Sets encoding to utf8 for data
+#' @description internal function used by rccShiny to "clean" data to utf8 encoding.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 fixEncoding <-
 function(data) {
@@ -12,10 +15,16 @@ function(data) {
   }
   data
 }
+#' Number of decimals
+#' @description internal function used by rccShinyIndTable to give number of decimals.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyDecimals <- function() {
     return(1)
 }
+#' County dataset
+#' @description internal function that creates dataset with numeric codes (given by user) and corresponding names (printed in output) for county/county of residence.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyCounties <- function(language = "sv", lkf = FALSE) {
   if (lkf) {
@@ -58,11 +67,17 @@ rccShinyCounties <- function(language = "sv", lkf = FALSE) {
     )
   }
 }
+#' Region variable
+#' @description internal function that creates variable from numeric codes (given by user) to corresponding names (printed in output) for region.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyRegionNumToText <- function(var = NULL, language = "sv") {
     var <- factor(var, levels = 1:6, labels = rccShinyRegionNames(language = language))
     as.character(var)
 }
+#' Region names
+#' @description internal function that gives names of regions used by rccShinyRegionNumToText.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
     if (language == "en") {
@@ -84,6 +99,9 @@ rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
     regions <- enc2utf8(regions)
     return(regions)
 }
+#' Names for choices in Level of comparison
+#' @description internal function used to supply text printed in Level of comparison widget.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyLevelNames <- function(level = "region", language = "sv") {
     if (level == "region") {
@@ -115,6 +133,9 @@ rccShinyLevelNames <- function(level = "region", language = "sv") {
     }
     return(levelName)
 }
+#' Group together geoUnits
+#' @description internal function used by server.R to simplify code.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyGroupVariable <- function(label = "sjukhus") {
     if (tolower(label) %in% c("region")) {
@@ -127,6 +148,9 @@ rccShinyGroupVariable <- function(label = "sjukhus") {
         "sjukhus"
     }
 }
+#' Text for no observations
+#' @description internal function with text to be printed if there is no data available.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyNoObservationsText <- function(language = "sv") {
     if (language == "en") {
@@ -135,12 +159,18 @@ rccShinyNoObservationsText <- function(language = "sv") {
         return("Ej tillräckligt med observationer för aktuellt urval")
     }
 }
+#' Names for tabs
+#' @description internal function used to supply names of the tabs.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyTabsNames <- function(language = "sv") {
     tab <- data.frame(tab_language = c("sv", "en"), fig_compare = c("Jämförelse", "Comparison"), fig_trend = c("Trend", "Trend"), tab_n = c("Tabell (antal)", "Table (number)"),
         tab_p = c("Tabell (andel)", "Table (proportion)"), tab = c("Tabell", "Table"), map = c("Karta", "Map"), description = c("Beskrivning", "Description"), stringsAsFactors = FALSE)
     subset(tab, tab_language == language)
 }
+#' Miscellaneous text
+#' @description internal function used to supply text for various output.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyTXT <- function(language = "sv") {
     tab <- data.frame(tab_language = c("sv", "en"), all = c("Alla", "All"), missing = c("Uppgift saknas", "Missing"), outcome = c("Variabel", "Variable"), presentation = c("Redovisning",
@@ -172,6 +202,9 @@ rccShinyTXT <- function(language = "sv") {
 }
 
 # # # # # # NPCR # # # # #
+#' Used by NPCR
+#' @description internal function.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 npcrPreparePeriodRegionCountyHospitalVariables <- function(prefix = "d0", data = NULL, language = c("sv", "en"), returnPrivateOthersNames = FALSE) {
     if (returnPrivateOthersNames) {

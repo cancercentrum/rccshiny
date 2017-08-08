@@ -1,3 +1,6 @@
+#' Creates table
+#' @description internal function used by server.R for table in tab Table.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL, group_hide_less_than = FALSE, ind = NULL, ind_type = class(ind), ind_numeric_percentiles = c(0.25,
     0.5, 0.75), ind_factor_pct = FALSE, period = NULL, period_factors = NULL, period_alwaysinclude = TRUE, all_lab = rccShinyTXT(language = language)$RIKET, lab_percentiles = c(rccShinyTXT(language = language)$q1,
