@@ -53,11 +53,11 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{regionSelection}{adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.}
 
-\item{regionLabel}{if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region", ... depending on language.}
+\item{regionLabel}{if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region" depending on language.}
 
 \item{period}{name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".}
 
-\item{periodLabel}{label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis", ... depending on language.}
+\item{periodLabel}{label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.}
 
 \item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables). Observe that observations with missing values for varOthers are not included in the output.}
 
@@ -67,7 +67,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.}
 
-\item{propWithinUnit}{Unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is dagar/days.}
+\item{propWithinUnit}{Unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.}
 
 \item{propWithinValue}{Default value shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is 30.}
 
