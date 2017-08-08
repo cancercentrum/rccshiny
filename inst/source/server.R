@@ -133,7 +133,10 @@ shinyServer(function(input, output, clientData) {
         conditionalPanel(
           condition = paste0(
             "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & ",
-            ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false")
+            ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"),
+            " & !(",
+            ifelse(GLOBAL_geoUnitsPatient, "true", "false"),
+            " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language), "' & input.tab == 'fig_compare')"
           ),
           selectInput(
             inputId = "param_ownhospital",
