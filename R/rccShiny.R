@@ -7,7 +7,7 @@
 #' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param folder name of folder where the results are placed. Default is "ind".
-#' @param folderLinkText short name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.
+#' @param folderLinkText name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
@@ -71,9 +71,10 @@
 #'
 #' @return A folder path/apps/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
 #' @examples
-#' rccShiny(
+#' ind1 <- rccShiny(
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
+#'   folderLinkText = "Indikator 1",
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
 #'   comment = "Skovde och Lidkoping tillhor Skaraborg",
@@ -94,6 +95,8 @@
 #' \dontrun{
 #' library(shiny)
 #' runApp("./apps/sv/Indikator1")
+#'
+#' cat(ind1) # displays the html link that can be used in index.html
 #' }
 #'
 #'# For Swedish/English version

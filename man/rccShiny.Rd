@@ -31,7 +31,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{folder}{name of folder where the results are placed. Default is "ind".}
 
-\item{folderLinkText}{short name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.}
+\item{folderLinkText}{name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.}
 
 \item{path}{search path to folder returned by the function. Default is working directory.}
 
@@ -122,9 +122,10 @@ The following applies to argument outcomeTitle, description: the arguments shoul
 The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 }
 \examples{
-rccShiny(
+ind1 <- rccShiny(
   data = rccShinyData,
   folder = "Indikator1",
+  folderLinkText = "Indikator 1",
   outcome = paste0("outcome",1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
   comment = "Skovde och Lidkoping tillhor Skaraborg",
@@ -145,6 +146,8 @@ rccShiny(
 \dontrun{
 library(shiny)
 runApp("./apps/sv/Indikator1")
+
+cat(ind1) # displays the html link that can be used in index.html
 }
 
 # For Swedish/English version
