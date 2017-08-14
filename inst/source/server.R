@@ -56,7 +56,7 @@ shinyServer(function(input, output, clientData) {
           numericInput(
             inputId = "param_numerictype_prop",
             label = NULL,
-            value = GLOBAL_propWithinValue,
+            value = GLOBAL_propWithinValue[whichOutcome],
             min = 0,
             max = 1000,
             step = 1
