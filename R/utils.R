@@ -55,7 +55,7 @@ rccShinyCounties <- function(language = "sv", lkf = FALSE) {
           } else {
             "Övriga/privat - "
           },
-          rccShinyRegionNames(language = language)
+          rccShinyRegionNames(language = language)[1:6]
         ),
         if (language == "en") {
           "Missing"
@@ -72,7 +72,9 @@ rccShinyCounties <- function(language = "sv", lkf = FALSE) {
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyRegionNumToText <- function(var = NULL, language = "sv") {
-    var <- factor(var, levels = 1:6, labels = rccShinyRegionNames(language = language))
+    var <- factor(var, levels = c(1:6, NA),
+                  labels = rccShinyRegionNames(language = language),
+                  exclude = NULL)
     as.character(var)
 }
 #' Region names
@@ -84,13 +86,13 @@ rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
         if (all) {
             regions <- "All"
         } else {
-            regions <- c("Stockholm-Gotland", "Uppsala-Örebro", "Southeast", "South", "West", "North")
+            regions <- c("Stockholm-Gotland", "Uppsala-Örebro", "Southeast", "South", "West", "North", rccShinyTXT(language = "en")$missing)
         }
     } else {
         if (all) {
             regions <- "Alla"
         } else {
-            regions <- c("Stockholm-Gotland", "Uppsala-Örebro", "Sydöstra", "Södra", "Västra", "Norra")
+            regions <- c("Stockholm-Gotland", "Uppsala-Örebro", "Sydöstra", "Södra", "Västra", "Norra", rccShinyTXT(language = "sv")$missing)
         }
     }
     if (sort) {
