@@ -206,7 +206,7 @@ rccShiny <-
       stop(paste0("'folder' should be of length 1"), call. = FALSE)
 
     if (is.null(folderLinkText)) {
-      if (length(outcome) > 1) {
+      if (length(outcome) > 1 | length(language) > 1) {
         folderLinkText <- paste0(folder, "_", language)
       } else {
         folderLinkText <- unlist(outcomeTitle)
