@@ -56,7 +56,7 @@ shinyServer(function(input, output, clientData) {
           numericInput(
             inputId = "param_numerictype_prop",
             label = NULL,
-            value = GLOBAL_propWithinValue[whichOutcome],
+            value = GLOBAL_propWithinValue[whichOutcome()],
             min = 0,
             max = 1000,
             step = 1
@@ -607,8 +607,20 @@ shinyServer(function(input, output, clientData) {
             1.8,
             3
           ),
-          target_values = GLOBAL_targetValues[[whichOutcome()]],
-          target_values_high = GLOBAL_sortDescending[whichOutcome()],
+          target_values = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                              GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                              numericTypeProp() &
+                              input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+            GLOBAL_targetValues[[whichOutcome()]]} else {
+              NULL
+            },
+          target_values_high = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                   GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                   numericTypeProp() &
+                                   input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+            GLOBAL_sortDescending[whichOutcome()]} else {
+              NULL
+            },
           funnelplot = input$param_funnelplot,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -716,9 +728,9 @@ shinyServer(function(input, output, clientData) {
               ),
               subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
               x_lab = GLOBAL_periodLabel,
-              y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
-              target_values = GLOBAL_targetValues[[whichOutcome()]],
-              target_values_high = GLOBAL_sortDescending[whichOutcome()]
+              y_lab = rccShinyTXT(language = GLOBAL_language)$percent
+              #target_values = GLOBAL_targetValues[[whichOutcome()]],
+              #target_values_high = GLOBAL_sortDescending[whichOutcome()]
             )
 
           }
@@ -749,9 +761,9 @@ shinyServer(function(input, output, clientData) {
             ),
             subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
             x_lab = GLOBAL_periodLabel,
-            y_lab = rccShinyTXT(language = GLOBAL_language)$percent,
-            target_values = GLOBAL_targetValues[[whichOutcome()]],
-            target_values_high = GLOBAL_sortDescending[whichOutcome()]
+            y_lab = rccShinyTXT(language = GLOBAL_language)$percent
+            #target_values = GLOBAL_targetValues[[whichOutcome()]],
+            #target_values_high = GLOBAL_sortDescending[whichOutcome()]
           )
 
         } else {
@@ -811,8 +823,20 @@ shinyServer(function(input, output, clientData) {
             subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
             x_lab = GLOBAL_periodLabel,
             y_lab = y_varinterest_txt,
-            target_values = GLOBAL_targetValues[[whichOutcome()]],
-            target_values_high = GLOBAL_sortDescending[whichOutcome()],
+            target_values = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                numericTypeProp() &
+                                input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+              GLOBAL_targetValues[[whichOutcome()]]} else {
+                NULL
+              },
+            target_values_high = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                     GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                     numericTypeProp() &
+                                     input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+              GLOBAL_sortDescending[whichOutcome()]} else {
+                NULL
+              },
             col = col
           )
 
