@@ -311,10 +311,6 @@ rccShiny <-
       }
     }
 
-    if (length(propWithinValue) > sum(sapply(data.frame(data[, outcome]), class) == "numeric"))
-      stop(paste0("Number of propWithinValue should be less than or equal to number of numeric outcomes."),
-           call. = FALSE)
-
     if (is.null(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
       stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
 
