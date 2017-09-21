@@ -12,23 +12,27 @@ Installera R paketet `devtools` från CRAN:
 install.packages("devtools")
 ```
 
-Installera R paketet `rccShiny`
+Installera R paketet `rccShiny`:
 
 ``` r
 devtools::install_bitbucket("cancercentrum/rccshiny")
 ```
 
-``` r
-Ladda paketet library(rccShiny) 
-```
+Ladda paketet:
 
 ``` r
-Läs hjälpfil ?rccShiny::rccShiny
+library(rccShiny) 
+```
+
+Läs hjälpfil:
+
+``` r
+?rccShiny::rccShiny
 ```
 
 Gogogo!
 
-För fler exempel: Koden för Bröstcancerregistrets appar finns publikt i Bitbucket <https://bitbucket.org/cancercentrum/nkbc_arsrapportshiny> och årsrapporten <http://statistik.incanet.se/brostcancer/>.
+För fler exempel: Koden för Bröstcancerregistrets appar finns <https://bitbucket.org/cancercentrum/nkbc_arsrapportshiny> och årsrapporten <http://statistik.incanet.se/brostcancer/>.
 
 Frågor och förbättringsförslag
 ==============================
