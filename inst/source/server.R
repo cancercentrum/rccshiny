@@ -458,6 +458,7 @@ shinyServer(function(input, output, clientData) {
       if (numericTypeProp())
         dftemp$outcome <- dftemp$outcome <= input$param_numerictype_prop
     }
+    dftemp <- subset(dftemp, !is.na(outcome))
 
     if (input$tab != "fig_trend") {
       dftemp <- subset(dftemp, !is.na(period) & period %in% input[["param_period"]][1]:input[["param_period"]][2])
