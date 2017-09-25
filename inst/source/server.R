@@ -262,10 +262,17 @@ shinyServer(function(input, output, clientData) {
       }
 
       if (!showPrivateHospitals) {
+        npcrListPrivateAlwaysShow <- c(
+          "Capio Lundby Närsjukhus",
+          "Carlanderska sjukhuset",
+          "Sophiahemmet",
+          "Capio S:t Görans sjukhus",
+          "Capio S:t Görans sjukhus - UroClinic"
+        )
         privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
         landstingName <- privateOthersName[[GLOBAL_language]]$landsting
         sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-        tempHospitals <- tempHospitals[!(tempHospitals %in% GLOBAL_data$sjukhus[substr(GLOBAL_data$landsting,1,nchar(landstingName)) == landstingName])]
+        tempHospitals <- tempHospitals[!(tempHospitals %in% GLOBAL_data$sjukhus[substr(GLOBAL_data$landsting,1,nchar(landstingName)) == landstingName]) | tempHospitals %in% npcrListPrivateAlwaysShow]
         tempHospitals <- c(
           tempHospitals,
           paste0(sjukhusName," - ",rccShinyRegionNames(language = GLOBAL_language))
@@ -482,10 +489,17 @@ shinyServer(function(input, output, clientData) {
       }
 
       if (!showPrivateHospitals) {
+        npcrListPrivateAlwaysShow <- c(
+          "Capio Lundby Närsjukhus",
+          "Carlanderska sjukhuset",
+          "Sophiahemmet",
+          "Capio S:t Görans sjukhus",
+          "Capio S:t Görans sjukhus - UroClinic"
+        )
         privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
         landstingName <- privateOthersName[[GLOBAL_language]]$landsting
         sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-        changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName
+        changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName & !(dftemp$sjukhus %in% npcrListPrivateAlwaysShow)
         dftemp$sjukhus[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
       }
     }
