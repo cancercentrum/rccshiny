@@ -23,7 +23,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{data}{data frame containing the variables used.}
 
-\item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome".}
+\item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.}
 
 \item{outcomeNumericExcludeNeg}{should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.}
 
