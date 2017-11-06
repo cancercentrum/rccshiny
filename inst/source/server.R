@@ -175,7 +175,14 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & input.param_period[0]!=input.param_period[1]",
+          condition = paste0(
+            "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & ",
+            ifelse(
+              !is.null(input[["param_period"]]),
+              "input.param_period[0]!=input.param_period[1]",
+              "false"
+            )
+          ),
           checkboxInput(
             inputId = "param_periodSplit",
             label = paste(
