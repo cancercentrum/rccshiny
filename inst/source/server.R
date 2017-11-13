@@ -1,5 +1,6 @@
 
 library(shiny)
+library(shinyWidgets)
 library(DT)
 library(rccShiny)
 
@@ -218,12 +219,13 @@ shinyServer(function(input, output, clientData) {
                   )
                 )
               } else {
-                selectizeInput(
+                pickerInput(
                   inputId = paste0("userInputId", i),
                   label = tempList$label,
                   choices = tempList$choices,
                   selected = tempList$selected,
-                  multiple = tempList$multiple
+                  multiple = tempList$multiple,
+                  options = list('none-selected-text' = "")
                 )
               }
             }
@@ -318,12 +320,14 @@ shinyServer(function(input, output, clientData) {
       ": ",
       ifelse(
         input[["param_period"]][1] == input[["param_period"]][2],
-        input[["param_period"]][1],
-        paste0(
-          input[["param_period"]][1],
-          "-",
-          input[["param_period"]][2]
-        )
+        as.character(strong(input[["param_period"]][1])),
+        as.character(strong(
+          paste0(
+            input[["param_period"]][1],
+            "-",
+            input[["param_period"]][2]
+          )
+        ))
       ),
       ". "
     )
@@ -384,12 +388,14 @@ shinyServer(function(input, output, clientData) {
                 ": ",
                 ifelse(
                   tempValues[1] == tempValues[2],
-                  tempValues[1],
-                  paste0(
-                    tempValues[1],
-                    "-",
-                    tempValues[2]
-                  )
+                  as.character(strong(tempValues[1])),
+                  as.character(strong(
+                    paste0(
+                      tempValues[1],
+                      "-",
+                      tempValues[2]
+                    )
+                  ))
                 ),
                 ". "
               )
@@ -399,7 +405,7 @@ shinyServer(function(input, output, clientData) {
                 tempText,
                 tempList$label,
                 ": ",
-                paste(tempValues,collapse = "/"),
+                as.character(strong(paste(tempValues,collapse = " / "))),
                 ". "
               )
           }
