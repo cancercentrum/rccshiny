@@ -8,8 +8,10 @@ shinyUI(fluidPage(
   if (!is.null(GLOBAL_gaPath)) { tags$head(tags$script(src = GLOBAL_gaPath)) },
 
   h2(textOutput("text0")),
-  #p(textOutput("text1")),
-  #p(textOutput("text2")),
+  p(
+    textOutput("text1"),
+    textOutput("text2")
+  ),
 
   fluidRow(
     column(

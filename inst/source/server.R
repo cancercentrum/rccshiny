@@ -414,7 +414,10 @@ shinyServer(function(input, output, clientData) {
   })
 
   output$text1 <- renderText({
-    indSubtitle(hideLessThan = GLOBAL_hideLessThan)
+    indSubtitle(
+      period = !(input$tab == "fig_trend"),
+      hideLessThan = GLOBAL_hideLessThan
+    )
   })
 
   output$text2 <- renderText({
@@ -423,14 +426,6 @@ shinyServer(function(input, output, clientData) {
 
   output$tableTitle <- renderText({
     indTitle()
-  })
-
-  output$tableSubtitle1 <- renderText({
-    indSubtitle(hideLessThan = GLOBAL_hideLessThan)
-  })
-
-  output$tableSubtitle2 <- renderText({
-    indSubtitleUserInput()
   })
 
   output$theTabs <-
@@ -443,15 +438,7 @@ shinyServer(function(input, output, clientData) {
         theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"))
         theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"))
       } else {
-        theTabs[[length(theTabs) + 1]] <-
-          tabPanel(
-            title = rccShinyTabsNames(language = GLOBAL_language)$tab,
-            value = "table",
-            h2(textOutput("tableTitle")),
-            p(textOutput("tableSubtitle1")),
-            p(textOutput("tableSubtitle2")),
-            dataTableOutput("indTable")
-          )
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", dataTableOutput("indTable"))
         if (GLOBAL_geoUnitsCountyInclude) {
           theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
         }
@@ -616,9 +603,9 @@ shinyServer(function(input, output, clientData) {
             rccShinyTXT(language = GLOBAL_language)$percent
           ),
           legend_fixedtextwidth = TRUE,
-          title = indTitle(),
-          subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
-          subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+          title = NULL,
+          subtitle = NULL,
+          subtitle2 = NULL,
           text_cex = ifelse(
             input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
             0.8,
@@ -742,13 +729,9 @@ shinyServer(function(input, output, clientData) {
               x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
               x_by = 1,
               y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-              title = indTitle(),
-              subtitle = paste0(
-                input$param_ownhospital,
-                ". ",
-                indSubtitle(period = FALSE)
-              ),
-              subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+              title = input$param_ownhospital,
+              subtitle = NULL,
+              subtitle2 = NULL,
               x_lab = GLOBAL_periodLabel,
               y_lab = rccShinyTXT(language = GLOBAL_language)$percent
               #target_values = GLOBAL_targetValues[[whichOutcome()]],
@@ -775,13 +758,9 @@ shinyServer(function(input, output, clientData) {
             x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
             x_by = 1,
             y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-            title = indTitle(),
-            subtitle = paste0(
-              rccShinyTXT(language = GLOBAL_language)$RIKET,
-              ". ",
-              indSubtitle(period = FALSE)
-            ),
-            subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+            title = rccShinyTXT(language = GLOBAL_language)$RIKET,
+            subtitle = NULL,
+            subtitle2 = NULL,
             x_lab = GLOBAL_periodLabel,
             y_lab = rccShinyTXT(language = GLOBAL_language)$percent
             #target_values = GLOBAL_targetValues[[whichOutcome()]],
@@ -840,9 +819,9 @@ shinyServer(function(input, output, clientData) {
                 )
               )
             ),
-            title = indTitle(),
-            subtitle = if (indSubtitle(period = FALSE) == "") {NULL} else {indSubtitle(period = FALSE)},
-            subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+            title = NULL,
+            subtitle = NULL,
+            subtitle2 = NULL,
             x_lab = GLOBAL_periodLabel,
             y_lab = y_varinterest_txt,
             target_values = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
@@ -1114,9 +1093,9 @@ shinyServer(function(input, output, clientData) {
             rccShinyTXT(language = GLOBAL_language)$percent,
             rccShinyTXT(language = GLOBAL_language)$median
           ),
-          title = indTitle(),
-          subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
-          subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+          title = NULL,
+          subtitle = NULL,
+          subtitle2 = NULL,
           col = if (showPercentage){
             if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
               "#00b3f6"
