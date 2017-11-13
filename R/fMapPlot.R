@@ -77,6 +77,10 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
         # Load spatial data
         gadm <- readRDS(system.file("mapdata", "map_swe_adm1.rds", package = "rccShiny"))
         #gadm <- readRDS(paste0(rds_path, "map_swe_adm1.rds"))
+
+        if (is.null(gadm) | !("NAME_1"%in%names(gadm)))
+          stop(".rds data file was not loaded correctly")
+
         gadm <- gadm[gadm$NAME_1 %in% value_order, ]
 
         value_match <- match(gadm$NAME_1, value_order)
