@@ -1,5 +1,6 @@
 
 library(shiny)
+library(shinyWidgets)
 library(DT)
 library(rccShiny)
 
@@ -175,7 +176,14 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & input.param_period[0]!=input.param_period[1]",
+          condition = paste0(
+            "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & ",
+            ifelse(
+              !is.null(input[["param_period"]]),
+              "input.param_period[0]!=input.param_period[1]",
+              "false"
+            )
+          ),
           checkboxInput(
             inputId = "param_periodSplit",
             label = paste(
@@ -211,12 +219,13 @@ shinyServer(function(input, output, clientData) {
                   )
                 )
               } else {
-                selectizeInput(
+                pickerInput(
                   inputId = paste0("userInputId", i),
                   label = tempList$label,
                   choices = tempList$choices,
                   selected = tempList$selected,
-                  multiple = tempList$multiple
+                  multiple = tempList$multiple,
+                  options = list('none-selected-text' = "")
                 )
               }
             }
@@ -311,12 +320,14 @@ shinyServer(function(input, output, clientData) {
       ": ",
       ifelse(
         input[["param_period"]][1] == input[["param_period"]][2],
-        input[["param_period"]][1],
-        paste0(
-          input[["param_period"]][1],
-          "-",
-          input[["param_period"]][2]
-        )
+        as.character(strong(input[["param_period"]][1])),
+        as.character(strong(
+          paste0(
+            input[["param_period"]][1],
+            "-",
+            input[["param_period"]][2]
+          )
+        ))
       ),
       ". "
     )
@@ -377,12 +388,14 @@ shinyServer(function(input, output, clientData) {
                 ": ",
                 ifelse(
                   tempValues[1] == tempValues[2],
-                  tempValues[1],
-                  paste0(
-                    tempValues[1],
-                    "-",
-                    tempValues[2]
-                  )
+                  as.character(strong(tempValues[1])),
+                  as.character(strong(
+                    paste0(
+                      tempValues[1],
+                      "-",
+                      tempValues[2]
+                    )
+                  ))
                 ),
                 ". "
               )
@@ -392,7 +405,7 @@ shinyServer(function(input, output, clientData) {
                 tempText,
                 tempList$label,
                 ": ",
-                paste(tempValues,collapse = "/"),
+                as.character(strong(paste(tempValues,collapse = " / "))),
                 ". "
               )
           }
@@ -407,7 +420,10 @@ shinyServer(function(input, output, clientData) {
   })
 
   output$text1 <- renderText({
-    indSubtitle(hideLessThan = GLOBAL_hideLessThan)
+    indSubtitle(
+      period = !(input$tab == "fig_trend"),
+      hideLessThan = GLOBAL_hideLessThan
+    )
   })
 
   output$text2 <- renderText({
@@ -416,14 +432,6 @@ shinyServer(function(input, output, clientData) {
 
   output$tableTitle <- renderText({
     indTitle()
-  })
-
-  output$tableSubtitle1 <- renderText({
-    indSubtitle(hideLessThan = GLOBAL_hideLessThan)
-  })
-
-  output$tableSubtitle2 <- renderText({
-    indSubtitleUserInput()
   })
 
   output$theTabs <-
@@ -436,15 +444,7 @@ shinyServer(function(input, output, clientData) {
         theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"))
         theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"))
       } else {
-        theTabs[[length(theTabs) + 1]] <-
-          tabPanel(
-            title = rccShinyTabsNames(language = GLOBAL_language)$tab,
-            value = "table",
-            h2(textOutput("tableTitle")),
-            p(textOutput("tableSubtitle1")),
-            p(textOutput("tableSubtitle2")),
-            dataTableOutput("indTable")
-          )
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", dataTableOutput("indTable"))
         if (GLOBAL_geoUnitsCountyInclude) {
           theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
         }
@@ -609,9 +609,9 @@ shinyServer(function(input, output, clientData) {
             rccShinyTXT(language = GLOBAL_language)$percent
           ),
           legend_fixedtextwidth = TRUE,
-          title = indTitle(),
-          subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
-          subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+          title = NULL,
+          subtitle = NULL,
+          subtitle2 = NULL,
           text_cex = ifelse(
             input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
             0.8,
@@ -735,13 +735,9 @@ shinyServer(function(input, output, clientData) {
               x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
               x_by = 1,
               y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-              title = indTitle(),
-              subtitle = paste0(
-                input$param_ownhospital,
-                ". ",
-                indSubtitle(period = FALSE)
-              ),
-              subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+              title = input$param_ownhospital,
+              subtitle = NULL,
+              subtitle2 = NULL,
               x_lab = GLOBAL_periodLabel,
               y_lab = rccShinyTXT(language = GLOBAL_language)$percent
               #target_values = GLOBAL_targetValues[[whichOutcome()]],
@@ -768,13 +764,9 @@ shinyServer(function(input, output, clientData) {
             x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
             x_by = 1,
             y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-            title = indTitle(),
-            subtitle = paste0(
-              rccShinyTXT(language = GLOBAL_language)$RIKET,
-              ". ",
-              indSubtitle(period = FALSE)
-            ),
-            subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+            title = rccShinyTXT(language = GLOBAL_language)$RIKET,
+            subtitle = NULL,
+            subtitle2 = NULL,
             x_lab = GLOBAL_periodLabel,
             y_lab = rccShinyTXT(language = GLOBAL_language)$percent
             #target_values = GLOBAL_targetValues[[whichOutcome()]],
@@ -833,9 +825,9 @@ shinyServer(function(input, output, clientData) {
                 )
               )
             ),
-            title = indTitle(),
-            subtitle = if (indSubtitle(period = FALSE) == "") {NULL} else {indSubtitle(period = FALSE)},
-            subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+            title = NULL,
+            subtitle = NULL,
+            subtitle2 = NULL,
             x_lab = GLOBAL_periodLabel,
             y_lab = y_varinterest_txt,
             target_values = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
@@ -1107,9 +1099,9 @@ shinyServer(function(input, output, clientData) {
             rccShinyTXT(language = GLOBAL_language)$percent,
             rccShinyTXT(language = GLOBAL_language)$median
           ),
-          title = indTitle(),
-          subtitle = if (indSubtitle() == "") {NULL} else {indSubtitle()},
-          subtitle2 = if (indSubtitleUserInput() == "") {NULL} else {indSubtitleUserInput()},
+          title = NULL,
+          subtitle = NULL,
+          subtitle2 = NULL,
           col = if (showPercentage){
             if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
               "#00b3f6"

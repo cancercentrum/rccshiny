@@ -1,5 +1,6 @@
 
 library(shiny)
+library(shinyWidgets)
 library(DT)
 library(rccShiny)
 
@@ -7,9 +8,11 @@ shinyUI(fluidPage(
 
   if (!is.null(GLOBAL_gaPath)) { tags$head(tags$script(src = GLOBAL_gaPath)) },
 
-  h2(textOutput("text0")),
-  #p(textOutput("text1")),
-  #p(textOutput("text2")),
+  h2(htmlOutput("text0")),
+  p(
+    htmlOutput("text1"),
+    htmlOutput("text2")
+  ),
 
   fluidRow(
     column(
