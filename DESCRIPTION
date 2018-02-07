@@ -17,6 +17,6 @@ LazyData: TRUE
 License: GPL (>= 3)
 RoxygenNote: 6.0.1
 Author: Fredrik Sandin, RCC Uppsala-Örebro
-Maintainer: Fredrik Sandin <fredrik.sandin@akademiska.se>
+Maintainer: Fredrik Sandin <fredrik.sandin@rccuppsalaorebro.se>
 Repository: bitbucket.org/cancercentrum/rccshiny
 Date: 2017-05-12
