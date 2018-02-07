@@ -11,7 +11,7 @@ Imports:
     htmltools, htmlwidgets, httpuv, jsonlite, knitr, labeling, latticeExtra,
     lazyeval, magrittr, markdown, methods, mime, munsell, plyr, R6,
     RColorBrewer, Rcpp, scales, shiny, sourcetools, sp, stats,
-    stringi, stringr, tibble, utils, xtable, yaml
+    stringi, stringr, tibble, utils, xtable, yaml, shinyWidgets
 Encoding: UTF-8
 LazyData: TRUE
 License: GPL (>= 3)
