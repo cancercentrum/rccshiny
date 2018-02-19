@@ -37,4 +37,4 @@ För fler exempel: Koden för Bröstcancerregistrets appar finns <https://bitbuc
 Frågor och förbättringsförslag
 ==============================
 
-Lägg upp en issue <https://bitbucket.org/cancercentrum/rccshiny/issues> eller kontakta Fredrik Sandin, <fredrik.sandin@akademiska.se> eller Lina Benson, <lina.enqvist-benson@sll.se>!
+Lägg upp en issue <https://bitbucket.org/cancercentrum/rccshiny/issues> eller kontakta Fredrik Sandin, <fredrik.sandin@rccuppsalaorebro.se> eller Lina Benson, <lina.enqvist-benson@sll.se>!
