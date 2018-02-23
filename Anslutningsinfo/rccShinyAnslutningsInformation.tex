@@ -246,25 +246,25 @@ Kontakta Marie Lindquist, \href{mailto:marie.lindquist@sll.se}{marie.lindquist@s
 För fler exempel: Koden för Bröstcancerregistrets appar finns publikt i Bitbucket \url{https://bitbucket.org/cancercentrum/nkbc_arsrapportshiny} och årsrapporten \url{http://statistik.incanet.se/brostcancer/}. 
 \subsection{Steg 3: Uppladdning av appar till shinyservern}
 \begin{itemize}
-\item Ladda ner WinSCP (\url{https://winscp.net}).
-\item Koppla upp dig via VPN mot its i Umeå (se seperata instruktioner). 
-\item Öppna WinSCP. Man loggar in med sitt vanliga AD-konto (det som man ex loggar in på R-servern och Sharepoint med) och avslutar med @RCCEXT.local, ex lina.benson@RCCEXT.local. Lösenordet är det vanliga AD-lösenordet. För över filer till diagnosmapp, ex npcr eller brostcancer.
-\item Resultat: Produktionsmiljö: http://statistik.incanet.se/xxx/. \\
-Testmiljö: http://testrshiny.incanet.se/xxx/. För att se testmiljön krävs inloggning via VPN. 
+\item Aktivera uppkoppling med VPN mot its (vpn.its.umu.se/rcc).
+\item Använd WinSCP (Windows)/Cyberduck (Mac) för att koppla upp mot testservern (\url{testrshiny.incanet.se}) eller produktionsservern (\url{statistik.incanet.se)}. Uppladdade sidor/appar på produktionsservern är nåbara publikt men sidor/appar uppladdade på testservern är endast nåbara med ansluten VPN.
+\item I den mjukvara du använder för filöverföring skall du skapa en ny SFTP-uppkoppling med portnummer 22.
+\item Ange \url{testrshiny.incanet.se} alternativt \url{statistik.incanet.se} som server.
+\item Användarnamn/lösenord är samma som till R-servern/VPN men med tillägget @RCCEXT.local på användarnamnet (ex. förnamn.efternamn@RCCEXT.local).
+\item Du kan nu koppla upp dig och föra över dina Shiny-appar.
 \end{itemize}
 \subsection{Steg 4: Skapa ram}
 Ramverket (länkarna till shiny apparna) skrivs för närvarande av statistikern själv i html. 
 \begin{itemize}
 \item Lägg mappen \_libs (byt ändelse från .rcc till .zip och packa upp först) under diagnosmappen på shinyservern. 
-\item Använd index.html som gjorts för npcr och modifiera efter behov (öppna och editera i ex Notepad++) genom att klistra in de länkar som returneras från rccShiny. 
+\item Använd index.html som gjorts för NPCR och modifiera efter behov (öppna och editera i ex Notepad++) genom att klistra in de länkar som returneras från rccShiny. 
 \end{itemize}
 \subsection{Steg 5: Publicera}
 Peka ut länken http://statistik.incanet.se/xxx/.
 
 Det är upp till varje enskilt register att utifrån sina förutsättnignar bestämma när och hur ofta publicering ska ske. En riktlinje kan dock vara att publicering för en tidsperiod kan ske 4 månader efter avslutad tidsperiod (ex data för år 2016 sker då 2017-04-30). Detta i linje med default fördröjningen i vården i siffror. Därefter kan ytterligare en uppdatering ske senare under tidsperioden.  
 \section{Frågor och förbättringsförslag}
-Lägg upp en issue \url{https://bitbucket.org/cancercentrum/rccshiny/issues} eller kontakta Fredrik Sandin, \href{mailto:fredrik.sandin@akademiska.se}{fredrik.sandin@akademiska.se} eller Lina Benson, \\
-\href{mailto:lina.enqvist-benson@sll.se}{lina.enqvist-benson@sll.se}!
+Lägg upp en issue \url{https://bitbucket.org/cancercentrum/rccshiny/issues} eller kontakta Fredrik Sandin, \href{mailto:fredrik.sandin@rccuppsalaorebro.se}{fredrik.sandin@rccuppsalaorebro.se}.
 %\section{FAQ}
 %\paragraph{FRÅGA: Öh VPN???}
 %\paragraph{SVAR:} Om du inte redan har access till VPN kontakta Marie Linquist, \href{mailto:marie.lindquist@sll.se}{marie.lindquist@sll.se}.
