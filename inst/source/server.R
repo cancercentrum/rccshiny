@@ -216,7 +216,8 @@ shinyServer(function(input, output, clientData) {
                   value = c(
                     min(tempList$selected, na.rm = TRUE),
                     max(tempList$selected, na.rm = TRUE)
-                  )
+                  ),
+                  sep = ""
                 )
               } else {
                 pickerInput(
