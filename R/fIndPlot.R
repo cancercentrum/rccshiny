@@ -5,7 +5,7 @@
 fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars = NULL, ind = NULL, period = NULL, max_periods = 99, ind_type = class(ind), ind_numeric = ind_type %in%
     c("difftime", "numeric", "integer"), ind_numeric_exclude_neg = TRUE, ind_numeric_percentiles = c(0.25, 0.5, 0.75), ind_factor_hide = NULL, ind_factor_sortbycols = NULL,
     ind_factor_shownN = ifelse(!is.null(ind_factor_hide), TRUE, FALSE), legend_ncol = NULL, legend_fixedtextwidth = TRUE, ind_showpct = ifelse(ind_type == "factor", FALSE,
-        TRUE), ind_title = ifelse(ind_numeric, "Median", "Procent"), ind_noofcasestxt = "Antal fall", col = NULL, border = TRUE, x_max = if (ind_numeric) {
+        TRUE), ind_title = ifelse(ind_numeric, "Median", "Procent"), ind_noofcasestxt = "Antal fall", ind_noofcasestxt_nOfN = "av", col = NULL, border = TRUE, x_max = if (ind_numeric) {
         NULL
     } else {
         100
@@ -145,7 +145,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
                 measurements <- c(NA, NA, NA, NA, NA)
             } else {
                 measurements <- 100 * Hmisc::binconf(sum(x$ind, na.rm = TRUE), sum(!is.na(x$ind), na.rm = TRUE), method = "exact")
-                measurements <- c(measurements, paste0(sum(x$ind, na.rm = TRUE), " av ", sum(!is.na(x$ind), na.rm = TRUE)))
+                measurements <- c(measurements, paste0(sum(x$ind, na.rm = TRUE), " ",ind_noofcasestxt_nOfN," ", sum(!is.na(x$ind), na.rm = TRUE)))
                 measurements <- c(measurements, sum(!is.na(x$ind)))
             }
             measurements <- c(measurements, hide)
@@ -164,7 +164,7 @@ fIndPlot <- function(group = NULL, group_hide_less_than = FALSE, group_maxchars 
                 }
                 if (ind_factor_shownN) {
                   measurements <- c(measurements, sum(measurements), if (!is.null(ind_factor_hide)) {
-                    paste0(sum(x$ind %in% factor_legend), " av ", sum(!is.na(x$ind), na.rm = TRUE))
+                    paste0(sum(x$ind %in% factor_legend), " ", ind_noofcasestxt_nOfN, " ", sum(!is.na(x$ind), na.rm = TRUE))
                   } else {
                     sum(!is.na(x$ind), na.rm = TRUE)
                   })

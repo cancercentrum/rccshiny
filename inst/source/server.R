@@ -602,6 +602,7 @@ shinyServer(function(input, output, clientData) {
             rccShinyTXT(language = GLOBAL_language)$percent
           ),
           ind_noofcasestxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
+          ind_noofcasestxt_nOfN = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
           period = if (input$param_periodSplit) {dfuse$period} else {NULL},
           x_lab = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
