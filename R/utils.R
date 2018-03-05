@@ -186,6 +186,7 @@ rccShinyTXT <- function(language = "sv") {
         message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"), period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"),
         dxYear = c("Diagnosår", "Year of diagnosis"), limitRegion = c("Begränsa till region", "Limit to region"), descriptionAbout = c("Om indikatorn", "About"),
         descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"), descriptionTechnical = c("Teknisk beskrivning", "Technical description"),
+        targetValuesLabelIntermediate = c("Mellannivå av måluppfyllelse", "Intermediate level of performance"), targetValuesLabelHigh = c("Hög nivå av måluppfyllelse", "High level of performance"),
         stringsAsFactors = FALSE)
     tab <- fixEncoding(tab)
     tempTab <- data.frame()

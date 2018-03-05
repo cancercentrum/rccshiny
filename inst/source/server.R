@@ -638,6 +638,10 @@ shinyServer(function(input, output, clientData) {
             GLOBAL_sortDescending[whichOutcome()]} else {
               NULL
             },
+          target_values_labels = c(
+            rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
+            rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
+          ),
           funnelplot = input$param_funnelplot,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -846,6 +850,10 @@ shinyServer(function(input, output, clientData) {
               GLOBAL_sortDescending[whichOutcome()]} else {
                 NULL
               },
+            target_values_labels = c(
+              rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
+              rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
+            ),
             col = col
           )
 

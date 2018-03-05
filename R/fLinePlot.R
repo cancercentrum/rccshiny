@@ -4,7 +4,7 @@
 #' @export
 fLinePlot <- function(x = NULL, y = NULL, legend = NULL, legend_pos = "bottom", legend_pch = 15, legend_ncol = NULL, legend_textwidth = NULL, col = NULL, stacked_area = FALSE,
     linewidth = 4, linetype = "l", markers = TRUE, x_lim = NULL, y_lim = NULL, x_by = NULL, y_by = NULL, x_ticks_labels = NULL, title = NULL, subtitle1 = NULL, subtitle2 = NULL,
-    x_lab = "x", y_lab = "y", text_cex = 1, target_values = NULL, target_values_high = NULL) {
+    x_lab = "x", y_lab = "y", text_cex = 1, target_values = NULL, target_values_high = NULL, target_values_labels = c("Mellannivå av måluppfyllelse", "Hög nivå av måluppfyllelse")) {
 
     lightenCol <- function(col = "#000000", factor = 0.8, bg = "#ffffff") {
 
@@ -121,9 +121,20 @@ fLinePlot <- function(x = NULL, y = NULL, legend = NULL, legend_pos = "bottom", 
 
     linchheight <- strheight("X", "inch", cex = text_cex)
     linchwidth <- strwidth("X", "inch", cex = text_cex)
-    par(mai = c(ifelse(!is.null(x_lab), 6, 4) * linchheight + ifelse(legend_pos == "bottom" & !is.null(legend), legend_nrow * linchheight, 0), 6 * linchheight, (2 + 2 * (!is.null(title)) +
-        2 * (!is.null(title) & !is.null(subtitle1)) + 2 * (!is.null(title) & !is.null(subtitle1) & !is.null(subtitle2))) * linchheight, 2 * linchheight + ifelse(legend_pos ==
-        "right" & !is.null(legend), 1 * linchwidth + max(strwidth(legend, "inch", cex = text_cex)), 0)), bg = "#ffffff", xpd = TRUE)
+    par(
+      mai = c(
+        ifelse(!is.null(x_lab), 6, 4) * linchheight +
+          ifelse(legend_pos == "bottom" & !is.null(legend), legend_nrow * linchheight, 0) +
+          (!is.null(target_values)) * 2 * linchheight,
+        6 * linchheight,
+        (2 + 2 * (!is.null(title)) +
+           2 * (!is.null(title) & !is.null(subtitle1)) +
+           2 * (!is.null(title) & !is.null(subtitle1) & !is.null(subtitle2))) * linchheight,
+        2 * linchheight + ifelse(legend_pos == "right" & !is.null(legend), 1 * linchwidth + max(strwidth(legend, "inch", cex = text_cex)), 0)
+      ),
+      bg = "#ffffff",
+      xpd = TRUE
+    )
 
     # Empty plot
     plot(x = x_lim, y = y_lim, axes = FALSE, type = "n", xlab = "", ylab = "")
@@ -158,7 +169,7 @@ fLinePlot <- function(x = NULL, y = NULL, legend = NULL, legend_pos = "bottom", 
     axis(side = 2, pos = x_lim[1], at = y_ticks, cex.axis = text_cex, las = 1, lwd = 3, col = "#d9d9d9")
 
     # Axis labels
-    y_xlab_zeropos <- ifelse(legend_pos == "bottom" & !is.null(legend), pos0y + legend_nrow * luserheight, pos0y)
+    y_xlab_zeropos <- ifelse(legend_pos == "bottom" & !is.null(legend), pos0y + legend_nrow * luserheight, pos0y) + (!is.null(target_values)) * 2 * luserheight
     text(x = 0.5 * sum(x_lim), y = y_lim[1] - 0.6 * (y_lim[1] - y_xlab_zeropos), labels = x_lab, cex = text_cex, font = 2)
     text(x = x_lim[1] - 0.7 * (x_lim[1] - pos0x), y = 0.5 * sum(y_lim), labels = y_lab, cex = text_cex, font = 2, srt = 90)
 
@@ -202,12 +213,40 @@ fLinePlot <- function(x = NULL, y = NULL, legend = NULL, legend_pos = "bottom", 
 
     if (!is.null(legend)) {
         if (legend_pos == "bottom") {
-            legend(x = x_lim[1] + 0.5 * (x_lim[2] - x_lim[1]), y = pos0y, legend = legend, col = col, pch = legend_pch, pt.cex = 1.75, bty = "n", cex = 0.8 * text_cex, xjust = 0.5,
+            legend(x = x_lim[1] + 0.5 * (x_lim[2] - x_lim[1]), y = pos0y + (!is.null(target_values)) * 2 * luserheight, legend = legend, col = col, pch = legend_pch, pt.cex = 1.75, bty = "n", cex = 0.8 * text_cex, xjust = 0.5,
                 yjust = 0, y.intersp = 1, ncol = legend_ncol, text.width = ifelse(!is.null(legend_textwidth), strwidth(paste(rep("X", legend_textwidth), collapse = "")), max(strwidth(legend))))
         } else if (legend_pos == "right") {
             legend(x = x_lim[2] + 0.1 * (x_lim[1] - pos0x), y = 0.5 * sum(y_lim), legend = legend, col = col, pch = legend_pch, pt.cex = 1.75, bty = "n", cex = 0.8 * text_cex,
                 yjust = 0.5, y.intersp = 2)
         }
+    }
+
+    # Target values legend
+    if (!is.null(target_values)) {
+      legendTargetValues <- target_values_labels
+      legendTargetValuesCol <- c(col_target_1, col_target_2)
+      if (length(target_values) == 1) {
+        legendTargetValues <- legendTargetValues[2]
+        legendTargetValuesCol <- legendTargetValuesCol[2]
+      }
+      if (!target_values_high) {
+        legendTargetValues <- rev(legendTargetValues)
+        legendTargetValuesCol <- rev(legendTargetValuesCol)
+      }
+      legend(
+        x = x_lim[1] + 0.5 * (x_lim[2] - x_lim[1]),
+        y = pos0y,
+        legend = legendTargetValues,
+        col = legendTargetValuesCol,
+        pch = 15,
+        pt.cex = 1.75,
+        bty = "n",
+        cex = 0.8 * text_cex,
+        xjust = 0.5,
+        yjust = 0,
+        y.intersp = 1,
+        ncol = length(legendTargetValuesCol)
+      )
     }
 
 }
