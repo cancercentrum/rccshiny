@@ -25,6 +25,7 @@
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
+#' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
 #' @param propWithinUnit unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. If the length of the vector is less than the number of numeric outcomes the values are recycled. Default is 30.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
@@ -149,6 +150,7 @@ rccShiny <-
     targetValues = NULL,
     funnelplot = FALSE,
     sortDescending = NULL,
+    propWithinShow = TRUE,
     propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
     propWithinValue = 30,
     hideLessThan = 5,
@@ -522,6 +524,7 @@ rccShiny <-
       GLOBAL_funnelplot <- funnelplot
       GLOBAL_sortDescending <- sortDescending
 
+      GLOBAL_propWithinShow <- propWithinShow
       GLOBAL_propWithinUnit <- ifelse(length(propWithinUnit) >= which_language, propWithinUnit[which_language], propWithinUnit[1])
       GLOBAL_propWithinValue <- rep(NA, length(outcome))
       GLOBAL_propWithinValue[GLOBAL_outcomeClass == "numeric"] <-  rep(propWithinValue,
@@ -554,7 +557,7 @@ rccShiny <-
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
-           GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers,
+           GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
       # Output description to .html-file

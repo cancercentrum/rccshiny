@@ -20,7 +20,7 @@ shinyServer(function(input, output, clientData) {
     renderUI({
       tagList(
         conditionalPanel(
-          condition = ifelse(outcomeClassNumeric(), "true", "false"),
+          condition = ifelse(GLOBAL_propWithinShow & outcomeClassNumeric(), "true", "false"),
           radioButtons(
             inputId = "param_numerictype",
             label = rccShinyTXT(language = GLOBAL_language)$presentation,
