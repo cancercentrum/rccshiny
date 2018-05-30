@@ -160,7 +160,7 @@ rccShiny <-
   ) {
 
     # # # # # # # # # # # # # # # #
-    # Checking input parameters
+    # Checking input parameters!
     # # # # # # # # # # # # # # # #
 
     if (is.null(language) | !is.character(language))
