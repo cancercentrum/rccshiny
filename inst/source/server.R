@@ -387,24 +387,29 @@ shinyServer(function(input, output, clientData) {
         tempValues <- input[[paste0("userInputId",i)]]
         if (tempList$showInTitle) {
           if (tempList$classNumeric) {
-            tempText <-
-              paste0(
-                tempText,
-                tempList$label,
-                ": ",
-                ifelse(
-                  tempValues[1] == tempValues[2],
-                  as.character(strong(tempValues[1])),
-                  as.character(strong(
-                    paste0(
-                      tempValues[1],
-                      "-",
-                      tempValues[2]
-                    )
-                  ))
-                ),
-                ". "
-              )
+            if (!(min(tempList$choices) %in% tempValues[1] &
+                  max(tempList$choices) %in% tempValues[2])){
+              tempText <-
+                paste0(
+                  tempText,
+                  tempList$label,
+                  ": ",
+                  ifelse(
+                    tempValues[1] == tempValues[2],
+                    as.character(strong(tempValues[1])),
+                    as.character(strong(
+                      paste0(
+                        tempValues[1],
+                        "-",
+                        tempValues[2]
+                      )
+                    ))
+                  ),
+                  ". "
+                )
+            } else {
+              tempText <- ""
+            }
           } else if (!(all(tempList$choices %in% tempValues))) {
             tempText <-
               paste0(
