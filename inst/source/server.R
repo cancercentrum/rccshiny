@@ -71,6 +71,7 @@ shinyServer(function(input, output, clientData) {
       tagList(
         conditionalPanel(
           condition = paste0(
+            "input.tab!='fig_trend' & ",
             ifelse(GLOBAL_regionSelection, "true", "false"),
             " & ",
             ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false")
