@@ -317,22 +317,26 @@ shinyServer(function(input, output, clientData) {
   })
 
   indSubtitlePeriod <- reactive({
-    paste0(
-      GLOBAL_periodLabel,
-      ": ",
-      ifelse(
-        input[["param_period"]][1] == input[["param_period"]][2],
-        as.character(strong(input[["param_period"]][1])),
-        as.character(strong(
-          paste0(
-            input[["param_period"]][1],
-            "-",
-            input[["param_period"]][2]
-          )
-        ))
-      ),
-      ". "
-    )
+    if (!(GLOBAL_periodStart == input[["param_period"]][1] & GLOBAL_periodEnd == input[["param_period"]][2])){
+      paste0(
+        GLOBAL_periodLabel,
+        ": ",
+        ifelse(
+          input[["param_period"]][1] == input[["param_period"]][2],
+          as.character(strong(input[["param_period"]][1])),
+          as.character(strong(
+            paste0(
+              input[["param_period"]][1],
+              "-",
+              input[["param_period"]][2]
+            )
+          ))
+        ),
+        ". "
+      )
+    } else {
+      ""
+    }
   })
 
   #indSubtitleGroupLessThan <- reactive({
