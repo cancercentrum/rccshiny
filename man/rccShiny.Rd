@@ -5,15 +5,16 @@
 \title{Shiny apps for RCC}
 \usage{
 rccShiny(language = "sv", data = NULL, outcome = "outcome",
-  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome, folder = "ind",
-  folderLinkText = NULL, path = getwd(), textBeforeSubtitle = NULL,
-  textAfterSubtitle = NULL, comment = "", description = rep("...", 3),
-  geoUnitsHospital = "sjukhus", geoUnitsCounty = "landsting",
-  geoUnitsRegion = "region", geoUnitsPatient = FALSE,
-  regionSelection = TRUE, regionLabel = rccShinyTXT(language =
-  language)$limitRegion, period = "period",
-  periodLabel = rccShinyTXT(language = language)$dxYear, varOther = NULL,
-  targetValues = NULL, funnelplot = FALSE, sortDescending = NULL,
+  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
+  folder = "ind", folderLinkText = NULL, path = getwd(),
+  textBeforeSubtitle = NULL, textAfterSubtitle = NULL, comment = "",
+  description = rep(NA, 3), geoUnitsHospital = "sjukhus",
+  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
+  geoUnitsPatient = FALSE, regionSelection = TRUE,
+  regionLabel = rccShinyTXT(language = language)$limitRegion,
+  period = "period", periodLabel = rccShinyTXT(language =
+  language)$dxYear, varOther = NULL, targetValues = NULL,
+  funnelplot = FALSE, sortDescending = NULL, propWithinShow = TRUE,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
   propWithinValue = 30, hideLessThan = 5, showHide = TRUE,
   gaPath = NULL, npcrGroupPrivateOthers = FALSE)
@@ -41,7 +42,7 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{comment}{optional comment printed under the sidebar panel.}
 
-\item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").}
+\item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).}
 
 \item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.}
 
@@ -66,6 +67,8 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 \item{funnelplot}{adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.}
 
 \item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.}
+
+\item{propWithinShow}{display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.}
 
 \item{propWithinUnit}{unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.}
 

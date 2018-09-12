@@ -12,7 +12,7 @@
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param comment optional comment printed under the sidebar panel.
-#' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c("...", "...", "...").
+#' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if "landsting" is not found in 'data', county is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if "region" is not found in 'data', region is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
@@ -137,7 +137,7 @@ rccShiny <-
     textBeforeSubtitle = NULL,
     textAfterSubtitle = NULL,
     comment = "",
-    description = rep("...",3),
+    description = rep(NA,3),
     geoUnitsHospital = "sjukhus",
     geoUnitsCounty = "landsting",
     geoUnitsRegion = "region",
@@ -235,7 +235,17 @@ rccShiny <-
       comment <- ""
     testVariableError("comment", listAllowed = FALSE)
 
-    testVariableError("description")
+    if (is.null(description))
+      stop(paste0("'", "description", "' is missing"), call. = FALSE)
+    if (is.list(description)){
+      if (!(is.character(unlist(description)) | all(is.na(unlist(description))))){
+        stop(paste0("'description' should be of type character"), call. = FALSE)
+      }
+    } else {
+      if (!(is.character(description) | all(is.na(description)))){
+        stop(paste0("'description' should be of type character"), call. = FALSE)
+      }
+    }
     if (!is.list(description))
       description <- list(description)
 
@@ -506,7 +516,7 @@ rccShiny <-
       if (length(GLOBAL_description)<3)
         GLOBAL_description <- c(
           GLOBAL_description,
-          rep("...",3-length(GLOBAL_description))
+          rep(NA,3-length(GLOBAL_description))
         )
 
       GLOBAL_periodLabel <- ifelse(length(periodLabel) >= which_language, periodLabel[which_language], periodLabel[1])
@@ -571,14 +581,18 @@ rccShiny <-
       printRow(paste0("<html>"))
       printRow(paste0("<body>"))
       printRow(paste0("<p></p>"))
-      printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionAbout, "</p>"))
-      printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
-      printRow(paste0(GLOBAL_description[1]))
-      printRow(paste0("</div>"))
+      if (!is.na(GLOBAL_description[1])){
+        printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionAbout, "</p>"))
+        printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
+        printRow(paste0(GLOBAL_description[1]))
+        printRow(paste0("</div>"))
+      }
       printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionInterpretation, "</p>"))
       printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
-      printRow(paste0(GLOBAL_description[2]))
-      printRow(paste0("<p></p>"))
+      if (!is.na(GLOBAL_description[2])){
+        printRow(paste0(GLOBAL_description[2]))
+        printRow(paste0("<p></p>"))
+      }
       printRow(paste0(rccShinyTXT(language = GLOBAL_language)$fewcases1,
                       " ",
                       GLOBAL_hideLessThan,
@@ -587,10 +601,12 @@ rccShiny <-
                       "."
       ))
       printRow(paste0("</div>"))
-      printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionTechnical, "</p>"))
-      printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
-      printRow(paste0(GLOBAL_description[3]))
-      printRow(paste0("</div>"))
+      if (!is.na(GLOBAL_description[3])){
+        printRow(paste0("<p>", rccShinyTXT(language = GLOBAL_language)$descriptionTechnical, "</p>"))
+        printRow(paste0("<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>"))
+        printRow(paste0(GLOBAL_description[3]))
+        printRow(paste0("</div>"))
+      }
       printRow(paste0("</body>"))
       printRow(paste0("</html>"))
       close(globalOutFile)
