@@ -19,7 +19,7 @@
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region" depending on language.
-#' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".
+#' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
 #' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables). Observe that observations with missing values for varOthers are not included in the output.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
@@ -300,8 +300,15 @@ rccShiny <-
 
     testVariableError("regionLabel", listAllowed = FALSE)
 
-    if (is.null(period) | !is.character(period) | length(period) != 1)
-      stop("'period' should be a character vector of length 1", call. = FALSE)
+    if (is.null(period)) {
+      GLOBAL_periodInclude <- FALSE
+      period <- "period"
+      data$period <- rep(1, nrow(data))
+    } else {
+      GLOBAL_periodInclude <- TRUE
+      if (!is.character(period) | length(period) != 1)
+        stop("'period' should be a character vector of length 1", call. = FALSE)
+    }
 
     testVariableError("periodLabel", listAllowed = FALSE)
 
@@ -565,7 +572,7 @@ rccShiny <-
       GLOBAL_data <- fixEncoding(GLOBAL_data)
 
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
-           GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
+           GLOBAL_periodInclude, GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
            GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))

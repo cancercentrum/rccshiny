@@ -317,7 +317,7 @@ shinyServer(function(input, output, clientData) {
   })
 
   indSubtitlePeriod <- reactive({
-    if (!(GLOBAL_periodStart == input[["param_period"]][1] & GLOBAL_periodEnd == input[["param_period"]][2])){
+    if (GLOBAL_periodInclude){
       paste0(
         GLOBAL_periodLabel,
         ": ",
@@ -460,7 +460,9 @@ shinyServer(function(input, output, clientData) {
           theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
         }
       }
-      theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
+      if (GLOBAL_periodInclude) {
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
+      }
       theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, includeHTML("./docs/description.html"))
       do.call(tabsetPanel,c(theTabs,id = "tab"))
     })
@@ -911,6 +913,7 @@ shinyServer(function(input, output, clientData) {
           group_hide_less_than = GLOBAL_hideLessThan,
           ind = dfuse$outcome,
           period = dfuse$period,
+          period_alwaysinclude = GLOBAL_periodInclude,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -972,6 +975,7 @@ shinyServer(function(input, output, clientData) {
           ind = dfuse$outcome,
           ind_factor_pct = TRUE,
           period = dfuse$period,
+          period_alwaysinclude = GLOBAL_periodInclude,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -1033,6 +1037,7 @@ shinyServer(function(input, output, clientData) {
           group_hide_less_than = GLOBAL_hideLessThan,
           ind = dfuse$outcome,
           period = dfuse$period,
+          period_alwaysinclude = GLOBAL_periodInclude,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
