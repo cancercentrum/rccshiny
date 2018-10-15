@@ -6,6 +6,7 @@ fIndPlot <-
   function(
     group = NULL,
     group_hide_less_than = FALSE,
+    group_hide_less_than_label = "(otillräcklig data)",
     group_maxchars = NULL,
     ind = NULL,
     period = NULL,
@@ -363,7 +364,19 @@ fIndPlot <-
   linchwidth <- strwidth("X", "inch", cex = text_cex)
   linch_label <- 3 * linchwidth + max(strwidth(tab$group, "inch", cex = text_cex), na.rm = TRUE)
   linch_i <- 3 * linchwidth + max(strwidth(c(ind_title, round(tab$ind, 1)), "inch", cex = text_cex), na.rm = TRUE)
-  linch_n <- 3 * linchwidth + max(strwidth(tab$n, "inch", cex = text_cex), na.rm = TRUE)
+  linch_n <-
+    3 * linchwidth +
+    max(
+      c(
+        strwidth(tab$n, "inch", cex = text_cex),
+        ifelse(
+          !ind_numeric & any(is.na(tab_list[[num_periods]]$n)),
+          strwidth(group_hide_less_than_label, "inch", cex = 0.7 * text_cex),
+          0
+        )
+      ),
+      na.rm=TRUE
+    )
 
   par(
     mai = c(
@@ -521,12 +534,7 @@ fIndPlot <-
     }
 
     for (i in 1:num_periods) {
-      rect(xleft = 0, xright = rev(tab_list[[i]]$ind), ybottom = y_bp - 0.5 * barheight + (num_periods - i) * 0.5 * barheight, ytop = y_bp + 0.5 * barheight + (num_periods -
-                                                                                                                                                                  i) * 0.5 * barheight, col = rev(tab_list[[i]]$col), border = if (border) {
-                                                                                                                                                                    rev(tab_list[[i]]$col_border)
-                                                                                                                                                                  } else {
-                                                                                                                                                                    NA
-                                                                                                                                                                  })
+      rect(xleft = 0, xright = rev(tab_list[[i]]$ind), ybottom = y_bp - 0.5 * barheight + (num_periods - i) * 0.5 * barheight, ytop = y_bp + 0.5 * barheight + (num_periods - i) * 0.5 * barheight, col = rev(tab_list[[i]]$col), border = if (border) {rev(tab_list[[i]]$col_border)} else {NA})
     }
 
     # Target values (line)
@@ -576,15 +584,35 @@ fIndPlot <-
   # Group labels
   if (ind_numeric) {
     text(x = ((linch_n + linch_i)/(linch_label + linch_n + linch_i)) * pos0x, y = y_bp, labels = rev(tab_list[[num_periods]]$group), pos = 2, cex = text_cex, col = rev(tab_list[[num_periods]]$col_text))
-    text(x = (linch_i/(linch_label + linch_n + linch_i)) * pos0x, y = y_n_label, labels = ifelse(num_periods > 1, paste0(ind_noofcasestxt, "*"), ind_noofcasestxt), pos = 2,
-         cex = text_cex, font = 2)
+    text(x = (linch_i/(linch_label + linch_n + linch_i)) * pos0x, y = y_n_label, labels = ifelse(num_periods > 1, paste0(ind_noofcasestxt, "*"), ind_noofcasestxt), pos = 2, cex = text_cex, font = 2)
     text(x = (linch_i/(linch_label + linch_n + linch_i)) * pos0x, y = y_bp, labels = rev(tab_list[[num_periods]]$n), pos = 2, cex = text_cex)
     text(x = -luserwidth, y = y_n_label, labels = ifelse(num_periods > 1, paste0(ind_title, "*"), ind_title), pos = 2, cex = text_cex, font = 2)
-    text(x = -luserwidth, y = y_bp, labels = rev(round(tab_list[[num_periods]]$ind, 1)), pos = 2, cex = text_cex)
+    tempCex <- rep(text_cex, length(tab_list[[num_periods]]$ind))
+    tempCex[is.na(tab_list[[num_periods]]$ind)] <- 0.7 * text_cex
+    tab_list[[num_periods]]$ind <- round(tab_list[[num_periods]]$ind, 1)
+    tab_list[[num_periods]]$ind[is.na(tab_list[[num_periods]]$ind)] <- group_hide_less_than_label
+    text(
+      x = -luserwidth,
+      y = y_bp,
+      labels = rev(tab_list[[num_periods]]$ind),
+      pos = 2,
+      cex = rev(tempCex),
+      col = rev(tab_list[[num_periods]]$col_text)
+    )
   } else {
     text(x = (linch_n/(linch_label + linch_n)) * pos0x, y = y_bp, labels = rev(tab_list[[num_periods]]$group), pos = 2, cex = text_cex, col = rev(tab_list[[num_periods]]$col_text))
     text(x = -luserwidth, y = y_n_label, labels = ifelse(num_periods > 1, paste0(ind_noofcasestxt, "*"), ind_noofcasestxt), pos = 2, cex = text_cex, font = 2)
-    text(x = -luserwidth, y = y_bp, labels = rev(tab_list[[num_periods]]$n), pos = 2, cex = text_cex)
+    tempCex <- rep(text_cex, length(tab_list[[num_periods]]$n))
+    tempCex[is.na(tab_list[[num_periods]]$n)] <- 0.7 * text_cex
+    tab_list[[num_periods]]$n[is.na(tab_list[[num_periods]]$n)] <- group_hide_less_than_label
+    text(
+      x = -luserwidth,
+      y = y_bp,
+      labels = rev(tab_list[[num_periods]]$n),
+      pos = 2,
+      cex = rev(tempCex),
+      col = rev(tab_list[[num_periods]]$col_text)
+    )
 
     if (ind_showpct) {
       temp_pct <- paste(format(round(tab_list[[num_periods]]$ind, 0), nsmall = 0), "%")

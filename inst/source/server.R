@@ -931,12 +931,14 @@ shinyServer(function(input, output, clientData) {
       colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
     }
 
+    nColTab <<- ncol(tab)
+
     tab
 
   },
   extensions = 'Buttons',
   options = list(
-    columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = '_all')),
+    columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = 1:(nColTab-1))),
     language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
     searching = TRUE,
     paging = FALSE,
@@ -982,7 +984,7 @@ shinyServer(function(input, output, clientData) {
         )
 
       colnames(tab)[1] <- input$param_levelpresent
-      colnames(tab)[2:ncol(tab)] <- paste(colnames(tab)[2:ncol(tab)],"(%)")
+      colnames(tab)[3:ncol(tab)] <- paste(colnames(tab)[3:ncol(tab)],"(%)")
     } else {
       tab <-
         subset(
@@ -994,12 +996,14 @@ shinyServer(function(input, output, clientData) {
       colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
     }
 
+    nColTab <<- ncol(tab)
+
     tab
 
   },
   extensions = 'Buttons',
   options = list(
-    columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = '_all')),
+    columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = 1:(nColTab-1))),
     language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
     searching = TRUE,
     paging = FALSE,
@@ -1055,12 +1059,14 @@ shinyServer(function(input, output, clientData) {
       colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
     }
 
+    nColTab <<- ncol(tab)
+
     tab
 
   },
   extensions = 'Buttons',
   options = list(
-    columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = '_all')),
+    columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = 1:(nColTab-1))),
     language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
     searching = TRUE,
     paging = FALSE,
