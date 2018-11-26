@@ -21,7 +21,7 @@
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region" depending on language.
 #' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
 #' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.
-#' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables). Observe that observations with missing values for varOthers are not included in the output.
+#' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
@@ -88,7 +88,10 @@
 #'     list(
 #'       var = "stage",
 #'       label = "Stadium",
-#'       choices = c("I", "II")
+#'       choices = c("I", "II"),
+#'       selected = "I",
+#,       multiple = TRUE,
+#,       showInTitle = TRUE
 #'     )
 #'   ),
 #'   funnelplot = TRUE
@@ -257,6 +260,8 @@ rccShiny <-
       geoUnitsHospital <- "sjukhus"
     } else if (!(geoUnitsHospital %in% colnames(data))) {
       GLOBAL_geoUnitsHospitalInclude <- FALSE
+    } else if (!class(data[,geoUnitsHospital]) %in% c("character","numeric","integer")){
+      stop(paste0("The data in the variable '",geoUnitsHospital,"' should be one of the following classes, 'character', 'numeric' or 'integer'"), call. = FALSE)
     }
 
     GLOBAL_geoUnitsCountyInclude <- TRUE
@@ -267,12 +272,15 @@ rccShiny <-
       geoUnitsCounty <- "landsting"
     } else if (!(geoUnitsCounty %in% colnames(data))) {
       GLOBAL_geoUnitsCountyInclude <- FALSE
+    } else if (!class(data[,geoUnitsCounty]) %in% c("numeric","integer")) {
+      stop(paste0("The data in the variable '",geoUnitsCounty,"' should be one of the following classes, 'numeric' or 'integer'"), call. = FALSE)
     } else {
       data$landstingCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsCounty])))
       if (!(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
         stop(paste0("'", geoUnitsCounty, "' contains invalid values. When 'geoUnitsPatient'=", geoUnitsPatient, ", '", geoUnitsCounty, "' should only contain the values (",
                     paste(rccShinyCounties(lkf = geoUnitsPatient)$landstingCode, collapse = ", "), ")."), call. = FALSE)
     }
+
 
     GLOBAL_geoUnitsRegionInclude <- TRUE
     if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) != 1)) {
@@ -282,6 +290,8 @@ rccShiny <-
       geoUnitsRegion <- "landsting"
     } else if (!(geoUnitsRegion %in% colnames(data))) {
       GLOBAL_geoUnitsRegionInclude <- FALSE
+    } else if (!class(data[,geoUnitsRegion]) %in% c("numeric","integer")) {
+      stop(paste0("The data in the variable '",geoUnitsRegion,"' should be one of the following classes, 'numeric' or 'integer'"), call. = FALSE)
     } else {
       data$regionCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsRegion])))
       if (!(all(data$regionCode %in% c(1:6, NA))))
@@ -304,6 +314,8 @@ rccShiny <-
       GLOBAL_periodInclude <- FALSE
       period <- "period"
       data$period <- rep(1, nrow(data))
+    } else if (!class(data[,period]) %in% c("numeric","integer")) {
+      stop(paste0("The data in the variable '",period,"' should be one of the following classes, 'numeric' or 'integer'"), call. = FALSE)
     } else {
       GLOBAL_periodInclude <- TRUE
       if (!is.character(period) | length(period) != 1)
@@ -330,7 +342,7 @@ rccShiny <-
       }
     }
 
-    if (is.null(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
+    if (is.null(funnelplot) | is.na(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
       stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
 
     if (!is.null(sortDescending) & (!is.logical(sortDescending) | length(sortDescending) < 1))
@@ -340,6 +352,12 @@ rccShiny <-
         sortDescending,
         rep(TRUE,length(outcome)-length(sortDescending))
       )
+
+    if (is.null(propWithinShow) | is.na(propWithinShow) | !is.logical(propWithinShow) | length(propWithinShow) != 1)
+      stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
+
+    if (is.null(propWithinValue) | is.na(propWithinValue) | length(propWithinValue) != 1 | (!is.integer(propWithinValue) & !is.numeric(propWithinValue)))
+      stop(paste0("'propWithinValue' should be a a numeric och integer value of length 1"), call. = FALSE)
 
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
