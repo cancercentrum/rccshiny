@@ -688,6 +688,7 @@ shinyServer(function(input, output, clientData) {
           rccShinyIndTable(
             group = dfuse[, rccShinyGroupVariable("hospital")],
             group_hide_less_than = GLOBAL_hideLessThan,
+            group_hide_less_than_label = FALSE,
             all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
             ind = dfuse$outcome,
             ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
@@ -713,6 +714,7 @@ shinyServer(function(input, output, clientData) {
             rccShinyIndTable(
               group = dfuse[,rccShinyGroupVariable("region")],
               group_hide_less_than = GLOBAL_hideLessThan,
+              group_hide_less_than_label = FALSE,
               all_lab = NULL,
               ind = dfuse$outcome,
               period = dfuse$period,
@@ -1115,6 +1117,7 @@ shinyServer(function(input, output, clientData) {
           rccShinyIndTable(
             group = dfuse$group,
             group_hide_less_than = GLOBAL_hideLessThan,
+            group_hide_less_than_label = FALSE,
             group_factors = tab_order,
             all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
             ind = dfuse$outcome

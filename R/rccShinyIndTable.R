@@ -107,7 +107,9 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
         colnames(tab)[colnames(tab) == "period"] <- lab_period
     }
 
-    tab$group[is.na(tab[,ncol(tab)])] <- paste(tab$group[is.na(tab[,ncol(tab)])], group_hide_less_than_label)
+    if (group_hide_less_than_label != FALSE) {
+      tab$group[is.na(tab[,ncol(tab)])] <- paste(tab$group[is.na(tab[,ncol(tab)])], group_hide_less_than_label)
+    }
 
     return(tab)
 
