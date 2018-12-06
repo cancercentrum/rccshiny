@@ -3,7 +3,7 @@ Type: Package
 Version: 1.0.9
 Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
-Depends: R
+Depends: R (>= 3.0.0)
 Imports: 
     acepack, backports, base64enc, bitops, caTools, checkmate, colorspace, 
     data.table, dichromat, digest, DT, evaluate, Formula, gdata, ggplot2, 
