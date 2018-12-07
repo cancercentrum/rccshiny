@@ -159,25 +159,16 @@ shinyServer(function(input, output, clientData) {
               "input.tab!='fig_trend' & ",
               ifelse(GLOBAL_periodStart == GLOBAL_periodEnd, "false", "true")
             ),
-          if (!(GLOBAL_periodDate & GLOBAL_periodDateLevel != "year")) {
-            sliderInput(
-              inputId = "param_period",
-              label = GLOBAL_periodLabel,
-              min = GLOBAL_periodStart,
-              max = GLOBAL_periodEnd,
-              step = 1,
-              ticks = FALSE,
-              value = rep(GLOBAL_periodEnd, 2),
-              sep = ""
-            )
-          } else {
-            sliderTextInput(
-              inputId = "param_period",
-              label = GLOBAL_periodLabel,
-              choices = GLOBAL_periodValues,
-              selected = rep(GLOBAL_periodEnd, 2)
-            )
-          }
+          sliderInput(
+            inputId = "param_period",
+            label = GLOBAL_periodLabel,
+            min = GLOBAL_periodStart,
+            max = GLOBAL_periodEnd,
+            step = 1,
+            ticks = FALSE,
+            value = rep(GLOBAL_periodEnd, 2),
+            sep = ""
+          )
         )
       )
     })
@@ -490,18 +481,7 @@ shinyServer(function(input, output, clientData) {
     dftemp <- subset(dftemp, !is.na(outcome))
 
     if (input$tab != "fig_trend") {
-      if (!(GLOBAL_periodDate & GLOBAL_periodDateLevel != "year")) {
-        selectionPeriods <- input[["param_period"]][1]:input[["param_period"]][2]
-      } else if (GLOBAL_periodDateLevel == "quarter") {
-        selectionPeriods <- GLOBAL_periodValues
-        selectionPeriods <- selectionPeriods[which(selectionPeriods == input[["param_period"]][1]):which(selectionPeriods == input[["param_period"]][2])]
-      }
-
-      dftemp <-
-        subset(
-          dftemp,
-          !is.na(period) & period %in% selectionPeriods
-        )
+      dftemp <- subset(dftemp, !is.na(period) & period %in% input[["param_period"]][1]:input[["param_period"]][2])
     }
 
     if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
@@ -712,7 +692,7 @@ shinyServer(function(input, output, clientData) {
             ind = dfuse$outcome,
             ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
             period = dfuse$period,
-            period_factors = GLOBAL_periodValues,
+            period_factors = GLOBAL_periodStart:GLOBAL_periodEnd,
             period_alwaysinclude = TRUE
           )
 
@@ -736,7 +716,7 @@ shinyServer(function(input, output, clientData) {
               all_lab = NULL,
               ind = dfuse$outcome,
               period = dfuse$period,
-              period_factors = GLOBAL_periodValues,
+              period_factors = GLOBAL_periodStart:GLOBAL_periodEnd,
               period_alwaysinclude = TRUE
             )
           tab <- rbind(tab_region, tab)
@@ -759,15 +739,8 @@ shinyServer(function(input, output, clientData) {
             y <- list()
             legend <- vector()
 
-            tab_group$Period <-
-              factor(
-                tab_group$Period,
-                levels = GLOBAL_periodValues
-              )
-            tab_group$PeriodNum <- as.numeric(tab_group$Period)
-
             for (i in levels(dfuse$outcome)) {
-              x <- append(x, list(as.numeric(tab_group$PeriodNum)))
+              x <- append(x, list(as.numeric(tab_group$Period)))
               y <- append(y, list(as.numeric(tab_group[,i])))
               legend <- c(legend, i)
             }
@@ -777,9 +750,8 @@ shinyServer(function(input, output, clientData) {
               y = y,
               legend = legend,
               #legend_textwidth=15,
-              x_lim = range(tab_group$PeriodNum),
+              x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
               x_by = 1,
-              x_ticks_labels = levels(tab_group$Period),
               y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
               title = input$param_ownhospital,
               subtitle = NULL,
@@ -796,15 +768,8 @@ shinyServer(function(input, output, clientData) {
           y <- list()
           legend <- vector()
 
-          tab_total$Period <-
-            factor(
-              tab_total$Period,
-              levels = GLOBAL_periodValues
-            )
-          tab_total$PeriodNum <- as.numeric(tab_total$Period)
-
           for (i in levels(dfuse$outcome)) {
-            x <- append(x, list(as.numeric(tab_total$PeriodNum)))
+            x <- append(x, list(as.numeric(tab_total$Period)))
             y <- append(y, list(as.numeric(tab_total[,i])))
             legend <- c(legend, i)
           }
@@ -814,9 +779,8 @@ shinyServer(function(input, output, clientData) {
             y = y,
             legend = legend,
             #legend_textwidth=15,
-            x_lim = range(tab_total$PeriodNum),
+            x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
             x_by = 1,
-            x_ticks_labels = levels(tab_total$Period),
             y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
             title = rccShinyTXT(language = GLOBAL_language)$RIKET,
             subtitle = NULL,
@@ -833,13 +797,6 @@ shinyServer(function(input, output, clientData) {
           y <- list()
           legend <- vector()
 
-          tab$Period <-
-            factor(
-              tab$Period,
-              levels = GLOBAL_periodValues
-            )
-          tab$PeriodNum <- as.numeric(tab$Period)
-
           if (outcomeClassNumeric() & !numericTypeProp()) {
             y_varinterest <- "Median"
             y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$median
@@ -849,7 +806,7 @@ shinyServer(function(input, output, clientData) {
           }
 
           for (i in unique(tab$group)) {
-            x <- append(x, list(as.numeric(tab$PeriodNum[tab$group == i])))
+            x <- append(x, list(as.numeric(tab$Period[tab$group == i])))
             y <- append(y, list(as.numeric(tab[tab$group == i, y_varinterest])))
             legend <- c(legend, i)
           }
@@ -873,9 +830,8 @@ shinyServer(function(input, output, clientData) {
             y = y,
             legend = legend,
             legend_textwidth = 15,
-            x_lim = range(tab$PeriodNum),
+            x_lim = c(GLOBAL_periodStart, GLOBAL_periodEnd),
             x_by = 1,
-            x_ticks_labels = levels(tab$Period),
             y_lim = range(
               pretty(
                 c(0,

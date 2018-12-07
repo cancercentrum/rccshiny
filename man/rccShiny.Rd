@@ -12,9 +12,10 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
   geoUnitsCounty = "landsting", geoUnitsRegion = "region",
   geoUnitsPatient = FALSE, regionSelection = TRUE,
   regionLabel = rccShinyTXT(language = language)$limitRegion,
-  period = "period", periodLabel = rccShinyTXT(language =
-  language)$dxYear, varOther = NULL, targetValues = NULL,
-  funnelplot = FALSE, sortDescending = NULL, propWithinShow = TRUE,
+  period = "period", periodDateLevel = "year",
+  periodLabel = rccShinyTXT(language = language)$dxYear,
+  varOther = NULL, targetValues = NULL, funnelplot = FALSE,
+  sortDescending = NULL, propWithinShow = TRUE,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
   propWithinValue = 30, hideLessThan = 5, showHide = TRUE,
   gaPath = NULL, npcrGroupPrivateOthers = FALSE)
@@ -56,11 +57,13 @@ rccShiny(language = "sv", data = NULL, outcome = "outcome",
 
 \item{regionLabel}{if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region" depending on language.}
 
-\item{period}{name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period".}
+\item{period}{name of variable in data containing time periods, for example date or year of diagnosis. Variable must be of type numeric or Date. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.}
+
+\item{periodDateLevel}{If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".}
 
 \item{periodLabel}{label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.}
 
-\item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables). Observe that observations with missing values for varOthers are not included in the output.}
+\item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.}
 
 \item{targetValues}{optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.}
 
@@ -141,7 +144,8 @@ ind1 <- rccShiny(
     list(
       var = "stage",
       label = "Stadium",
-      choices = c("I", "II")
+      choices = c("I", "II"),
+      selected = "I",
     )
   ),
   funnelplot = TRUE

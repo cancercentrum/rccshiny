@@ -19,7 +19,8 @@
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region" depending on language.
-#' @param period name of variable in data containing time periods, for example year of diagnosis. Variable must be of type numeric. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
+#' @param period name of variable in data containing time periods, for example date or year of diagnosis. Variable must be of type numeric or Date. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
+#' @param periodDateLevel If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
@@ -148,6 +149,7 @@ rccShiny <-
     regionSelection = TRUE,
     regionLabel = rccShinyTXT(language = language)$limitRegion,
     period = "period",
+    periodDateLevel = "year",
     periodLabel = rccShinyTXT(language = language)$dxYear,
     varOther = NULL,
     targetValues = NULL,
@@ -322,6 +324,15 @@ rccShiny <-
         stop("'period' should be a character vector of length 1", call. = FALSE)
     }
 
+    if (is.null(periodDateLevel)) {
+      periodDateLevel <- "year"
+    } else {
+      if (!is.character(periodDateLevel) | length(periodDateLevel) != 1)
+        stop("'periodDateLevel' should be a character vector of length 1", call. = FALSE)
+      if (!(periodDateLevel %in% c("year", "quarter")))
+        stop("Allowed values for 'periodDateLevel' are 'year' and 'quarter'", call. = FALSE)
+    }
+
     testVariableError("periodLabel", listAllowed = FALSE)
 
     if (!is.null(varOther) & (!is.list(varOther) | length(varOther) < 1))
@@ -394,6 +405,9 @@ rccShiny <-
       # Check for period variable in data
       if (period %in% colnames(data)) {
         data$period <- data[, period]
+        if (!class(data[,period]) %in% c("numeric", "integer", "Date")) {
+          stop(paste0("The data in the variable '",period,"' should be one of the following classes: 'numeric', 'integer' or 'Date'"), call. = FALSE)
+        }
       } else {
         stop(paste0("Column '", period, "' not found in 'data'"), call. = FALSE)
       }
@@ -545,8 +559,46 @@ rccShiny <-
         )
 
       GLOBAL_periodLabel <- ifelse(length(periodLabel) >= which_language, periodLabel[which_language], periodLabel[1])
-      GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
-      GLOBAL_periodEnd <- max(data$period, na.rm = TRUE)
+
+      GLOBAL_periodDateLevel <- periodDateLevel
+
+      if (class(data$period) == "Date") {
+        GLOBAL_periodDate <- TRUE
+        if (periodDateLevel == "quarter") {
+          tempNonEmpty <- !is.na(data$period)
+          tempYear <- as.numeric(format(data$period, "%Y"))
+          tempQuarter <- quarters(data$period)
+          tempQuarter[!tempNonEmpty] <- NA
+          tempPeriod <- rep(NA, nrow(data))
+          tempPeriod[tempNonEmpty] <-
+            paste0(
+              tempYear[tempNonEmpty],
+              tempQuarter[tempNonEmpty]
+            )
+          data$period <- tempPeriod
+
+          tempYearsUnique <- sort(unique(tempYear))
+          GLOBAL_periodStart <- head(sort(unique(tempPeriod)), 1)
+          GLOBAL_periodEnd <- tail(sort(unique(tempPeriod)), 1)
+          GLOBAL_periodValues <-
+            paste0(
+              rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),
+              rep(paste0("Q", 1:4), rep = length(tempYearsUnique))
+            )
+          GLOBAL_periodValues <- GLOBAL_periodValues[which(GLOBAL_periodValues == GLOBAL_periodStart):which(GLOBAL_periodValues == GLOBAL_periodEnd)]
+        } else {
+          data$period <- as.numeric(format(data$period, "%Y"))
+          GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
+          GLOBAL_periodEnd <- max(data$period, na.rm = TRUE)
+          GLOBAL_periodValues <- GLOBAL_periodStart:GLOBAL_periodEnd
+        }
+      } else {
+        GLOBAL_periodDate <- FALSE
+        GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
+        GLOBAL_periodEnd <- max(data$period, na.rm = TRUE)
+        GLOBAL_periodValues <- GLOBAL_periodStart:GLOBAL_periodEnd
+      }
+
 
       GLOBAL_geoUnitsPatient <- geoUnitsPatient
 
@@ -590,7 +642,7 @@ rccShiny <-
       GLOBAL_data <- fixEncoding(GLOBAL_data)
 
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
-           GLOBAL_periodInclude, GLOBAL_periodLabel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
+           GLOBAL_periodInclude, GLOBAL_periodLabel, GLOBAL_periodDate, GLOBAL_periodDateLevel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_periodValues, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
            GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
