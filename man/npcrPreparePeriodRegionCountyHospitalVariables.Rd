@@ -4,8 +4,9 @@
 \alias{npcrPreparePeriodRegionCountyHospitalVariables}
 \title{Used by NPCR}
 \usage{
-npcrPreparePeriodRegionCountyHospitalVariables(prefix = "d0", data = NULL,
-  language = c("sv", "en"), returnPrivateOthersNames = FALSE)
+npcrPreparePeriodRegionCountyHospitalVariables(prefix = "d0",
+  data = NULL, language = c("sv", "en"),
+  returnPrivateOthersNames = FALSE)
 }
 \description{
 internal function.
