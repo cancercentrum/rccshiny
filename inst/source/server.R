@@ -24,13 +24,18 @@ shinyServer(function(input, output, clientData) {
           radioButtons(
             inputId = "param_numerictype",
             label = rccShinyTXT(language = GLOBAL_language)$presentation,
-            choices = c(rccShinyTXT(language = GLOBAL_language)$median,
-                        paste(
-                          rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
-                          GLOBAL_propWithinUnit
-                          )
-                        ),
-            selected = rccShinyTXT(language = GLOBAL_language)$median
+            choices = c(paste0(
+              rccShinyTXT(language = GLOBAL_language)$median,
+              " (", GLOBAL_propWithinUnit, ")"),
+              paste(
+                rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                GLOBAL_propWithinUnit
+              )
+            ),
+            selected = paste0(
+              rccShinyTXT(language = GLOBAL_language)$median,
+              " (", GLOBAL_propWithinUnit, ")")
+
           )
         )
       )
@@ -51,9 +56,9 @@ shinyServer(function(input, output, clientData) {
         conditionalPanel(
           condition = ifelse(outcomeClassNumeric(), paste0("input.param_numerictype == '",
                                                            paste(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
-                                                                                                 GLOBAL_propWithinUnit
-          ),
-          "'"), "false"),
+                                                                 GLOBAL_propWithinUnit
+                                                           ),
+                                                           "'"), "false"),
           numericInput(
             inputId = "param_numerictype_prop",
             label = NULL,
@@ -639,7 +644,9 @@ shinyServer(function(input, output, clientData) {
           period = if (input$param_periodSplit) {dfuse$period} else {NULL},
           x_lab = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
-            rccShinyTXT(language = GLOBAL_language)$medianiqr,
+            paste0(
+              rccShinyTXT(language = GLOBAL_language)$median,
+              " (", GLOBAL_propWithinUnit, ")"),
             rccShinyTXT(language = GLOBAL_language)$percent
           ),
           legend_fixedtextwidth = TRUE,
@@ -842,7 +849,10 @@ shinyServer(function(input, output, clientData) {
 
           if (outcomeClassNumeric() & !numericTypeProp()) {
             y_varinterest <- "Median"
-            y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$median
+            y_varinterest_txt <- paste0(
+              rccShinyTXT(language = GLOBAL_language)$median,
+              " (", GLOBAL_propWithinUnit, ")")
+
           } else {
             y_varinterest <- "Procent"
             y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$percent
@@ -1172,7 +1182,9 @@ shinyServer(function(input, output, clientData) {
           legend = ifelse(
             showPercentage,
             rccShinyTXT(language = GLOBAL_language)$percent,
-            rccShinyTXT(language = GLOBAL_language)$median
+            paste0(
+              rccShinyTXT(language = GLOBAL_language)$median,
+              " (", GLOBAL_propWithinUnit, ")")
           ),
           title = NULL,
           subtitle = NULL,
