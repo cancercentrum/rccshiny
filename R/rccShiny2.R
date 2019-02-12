@@ -12,7 +12,6 @@
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
-#' @param comment optional comment printed under the sidebar panel.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if "landsting" is not found in 'data', county is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
@@ -64,8 +63,7 @@
 #'
 #'
 #'
-#' If language = c("sv", "en") the following applies to arguments: textBeforeSubtitle, textAfterSubtitle, comment,
-#' regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
+#' If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
 #' The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
 #' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 #'
@@ -78,7 +76,6 @@
 #'   folder = "Indikator1",
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-#'   comment = "Skovde och Lidkoping tillhor Skaraborg",
 #'   description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
 #'   varOther = list(
 #'     list(
@@ -140,7 +137,6 @@ rccShiny2 <-
     outcomeTitle = outcome,
     textBeforeSubtitle = NULL,
     textAfterSubtitle = NULL,
-    comment = "",
     description = rep(NA, 3),
     geoUnitsHospital = "sjukhus",
     geoUnitsCounty = "landsting",
@@ -238,10 +234,6 @@ rccShiny2 <-
     if (is.null(textAfterSubtitle))
       textAfterSubtitle <- ""
     testVariableError("textAfterSubtitle", listAllowed = FALSE)
-
-    if (is.null(comment))
-      comment <- ""
-    testVariableError("comment", listAllowed = FALSE)
 
     if (is.null(description))
       stop(paste0("'description' is missing"), call. = FALSE)
@@ -551,15 +543,6 @@ rccShiny2 <-
         textAfterSubtitle[1]
       }
 
-      GLOBAL_comment <-
-        enc2utf8(
-          ifelse(
-            length(comment) >= which_language,
-            comment[which_language],
-            comment[1]
-          )
-        )
-
       GLOBAL_description <-
         if (length(description) >= which_language) {
           description[[which_language]]
@@ -644,15 +627,6 @@ rccShiny2 <-
 
       GLOBAL_npcrGroupPrivateOthers <- npcrGroupPrivateOthers
 
-      if (!dir.exists(paste0(path, "/", loop_language))) {
-        dir.create(paste0(path, "/", loop_language), showWarnings = FALSE)
-      }
-
-      dir.create(paste0(path, "/", loop_language, "/", folder), showWarnings = FALSE)
-      dir.create(paste0(path, "/", loop_language, "/", folder, "/data"), showWarnings = FALSE)
-
-      file.copy(system.file("source", "app.R", package = "rccShiny"), paste0(path, "/", loop_language, "/", folder, "/app.R"), overwrite = TRUE)
-
       GLOBAL_data <- fixEncoding(GLOBAL_data)
 
       GLOBAL_optionsList <-
@@ -667,7 +641,6 @@ rccShiny2 <-
           GLOBAL_outcomeClass = GLOBAL_outcomeClass,
           GLOBAL_textBeforeSubtitle = GLOBAL_textBeforeSubtitle,
           GLOBAL_textAfterSubtitle = GLOBAL_textAfterSubtitle,
-          GLOBAL_comment = GLOBAL_comment,
           GLOBAL_description = GLOBAL_description,
           GLOBAL_periodInclude = GLOBAL_periodInclude,
           GLOBAL_periodLabel = GLOBAL_periodLabel,
@@ -696,7 +669,16 @@ rccShiny2 <-
           GLOBAL_npcrGroupPrivateOthers = GLOBAL_npcrGroupPrivateOthers
         )
 
-      if (!GLOBAL_inca) {
+      if (!inca) {
+        if (!dir.exists(paste0(path, "/", loop_language))) {
+          dir.create(paste0(path, "/", loop_language), showWarnings = FALSE)
+        }
+
+        dir.create(paste0(path, "/", loop_language, "/", folder), showWarnings = FALSE)
+        dir.create(paste0(path, "/", loop_language, "/", folder, "/data"), showWarnings = FALSE)
+
+        file.copy(system.file("source", "app.R", package = "rccShiny"), paste0(path, "/", loop_language, "/", folder, "/app.R"), overwrite = TRUE)
+
         save(
           GLOBAL_optionsList,
           file = paste0(path, "/", loop_language, "/", folder, "/data/data.RData")
@@ -705,7 +687,7 @@ rccShiny2 <-
 
     }
 
-    if (GLOBAL_inca) {
+    if (inca) {
       rccShinyApp(optionsList = GLOBAL_optionsList)
     }
 

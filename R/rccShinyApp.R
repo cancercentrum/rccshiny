@@ -13,6 +13,8 @@ rccShinyApp <-
       }
     }
 
+    options(spinner.type = 3, spinner.color.background = "#ffffff")
+
     shinyApp(
       ui = fluidPage(
         if (!is.null(GLOBAL_gaPath)) { tags$head(tags$script(src = GLOBAL_gaPath)) },
@@ -24,16 +26,7 @@ rccShinyApp <-
         fluidRow(
           column(
             6,
-            conditionalPanel(
-              condition = ifelse(length(GLOBAL_outcomeTitle) > 1,"true","false"),
-              selectInput(
-                inputId = "param_outcome",
-                label = rccShinyTXT(language = GLOBAL_language)$outcome,
-                choices = GLOBAL_outcomeTitle,
-                selected = GLOBAL_outcomeTitle[1],
-                width = "100%"
-              )
-            ),
+            uiOutput("outcomeInput"),
             uiOutput("regionInput"),
             uiOutput("levelpresentInput"),
             uiOutput("ownhospitalInput")
@@ -49,19 +42,54 @@ rccShinyApp <-
           )
         ),
         fluidRow(
-          uiOutput("theTabs")
+          shinycssloaders::withSpinner(uiOutput("theTabs"))
         )
       ),
       server = function(input, output, session) {
 
+        if (GLOBAL_inca) {
+          withProgress(
+            message = "Laddar data och genererar rapport...",
+            style = "old",
+            value = 0,
+            {
+              INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
+              incProgress(0.5)
+              Sys.sleep(5)
+              source(GLOBAL_incaScript, encoding = "UTF-8")
+              incProgress(1.0)
+            }
+          )
+        }
+
         whichOutcome <-
           reactive({
-            which(GLOBAL_outcomeTitle == input$param_outcome)
+            ifelse(
+              is.null(input$param_outcome),
+              1,
+              which(GLOBAL_outcomeTitle == input$param_outcome)
+            )
           })
 
         outcomeClassNumeric <-
           reactive({
             GLOBAL_outcomeClass[whichOutcome()] %in% c("difftime", "numeric", "integer")
+          })
+
+        output$outcomeInput <-
+          renderUI({
+            tagList(
+              conditionalPanel(
+                condition = ifelse(length(GLOBAL_outcomeTitle) > 1, "true", "false"),
+                selectInput(
+                  inputId = "param_outcome",
+                  label = rccShinyTXT(language = GLOBAL_language)$outcome,
+                  choices = GLOBAL_outcomeTitle,
+                  selected = GLOBAL_outcomeTitle[1],
+                  width = "100%"
+                )
+              )
+            )
           })
 
         output$numericTypeInput <-
