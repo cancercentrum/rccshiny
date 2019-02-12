@@ -5,13 +5,14 @@ Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
 Depends: R (>= 3.0.0)
 Imports: 
-    acepack, backports, base64enc, bitops, caTools, checkmate, colorspace, 
-    data.table, dichromat, digest, DT, evaluate, Formula, gdata, ggplot2, 
-    gplots, gridExtra, graphics, grDevices, gtable, gtools, highr, Hmisc, htmlTable,
-    htmltools, htmlwidgets, httpuv, jsonlite, knitr, labeling, latticeExtra,
-    lazyeval, magrittr, markdown, methods, mime, munsell, plyr, R6,
-    RColorBrewer, Rcpp, scales, shiny, sourcetools, sp, stats,
-    stringi, stringr, tibble, utils, xtable, yaml, shinyWidgets
+  gplots,
+  plyr,
+  Hmisc,
+  sp,
+  shiny,
+  shinyWidgets,
+  DT,
+  shinycssloaders
 Encoding: UTF-8
 LazyData: TRUE
 License: GPL (>= 3)
