@@ -56,5 +56,5 @@ rccShinyData$stage <-
     replace = TRUE
   )
 
-devtools::use_data_raw()
-devtools::use_data(rccShinyData, overwrite = TRUE)
+usethis::use_data_raw()
+usethis::use_data(rccShinyData, overwrite = TRUE)
