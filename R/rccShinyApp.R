@@ -1,9 +1,4 @@
 
-library(shiny)
-library(shinyWidgets)
-library(DT)
-library(rccShiny)
-
 rccShinyApp <-
   function(
     optionsList = NULL
