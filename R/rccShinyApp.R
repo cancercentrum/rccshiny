@@ -1,4 +1,7 @@
-
+#' Creates shiny app
+#' @description internal function.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @export
 rccShinyApp <-
   function(
     optionsList = NULL

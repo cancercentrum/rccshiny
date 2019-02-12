@@ -91,8 +91,8 @@
 #'       label = "Stadium",
 #'       choices = c("I", "II"),
 #'       selected = "I",
-#,       multiple = TRUE,
-#,       showInTitle = TRUE
+#'       multiple = TRUE,
+#'       showInTitle = TRUE
 #'     )
 #'   ),
 #'   funnelplot = TRUE
