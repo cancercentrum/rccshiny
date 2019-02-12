@@ -129,7 +129,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
             temp_y_border - 0.03
         lines(coordinates_vastmanland[match, 1], coordinates_vastmanland[match, 2], lwd = 1, col = col_border)
 
-        plot(gadm[gadm$NAME_1 %in% "Gävleborg", ], col = value_col[value_names == "Gävleborg"], border = col_border, add = TRUE)
+        sp::plot(gadm[gadm$NAME_1 %in% "Gävleborg", ], col = value_col[value_names == "Gävleborg"], border = col_border, add = TRUE)
 
         # Title
         if (!is.null(title)) {
