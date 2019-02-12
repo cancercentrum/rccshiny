@@ -8,7 +8,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, folder = "ind",
   path = getwd(), language = "sv", data = NULL,
   outcome = "outcome", outcomeNumericExcludeNeg = TRUE,
   outcomeTitle = outcome, textBeforeSubtitle = NULL,
-  textAfterSubtitle = NULL, comment = "", description = rep(NA, 3),
+  textAfterSubtitle = NULL, description = rep(NA, 3),
   geoUnitsHospital = "sjukhus", geoUnitsCounty = "landsting",
   geoUnitsRegion = "region", geoUnitsPatient = FALSE,
   regionSelection = TRUE, regionLabel = rccShinyTXT(language =
@@ -42,8 +42,6 @@ rccShiny2(inca = FALSE, incaScript = NULL, folder = "ind",
 \item{textBeforeSubtitle}{optional text placed before the subtitles in the tabs.}
 
 \item{textAfterSubtitle}{optional text placed after the subtitles in the tabs.}
-
-\item{comment}{optional comment printed under the sidebar panel.}
 
 \item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).}
 
@@ -122,8 +120,7 @@ NA\tab NA \tab  Uppgift saknas
 
 
 
-If language = c("sv", "en") the following applies to arguments: textBeforeSubtitle, textAfterSubtitle, comment,
-regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
+If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
 The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
 The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 }
@@ -133,7 +130,6 @@ ind1 <- rccShiny(
   folder = "Indikator1",
   outcome = paste0("outcome",1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-  comment = "Skovde och Lidkoping tillhor Skaraborg",
   description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
   varOther = list(
     list(
