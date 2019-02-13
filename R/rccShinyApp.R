@@ -7,17 +7,12 @@ rccShinyApp <-
     optionsList = NULL
   ) {
 
-    if (!is.null(optionsList)) {
-      for (i in 1:length(optionsList)) {
-        assign(x = names(optionsList)[i], value = optionsList[[i]], envir = .GlobalEnv)
-      }
-    }
-
     options(spinner.type = 3, spinner.color.background = "#ffffff")
 
     shinyApp(
       ui = fluidPage(
-        if (!is.null(GLOBAL_gaPath)) { tags$head(tags$script(src = GLOBAL_gaPath)) },
+        tags$head(tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}"))),
+        if (!is.null(optionsList$gaPath)) { tags$head(tags$script(src = optionsList$gaPath)) },
         h2(htmlOutput("text0")),
         p(
           htmlOutput("text1"),
@@ -47,19 +42,36 @@ rccShinyApp <-
       ),
       server = function(input, output, session) {
 
-        if (GLOBAL_inca) {
+        if (optionsList$inca) {
           withProgress(
             message = "Laddar data och genererar rapport...",
-            style = "old",
+            #style = "old",
             value = 0,
             {
               INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
-              incProgress(0.5)
-              Sys.sleep(5)
-              source(GLOBAL_incaScript, encoding = "UTF-8")
-              incProgress(1.0)
+              incProgress(0.50)
+              source(optionsList$incaScript, encoding = "UTF-8")
+              if (!exists("df")) {
+                stop("The script '", optionsList$incaScript, "' did not produce a data.frame 'df'", call. = FALSE)
+              }
+              if (!is.data.frame(df)) {
+                stop("The script '", optionsList$incaScript, "' did not produce a data.frame 'df'", call. = FALSE)
+              }
+              optionsList$data <- df
+              incProgress(0.25)
+              optionsList <-
+                rccShinyCheckData(
+                  optionsList = optionsList
+                )
+              incProgress(0.25)
+              if (optionsList$error != "") {
+                stop(optionsList$error, call. = FALSE)
+              }
             }
           )
+        }
+        for (i in 1:length(optionsList)) {
+          assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]], envir = .GlobalEnv)
         }
 
         whichOutcome <-
@@ -1330,4 +1342,340 @@ rccShinyApp <-
       }
     )
 
+  }
+#' Checks input to rccShiny
+#' @description internal function.
+#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @export
+rccShinyCheckData <-
+  function(
+    optionsList = NULL
+  ) {
+
+    optionsList$error <- ""
+
+    # outcome
+    for (i in 1:length(optionsList$outcome)) {
+      if (paste0(optionsList$outcome[i], "_", optionsList$language) %in% colnames(optionsList$data)) {
+        optionsList$data[, optionsList$outcome[i]] <- optionsList$data[, paste0(optionsList$outcome[i], "_", optionsList$language)]
+      } else if (!(optionsList$outcome[i] %in% colnames(optionsList$data))) {
+        optionsList$error <- paste0("Column '", optionsList$outcome[i], "' not found in 'data'")
+        return(optionsList)
+      }
+    }
+
+    # outcomeClass
+    optionsList$outcomeClass <- vector()
+    for (i in 1:length(optionsList$outcome)) {
+      optionsList$outcomeClass[i] <- class(optionsList$data[, optionsList$outcome[i]])
+    }
+
+    # outcomeTitle
+    optionsList$outcomeTitle <-
+      if (length(optionsList$outcomeTitle) >= optionsList$whichLanguage) {
+        optionsList$outcomeTitle[[optionsList$whichLanguage]]
+      } else {
+        optionsList$outcomeTitle[[1]]
+      }
+
+    # textBeforeSubtitle
+    optionsList$textBeforeSubtitle <-
+      if (length(optionsList$textBeforeSubtitle) >= optionsList$whichLanguage) {
+        optionsList$textBeforeSubtitle[optionsList$whichLanguage]
+      } else {
+        optionsList$textBeforeSubtitle[1]
+      }
+
+    # textAfterSubtitle
+    optionsList$textAfterSubtitle <-
+      if (length(optionsList$textAfterSubtitle) >= optionsList$whichLanguage) {
+        optionsList$textAfterSubtitle[optionsList$whichLanguage]
+      } else {
+        optionsList$textAfterSubtitle[1]
+      }
+
+    # description
+    optionsList$description <-
+      if (length(optionsList$description) >= optionsList$whichLanguage) {
+        optionsList$description[[optionsList$whichLanguage]]
+      } else {
+        optionsList$description[[1]]
+      }
+    if (length(optionsList$description) < 3)
+      optionsList$description <- c(
+        optionsList$description,
+        rep(NA, 3 - length(optionsList$description))
+      )
+
+    # geoUnitsHospital
+    optionsList$geoUnitsHospitalInclude <- TRUE
+    if (is.null(optionsList$geoUnitsHospital)) {
+      optionsList$geoUnitsHospitalInclude <- FALSE
+      optionsList$geoUnitsHospital <- "sjukhus"
+    } else if (!(optionsList$geoUnitsHospital %in% colnames(optionsList$data))) {
+      optionsList$geoUnitsHospitalInclude <- FALSE
+    } else if (!class(optionsList$data[, optionsList$geoUnitsHospital]) %in% c("character", "numeric", "integer")){
+      optionsList$error <- paste0("The data in the variable '", optionsList$geoUnitsHospital, "' should be one of the following classes: 'character', 'numeric' or 'integer'")
+      return(optionsList)
+    }
+
+    # sjukhus
+    if (optionsList$geoUnitsHospitalInclude) {
+      optionsList$data$sjukhus <-
+        if (paste0(optionsList$geoUnitsHospital, "_", optionsList$language) %in% colnames(optionsList$data)) {
+          optionsList$data[, paste0(optionsList$geoUnitsHospital, "_", optionsList$language)]
+        } else {
+          optionsList$data[, optionsList$geoUnitsHospital]
+        }
+      # Fix missing in hospital variable
+      optionsList$data$sjukhus[is.na(optionsList$data$sjukhus) | optionsList$data$sjukhus %in% ""] <- rccShinyTXT(language = optionsList$language)$missing
+    } else {
+      optionsList$data$sjukhus <- "(not displayed)"
+    }
+
+    # geoUnitsCounty
+    optionsList$geoUnitsCountyInclude <- TRUE
+    if (is.null(optionsList$geoUnitsCounty)) {
+      optionsList$geoUnitsCountyInclude <- FALSE
+      optionsList$geoUnitsCounty <- "landsting"
+    } else if (!(optionsList$geoUnitsCounty %in% colnames(optionsList$data))) {
+      optionsList$geoUnitsCountyInclude <- FALSE
+    } else if (!class(optionsList$data[, optionsList$geoUnitsCounty]) %in% c("numeric","integer")) {
+      optionsList$error <- paste0("The data in the variable '", optionsList$geoUnitsCounty,"' should be one of the following classes: 'numeric' or 'integer'")
+      return(optionsList)
+    } else {
+      optionsList$data$landstingCode <- suppressWarnings(as.numeric(as.character(optionsList$data[, optionsList$geoUnitsCounty])))
+      if (!(all(optionsList$data$landstingCode %in% rccShinyCounties(lkf = optionsList$geoUnitsPatient)$landstingCode))) {
+        optionsList$error <-
+          paste0(
+            "'", optionsList$geoUnitsCounty, "' contains invalid values. When 'geoUnitsPatient' = ", optionsList$geoUnitsPatient, ", '", optionsList$geoUnitsCounty, "' should only contain the values (",
+            paste(rccShinyCounties(lkf = optionsList$geoUnitsPatient)$landstingCode, collapse = ", "),
+            ")"
+          )
+        return(optionsList)
+      }
+    }
+
+    # landsting
+    if (optionsList$geoUnitsCountyInclude) {
+      optionsList$data <- optionsList$data[, colnames(optionsList$data) != "landsting"]
+      optionsList$data <-
+        merge(
+          optionsList$data,
+          rccShinyCounties(language = optionsList$language, lkf = optionsList$geoUnitsPatient),
+          by = "landstingCode",
+          all.x = TRUE
+        )
+    } else {
+      optionsList$data$landsting <- "(not displayed)"
+    }
+
+    # geoUnitsRegion
+    optionsList$geoUnitsRegionInclude <- TRUE
+    if (is.null(optionsList$geoUnitsRegion)) {
+      optionsList$geoUnitsRegionInclude <- FALSE
+      optionsList$geoUnitsRegion <- "region"
+    } else if (!(optionsList$geoUnitsRegion %in% colnames(optionsList$data))) {
+      optionsList$geoUnitsRegionInclude <- FALSE
+    } else if (!class(optionsList$data[, optionsList$geoUnitsRegion]) %in% c("numeric","integer")) {
+      optionsList$error <- paste0("The data in the variable '", optionsList$geoUnitsRegion, "' should be one of the following classes: 'numeric' or 'integer'")
+      return(optionsList)
+    } else {
+      optionsList$data$regionCode <- suppressWarnings(as.numeric(as.character(optionsList$data[, optionsList$geoUnitsRegion])))
+      if (!(all(optionsList$data$regionCode %in% c(1:6, NA)))) {
+        optionsList$error <- paste0("'", geoUnitsRegion, "' contains invalid values. '", geoUnitsRegion, "' should only contain the values (", paste(c(1:6, NA), collapse = ", "), ").")
+        return(optionsList)
+      }
+    }
+
+    # region
+    if (optionsList$geoUnitsRegionInclude) {
+      optionsList$data$region <-
+        factor(
+          optionsList$data$regionCode,
+          levels = c(1:6, NA),
+          labels = rccShinyRegionNames(language = optionsList$language),
+          exclude = NULL
+        )
+    } else {
+      optionsList$data$region <- "(not displayed)"
+    }
+
+    # geoUnitsHospitalInclude, geoUnitsCountyInclude, geoUnitsRegionInclude
+    if (sum(optionsList$geoUnitsHospitalInclude, optionsList$geoUnitsCountyInclude, optionsList$geoUnitsRegionInclude) < 1) {
+      optionsList$error <- paste0("At least one level of comparison (hospital/county/region) must be available")
+      return(optionsList)
+    }
+
+    # regionLabel
+    optionsList$regionLabel <-
+      ifelse(
+        length(optionsList$regionLabel) >= optionsList$whichLanguage,
+        optionsList$regionLabel[optionsList$whichLanguage],
+        optionsList$regionLabel[1]
+      )
+
+    # regionChoices
+    optionsList$regionChoices <- levels(factor(optionsList$data$region))[!(levels(factor(optionsList$data$region)) %in% rccShinyTXT(language = optionsList$language)$missing)]
+
+    # regionSelected
+    optionsList$regionSelected <- rccShinyTXT(language = optionsList$language)$all
+
+    # period
+    optionsList$periodInclude <- TRUE
+    if (is.null(optionsList$period)) {
+      optionsList$periodInclude <- FALSE
+      optionsList$period <- "period"
+      optionsList$data$period <- rep(1, nrow(optionsList$data))
+    } else if (optionsList$period %in% colnames(optionsList$data)) {
+      optionsList$data$period <- optionsList$data[, optionsList$period]
+      if (!class(optionsList$data[, optionsList$period]) %in% c("numeric", "integer", "Date")) {
+        optionsList$error <- paste0("The data in the variable '", optionsList$period,"' should be one of the following classes: 'numeric', 'integer' or 'Date'")
+        return(optionsList)
+      }
+    } else {
+      optionsList$error <- paste0("Column '", optionsList$period, "' not found in 'data'")
+      return(optionsList)
+    }
+
+    # periodDate
+    if (class(optionsList$data$period) == "Date") {
+      optionsList$periodDate <- TRUE
+      if (periodDateLevel == "quarter") {
+        tempNonEmpty <- !is.na(optionsList$data$period)
+        tempYear <- as.numeric(format(optionsList$data$period, "%Y"))
+        tempQuarter <- quarters(optionsList$data$period)
+        tempQuarter[!tempNonEmpty] <- NA
+        tempPeriod <- rep(NA, nrow(optionsList$data))
+        tempPeriod[tempNonEmpty] <-
+          paste0(
+            tempYear[tempNonEmpty],
+            tempQuarter[tempNonEmpty]
+          )
+        optionsList$data$period <- tempPeriod
+
+        tempYearsUnique <- sort(unique(tempYear))
+        optionsList$periodStart <- head(sort(unique(tempPeriod)), 1)
+        optionsList$periodEnd <- tail(sort(unique(tempPeriod)), 1)
+        optionsList$periodValues <-
+          paste0(
+            rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),
+            rep(paste0("Q", 1:4), rep = length(tempYearsUnique))
+          )
+        optionsList$periodValues <- optionsList$periodValues[which(optionsList$periodValues == optionsList$periodStart):which(optionsList$periodValues == optionsList$periodEnd)]
+      } else {
+        optionsList$data$period <- as.numeric(format(optionsList$data$period, "%Y"))
+        optionsList$periodStart <- min(optionsList$data$period, na.rm = TRUE)
+        optionsList$periodEnd <- max(optionsList$data$period, na.rm = TRUE)
+        optionsList$periodValues <- optionsList$periodStart:optionsList$periodEnd
+      }
+    } else {
+      optionsList$periodDate <- FALSE
+      optionsList$periodStart <- min(optionsList$data$period, na.rm = TRUE)
+      optionsList$periodEnd <- max(optionsList$data$period, na.rm = TRUE)
+      optionsList$periodValues <- optionsList$periodStart:optionsList$periodEnd
+    }
+
+    # periodLabel
+    optionsList$periodLabel <-
+      ifelse(
+        length(optionsList$periodLabel) >= optionsList$whichLanguage,
+        optionsList$periodLabel[optionsList$whichLanguage],
+        optionsList$periodLabel[1]
+      )
+
+    # includeVariables
+    includeVariables <- c(optionsList$outcome, "region", "landsting", "sjukhus", "period")
+
+    # varOther
+    if (!is.null(optionsList$varOther)) {
+      varOtherVariables <- vector()
+      for (i in 1:length(optionsList$varOther)) {
+        # varOther[[i]]$var
+        tempVar <- optionsList$varOther[[i]]$var
+        if (!(tempVar %in% colnames(optionsList$data))) {
+          optionsList$error <- paste0("The variable '", tempVar, "' from varOther[[", i, "]] is missing in 'data'")
+          return(optionsList)
+        }
+        if (paste0(tempVar, "_", optionsList$language) %in% colnames(optionsList$data))
+          optionsList$data[, tempVar] <- optionsList$data[, paste0(tempVar, "_", optionsList$language)]
+        varOtherVariables <- c(varOtherVariables, tempVar)
+        # varOther[[i]]$label
+        if (!("label" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$label))
+          optionsList$varOther[[i]]$label <- tempVar
+        optionsList$varOther[[i]]$label <-
+          ifelse(
+            length(optionsList$varOther[[i]]$label) >= optionsList$whichLanguage,
+            optionsList$varOther[[i]]$label[optionsList$whichLanguage],
+            optionsList$varOther[[i]]$label[1]
+          )
+        # varOther[[i]]$classNumeric
+        optionsList$varOther[[i]]$classNumeric <- class(optionsList$data[, tempVar]) %in% c("difftime", "numeric", "integer")
+        # varOther[[i]]$choices
+        if (!("choices" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$choices)) {
+          if (optionsList$varOther[[i]]$classNumeric) {
+            optionsList$varOther[[i]]$choices <- range(optionsList$data[, tempVar], na.rm = TRUE)
+          } else {
+            optionsList$varOther[[i]]$choices <- levels(factor(optionsList$data[, tempVar]))
+          }
+        }
+        if (is.list(optionsList$varOther[[i]]$choices)) {
+          optionsList$varOther[[i]]$choices <- optionsList$varOther[[i]]$choices[[ifelse(length(optionsList$varOther[[i]]$choices) >= optionsList$whichLanguage, optionsList$whichLanguage, 1)]]
+        }
+        # varOther[[i]]$selected
+        if (!("selected" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$selected))
+          optionsList$varOther[[i]]$selected <- optionsList$varOther[[i]]$choices
+        if (is.list(optionsList$varOther[[i]]$selected)) {
+          optionsList$varOther[[i]]$selected <- optionsList$varOther[[i]]$selected[[ifelse(length(optionsList$varOther[[i]]$selected) >= optionsList$whichLanguage, optionsList$whichLanguage, 1)]]
+        }
+        # varOther[[i]]$multiple
+        if (!("multiple" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$multiple))
+          optionsList$varOther[[i]]$multiple <- TRUE
+        # varOther[[i]]$showInTitle
+        if (!("showInTitle" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$showInTitle))
+          optionsList$varOther[[i]]$showInTitle <- TRUE
+      }
+      includeVariables <- c(includeVariables, varOtherVariables)
+    }
+
+    # propWithinUnit
+    optionsList$propWithinUnit <-
+      ifelse(
+        length(optionsList$propWithinUnit) >= optionsList$whichLanguage,
+        optionsList$propWithinUnit[optionsList$whichLanguage],
+        optionsList$propWithinUnit[1]
+      )
+
+    # propWithinValue
+    optionsList$propWithinValue <- rep(NA, length(optionsList$outcome))
+    optionsList$propWithinValue[optionsList$outcomeClass %in% "numeric"] <-
+      rep(
+        optionsList$propWithinValue,
+        length.out = sum(optionsList$outcomeClass %in% "numeric")
+      )
+
+    # hideLessThan
+    optionsList$hideLessThan <-
+      ifelse(
+        optionsList$hideLessThan < 5,
+        5,
+        optionsList$hideLessThan
+      )
+
+    # npcrGroupPrivateOthers
+    if (optionsList$npcrGroupPrivateOthers & sum(optionsList$geoUnitsHospitalInclude, optionsList$geoUnitsCountyInclude, optionsList$geoUnitsRegionInclude) < 3) {
+      optionsList$npcrGroupPrivateOthers <- FALSE
+      warning("'npcrGroupPrivateOthers' = TRUE can only be used when all levels of comparison (geoUnitsHospital, geoUnitsCounty and geoUnitsRegion) are active. 'npcrGroupPrivateOthers' set to FALSE.", call. = FALSE)
+    }
+
+    # data
+    optionsList$data <-
+      fixEncoding(
+        subset(
+          optionsList$data,
+          select = includeVariables
+        )
+      )
+
+    return(optionsList)
   }

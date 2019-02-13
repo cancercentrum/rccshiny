@@ -160,166 +160,136 @@ rccShiny2 <-
   ) {
 
     # # # # # # # # # # # # # # # #
-    # Checking input parameters!
+    # Checking input parameters
     # # # # # # # # # # # # # # # #
 
+    # Testing function
     testVariableError <-
       function(
         var = "var",
         listAllowed = TRUE
       ) {
         if (is.null(get(var)))
-          stop(paste0("'", var, "' is missing"), call. = FALSE)
+          stop("'", var, "' is missing", call. = FALSE)
         if (any(is.na(get(var))))
-          stop(paste0("'", var, "' is missing"), call. = FALSE)
+          stop("'", var, "' is missing", call. = FALSE)
         if (is.list(get(var))) {
           if (!listAllowed) {
-            stop(paste0("'", var, "' should not be a list"), call. = FALSE)
+            stop("'", var, "' should not be a list", call. = FALSE)
           } else {
             tempList <- get(var)
             for (i in 1:length(tempList)) {
               if (!is.character(tempList[[i]]))
-                stop(paste0("'", var, "' should be of type character"), call. = FALSE)
+                stop("'", var, "' should be of type character", call. = FALSE)
             }
           }
         } else {
           if (!is.character(get(var)))
-            stop(paste0("'", var, "' should be of type character"), call. = FALSE)
+            stop("'", var, "' should be of type character", call. = FALSE)
         }
       }
 
+    # inca
     if (is.null(inca) | !is.logical(inca) | length(inca) != 1)
-      stop(paste0("'inca' should a logical vector of length 1"), call. = FALSE)
-
+      stop("'inca' should a logical vector of length 1", call. = FALSE)
     if (inca) {
       testVariableError("incaScript", listAllowed = FALSE)
       if (!file.exists(incaScript))
         stop("The file '", incaScript, "' does not exist", call. = FALSE)
     }
 
+    # folder
     testVariableError("folder", listAllowed = FALSE)
     if (length(folder) != 1)
-      stop(paste0("'folder' should be of length 1"), call. = FALSE)
+      stop("'folder' should be of length 1", call. = FALSE)
 
-    if (is.null(path) | !is.character(path) | length(path) != 1)
-      stop("'path' should be a character vector of length 1", call. = FALSE)
-    if (!dir.exists(path))
-      stop("The folder '", path, "' does not exist", call. = FALSE)
+    # path
+    if (!inca) {
+      if (is.null(path) | !is.character(path) | length(path) != 1)
+        stop("'path' should be a character vector of length 1", call. = FALSE)
+      if (!dir.exists(path))
+        stop("The folder '", path, "' does not exist", call. = FALSE)
+    }
 
+    # language
     if (is.null(language) | !is.character(language))
       stop("'language' should be a character vector", call. = FALSE)
     if (inca & length(language) > 1)
       stop("When 'inca' = TRUE, 'language' should be of length 1", call. = FALSE)
 
-    if (is.null(data) | !is.data.frame(data))
-      stop("'data' should be a data.frame", call. = FALSE)
+    # data
+    if (!inca) {
+      if (is.null(data) | !is.data.frame(data))
+        stop("'data' should be a data.frame", call. = FALSE)
+    }
 
+    # outcome
     testVariableError("outcome", listAllowed = FALSE)
 
+    # outcomeNumericExcludeNeg
     if (is.null(outcomeNumericExcludeNeg) | !is.logical(outcomeNumericExcludeNeg) | length(outcomeNumericExcludeNeg) != 1)
-      stop(paste0("'outcomeNumericExcludeNeg' should a logical vector of length 1"), call. = FALSE)
+      stop("'outcomeNumericExcludeNeg' should a logical vector of length 1", call. = FALSE)
 
+    # outcomeTitle
     testVariableError("outcomeTitle")
     if (!is.list(outcomeTitle))
       outcomeTitle <- list(outcomeTitle)
     for (i in 1:length(outcomeTitle)) {
       if (length(outcome) != length(outcomeTitle[[i]]))
-        stop(paste0("'outcome' and 'outcomeTitle' should have the same number of elements"), call. = FALSE)
+        stop("'outcome' and 'outcomeTitle' should have the same number of elements", call. = FALSE)
     }
 
+    # textBeforeSubtitle
     if (is.null(textBeforeSubtitle))
       textBeforeSubtitle <- ""
     testVariableError("textBeforeSubtitle", listAllowed = FALSE)
 
+    # textAfterSubtitle
     if (is.null(textAfterSubtitle))
       textAfterSubtitle <- ""
     testVariableError("textAfterSubtitle", listAllowed = FALSE)
 
+    # description
     if (is.null(description))
-      stop(paste0("'description' is missing"), call. = FALSE)
+      stop("'description' is missing", call. = FALSE)
     if (!is.list(description))
       description <- list(description)
-    if (!(is.character(unlist(description)) | all(is.na(unlist(description))))) {
-      stop(paste0("'description' should be of type character"), call. = FALSE)
+    for (i in 1:length(description)) {
+      if (!is.character(description[[i]]))
+        stop("'description' should be of type character", call. = FALSE)
     }
 
-    GLOBAL_geoUnitsHospitalInclude <- TRUE
+    # geoUnitsHospital
     if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) != 1)) {
       stop("'geoUnitsHospital' should be either NULL or a character vector of length 1", call. = FALSE)
-    } else if (is.null(geoUnitsHospital)) {
-      GLOBAL_geoUnitsHospitalInclude <- FALSE
-      geoUnitsHospital <- "sjukhus"
-    } else if (!(geoUnitsHospital %in% colnames(data))) {
-      GLOBAL_geoUnitsHospitalInclude <- FALSE
-    } else if (!class(data[,geoUnitsHospital]) %in% c("character","numeric","integer")){
-      stop(paste0("The data in the variable '",geoUnitsHospital,"' should be one of the following classes, 'character', 'numeric' or 'integer'"), call. = FALSE)
     }
 
-    GLOBAL_geoUnitsCountyInclude <- TRUE
+    # geoUnitsCounty
     if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) != 1)) {
       stop("'geoUnitsCounty' should be either NULL or a character vector of length 1", call. = FALSE)
-    } else if (is.null(geoUnitsCounty)) {
-      GLOBAL_geoUnitsCountyInclude <- FALSE
-      geoUnitsCounty <- "landsting"
-    } else if (!(geoUnitsCounty %in% colnames(data))) {
-      GLOBAL_geoUnitsCountyInclude <- FALSE
-    } else if (!class(data[,geoUnitsCounty]) %in% c("numeric","integer")) {
-      stop(paste0("The data in the variable '",geoUnitsCounty,"' should be one of the following classes: 'numeric' or 'integer'"), call. = FALSE)
-    } else {
-      data$landstingCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsCounty])))
-      if (!(all(data$landstingCode %in% rccShinyCounties(lkf = geoUnitsPatient)$landstingCode)))
-        stop(
-          paste0(
-            "'", geoUnitsCounty, "' contains invalid values. When 'geoUnitsPatient'=", geoUnitsPatient, ", '", geoUnitsCounty, "' should only contain the values (",
-            paste(rccShinyCounties(lkf = geoUnitsPatient)$landstingCode, collapse = ", "),
-            ")."
-          ),
-          call. = FALSE
-        )
     }
 
-    GLOBAL_geoUnitsRegionInclude <- TRUE
+    # geoUnitsRegion
     if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) != 1)) {
       stop("'geoUnitsRegion' should be either NULL or a character vector of length 1", call. = FALSE)
-    } else if (is.null(geoUnitsRegion)) {
-      GLOBAL_geoUnitsRegionInclude <- FALSE
-      geoUnitsRegion <- "landsting"
-    } else if (!(geoUnitsRegion %in% colnames(data))) {
-      GLOBAL_geoUnitsRegionInclude <- FALSE
-    } else if (!class(data[,geoUnitsRegion]) %in% c("numeric","integer")) {
-      stop(paste0("The data in the variable '",geoUnitsRegion,"' should be one of the following classes, 'numeric' or 'integer'"), call. = FALSE)
-    } else {
-      data$regionCode <- suppressWarnings(as.numeric(as.character(data[, geoUnitsRegion])))
-      if (!(all(data$regionCode %in% c(1:6, NA))))
-        stop(
-          paste0("'", geoUnitsRegion, "' contains invalid values. '", geoUnitsRegion, "' should only contain the values (", paste(c(1:6, NA), collapse = ", "), ")."),
-          call. = FALSE
-        )
     }
 
-    if (sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude) < 1)
-      stop(paste0("At least one level of comparison (hospital/county/region) must be available"), call. = FALSE)
-
+    # geoUnitsPatient
     if (is.null(geoUnitsPatient) | !is.logical(geoUnitsPatient) | length(geoUnitsPatient) != 1)
-      stop(paste0("'geoUnitsPatient' should a logical vector of length 1"), call. = FALSE)
+      stop("'geoUnitsPatient' should a logical vector of length 1", call. = FALSE)
 
+    # regionSelection
     if (is.null(regionSelection) | !is.logical(regionSelection) | length(regionSelection) != 1)
-      stop(paste0("'regionSelection' should a logical vector of length 1"), call. = FALSE)
+      stop("'regionSelection' should a logical vector of length 1", call. = FALSE)
 
+    # regionLabel
     testVariableError("regionLabel", listAllowed = FALSE)
 
-    if (is.null(period)) {
-      GLOBAL_periodInclude <- FALSE
-      period <- "period"
-      data$period <- rep(1, nrow(data))
-    } else if (!class(data[,period]) %in% c("numeric","integer")) {
-      stop(paste0("The data in the variable '", period, "' should be one of the following classes: 'numeric' or 'integer'"), call. = FALSE)
-    } else {
-      GLOBAL_periodInclude <- TRUE
-      if (!is.character(period) | length(period) != 1)
-        stop("'period' should be a character vector of length 1", call. = FALSE)
-    }
+    # period
+    if (!is.null(period) & (!is.character(period) | length(period) != 1))
+      stop("'period' should be either NULL or a character vector of length 1", call. = FALSE)
 
+    # periodDateLevel
     if (is.null(periodDateLevel)) {
       periodDateLevel <- "year"
     } else {
@@ -329,13 +299,22 @@ rccShiny2 <-
         stop("Allowed values for 'periodDateLevel' are 'year' and 'quarter'", call. = FALSE)
     }
 
+    # periodLabel
     testVariableError("periodLabel", listAllowed = FALSE)
 
+    # varOther
     if (!is.null(varOther) & (!is.list(varOther) | length(varOther) < 1))
       stop("'varOther' should be either NULL or a list with at least one element", call. = FALSE)
     if (!all(sapply(varOther, is.list)))
       stop("The elements of 'varOther' should be lists", call. = FALSE)
+    if (!is.null(varOther)) {
+      for (i in 1:length(varOther)) {
+        if (!("var" %in% names(varOther[[i]])) | is.null(varOther[[i]]$var))
+          stop("'var' is missing from varOther[[", i, "]]", call. = FALSE)
+      }
+    }
 
+    # targetValues
     if (!is.list(targetValues))
       targetValues <- list(targetValues)
     targetValuesOld <- targetValues
@@ -345,350 +324,118 @@ rccShiny2 <-
         if (!is.null(targetValuesOld[[i]]))
           targetValues[[i]] <- targetValuesOld[[i]]
         if (!is.null(targetValues[[i]]) & (!is.numeric(targetValues[[i]]) | length(targetValues[[i]]) < 1 | length(targetValues[[i]]) > 2))
-          stop(paste0("'targetValues[[",i,"]]' should be either NULL or a numeric vector of length 1 or 2"), call. = FALSE)
+          stop("'targetValues[[",i,"]]' should be either NULL or a numeric vector of length 1 or 2", call. = FALSE)
       }
     }
 
+    # funnelplot
     if (is.null(funnelplot) | is.na(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
-      stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
+      stop("'funnelplot' should be a logical vector of length 1", call. = FALSE)
 
+    # sortDescending
     if (!is.null(sortDescending) & (!is.logical(sortDescending) | length(sortDescending) < 1))
-      stop(paste0("'sortDescending' should be either NULL or a logical vector with at least one element"), call. = FALSE)
+      stop("'sortDescending' should be either NULL or a logical vector with at least one element", call. = FALSE)
     if (!is.null(sortDescending) & length(sortDescending) < length(outcome))
       sortDescending <- c(
         sortDescending,
         rep(TRUE, length(outcome) - length(sortDescending))
       )
 
+    # propWithinShow
     if (is.null(propWithinShow) | is.na(propWithinShow) | !is.logical(propWithinShow) | length(propWithinShow) != 1)
-      stop(paste0("'funnelplot' should be a logical vector of length 1"), call. = FALSE)
+      stop("'funnelplot' should be a logical vector of length 1", call. = FALSE)
 
+    # propWithinValue
     if (is.null(propWithinValue) | is.na(propWithinValue) | length(propWithinValue) != 1 | (!is.integer(propWithinValue) & !is.numeric(propWithinValue)))
-      stop(paste0("'propWithinValue' should be a a numeric och integer value of length 1"), call. = FALSE)
+      stop("'propWithinValue' should be a a numeric och integer value of length 1", call. = FALSE)
 
+    # hideLessThan
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
 
-    if (is.null(npcrGroupPrivateOthers) | !is.logical(npcrGroupPrivateOthers) | length(npcrGroupPrivateOthers) != 1)
-      stop(paste0("'npcrGroupPrivateOthers' should be a logical vector of length 1"), call. = FALSE)
-
+    # gaPath
     if (!is.null(gaPath) & (!is.character(gaPath) | length(gaPath) != 1))
       stop("'gaPath' should be either NULL or a character vector of length 1", call. = FALSE)
     if (!is.null(gaPath))
       gaPath <- ifelse(substr(gaPath, 1, 1) == "/", gaPath, paste0("/", gaPath))
 
-    if (npcrGroupPrivateOthers & sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude) < 3) {
-      npcrGroupPrivateOthers <- FALSE
-      warning(paste0("'npcrGroupPrivateOthers' = TRUE can only be used when all levels of comparison (geoUnitsHospital, geoUnitsCounty and geoUnitsRegion) are active. 'npcrGroupPrivateOthers' set to FALSE."), call. = FALSE)
-    }
+    # npcrGroupPrivateOthers
+    if (is.null(npcrGroupPrivateOthers) | !is.logical(npcrGroupPrivateOthers) | length(npcrGroupPrivateOthers) != 1)
+      stop("'npcrGroupPrivateOthers' should be a logical vector of length 1", call. = FALSE)
 
     # # # # # # # # # # # # # # # #
+    # Produce app for each language
+    # # # # # # # # # # # # # # # #
 
-    masterData <- data
+    for (loopLanguage in language) {
 
-    # Save folder for each language
-
-    for (loop_language in language) {
-
-      data <- masterData
-
-      which_language <- which(language == loop_language)
-
-      GLOBAL_language <- loop_language
-
-      # Check for period variable in data
-      if (period %in% colnames(data)) {
-        data$period <- data[, period]
-        if (!class(data[,period]) %in% c("numeric", "integer", "Date")) {
-          stop(paste0("The data in the variable '",period,"' should be one of the following classes: 'numeric', 'integer' or 'Date'"), call. = FALSE)
-        }
-      } else {
-        stop(paste0("Column '", period, "' not found in 'data'"), call. = FALSE)
-      }
-
-      # Check for outcome variable(s) in data
-      for (i in 1:length(outcome)) {
-        if (paste0(outcome[i], "_", loop_language) %in% colnames(data)) {
-          data[, outcome[i]] <- data[, paste0(outcome[i], "_", loop_language)]
-        } else if (!(outcome[i] %in% colnames(data))) {
-          stop(paste0("Column '", outcome[i], "' not found in 'data'"), call. = FALSE)
-        }
-      }
-
-      # Add region names
-      if (GLOBAL_geoUnitsRegionInclude) {
-        data$region <-
-          factor(
-            data$regionCode,
-            levels = c(1:6, NA),
-            labels = rccShinyRegionNames(language = loop_language),
-            exclude = NULL
-          )
-      } else {
-        data$region <- "(not displayed)"
-      }
-
-      # Add county names
-      if (GLOBAL_geoUnitsCountyInclude) {
-        data <- data[, colnames(data) != "landsting"]
-        data <-
-          merge(
-            data,
-            rccShinyCounties(language = loop_language, lkf = geoUnitsPatient),
-            by = "landstingCode",
-            all.x = TRUE
-          )
-      } else {
-        data$landsting <- "(not displayed)"
-      }
-
-      # Check for hospital variable in data
-      if (GLOBAL_geoUnitsHospitalInclude) {
-        data$sjukhus <-
-          if (paste0(geoUnitsHospital, "_", loop_language) %in% colnames(data)) {
-            data[, paste0(geoUnitsHospital, "_", loop_language)]
-          } else {
-            data[, geoUnitsHospital]
-          }
-        # Fix missing in hospital variable
-        data$sjukhus[is.na(data$sjukhus) | data$sjukhus == ""] <- rccShinyTXT(language = GLOBAL_language)$missing
-      } else {
-        data$sjukhus <- "(not displayed)"
-      }
-
-      includeVariables <- c("period", "region", "landsting", "sjukhus")
-
-      # Check for user variable(s) in data
-      GLOBAL_varOther <- varOther
-      if (!is.null(GLOBAL_varOther)) {
-        userInputVariables <- vector()
-        for (i in 1:length(GLOBAL_varOther)) {
-          if (is.null(GLOBAL_varOther[[i]]$var))
-            stop(paste0("'var' is missing from varOther[[", i, "]]"), call. = FALSE)
-          temp_var <- GLOBAL_varOther[[i]]$var
-          if (!(temp_var %in% colnames(data)))
-            stop(paste0("The variable '", temp_var, "' from varOther[[", i, "]] is missing in 'data'"), call. = FALSE)
-
-          if (paste0(temp_var, "_", loop_language) %in% colnames(data))
-            data[, temp_var] <- data[, paste0(temp_var, "_", loop_language)]
-          userInputVariables <- c(userInputVariables, temp_var)
-
-          if (is.null(GLOBAL_varOther[[i]]$label))
-            GLOBAL_varOther[[i]]$label <- temp_var
-          GLOBAL_varOther[[i]]$label <-
-            ifelse(
-              length(GLOBAL_varOther[[i]]$label) >= which_language,
-              GLOBAL_varOther[[i]]$label[which_language],
-              GLOBAL_varOther[[i]]$label[1]
-            )
-
-          GLOBAL_varOther[[i]]$classNumeric <- class(data[, temp_var]) %in% c("difftime", "numeric", "integer")
-
-          if (is.null(GLOBAL_varOther[[i]]$choices)) {
-            if (GLOBAL_varOther[[i]]$classNumeric) {
-              GLOBAL_varOther[[i]]$choices <- range(data[, temp_var], na.rm = TRUE)
-            } else {
-              GLOBAL_varOther[[i]]$choices <- levels(factor(data[, temp_var]))
-            }
-          }
-          if (is.list(GLOBAL_varOther[[i]]$choices)) {
-            GLOBAL_varOther[[i]]$choices <- GLOBAL_varOther[[i]]$choices[[ifelse(length(GLOBAL_varOther[[i]]$choices) >= which_language, which_language, 1)]]
-          }
-
-          if (is.null(GLOBAL_varOther[[i]]$selected))
-            GLOBAL_varOther[[i]]$selected <- GLOBAL_varOther[[i]]$choices
-          if (is.list(GLOBAL_varOther[[i]]$selected)) {
-            GLOBAL_varOther[[i]]$selected <- GLOBAL_varOther[[i]]$selected[[ifelse(length(GLOBAL_varOther[[i]]$selected) >= which_language, which_language, 1)]]
-          }
-
-          if (is.null(GLOBAL_varOther[[i]]$multiple))
-            GLOBAL_varOther[[i]]$multiple <- TRUE
-
-          if (is.null(GLOBAL_varOther[[i]]$showInTitle))
-            GLOBAL_varOther[[i]]$showInTitle <- TRUE
-        }
-        includeVariables <- c(includeVariables, userInputVariables)
-      }
-
-      includeVariables <- c(includeVariables, outcome)
-      GLOBAL_outcome <- outcome
-      GLOBAL_outcomeClass <- vector()
-      for (i in 1:length(outcome)) {
-        GLOBAL_outcomeClass[i] <- class(data[, outcome[i]])
-      }
-
-      GLOBAL_data <-
-        subset(
-          data,
-          select = includeVariables
-        )
-
-      GLOBAL_outcomeNumericExcludeNeg <- outcomeNumericExcludeNeg
-
-      GLOBAL_outcomeTitle <-
-        if (length(outcomeTitle) >= which_language) {
-          outcomeTitle[[which_language]]
-        } else {
-          outcomeTitle[[1]]
-        }
-
-      GLOBAL_textBeforeSubtitle <- if (length(textBeforeSubtitle) >= which_language) {
-        textBeforeSubtitle[which_language]
-      } else {
-        textBeforeSubtitle[1]
-      }
-      GLOBAL_textAfterSubtitle <- if (length(textAfterSubtitle) >= which_language) {
-        textAfterSubtitle[which_language]
-      } else {
-        textAfterSubtitle[1]
-      }
-
-      GLOBAL_description <-
-        if (length(description) >= which_language) {
-          description[[which_language]]
-        } else {
-          description[[1]]
-        }
-      if (length(GLOBAL_description) < 3)
-        GLOBAL_description <- c(
-          GLOBAL_description,
-          rep(NA, 3 - length(GLOBAL_description))
-        )
-
-      GLOBAL_periodLabel <-
-        ifelse(
-          length(periodLabel) >= which_language,
-          periodLabel[which_language],
-          periodLabel[1]
-        )
-
-      GLOBAL_periodDateLevel <- periodDateLevel
-
-      if (class(data$period) == "Date") {
-        GLOBAL_periodDate <- TRUE
-        if (periodDateLevel == "quarter") {
-          tempNonEmpty <- !is.na(data$period)
-          tempYear <- as.numeric(format(data$period, "%Y"))
-          tempQuarter <- quarters(data$period)
-          tempQuarter[!tempNonEmpty] <- NA
-          tempPeriod <- rep(NA, nrow(data))
-          tempPeriod[tempNonEmpty] <-
-            paste0(
-              tempYear[tempNonEmpty],
-              tempQuarter[tempNonEmpty]
-            )
-          data$period <- tempPeriod
-
-          tempYearsUnique <- sort(unique(tempYear))
-          GLOBAL_periodStart <- head(sort(unique(tempPeriod)), 1)
-          GLOBAL_periodEnd <- tail(sort(unique(tempPeriod)), 1)
-          GLOBAL_periodValues <-
-            paste0(
-              rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),
-              rep(paste0("Q", 1:4), rep = length(tempYearsUnique))
-            )
-          GLOBAL_periodValues <- GLOBAL_periodValues[which(GLOBAL_periodValues == GLOBAL_periodStart):which(GLOBAL_periodValues == GLOBAL_periodEnd)]
-        } else {
-          data$period <- as.numeric(format(data$period, "%Y"))
-          GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
-          GLOBAL_periodEnd <- max(data$period, na.rm = TRUE)
-          GLOBAL_periodValues <- GLOBAL_periodStart:GLOBAL_periodEnd
-        }
-      } else {
-        GLOBAL_periodDate <- FALSE
-        GLOBAL_periodStart <- min(data$period, na.rm = TRUE)
-        GLOBAL_periodEnd <- max(data$period, na.rm = TRUE)
-        GLOBAL_periodValues <- GLOBAL_periodStart:GLOBAL_periodEnd
-      }
-
-      GLOBAL_geoUnitsPatient <- geoUnitsPatient
-
-      GLOBAL_regionSelection <- regionSelection
-      GLOBAL_regionLabel <- ifelse(length(regionLabel) >= which_language, regionLabel[which_language], regionLabel[1])
-      GLOBAL_regionChoices <- levels(factor(data$region))[!levels(factor(data$region)) %in% rccShinyTXT(language = GLOBAL_language)$missing]
-      GLOBAL_regionSelected <- rccShinyTXT(language = GLOBAL_language)$all
-
-      GLOBAL_targetValues <- targetValues
-      GLOBAL_funnelplot <- funnelplot
-      GLOBAL_sortDescending <- sortDescending
-
-      GLOBAL_propWithinShow <- propWithinShow
-      GLOBAL_propWithinUnit <- ifelse(length(propWithinUnit) >= which_language, propWithinUnit[which_language], propWithinUnit[1])
-      GLOBAL_propWithinValue <- rep(NA, length(outcome))
-      GLOBAL_propWithinValue[GLOBAL_outcomeClass == "numeric"] <-
-        rep(
-          propWithinValue,
-          length.out = sum(GLOBAL_outcomeClass == "numeric")
-        )
-
-      GLOBAL_hideLessThan <- ifelse(hideLessThan < 5, 5, hideLessThan)
-
-      GLOBAL_gaPath <- gaPath
-
-      GLOBAL_npcrGroupPrivateOthers <- npcrGroupPrivateOthers
-
-      GLOBAL_data <- fixEncoding(GLOBAL_data)
-
-      GLOBAL_optionsList <-
+      optionsList <-
         list(
-          GLOBAL_data = GLOBAL_data,
-          GLOBAL_inca = inca,
-          GLOBAL_incaScript = incaScript,
-          GLOBAL_language = GLOBAL_language,
-          GLOBAL_outcome = GLOBAL_outcome,
-          GLOBAL_outcomeNumericExcludeNeg = GLOBAL_outcomeNumericExcludeNeg,
-          GLOBAL_outcomeTitle = GLOBAL_outcomeTitle,
-          GLOBAL_outcomeClass = GLOBAL_outcomeClass,
-          GLOBAL_textBeforeSubtitle = GLOBAL_textBeforeSubtitle,
-          GLOBAL_textAfterSubtitle = GLOBAL_textAfterSubtitle,
-          GLOBAL_description = GLOBAL_description,
-          GLOBAL_periodInclude = GLOBAL_periodInclude,
-          GLOBAL_periodLabel = GLOBAL_periodLabel,
-          GLOBAL_periodDate = GLOBAL_periodDate,
-          GLOBAL_periodDateLevel = GLOBAL_periodDateLevel,
-          GLOBAL_periodStart = GLOBAL_periodStart,
-          GLOBAL_periodEnd = GLOBAL_periodEnd,
-          GLOBAL_periodValues = GLOBAL_periodValues,
-          GLOBAL_geoUnitsHospitalInclude = GLOBAL_geoUnitsHospitalInclude,
-          GLOBAL_geoUnitsCountyInclude = GLOBAL_geoUnitsCountyInclude,
-          GLOBAL_geoUnitsRegionInclude = GLOBAL_geoUnitsRegionInclude,
-          GLOBAL_geoUnitsPatient = GLOBAL_geoUnitsPatient,
-          GLOBAL_regionSelection = GLOBAL_regionSelection,
-          GLOBAL_regionLabel = GLOBAL_regionLabel,
-          GLOBAL_regionChoices = GLOBAL_regionChoices,
-          GLOBAL_regionSelected = GLOBAL_regionSelected,
-          GLOBAL_targetValues = GLOBAL_targetValues,
-          GLOBAL_funnelplot = GLOBAL_funnelplot,
-          GLOBAL_sortDescending = GLOBAL_sortDescending,
-          GLOBAL_propWithinShow = GLOBAL_propWithinShow,
-          GLOBAL_propWithinUnit = GLOBAL_propWithinUnit,
-          GLOBAL_propWithinValue = GLOBAL_propWithinValue,
-          GLOBAL_varOther = GLOBAL_varOther,
-          GLOBAL_hideLessThan = GLOBAL_hideLessThan,
-          GLOBAL_gaPath = GLOBAL_gaPath,
-          GLOBAL_npcrGroupPrivateOthers = GLOBAL_npcrGroupPrivateOthers
+          inca = inca,
+          incaScript = incaScript,
+          language = loopLanguage,
+          whichLanguage = which(language == loopLanguage),
+          data = data,
+          outcome = outcome,
+          outcomeNumericExcludeNeg = outcomeNumericExcludeNeg,
+          outcomeTitle = outcomeTitle,
+          textBeforeSubtitle = textBeforeSubtitle,
+          textAfterSubtitle = textAfterSubtitle,
+          description = description,
+          geoUnitsHospital = geoUnitsHospital,
+          geoUnitsCounty = geoUnitsCounty,
+          geoUnitsRegion = geoUnitsRegion,
+          geoUnitsPatient = geoUnitsPatient,
+          regionSelection = regionSelection,
+          regionLabel = regionLabel,
+          period = period,
+          periodDateLevel = periodDateLevel,
+          periodLabel = periodLabel,
+          varOther = varOther,
+          targetValues = targetValues,
+          funnelplot = funnelplot,
+          sortDescending = sortDescending,
+          propWithinShow = propWithinShow,
+          propWithinUnit = propWithinUnit,
+          propWithinValue = propWithinValue,
+          hideLessThan = hideLessThan,
+          gaPath = gaPath,
+          npcrGroupPrivateOthers = npcrGroupPrivateOthers
         )
 
       if (!inca) {
-        if (!dir.exists(paste0(path, "/", loop_language))) {
-          dir.create(paste0(path, "/", loop_language), showWarnings = FALSE)
+        optionsList <-
+          rccShinyCheckData(
+            optionsList = optionsList
+          )
+
+        if (optionsList$error != "") {
+          stop(optionsList$error, call. = FALSE)
         }
 
-        dir.create(paste0(path, "/", loop_language, "/", folder), showWarnings = FALSE)
-        dir.create(paste0(path, "/", loop_language, "/", folder, "/data"), showWarnings = FALSE)
+        if (!dir.exists(paste0(path, "/", loopLanguage))) {
+          dir.create(paste0(path, "/", loopLanguage), showWarnings = FALSE)
+        }
 
-        file.copy(system.file("source", "app.R", package = "rccShiny"), paste0(path, "/", loop_language, "/", folder, "/app.R"), overwrite = TRUE)
+        dir.create(paste0(path, "/", loopLanguage, "/", folder), showWarnings = FALSE)
+        dir.create(paste0(path, "/", loopLanguage, "/", folder, "/data"), showWarnings = FALSE)
+
+        file.copy(
+          system.file("source", "app.R", package = "rccShiny"),
+          paste0(path, "/", loopLanguage, "/", folder, "/app.R"),
+          overwrite = TRUE
+        )
 
         save(
-          GLOBAL_optionsList,
-          file = paste0(path, "/", loop_language, "/", folder, "/data/data.RData")
+          optionsList,
+          file = paste0(path, "/", loopLanguage, "/", folder, "/data/data.RData")
         )
       }
 
     }
 
     if (inca) {
-      rccShinyApp(optionsList = GLOBAL_optionsList)
+      rccShinyApp(optionsList = optionsList)
     }
 
   }
