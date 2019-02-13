@@ -160,6 +160,15 @@ rccShiny2 <-
   ) {
 
     # # # # # # # # # # # # # # # #
+    # Loading libraries
+    # Needed using when on INCA
+    # # # # # # # # # # # # # # # #
+
+    library(shiny)
+    library(shinyWidgets)
+    library(DT)
+
+    # # # # # # # # # # # # # # # #
     # Checking input parameters
     # # # # # # # # # # # # # # # #
 
