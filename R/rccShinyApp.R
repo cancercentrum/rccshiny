@@ -85,7 +85,7 @@ rccShinyApp <-
 
         outcomeClassNumeric <-
           reactive({
-            GLOBAL_outcomeClass[whichOutcome()] %in% c("difftime", "numeric", "integer")
+            GLOBAL_outcomeClass[whichOutcome()] %in% "numeric"
           })
 
         output$outcomeInput <-
@@ -168,7 +168,7 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
-                  "input.tab!='fig_trend' & ",
+                  "input.tab!='fig_trend' & input.tab!='list' & ",
                   ifelse(GLOBAL_regionSelection, "true", "false"),
                   " & ",
                   ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false")
@@ -191,7 +191,7 @@ rccShinyApp <-
               conditionalPanel(
                 condition =
                   paste0(
-                    "input.tab!='fig_trend' & input.tab!='fig_map' & ",
+                    "input.tab!='fig_trend' & input.tab!='fig_map' & input.tab!='list' & ",
                     ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "input.tab!='fig_trend'"),
                     " & ",
                     ifelse(sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude) > 1, "true", "false")
@@ -232,7 +232,7 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
-                  "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & ",
+                  "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & input.tab!='list' & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"),
                   " & !(",
                   ifelse(GLOBAL_geoUnitsPatient, "true", "false"),
@@ -288,7 +288,7 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
-                  "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & ",
+                  "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & input.tab!='list' & ",
                   ifelse(
                     !is.null(input[["param_period"]]),
                     "input.param_period[0]!=input.param_period[1]",
@@ -561,6 +561,9 @@ rccShinyApp <-
             if (GLOBAL_periodInclude) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
             }
+            if (GLOBAL_inca & GLOBAL_incaIncludeList & GLOBAL_geoUnitsHospitalInclude) {
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", dataTableOutput("indList"))
+            }
             theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, htmlOutput("description"))
             do.call(tabsetPanel, c(theTabs, id = "tab"))
           })
@@ -593,42 +596,46 @@ rccShinyApp <-
               )
           }
 
-          if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
-            dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "Södra Halland"
-            dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
-          }
+          if (input$tab == "list") {
+            dftemp$group <- dftemp[, "sjukhus"]
+          } else {
+            if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
+              dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "Södra Halland"
+              dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
+            }
 
-          # Speciallösning för NPCR
-          # -----------------------
-          if (GLOBAL_npcrGroupPrivateOthers) {
-            showPrivateHospitals <- TRUE
-            if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
-              showPrivateHospitals <- FALSE
-            } else {
-              if (rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]]) {
+            # Speciallösning för NPCR
+            # -----------------------
+            if (GLOBAL_npcrGroupPrivateOthers) {
+              showPrivateHospitals <- TRUE
+              if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
                 showPrivateHospitals <- FALSE
+              } else {
+                if (rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]]) {
+                  showPrivateHospitals <- FALSE
+                }
+              }
+
+              if (!showPrivateHospitals) {
+                npcrListPrivateAlwaysShow <- c(
+                  "Capio Lundby Närsjukhus",
+                  "Carlanderska sjukhuset",
+                  "Sophiahemmet",
+                  "Capio S:t Görans sjukhus",
+                  "Capio S:t Görans sjukhus - UroClinic"
+                )
+                privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
+                landstingName <- privateOthersName[[GLOBAL_language]]$landsting
+                sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
+                changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName & !(dftemp$sjukhus %in% npcrListPrivateAlwaysShow)
+                dftemp$sjukhus[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
               }
             }
+            # -----------------------
 
-            if (!showPrivateHospitals) {
-              npcrListPrivateAlwaysShow <- c(
-                "Capio Lundby Närsjukhus",
-                "Carlanderska sjukhuset",
-                "Sophiahemmet",
-                "Capio S:t Görans sjukhus",
-                "Capio S:t Görans sjukhus - UroClinic"
-              )
-              privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
-              landstingName <- privateOthersName[[GLOBAL_language]]$landsting
-              sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-              changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName & !(dftemp$sjukhus %in% npcrListPrivateAlwaysShow)
-              dftemp$sjukhus[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
-            }
+            dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
+            dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
           }
-          # -----------------------
-
-          dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
-          dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
 
           if (!is.null(GLOBAL_varOther)) {
             for (i in 1:length(GLOBAL_varOther)) {
@@ -719,7 +726,7 @@ rccShinyApp <-
                 ind = dfuse$outcome,
                 ind_numeric_exclude_neg = FALSE,
                 ind_title = ifelse(
-                  class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
+                  class(dfuse$outcome) %in% "numeric",
                   rccShinyTXT(language = GLOBAL_language)$median,
                   rccShinyTXT(language = GLOBAL_language)$percent
                 ),
@@ -727,7 +734,7 @@ rccShinyApp <-
                 ind_noofcasestxt_nOfN = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
                 period = if (input$param_periodSplit) {dfuse$period} else {NULL},
                 x_lab = ifelse(
-                  class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
+                  class(dfuse$outcome) %in% "numeric",
                   paste0(
                     rccShinyTXT(language = GLOBAL_language)$median,
                     " (", GLOBAL_propWithinUnit, ")"),
@@ -1069,7 +1076,7 @@ rccShinyApp <-
             colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
           }
 
-          nColTab <<- ncol(tab)
+          assign("nColTab", ncol(tab), envir = .GlobalEnv)
 
           tab
 
@@ -1134,7 +1141,7 @@ rccShinyApp <-
             colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
           }
 
-          nColTab <<- ncol(tab)
+          assign("nColTab", ncol(tab), envir = .GlobalEnv)
 
           tab
 
@@ -1197,7 +1204,7 @@ rccShinyApp <-
             colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
           }
 
-          nColTab <<- ncol(tab)
+          assign("nColTab", ncol(tab), envir = .GlobalEnv)
 
           tab
 
@@ -1300,6 +1307,92 @@ rccShinyApp <-
 
           }, deleteFile = TRUE)
 
+        output$indList <-
+          DT::renderDataTable({
+
+          dfuse <- dfInput()
+
+          listIncludeVariables <- c(
+            if (GLOBAL_idInclude) {GLOBAL_id},
+            if (GLOBAL_idOverviewLinkInclude) {GLOBAL_idOverviewLink},
+            "group",
+            "period",
+            "outcome"
+          )
+          listIncludeVariablesTxt <- c(
+            if (GLOBAL_idInclude) {"ID"},
+            if (GLOBAL_idOverviewLinkInclude) {rccShinyTXT(language = GLOBAL_language)$idOverviewLink},
+            rccShinyLevelNames("hospital", language = GLOBAL_language),
+            GLOBAL_periodLabel,
+            rccShinyTXT(language = GLOBAL_language)$outcome
+          )
+
+          tab <-
+            subset(
+              dfuse,
+              group %in% GLOBAL_incaUserHospital,
+              select = listIncludeVariables
+            )
+
+          if (class(tab$outcome) %in% "logical") {
+            tab$outcome <-
+              factor(
+                tab$outcome,
+                levels = c(TRUE, FALSE),
+                labels = c(
+                  rccShinyTXT(language = GLOBAL_language)$yes,
+                  rccShinyTXT(language = GLOBAL_language)$no
+                )
+              )
+          }
+
+          colnames(tab) <- listIncludeVariablesTxt
+
+          if (nrow(tab) == 0) {
+            tab <-
+              subset(
+                data.frame(
+                  rccShinyNoObservationsText(language = GLOBAL_language)
+                ),
+                FALSE
+              )
+            colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
+          }
+
+          tempColumnDefs <-
+            list(
+              list(
+                className = 'dt-left',
+                targets = 0
+              )
+            )
+          if (ncol(tab) > 1) {
+            tempColumnDefs[[2]] <-
+              list(
+                className = 'dt-right',
+                targets = 1:(ncol(tab)-1)
+              )
+          }
+
+          tab <-
+            DT::datatable(
+              tab,
+              escape = FALSE,
+              rownames = FALSE,
+              extensions = 'Buttons',
+              options = list(
+                columnDefs = tempColumnDefs,
+                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                searching = TRUE,
+                paging = FALSE,
+                dom = 'Bfrtip',
+                buttons = list('excel', 'pdf', 'print')
+              )
+            )
+
+          tab
+        })
+
         output$description <-
           renderUI({
             HTML(
@@ -1354,6 +1447,22 @@ rccShinyCheckData <-
 
     optionsList$error <- ""
 
+    # id
+    optionsList$idInclude <- TRUE
+    if (is.null(optionsList$id)) {
+      optionsList$idInclude <- FALSE
+    } else if (!(optionsList$id %in% colnames(optionsList$data))) {
+      optionsList$idInclude <- FALSE
+    }
+
+    # idOverviewLink
+    optionsList$idOverviewLinkInclude <- TRUE
+    if (is.null(optionsList$idOverviewLink)) {
+      optionsList$idOverviewLinkInclude <- FALSE
+    } else if (!(optionsList$idOverviewLink %in% colnames(optionsList$data))) {
+      optionsList$idOverviewLinkInclude <- FALSE
+    }
+
     # outcome
     for (i in 1:length(optionsList$outcome)) {
       if (paste0(optionsList$outcome[i], "_", optionsList$language) %in% colnames(optionsList$data)) {
@@ -1368,6 +1477,10 @@ rccShinyCheckData <-
     optionsList$outcomeClass <- vector()
     for (i in 1:length(optionsList$outcome)) {
       optionsList$outcomeClass[i] <- class(optionsList$data[, optionsList$outcome[i]])
+      if (!(optionsList$outcomeClass[i]) %in% c("logical", "factor", "numeric")) {
+        optionsList$error <- paste0("Column '", optionsList$outcome[i], "' in 'data' if not of type logical, factor or numeric")
+        return(optionsList)
+      }
     }
 
     # outcomeTitle
@@ -1541,7 +1654,7 @@ rccShinyCheckData <-
     # periodDate
     if (class(optionsList$data$period) == "Date") {
       optionsList$periodDate <- TRUE
-      if (periodDateLevel == "quarter") {
+      if (optionsList$periodDateLevel == "quarter") {
         tempNonEmpty <- !is.na(optionsList$data$period)
         tempYear <- as.numeric(format(optionsList$data$period, "%Y"))
         tempQuarter <- quarters(optionsList$data$period)
@@ -1586,6 +1699,12 @@ rccShinyCheckData <-
 
     # includeVariables
     includeVariables <- c(optionsList$outcome, "region", "landsting", "sjukhus", "period")
+
+    if (optionsList$idInclude)
+      includeVariables <- c(includeVariables, optionsList$id)
+
+    if (optionsList$idOverviewLinkInclude)
+      includeVariables <- c(includeVariables, optionsList$idOverviewLink)
 
     # varOther
     if (!is.null(optionsList$varOther)) {
@@ -1647,12 +1766,9 @@ rccShinyCheckData <-
       )
 
     # propWithinValue
-    optionsList$propWithinValue <- rep(NA, length(optionsList$outcome))
-    optionsList$propWithinValue[optionsList$outcomeClass %in% "numeric"] <-
-      rep(
-        optionsList$propWithinValue,
-        length.out = sum(optionsList$outcomeClass %in% "numeric")
-      )
+    if (length(optionsList$propWithinValue) == 1) {
+      optionsList$propWithinValue <- rep(optionsList$propWithinValue, length(optionsList$outcome))
+    }
 
     # hideLessThan
     optionsList$hideLessThan <-

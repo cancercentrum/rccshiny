@@ -5,11 +5,12 @@
 \title{Shiny apps for RCC}
 \usage{
 rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
-  folder = "ind", path = getwd(), language = "sv", data = NULL,
-  outcome = "outcome", outcomeNumericExcludeNeg = TRUE,
-  outcomeTitle = outcome, textBeforeSubtitle = NULL,
-  textAfterSubtitle = NULL, description = rep(NA, 3),
-  geoUnitsHospital = "sjukhus",
+  incaIncludeList = !is.null(incaUserHospital), folder = "ind",
+  path = getwd(), language = "sv", data = NULL, id = NULL,
+  idOverviewLink = NULL, outcome = "outcome",
+  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
+  textBeforeSubtitle = NULL, textAfterSubtitle = NULL,
+  description = rep(NA, 3), geoUnitsHospital = "sjukhus",
   geoUnitsHospitalSelected = incaUserHospital,
   geoUnitsCounty = "landsting", geoUnitsRegion = "region",
   geoUnitsPatient = FALSE, regionSelection = TRUE,
@@ -29,6 +30,8 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 
 \item{incaUserHospital}{optional name of hospital from which the INCA user is logged in from. This will determine which individuals should be included in the list tab. Default is NULL.}
 
+\item{incaIncludeList}{Should the tab with list of patients be included? Default is TRUE if 'incaUserHospital' is not NULL, and FALSE otherwise.}
+
 \item{folder}{name of folder where the results are placed. Default is "ind".}
 
 \item{path}{search path to folder returned by the function. Default is working directory.}
@@ -36,6 +39,10 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
 
 \item{data}{data frame containing the variables used.}
+
+\item{id}{optional name of variable in data containing the id of each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
+
+\item{idOverviewLink}{optional name of variable in data containing the link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
 
 \item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.}
 
@@ -81,7 +88,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 
 \item{propWithinUnit}{unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.}
 
-\item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. If the length of the vector is less than the number of numeric outcomes the values are recycled. Default is 30.}
+\item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.}
 
 \item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
 

@@ -166,28 +166,71 @@ rccShinyNoObservationsText <- function(language = "sv") {
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 rccShinyTabsNames <- function(language = "sv") {
-    tab <- data.frame(tab_language = c("sv", "en"), fig_compare = c("Jämförelse", "Comparison"), fig_trend = c("Trend", "Trend"), tab_n = c("Tabell (antal)", "Table (number)"),
-        tab_p = c("Tabell (andel)", "Table (proportion)"), tab = c("Tabell", "Table"), map = c("Karta", "Map"), description = c("Beskrivning", "Description"), stringsAsFactors = FALSE)
+    tab <-
+      data.frame(
+        tab_language = c("sv", "en"),
+        fig_compare = c("Jämförelse", "Comparison"),
+        fig_trend = c("Trend", "Trend"),
+        tab_n = c("Tabell (antal)", "Table (number)"),
+        tab_p = c("Tabell (andel)", "Table (proportion)"),
+        tab = c("Tabell", "Table"),
+        map = c("Karta", "Map"),
+        list = c("Lista", "List"),
+        description = c("Beskrivning", "Description"),
+        stringsAsFactors = FALSE
+      )
     subset(tab, tab_language == language)
 }
 #' Miscellaneous text
 #' @description internal function used to supply text for various output.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyTXT <- function(language = "sv") {
-    tab <- data.frame(tab_language = c("sv", "en"), all = c("Alla", "All"), missing = c("Uppgift saknas", "Missing"), outcome = c("Variabel", "Variable"), presentation = c("Redovisning",
-        "Presentation"), levelofcomparison = c("Jämförelsenivå", "Level of comparison"), hospitalinterest = c("Sjukhus av intresse", "Hospital of interest"), periodSplit1 = c("Redovisa varje",
-        "Present each"), periodSplit2 = c("separat", "seperate"), funnelplot = c("Funnel plot", "Funnel plot"), comment = c("Kommentar", "Comment"), description = c("Beskrivning",
-        "Description"), numericchoices_prop = c("Andel inom ...", "Proportion within ..."), numeric_proportionwithin = c("andel inom ", "proportion within "),
+rccShinyTXT <-
+  function(language = "sv") {
+    tab <-
+      data.frame(
+        tab_language = c("sv", "en"),
+        all = c("Alla", "All"),
+        missing = c("Uppgift saknas", "Missing"),
+        outcome = c("Variabel", "Variable"),
+        presentation = c("Redovisning", "Presentation"),
+        levelofcomparison = c("Jämförelsenivå", "Level of comparison"),
+        hospitalinterest = c("Sjukhus av intresse", "Hospital of interest"),
+        periodSplit1 = c("Redovisa varje", "Present each"),
+        periodSplit2 = c("separat", "seperate"),
+        funnelplot = c("Funnel plot", "Funnel plot"),
+        comment = c("Kommentar", "Comment"),
+        description = c("Beskrivning", "Description"),
+        numericchoices_prop = c("Andel inom ...", "Proportion within ..."),
+        numeric_proportionwithin = c("andel inom ", "proportion within "),
         propWithinUnit = c("dagar", "days"),
-        fewcases1 = c("Resultat från grupper med färre än",
-        "Results from groups with fewer than"), fewcases2 = c("fall redovisas ej separat", "cases are not shown seperately"), median = c("Median", "Median"), medianiqr = c("Median samt kvartilavstånd",
-        "Median and interquartile range"), q1 = c("Första kvartil", "First quartile"), q3 = c("Tredje kvartil", "Third quartile"), percent = c("Procent", "Percent"), noofcases = c("Antal fall", "No. of cases"), noofcases_nOfN = c("av", "of"),
-        message = c("Meddelande", "Message"), numerator = c("Täljare", "Numerator"), denominator = c("Nämnare", "Denominator"), total = c("Totalt", "Total"), period = c("Period", "Period"), RIKET = c("RIKET", "SWEDEN"),
-        dxYear = c("Diagnosår", "Year of diagnosis"), limitRegion = c("Begränsa till region", "Limit to region"), descriptionAbout = c("Om indikatorn", "About"),
-        descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"), descriptionTechnical = c("Teknisk beskrivning", "Technical description"),
-        targetValuesLabelIntermediate = c("Mellannivå av måluppfyllelse", "Intermediate level of performance"), targetValuesLabelHigh = c("Hög nivå av måluppfyllelse", "High level of performance"),
-        stringsAsFactors = FALSE)
+        fewcases1 = c("Resultat från grupper med färre än", "Results from groups with fewer than"),
+        fewcases2 = c("fall redovisas ej separat", "cases are not shown seperately"),
+        median = c("Median", "Median"),
+        medianiqr = c("Median samt kvartilavstånd", "Median and interquartile range"),
+        q1 = c("Första kvartil", "First quartile"),
+        q3 = c("Tredje kvartil", "Third quartile"),
+        percent = c("Procent", "Percent"),
+        noofcases = c("Antal fall", "No. of cases"),
+        noofcases_nOfN = c("av", "of"),
+        message = c("Meddelande", "Message"),
+        numerator = c("Täljare", "Numerator"),
+        denominator = c("Nämnare", "Denominator"),
+        total = c("Totalt", "Total"),
+        period = c("Period", "Period"),
+        RIKET = c("RIKET", "SWEDEN"),
+        dxYear = c("Diagnosår", "Year of diagnosis"),
+        limitRegion = c("Begränsa till region", "Limit to region"),
+        descriptionAbout = c("Om indikatorn", "About"),
+        descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"),
+        descriptionTechnical = c("Teknisk beskrivning", "Technical description"),
+        targetValuesLabelIntermediate = c("Mellannivå av måluppfyllelse", "Intermediate level of performance"),
+        targetValuesLabelHigh = c("Hög nivå av måluppfyllelse", "High level of performance"),
+        yes = c("Ja", "Yes"),
+        no = c("Nej", "No"),
+        idOverviewLink = c("Översikt", "Overview"),
+        stringsAsFactors = FALSE
+      )
     tab <- fixEncoding(tab)
     tempTab <- data.frame()
     for (i in language) {

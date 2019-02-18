@@ -4,10 +4,13 @@
 #' @param inca should output be as if on the INCA platform? Default is FALSE.
 #' @param incaScript script to be run after loading data on the INCA platform. Default is NULL.
 #' @param incaUserHospital optional name of hospital from which the INCA user is logged in from. This will determine which individuals should be included in the list tab. Default is NULL.
+#' @param incaIncludeList Should the tab with list of patients be included? Default is TRUE if 'incaUserHospital' is not NULL, and FALSE otherwise.
 #' @param folder name of folder where the results are placed. Default is "ind".
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param data data frame containing the variables used.
+#' @param id optional name of variable in data containing the id of each individual. This is displayed in the list if on the INCA platform. Default is NULL.
+#' @param idOverviewLink optional name of variable in data containing the link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.
 #' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
@@ -30,7 +33,7 @@
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
 #' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
 #' @param propWithinUnit unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.
-#' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. If the length of the vector is less than the number of numeric outcomes the values are recycled. Default is 30.
+#' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
@@ -131,10 +134,13 @@ rccShiny2 <-
     inca = FALSE,
     incaScript = NULL,
     incaUserHospital = NULL,
+    incaIncludeList = !is.null(incaUserHospital),
     folder = "ind",
     path = getwd(),
     language = "sv",
     data = NULL,
+    id = NULL,
+    idOverviewLink = NULL,
     outcome = "outcome",
     outcomeNumericExcludeNeg = TRUE,
     outcomeTitle = outcome,
@@ -196,8 +202,7 @@ rccShiny2 <-
                 stop("'", var, "' should be of type character", call. = FALSE)
             }
           }
-        } else {
-          if (!is.character(get(var)))
+        } else if (!is.character(get(var))) {
             stop("'", var, "' should be of type character", call. = FALSE)
         }
       }
@@ -210,6 +215,16 @@ rccShiny2 <-
       if (!file.exists(incaScript))
         stop("The file '", incaScript, "' does not exist", call. = FALSE)
     }
+
+    # incaUserHospital
+    if (!is.null(incaUserHospital) & (!is.character(incaUserHospital) | length(incaUserHospital) != 1))
+      stop("'incaUserHospital' should be either NULL or a character vector of length 1", call. = FALSE)
+
+    # incaIncludeList
+    if (is.null(incaIncludeList) | !is.logical(incaIncludeList) | length(incaIncludeList) != 1)
+      stop("'incaIncludeList' should a logical vector of length 1", call. = FALSE)
+    if (is.null(incaIncludeList))
+      incaIncludeList <- FALSE
 
     # folder
     testVariableError("folder", listAllowed = FALSE)
@@ -235,6 +250,14 @@ rccShiny2 <-
       if (is.null(data) | !is.data.frame(data))
         stop("'data' should be a data.frame", call. = FALSE)
     }
+
+    # id
+    if (!is.null(id) & (!is.character(id) | length(id) != 1))
+      stop("'id' should be either NULL or a character vector of length 1", call. = FALSE)
+
+    # idOverviewLink
+    if (!is.null(idOverviewLink) & (!is.character(idOverviewLink) | length(idOverviewLink) != 1))
+      stop("'idOverviewLink' should be either NULL or a character vector of length 1", call. = FALSE)
 
     # outcome
     testVariableError("outcome", listAllowed = FALSE)
@@ -273,24 +296,20 @@ rccShiny2 <-
     }
 
     # geoUnitsHospital
-    if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) != 1)) {
+    if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) != 1))
       stop("'geoUnitsHospital' should be either NULL or a character vector of length 1", call. = FALSE)
-    }
 
     # geoUnitsHospitalSelected
-    if (!is.null(geoUnitsHospitalSelected) & (!is.character(geoUnitsHospitalSelected) | length(geoUnitsHospitalSelected) != 1)) {
+    if (!is.null(geoUnitsHospitalSelected) & (!is.character(geoUnitsHospitalSelected) | length(geoUnitsHospitalSelected) != 1))
       stop("'geoUnitsHospitalSelected' should be either NULL or a character vector of length 1", call. = FALSE)
-    }
 
     # geoUnitsCounty
-    if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) != 1)) {
+    if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) != 1))
       stop("'geoUnitsCounty' should be either NULL or a character vector of length 1", call. = FALSE)
-    }
 
     # geoUnitsRegion
-    if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) != 1)) {
+    if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) != 1))
       stop("'geoUnitsRegion' should be either NULL or a character vector of length 1", call. = FALSE)
-    }
 
     # geoUnitsPatient
     if (is.null(geoUnitsPatient) | !is.logical(geoUnitsPatient) | length(geoUnitsPatient) != 1)
@@ -364,8 +383,8 @@ rccShiny2 <-
       stop("'funnelplot' should be a logical vector of length 1", call. = FALSE)
 
     # propWithinValue
-    if (is.null(propWithinValue) | is.na(propWithinValue) | length(propWithinValue) != 1 | (!is.integer(propWithinValue) & !is.numeric(propWithinValue)))
-      stop("'propWithinValue' should be a a numeric och integer value of length 1", call. = FALSE)
+    if (is.null(propWithinValue) | any(is.na(propWithinValue)) | !(length(propWithinValue) %in% c(1, length(outcome))) | (!is.integer(propWithinValue) & !is.numeric(propWithinValue)))
+      stop("'propWithinValue' should be a numeric or integer vector of length 1 or length of 'outcome'", call. = FALSE)
 
     # hideLessThan
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
@@ -392,9 +411,12 @@ rccShiny2 <-
           inca = inca,
           incaScript = incaScript,
           incaUserHospital = incaUserHospital,
+          incaIncludeList = incaIncludeList,
           language = loopLanguage,
           whichLanguage = which(language == loopLanguage),
           data = data,
+          id = id,
+          idOverviewLink = idOverviewLink,
           outcome = outcome,
           outcomeNumericExcludeNeg = outcomeNumericExcludeNeg,
           outcomeTitle = outcomeTitle,
