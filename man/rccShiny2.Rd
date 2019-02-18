@@ -42,7 +42,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 
 \item{id}{optional name of variable in data containing the id of each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
 
-\item{idOverviewLink}{optional name of variable in data containing the link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
+\item{idOverviewLink}{optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
 
 \item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.}
 

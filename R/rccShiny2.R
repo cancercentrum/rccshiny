@@ -10,7 +10,7 @@
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param data data frame containing the variables used.
 #' @param id optional name of variable in data containing the id of each individual. This is displayed in the list if on the INCA platform. Default is NULL.
-#' @param idOverviewLink optional name of variable in data containing the link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.
+#' @param idOverviewLink optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.
 #' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
