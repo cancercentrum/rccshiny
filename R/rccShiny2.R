@@ -3,6 +3,7 @@
 #'
 #' @param inca should output be as if on the INCA platform? Default is FALSE.
 #' @param incaScript script to be run after loading data on the INCA platform. Default is NULL.
+#' @param incaUserHospital optional name of hospital from which the INCA user is logged in from. This will determine which individuals should be included in the list tab. Default is NULL.
 #' @param folder name of folder where the results are placed. Default is "ind".
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
@@ -14,6 +15,7 @@
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.
+#' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is same as 'incaUserHospital'.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if "landsting" is not found in 'data', county is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if "region" is not found in 'data', region is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
@@ -128,6 +130,7 @@ rccShiny2 <-
   function(
     inca = FALSE,
     incaScript = NULL,
+    incaUserHospital = NULL,
     folder = "ind",
     path = getwd(),
     language = "sv",
@@ -139,6 +142,7 @@ rccShiny2 <-
     textAfterSubtitle = NULL,
     description = rep(NA, 3),
     geoUnitsHospital = "sjukhus",
+    geoUnitsHospitalSelected = incaUserHospital,
     geoUnitsCounty = "landsting",
     geoUnitsRegion = "region",
     geoUnitsPatient = FALSE,
@@ -273,6 +277,11 @@ rccShiny2 <-
       stop("'geoUnitsHospital' should be either NULL or a character vector of length 1", call. = FALSE)
     }
 
+    # geoUnitsHospitalSelected
+    if (!is.null(geoUnitsHospitalSelected) & (!is.character(geoUnitsHospitalSelected) | length(geoUnitsHospitalSelected) != 1)) {
+      stop("'geoUnitsHospitalSelected' should be either NULL or a character vector of length 1", call. = FALSE)
+    }
+
     # geoUnitsCounty
     if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) != 1)) {
       stop("'geoUnitsCounty' should be either NULL or a character vector of length 1", call. = FALSE)
@@ -382,6 +391,7 @@ rccShiny2 <-
         list(
           inca = inca,
           incaScript = incaScript,
+          incaUserHospital = incaUserHospital,
           language = loopLanguage,
           whichLanguage = which(language == loopLanguage),
           data = data,
@@ -392,6 +402,7 @@ rccShiny2 <-
           textAfterSubtitle = textAfterSubtitle,
           description = description,
           geoUnitsHospital = geoUnitsHospital,
+          geoUnitsHospitalSelected = geoUnitsHospitalSelected,
           geoUnitsCounty = geoUnitsCounty,
           geoUnitsRegion = geoUnitsRegion,
           geoUnitsPatient = geoUnitsPatient,

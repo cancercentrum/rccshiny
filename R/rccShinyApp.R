@@ -242,7 +242,7 @@ rccShinyApp <-
                   inputId = "param_ownhospital",
                   label = rccShinyTXT(language = GLOBAL_language)$hospitalinterest,
                   choices = hospitalChoices(),
-                  selected = "",
+                  selected = ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, ""),
                   width = "100%"
                 )
               )
