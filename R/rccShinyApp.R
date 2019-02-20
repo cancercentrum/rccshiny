@@ -45,10 +45,13 @@ rccShinyApp <-
         if (optionsList$inca) {
           withProgress(
             message = "Laddar data och genererar rapport...",
-            #style = "old",
             value = 0,
             {
               INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
+              if (exists("environmentVariables")) {
+                if (!is.null(environmentVariables$UserParentUnitCode))
+                  optionsList$incaUserHospital <- environmentVariables$UserParentUnitCode
+              }
               incProgress(0.50)
               source(optionsList$incaScript, encoding = "UTF-8")
               if (!exists("df")) {
@@ -561,10 +564,10 @@ rccShinyApp <-
             if (GLOBAL_periodInclude) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
             }
-            if (GLOBAL_inca & GLOBAL_incaIncludeList & GLOBAL_geoUnitsHospitalInclude) {
+            if (GLOBAL_inca & GLOBAL_incaIncludeList) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", dataTableOutput("indList"))
             }
-            theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, htmlOutput("description"))
+            theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"))
             do.call(tabsetPanel, c(theTabs, id = "tab"))
           })
 
@@ -598,6 +601,7 @@ rccShinyApp <-
 
           if (input$tab == "list") {
             dftemp$group <- dftemp[, "sjukhus"]
+            dftemp$groupCode <- dftemp[, "sjukhuskod"]
           } else {
             if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
               dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "Södra Halland"
@@ -635,6 +639,7 @@ rccShinyApp <-
 
             dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
             dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
+            dftemp$groupCode <- rep(NA, nrow(dftemp))
           }
 
           if (!is.null(GLOBAL_varOther)) {
@@ -874,7 +879,6 @@ rccShinyApp <-
                     x = x,
                     y = y,
                     legend = legend,
-                    #legend_textwidth=15,
                     x_lim = range(tab_group$PeriodNum),
                     x_by = 1,
                     x_ticks_labels = levels(tab_group$Period),
@@ -884,8 +888,6 @@ rccShinyApp <-
                     subtitle2 = NULL,
                     x_lab = GLOBAL_periodLabel,
                     y_lab = rccShinyTXT(language = GLOBAL_language)$percent
-                    #target_values = GLOBAL_targetValues[[whichOutcome()]],
-                    #target_values_high = GLOBAL_sortDescending[whichOutcome()]
                   )
 
                 }
@@ -911,7 +913,6 @@ rccShinyApp <-
                   x = x,
                   y = y,
                   legend = legend,
-                  #legend_textwidth=15,
                   x_lim = range(tab_total$PeriodNum),
                   x_by = 1,
                   x_ticks_labels = levels(tab_total$Period),
@@ -921,8 +922,6 @@ rccShinyApp <-
                   subtitle2 = NULL,
                   x_lab = GLOBAL_periodLabel,
                   y_lab = rccShinyTXT(language = GLOBAL_language)$percent
-                  #target_values = GLOBAL_targetValues[[whichOutcome()]],
-                  #target_values_high = GLOBAL_sortDescending[whichOutcome()]
                 )
 
               } else {
@@ -1312,25 +1311,29 @@ rccShinyApp <-
 
           dfuse <- dfInput()
 
+          if (!GLOBAL_geoUnitsHospitalInclude) {
+            dfuse$group <- dfuse$groupCode
+          }
+
           listIncludeVariables <- c(
             if (GLOBAL_idInclude) {GLOBAL_id},
             if (GLOBAL_idOverviewLinkInclude) {GLOBAL_idOverviewLink},
             "group",
-            "period",
+            if (GLOBAL_periodInclude) {"period"},
             "outcome"
           )
           listIncludeVariablesTxt <- c(
             if (GLOBAL_idInclude) {"ID"},
             if (GLOBAL_idOverviewLinkInclude) {rccShinyTXT(language = GLOBAL_language)$idOverviewLink},
             rccShinyLevelNames("hospital", language = GLOBAL_language),
-            GLOBAL_periodLabel,
+            if (GLOBAL_periodInclude) {GLOBAL_periodLabel},
             rccShinyTXT(language = GLOBAL_language)$outcome
           )
 
           tab <-
             subset(
               dfuse,
-              group %in% GLOBAL_incaUserHospital,
+              !is.na(groupCode) & groupCode %in% GLOBAL_incaUserHospital,
               select = listIncludeVariables
             )
 
@@ -1527,7 +1530,7 @@ rccShinyCheckData <-
       optionsList$geoUnitsHospital <- "sjukhus"
     } else if (!(optionsList$geoUnitsHospital %in% colnames(optionsList$data))) {
       optionsList$geoUnitsHospitalInclude <- FALSE
-    } else if (!class(optionsList$data[, optionsList$geoUnitsHospital]) %in% c("character", "numeric", "integer")){
+    } else if (!class(optionsList$data[, optionsList$geoUnitsHospital]) %in% c("character", "numeric", "integer")) {
       optionsList$error <- paste0("The data in the variable '", optionsList$geoUnitsHospital, "' should be one of the following classes: 'character', 'numeric' or 'integer'")
       return(optionsList)
     }
@@ -1543,7 +1546,25 @@ rccShinyCheckData <-
       # Fix missing in hospital variable
       optionsList$data$sjukhus[is.na(optionsList$data$sjukhus) | optionsList$data$sjukhus %in% ""] <- rccShinyTXT(language = optionsList$language)$missing
     } else {
-      optionsList$data$sjukhus <- "(not displayed)"
+      optionsList$data$sjukhus <- rep("(not displayed)", nrow(optionsList$data))
+    }
+
+    # geoUnitsHospitalCode
+    if (is.null(optionsList$geoUnitsHospitalCode)) {
+      optionsList$incaIncludeList <- FALSE
+      optionsList$geoUnitsHospitalCode <- "sjukhuskod"
+    } else if (!(optionsList$geoUnitsHospitalCode %in% colnames(optionsList$data))) {
+      optionsList$incaIncludeList <- FALSE
+    } else if (!class(optionsList$data[, optionsList$geoUnitsHospitalCode]) %in% c("numeric","integer")) {
+      optionsList$error <- paste0("The data in the variable '", optionsList$geoUnitsHospitalCode, "' should be one of the following classes: 'numeric' or 'integer'")
+      return(optionsList)
+    }
+
+    # sjukhuskod
+    if (optionsList$incaIncludeList) {
+      optionsList$data$sjukhuskod <- optionsList$data[, optionsList$geoUnitsHospitalCode]
+    } else {
+      optionsList$data$sjukhuskod <- rep(NA, nrow(optionsList$data))
     }
 
     # geoUnitsCounty
@@ -1580,7 +1601,7 @@ rccShinyCheckData <-
           all.x = TRUE
         )
     } else {
-      optionsList$data$landsting <- "(not displayed)"
+      optionsList$data$landsting <- rep("(not displayed)", nrow(optionsList$data))
     }
 
     # geoUnitsRegion
@@ -1611,7 +1632,7 @@ rccShinyCheckData <-
           exclude = NULL
         )
     } else {
-      optionsList$data$region <- "(not displayed)"
+      optionsList$data$region <- rep("(not displayed)", nrow(optionsList$data))
     }
 
     # geoUnitsHospitalInclude, geoUnitsCountyInclude, geoUnitsRegionInclude
@@ -1698,7 +1719,7 @@ rccShinyCheckData <-
       )
 
     # includeVariables
-    includeVariables <- c(optionsList$outcome, "region", "landsting", "sjukhus", "period")
+    includeVariables <- c(optionsList$outcome, "region", "landsting", "sjukhus", "sjukhuskod", "period")
 
     if (optionsList$idInclude)
       includeVariables <- c(includeVariables, optionsList$id)

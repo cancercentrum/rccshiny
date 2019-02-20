@@ -3,13 +3,12 @@
 #'
 #' @param inca should output be as if on the INCA platform? Default is FALSE.
 #' @param incaScript script to be run after loading data on the INCA platform. Default is NULL.
-#' @param incaUserHospital optional name of hospital from which the INCA user is logged in from. This will determine which individuals should be included in the list tab. Default is NULL.
-#' @param incaIncludeList Should the tab with list of patients be included? Default is TRUE if 'incaUserHospital' is not NULL, and FALSE otherwise.
+#' @param incaIncludeList Should the tab with list of patients be included if on the INCA platform? Default is TRUE.
 #' @param folder name of folder where the results are placed. Default is "ind".
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
-#' @param data data frame containing the variables used.
-#' @param id optional name of variable in data containing the id of each individual. This is displayed in the list if on the INCA platform. Default is NULL.
+#' @param data data frame containing the variables used when not on the INCA platform.
+#' @param id optional name of variable in data containing the id of each individual. This is displayed in the list tab if on the INCA platform. Default is NULL.
 #' @param idOverviewLink optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.
 #' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
@@ -17,10 +16,11 @@
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
-#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.
-#' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is same as 'incaUserHospital'.
-#' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if "landsting" is not found in 'data', county is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if "region" is not found in 'data', region is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if variable is not found in 'data', hospital is not available as a level of presentation. Default is "sjukhus". At least one geoUnit must be given.
+#' @param geoUnitsHospitalCode optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".
+#' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.
+#' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region" or "Limit to region", depending on language.
@@ -133,8 +133,7 @@ rccShiny2 <-
   function(
     inca = FALSE,
     incaScript = NULL,
-    incaUserHospital = NULL,
-    incaIncludeList = !is.null(incaUserHospital),
+    incaIncludeList = TRUE,
     folder = "ind",
     path = getwd(),
     language = "sv",
@@ -148,7 +147,8 @@ rccShiny2 <-
     textAfterSubtitle = NULL,
     description = rep(NA, 3),
     geoUnitsHospital = "sjukhus",
-    geoUnitsHospitalSelected = incaUserHospital,
+    geoUnitsHospitalCode = "sjukhuskod",
+    geoUnitsHospitalSelected = NULL,
     geoUnitsCounty = "landsting",
     geoUnitsRegion = "region",
     geoUnitsPatient = FALSE,
@@ -216,15 +216,9 @@ rccShiny2 <-
         stop("The file '", incaScript, "' does not exist", call. = FALSE)
     }
 
-    # incaUserHospital
-    if (!is.null(incaUserHospital) & (!is.character(incaUserHospital) | length(incaUserHospital) != 1))
-      stop("'incaUserHospital' should be either NULL or a character vector of length 1", call. = FALSE)
-
     # incaIncludeList
     if (is.null(incaIncludeList) | !is.logical(incaIncludeList) | length(incaIncludeList) != 1)
       stop("'incaIncludeList' should a logical vector of length 1", call. = FALSE)
-    if (is.null(incaIncludeList))
-      incaIncludeList <- FALSE
 
     # folder
     testVariableError("folder", listAllowed = FALSE)
@@ -298,6 +292,10 @@ rccShiny2 <-
     # geoUnitsHospital
     if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) != 1))
       stop("'geoUnitsHospital' should be either NULL or a character vector of length 1", call. = FALSE)
+
+    # geoUnitsHospital
+    if (!is.null(geoUnitsHospitalCode) & (!is.character(geoUnitsHospitalCode) | length(geoUnitsHospitalCode) != 1))
+      stop("'geoUnitsHospitalCode' should be either NULL or a character vector of length 1", call. = FALSE)
 
     # geoUnitsHospitalSelected
     if (!is.null(geoUnitsHospitalSelected) & (!is.character(geoUnitsHospitalSelected) | length(geoUnitsHospitalSelected) != 1))
@@ -410,8 +408,8 @@ rccShiny2 <-
         list(
           inca = inca,
           incaScript = incaScript,
-          incaUserHospital = incaUserHospital,
           incaIncludeList = incaIncludeList,
+          incaUserHospital = NA,
           language = loopLanguage,
           whichLanguage = which(language == loopLanguage),
           data = data,
@@ -424,6 +422,7 @@ rccShiny2 <-
           textAfterSubtitle = textAfterSubtitle,
           description = description,
           geoUnitsHospital = geoUnitsHospital,
+          geoUnitsHospitalCode = geoUnitsHospitalCode,
           geoUnitsHospitalSelected = geoUnitsHospitalSelected,
           geoUnitsCounty = geoUnitsCounty,
           geoUnitsRegion = geoUnitsRegion,

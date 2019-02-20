@@ -4,14 +4,13 @@
 \alias{rccShiny2}
 \title{Shiny apps for RCC}
 \usage{
-rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
-  incaIncludeList = !is.null(incaUserHospital), folder = "ind",
-  path = getwd(), language = "sv", data = NULL, id = NULL,
-  idOverviewLink = NULL, outcome = "outcome",
+rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
+  folder = "ind", path = getwd(), language = "sv", data = NULL,
+  id = NULL, idOverviewLink = NULL, outcome = "outcome",
   outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
   textBeforeSubtitle = NULL, textAfterSubtitle = NULL,
   description = rep(NA, 3), geoUnitsHospital = "sjukhus",
-  geoUnitsHospitalSelected = incaUserHospital,
+  geoUnitsHospitalCode = "sjukhuskod", geoUnitsHospitalSelected = NULL,
   geoUnitsCounty = "landsting", geoUnitsRegion = "region",
   geoUnitsPatient = FALSE, regionSelection = TRUE,
   regionLabel = rccShinyTXT(language = language)$limitRegion,
@@ -28,9 +27,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 
 \item{incaScript}{script to be run after loading data on the INCA platform. Default is NULL.}
 
-\item{incaUserHospital}{optional name of hospital from which the INCA user is logged in from. This will determine which individuals should be included in the list tab. Default is NULL.}
-
-\item{incaIncludeList}{Should the tab with list of patients be included? Default is TRUE if 'incaUserHospital' is not NULL, and FALSE otherwise.}
+\item{incaIncludeList}{Should the tab with list of patients be included if on the INCA platform? Default is TRUE.}
 
 \item{folder}{name of folder where the results are placed. Default is "ind".}
 
@@ -38,9 +35,9 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}
 
-\item{data}{data frame containing the variables used.}
+\item{data}{data frame containing the variables used when not on the INCA platform.}
 
-\item{id}{optional name of variable in data containing the id of each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
+\item{id}{optional name of variable in data containing the id of each individual. This is displayed in the list tab if on the INCA platform. Default is NULL.}
 
 \item{idOverviewLink}{optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
 
@@ -56,13 +53,15 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaUserHospital = NULL,
 
 \item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).}
 
-\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.}
+\item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if variable is not found in 'data', hospital is not available as a level of presentation. Default is "sjukhus". At least one geoUnit must be given.}
 
-\item{geoUnitsHospitalSelected}{optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is same as 'incaUserHospital'.}
+\item{geoUnitsHospitalCode}{optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".}
 
-\item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if "landsting" is not found in 'data', county is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsHospitalSelected}{optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.}
 
-\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if "region" is not found in 'data', region is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
+
+\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
 
 \item{geoUnitsPatient}{if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
 
