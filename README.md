@@ -32,7 +32,7 @@ Läs hjälpfil:
 
 Gogogo!
 
-För fler exempel: Koden för Bröstcancerregistrets appar finns <https://bitbucket.org/cancercentrum/nkbc_arsrapportshiny> och årsrapporten <http://statistik.incanet.se/brostcancer/>.
+För fler exempel: Koden för Bröstcancerregistrets appar finns <https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny> och årsrapporten <http://statistik.incanet.se/brostcancer/>.
 
 Frågor och förbättringsförslag
 ==============================
