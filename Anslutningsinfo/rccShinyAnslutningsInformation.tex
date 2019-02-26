@@ -36,7 +36,7 @@
 \usepackage{pgf}
 \usepackage{pdfpages}
 \usepackage{datetime}
-\newdateformat{usvardate}{%  
+\newdateformat{usvardate}{%
 \MakeUppercase{\monthname} \THEYEAR}
 
 
@@ -93,14 +93,14 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 \usepackage{xcolor}
-% 
+%
 % \definecolor{RCCOrange}{HTML}{FFB117}
 % \definecolor{RCCBlue}{HTML}{438DCC}
 % \definecolor{RCCBlue}{HTML}{3ECAFF}
 % \definecolor{RCCBlueDarker}{HTML}{009CD7}%{008FC6}%{FFFFFF}
 % \definecolor{RCCLightBlue}{HTML}{3ECAFF}%{32C7FF}%{1FC1FF}
 % \definecolor{RCCLightBlue}{HTML}{00B3F6}
-% 
+%
 % \definecolor{rccblue}{HTML}{00B3F6}
 % \definecolor{rccorange}{HTML}{FFB117}
 \definecolor{useblue}{HTML}{005092}
@@ -121,7 +121,7 @@
 \begin{document}
 \pagestyle{empty}
      \includepdf[width=\paperwidth,pagecommand={
-\begin{tikzpicture}[remember picture, overlay] 
+\begin{tikzpicture}[remember picture, overlay]
      \fill[useblue] ([shift={(-0.055\paperwidth,-0.34\paperwidth)}]current page.north east) circle (0.14\paperwidth);
      \node at (7.0,-0.85) {%
      \parbox[t][8pt][t]{0.67\paperwidth}{%
@@ -152,8 +152,8 @@
 %\newline
 %\sffamily Beställningsadress\newline
 %\newline
-%\sffamily Regionalt cancercentrum väst \newline 
-%\sffamily Västra Sjukvårdsregionen \newline 
+%\sffamily Regionalt cancercentrum väst \newline
+%\sffamily Västra Sjukvårdsregionen \newline
 %\sffamily Sahlgrenska Universitetssjukhuset \newline
 %\sffamily SE-413 45 GÖTEBORG \newline
 %\newline
@@ -169,7 +169,7 @@
 %\normalsize
 %\end{minipage}
 %\clearemptydoublepage
-\thispagestyle{empty} 
+\thispagestyle{empty}
 \renewcommand\contentsname{Innehållsförteckning}
 
 % \newlength\mylength
@@ -226,24 +226,24 @@
 
 
 \section{Syfte}
-Detta dokument beskriver kort processen för att bygga upp årsrapporten i shiny och riktar sig framför allt till nationella statistiker. 
+Detta dokument beskriver kort processen för att bygga upp årsrapporten i shiny och riktar sig framför allt till nationella statistiker.
 \section{Bakgrund}
 Shiny är ett R paket som möjliggör skapandet av webbapplikationer med R. För mer information om Shiny: \url{https://shiny.rstudio.com}.  Cheatsheet: \url{https://shiny.rstudio.com/articles/cheatsheet.html}.
 
-I nuläget är syftet med användningen på RCC att skapa ett komplement till årsrapporterna där slutanvändaren själv kan välja selektionskriterier och format på statistiken på ett flexibelt sätt. Detta genomfördes för första gången 2016 (för årsrapport 2015) av Nationella prostatacancerregistret (NPCR).  
+I nuläget är syftet med användningen på RCC att skapa ett komplement till årsrapporterna där slutanvändaren själv kan välja selektionskriterier och format på statistiken på ett flexibelt sätt. Detta genomfördes för första gången 2016 (för årsrapport 2015) av Nationella prostatacancerregistret (NPCR).
 \section{Anslutningsinformation}
 \subsection{Steg 1: Anmäl intresse}
-Kontakta Marie Lindquist, \href{mailto:marie.lindquist@sll.se}{marie.lindquist@sll.se} för att anmäla intresse. %MARIE: nat statistiker behöver 1) VPN mot its i Umeå 2) access till shiny server 
+Kontakta Marie Lindquist, \href{mailto:marie.lindquist@sll.se}{marie.lindquist@sll.se} för att anmäla intresse. %MARIE: nat statistiker behöver 1) VPN mot its i Umeå 2) access till shiny server
 \subsection{Steg 2: Skapa shinyappar i R}
 \begin{itemize}
-\item Om du inte redan har detta installera R (\url{https://cran.r-project.org}) och RStudio (\url{https://www.rstudio.com}). 
-\item Installera R paketet devtools \begin{verbatim} install.packages("devtools")\end{verbatim} 
-\item Installera R paketet rccShiny \begin{verbatim} devtools::install_bitbucket("cancercentrum/rccshiny")\end{verbatim} 
-\item Ladda paketet \begin{verbatim} library(rccShiny)\end{verbatim} 
-\item Läs hjälpfil \begin{verbatim}?rccShiny::rccShiny\end{verbatim} 
-\item Gogogo!  
+\item Om du inte redan har detta installera R (\url{https://cran.r-project.org}) och RStudio (\url{https://www.rstudio.com}).
+\item Installera R paketet devtools \begin{verbatim} install.packages("devtools")\end{verbatim}
+\item Installera R paketet rccShiny \begin{verbatim} devtools::install_bitbucket("cancercentrum/rccshiny")\end{verbatim}
+\item Ladda paketet \begin{verbatim} library(rccShiny)\end{verbatim}
+\item Läs hjälpfil \begin{verbatim}?rccShiny::rccShiny\end{verbatim}
+\item Gogogo!
 \end{itemize}
-För fler exempel: Koden för Bröstcancerregistrets appar finns publikt i Bitbucket \url{https://bitbucket.org/cancercentrum/nkbc_arsrapportshiny} och årsrapporten \url{http://statistik.incanet.se/brostcancer/}. 
+För fler exempel: Koden för Bröstcancerregistrets appar finns publikt i Bitbucket \url{https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny} och årsrapporten \url{http://statistik.incanet.se/brostcancer/}.
 \subsection{Steg 3: Uppladdning av appar till shinyservern}
 \begin{itemize}
 \item Aktivera uppkoppling med VPN mot its (vpn.its.umu.se/rcc).
@@ -254,17 +254,17 @@ För fler exempel: Koden för Bröstcancerregistrets appar finns publikt i Bitbu
 \item Du kan nu koppla upp dig och föra över dina Shiny-appar.
 \end{itemize}
 \subsection{Steg 4: Skapa ram}
-Ramverket (länkarna till shiny apparna) skrivs för närvarande av statistikern själv i html. 
+Ramverket (länkarna till shiny apparna) skrivs för närvarande av statistikern själv i html.
 \begin{itemize}
-\item Lägg mappen \_libs (byt ändelse från .rcc till .zip och packa upp först) under diagnosmappen på shinyservern. 
-\item Använd index.html som gjorts för NPCR och modifiera efter behov (öppna och editera i ex Notepad++) genom att klistra in de länkar som returneras från rccShiny. 
+\item Lägg mappen \_libs (byt ändelse från .rcc till .zip och packa upp först) under diagnosmappen på shinyservern.
+\item Använd index.html som gjorts för NPCR och modifiera efter behov (öppna och editera i ex Notepad++) genom att klistra in de länkar som returneras från rccShiny.
 \end{itemize}
 \subsection{Steg 5: Publicera}
 Peka ut länken http://statistik.incanet.se/xxx/.
 
-Det är upp till varje enskilt register att utifrån sina förutsättnignar bestämma när och hur ofta publicering ska ske. En riktlinje kan dock vara att publicering för en tidsperiod kan ske 4 månader efter avslutad tidsperiod (ex data för år 2016 sker då 2017-04-30). Detta i linje med default fördröjningen i vården i siffror. Därefter kan ytterligare en uppdatering ske senare under tidsperioden.  
+Det är upp till varje enskilt register att utifrån sina förutsättnignar bestämma när och hur ofta publicering ska ske. En riktlinje kan dock vara att publicering för en tidsperiod kan ske 4 månader efter avslutad tidsperiod (ex data för år 2016 sker då 2017-04-30). Detta i linje med default fördröjningen i vården i siffror. Därefter kan ytterligare en uppdatering ske senare under tidsperioden.
 \section{Frågor och förbättringsförslag}
-Lägg upp en issue \url{https://bitbucket.org/cancercentrum/rccshiny/issues} eller kontakta Fredrik Sandin, \href{mailto:fredrik.sandin@rccuppsalaorebro.se}{fredrik.sandin@rccuppsalaorebro.se}.
+Lägg upp en issue \url{https://bitbucket.org/cancercentrum/rccshiny/issues} eller kontakta Fredrik Sandin, \href{mailto:fredrik.sandin@rccuppsalaorebro.se}{fredrik.sandin@rccuppsalaorebro.se} eller Erik Lindberg, \href{mailto:erik.g.lindberg@vll.se}{erik.g.lindberg@vll.se}.
 %\section{FAQ}
 %\paragraph{FRÅGA: Öh VPN???}
 %\paragraph{SVAR:} Om du inte redan har access till VPN kontakta Marie Linquist, \href{mailto:marie.lindquist@sll.se}{marie.lindquist@sll.se}.
@@ -273,7 +273,7 @@ Lägg upp en issue \url{https://bitbucket.org/cancercentrum/rccshiny/issues} ell
 %\paragraph{FRÅGA: Jag behöver konvertera värden till utf8, hur göra?}
 %\paragraph{SVAR:}
 %\begin{verbatim}
-%fixEncoding <- 
+%fixEncoding <-
     %function(data) {
     %numCols <- ncol(data)
     %for (col in 1:numCols)
@@ -287,4 +287,4 @@ Lägg upp en issue \url{https://bitbucket.org/cancercentrum/rccshiny/issues} ell
     %data
   %}
 %\end{verbatim}
-\end{document}             
+\end{document}
