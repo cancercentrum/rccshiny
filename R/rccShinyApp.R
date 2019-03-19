@@ -1315,9 +1315,19 @@ rccShinyApp <-
             dfuse$group <- dfuse$groupCode
           }
 
+          listIncludeVariables <- vector()
+          if (GLOBAL_idInclude) {
+            listIncludeVariables <- c(listIncludeVariables, GLOBAL_id)
+            dfuse[, GLOBAL_id] <- as.character(dfuse[, GLOBAL_id])
+            dfuse[!(dfuse[, GLOBAL_idAuthorisedToView] %in% 1), GLOBAL_id] <- ""
+          }
+          if (GLOBAL_idOverviewLinkInclude) {
+            listIncludeVariables <- c(listIncludeVariables, GLOBAL_idOverviewLink)
+            dfuse[, GLOBAL_idOverviewLink] <- as.character(dfuse[, GLOBAL_idOverviewLink])
+            dfuse[!(dfuse[, GLOBAL_idAuthorisedToView] %in% 1), GLOBAL_idOverviewLink] <- ""
+          }
           listIncludeVariables <- c(
-            if (GLOBAL_idInclude) {GLOBAL_id},
-            if (GLOBAL_idOverviewLinkInclude) {GLOBAL_idOverviewLink},
+            listIncludeVariables,
             "group",
             if (GLOBAL_periodInclude) {"period"},
             "outcome"
@@ -1464,6 +1474,21 @@ rccShinyCheckData <-
       optionsList$idOverviewLinkInclude <- FALSE
     } else if (!(optionsList$idOverviewLink %in% colnames(optionsList$data))) {
       optionsList$idOverviewLinkInclude <- FALSE
+    }
+
+    # idAuthorisedToView
+    optionsList$idAuthorisedToViewInclude <- TRUE
+    if (is.null(optionsList$idAuthorisedToView)) {
+      optionsList$idAuthorisedToViewInclude <- FALSE
+      optionsList$idInclude <- FALSE
+      optionsList$idOverviewLinkInclude <- FALSE
+    } else if (!(optionsList$idAuthorisedToView %in% colnames(optionsList$data))) {
+      optionsList$idAuthorisedToViewInclude <- FALSE
+      optionsList$idInclude <- FALSE
+      optionsList$idOverviewLinkInclude <- FALSE
+    } else if (!all(optionsList$data[, optionsList$idAuthorisedToView] %in% 0:1)) {
+      optionsList$error <- paste0("Column '", optionsList$idAuthorisedToView, "' must contain only the values 0 and 1.")
+      return(optionsList)
     }
 
     # outcome
@@ -1726,6 +1751,9 @@ rccShinyCheckData <-
 
     if (optionsList$idOverviewLinkInclude)
       includeVariables <- c(includeVariables, optionsList$idOverviewLink)
+
+    if (optionsList$idAuthorisedToViewInclude)
+      includeVariables <- c(includeVariables, optionsList$idAuthorisedToView)
 
     # varOther
     if (!is.null(optionsList$varOther)) {

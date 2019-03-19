@@ -6,15 +6,15 @@
 \usage{
 rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
   folder = "ind", path = getwd(), language = "sv", data = NULL,
-  id = NULL, idOverviewLink = NULL, outcome = "outcome",
-  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
-  textBeforeSubtitle = NULL, textAfterSubtitle = NULL,
-  description = rep(NA, 3), geoUnitsHospital = "sjukhus",
-  geoUnitsHospitalCode = "sjukhuskod", geoUnitsHospitalSelected = NULL,
-  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
-  geoUnitsPatient = FALSE, regionSelection = TRUE,
-  regionLabel = rccShinyTXT(language = language)$limitRegion,
-  period = "period", periodDateLevel = "year",
+  id = NULL, idOverviewLink = NULL, idAuthorisedToView = NULL,
+  outcome = "outcome", outcomeNumericExcludeNeg = TRUE,
+  outcomeTitle = outcome, textBeforeSubtitle = NULL,
+  textAfterSubtitle = NULL, description = rep(NA, 3),
+  geoUnitsHospital = "sjukhus", geoUnitsHospitalCode = "sjukhuskod",
+  geoUnitsHospitalSelected = NULL, geoUnitsCounty = "landsting",
+  geoUnitsRegion = "region", geoUnitsPatient = FALSE,
+  regionSelection = TRUE, regionLabel = rccShinyTXT(language =
+  language)$limitRegion, period = "period", periodDateLevel = "year",
   periodLabel = rccShinyTXT(language = language)$dxYear,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
   sortDescending = NULL, propWithinShow = TRUE,
@@ -40,6 +40,8 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 \item{id}{optional name of variable in data containing the id of each individual. This is displayed in the list tab if on the INCA platform. Default is NULL.}
 
 \item{idOverviewLink}{optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.}
+
+\item{idAuthorisedToView}{optional name of binary variable in data containing information on whether or not (1 = yes or 0 = no) the user running the app is authorised to see the id and idOverviewLink in the patient list on INCA. If id or idOverviewLink is provided, idAuthorisedToView must also be provided. Default is NULL.}
 
 \item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.}
 
