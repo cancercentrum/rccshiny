@@ -37,4 +37,4 @@ För fler exempel: Koden för Bröstcancerregistrets appar finns <https://bitbuc
 Frågor och förbättringsförslag
 ==============================
 
-Lägg upp ett ärende <https://cancercentrum.atlassian.net/secure/RapidBoard.jspa?rapidView=77&projectKey=SNY> eller kontakta Marie Lindquist, <marie.lindquist@sll.se>!
+Lägg upp en issue <https://bitbucket.org/cancercentrum/rccshiny/issues> eller kontakta Fredrik Sandin, <fredrik.sandin@rccuppsalaorebro.se> eller Erik Lindberg, <erik.g.lindberg@regionvasterbotten.se>.
