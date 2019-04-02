@@ -220,8 +220,8 @@ fIndPlot <-
 
   tab <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars, .fun = summaryFunction, .drop = FALSE)
 
-  include_groups <- sort(unique(subset(tabdata, period == act_period)$group))
-  tab <- subset(tab, group %in% include_groups)
+  #include_groups <- sort(unique(subset(tabdata, period == act_period)$group))
+  #tab <- subset(tab, group %in% include_groups)
 
   subsetUniqueGroups <- unique(tabdata$group[tabdata$subset & tabdata$period == act_period])
   if (!all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subset_lab))) {
