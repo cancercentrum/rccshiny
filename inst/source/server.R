@@ -997,7 +997,11 @@ shinyServer(function(input, output, clientData) {
     searching = TRUE,
     paging = FALSE,
     dom = 'Bfrtip',
-    buttons = list('excel', 'pdf', 'print')
+    buttons = list(
+      list(extend = 'excel', filename = 'tableExport'),
+      list(extend = 'pdf', filename = 'tableExport'),
+      list(extend = 'print')
+    )
   ),
   rownames = FALSE
   )
@@ -1062,7 +1066,11 @@ shinyServer(function(input, output, clientData) {
     searching = TRUE,
     paging = FALSE,
     dom = 'Bfrtip',
-    buttons = list('excel', 'pdf', 'print')
+    buttons = list(
+      list(extend = 'excel', filename = 'tableExport'),
+      list(extend = 'pdf', filename = 'tableExport'),
+      list(extend = 'print')
+    )
   ),
   rownames = FALSE
   )
@@ -1125,7 +1133,11 @@ shinyServer(function(input, output, clientData) {
     searching = TRUE,
     paging = FALSE,
     dom = 'Bfrtip',
-    buttons = list('excel', 'pdf', 'print')
+    buttons = list(
+      list(extend = 'excel', filename = 'tableExport'),
+      list(extend = 'pdf', filename = 'tableExport'),
+      list(extend = 'print')
+    )
   ),
   rownames = FALSE
   )
