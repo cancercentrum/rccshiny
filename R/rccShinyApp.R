@@ -589,25 +589,25 @@ rccShinyApp <-
           renderUI({
             theTabs <-
               list(
-                tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot"), icon = icon("chart-bar"))
+                tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("chart-bar"))
               )
             if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"), icon = icon("table"))
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"), icon = icon("table"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", DT::dataTableOutput("indTableNum"), icon = icon("table"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", DT::dataTableOutput("indTablePct"), icon = icon("table"))
             } else {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", dataTableOutput("indTable"), icon = icon("table"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"), icon = icon("table"))
               if (GLOBAL_geoUnitsCountyInclude) {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"), icon = icon("map-marked-alt"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap", height = "auto"), icon = icon("map-marked-alt"))
               }
             }
             if (GLOBAL_periodInclude) {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"), icon = icon("chart-line"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
             }
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", dataTableOutput("indList"), icon = icon("list"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", DT::dataTableOutput("indList"), icon = icon("list"))
             }
             theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"), icon = icon("info-circle"))
-            do.call(tabBox, c(theTabs, id = "tab", width = 9, height = 1100))
+            do.call(tabBox, c(theTabs, id = "tab", width = 9))
           })
 
         dfInput <- reactive({
