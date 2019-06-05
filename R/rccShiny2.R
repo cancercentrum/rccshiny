@@ -16,6 +16,7 @@
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
 #' @param textAfterSubtitle optional text placed after the subtitles in the tabs.
+#' @param comment optional comment printed under the sidebar panel.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if variable is not found in 'data', hospital is not available as a level of presentation. Default is "sjukhus". At least one geoUnit must be given.
 #' @param geoUnitsHospitalCode optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".
@@ -69,7 +70,7 @@
 #'
 #'
 #'
-#' If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
+#' If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, comment, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
 #' The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
 #' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 #'
@@ -147,6 +148,7 @@ rccShiny2 <-
     outcomeTitle = outcome,
     textBeforeSubtitle = NULL,
     textAfterSubtitle = NULL,
+    comment = "",
     description = rep(NA, 3),
     geoUnitsHospital = "sjukhus",
     geoUnitsHospitalCode = "sjukhuskod",
@@ -284,6 +286,11 @@ rccShiny2 <-
     if (is.null(textAfterSubtitle))
       textAfterSubtitle <- ""
     testVariableError("textAfterSubtitle", listAllowed = FALSE)
+
+    # comment
+    if (is.null(comment))
+      comment <- ""
+    testVariableError("comment", listAllowed = FALSE)
 
     # description
     if (is.null(description))
@@ -427,6 +434,7 @@ rccShiny2 <-
           outcomeTitle = outcomeTitle,
           textBeforeSubtitle = textBeforeSubtitle,
           textAfterSubtitle = textAfterSubtitle,
+          comment = comment,
           description = description,
           geoUnitsHospital = geoUnitsHospital,
           geoUnitsHospitalCode = geoUnitsHospitalCode,

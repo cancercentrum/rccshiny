@@ -10,34 +10,62 @@ rccShinyApp <-
     options(spinner.type = 3, spinner.color.background = "#ffffff")
 
     shinyApp(
-      ui = fluidPage(
-        tags$head(tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}"))),
-        if (!is.null(optionsList$gaPath)) { tags$head(tags$script(src = optionsList$gaPath)) },
-        h2(htmlOutput("text0")),
-        p(
-          htmlOutput("text1"),
-          htmlOutput("text2")
-        ),
-        fluidRow(
-          column(
-            6,
-            uiOutput("outcomeInput"),
-            uiOutput("regionInput"),
-            uiOutput("levelpresentInput"),
-            uiOutput("ownhospitalInput")
+      ui = dashboardPage(
+        skin = "black",
+        dashboardHeader(disable = TRUE),
+        dashboardSidebar(disable = TRUE),
+        dashboardBody(
+          tags$style(
+            HTML("
+              .content-wrapper, .right-side {
+                background-color: #ffffff;
+              }
+              .btn-default {
+                background-color: #ffffff
+              }
+              .d-flex { display: flex; }
+              .flex-grow-1 { flex-grow: 1; }
+              .ml-1 { margin-left: .7em; }
+              .check-mark {
+                color: #28a745
+              }
+              .dropdown {
+                margin-top: 10px;
+              }
+              .glyphicon-user {
+                color: #0172B7
+              }
+            ")
           ),
-          column(
-            6,
-            uiOutput("numericTypeInput"),
-            uiOutput("numericTypePropInput"),
-            uiOutput("periodInput"),
-            uiOutput("periodSplitInput"),
-            uiOutput("userInput"),
-            uiOutput("funnelPlotInput")
+          tags$head(tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}"))),
+          if (!is.null(optionsList$gaPath)) { tags$head(tags$script(src = optionsList$gaPath)) },
+          h2(htmlOutput("text0")),
+          p(
+            htmlOutput("text1"),
+            htmlOutput("text2")
+          ),
+          fluidRow(
+            column(
+              width = 3,
+              box(
+                title = NULL,
+                status = "primary",
+                width = "100%",
+                uiOutput("outcomeInput"),
+                uiOutput("regionInput"),
+                uiOutput("levelpresentInput"),
+                uiOutput("ownhospitalInput"),
+                uiOutput("numericTypeInput"),
+                uiOutput("numericTypePropInput"),
+                uiOutput("periodInput"),
+                uiOutput("periodSplitInput"),
+                uiOutput("userInput"),
+                uiOutput("funnelPlotInput")
+              ),
+              uiOutput("comment")
+            ),
+            shinycssloaders::withSpinner(uiOutput("theTabs"))
           )
-        ),
-        fluidRow(
-          shinycssloaders::withSpinner(uiOutput("theTabs"))
         )
       ),
       server = function(input, output, session) {
@@ -542,6 +570,17 @@ rccShinyApp <-
           indSubtitleUserInput()
         })
 
+        output$comment <- renderUI({
+          if (GLOBAL_comment != "") {
+            box(
+              title = NULL,
+              status = "primary",
+              width = "100%",
+              p(GLOBAL_comment)
+            )
+          }
+        })
+
         output$tableTitle <- renderText({
           indTitle()
         })
@@ -550,25 +589,25 @@ rccShinyApp <-
           renderUI({
             theTabs <-
               list(
-                tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot"))
+                tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot"), icon = icon("chart-bar"))
               )
             if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"))
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"), icon = icon("table"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"), icon = icon("table"))
             } else {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", dataTableOutput("indTable"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", dataTableOutput("indTable"), icon = icon("table"))
               if (GLOBAL_geoUnitsCountyInclude) {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"), icon = icon("map-marked-alt"))
               }
             }
             if (GLOBAL_periodInclude) {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend"), icon = icon("chart-line"))
             }
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", dataTableOutput("indList"))
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", dataTableOutput("indList"), icon = icon("list"))
             }
-            theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"))
-            do.call(tabsetPanel, c(theTabs, id = "tab"))
+            theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"), icon = icon("info-circle"))
+            do.call(tabBox, c(theTabs, id = "tab", width = 9, height = 1100))
           })
 
         dfInput <- reactive({
@@ -1321,106 +1360,106 @@ rccShinyApp <-
         output$indList <-
           DT::renderDataTable({
 
-          dfuse <- dfInput()
+            dfuse <- dfInput()
 
-          if (!GLOBAL_geoUnitsHospitalInclude) {
-            dfuse$group <- dfuse$groupCode
-          }
+            if (!GLOBAL_geoUnitsHospitalInclude) {
+              dfuse$group <- dfuse$groupCode
+            }
 
-          listIncludeVariables <- vector()
-          if (GLOBAL_idInclude) {
-            listIncludeVariables <- c(listIncludeVariables, GLOBAL_id)
-            dfuse[, GLOBAL_id] <- as.character(dfuse[, GLOBAL_id])
-            dfuse[!(dfuse[, GLOBAL_idAuthorisedToView] %in% 1), GLOBAL_id] <- ""
-          }
-          if (GLOBAL_idOverviewLinkInclude) {
-            listIncludeVariables <- c(listIncludeVariables, GLOBAL_idOverviewLink)
-            dfuse[, GLOBAL_idOverviewLink] <- as.character(dfuse[, GLOBAL_idOverviewLink])
-            dfuse[!(dfuse[, GLOBAL_idAuthorisedToView] %in% 1), GLOBAL_idOverviewLink] <- ""
-          }
-          listIncludeVariables <- c(
-            listIncludeVariables,
-            "group",
-            if (GLOBAL_periodInclude) {"period"},
-            "outcome"
-          )
-          listIncludeVariablesTxt <- c(
-            if (GLOBAL_idInclude) {"ID"},
-            if (GLOBAL_idOverviewLinkInclude) {rccShinyTXT(language = GLOBAL_language)$idOverviewLink},
-            rccShinyLevelNames("hospital", language = GLOBAL_language),
-            if (GLOBAL_periodInclude) {GLOBAL_periodLabel},
-            rccShinyTXT(language = GLOBAL_language)$outcome
-          )
-
-          tab <-
-            subset(
-              dfuse,
-              !is.na(groupCode) & groupCode %in% GLOBAL_incaUserHospital,
-              select = listIncludeVariables
+            listIncludeVariables <- vector()
+            if (GLOBAL_idInclude) {
+              listIncludeVariables <- c(listIncludeVariables, GLOBAL_id)
+              dfuse[, GLOBAL_id] <- as.character(dfuse[, GLOBAL_id])
+              dfuse[!(dfuse[, GLOBAL_idAuthorisedToView] %in% 1), GLOBAL_id] <- ""
+            }
+            if (GLOBAL_idOverviewLinkInclude) {
+              listIncludeVariables <- c(listIncludeVariables, GLOBAL_idOverviewLink)
+              dfuse[, GLOBAL_idOverviewLink] <- as.character(dfuse[, GLOBAL_idOverviewLink])
+              dfuse[!(dfuse[, GLOBAL_idAuthorisedToView] %in% 1), GLOBAL_idOverviewLink] <- ""
+            }
+            listIncludeVariables <- c(
+              listIncludeVariables,
+              "group",
+              if (GLOBAL_periodInclude) {"period"},
+              "outcome"
+            )
+            listIncludeVariablesTxt <- c(
+              if (GLOBAL_idInclude) {"ID"},
+              if (GLOBAL_idOverviewLinkInclude) {rccShinyTXT(language = GLOBAL_language)$idOverviewLink},
+              rccShinyLevelNames("hospital", language = GLOBAL_language),
+              if (GLOBAL_periodInclude) {GLOBAL_periodLabel},
+              rccShinyTXT(language = GLOBAL_language)$outcome
             )
 
-          if (class(tab$outcome) %in% "logical") {
-            tab$outcome <-
-              factor(
-                tab$outcome,
-                levels = c(TRUE, FALSE),
-                labels = c(
-                  rccShinyTXT(language = GLOBAL_language)$yes,
-                  rccShinyTXT(language = GLOBAL_language)$no
-                )
-              )
-          }
-
-          colnames(tab) <- listIncludeVariablesTxt
-
-          if (nrow(tab) == 0) {
             tab <-
               subset(
-                data.frame(
-                  rccShinyNoObservationsText(language = GLOBAL_language)
-                ),
-                FALSE
+                dfuse,
+                !is.na(groupCode) & groupCode %in% GLOBAL_incaUserHospital,
+                select = listIncludeVariables
               )
-            colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
-          }
 
-          tempColumnDefs <-
-            list(
-              list(
-                className = 'dt-left',
-                targets = 0
-              )
-            )
-          if (ncol(tab) > 1) {
-            tempColumnDefs[[2]] <-
-              list(
-                className = 'dt-right',
-                targets = 1:(ncol(tab)-1)
-              )
-          }
+            if (class(tab$outcome) %in% "logical") {
+              tab$outcome <-
+                factor(
+                  tab$outcome,
+                  levels = c(TRUE, FALSE),
+                  labels = c(
+                    rccShinyTXT(language = GLOBAL_language)$yes,
+                    rccShinyTXT(language = GLOBAL_language)$no
+                  )
+                )
+            }
 
-          tab <-
-            DT::datatable(
-              tab,
-              escape = FALSE,
-              rownames = FALSE,
-              extensions = 'Buttons',
-              options = list(
-                columnDefs = tempColumnDefs,
-                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-                searching = TRUE,
-                paging = FALSE,
-                dom = 'Bfrtip',
-                buttons = list(
-                  list(extend = 'excel', filename = 'tableExport'),
-                  list(extend = 'pdf', filename = 'tableExport'),
-                  list(extend = 'print')
+            colnames(tab) <- listIncludeVariablesTxt
+
+            if (nrow(tab) == 0) {
+              tab <-
+                subset(
+                  data.frame(
+                    rccShinyNoObservationsText(language = GLOBAL_language)
+                  ),
+                  FALSE
+                )
+              colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
+            }
+
+            tempColumnDefs <-
+              list(
+                list(
+                  className = 'dt-left',
+                  targets = 0
                 )
               )
-            )
+            if (ncol(tab) > 1) {
+              tempColumnDefs[[2]] <-
+                list(
+                  className = 'dt-right',
+                  targets = 1:(ncol(tab)-1)
+                )
+            }
 
-          tab
-        })
+            tab <-
+              DT::datatable(
+                tab,
+                escape = FALSE,
+                rownames = FALSE,
+                extensions = 'Buttons',
+                options = list(
+                  columnDefs = tempColumnDefs,
+                  language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                  searching = TRUE,
+                  paging = FALSE,
+                  dom = 'Bfrtip',
+                  buttons = list(
+                    list(extend = 'excel', filename = 'tableExport'),
+                    list(extend = 'pdf', filename = 'tableExport'),
+                    list(extend = 'print')
+                  )
+                )
+              )
+
+            tab
+          })
 
         output$description <-
           renderUI({
@@ -1550,6 +1589,16 @@ rccShinyCheckData <-
       } else {
         optionsList$textAfterSubtitle[1]
       }
+
+    # comment
+    optionsList$comment <-
+      enc2utf8(
+        ifelse(
+          length(optionsList$comment) >= optionsList$whichLanguage,
+          optionsList$comment[optionsList$whichLanguage],
+          optionsList$comment[1]
+        )
+      )
 
     # description
     optionsList$description <-
