@@ -1126,6 +1126,7 @@ rccShinyApp <-
           searching = TRUE,
           paging = FALSE,
           dom = 'Bfrtip',
+          scrollX = TRUE,
           buttons = list(
             list(extend = 'excel', filename = 'tableExport'),
             list(extend = 'pdf', filename = 'tableExport'),
@@ -1195,6 +1196,7 @@ rccShinyApp <-
           searching = TRUE,
           paging = FALSE,
           dom = 'Bfrtip',
+          scrollX = TRUE,
           buttons = list(
             list(extend = 'excel', filename = 'tableExport'),
             list(extend = 'pdf', filename = 'tableExport'),
@@ -1262,6 +1264,7 @@ rccShinyApp <-
           searching = TRUE,
           paging = FALSE,
           dom = 'Bfrtip',
+          scrollX = TRUE,
           buttons = list(
             list(extend = 'excel', filename = 'tableExport'),
             list(extend = 'pdf', filename = 'tableExport'),
@@ -1450,6 +1453,7 @@ rccShinyApp <-
                   searching = TRUE,
                   paging = FALSE,
                   dom = 'Bfrtip',
+                  scrollX = TRUE,
                   buttons = list(
                     list(extend = 'excel', filename = 'tableExport'),
                     list(extend = 'pdf', filename = 'tableExport'),
