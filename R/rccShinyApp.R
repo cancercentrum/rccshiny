@@ -50,7 +50,7 @@ rccShinyApp <-
               box(
                 title = NULL,
                 status = "primary",
-                width = "100%",
+                width = NULL,
                 uiOutput("outcomeInput"),
                 uiOutput("regionInput"),
                 uiOutput("levelpresentInput"),
@@ -589,7 +589,11 @@ rccShinyApp <-
           renderUI({
             theTabs <-
               list(
-                tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("chart-bar"))
+                if (GLOBAL_outputHighcharts) {
+                  tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highchartOutput("indPlot", height = "980px"), icon = icon("chart-bar"))
+                } else {
+                  tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("chart-bar"))
+                }
               )
             if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", DT::dataTableOutput("indTableNum"), icon = icon("table"))
@@ -743,94 +747,176 @@ rccShinyApp <-
           }
 
         output$indPlot <-
-          renderImage({
 
-            x_width <- min(session$clientData$output_indPlot_width,700)
-            yx_ratio <- 1.4
+          if (GLOBAL_outputHighcharts) {
 
-            dfuse <- dfInput()
+            renderHighchart({
 
-            tempSubset <- NULL
-            if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-              if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
-                tempSubset <- dfuse$region %in% input[["param_region"]]
+              dfuse <- dfInput()
+
+              tempSubset <- NULL
+              if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+                if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                  tempSubset <- dfuse$region %in% input[["param_region"]]
+                }
               }
-            }
 
-            outfile <- tempfile(fileext = ".png")
+              if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
-            png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
-
-            if (nrow(dfuse) >= GLOBAL_hideLessThan) {
-              rcc2PlotInd(
-                group = dfuse$group,
-                groupHideLessThan = GLOBAL_hideLessThan,
-                groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
-                allLab = rccShinyTXT(language = GLOBAL_language)$RIKET,
-                emphLab = emphLabel(dfuse),
-                ind = dfuse$outcome,
-                indNumericExcludeNeg = FALSE,
-                indTitle = ifelse(
-                  class(dfuse$outcome) %in% "numeric",
-                  rccShinyTXT(language = GLOBAL_language)$median,
-                  rccShinyTXT(language = GLOBAL_language)$percent
-                ),
-                indNCasesTxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
-                indNCasesOfTxt = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
-                period = if (input$param_periodSplit) {dfuse$period} else {NULL},
-                xLab = ifelse(
-                  class(dfuse$outcome) %in% "numeric",
-                  paste0(
+                rcc2PlotInd(
+                  group = dfuse$group,
+                  groupHideLessThan = GLOBAL_hideLessThan,
+                  groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
+                  allLab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                  emphLab = emphLabel(dfuse),
+                  ind = dfuse$outcome,
+                  indNumericExcludeNeg = FALSE,
+                  indTitle = ifelse(
+                    class(dfuse$outcome) %in% "numeric",
                     rccShinyTXT(language = GLOBAL_language)$median,
-                    " (", GLOBAL_propWithinUnit, ")"),
-                  rccShinyTXT(language = GLOBAL_language)$percent
-                ),
-                legendFixedTextWidth = TRUE,
-                cexText = ifelse(
-                  input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
-                  0.8,
-                  1
-                ),
-                cexPoint = ifelse(
-                  input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
-                  1.8,
-                  3
-                ),
-                targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
-                                    GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
-                                    numericTypeProp() &
-                                    input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
-                  GLOBAL_targetValues[[whichOutcome()]]} else {
-                    NULL
-                  },
-                targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                    rccShinyTXT(language = GLOBAL_language)$percent
+                  ),
+                  indNCasesTxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
+                  indNCasesOfTxt = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
+                  period = if (input$param_periodSplit) {dfuse$period} else {NULL},
+                  xLab = ifelse(
+                    class(dfuse$outcome) %in% "numeric",
+                    paste0(
+                      rccShinyTXT(language = GLOBAL_language)$median,
+                      " (", GLOBAL_propWithinUnit, ")"),
+                    rccShinyTXT(language = GLOBAL_language)$percent
+                  ),
+                  legendFixedTextWidth = TRUE,
+                  cexText = ifelse(
+                    input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
+                    0.8,
+                    1
+                  ),
+                  cexPoint = ifelse(
+                    input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
+                    1.8,
+                    3
+                  ),
+                  targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                     GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                     numericTypeProp() &
+                                     input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+                    GLOBAL_targetValues[[whichOutcome()]]} else {
+                      NULL
+                    },
+                  targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                          GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                          numericTypeProp() &
                                          input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
-                  GLOBAL_sortDescending[whichOutcome()]} else {
-                    NULL
-                  },
-                targetValuesLabels = c(
-                  rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
-                  rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
-                ),
-                funnelplot = input$param_funnelplot,
-                subset = tempSubset,
-                subsetLab = paste(input[["param_region"]], collapse = "/")
-              )
-            } else {
-              plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
-              text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
-            }
+                    GLOBAL_sortDescending[whichOutcome()]} else {
+                      NULL
+                    },
+                  targetValuesLabels = c(
+                    rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
+                    rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
+                  ),
+                  funnelplot = input$param_funnelplot,
+                  subset = tempSubset,
+                  subsetLab = paste(input[["param_region"]], collapse = "/"),
+                  outputHighchart = GLOBAL_outputHighcharts
+                )
 
-            dev.off()
+              }
 
-            list(src = outfile,
-                 contentType = "image/png",
-                 width = x_width,
-                 height = x_width * yx_ratio)
+            })
 
-          }, deleteFile = TRUE)
+          } else {
+
+            renderImage({
+
+              x_width <- min(session$clientData$output_indPlot_width,700)
+              yx_ratio <- 1.4
+
+              dfuse <- dfInput()
+
+              tempSubset <- NULL
+              if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+                if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                  tempSubset <- dfuse$region %in% input[["param_region"]]
+                }
+              }
+
+              outfile <- tempfile(fileext = ".png")
+
+              png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+
+              if (nrow(dfuse) >= GLOBAL_hideLessThan) {
+                rcc2PlotInd(
+                  group = dfuse$group,
+                  groupHideLessThan = GLOBAL_hideLessThan,
+                  groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
+                  allLab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                  emphLab = emphLabel(dfuse),
+                  ind = dfuse$outcome,
+                  indNumericExcludeNeg = FALSE,
+                  indTitle = ifelse(
+                    class(dfuse$outcome) %in% "numeric",
+                    rccShinyTXT(language = GLOBAL_language)$median,
+                    rccShinyTXT(language = GLOBAL_language)$percent
+                  ),
+                  indNCasesTxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
+                  indNCasesOfTxt = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
+                  period = if (input$param_periodSplit) {dfuse$period} else {NULL},
+                  xLab = ifelse(
+                    class(dfuse$outcome) %in% "numeric",
+                    paste0(
+                      rccShinyTXT(language = GLOBAL_language)$median,
+                      " (", GLOBAL_propWithinUnit, ")"),
+                    rccShinyTXT(language = GLOBAL_language)$percent
+                  ),
+                  legendFixedTextWidth = TRUE,
+                  cexText = ifelse(
+                    input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
+                    0.8,
+                    1
+                  ),
+                  cexPoint = ifelse(
+                    input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
+                    1.8,
+                    3
+                  ),
+                  targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                     GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                     numericTypeProp() &
+                                     input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+                    GLOBAL_targetValues[[whichOutcome()]]} else {
+                      NULL
+                    },
+                  targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                         GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                         numericTypeProp() &
+                                         input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+                    GLOBAL_sortDescending[whichOutcome()]} else {
+                      NULL
+                    },
+                  targetValuesLabels = c(
+                    rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
+                    rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
+                  ),
+                  funnelplot = input$param_funnelplot,
+                  subset = tempSubset,
+                  subsetLab = paste(input[["param_region"]], collapse = "/")
+                )
+              } else {
+                plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
+                text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
+              }
+
+              dev.off()
+
+              list(src = outfile,
+                   contentType = "image/png",
+                   width = x_width,
+                   height = x_width * yx_ratio)
+
+            }, deleteFile = TRUE)
+
+          }
 
         output$indPlotTrend <-
           renderImage({

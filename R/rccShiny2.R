@@ -170,7 +170,8 @@ rccShiny2 <-
     propWithinValue = 30,
     hideLessThan = 5,
     gaPath = NULL,
-    npcrGroupPrivateOthers = FALSE
+    npcrGroupPrivateOthers = FALSE,
+    outputHighcharts = FALSE
   ) {
 
     # # # # # # # # # # # # # # # #
@@ -411,6 +412,10 @@ rccShiny2 <-
     if (is.null(npcrGroupPrivateOthers) | !is.logical(npcrGroupPrivateOthers) | length(npcrGroupPrivateOthers) != 1)
       stop("'npcrGroupPrivateOthers' should be a logical vector of length 1", call. = FALSE)
 
+    # outputHighcharts
+    if (is.null(outputHighcharts) | !is.logical(outputHighcharts) | length(outputHighcharts) != 1)
+      stop("'outputHighcharts' should be a logical vector of length 1", call. = FALSE)
+
     # # # # # # # # # # # # # # # #
     # Produce app for each language
     # # # # # # # # # # # # # # # #
@@ -456,7 +461,8 @@ rccShiny2 <-
           propWithinValue = propWithinValue,
           hideLessThan = hideLessThan,
           gaPath = gaPath,
-          npcrGroupPrivateOthers = npcrGroupPrivateOthers
+          npcrGroupPrivateOthers = npcrGroupPrivateOthers,
+          outputHighcharts = outputHighcharts
         )
 
       if (!inca) {
