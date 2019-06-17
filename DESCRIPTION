@@ -9,6 +9,7 @@ Imports:
   plyr,
   Hmisc,
   sp,
+  highcharter,
   shiny,
   shinyWidgets,
   DT,
