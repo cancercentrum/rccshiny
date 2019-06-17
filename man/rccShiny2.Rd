@@ -141,7 +141,7 @@ The following applies to argument outcomeTitle, description: the arguments shoul
 The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 }
 \examples{
-ind1 <- rccShiny(
+ind1 <- rccShiny2(
   data = rccShinyData,
   folder = "Indikator1",
   outcome = paste0("outcome",1:3),
@@ -172,7 +172,7 @@ cat(ind1) # displays the html link that can be used in index.html
 
 # For Swedish/English version
 rccShinyData$outcome1_en <- rccShinyData$outcome1
-rccShiny(
+rccShiny2(
   language = c("sv", "en"),
   data = rccShinyData,
   folder = "Indikator2",

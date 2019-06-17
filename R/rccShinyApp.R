@@ -968,10 +968,21 @@ rccShinyApp <-
                   legend <- c(legend, i)
                 }
 
-                master_col <- c("#e5e5e5","#cccccc","#b2b2b2","#999999","#7f7f7f","#666666","#ffb117","#db5524","#19975d")
+                master_colshade <- 1.6
+                master_col <- c(
+                  rcc2ColShade("#005092", master_colshade),
+                  rcc2ColShade("#e56284", master_colshade),
+                  rcc2ColShade("#66cccc", master_colshade),
+                  rcc2ColShade("#7f3705", master_colshade),
+                  rcc2ColShade("#7c458a", master_colshade),
+                  rcc2ColShade("#95bf5d", master_colshade),
+                  "#ffb117",
+                  "#db5524",
+                  "#19975d"
+                )
 
                 col <- rep("#000000", length(legend))
-                tempRegionNames <- rccShinyRegionNames(language = GLOBAL_language, sort = TRUE)
+                tempRegionNames <- sort(rccShinyRegionNames(language = GLOBAL_language)[1:6])
                 col[legend == tempRegionNames[1]] <- master_col[1]
                 col[legend == tempRegionNames[2]] <- master_col[2]
                 col[legend == tempRegionNames[3]] <- master_col[3]

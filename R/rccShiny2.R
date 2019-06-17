@@ -78,7 +78,7 @@
 #'
 #' @return A folder path/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
 #' @examples
-#' ind1 <- rccShiny(
+#' ind1 <- rccShiny2(
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
 #'   outcome = paste0("outcome",1:3),
@@ -109,7 +109,7 @@
 #'
 #'# For Swedish/English version
 #' rccShinyData$outcome1_en <- rccShinyData$outcome1
-#' rccShiny(
+#' rccShiny2(
 #'   language = c("sv", "en"),
 #'   data = rccShinyData,
 #'   folder = "Indikator2",
