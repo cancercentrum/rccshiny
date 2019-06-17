@@ -762,63 +762,61 @@ rccShinyApp <-
             png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
             if (nrow(dfuse) >= GLOBAL_hideLessThan) {
-              fIndPlot(
+              rcc2PlotInd(
                 group = dfuse$group,
-                group_hide_less_than = GLOBAL_hideLessThan,
-                all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
-                emph_lab = emphLabel(dfuse),
+                groupHideLessThan = GLOBAL_hideLessThan,
+                groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
+                allLab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                emphLab = emphLabel(dfuse),
                 ind = dfuse$outcome,
-                ind_numeric_exclude_neg = FALSE,
-                ind_title = ifelse(
+                indNumericExcludeNeg = FALSE,
+                indTitle = ifelse(
                   class(dfuse$outcome) %in% "numeric",
                   rccShinyTXT(language = GLOBAL_language)$median,
                   rccShinyTXT(language = GLOBAL_language)$percent
                 ),
-                ind_noofcasestxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
-                ind_noofcasestxt_nOfN = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
+                indNCasesTxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
+                indNCasesOfTxt = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
                 period = if (input$param_periodSplit) {dfuse$period} else {NULL},
-                x_lab = ifelse(
+                xLab = ifelse(
                   class(dfuse$outcome) %in% "numeric",
                   paste0(
                     rccShinyTXT(language = GLOBAL_language)$median,
                     " (", GLOBAL_propWithinUnit, ")"),
                   rccShinyTXT(language = GLOBAL_language)$percent
                 ),
-                legend_fixedtextwidth = TRUE,
-                title = NULL,
-                subtitle = NULL,
-                subtitle2 = NULL,
-                text_cex = ifelse(
+                legendFixedTextWidth = TRUE,
+                cexText = ifelse(
                   input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
                   0.8,
                   1
                 ),
-                point_cex = ifelse(
+                cexPoint = ifelse(
                   input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
                   1.8,
                   3
                 ),
-                target_values = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                     GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                     numericTypeProp() &
                                     input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
                   GLOBAL_targetValues[[whichOutcome()]]} else {
                     NULL
                   },
-                target_values_high = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                          GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                          numericTypeProp() &
                                          input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
                   GLOBAL_sortDescending[whichOutcome()]} else {
                     NULL
                   },
-                target_values_labels = c(
+                targetValuesLabels = c(
                   rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
                   rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
                 ),
                 funnelplot = input$param_funnelplot,
                 subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/")
+                subsetLab = paste(input[["param_region"]], collapse = "/")
               )
             } else {
               plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
@@ -901,32 +899,24 @@ rccShinyApp <-
                   y <- list()
                   legend <- vector()
 
-                  tab_group$Period <-
-                    factor(
-                      tab_group$Period,
-                      levels = GLOBAL_periodValues
-                    )
-                  tab_group$PeriodNum <- as.numeric(tab_group$Period)
-
                   for (i in levels(dfuse$outcome)) {
-                    x <- append(x, list(as.numeric(tab_group$PeriodNum)))
+                    x <- append(x, list(tab_group$Period))
                     y <- append(y, list(as.numeric(tab_group[,i])))
                     legend <- c(legend, i)
                   }
 
-                  fLinePlot(
+                  rcc2PlotLine(
                     x = x,
                     y = y,
                     legend = legend,
-                    x_lim = range(tab_group$PeriodNum),
-                    x_by = 1,
-                    x_ticks_labels = levels(tab_group$Period),
-                    y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                    xLim = range(tab_group$Period),
+                    xBy = 1,
+                    yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
                     title = input$param_ownhospital,
-                    subtitle = NULL,
+                    subtitle1 = NULL,
                     subtitle2 = NULL,
-                    x_lab = GLOBAL_periodLabel,
-                    y_lab = rccShinyTXT(language = GLOBAL_language)$percent
+                    xLab = GLOBAL_periodLabel,
+                    yLab = rccShinyTXT(language = GLOBAL_language)$percent
                   )
 
                 }
@@ -935,32 +925,24 @@ rccShinyApp <-
                 y <- list()
                 legend <- vector()
 
-                tab_total$Period <-
-                  factor(
-                    tab_total$Period,
-                    levels = GLOBAL_periodValues
-                  )
-                tab_total$PeriodNum <- as.numeric(tab_total$Period)
-
                 for (i in levels(dfuse$outcome)) {
-                  x <- append(x, list(as.numeric(tab_total$PeriodNum)))
+                  x <- append(x, list(tab_total$Period))
                   y <- append(y, list(as.numeric(tab_total[,i])))
                   legend <- c(legend, i)
                 }
 
-                fLinePlot(
+                rcc2PlotLine(
                   x = x,
                   y = y,
                   legend = legend,
-                  x_lim = range(tab_total$PeriodNum),
-                  x_by = 1,
-                  x_ticks_labels = levels(tab_total$Period),
-                  y_lim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                  xLim = range(tab_total$Period),
+                  xBy = 1,
+                  yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
                   title = rccShinyTXT(language = GLOBAL_language)$RIKET,
-                  subtitle = NULL,
+                  subtitle1 = NULL,
                   subtitle2 = NULL,
-                  x_lab = GLOBAL_periodLabel,
-                  y_lab = rccShinyTXT(language = GLOBAL_language)$percent
+                  xLab = GLOBAL_periodLabel,
+                  yLab = rccShinyTXT(language = GLOBAL_language)$percent
                 )
 
               } else {
@@ -968,13 +950,6 @@ rccShinyApp <-
                 x <- list()
                 y <- list()
                 legend <- vector()
-
-                tab$Period <-
-                  factor(
-                    tab$Period,
-                    levels = GLOBAL_periodValues
-                  )
-                tab$PeriodNum <- as.numeric(tab$Period)
 
                 if (outcomeClassNumeric() & !numericTypeProp()) {
                   y_varinterest <- "Median"
@@ -988,7 +963,7 @@ rccShinyApp <-
                 }
 
                 for (i in unique(tab$group)) {
-                  x <- append(x, list(as.numeric(tab$PeriodNum[tab$group == i])))
+                  x <- append(x, list(tab$Period[tab$group == i]))
                   y <- append(y, list(as.numeric(tab[tab$group == i, y_varinterest])))
                   legend <- c(legend, i)
                 }
@@ -1007,15 +982,14 @@ rccShinyApp <-
                 col[legend == input$param_ownhospital] <- master_col[8]
                 col[legend %in% input[["param_region"]]] <- master_col[9]
 
-                fLinePlot(
+                rcc2PlotLine(
                   x = x,
                   y = y,
                   legend = legend,
-                  legend_textwidth = 15,
-                  x_lim = range(tab$PeriodNum),
-                  x_by = 1,
-                  x_ticks_labels = levels(tab$Period),
-                  y_lim = range(
+                  legendTextWidth = 15,
+                  xLim = range(tab$Period),
+                  xBy = 1,
+                  yLim = range(
                     pretty(
                       c(0,
                         ifelse(
@@ -1026,26 +1000,23 @@ rccShinyApp <-
                       )
                     )
                   ),
-                  title = NULL,
-                  subtitle = NULL,
-                  subtitle2 = NULL,
-                  x_lab = GLOBAL_periodLabel,
-                  y_lab = y_varinterest_txt,
-                  target_values = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                  xLab = GLOBAL_periodLabel,
+                  yLab = y_varinterest_txt,
+                  targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                       GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                       numericTypeProp() &
                                       input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
                     GLOBAL_targetValues[[whichOutcome()]]} else {
                       NULL
                     },
-                  target_values_high = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                  targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                            GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                            numericTypeProp() &
                                            input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
                     GLOBAL_sortDescending[whichOutcome()]} else {
                       NULL
                     },
-                  target_values_labels = c(
+                  targetValuesLabels = c(
                     rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
                     rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
                   ),
@@ -1280,7 +1251,7 @@ rccShinyApp <-
             x_width <- min(session$clientData$output_indMap_width, 700)
             yx_ratio <- 1.4
 
-            tab_order <- fMapPlot(value_order_return = TRUE)
+            tab_order <- rcc2PlotMap(valueOrderReturn = TRUE)
 
             tab_order[tab_order == "Halland"] <- hallandLabel()
 
@@ -1320,9 +1291,9 @@ rccShinyApp <-
 
               tab <- tab[match(tab_order, tab$group),]
 
-              fMapPlot(
+              rcc2PlotMap(
                 value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
-                value_lim = if (showPercentage) {c(0,100)} else {NULL},
+                valueLim = if (showPercentage) {c(0,100)} else {NULL},
                 legend = ifelse(
                   showPercentage,
                   rccShinyTXT(language = GLOBAL_language)$percent,
@@ -1330,9 +1301,6 @@ rccShinyApp <-
                     rccShinyTXT(language = GLOBAL_language)$median,
                     " (", GLOBAL_propWithinUnit, ")")
                 ),
-                title = NULL,
-                subtitle = NULL,
-                subtitle2 = NULL,
                 col = if (showPercentage){
                   if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
                     "#00b3f6"
@@ -1342,8 +1310,7 @@ rccShinyApp <-
                 } else {
                   NULL
                 },
-                ndec = ifelse(showPercentage, 0, 1),
-                rds_path = "../../_data/"
+                nDec = ifelse(showPercentage, 0, 1)
               )
 
             } else {

@@ -229,6 +229,7 @@ rccShinyTXT <-
         yes = c("Ja", "Yes"),
         no = c("Nej", "No"),
         idOverviewLink = c("Översikt", "Overview"),
+        grouphidelessthan = c("(otillräcklig data)", "(insufficient data)"),
         stringsAsFactors = FALSE
       )
     tab <- fixEncoding(tab)
