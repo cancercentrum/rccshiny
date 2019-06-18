@@ -825,7 +825,8 @@ rcc2PlotInd <-
               outside = TRUE
             )
 
-          tempPlacements <- seq(0.3, -0.3, length.out = length(tab_list))
+          tempPlacementsDistance <- min(0.3, (length(tab_list) - 1) * 0.1)
+          tempPlacements <- seq(tempPlacementsDistance, -tempPlacementsDistance, length.out = length(tab_list))
           for (i in 1:length(tab_list)) {
             tempLegendCol <-
               ifelse(
