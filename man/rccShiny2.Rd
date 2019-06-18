@@ -17,10 +17,10 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
   language)$limitRegion, period = "period", periodDateLevel = "year",
   periodLabel = rccShinyTXT(language = language)$dxYear,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sortDescending = NULL, propWithinShow = TRUE,
+  sort = TRUE, sortDescending = NULL, propWithinShow = TRUE,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
   propWithinValue = 30, hideLessThan = 5, gaPath = NULL,
-  npcrGroupPrivateOthers = FALSE)
+  npcrGroupPrivateOthers = FALSE, outputHighcharts = FALSE)
 }
 \arguments{
 \item{inca}{should output be as if on the INCA platform? Default is FALSE.}
@@ -84,6 +84,8 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 \item{targetValues}{optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.}
 
 \item{funnelplot}{adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.}
+
+\item{sort}{should the bars in tab Jämförelse/Comparison be sorted? Default is TRUE.}
 
 \item{sortDescending}{should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.}
 

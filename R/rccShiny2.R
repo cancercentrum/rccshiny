@@ -32,6 +32,7 @@
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
+#' @param sort should the bars in tab Jämförelse/Comparison be sorted? Default is TRUE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
 #' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
 #' @param propWithinUnit unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.
@@ -164,6 +165,7 @@ rccShiny2 <-
     varOther = NULL,
     targetValues = NULL,
     funnelplot = FALSE,
+    sort = TRUE,
     sortDescending = NULL,
     propWithinShow = TRUE,
     propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
@@ -381,6 +383,10 @@ rccShiny2 <-
     if (is.null(funnelplot) | is.na(funnelplot) | !is.logical(funnelplot) | length(funnelplot) != 1)
       stop("'funnelplot' should be a logical vector of length 1", call. = FALSE)
 
+    # sort
+    if (is.null(sort) | is.na(sort) | !is.logical(sort) | length(sort) != 1)
+      stop("'sort' should be a logical vector of length 1", call. = FALSE)
+
     # sortDescending
     if (!is.null(sortDescending) & (!is.logical(sortDescending) | length(sortDescending) < 1))
       stop("'sortDescending' should be either NULL or a logical vector with at least one element", call. = FALSE)
@@ -455,6 +461,7 @@ rccShiny2 <-
           varOther = varOther,
           targetValues = targetValues,
           funnelplot = funnelplot,
+          sort = sort,
           sortDescending = sortDescending,
           propWithinShow = propWithinShow,
           propWithinUnit = propWithinUnit,

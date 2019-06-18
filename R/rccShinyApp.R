@@ -824,6 +824,7 @@ rccShinyApp <-
                     rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
                   ),
                   funnelplot = input$param_funnelplot,
+                  sort = GLOBAL_sort,
                   subset = tempSubset,
                   subsetLab = paste(input[["param_region"]], collapse = "/"),
                   outputHighchart = GLOBAL_outputHighcharts
@@ -907,6 +908,7 @@ rccShinyApp <-
                     rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
                   ),
                   funnelplot = input$param_funnelplot,
+                  sort = GLOBAL_sort,
                   subset = tempSubset,
                   subsetLab = paste(input[["param_region"]], collapse = "/")
                 )
