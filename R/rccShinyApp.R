@@ -601,11 +601,19 @@ rccShinyApp <-
             } else {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"), icon = icon("table"))
               if (GLOBAL_geoUnitsCountyInclude) {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap", height = "auto"), icon = icon("map-marked-alt"))
+                if (GLOBAL_outputHighcharts) {
+                  theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", highchartOutput("indMap", height = "980px"), icon = icon("map-marked-alt"))
+                } else {
+                  theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap", height = "auto"), icon = icon("map-marked-alt"))
+                }
               }
             }
             if (GLOBAL_periodInclude) {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
+              if (GLOBAL_outputHighcharts) {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highchartOutput("indPlotTrend", height = "630px"), icon = icon("chart-line"))
+              } else {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
+              }
             }
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", DT::dataTableOutput("indList"), icon = icon("list"))
@@ -919,75 +927,67 @@ rccShinyApp <-
           }
 
         output$indPlotTrend <-
-          renderImage({
 
-            x_width <- min(session$clientData$output_indPlotTrend_width, 700)
-            yx_ratio <- 0.9
+          if (GLOBAL_outputHighcharts) {
 
-            dfuse <- dfInput()
+            renderHighchart({
 
-            outfile <- tempfile(fileext = ".png")
+              dfuse <- dfInput()
 
-            if (nrow(dfuse) >= GLOBAL_hideLessThan) {
+              if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
-              tab <-
-                rccShinyIndTable(
-                  group = dfuse[, rccShinyGroupVariable("hospital")],
-                  group_hide_less_than = GLOBAL_hideLessThan,
-                  all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
-                  ind = dfuse$outcome,
-                  ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
-                  period = dfuse$period,
-                  period_factors = GLOBAL_periodValues,
-                  period_alwaysinclude = TRUE
-                )
-
-              tab_group <- subset(tab,group == input$param_ownhospital)
-              tab_total <- subset(tab,group == rccShinyTXT(language = GLOBAL_language)$RIKET)
-
-              tab <- rbind(tab_total, tab_group)
-
-              if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-
-                if (nrow(tab_group) > 0) {
-                  yx_ratio <- 1.8
-                }
-
-              } else if (GLOBAL_geoUnitsRegionInclude) {
-
-                tab_region <-
+                tab <-
                   rccShinyIndTable(
-                    group = dfuse[,rccShinyGroupVariable("region")],
+                    group = dfuse[, rccShinyGroupVariable("hospital")],
                     group_hide_less_than = GLOBAL_hideLessThan,
-                    all_lab = NULL,
+                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
                     ind = dfuse$outcome,
+                    ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     period = dfuse$period,
                     period_factors = GLOBAL_periodValues,
                     period_alwaysinclude = TRUE
                   )
-                tab <- rbind(tab_region, tab)
+
+                tab_group <- subset(tab,group == input$param_ownhospital)
+                tab_total <- subset(tab,group == rccShinyTXT(language = GLOBAL_language)$RIKET)
+
+                tab <- rbind(tab_total, tab_group)
+
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+
+                  if (nrow(tab_group) > 0) {
+                    yx_ratio <- 1.8
+                  }
+
+                } else if (GLOBAL_geoUnitsRegionInclude) {
+
+                  tab_region <-
+                    rccShinyIndTable(
+                      group = dfuse[,rccShinyGroupVariable("region")],
+                      group_hide_less_than = GLOBAL_hideLessThan,
+                      all_lab = NULL,
+                      ind = dfuse$outcome,
+                      period = dfuse$period,
+                      period_factors = GLOBAL_periodValues,
+                      period_alwaysinclude = TRUE
+                    )
+                  tab <- rbind(tab_region, tab)
+
+                }
 
               }
 
-            }
+              if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
-            png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
-
-            if (nrow(dfuse) >= GLOBAL_hideLessThan) {
-
-              if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-
-                if (nrow(tab_group) > 0) {
-
-                  par(mfrow = c(2, 1))
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
 
                   x <- list()
                   y <- list()
                   legend <- vector()
 
                   for (i in levels(dfuse$outcome)) {
-                    x <- append(x, list(tab_group$Period))
-                    y <- append(y, list(as.numeric(tab_group[,i])))
+                    x <- append(x, list(tab_total$Period))
+                    y <- append(y, list(as.numeric(tab_total[,i])))
                     legend <- c(legend, i)
                   }
 
@@ -995,146 +995,333 @@ rccShinyApp <-
                     x = x,
                     y = y,
                     legend = legend,
-                    xLim = range(tab_group$Period),
+                    xLim = range(tab_total$Period),
                     xBy = 1,
                     yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-                    title = input$param_ownhospital,
+                    title = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    subtitle1 = NULL,
+                    subtitle2 = NULL,
+                    xLab = GLOBAL_periodLabel,
+                    yLab = rccShinyTXT(language = GLOBAL_language)$percent,
+                    outputHighchart = TRUE
+                  )
+
+                } else {
+
+                  x <- list()
+                  y <- list()
+                  legend <- vector()
+
+                  if (outcomeClassNumeric() & !numericTypeProp()) {
+                    y_varinterest <- "Median"
+                    y_varinterest_txt <- paste0(
+                      rccShinyTXT(language = GLOBAL_language)$median,
+                      " (", GLOBAL_propWithinUnit, ")")
+
+                  } else {
+                    y_varinterest <- "Procent"
+                    y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$percent
+                  }
+
+                  for (i in unique(tab$group)) {
+                    x <- append(x, list(tab$Period[tab$group == i]))
+                    y <- append(y, list(as.numeric(tab[tab$group == i, y_varinterest])))
+                    legend <- c(legend, i)
+                  }
+
+                  master_colshade <- 1.6
+                  master_col <- c(
+                    rcc2ColShade("#005092", master_colshade),
+                    rcc2ColShade("#e56284", master_colshade),
+                    rcc2ColShade("#66cccc", master_colshade),
+                    rcc2ColShade("#7f3705", master_colshade),
+                    rcc2ColShade("#7c458a", master_colshade),
+                    rcc2ColShade("#95bf5d", master_colshade),
+                    "#ffb117",
+                    "#db5524",
+                    "#19975d"
+                  )
+
+                  col <- rep("#000000", length(legend))
+                  tempRegionNames <- sort(rccShinyRegionNames(language = GLOBAL_language)[1:6])
+                  col[legend == tempRegionNames[1]] <- master_col[1]
+                  col[legend == tempRegionNames[2]] <- master_col[2]
+                  col[legend == tempRegionNames[3]] <- master_col[3]
+                  col[legend == tempRegionNames[4]] <- master_col[4]
+                  col[legend == tempRegionNames[5]] <- master_col[5]
+                  col[legend == tempRegionNames[6]] <- master_col[6]
+                  col[legend == rccShinyTXT(language = GLOBAL_language)$RIKET] <- master_col[7]
+                  col[legend == input$param_ownhospital] <- master_col[8]
+                  col[legend %in% input[["param_region"]]] <- master_col[9]
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    legend = legend,
+                    legendTextWidth = 15,
+                    xLim = range(tab$Period),
+                    xBy = 1,
+                    yLim = range(
+                      pretty(
+                        c(0,
+                          ifelse(
+                            y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
+                            max(unlist(y),na.rm = TRUE),
+                            100
+                          )
+                        )
+                      )
+                    ),
+                    xLab = GLOBAL_periodLabel,
+                    yLab = y_varinterest_txt,
+                    targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                       GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                       numericTypeProp() &
+                                       input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+                      GLOBAL_targetValues[[whichOutcome()]]} else {
+                        NULL
+                      },
+                    targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                           GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                           numericTypeProp() &
+                                           input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+                      GLOBAL_sortDescending[whichOutcome()]} else {
+                        NULL
+                      },
+                    targetValuesLabels = c(
+                      rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
+                      rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
+                    ),
+                    col = col,
+                    outputHighchart = TRUE
+                  )
+
+                }
+
+              }
+
+            })
+
+          } else {
+
+            renderImage({
+
+              x_width <- min(session$clientData$output_indPlotTrend_width, 700)
+              yx_ratio <- 0.9
+
+              dfuse <- dfInput()
+
+              outfile <- tempfile(fileext = ".png")
+
+              if (nrow(dfuse) >= GLOBAL_hideLessThan) {
+
+                tab <-
+                  rccShinyIndTable(
+                    group = dfuse[, rccShinyGroupVariable("hospital")],
+                    group_hide_less_than = GLOBAL_hideLessThan,
+                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    ind = dfuse$outcome,
+                    ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
+                    period = dfuse$period,
+                    period_factors = GLOBAL_periodValues,
+                    period_alwaysinclude = TRUE
+                  )
+
+                tab_group <- subset(tab,group == input$param_ownhospital)
+                tab_total <- subset(tab,group == rccShinyTXT(language = GLOBAL_language)$RIKET)
+
+                tab <- rbind(tab_total, tab_group)
+
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+
+                  if (nrow(tab_group) > 0) {
+                    yx_ratio <- 1.8
+                  }
+
+                } else if (GLOBAL_geoUnitsRegionInclude) {
+
+                  tab_region <-
+                    rccShinyIndTable(
+                      group = dfuse[,rccShinyGroupVariable("region")],
+                      group_hide_less_than = GLOBAL_hideLessThan,
+                      all_lab = NULL,
+                      ind = dfuse$outcome,
+                      period = dfuse$period,
+                      period_factors = GLOBAL_periodValues,
+                      period_alwaysinclude = TRUE
+                    )
+                  tab <- rbind(tab_region, tab)
+
+                }
+
+              }
+
+              png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+
+              if (nrow(dfuse) >= GLOBAL_hideLessThan) {
+
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+
+                  if (nrow(tab_group) > 0) {
+
+                    par(mfrow = c(2, 1))
+
+                    x <- list()
+                    y <- list()
+                    legend <- vector()
+
+                    for (i in levels(dfuse$outcome)) {
+                      x <- append(x, list(tab_group$Period))
+                      y <- append(y, list(as.numeric(tab_group[,i])))
+                      legend <- c(legend, i)
+                    }
+
+                    rcc2PlotLine(
+                      x = x,
+                      y = y,
+                      legend = legend,
+                      xLim = range(tab_group$Period),
+                      xBy = 1,
+                      yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                      title = input$param_ownhospital,
+                      subtitle1 = NULL,
+                      subtitle2 = NULL,
+                      xLab = GLOBAL_periodLabel,
+                      yLab = rccShinyTXT(language = GLOBAL_language)$percent
+                    )
+
+                  }
+
+                  x <- list()
+                  y <- list()
+                  legend <- vector()
+
+                  for (i in levels(dfuse$outcome)) {
+                    x <- append(x, list(tab_total$Period))
+                    y <- append(y, list(as.numeric(tab_total[,i])))
+                    legend <- c(legend, i)
+                  }
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    legend = legend,
+                    xLim = range(tab_total$Period),
+                    xBy = 1,
+                    yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                    title = rccShinyTXT(language = GLOBAL_language)$RIKET,
                     subtitle1 = NULL,
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent
                   )
 
-                }
-
-                x <- list()
-                y <- list()
-                legend <- vector()
-
-                for (i in levels(dfuse$outcome)) {
-                  x <- append(x, list(tab_total$Period))
-                  y <- append(y, list(as.numeric(tab_total[,i])))
-                  legend <- c(legend, i)
-                }
-
-                rcc2PlotLine(
-                  x = x,
-                  y = y,
-                  legend = legend,
-                  xLim = range(tab_total$Period),
-                  xBy = 1,
-                  yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-                  title = rccShinyTXT(language = GLOBAL_language)$RIKET,
-                  subtitle1 = NULL,
-                  subtitle2 = NULL,
-                  xLab = GLOBAL_periodLabel,
-                  yLab = rccShinyTXT(language = GLOBAL_language)$percent
-                )
-
-              } else {
-
-                x <- list()
-                y <- list()
-                legend <- vector()
-
-                if (outcomeClassNumeric() & !numericTypeProp()) {
-                  y_varinterest <- "Median"
-                  y_varinterest_txt <- paste0(
-                    rccShinyTXT(language = GLOBAL_language)$median,
-                    " (", GLOBAL_propWithinUnit, ")")
-
                 } else {
-                  y_varinterest <- "Procent"
-                  y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$percent
-                }
 
-                for (i in unique(tab$group)) {
-                  x <- append(x, list(tab$Period[tab$group == i]))
-                  y <- append(y, list(as.numeric(tab[tab$group == i, y_varinterest])))
-                  legend <- c(legend, i)
-                }
+                  x <- list()
+                  y <- list()
+                  legend <- vector()
 
-                master_colshade <- 1.6
-                master_col <- c(
-                  rcc2ColShade("#005092", master_colshade),
-                  rcc2ColShade("#e56284", master_colshade),
-                  rcc2ColShade("#66cccc", master_colshade),
-                  rcc2ColShade("#7f3705", master_colshade),
-                  rcc2ColShade("#7c458a", master_colshade),
-                  rcc2ColShade("#95bf5d", master_colshade),
-                  "#ffb117",
-                  "#db5524",
-                  "#19975d"
-                )
+                  if (outcomeClassNumeric() & !numericTypeProp()) {
+                    y_varinterest <- "Median"
+                    y_varinterest_txt <- paste0(
+                      rccShinyTXT(language = GLOBAL_language)$median,
+                      " (", GLOBAL_propWithinUnit, ")")
 
-                col <- rep("#000000", length(legend))
-                tempRegionNames <- sort(rccShinyRegionNames(language = GLOBAL_language)[1:6])
-                col[legend == tempRegionNames[1]] <- master_col[1]
-                col[legend == tempRegionNames[2]] <- master_col[2]
-                col[legend == tempRegionNames[3]] <- master_col[3]
-                col[legend == tempRegionNames[4]] <- master_col[4]
-                col[legend == tempRegionNames[5]] <- master_col[5]
-                col[legend == tempRegionNames[6]] <- master_col[6]
-                col[legend == rccShinyTXT(language = GLOBAL_language)$RIKET] <- master_col[7]
-                col[legend == input$param_ownhospital] <- master_col[8]
-                col[legend %in% input[["param_region"]]] <- master_col[9]
+                  } else {
+                    y_varinterest <- "Procent"
+                    y_varinterest_txt <- rccShinyTXT(language = GLOBAL_language)$percent
+                  }
 
-                rcc2PlotLine(
-                  x = x,
-                  y = y,
-                  legend = legend,
-                  legendTextWidth = 15,
-                  xLim = range(tab$Period),
-                  xBy = 1,
-                  yLim = range(
-                    pretty(
-                      c(0,
-                        ifelse(
-                          y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
-                          max(unlist(y),na.rm = TRUE),
-                          100
+                  for (i in unique(tab$group)) {
+                    x <- append(x, list(tab$Period[tab$group == i]))
+                    y <- append(y, list(as.numeric(tab[tab$group == i, y_varinterest])))
+                    legend <- c(legend, i)
+                  }
+
+                  master_colshade <- 1.6
+                  master_col <- c(
+                    rcc2ColShade("#005092", master_colshade),
+                    rcc2ColShade("#e56284", master_colshade),
+                    rcc2ColShade("#66cccc", master_colshade),
+                    rcc2ColShade("#7f3705", master_colshade),
+                    rcc2ColShade("#7c458a", master_colshade),
+                    rcc2ColShade("#95bf5d", master_colshade),
+                    "#ffb117",
+                    "#db5524",
+                    "#19975d"
+                  )
+
+                  col <- rep("#000000", length(legend))
+                  tempRegionNames <- sort(rccShinyRegionNames(language = GLOBAL_language)[1:6])
+                  col[legend == tempRegionNames[1]] <- master_col[1]
+                  col[legend == tempRegionNames[2]] <- master_col[2]
+                  col[legend == tempRegionNames[3]] <- master_col[3]
+                  col[legend == tempRegionNames[4]] <- master_col[4]
+                  col[legend == tempRegionNames[5]] <- master_col[5]
+                  col[legend == tempRegionNames[6]] <- master_col[6]
+                  col[legend == rccShinyTXT(language = GLOBAL_language)$RIKET] <- master_col[7]
+                  col[legend == input$param_ownhospital] <- master_col[8]
+                  col[legend %in% input[["param_region"]]] <- master_col[9]
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    legend = legend,
+                    legendTextWidth = 15,
+                    xLim = range(tab$Period),
+                    xBy = 1,
+                    yLim = range(
+                      pretty(
+                        c(0,
+                          ifelse(
+                            y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
+                            max(unlist(y),na.rm = TRUE),
+                            100
+                          )
                         )
                       )
-                    )
-                  ),
-                  xLab = GLOBAL_periodLabel,
-                  yLab = y_varinterest_txt,
-                  targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
-                                      GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
-                                      numericTypeProp() &
-                                      input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
-                    GLOBAL_targetValues[[whichOutcome()]]} else {
-                      NULL
-                    },
-                  targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                    ),
+                    xLab = GLOBAL_periodLabel,
+                    yLab = y_varinterest_txt,
+                    targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
+                                       GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
+                                       numericTypeProp() &
+                                       input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
+                      GLOBAL_targetValues[[whichOutcome()]]} else {
+                        NULL
+                      },
+                    targetValuesHigh = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                            GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                            numericTypeProp() &
                                            input$param_numerictype_prop == GLOBAL_propWithinValue[whichOutcome()]) {
-                    GLOBAL_sortDescending[whichOutcome()]} else {
-                      NULL
-                    },
-                  targetValuesLabels = c(
-                    rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
-                    rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
-                  ),
-                  col = col
-                )
+                      GLOBAL_sortDescending[whichOutcome()]} else {
+                        NULL
+                      },
+                    targetValuesLabels = c(
+                      rccShinyTXT(language = GLOBAL_language)$targetValuesLabelIntermediate,
+                      rccShinyTXT(language = GLOBAL_language)$targetValuesLabelHigh
+                    ),
+                    col = col
+                  )
 
+                }
+
+              } else {
+                plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
+                text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
               }
 
-            } else {
-              plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
-              text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
-            }
+              dev.off()
 
-            dev.off()
+              list(src = outfile,
+                   contentType = "image/png",
+                   width = x_width,
+                   height = x_width * yx_ratio)
 
-            list(src = outfile,
-                 contentType = "image/png",
-                 width = x_width,
-                 height = x_width * yx_ratio)
+            }, deleteFile = TRUE)
 
-          }, deleteFile = TRUE)
+          }
 
         output$indTableNum <- DT::renderDataTable({
 
@@ -1343,86 +1530,158 @@ rccShinyApp <-
         )
 
         output$indMap <-
-          renderImage({
 
-            x_width <- min(session$clientData$output_indMap_width, 700)
-            yx_ratio <- 1.4
+          if (GLOBAL_outputHighcharts) {
 
-            tab_order <- rcc2PlotMap(valueOrderReturn = TRUE)
+            renderHighchart({
 
-            tab_order[tab_order == "Halland"] <- hallandLabel()
+              tab_order <- rcc2PlotMap(valueOrderReturn = TRUE)
 
-            dfuse <- dfInput()
+              tab_order[tab_order == "Halland"] <- hallandLabel()
 
-            if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-              if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
-                dfuse <- subset(dfuse, region %in% input[["param_region"]])
-              }
-            }
+              dfuse <- dfInput()
 
-            dfuse$group <- dfuse[, rccShinyGroupVariable(label = "landsting")]
-
-            dfuse <- subset(dfuse,group %in% tab_order)
-
-            outfile <- tempfile(fileext = ".png")
-
-            png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
-
-            if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
-
-              showPercentage <-
-                if (outcomeClassNumeric()) {
-                  numericTypeProp()
-                } else {
-                  TRUE
+              if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+                if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                  dfuse <- subset(dfuse, region %in% input[["param_region"]])
                 }
+              }
 
-              tab <-
-                rccShinyIndTable(
-                  group = dfuse$group,
-                  group_hide_less_than = GLOBAL_hideLessThan,
-                  group_factors = tab_order,
-                  all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
-                  ind = dfuse$outcome
-                )
+              dfuse$group <- dfuse[, rccShinyGroupVariable(label = "landsting")]
 
-              tab <- tab[match(tab_order, tab$group),]
+              dfuse <- subset(dfuse,group %in% tab_order)
 
-              rcc2PlotMap(
-                value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
-                valueLim = if (showPercentage) {c(0,100)} else {NULL},
-                legend = ifelse(
-                  showPercentage,
-                  rccShinyTXT(language = GLOBAL_language)$percent,
-                  paste0(
-                    rccShinyTXT(language = GLOBAL_language)$median,
-                    " (", GLOBAL_propWithinUnit, ")")
-                ),
-                col = if (showPercentage){
-                  if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                    "#00b3f6"
+              if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
+
+                showPercentage <-
+                  if (outcomeClassNumeric()) {
+                    numericTypeProp()
+                  } else {
+                    TRUE
+                  }
+
+                tab <-
+                  rccShinyIndTable(
+                    group = dfuse$group,
+                    group_hide_less_than = GLOBAL_hideLessThan,
+                    group_factors = tab_order,
+                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    ind = dfuse$outcome
+                  )
+
+                tab <- tab[match(tab_order, tab$group),]
+
+                rcc2PlotMap(
+                  value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
+                  valueLim = if (showPercentage) {c(0,100)} else {NULL},
+                  legend = ifelse(
+                    showPercentage,
+                    rccShinyTXT(language = GLOBAL_language)$percent,
+                    paste0(
+                      rccShinyTXT(language = GLOBAL_language)$median,
+                      " (", GLOBAL_propWithinUnit, ")")
+                  ),
+                  col = if (showPercentage){
+                    if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
+                      "#00b3f6"
+                    } else {
+                      NULL
+                    }
                   } else {
                     NULL
+                  },
+                  nDec = ifelse(showPercentage, 0, 1),
+                  outputHighchart = TRUE
+                )
+
+              }
+
+            })
+
+          } else {
+
+            renderImage({
+
+              x_width <- min(session$clientData$output_indMap_width, 700)
+              yx_ratio <- 1.4
+
+              tab_order <- rcc2PlotMap(valueOrderReturn = TRUE)
+
+              tab_order[tab_order == "Halland"] <- hallandLabel()
+
+              dfuse <- dfInput()
+
+              if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+                if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                  dfuse <- subset(dfuse, region %in% input[["param_region"]])
+                }
+              }
+
+              dfuse$group <- dfuse[, rccShinyGroupVariable(label = "landsting")]
+
+              dfuse <- subset(dfuse,group %in% tab_order)
+
+              outfile <- tempfile(fileext = ".png")
+
+              png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+
+              if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
+
+                showPercentage <-
+                  if (outcomeClassNumeric()) {
+                    numericTypeProp()
+                  } else {
+                    TRUE
                   }
-                } else {
-                  NULL
-                },
-                nDec = ifelse(showPercentage, 0, 1)
-              )
 
-            } else {
-              plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
-              text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
-            }
+                tab <-
+                  rccShinyIndTable(
+                    group = dfuse$group,
+                    group_hide_less_than = GLOBAL_hideLessThan,
+                    group_factors = tab_order,
+                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    ind = dfuse$outcome
+                  )
 
-            dev.off()
+                tab <- tab[match(tab_order, tab$group),]
 
-            list(src = outfile,
-                 contentType = "image/png",
-                 width = x_width,
-                 height = x_width * yx_ratio)
+                rcc2PlotMap(
+                  value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
+                  valueLim = if (showPercentage) {c(0,100)} else {NULL},
+                  legend = ifelse(
+                    showPercentage,
+                    rccShinyTXT(language = GLOBAL_language)$percent,
+                    paste0(
+                      rccShinyTXT(language = GLOBAL_language)$median,
+                      " (", GLOBAL_propWithinUnit, ")")
+                  ),
+                  col = if (showPercentage){
+                    if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
+                      "#00b3f6"
+                    } else {
+                      NULL
+                    }
+                  } else {
+                    NULL
+                  },
+                  nDec = ifelse(showPercentage, 0, 1)
+                )
 
-          }, deleteFile = TRUE)
+              } else {
+                plot(1, 1, type = "n", axes = FALSE, xlab = "", ylab = "", frame.plot = FALSE)
+                text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
+              }
+
+              dev.off()
+
+              list(src = outfile,
+                   contentType = "image/png",
+                   width = x_width,
+                   height = x_width * yx_ratio)
+
+            }, deleteFile = TRUE)
+
+          }
 
         output$indList <-
           DT::renderDataTable({
