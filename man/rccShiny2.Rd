@@ -13,7 +13,8 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
   geoUnitsHospital = "sjukhus", geoUnitsHospitalCode = "sjukhuskod",
   geoUnitsHospitalSelected = NULL, geoUnitsCounty = "landsting",
   geoUnitsRegion = "region", geoUnitsPatient = FALSE,
-  regionSelection = TRUE, regionLabel = rccShinyTXT(language =
+  geoUnitsDefault = "county", regionSelection = TRUE,
+  regionSelectionDefault = NULL, regionLabel = rccShinyTXT(language =
   language)$limitRegion, period = "period", periodDateLevel = "year",
   periodLabel = rccShinyTXT(language = language)$dxYear,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
@@ -69,7 +70,11 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 
 \item{geoUnitsPatient}{if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
 
+\item{geoUnitsDefault}{optional default level of presentation. Valid values are "region", "county" and "hospital". Default is "county".}
+
 \item{regionSelection}{adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.}
+
+\item{regionSelectionDefault}{optional numeric value (1-6) which specifies the default selection in the list of regions. Default is NULL, which selects all regions.}
 
 \item{regionLabel}{if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region" or "Limit to region", depending on language.}
 

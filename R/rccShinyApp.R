@@ -244,14 +244,21 @@ rccShinyApp <-
                     },
                     if (GLOBAL_geoUnitsHospitalInclude) { rccShinyLevelNames("hospital", language = GLOBAL_language) }
                   ),
-                  selected = rccShinyLevelNames(
-                    ifelse(
-                      GLOBAL_geoUnitsPatient,
-                      "county_lkf",
-                      "county"
-                    ),
-                    language = GLOBAL_language
-                  ),
+                  selected =
+                    if (GLOBAL_geoUnitsRegionInclude & GLOBAL_geoUnitsDefault %in% "region") {
+                      rccShinyLevelNames("region", language = GLOBAL_language)
+                    } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
+                      rccShinyLevelNames("hospital", language = GLOBAL_language)
+                    } else {
+                      rccShinyLevelNames(
+                        ifelse(
+                          GLOBAL_geoUnitsPatient,
+                          "county_lkf",
+                          "county"
+                        ),
+                        language = GLOBAL_language
+                      )
+                    },
                   width = "100%"
                 )
               )
