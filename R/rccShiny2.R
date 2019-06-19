@@ -25,6 +25,7 @@
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
+#' @param regionSelectionDefault optional numeric value (1-6) which specifies the default selection in the list of regions. Default is NULL, which selects all regions.
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region" or "Limit to region", depending on language.
 #' @param period name of variable in data containing time periods, for example date or year of diagnosis. Variable must be of type numeric or Date. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
 #' @param periodDateLevel If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".
@@ -158,6 +159,7 @@ rccShiny2 <-
     geoUnitsRegion = "region",
     geoUnitsPatient = FALSE,
     regionSelection = TRUE,
+    regionSelectionDefault = NULL,
     regionLabel = rccShinyTXT(language = language)$limitRegion,
     period = "period",
     periodDateLevel = "year",
@@ -333,6 +335,14 @@ rccShiny2 <-
     if (is.null(regionSelection) | !is.logical(regionSelection) | length(regionSelection) != 1)
       stop("'regionSelection' should a logical vector of length 1", call. = FALSE)
 
+    # regionSelectionDefault
+    if (!is.null(regionSelectionDefault)) {
+      if (!is.numeric(regionSelectionDefault) | length(regionSelectionDefault) != 1)
+        stop("'regionSelectionDefault' should be either NULL or a numeric vector of length 1", call. = FALSE)
+      if (!(regionSelectionDefault %in% 1:6))
+        stop("Valid values for 'regionSelectionDefault' are 1, 2, 3, 4, 5 or 6", call. = FALSE)
+    }
+
     # regionLabel
     testVariableError("regionLabel", listAllowed = FALSE)
 
@@ -454,6 +464,7 @@ rccShiny2 <-
           geoUnitsRegion = geoUnitsRegion,
           geoUnitsPatient = geoUnitsPatient,
           regionSelection = regionSelection,
+          regionSelectionDefault = regionSelectionDefault,
           regionLabel = regionLabel,
           period = period,
           periodDateLevel = periodDateLevel,

@@ -199,7 +199,7 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
-                  "input.tab!='fig_trend' & input.tab!='list' & ",
+                  "input.tab!='list' & ",
                   ifelse(GLOBAL_regionSelection, "true", "false"),
                   " & ",
                   ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false")
@@ -758,7 +758,7 @@ rccShinyApp <-
 
           if (GLOBAL_outputHighcharts) {
 
-            renderHighchart({
+            highcharter::renderHighchart({
 
               dfuse <- dfInput()
 
@@ -790,7 +790,7 @@ rccShinyApp <-
                   xLab = ifelse(
                     class(dfuse$outcome) %in% "numeric",
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      rccShinyTXT(language = GLOBAL_language)$medianiqr,
                       " (", GLOBAL_propWithinUnit, ")"),
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
@@ -874,7 +874,7 @@ rccShinyApp <-
                   xLab = ifelse(
                     class(dfuse$outcome) %in% "numeric",
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      rccShinyTXT(language = GLOBAL_language)$medianiqr,
                       " (", GLOBAL_propWithinUnit, ")"),
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
@@ -932,7 +932,7 @@ rccShinyApp <-
 
           if (GLOBAL_outputHighcharts) {
 
-            renderHighchart({
+            highcharter::renderHighchart({
 
               dfuse <- dfInput()
 
@@ -973,6 +973,14 @@ rccShinyApp <-
                       period_factors = GLOBAL_periodValues,
                       period_alwaysinclude = TRUE
                     )
+
+                  if (!(rccShinyTXT(language = optionsList$language)$all %in% input[["param_region"]])) {
+                    tab_region <-
+                      subset(
+                        tab_region,
+                        group %in% input[["param_region"]]
+                      )
+                  }
                   tab <- rbind(tab_region, tab)
 
                 }
@@ -1535,7 +1543,7 @@ rccShinyApp <-
 
           if (GLOBAL_outputHighcharts) {
 
-            renderHighchart({
+            highcharter::renderHighchart({
 
               tab_order <- rcc2PlotMap(valueOrderReturn = TRUE)
 
@@ -2072,7 +2080,11 @@ rccShinyCheckData <-
     optionsList$regionChoices <- levels(factor(optionsList$data$region))[!(levels(factor(optionsList$data$region)) %in% rccShinyTXT(language = optionsList$language)$missing)]
 
     # regionSelected
-    optionsList$regionSelected <- rccShinyTXT(language = optionsList$language)$all
+    if (optionsList$geoUnitsRegionInclude & !is.null(optionsList$regionSelectionDefault)) {
+      optionsList$regionSelected <- levels(optionsList$data$region)[optionsList$regionSelectionDefault]
+    } else {
+      optionsList$regionSelected <- rccShinyTXT(language = optionsList$language)$all
+    }
 
     # period
     optionsList$periodInclude <- TRUE
