@@ -980,7 +980,6 @@ rccShinyApp <-
                       period_factors = GLOBAL_periodValues,
                       period_alwaysinclude = TRUE
                     )
-
                   if (!(rccShinyTXT(language = optionsList$language)$all %in% input[["param_region"]])) {
                     tab_region <-
                       subset(
@@ -1167,6 +1166,13 @@ rccShinyApp <-
                       period_factors = GLOBAL_periodValues,
                       period_alwaysinclude = TRUE
                     )
+                  if (!(rccShinyTXT(language = optionsList$language)$all %in% input[["param_region"]])) {
+                    tab_region <-
+                      subset(
+                        tab_region,
+                        group %in% input[["param_region"]]
+                      )
+                  }
                   tab <- rbind(tab_region, tab)
 
                 }
