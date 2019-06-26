@@ -31,6 +31,8 @@
 #' @param period name of variable in data containing time periods, for example date or year of diagnosis. Variable must be of type numeric or Date. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
 #' @param periodDateLevel If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".
 #' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.
+#' @param periodDefaultStart optional value which specifies the preselected default start of the period of interest. Default is NULL.
+#' @param periodDefaultEnd optional value which specifies the preselected default end of the period of interest. Default is NULL.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
@@ -166,6 +168,8 @@ rccShiny2 <-
     period = "period",
     periodDateLevel = "year",
     periodLabel = rccShinyTXT(language = language)$dxYear,
+    periodDefaultStart = NULL,
+    periodDefaultEnd = NULL,
     varOther = NULL,
     targetValues = NULL,
     funnelplot = FALSE,
@@ -371,6 +375,12 @@ rccShiny2 <-
     # periodLabel
     testVariableError("periodLabel", listAllowed = FALSE)
 
+    # periodDefaultStart, periodDefaultEnd
+    if (!is.null(periodDefaultStart) & length(periodDefaultStart) != 1)
+      stop("'periodDefaultStart' should be either NULL or a vector of length 1", call. = FALSE)
+    if (!is.null(periodDefaultEnd) & length(periodDefaultEnd) != 1)
+      stop("'periodDefaultEnd' should be either NULL or a vector of length 1", call. = FALSE)
+
     # varOther
     if (!is.null(varOther) & (!is.list(varOther) | length(varOther) < 1))
       stop("'varOther' should be either NULL or a list with at least one element", call. = FALSE)
@@ -478,6 +488,8 @@ rccShiny2 <-
           period = period,
           periodDateLevel = periodDateLevel,
           periodLabel = periodLabel,
+          periodDefaultStart = periodDefaultStart,
+          periodDefaultEnd = periodDefaultEnd,
           varOther = varOther,
           targetValues = targetValues,
           funnelplot = funnelplot,

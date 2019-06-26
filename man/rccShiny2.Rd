@@ -17,6 +17,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
   regionSelectionDefault = NULL, regionLabel = rccShinyTXT(language =
   language)$limitRegion, period = "period", periodDateLevel = "year",
   periodLabel = rccShinyTXT(language = language)$dxYear,
+  periodDefaultStart = NULL, periodDefaultEnd = NULL,
   varOther = NULL, targetValues = NULL, funnelplot = FALSE,
   sort = TRUE, sortDescending = NULL, propWithinShow = TRUE,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
@@ -83,6 +84,10 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 \item{periodDateLevel}{If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".}
 
 \item{periodLabel}{label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.}
+
+\item{periodDefaultStart}{optional value which specifies the preselected default start of the period of interest. Default is NULL.}
+
+\item{periodDefaultEnd}{optional value which specifies the preselected default end of the period of interest. Default is NULL.}
 
 \item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.}
 

@@ -304,7 +304,7 @@ rccShinyApp <-
                     max = GLOBAL_periodEnd,
                     step = 1,
                     ticks = FALSE,
-                    value = rep(GLOBAL_periodEnd, 2),
+                    value = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
                     sep = "",
                     width = "100%"
                   )
@@ -313,7 +313,7 @@ rccShinyApp <-
                     inputId = "param_period",
                     label = GLOBAL_periodLabel,
                     choices = GLOBAL_periodValues,
-                    selected = rep(GLOBAL_periodEnd, 2),
+                    selected = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
                     width = "100%"
                   )
                 }
@@ -2152,6 +2152,20 @@ rccShinyCheckData <-
       optionsList$periodStart <- min(optionsList$data$period, na.rm = TRUE)
       optionsList$periodEnd <- max(optionsList$data$period, na.rm = TRUE)
       optionsList$periodValues <- optionsList$periodStart:optionsList$periodEnd
+    }
+
+    # periodDefaultStart, periodDefaultEnd
+    if (is.null(optionsList$periodDefaultEnd)) {
+      optionsList$periodDefaultEnd <- optionsList$periodEnd
+    } else if (!(optionsList$periodDefaultEnd %in% optionsList$periodValues)) {
+      optionsList$periodDefaultEnd <- optionsList$periodEnd
+    }
+    if (is.null(optionsList$periodDefaultStart)) {
+      optionsList$periodDefaultStart <- optionsList$periodDefaultEnd
+    } else if (!(optionsList$periodDefaultStart %in% optionsList$periodValues)) {
+      optionsList$periodDefaultStart <- optionsList$periodDefaultEnd
+    } else if (which(optionsList$periodValues == optionsList$periodDefaultStart) > which(optionsList$periodValues == optionsList$periodDefaultEnd)) {
+      optionsList$periodDefaultStart <- optionsList$periodDefaultEnd
     }
 
     # periodLabel
