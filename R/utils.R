@@ -3,169 +3,252 @@
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
 fixEncoding <-
-function(data) {
-  numCols <- ncol(data)
-  for (col in 1:numCols)
-  {
-    if (class(data[,col]) == "character") {
-      data[,col] <- enc2utf8(data[,col])
-    } else if (class(data[,col]) == "factor") {
-      levels(data[,col]) <- enc2utf8(levels(data[,col]))
+  function(data) {
+    numCols <- ncol(data)
+    for (col in 1:numCols) {
+      if (class(data[,col]) == "character") {
+        data[,col] <- enc2utf8(data[,col])
+      } else if (class(data[,col]) == "factor") {
+        levels(data[,col]) <- enc2utf8(levels(data[,col]))
+      }
     }
+    data
   }
-  data
-}
 #' Number of decimals
 #' @description internal function used by rccShinyIndTable to give number of decimals.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyDecimals <- function() {
+rccShinyDecimals <-
+  function() {
     return(1)
-}
+  }
 #' County dataset
 #' @description internal function that creates dataset with numeric codes (given by user) and corresponding names (printed in output) for county/county of residence.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyCounties <- function(language = "sv", lkf = FALSE) {
-  if (lkf) {
-    data.frame(
-      landstingCode = c(1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, NA),
-      landsting = c(
-        "Stockholm", "Uppsala", "Södermanland", "Östergötland", "Jönköping", "Kronoberg", "Kalmar", "Gotland", "Blekinge", "Skåne",
-        "Halland", "Västra Götaland", "Värmland", "Örebro", "Västmanland", "Dalarna",
-        "Gävleborg", "Västernorrland", "Jämtland", "Västerbotten", "Norrbotten",
-        if (language == "en") {
-          "Missing"
-        } else {
-          "Uppgift saknas"
-        }
-      ),
-      stringsAsFactors = FALSE
-    )
-  } else {
-    data.frame(
-      landstingCode = c(10, 11, 12, 13, 21, 22, 23, 24, 25, 26, 27, 28, 30, 41, 42, 50, 51, 52, 53, 54, 55, 56, 57, 61, 62, 63, 64, 65, 91, 92, 93, 94, 95, 96, NA),
-      landsting = c(
-        "Stockholm", "Stockholm", "Uppsala", "Södermanland", "Östergötland", "Jönköping", "Kronoberg", "Kalmar", "Kalmar", "Gotland", "Blekinge", "Skåne",
-        "Skåne", "Skåne", "Halland", "Västra Götaland", "Västra Götaland", "Västra Götaland", "Västra Götaland", "Värmland", "Örebro", "Västmanland", "Dalarna",
-        "Gävleborg", "Västernorrland", "Jämtland", "Västerbotten", "Norrbotten",
-        paste0(
+rccShinyCounties <-
+  function(
+    language = "sv",
+    lkf = FALSE
+  ) {
+    if (lkf) {
+      data.frame(
+        landstingCode = c(1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 24, 25, NA),
+        landsting = c(
+          "Stockholm",
+          "Uppsala",
+          "Södermanland",
+          "Östergötland",
+          "Jönköping",
+          "Kronoberg",
+          "Kalmar",
+          "Gotland",
+          "Blekinge",
+          "Skåne",
+          "Halland",
+          "Västra Götaland",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
           if (language == "en") {
-            "Others/private - "
+            "Missing"
           } else {
-            "Övriga/privat - "
-          },
-          rccShinyRegionNames(language = language)[1:6]
+            "Uppgift saknas"
+          }
         ),
-        if (language == "en") {
-          "Missing"
-        } else {
-          "Uppgift saknas"
-        }
-      ),
-      stringsAsFactors = FALSE
-    )
+        stringsAsFactors = FALSE
+      )
+    } else {
+      data.frame(
+        landstingCode = c(10, 11, 12, 13, 21, 22, 23, 24, 25, 26, 27, 28, 30, 41, 42, 50, 51, 52, 53, 54, 55, 56, 57, 61, 62, 63, 64, 65, 91, 92, 93, 94, 95, 96, NA),
+        landsting = c(
+          "Stockholm",
+          "Stockholm",
+          "Uppsala",
+          "Södermanland",
+          "Östergötland",
+          "Jönköping",
+          "Kronoberg",
+          "Kalmar",
+          "Kalmar",
+          "Gotland",
+          "Blekinge",
+          "Skåne",
+          "Skåne",
+          "Skåne",
+          "Halland",
+          "Västra Götaland",
+          "Västra Götaland",
+          "Västra Götaland",
+          "Västra Götaland",
+          "Värmland",
+          "Örebro",
+          "Västmanland",
+          "Dalarna",
+          "Gävleborg",
+          "Västernorrland",
+          "Jämtland",
+          "Västerbotten",
+          "Norrbotten",
+          paste0(
+            if (language == "en") {
+              "Others/private - "
+            } else {
+              "Övriga/privat - "
+            },
+            rccShinyRegionNames(language = language)[1:6]
+          ),
+          if (language == "en") {
+            "Missing"
+          } else {
+            "Uppgift saknas"
+          }
+        ),
+        stringsAsFactors = FALSE
+      )
+    }
   }
-}
 #' Region variable
 #' @description internal function that creates variable from numeric codes (given by user) to corresponding names (printed in output) for region.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyRegionNumToText <- function(var = NULL, language = "sv") {
-    var <- factor(var, levels = c(1:6, NA),
-                  labels = rccShinyRegionNames(language = language),
-                  exclude = NULL)
+rccShinyRegionNumToText <-
+  function(
+    var = NULL,
+    language = "sv"
+  ) {
+    var <-
+      factor(
+        var,
+        levels = c(1:6, NA),
+        labels = rccShinyRegionNames(language = language),
+        exclude = NULL
+      )
     as.character(var)
-}
+  }
 #' Region names
 #' @description internal function that gives names of regions used by rccShinyRegionNumToText.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyRegionNames <- function(all = FALSE, sort = FALSE, language = "sv") {
+rccShinyRegionNames <-
+  function(
+    all = FALSE,
+    sort = FALSE,
+    language = "sv"
+  ) {
     if (language == "en") {
-        if (all) {
-            regions <- "All"
-        } else {
-            regions <- c("Stockholm-Gotland", "Uppsala-Örebro", "Southeast", "South", "West", "North", rccShinyTXT(language = "en")$missing)
-        }
+      if (all) {
+        regions <- "All"
+      } else {
+        regions <- c(
+          "Stockholm-Gotland",
+          "Uppsala-Örebro",
+          "Southeast",
+          "South",
+          "West",
+          "North",
+          rccShinyTXT(language = "en")$missing
+        )
+      }
     } else {
-        if (all) {
-            regions <- "Alla"
-        } else {
-            regions <- c("Stockholm-Gotland", "Uppsala-Örebro", "Sydöstra", "Södra", "Västra", "Norra", rccShinyTXT(language = "sv")$missing)
-        }
+      if (all) {
+        regions <- "Alla"
+      } else {
+        regions <- c(
+          "Stockholm-Gotland",
+          "Uppsala-Örebro",
+          "Sydöstra",
+          "Södra",
+          "Västra",
+          "Norra",
+          rccShinyTXT(language = "sv")$missing
+        )
+      }
     }
     if (sort) {
-        regions <- sort(regions)
+      regions <- sort(regions)
     }
     regions <- enc2utf8(regions)
     return(regions)
-}
+  }
 #' Names for choices in Level of comparison
 #' @description internal function used to supply text printed in Level of comparison widget.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyLevelNames <- function(level = "region", language = "sv") {
+rccShinyLevelNames <-
+  function(
+    level = "region",
+    language = "sv"
+  ) {
     if (level == "region") {
-        levelName <- "Region"
+      levelName <- "Region"
     } else if (level == "county_lkf") {
-        levelName <- if (language == "en") {
-            "County of residence"
-        } else {
-            "Bostadslän"
-        }
+      levelName <- if (language == "en") {
+        "County of residence"
+      } else {
+        "Bostadslän"
+      }
     } else if (level == "county") {
-        levelName <- if (language == "en") {
-            "County"
-        } else {
-            "Landsting"
-        }
+      levelName <- if (language == "en") {
+        "County"
+      } else {
+        "Landsting"
+      }
     } else if (level == "hospital") {
-        levelName <- if (language == "en") {
-            "Hospital"
-        } else {
-            "Sjukhus"
-        }
+      levelName <- if (language == "en") {
+        "Hospital"
+      } else {
+        "Sjukhus"
+      }
     } else {
-        levelName <- if (language == "en") {
-            "Unknown"
-        } else {
-            "Okänd"
-        }
+      levelName <- if (language == "en") {
+        "Unknown"
+      } else {
+        "Okänd"
+      }
     }
     return(levelName)
-}
+  }
 #' Group together geoUnits
 #' @description internal function used by server.R to simplify code.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyGroupVariable <- function(label = "sjukhus") {
+rccShinyGroupVariable <-
+  function(label = "sjukhus") {
     if (tolower(label) %in% c("region")) {
-        "region"
+      "region"
     } else if (tolower(label) %in% c("landsting", "county", "bostadslän", "county of residence")) {
-        "landsting"
+      "landsting"
     } else if (tolower(label) %in% c("sjukhus", "hospital")) {
-        "sjukhus"
+      "sjukhus"
     } else {
-        "sjukhus"
+      "sjukhus"
     }
-}
+  }
 #' Text for no observations
 #' @description internal function with text to be printed if there is no data available.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyNoObservationsText <- function(language = "sv") {
+rccShinyNoObservationsText <-
+  function(language = "sv") {
     if (language == "en") {
-        return("Not enough observations available for current selection criteria")
+      return("Not enough observations available for current selection criteria")
     } else {
-        return("Ej tillräckligt med observationer för aktuellt urval")
+      return("Ej tillräckligt med observationer för aktuellt urval")
     }
-}
+  }
 #' Names for tabs
 #' @description internal function used to supply names of the tabs.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyTabsNames <- function(language = "sv") {
+rccShinyTabsNames <-
+  function(language = "sv") {
     tab <-
       data.frame(
         tab_language = c("sv", "en"),
@@ -179,8 +262,11 @@ rccShinyTabsNames <- function(language = "sv") {
         description = c("Beskrivning", "Description"),
         stringsAsFactors = FALSE
       )
-    subset(tab, tab_language == language)
-}
+    subset(
+      tab,
+      tab_language == language
+    )
+  }
 #' Miscellaneous text
 #' @description internal function used to supply text for various output.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
@@ -246,72 +332,77 @@ rccShinyTXT <-
         )
     }
     tempTab
-}
+  }
 
 # # # # # # NPCR # # # # #
 #' Used by NPCR
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-npcrPreparePeriodRegionCountyHospitalVariables <- function(prefix = "d0", data = NULL, language = c("sv", "en"), returnPrivateOthersNames = FALSE) {
-    if (returnPrivateOthersNames) {
-        privateOthersNames <- list()
-        for (i in 1:length(language)) {
-            tempNames <- data.frame(landsting = if (language[i] == "sv") {
-                "Övriga/privat"
-            } else {
-                "Others/private"
-            }, sjukhus_privat = if (language[i] == "sv") {
-                "Privat vårdgivare"
-            } else {
-                "Private practice"
-            }, sjukhus_ovriga = if (language[i] == "sv") {
-                "Övriga"
-            } else {
-                "Others"
-            }, sjukhus_privatovriga = if (language[i] == "sv") {
-                "Privat vårdgivare/övriga"
-            } else {
-                "Private practice/others"
-            }, stringsAsFactors = FALSE)
+npcrPreparePeriodRegionCountyHospitalVariables <-
+  function(
+    prefix = "d0",
+    data = NULL,
+    language = c("sv", "en"),
+    returnPrivateOthersNames = FALSE
+  ) {
+  if (returnPrivateOthersNames) {
+    privateOthersNames <- list()
+    for (i in 1:length(language)) {
+      tempNames <- data.frame(landsting = if (language[i] == "sv") {
+        "Övriga/privat"
+      } else {
+        "Others/private"
+      }, sjukhus_privat = if (language[i] == "sv") {
+        "Privat vårdgivare"
+      } else {
+        "Private practice"
+      }, sjukhus_ovriga = if (language[i] == "sv") {
+        "Övriga"
+      } else {
+        "Others"
+      }, sjukhus_privatovriga = if (language[i] == "sv") {
+        "Privat vårdgivare/övriga"
+      } else {
+        "Private practice/others"
+      }, stringsAsFactors = FALSE)
 
-            privateOthersNames[[i]] <- tempNames
-            names(privateOthersNames)[i] <- language[i]
-        }
-        privateOthersNames
-    } else {
-        if (prefix == "rp0") {
-            data$period <- data$rp0_year
-        } else if (prefix == "s0") {
-            data$period <- data$s0_year
-        } else {
-            data$period <- data$d0_year
-        }
-        data$region <- rccShinyRegionNumToText(var = data[, paste0(prefix, "_region")])
-        data$landsting = substr(data[, paste0(prefix, "_landstingtxt")], 4, 100)
-        # data$sjukhus = substr(data[,paste0(prefix,'_sjukhustxt2')],3,100)
-        data$sjukhus = data[, paste0(prefix, "_sjukhustxt")]
-
-        for (loop_language in language[language != "sv"]) {
-            data[, paste0("region_", loop_language)] <- rccShinyRegionNumToText(language = loop_language, var = data[, paste0(prefix, "_region")])
-
-            data[, paste0("landsting_", loop_language)] <- data$landsting
-            data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Stockholm-Gotland"] <- "Others/private - Stockholm-Gotland"
-            data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Uppsala-Örebro"] <- "Others/private - Uppsala-Örebro"
-            data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Sydöstra"] <- "Others/private - Southeast"
-            data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Södra"] <- "Others/private - South"
-            data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Västra"] <- "Others/private - West"
-            data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Norra"] <- "Others/private - North"
-
-            data[, paste0("sjukhus_", loop_language)] <- data$sjukhus
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Stockholm-Gotland"] <- "Private practice - Stockholm-Gotland"
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Uppsala-Örebro"] <- "Private practice - Uppsala-Örebro"
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Sydöstra"] <- "Private practice - Southeast"
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Södra"] <- "Private practice - South"
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Västra"] <- "Private practice - West"
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Norra"] <- "Private practice - North"
-            data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Övriga"] <- "Others"
-        }
-        data
+      privateOthersNames[[i]] <- tempNames
+      names(privateOthersNames)[i] <- language[i]
     }
+    privateOthersNames
+  } else {
+    if (prefix == "rp0") {
+      data$period <- data$rp0_year
+    } else if (prefix == "s0") {
+      data$period <- data$s0_year
+    } else {
+      data$period <- data$d0_year
+    }
+    data$region <- rccShinyRegionNumToText(var = data[, paste0(prefix, "_region")])
+    data$landsting = substr(data[, paste0(prefix, "_landstingtxt")], 4, 100)
+    data$sjukhus = data[, paste0(prefix, "_sjukhustxt")]
+
+    for (loop_language in language[language != "sv"]) {
+      data[, paste0("region_", loop_language)] <- rccShinyRegionNumToText(language = loop_language, var = data[, paste0(prefix, "_region")])
+
+      data[, paste0("landsting_", loop_language)] <- data$landsting
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Stockholm-Gotland"] <- "Others/private - Stockholm-Gotland"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Uppsala-Örebro"] <- "Others/private - Uppsala-Örebro"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Sydöstra"] <- "Others/private - Southeast"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Södra"] <- "Others/private - South"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Västra"] <- "Others/private - West"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Norra"] <- "Others/private - North"
+
+      data[, paste0("sjukhus_", loop_language)] <- data$sjukhus
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Stockholm-Gotland"] <- "Private practice - Stockholm-Gotland"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Uppsala-Örebro"] <- "Private practice - Uppsala-Örebro"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Sydöstra"] <- "Private practice - Southeast"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Södra"] <- "Private practice - South"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Västra"] <- "Private practice - West"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Norra"] <- "Private practice - North"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Övriga"] <- "Others"
+    }
+    data
+  }
 }
