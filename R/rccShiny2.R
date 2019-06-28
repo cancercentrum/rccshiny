@@ -34,6 +34,7 @@
 #' @param periodDefaultStart optional value which specifies the preselected default start of the period of interest. Default is NULL.
 #' @param periodDefaultEnd optional value which specifies the preselected default end of the period of interest. Default is NULL.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
+#' @param allLabel change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding for each language. Default is NULL.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sort should the bars in tab Jämförelse/Comparison be sorted? Default is TRUE.
@@ -171,6 +172,7 @@ rccShiny2 <-
     periodDefaultStart = NULL,
     periodDefaultEnd = NULL,
     varOther = NULL,
+    allLabel = NULL,
     targetValues = NULL,
     funnelplot = FALSE,
     sort = TRUE,
@@ -393,6 +395,12 @@ rccShiny2 <-
       }
     }
 
+    # allLabel
+    if (is.null(allLabel)) {
+      allLabel <- rccShinyTXT(language = language)$RIKET
+    } else if (!is.character(allLabel) | !(length(allLabel) %in% c(1, length(language))))
+      stop("'allLabel' should be either NULL or a character vector of length 1 or same length as 'language'", call. = FALSE)
+
     # targetValues
     if (!is.list(targetValues))
       targetValues <- list(targetValues)
@@ -491,6 +499,7 @@ rccShiny2 <-
           periodDefaultStart = periodDefaultStart,
           periodDefaultEnd = periodDefaultEnd,
           varOther = varOther,
+          allLabel = allLabel,
           targetValues = targetValues,
           funnelplot = funnelplot,
           sort = sort,

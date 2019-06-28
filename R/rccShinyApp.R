@@ -782,7 +782,7 @@ rccShinyApp <-
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
-                  allLab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                  allLab = GLOBAL_allLabel,
                   emphLab = emphLabel(dfuse),
                   ind = dfuse$outcome,
                   indNumericExcludeNeg = FALSE,
@@ -866,7 +866,7 @@ rccShinyApp <-
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
-                  allLab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                  allLab = GLOBAL_allLabel,
                   emphLab = emphLabel(dfuse),
                   ind = dfuse$outcome,
                   indNumericExcludeNeg = FALSE,
@@ -949,7 +949,7 @@ rccShinyApp <-
                   rccShinyIndTable(
                     group = dfuse[, rccShinyGroupVariable("hospital")],
                     group_hide_less_than = GLOBAL_hideLessThan,
-                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    all_lab = GLOBAL_allLabel,
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     period = dfuse$period,
@@ -958,7 +958,7 @@ rccShinyApp <-
                   )
 
                 tab_group <- subset(tab,group == input$param_ownhospital)
-                tab_total <- subset(tab,group == rccShinyTXT(language = GLOBAL_language)$RIKET)
+                tab_total <- subset(tab,group == GLOBAL_allLabel)
 
                 tab <- rbind(tab_total, tab_group)
 
@@ -1014,7 +1014,7 @@ rccShinyApp <-
                     xLim = range(tab_total$Period),
                     xBy = 1,
                     yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-                    title = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    title = GLOBAL_allLabel,
                     subtitle1 = NULL,
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
@@ -1066,7 +1066,7 @@ rccShinyApp <-
                   col[legend == tempRegionNames[4]] <- master_col[4]
                   col[legend == tempRegionNames[5]] <- master_col[5]
                   col[legend == tempRegionNames[6]] <- master_col[6]
-                  col[legend == rccShinyTXT(language = GLOBAL_language)$RIKET] <- master_col[7]
+                  col[legend == GLOBAL_allLabel] <- master_col[7]
                   col[legend == input$param_ownhospital] <- master_col[8]
                   col[legend %in% input[["param_region"]]] <- master_col[9]
 
@@ -1135,7 +1135,7 @@ rccShinyApp <-
                   rccShinyIndTable(
                     group = dfuse[, rccShinyGroupVariable("hospital")],
                     group_hide_less_than = GLOBAL_hideLessThan,
-                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    all_lab = GLOBAL_allLabel,
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     period = dfuse$period,
@@ -1144,7 +1144,7 @@ rccShinyApp <-
                   )
 
                 tab_group <- subset(tab,group == input$param_ownhospital)
-                tab_total <- subset(tab,group == rccShinyTXT(language = GLOBAL_language)$RIKET)
+                tab_total <- subset(tab,group == GLOBAL_allLabel)
 
                 tab <- rbind(tab_total, tab_group)
 
@@ -1232,7 +1232,7 @@ rccShinyApp <-
                     xLim = range(tab_total$Period),
                     xBy = 1,
                     yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
-                    title = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    title = GLOBAL_allLabel,
                     subtitle1 = NULL,
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
@@ -1283,7 +1283,7 @@ rccShinyApp <-
                   col[legend == tempRegionNames[4]] <- master_col[4]
                   col[legend == tempRegionNames[5]] <- master_col[5]
                   col[legend == tempRegionNames[6]] <- master_col[6]
-                  col[legend == rccShinyTXT(language = GLOBAL_language)$RIKET] <- master_col[7]
+                  col[legend == GLOBAL_allLabel] <- master_col[7]
                   col[legend == input$param_ownhospital] <- master_col[8]
                   col[legend %in% input[["param_region"]]] <- master_col[9]
 
@@ -1372,6 +1372,7 @@ rccShinyApp <-
                 language = GLOBAL_language,
                 group = dfuse$group,
                 group_hide_less_than = GLOBAL_hideLessThan,
+                all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
@@ -1440,6 +1441,7 @@ rccShinyApp <-
                 language = GLOBAL_language,
                 group = dfuse$group,
                 group_hide_less_than = GLOBAL_hideLessThan,
+                all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 ind_factor_pct = TRUE,
                 period = dfuse$period,
@@ -1510,6 +1512,7 @@ rccShinyApp <-
                 language = GLOBAL_language,
                 group = dfuse$group,
                 group_hide_less_than = GLOBAL_hideLessThan,
+                all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
@@ -1588,7 +1591,7 @@ rccShinyApp <-
                     group = dfuse$group,
                     group_hide_less_than = GLOBAL_hideLessThan,
                     group_factors = tab_order,
-                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    all_lab = GLOBAL_allLabel,
                     ind = dfuse$outcome
                   )
 
@@ -1662,7 +1665,7 @@ rccShinyApp <-
                     group = dfuse$group,
                     group_hide_less_than = GLOBAL_hideLessThan,
                     group_factors = tab_order,
-                    all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
+                    all_lab = GLOBAL_allLabel,
                     ind = dfuse$outcome
                   )
 
@@ -2238,6 +2241,14 @@ rccShinyCheckData <-
       }
       includeVariables <- c(includeVariables, varOtherVariables)
     }
+
+    # allLabel
+    optionsList$allLabel <-
+      ifelse(
+        length(optionsList$allLabel) >= optionsList$whichLanguage,
+        optionsList$allLabel[optionsList$whichLanguage],
+        optionsList$allLabel[1]
+      )
 
     # propWithinUnit
     optionsList$propWithinUnit <-

@@ -18,11 +18,12 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
   language)$limitRegion, period = "period", periodDateLevel = "year",
   periodLabel = rccShinyTXT(language = language)$dxYear,
   periodDefaultStart = NULL, periodDefaultEnd = NULL,
-  varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sort = TRUE, sortDescending = NULL, propWithinShow = TRUE,
-  propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
-  propWithinValue = 30, hideLessThan = 5, gaPath = NULL,
-  npcrGroupPrivateOthers = FALSE, outputHighcharts = FALSE)
+  varOther = NULL, allLabel = NULL, targetValues = NULL,
+  funnelplot = FALSE, sort = TRUE, sortDescending = NULL,
+  propWithinShow = TRUE, propWithinUnit = rccShinyTXT(language =
+  language)$propWithinUnit, propWithinValue = 30, hideLessThan = 5,
+  gaPath = NULL, npcrGroupPrivateOthers = FALSE,
+  outputHighcharts = FALSE)
 }
 \arguments{
 \item{inca}{should output be as if on the INCA platform? Default is FALSE.}
@@ -90,6 +91,8 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 \item{periodDefaultEnd}{optional value which specifies the preselected default end of the period of interest. Default is NULL.}
 
 \item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.}
+
+\item{allLabel}{change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding for each language. Default is NULL.}
 
 \item{targetValues}{optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.}
 
