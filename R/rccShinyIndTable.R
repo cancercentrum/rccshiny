@@ -2,11 +2,32 @@
 #' @description internal function used by server.R for table in tab Table.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @export
-rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL, group_hide_less_than = FALSE, group_hide_less_than_label = FALSE, ind = NULL, ind_type = class(ind), ind_numeric_percentiles = c(0.25,
-    0.5, 0.75), ind_factor_pct = FALSE, period = NULL, period_factors = NULL, period_alwaysinclude = TRUE, all_lab = rccShinyTXT(language = language)$RIKET, lab_percentiles = c(rccShinyTXT(language = language)$q1,
-    rccShinyTXT(language = language)$median, rccShinyTXT(language = language)$q3), lab_noofcases = rccShinyTXT(language = language)$noofcases, lab_numerator = rccShinyTXT(language = language)$numerator,
-    lab_denominator = rccShinyTXT(language = language)$denominator, lab_percent = rccShinyTXT(language = language)$percent, lab_total = rccShinyTXT(language = language)$total,
-    lab_period = rccShinyTXT(language = language)$period, ndec = rccShinyDecimals(), subset = NULL, subset_lab = "SUBSET") {
+rccShinyIndTable <-
+  function(
+    language = "sv",
+    group = NULL,
+    group_factors = NULL,
+    group_hide_less_than = FALSE,
+    group_hide_less_than_label = FALSE,
+    ind = NULL,
+    ind_type = class(ind),
+    ind_numeric_percentiles = c(0.25, 0.5, 0.75),
+    ind_factor_pct = FALSE,
+    period = NULL,
+    period_factors = NULL,
+    period_alwaysinclude = TRUE,
+    all_lab = rccShinyTXT(language = language)$RIKET,
+    lab_percentiles = c(rccShinyTXT(language = language)$q1, rccShinyTXT(language = language)$median, rccShinyTXT(language = language)$q3),
+    lab_noofcases = rccShinyTXT(language = language)$noofcases,
+    lab_numerator = rccShinyTXT(language = language)$numerator,
+    lab_denominator = rccShinyTXT(language = language)$denominator,
+    lab_percent = rccShinyTXT(language = language)$percent,
+    lab_total = rccShinyTXT(language = language)$total,
+    lab_period = rccShinyTXT(language = language)$period,
+    ndec = rccShinyDecimals(),
+    subset = NULL,
+    subset_lab = "SUBSET"
+  ) {
 
     if (is.null(subset)) {
         subset <- rep(TRUE, length(group))
@@ -15,8 +36,6 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
     if (!(ind_type %in% c("logical", "numeric", "integer", "factor"))) {
         stop(paste0("Variable of class ", ind_type, " is not supported."))
     }
-
-    #suppressMessages(require(plyr))
 
     if (is.null(period)) {
         period <- rep(1, length(group))
@@ -41,7 +60,8 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
     byvars <- c("group", "period")
 
     # Tabulate
-    summaryFunction <- function(x) {
+    summaryFunction <-
+      function(x) {
         if (ind_type %in% c("numeric", "integer")) {
             hide <- ifelse(hideLowVolume, sum(!is.na(x$ind), na.rm = TRUE) < group_hide_less_than, FALSE)
             if (hide) {
@@ -50,7 +70,6 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
                 measurements <- c(quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)))
             }
             names(measurements) <- c(lab_percentiles[1], lab_percentiles[2], lab_percentiles[3], lab_noofcases)
-            return(measurements)
         } else if (ind_type == "logical") {
             hide <- ifelse(hideLowVolume, sum(!is.na(x$ind), na.rm = TRUE) < group_hide_less_than, FALSE)
             if (hide) {
@@ -60,8 +79,7 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
                 measurements <- c(measurements, format(round(100 * (measurements[1]/measurements[2]), digits = ndec), nsmall = ndec))
             }
             names(measurements) <- c(lab_numerator, lab_denominator, lab_percent)
-            return(measurements)
-        } else if (ind_type %in% c("factor")) {
+        } else if (ind_type == "factor") {
             hide <- ifelse(hideLowVolume, sum(!is.na(x$ind), na.rm = TRUE) < group_hide_less_than, FALSE)
             if (hide) {
                 measurements <- rep(NA, length(levels(x$ind)) + 1)
@@ -73,17 +91,29 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
                 }
             }
             names(measurements) <- c(levels(x$ind), lab_total)
-            return(measurements)
         }
+        return(measurements)
     }
 
     hideLowVolume <- as.logical(group_hide_less_than)
 
-    tab <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars, .fun = summaryFunction, .drop = FALSE)
+    tab <-
+      plyr::ddply(
+        .data = subset(tabdata, subset),
+        .variables = byvars,
+        .fun = summaryFunction,
+        .drop = FALSE
+      )
 
     subsetUniqueGroups <- unique(tabdata$group[tabdata$subset])
     if (!all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subset_lab))) {
-        tab_subset <- plyr::ddply(.data = subset(tabdata, subset), .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
+        tab_subset <-
+          plyr::ddply(
+            .data = subset(tabdata, subset),
+            .variables = byvars[byvars != "group"],
+            .fun = summaryFunction,
+            .drop = FALSE
+          )
         tab_subset <- tab_subset[intersect(names(tab_subset), names(tab))]
         tab_subset$group <- subset_lab
 
@@ -91,9 +121,13 @@ rccShinyIndTable <- function(language = "sv", group = NULL, group_factors = NULL
     }
 
     if (!is.null(all_lab)) {
-        # hideLowVolume <- FALSE
-
-        tab_all <- plyr::ddply(.data = tabdata, .variables = byvars[byvars != "group"], .fun = summaryFunction, .drop = FALSE)
+        tab_all <-
+          plyr::ddply(
+            .data = tabdata,
+            .variables = byvars[byvars != "group"],
+            .fun = summaryFunction,
+            .drop = FALSE
+          )
         tab_all <- tab_all[intersect(names(tab_all), names(tab))]
         tab_all$group <- all_lab
 
