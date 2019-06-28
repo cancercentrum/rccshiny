@@ -14,15 +14,13 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
   geoUnitsHospitalSelected = NULL, geoUnitsCounty = "landsting",
   geoUnitsRegion = "region", geoUnitsPatient = FALSE,
   geoUnitsDefault = "county", regionSelection = TRUE,
-  regionSelectionDefault = NULL, regionLabel = rccShinyTXT(language =
-  language)$limitRegion, period = "period", periodDateLevel = "year",
-  periodLabel = rccShinyTXT(language = language)$dxYear,
+  regionSelectionDefault = NULL, regionLabel = NULL,
+  period = "period", periodDateLevel = "year", periodLabel = NULL,
   periodDefaultStart = NULL, periodDefaultEnd = NULL,
   varOther = NULL, allLabel = NULL, targetValues = NULL,
   funnelplot = FALSE, sort = TRUE, sortDescending = NULL,
-  propWithinShow = TRUE, propWithinUnit = rccShinyTXT(language =
-  language)$propWithinUnit, propWithinValue = 30, hideLessThan = 5,
-  gaPath = NULL, npcrGroupPrivateOthers = FALSE,
+  propWithinShow = TRUE, propWithinUnit = NULL, propWithinValue = 30,
+  hideLessThan = 5, gaPath = NULL, npcrGroupPrivateOthers = FALSE,
   outputHighcharts = FALSE)
 }
 \arguments{
@@ -78,13 +76,13 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 
 \item{regionSelectionDefault}{optional numeric value (1-6) which specifies the default selection in the list of regions. Default is NULL, which selects all regions.}
 
-\item{regionLabel}{if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region" or "Limit to region", depending on language.}
+\item{regionLabel}{change the default label of widget shown in the sidebar panel if regionSelection = TRUE. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.}
 
 \item{period}{name of variable in data containing time periods, for example date or year of diagnosis. Variable must be of type numeric or Date. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.}
 
 \item{periodDateLevel}{If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".}
 
-\item{periodLabel}{label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.}
+\item{periodLabel}{change the default label of the period widget in the sidebar panel. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.}
 
 \item{periodDefaultStart}{optional value which specifies the preselected default start of the period of interest. Default is NULL.}
 
@@ -92,7 +90,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 
 \item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.}
 
-\item{allLabel}{change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding for each language. Default is NULL.}
+\item{allLabel}{change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.}
 
 \item{targetValues}{optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.}
 
@@ -104,7 +102,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 
 \item{propWithinShow}{display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.}
 
-\item{propWithinUnit}{unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.}
+\item{propWithinUnit}{change the default unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.}
 
 \item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.}
 

@@ -27,20 +27,20 @@
 #' @param geoUnitsDefault optional default level of presentation. Valid values are "region", "county" and "hospital". Default is "county".
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionSelectionDefault optional numeric value (1-6) which specifies the default selection in the list of regions. Default is NULL, which selects all regions.
-#' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region" or "Limit to region", depending on language.
+#' @param regionLabel change the default label of widget shown in the sidebar panel if regionSelection = TRUE. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param period name of variable in data containing time periods, for example date or year of diagnosis. Variable must be of type numeric or Date. Default is "period". If period = NULL then no period variable is required and period will not be included anywhere in the Shiny app.
 #' @param periodDateLevel If the variable in data containing time period is of type Date, how are the time periods going to be grouped? Allowed values are "year and "quarter", with default "year".
-#' @param periodLabel label for the period widget in the sidebar panal. Default is "Diagnosår", "Year of diagnosis" depending on language.
+#' @param periodLabel change the default label of the period widget in the sidebar panel. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param periodDefaultStart optional value which specifies the preselected default start of the period of interest. Default is NULL.
 #' @param periodDefaultEnd optional value which specifies the preselected default end of the period of interest. Default is NULL.
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
-#' @param allLabel change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding for each language. Default is NULL.
+#' @param allLabel change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
 #' @param funnelplot adds a widget to the sidebar panel with the option to show a funnel plot in the tab Jämförelse/Comparison. Only applicaple for dichotomous variables. Default is FALSE.
 #' @param sort should the bars in tab Jämförelse/Comparison be sorted? Default is TRUE.
 #' @param sortDescending should the bars in tab Jämförelse/Comparison be plotted in descending order? The argument could have the same length as argument outcome, giving different values for each outcome. Default is NULL, which sorts logical outcomes in descending order and continuous outcomes in ascending order.
 #' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
-#' @param propWithinUnit unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.
+#' @param propWithinUnit change the default unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
@@ -165,10 +165,10 @@ rccShiny2 <-
     geoUnitsDefault = "county",
     regionSelection = TRUE,
     regionSelectionDefault = NULL,
-    regionLabel = rccShinyTXT(language = language)$limitRegion,
+    regionLabel = NULL,
     period = "period",
     periodDateLevel = "year",
-    periodLabel = rccShinyTXT(language = language)$dxYear,
+    periodLabel = NULL,
     periodDefaultStart = NULL,
     periodDefaultEnd = NULL,
     varOther = NULL,
@@ -178,7 +178,7 @@ rccShiny2 <-
     sort = TRUE,
     sortDescending = NULL,
     propWithinShow = TRUE,
-    propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
+    propWithinUnit = NULL,
     propWithinValue = 30,
     hideLessThan = 5,
     gaPath = NULL,
@@ -358,7 +358,10 @@ rccShiny2 <-
     }
 
     # regionLabel
-    testVariableError("regionLabel", listAllowed = FALSE)
+    if (is.null(regionLabel)) {
+      regionLabel <- rccShinyTXT(language = language)$limitRegion
+    } else if (!is.character(regionLabel) | !(length(regionLabel) %in% c(1, length(language))))
+      stop("'regionLabel' should be either NULL or a character vector of length 1 or same length as 'language'", call. = FALSE)
 
     # period
     if (!is.null(period) & (!is.character(period) | length(period) != 1))
@@ -375,7 +378,10 @@ rccShiny2 <-
     }
 
     # periodLabel
-    testVariableError("periodLabel", listAllowed = FALSE)
+    if (is.null(periodLabel)) {
+      periodLabel <- rccShinyTXT(language = language)$dxYear
+    } else if (!is.character(periodLabel) | !(length(periodLabel) %in% c(1, length(language))))
+      stop("'periodLabel' should be either NULL or a character vector of length 1 or same length as 'language'", call. = FALSE)
 
     # periodDefaultStart, periodDefaultEnd
     if (!is.null(periodDefaultStart) & length(periodDefaultStart) != 1)
@@ -439,6 +445,12 @@ rccShiny2 <-
     # propWithinValue
     if (is.null(propWithinValue) | any(is.na(propWithinValue)) | !(length(propWithinValue) %in% c(1, length(outcome))) | (!is.integer(propWithinValue) & !is.numeric(propWithinValue)))
       stop("'propWithinValue' should be a numeric or integer vector of length 1 or length of 'outcome'", call. = FALSE)
+
+    # propWithinUnit
+    if (is.null(propWithinUnit)) {
+      propWithinUnit <- rccShinyTXT(language = language)$propWithinUnit
+    } else if (!is.character(propWithinUnit) | !(length(propWithinUnit) %in% c(1, length(language))))
+      stop("'propWithinUnit' should be either NULL or a character vector of length 1 or same length as 'language'", call. = FALSE)
 
     # hideLessThan
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
