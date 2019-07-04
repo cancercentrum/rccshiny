@@ -192,6 +192,7 @@ rccShiny2 <-
     # # # # # # # # # # # # # # # #
 
     library(shiny)
+    library(shinydashboard)
     library(shinyWidgets)
     library(DT)
 
