@@ -312,7 +312,7 @@ rccShiny2 <-
     if (!is.list(description))
       description <- list(description)
     for (i in 1:length(description)) {
-      if (!is.character(description[[i]]))
+      if (!is.character(description[[i]]) & !all(is.na(description[[i]])))
         stop("'description' should be of type character", call. = FALSE)
     }
 
