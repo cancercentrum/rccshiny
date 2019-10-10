@@ -492,10 +492,7 @@ rccShinyApp <-
         })
 
         indSubtitle <-
-          function(
-            period=TRUE,
-            hideLessThan=FALSE
-          ) {
+          function(period=TRUE) {
             paste0(
               ifelse(
                 GLOBAL_textBeforeSubtitle != "",
@@ -567,10 +564,7 @@ rccShinyApp <-
         })
 
         output$text1 <- renderText({
-          indSubtitle(
-            period = !(input$tab == "fig_trend"),
-            hideLessThan = GLOBAL_hideLessThan
-          )
+          indSubtitle(period = !(input$tab == "fig_trend"))
         })
 
         output$text2 <- renderText({
@@ -1827,21 +1821,29 @@ rccShinyApp <-
                     "</div>"
                   )
                 },
-                "<p><b>", rccShinyTXT(language = GLOBAL_language)$descriptionInterpretation, "</b></p>",
-                "<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>",
-                if (!is.na(GLOBAL_description[2])){
+                if (!is.na(GLOBAL_description[2]) | GLOBAL_hideLessThan > 1){
                   paste0(
-                    GLOBAL_description[2],
-                    "<p></p>"
+                    "<p><b>", rccShinyTXT(language = GLOBAL_language)$descriptionInterpretation, "</b></p>",
+                    "<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>",
+                    if (!is.na(GLOBAL_description[2])){
+                      paste0(
+                        GLOBAL_description[2],
+                        "<p></p>"
+                      )
+                    },
+                    if (GLOBAL_hideLessThan > 1) {
+                      paste0(
+                        rccShinyTXT(language = GLOBAL_language)$fewcases1,
+                        " ",
+                        GLOBAL_hideLessThan,
+                        " ",
+                        rccShinyTXT(language = GLOBAL_language)$fewcases2,
+                        "."
+                      )
+                    },
+                    "</div>"
                   )
                 },
-                rccShinyTXT(language = GLOBAL_language)$fewcases1,
-                " ",
-                GLOBAL_hideLessThan,
-                " ",
-                rccShinyTXT(language = GLOBAL_language)$fewcases2,
-                ".",
-                "</div>",
                 if (!is.na(GLOBAL_description[3])){
                   paste0(
                     "<p><b>", rccShinyTXT(language = GLOBAL_language)$descriptionTechnical, "</b></p>",
@@ -2266,8 +2268,14 @@ rccShinyCheckData <-
     # hideLessThan
     optionsList$hideLessThan <-
       ifelse(
-        optionsList$hideLessThan < 5,
+        !optionsList$inca & optionsList$hideLessThan < 5,
         5,
+        optionsList$hideLessThan
+      )
+    optionsList$hideLessThan <-
+      ifelse(
+        optionsList$hideLessThan == 0,
+        1,
         optionsList$hideLessThan
       )
 
