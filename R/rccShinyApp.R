@@ -796,16 +796,8 @@ rccShinyApp <-
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
                   legendFixedTextWidth = TRUE,
-                  cexText = ifelse(
-                    input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
-                    0.8,
-                    1
-                  ),
-                  cexPoint = ifelse(
-                    input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
-                    1.8,
-                    3
-                  ),
+                  cexText = 1 - 0.2 * min(max((length(unique(dfuse$group)) - 30) / 30, 0), 1),
+                  cexPoint = 3 - 1.2 * min(max((length(unique(dfuse$group)) - 30) / 30, 0), 1),
                   targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                      GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                      numericTypeProp() &
@@ -880,16 +872,8 @@ rccShinyApp <-
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
                   legendFixedTextWidth = TRUE,
-                  cexText = ifelse(
-                    input$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language),
-                    0.8,
-                    1
-                  ),
-                  cexPoint = ifelse(
-                    input$param_levelpresent == rccShinyLevelNames("hospital", language = GLOBAL_language),
-                    1.8,
-                    3
-                  ),
+                  cexText = 1 - 0.2 * min(max((length(unique(dfuse$group)) - 30) / 30, 0), 1),
+                  cexPoint = 3 - 1.2 * min(max((length(unique(dfuse$group)) - 30) / 30, 0), 1),
                   targetValues = if (GLOBAL_outcomeClass[whichOutcome()] == "logical" |
                                      GLOBAL_outcomeClass[whichOutcome()] == "numeric" &
                                      numericTypeProp() &
