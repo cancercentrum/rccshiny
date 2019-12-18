@@ -57,7 +57,9 @@ rccShinyApp <-
                 uiOutput("ownhospitalInput"),
                 uiOutput("numericTypeInput"),
                 uiOutput("numericTypePropInput"),
-                uiOutput("periodInput"),
+                uiOutput("periodTypeInput"),
+                uiOutput("periodInputYear"),
+                uiOutput("periodInputQuarter"),
                 uiOutput("periodSplitInput"),
                 uiOutput("userInput"),
                 uiOutput("funnelPlotInput")
@@ -178,7 +180,7 @@ rccShinyApp <-
               conditionalPanel(
                 condition = ifelse(
                   outcomeClassNumeric(),
-                  paste0("input.param_numerictype == '", paste(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, GLOBAL_propWithinUnit ), "'"),
+                  paste0("input.param_numerictype == '", paste(rccShinyTXT(language = GLOBAL_language)$numericchoices_prop, GLOBAL_propWithinUnit), "'"),
                   "false"
                 ),
                 numericInput(
@@ -287,36 +289,106 @@ rccShinyApp <-
             )
           })
 
-        output$periodInput <-
+        periodType <-
+          reactive({
+            if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) & !is.null(input[["param_periodtype"]])) {
+              if (input[["param_periodtype"]] %in% rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter) {
+                "quarter"
+              } else {
+                "year"
+              }
+            } else {
+              "year"
+            }
+          })
+
+        periodValues <-
+          reactive({
+            if (periodType() == "quarter") {
+              GLOBAL_periodValues_quarters
+            } else {
+              GLOBAL_periodValues
+            }
+          })
+
+        periodInput <-
+          reactive({
+            if (periodType() == "quarter") {
+              input[["param_period_quarter"]]
+            } else {
+              input[["param_period_year"]]
+            }
+          })
+
+        output$periodTypeInput <-
           renderUI({
             tagList(
               conditionalPanel(
-                condition =
-                  paste0(
-                    "input.tab!='fig_trend' & ",
-                    ifelse(GLOBAL_periodStart == GLOBAL_periodEnd, "false", "true")
+                condition = ifelse(GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1, "true", "false"),
+                radioButtons(
+                  inputId = "param_periodtype",
+                  label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {GLOBAL_periodLabel} else {NULL},
+                  choices = c(
+                    if ("year" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear},
+                    if ("quarter" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter}
                   ),
-                if (!(GLOBAL_periodDate & GLOBAL_periodDateLevel != "year")) {
-                  sliderInput(
-                    inputId = "param_period",
-                    label = GLOBAL_periodLabel,
-                    min = GLOBAL_periodStart,
-                    max = GLOBAL_periodEnd,
-                    step = 1,
-                    ticks = FALSE,
-                    value = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
-                    sep = "",
-                    width = "100%"
-                  )
-                } else {
-                  sliderTextInput(
-                    inputId = "param_period",
-                    label = GLOBAL_periodLabel,
-                    choices = GLOBAL_periodValues,
-                    selected = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
-                    width = "100%"
-                  )
-                }
+                  width = "100%"
+                )
+              )
+            )
+          })
+
+        output$periodInputYear <-
+          renderUI({
+            tagList(
+              conditionalPanel(
+                condition = paste0(
+                  ifelse(
+                    length(GLOBAL_periodDateLevel) == 1 & GLOBAL_periodDateLevel[1] == "year",
+                    "true",
+                    "false"
+                  ),
+                  " | (input.tab!='fig_trend' & input.param_periodtype=='",
+                  ifelse(
+                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "År", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
+                    "År",
+                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
+                  ),
+                  "')"
+                ),
+                sliderInput(
+                  inputId = "param_period_year",
+                  label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {NULL} else {GLOBAL_periodLabel},
+                  min = GLOBAL_periodStart,
+                  max = GLOBAL_periodEnd,
+                  step = 1,
+                  ticks = FALSE,
+                  value = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
+                  sep = "",
+                  width = "100%"
+                )
+              )
+            )
+          })
+        output$periodInputQuarter <-
+          renderUI({
+            tagList(
+              conditionalPanel(
+                condition = paste0(
+                  ifelse(
+                    length(GLOBAL_periodDateLevel) == 1 & GLOBAL_periodDateLevel[1] == "quarter",
+                    "true",
+                    "false"
+                  ),
+                  " | (input.tab!='fig_trend' & input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "')"
+                ),
+                sliderTextInput(
+                  inputId = "param_period_quarter",
+                  label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {NULL} else {GLOBAL_periodLabel},
+                  choices = GLOBAL_periodValues_quarters,
+                  selected = c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters),
+                  width = "100%"
+                )
               )
             )
           })
@@ -327,11 +399,14 @@ rccShinyApp <-
               conditionalPanel(
                 condition = paste0(
                   "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & input.tab!='list' & ",
+                  "((input.param_periodtype=='",
                   ifelse(
-                    !is.null(input[["param_period"]]),
-                    "input.param_period[0]!=input.param_period[1]",
-                    "false"
-                  )
+                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "År", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
+                    "År",
+                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
+                  ),
+                  "' & input.param_period_year[0]!=input.param_period_year[1]) | ",
+                  "(input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "' & input.param_period_quarter[0]!=input.param_period_quarter[1]))"
                 ),
                 checkboxInput(
                   inputId = "param_periodSplit",
@@ -470,17 +545,18 @@ rccShinyApp <-
 
         indSubtitlePeriod <- reactive({
           if (GLOBAL_periodInclude){
+            tempPeriodInput <- periodInput()
             paste0(
               GLOBAL_periodLabel,
               ": ",
               ifelse(
-                input[["param_period"]][1] == input[["param_period"]][2],
-                as.character(strong(input[["param_period"]][1])),
+                tempPeriodInput[1] == tempPeriodInput[2],
+                as.character(strong(tempPeriodInput[1])),
                 as.character(strong(
                   paste0(
-                    input[["param_period"]][1],
+                    tempPeriodInput[1],
                     "-",
-                    input[["param_period"]][2]
+                    tempPeriodInput[2]
                   )
                 ))
               ),
@@ -636,14 +712,15 @@ rccShinyApp <-
           }
           dftemp <- subset(dftemp, !is.na(outcome))
 
-          if (input$tab != "fig_trend") {
-            if (!(GLOBAL_periodDate & GLOBAL_periodDateLevel != "year")) {
-              selectionPeriods <- input[["param_period"]][1]:input[["param_period"]][2]
-            } else if (GLOBAL_periodDateLevel == "quarter") {
-              selectionPeriods <- GLOBAL_periodValues
-              selectionPeriods <- selectionPeriods[which(selectionPeriods == input[["param_period"]][1]):which(selectionPeriods == input[["param_period"]][2])]
-            }
+          selectionPeriods <- periodValues()
+          if (GLOBAL_periodDate & periodType() == "quarter") {
+            selectionPeriods <- selectionPeriods[which(selectionPeriods == input[["param_period_quarter"]][1]):which(selectionPeriods == input[["param_period_quarter"]][2])]
+          } else {
+            dftemp$period <- as.numeric(substr(dftemp$period, 1, 4))
+            selectionPeriods <- selectionPeriods[which(selectionPeriods == input[["param_period_year"]][1]):which(selectionPeriods == input[["param_period_year"]][2])]
+          }
 
+          if (input$tab != "fig_trend") {
             dftemp <-
               subset(
                 dftemp,
@@ -931,7 +1008,7 @@ rccShinyApp <-
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     period = dfuse$period,
-                    period_factors = GLOBAL_periodValues,
+                    period_factors = periodValues(),
                     period_alwaysinclude = TRUE
                   )
 
@@ -955,7 +1032,7 @@ rccShinyApp <-
                       all_lab = NULL,
                       ind = dfuse$outcome,
                       period = dfuse$period,
-                      period_factors = GLOBAL_periodValues,
+                      period_factors = periodValues(),
                       period_alwaysinclude = TRUE
                     )
                   if (!(rccShinyTXT(language = optionsList$language)$all %in% input[["param_region"]])) {
@@ -1117,7 +1194,7 @@ rccShinyApp <-
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     period = dfuse$period,
-                    period_factors = GLOBAL_periodValues,
+                    period_factors = periodValues(),
                     period_alwaysinclude = TRUE
                   )
 
@@ -1141,7 +1218,7 @@ rccShinyApp <-
                       all_lab = NULL,
                       ind = dfuse$outcome,
                       period = dfuse$period,
-                      period_factors = GLOBAL_periodValues,
+                      period_factors = periodValues(),
                       period_alwaysinclude = TRUE
                     )
                   if (!(rccShinyTXT(language = optionsList$language)$all %in% input[["param_region"]])) {
@@ -1336,12 +1413,13 @@ rccShinyApp <-
           }
 
           if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-            if (!input$param_periodSplit & input[["param_period"]][1] != input[["param_period"]][2]) {
+            tempPeriodInput <- periodInput()
+            if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
               dfuse$period <-
                 paste0(
-                  input[["param_period"]][1],
+                  tempPeriodInput[1],
                   "-",
-                  input[["param_period"]][2]
+                  tempPeriodInput[2]
                 )
             }
 
@@ -1405,12 +1483,13 @@ rccShinyApp <-
           }
 
           if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-            if (!input$param_periodSplit & input[["param_period"]][1] != input[["param_period"]][2]) {
+            tempPeriodInput <- periodInput()
+            if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
               dfuse$period <-
                 paste0(
-                  input[["param_period"]][1],
+                  tempPeriodInput[1],
                   "-",
-                  input[["param_period"]][2]
+                  tempPeriodInput[2]
                 )
             }
 
@@ -1476,12 +1555,13 @@ rccShinyApp <-
           }
 
           if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
-            if (!input$param_periodSplit & input[["param_period"]][1] != input[["param_period"]][2]) {
+            tempPeriodInput <- periodInput()
+            if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
               dfuse$period <-
                 paste0(
-                  input[["param_period"]][1],
+                  tempPeriodInput[1],
                   "-",
-                  input[["param_period"]][2]
+                  tempPeriodInput[2]
                 )
             }
 
@@ -2108,34 +2188,33 @@ rccShinyCheckData <-
     # periodDate
     if (class(optionsList$data$period) == "Date") {
       optionsList$periodDate <- TRUE
-      if (optionsList$periodDateLevel == "quarter") {
-        tempNonEmpty <- !is.na(optionsList$data$period)
-        tempYear <- as.numeric(format(optionsList$data$period, "%Y"))
-        tempQuarter <- quarters(optionsList$data$period)
-        tempQuarter[!tempNonEmpty] <- NA
-        tempPeriod <- rep(NA, nrow(optionsList$data))
-        tempPeriod[tempNonEmpty] <-
-          paste0(
-            tempYear[tempNonEmpty],
-            tempQuarter[tempNonEmpty]
-          )
-        optionsList$data$period <- tempPeriod
 
-        tempYearsUnique <- sort(unique(tempYear))
-        optionsList$periodStart <- head(sort(unique(tempPeriod)), 1)
-        optionsList$periodEnd <- tail(sort(unique(tempPeriod)), 1)
-        optionsList$periodValues <-
-          paste0(
-            rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),
-            rep(paste0("Q", 1:4), rep = length(tempYearsUnique))
-          )
-        optionsList$periodValues <- optionsList$periodValues[which(optionsList$periodValues == optionsList$periodStart):which(optionsList$periodValues == optionsList$periodEnd)]
-      } else {
-        optionsList$data$period <- as.numeric(format(optionsList$data$period, "%Y"))
-        optionsList$periodStart <- min(optionsList$data$period, na.rm = TRUE)
-        optionsList$periodEnd <- max(optionsList$data$period, na.rm = TRUE)
-        optionsList$periodValues <- optionsList$periodStart:optionsList$periodEnd
-      }
+      tempNonEmpty <- !is.na(optionsList$data$period)
+      tempYear <- as.numeric(format(optionsList$data$period, "%Y"))
+      tempQuarter <- quarters(optionsList$data$period)
+      tempQuarter[!tempNonEmpty] <- NA
+      tempPeriod <- rep(NA, nrow(optionsList$data))
+      tempPeriod[tempNonEmpty] <-
+        paste0(
+          tempYear[tempNonEmpty],
+          tempQuarter[tempNonEmpty]
+        )
+      optionsList$data$period <- tempPeriod
+
+      tempYearsUnique <- sort(unique(tempYear))
+      optionsList$periodStart <- head(sort(unique(tempPeriod)), 1)
+      optionsList$periodEnd <- tail(sort(unique(tempPeriod)), 1)
+      optionsList$periodValues <-
+        paste0(
+          rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),
+          rep(paste0("Q", 1:4), rep = length(tempYearsUnique))
+        )
+
+      optionsList$periodValues_quarters <- optionsList$periodValues[which(optionsList$periodValues == optionsList$periodStart):which(optionsList$periodValues == optionsList$periodEnd)]
+
+      optionsList$periodStart <- min(tempYear, na.rm = TRUE)
+      optionsList$periodEnd <- max(tempYear, na.rm = TRUE)
+      optionsList$periodValues <- optionsList$periodStart:optionsList$periodEnd
     } else {
       optionsList$periodDate <- FALSE
       optionsList$periodStart <- min(optionsList$data$period, na.rm = TRUE)
@@ -2155,6 +2234,14 @@ rccShinyCheckData <-
       optionsList$periodDefaultStart <- optionsList$periodDefaultEnd
     } else if (which(optionsList$periodValues == optionsList$periodDefaultStart) > which(optionsList$periodValues == optionsList$periodDefaultEnd)) {
       optionsList$periodDefaultStart <- optionsList$periodDefaultEnd
+    }
+    optionsList$periodDefaultStart_quarters <- paste0(optionsList$periodDefaultStart, "Q1")
+    if (!(optionsList$periodDefaultStart_quarters %in% optionsList$periodValues_quarters)) {
+      optionsList$periodDefaultStart_quarters <- head(optionsList$periodValues_quarters, 1)
+    }
+    optionsList$periodDefaultEnd_quarters <- paste0(optionsList$periodDefaultEnd, "Q4")
+    if (!(optionsList$periodDefaultEnd_quarters %in% optionsList$periodValues_quarters)) {
+      optionsList$periodDefaultEnd_quarters <- tail(optionsList$periodValues_quarters, 1)
     }
 
     # periodLabel

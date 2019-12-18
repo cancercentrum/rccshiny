@@ -372,15 +372,15 @@ rccShiny2 <-
     if (is.null(periodDateLevel)) {
       periodDateLevel <- "year"
     } else {
-      if (!is.character(periodDateLevel) | length(periodDateLevel) != 1)
-        stop("'periodDateLevel' should be a character vector of length 1", call. = FALSE)
-      if (!(periodDateLevel %in% c("year", "quarter")))
+      if (!is.character(periodDateLevel))
+        stop("'periodDateLevel' should be a character vector", call. = FALSE)
+      if (!all(periodDateLevel %in% c("year", "quarter")))
         stop("Allowed values for 'periodDateLevel' are 'year' and 'quarter'", call. = FALSE)
     }
 
     # periodLabel
     if (is.null(periodLabel)) {
-      periodLabel <- rccShinyTXT(language = language)$dxYear
+      periodLabel <- rccShinyTXT(language = language)$period
     } else if (!is.character(periodLabel) | !(length(periodLabel) %in% c(1, length(language))))
       stop("'periodLabel' should be either NULL or a character vector of length 1 or same length as 'language'", call. = FALSE)
 

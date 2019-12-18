@@ -304,6 +304,8 @@ rccShinyTXT <-
         denominator = c("Nämnare", "Denominator"),
         total = c("Totalt", "Total"),
         period = c("Period", "Period"),
+        periodTypeInputLabelQuarter = c("Kvartal", "Quarter"),
+        periodTypeInputLabelYear = c("År", "Year"),
         RIKET = c("RIKET", "SWEDEN"),
         dxYear = c("Diagnosår", "Year of diagnosis"),
         limitRegion = c("Begränsa till region", "Limit to region"),
