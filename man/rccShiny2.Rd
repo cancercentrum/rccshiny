@@ -106,7 +106,7 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 
 \item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.}
 
-\item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
+\item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.}
 
 \item{gaPath}{optional path to Google Analytics .js-file. Default is NULL.}
 
