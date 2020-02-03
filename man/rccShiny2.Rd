@@ -5,22 +5,23 @@
 \title{Shiny apps for RCC}
 \usage{
 rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
-  folder = "ind", path = getwd(), language = "sv", data = NULL,
-  id = NULL, idOverviewLink = NULL, idAuthorisedToView = NULL,
-  outcome = "outcome", outcomeNumericExcludeNeg = TRUE,
-  outcomeTitle = outcome, textBeforeSubtitle = NULL,
-  textAfterSubtitle = NULL, comment = "", description = rep(NA, 3),
-  geoUnitsHospital = "sjukhus", geoUnitsHospitalCode = "sjukhuskod",
-  geoUnitsHospitalSelected = NULL, geoUnitsCounty = "landsting",
-  geoUnitsRegion = "region", geoUnitsPatient = FALSE,
-  geoUnitsDefault = "county", regionSelection = TRUE,
-  regionSelectionDefault = NULL, regionLabel = NULL,
-  period = "period", periodDateLevel = "year", periodLabel = NULL,
-  periodDefaultStart = NULL, periodDefaultEnd = NULL,
-  varOther = NULL, allLabel = NULL, targetValues = NULL,
-  funnelplot = FALSE, sort = TRUE, sortDescending = NULL,
-  propWithinShow = TRUE, propWithinUnit = NULL, propWithinValue = 30,
-  hideLessThan = 5, gaPath = NULL, npcrGroupPrivateOthers = FALSE,
+  folder = "ind", folderLinkText = NULL, path = getwd(),
+  language = "sv", data = NULL, id = NULL, idOverviewLink = NULL,
+  idAuthorisedToView = NULL, outcome = "outcome",
+  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
+  textBeforeSubtitle = NULL, textAfterSubtitle = NULL, comment = "",
+  description = rep(NA, 3), geoUnitsHospital = "sjukhus",
+  geoUnitsHospitalCode = "sjukhuskod", geoUnitsHospitalSelected = NULL,
+  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
+  geoUnitsPatient = FALSE, geoUnitsDefault = "county",
+  regionSelection = TRUE, regionSelectionDefault = NULL,
+  regionLabel = NULL, period = "period", periodDateLevel = "year",
+  periodLabel = NULL, periodDefaultStart = NULL,
+  periodDefaultEnd = NULL, varOther = NULL, allLabel = NULL,
+  targetValues = NULL, funnelplot = FALSE, sort = TRUE,
+  sortDescending = NULL, propWithinShow = TRUE,
+  propWithinUnit = NULL, propWithinValue = 30, hideLessThan = 5,
+  gaPath = NULL, npcrGroupPrivateOthers = FALSE,
   outputHighcharts = FALSE)
 }
 \arguments{
@@ -31,6 +32,8 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 \item{incaIncludeList}{Should the tab with list of patients be included if on the INCA platform? Default is TRUE.}
 
 \item{folder}{name of folder where the results are placed. Default is "ind".}
+
+\item{folderLinkText}{name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.}
 
 \item{path}{search path to folder returned by the function. Default is working directory.}
 
@@ -157,6 +160,7 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, ge
 ind1 <- rccShiny2(
   data = rccShinyData,
   folder = "Indikator1",
+  folderLinkText = "Indikator 1",
   outcome = paste0("outcome",1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
   description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
@@ -189,6 +193,7 @@ rccShiny2(
   language = c("sv", "en"),
   data = rccShinyData,
   folder = "Indikator2",
+  folderLinkText = c("Indikator 2", "Indicator 2"),
   outcome = "outcome1",
   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
   textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
