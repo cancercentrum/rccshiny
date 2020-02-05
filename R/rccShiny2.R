@@ -5,6 +5,7 @@
 #' @param incaScript script to be run after loading data on the INCA platform. Default is NULL.
 #' @param incaIncludeList Should the tab with list of patients be included if on the INCA platform? Default is TRUE.
 #' @param folder name of folder where the results are placed. Default is "ind".
+#' @param folderLinkText name displayed in ready-to-use html link returned by the function. Default is NULL, which results in the use of arguments outcomeTitle, folder and language to construct a name depending on the number of outcomes.
 #' @param path search path to folder returned by the function. Default is working directory.
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param data data frame containing the variables used when not on the INCA platform.
@@ -87,6 +88,7 @@
 #' ind1 <- rccShiny2(
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
+#'   folderLinkText = "Indikator 1",
 #'   outcome = paste0("outcome",1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
 #'   description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
@@ -119,6 +121,7 @@
 #'   language = c("sv", "en"),
 #'   data = rccShinyData,
 #'   folder = "Indikator2",
+#'   folderLinkText = c("Indikator 2", "Indicator 2"),
 #'   outcome = "outcome1",
 #'   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
 #'   textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
@@ -143,6 +146,7 @@ rccShiny2 <-
     incaScript = NULL,
     incaIncludeList = TRUE,
     folder = "ind",
+    folderLinkText = NULL,
     path = getwd(),
     language = "sv",
     data = NULL,
@@ -242,6 +246,18 @@ rccShiny2 <-
     testVariableError("folder", listAllowed = FALSE)
     if (length(folder) != 1)
       stop("'folder' should be of length 1", call. = FALSE)
+
+    # folderLinkTest
+    if (is.null(folderLinkText)) {
+      if (length(outcome) > 1 | length(language) > 1) {
+        folderLinkText <- paste0(folder, "_", language)
+      } else {
+        folderLinkText <- unlist(outcomeTitle)
+      }
+    }
+    testVariableError("folderLinkText", listAllowed = FALSE)
+    if (length(language) != length(folderLinkText))
+      stop(paste0("'language' and 'folderLinkText' should have the same number of elements"), call. = FALSE)
 
     # path
     if (!inca) {
@@ -475,6 +491,9 @@ rccShiny2 <-
     # Produce app for each language
     # # # # # # # # # # # # # # # #
 
+    # Create vector for link to html-document
+    tempLinks <- vector()
+
     for (loopLanguage in language) {
 
       optionsList <-
@@ -553,12 +572,32 @@ rccShiny2 <-
           optionsList,
           file = paste0(path, "/", loopLanguage, "/", folder, "/data/data.RData")
         )
+
+
+        whichLanguage <- which(language == loopLanguage)
+
+        tempLinks <-
+          cbind(
+            tempLinks,
+            paste0(
+              "<li class='reportLi'><a data-toggle='pill' href='#reportDiv' class='reportLink' id='",
+              folder,
+              "'>",
+              paste(
+                folderLinkText[whichLanguage],
+                collapse=" / "
+                ),
+              "</a></li>"
+              )
+            )
       }
 
     }
 
     if (inca) {
       rccShinyApp(optionsList = optionsList)
+    } else {
+      return(invisible(tempLinks))
     }
 
   }
