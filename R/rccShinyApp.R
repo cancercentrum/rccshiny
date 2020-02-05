@@ -2220,6 +2220,7 @@ rccShinyCheckData <-
       optionsList$periodStart <- min(optionsList$data$period, na.rm = TRUE)
       optionsList$periodEnd <- max(optionsList$data$period, na.rm = TRUE)
       optionsList$periodValues <- optionsList$periodStart:optionsList$periodEnd
+      optionsList$periodValues_quarters <- optionsList$periodValues
     }
 
     # periodDefaultStart, periodDefaultEnd
