@@ -343,6 +343,8 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
+                  ifelse(GLOBAL_periodStart == GLOBAL_periodEnd, "false", "true"),
+                  " & (",
                   ifelse(
                     length(GLOBAL_periodDateLevel) == 1 & GLOBAL_periodDateLevel[1] == "year",
                     "true",
@@ -354,7 +356,8 @@ rccShinyApp <-
                     "År",
                     rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
                   ),
-                  "')"
+                  "')",
+                  ")"
                 ),
                 sliderInput(
                   inputId = "param_period_year",
@@ -375,12 +378,15 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
+                  ifelse(head(GLOBAL_periodValues_quarters, 1) == tail(GLOBAL_periodValues_quarters, 1), "false", "true"),
+                  " & (",
                   ifelse(
                     length(GLOBAL_periodDateLevel) == 1 & GLOBAL_periodDateLevel[1] == "quarter",
                     "true",
                     "false"
                   ),
-                  " | (input.tab!='fig_trend' & input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "')"
+                  " | (input.tab!='fig_trend' & input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "')",
+                  ")"
                 ),
                 sliderTextInput(
                   inputId = "param_period_quarter",
