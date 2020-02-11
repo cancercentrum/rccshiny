@@ -859,6 +859,7 @@ rccShinyApp <-
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
+                  groupHideLessThanCell = GLOBAL_hideLessThanCell,
                   allLab = GLOBAL_allLabel,
                   emphLab = emphLabel(dfuse),
                   ind = dfuse$outcome,
@@ -935,6 +936,7 @@ rccShinyApp <-
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
+                  groupHideLessThanCell = GLOBAL_hideLessThanCell,
                   allLab = GLOBAL_allLabel,
                   emphLab = emphLabel(dfuse),
                   ind = dfuse$outcome,
@@ -1434,6 +1436,7 @@ rccShinyApp <-
                 language = GLOBAL_language,
                 group = dfuse$group,
                 group_hide_less_than = GLOBAL_hideLessThan,
+                group_hide_less_than_cell = GLOBAL_hideLessThanCell,
                 all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 period = dfuse$period,
@@ -1504,6 +1507,7 @@ rccShinyApp <-
                 language = GLOBAL_language,
                 group = dfuse$group,
                 group_hide_less_than = GLOBAL_hideLessThan,
+                group_hide_less_than_cell = GLOBAL_hideLessThanCell,
                 all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 ind_factor_pct = TRUE,
@@ -1576,6 +1580,7 @@ rccShinyApp <-
                 language = GLOBAL_language,
                 group = dfuse$group,
                 group_hide_less_than = GLOBAL_hideLessThan,
+                group_hide_less_than_cell = GLOBAL_hideLessThanCell,
                 all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 period = dfuse$period,
@@ -1891,7 +1896,7 @@ rccShinyApp <-
                     "</div>"
                   )
                 },
-                if (!is.na(GLOBAL_description[2]) | GLOBAL_hideLessThan > 1){
+                if (!is.na(GLOBAL_description[2]) | GLOBAL_hideLessThan > 1 | GLOBAL_hideLessThanCell > 1){
                   paste0(
                     "<p><b>", rccShinyTXT(language = GLOBAL_language)$descriptionInterpretation, "</b></p>",
                     "<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>",
@@ -1908,7 +1913,17 @@ rccShinyApp <-
                         GLOBAL_hideLessThan,
                         " ",
                         rccShinyTXT(language = GLOBAL_language)$fewcases2,
-                        "."
+                        ". "
+                      )
+                    },
+                    if (GLOBAL_hideLessThanCell > 1) {
+                      paste0(
+                        rccShinyTXT(language = GLOBAL_language)$fewcases1cell,
+                        " ",
+                        GLOBAL_hideLessThanCell,
+                        " ",
+                        rccShinyTXT(language = GLOBAL_language)$fewcases2cell,
+                        ". "
                       )
                     },
                     "</div>"

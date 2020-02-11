@@ -4,15 +4,35 @@
 \alias{rcc2PlotLine}
 \title{rcc2PlotLine}
 \usage{
-rcc2PlotLine(x = NULL, y = NULL, legend = NULL,
-  legendPos = "bottom", legendPch = 15, legendNCol = NULL,
-  legendTextWidth = NULL, col = NULL, stackedArea = FALSE,
-  lineWidth = 4, lineType = "l", markers = TRUE, xLim = NULL,
-  xBy = NULL, yLim = NULL, yBy = NULL, title = NULL,
-  subtitle1 = NULL, subtitle2 = NULL, xLab = "x", yLab = "y",
-  cexText = 1, targetValues = NULL, targetValuesHigh = NULL,
+rcc2PlotLine(
+  x = NULL,
+  y = NULL,
+  legend = NULL,
+  legendPos = "bottom",
+  legendPch = 15,
+  legendNCol = NULL,
+  legendTextWidth = NULL,
+  col = NULL,
+  stackedArea = FALSE,
+  lineWidth = 4,
+  lineType = "l",
+  markers = TRUE,
+  xLim = NULL,
+  xBy = NULL,
+  yLim = NULL,
+  yBy = NULL,
+  title = NULL,
+  subtitle1 = NULL,
+  subtitle2 = NULL,
+  xLab = "x",
+  yLab = "y",
+  cexText = 1,
+  targetValues = NULL,
+  targetValuesHigh = NULL,
   targetValuesLabels = c("Mellannivå av måluppfyllelse",
-  "Hög nivå av måluppfyllelse"), outputHighchart = FALSE)
+    "Hög nivå av måluppfyllelse"),
+  outputHighchart = FALSE
+)
 }
 \description{
 internal function.

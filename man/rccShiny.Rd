@@ -4,21 +4,40 @@
 \alias{rccShiny}
 \title{Shiny apps for RCC}
 \usage{
-rccShiny(language = "sv", data = NULL, outcome = "outcome",
-  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
-  folder = "ind", folderLinkText = NULL, path = getwd(),
-  textBeforeSubtitle = NULL, textAfterSubtitle = NULL, comment = "",
-  description = rep(NA, 3), geoUnitsHospital = "sjukhus",
-  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
-  geoUnitsPatient = FALSE, regionSelection = TRUE,
+rccShiny(
+  language = "sv",
+  data = NULL,
+  outcome = "outcome",
+  outcomeNumericExcludeNeg = TRUE,
+  outcomeTitle = outcome,
+  folder = "ind",
+  folderLinkText = NULL,
+  path = getwd(),
+  textBeforeSubtitle = NULL,
+  textAfterSubtitle = NULL,
+  comment = "",
+  description = rep(NA, 3),
+  geoUnitsHospital = "sjukhus",
+  geoUnitsCounty = "landsting",
+  geoUnitsRegion = "region",
+  geoUnitsPatient = FALSE,
+  regionSelection = TRUE,
   regionLabel = rccShinyTXT(language = language)$limitRegion,
-  period = "period", periodDateLevel = "year",
+  period = "period",
+  periodDateLevel = "year",
   periodLabel = rccShinyTXT(language = language)$dxYear,
-  varOther = NULL, targetValues = NULL, funnelplot = FALSE,
-  sortDescending = NULL, propWithinShow = TRUE,
+  varOther = NULL,
+  targetValues = NULL,
+  funnelplot = FALSE,
+  sortDescending = NULL,
+  propWithinShow = TRUE,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
-  propWithinValue = 30, hideLessThan = 5, showHide = TRUE,
-  gaPath = NULL, npcrGroupPrivateOthers = FALSE)
+  propWithinValue = 30,
+  hideLessThan = 5,
+  showHide = TRUE,
+  gaPath = NULL,
+  npcrGroupPrivateOthers = FALSE
+)
 }
 \arguments{
 \item{language}{vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.}

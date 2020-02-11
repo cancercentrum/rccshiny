@@ -43,7 +43,8 @@
 #' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
 #' @param propWithinUnit change the default unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.
-#' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.
+#' @param hideLessThan value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.
+#' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
 #'
@@ -185,6 +186,7 @@ rccShiny2 <-
     propWithinUnit = NULL,
     propWithinValue = 30,
     hideLessThan = 5,
+    hideLessThanCell = 0,
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE,
     outputHighcharts = FALSE
@@ -473,6 +475,10 @@ rccShiny2 <-
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
 
+    # hideLessThanCell
+    if (is.null(hideLessThanCell) | !is.numeric(hideLessThanCell) | length(hideLessThanCell) != 1)
+      stop("'hideLessThanCell' should be a numeric vector of length 1", call. = FALSE)
+
     # gaPath
     if (!is.null(gaPath) & (!is.character(gaPath) | length(gaPath) != 1))
       stop("'gaPath' should be either NULL or a character vector of length 1", call. = FALSE)
@@ -540,6 +546,7 @@ rccShiny2 <-
           propWithinUnit = propWithinUnit,
           propWithinValue = propWithinValue,
           hideLessThan = hideLessThan,
+          hideLessThanCell = hideLessThanCell,
           gaPath = gaPath,
           npcrGroupPrivateOthers = npcrGroupPrivateOthers,
           outputHighcharts = outputHighcharts

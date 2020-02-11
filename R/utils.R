@@ -292,6 +292,8 @@ rccShinyTXT <-
         propWithinUnit = c("dagar", "days"),
         fewcases1 = c("Resultat från grupper med färre än", "Results from groups with fewer than"),
         fewcases2 = c("fall redovisas ej separat", "cases are not shown seperately"),
+        fewcases1cell = c("Om en enskild cell för en grupp innehåller färre än", "If a single cell for a group contains fewer than"),
+        fewcases2cell = c("fall redovisas ej absoluta antal för gruppen", "cases, absolute numbers for that group are not displayed"),
         median = c("Median", "Median"),
         medianiqr = c("Median samt kvartilavstånd", "Median and interquartile range"),
         q1 = c("Första kvartil", "First quartile"),

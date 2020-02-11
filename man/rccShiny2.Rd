@@ -4,25 +4,55 @@
 \alias{rccShiny2}
 \title{Shiny apps for RCC}
 \usage{
-rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
-  folder = "ind", folderLinkText = NULL, path = getwd(),
-  language = "sv", data = NULL, id = NULL, idOverviewLink = NULL,
-  idAuthorisedToView = NULL, outcome = "outcome",
-  outcomeNumericExcludeNeg = TRUE, outcomeTitle = outcome,
-  textBeforeSubtitle = NULL, textAfterSubtitle = NULL, comment = "",
-  description = rep(NA, 3), geoUnitsHospital = "sjukhus",
-  geoUnitsHospitalCode = "sjukhuskod", geoUnitsHospitalSelected = NULL,
-  geoUnitsCounty = "landsting", geoUnitsRegion = "region",
-  geoUnitsPatient = FALSE, geoUnitsDefault = "county",
-  regionSelection = TRUE, regionSelectionDefault = NULL,
-  regionLabel = NULL, period = "period", periodDateLevel = "year",
-  periodLabel = NULL, periodDefaultStart = NULL,
-  periodDefaultEnd = NULL, varOther = NULL, allLabel = NULL,
-  targetValues = NULL, funnelplot = FALSE, sort = TRUE,
-  sortDescending = NULL, propWithinShow = TRUE,
-  propWithinUnit = NULL, propWithinValue = 30, hideLessThan = 5,
-  gaPath = NULL, npcrGroupPrivateOthers = FALSE,
-  outputHighcharts = FALSE)
+rccShiny2(
+  inca = FALSE,
+  incaScript = NULL,
+  incaIncludeList = TRUE,
+  folder = "ind",
+  folderLinkText = NULL,
+  path = getwd(),
+  language = "sv",
+  data = NULL,
+  id = NULL,
+  idOverviewLink = NULL,
+  idAuthorisedToView = NULL,
+  outcome = "outcome",
+  outcomeNumericExcludeNeg = TRUE,
+  outcomeTitle = outcome,
+  textBeforeSubtitle = NULL,
+  textAfterSubtitle = NULL,
+  comment = "",
+  description = rep(NA, 3),
+  geoUnitsHospital = "sjukhus",
+  geoUnitsHospitalCode = "sjukhuskod",
+  geoUnitsHospitalSelected = NULL,
+  geoUnitsCounty = "landsting",
+  geoUnitsRegion = "region",
+  geoUnitsPatient = FALSE,
+  geoUnitsDefault = "county",
+  regionSelection = TRUE,
+  regionSelectionDefault = NULL,
+  regionLabel = NULL,
+  period = "period",
+  periodDateLevel = "year",
+  periodLabel = NULL,
+  periodDefaultStart = NULL,
+  periodDefaultEnd = NULL,
+  varOther = NULL,
+  allLabel = NULL,
+  targetValues = NULL,
+  funnelplot = FALSE,
+  sort = TRUE,
+  sortDescending = NULL,
+  propWithinShow = TRUE,
+  propWithinUnit = NULL,
+  propWithinValue = 30,
+  hideLessThan = 5,
+  hideLessThanCell = 0,
+  gaPath = NULL,
+  npcrGroupPrivateOthers = FALSE,
+  outputHighcharts = FALSE
+)
 }
 \arguments{
 \item{inca}{should output be as if on the INCA platform? Default is FALSE.}
@@ -109,7 +139,9 @@ rccShiny2(inca = FALSE, incaScript = NULL, incaIncludeList = TRUE,
 
 \item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.}
 
-\item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.}
+\item{hideLessThan}{value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.}
+
+\item{hideLessThanCell}{if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).}
 
 \item{gaPath}{optional path to Google Analytics .js-file. Default is NULL.}
 

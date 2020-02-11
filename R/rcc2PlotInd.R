@@ -7,6 +7,7 @@ rcc2PlotInd <-
     group = NULL,
     groupHideLessThan = FALSE,
     groupHideLessThanLabel = "(otillräcklig data)",
+    groupHideLessThanCell = FALSE,
     groupMaxChars = NULL,
     ind = NULL,
     period = NULL,
@@ -241,27 +242,33 @@ rcc2PlotInd <-
               sum(!is.na(x$ind),na.rm = TRUE) < groupHideLessThan,
               FALSE
             )
+          hideCellLessThan <- FALSE
           if (hide) {
-            measurements <- rep(NA, 4)
+            measurements <- data.frame(NA, NA, NA, NA)
           } else {
             measurements <-
-              quantile(
-                as.numeric(x$ind),
-                probs = indNumericPercentiles,
-                na.rm = TRUE
+              data.frame(
+                rbind(
+                  quantile(
+                    as.numeric(x$ind),
+                    probs = indNumericPercentiles,
+                    na.rm = TRUE
+                  )
+                )
               )
-            measurements <- c(
+            measurements <- cbind(
               measurements,
               sum(!is.na(x$ind), na.rm = TRUE)
             )
           }
-          measurements <- c(measurements, hide)
+          measurements <- cbind(measurements, hide, hideCellLessThan)
           names(measurements) <- c(
             "lower",
             "ind",
             "upper",
             "n",
-            "hide"
+            "hide",
+            "hideCellLessThan"
           )
         } else if (indType == "logical") {
           hide <-
@@ -270,16 +277,31 @@ rcc2PlotInd <-
               sum(!is.na(x$ind), na.rm = TRUE) < groupHideLessThan,
               FALSE
             )
+          hideCellLessThan <-
+            ifelse(
+              hideLowVolume,
+              (sum(x$ind, na.rm = TRUE) > 0 & sum(x$ind, na.rm = TRUE) < groupHideLessThanCell) |
+                (sum(!x$ind, na.rm = TRUE) > 0 & sum(!x$ind, na.rm = TRUE) < groupHideLessThanCell),
+              FALSE
+            )
           if (hide) {
-            measurements <- rep(NA, 5)
+            measurements <- data.frame(NA, NA, NA)
           } else {
             measurements <-
-              100*binconf(
-                sum(x$ind, na.rm = TRUE),
-                sum(!is.na(x$ind), na.rm = TRUE),
-                method = "exact"
+              data.frame(
+                rbind(
+                  100 * binconf(
+                    sum(x$ind, na.rm = TRUE),
+                    sum(!is.na(x$ind), na.rm = TRUE),
+                    method = "exact"
+                  )
+                )
               )
-            measurements <- c(
+          }
+          if (hide | hideCellLessThan) {
+            measurements <- cbind(measurements, NA)
+          } else {
+            measurements <- cbind(
               measurements,
               paste0(
                 sum(x$ind, na.rm = TRUE),
@@ -287,21 +309,27 @@ rcc2PlotInd <-
                 indNCasesOfTxt,
                 " ",
                 sum(!is.na(x$ind), na.rm = TRUE)
-              )
+              ),
+              stringsAsFactors = FALSE
             )
-            measurements <- c(
+          }
+          if (hide) {
+            measurements <- cbind(measurements, NA)
+          } else {
+            measurements <- cbind(
               measurements,
               sum(!is.na(x$ind))
             )
           }
-          measurements <- c(measurements, hide)
+          measurements <- cbind(measurements, hide, hideCellLessThan)
           names(measurements) <- c(
             "ind",
             "lower",
             "upper",
             "n",
             "N",
-            "hide"
+            "hide",
+            "hideCellLessThan"
           )
         } else if (indType == "factor") {
           hide <-
@@ -310,52 +338,67 @@ rcc2PlotInd <-
               sum(!is.na(x$ind), na.rm = TRUE) < groupHideLessThan,
               FALSE
             )
+          tempXInd <- factor(x$ind, levels = factor_legend)
+          hideCellLessThan <-
+            ifelse(
+              hideLowVolume,
+              any(table(tempXInd) > 0 & table(tempXInd) < groupHideLessThanCell),
+              FALSE
+            )
           measurements <- vector()
           if (hide) {
             for (i in factor_legend) {
               measurements <- c(measurements, NA)
             }
-            measurements <- c(measurements, NA, NA)
           } else {
             for (i in factor_legend) {
               measurements <- c(
                 measurements,
-                100*(sum(x$ind == i) / sum(!is.na(x$ind)))
+                100*(sum(x$ind %in% i) / sum(!is.na(x$ind)))
               )
             }
-            if (indFactorShowN) {
-              measurements <- c(
+          }
+          measurements <- data.frame(rbind(measurements))
+          if (hide) {
+            measurements <- cbind(measurements, NA)
+          } else {
+            measurements <- cbind(
+              measurements,
+              sum(measurements)
+            )
+          }
+          if (hide | hideCellLessThan) {
+            measurements <- cbind(measurements, NA)
+          } else {
+            if (indFactorShowN & !is.null(indFactorHide)) {
+              measurements <- cbind(
                 measurements,
-                sum(measurements),
-                if (!is.null(indFactorHide)) {
-                  paste0(
-                    sum(x$ind %in% factor_legend),
-                    " ",
-                    indNCasesOfTxt,
-                    " ",
-                    sum(!is.na(x$ind), na.rm = TRUE)
-                  )
-                } else {
+                paste0(
+                  sum(x$ind %in% factor_legend),
+                  " ",
+                  indNCasesOfTxt,
+                  " ",
                   sum(!is.na(x$ind), na.rm = TRUE)
-                }
+                ),
+                stringsAsFactors = FALSE
               )
             } else {
-              measurements <- c(
+              measurements <- cbind(
                 measurements,
-                sum(measurements),
                 sum(!is.na(x$ind), na.rm = TRUE)
               )
             }
           }
-          measurements <- c(measurements, hide)
+          measurements <- cbind(measurements, hide, hideCellLessThan)
           names(measurements) <- c(
             paste0(
               "factor",
-              1:(length(measurements)-3)
+              1:(length(measurements) - 4)
             ),
             "ind",
             "n",
-            "hide"
+            "hide",
+            "hideCellLessThan"
           )
         }
         return(
@@ -458,8 +501,6 @@ rcc2PlotInd <-
             tab_all[, names(tab)]
           )
       }
-
-      tab$hide <- as.logical(tab$hide)
 
       # Funnelplot
       if (funnelplot) {
@@ -670,7 +711,10 @@ rcc2PlotInd <-
               " ",
               groupHideLessThanLabel
             )
+
+          tab_list[[i]]$n[tab_list[[i]]$hideCellLessThan] <- "-"
         }
+
 
         tempPlot <-
           highchart() %>%
@@ -825,8 +869,7 @@ rcc2PlotInd <-
               outside = TRUE
             )
 
-          tempPlacementsDistance <- min(0.3, (length(tab_list) - 1) * 0.1)
-          tempPlacements <- seq(tempPlacementsDistance, -tempPlacementsDistance, length.out = length(tab_list))
+          tempPlacements <- seq(0.3, -0.3, length.out = length(tab_list))
           for (i in 1:length(tab_list)) {
             tempLegendCol <-
               ifelse(
@@ -860,39 +903,39 @@ rcc2PlotInd <-
                 )
               )
             ) %>%
-          hc_tooltip(
-            formatter = JS(
-              "function () {",
+            hc_tooltip(
+              formatter = JS(
+                "function () {",
                 "var seriesAll = this.point.series.chart.series, ",
-                  "hoverIndex = this.point.series.xData.indexOf(this.point.x), ",
-                  "hoverStack = this.series.userOptions.stack, ",
-                  "str = '<span style=\"font-size: 10px\">' + this.key + ' (' + hoverStack + ')</span><br>'",
+                "hoverIndex = this.point.series.xData.indexOf(this.point.x), ",
+                "hoverStack = this.series.userOptions.stack, ",
+                "str = '<span style=\"font-size: 10px\">' + this.key + ' (' + hoverStack + ')</span><br>'",
                 ";",
                 "$.each(seriesAll, function(i, s) {",
-                  "if (s.userOptions.stack == hoverStack) {",
-                    paste0(
-                      "str += '<span style=\"font-size: 10px\">",
-                      ifelse(
-                        indFactorShowN,
-                        "<b>' + s.data[hoverIndex].ind.toFixed(0) + ' %</b> (' + s.data[hoverIndex].n + ')",
-                        "(N = ' + s.data[hoverIndex].n + ')"
-                      ),
-                      "</span><br>'"
-                    ),
-                    "return false;",
-                  "}",
+                "if (s.userOptions.stack == hoverStack) {",
+                paste0(
+                  "str += '<span style=\"font-size: 10px\">",
+                  ifelse(
+                    indFactorShowN,
+                    "<b>' + s.data[hoverIndex].ind.toFixed(0) + ' %</b> (' + s.data[hoverIndex].n + ')",
+                    "(N = ' + s.data[hoverIndex].n + ')"
+                  ),
+                  "</span><br>'"
+                ),
+                "return false;",
+                "}",
                 "});",
                 "$.each(seriesAll, function(i, s) {",
-                  "if (s.userOptions.stack == hoverStack) {",
-                    "str += '<span style=\"color:' + s.data[0].color + '\">\u25A0</span><span style=\"font-size: 10px\"> ' + s.name + ': <b>' + s.data[hoverIndex].y.toFixed(0) + ' %</b></span><br>';",
-                  "}",
+                "if (s.userOptions.stack == hoverStack) {",
+                "str += '<span style=\"color:' + s.data[0].color + '\">\u25A0</span><span style=\"font-size: 10px\"> ' + s.name + ': <b>' + s.data[hoverIndex].y.toFixed(0) + ' %</b></span><br>';",
+                "}",
                 "});",
-              "return str;",
-              "}"
-            ),
-            useHTML = TRUE,
-            outside = TRUE
-          )
+                "return str;",
+                "}"
+              ),
+              useHTML = TRUE,
+              outside = TRUE
+            )
 
           tempNFactors <- sum(substr(colnames(tab_list[[num_periods]]), 1, 6) %in% "factor")
           for (i in 1:length(tab_list)) {
@@ -941,7 +984,7 @@ rcc2PlotInd <-
                 i == length(tab_list),
                 col_ind_act,
                 tab_list[[i]]$col[1]
-            )
+              )
             tab_list[[i]]$yRound <- round(tab_list[[i]]$ind)
             tempPlot <- tempPlot %>%
               hc_add_series(data = tab_list[[i]], type = "bar", mapping = hcaes(x = groupOriginal, y = ind, color = col), name = tab_list[[i]]$period[1], showInLegend = TRUE, color = tempLegendCol)
@@ -1489,7 +1532,8 @@ rcc2PlotInd <-
           )
           tempCex <- rep(cexText, length(tab_list[[num_periods]]$n))
           tempCex[is.na(tab_list[[num_periods]]$n)] <- 0.7 * cexText
-          tab_list[[num_periods]]$n[is.na(tab_list[[num_periods]]$n)] <- groupHideLessThanLabel
+          tab_list[[num_periods]]$n[tab_list[[num_periods]]$hide] <- groupHideLessThanLabel
+          tab_list[[num_periods]]$n[tab_list[[num_periods]]$hideCellLessThan] <- "-"
           text(
             x = -luserwidth,
             y = y_bp,

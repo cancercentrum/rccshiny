@@ -4,21 +4,33 @@
 \alias{rccShinyIndTable}
 \title{Creates table}
 \usage{
-rccShinyIndTable(language = "sv", group = NULL, group_factors = NULL,
-  group_hide_less_than = FALSE, group_hide_less_than_label = FALSE,
-  ind = NULL, ind_type = class(ind),
-  ind_numeric_percentiles = c(0.25, 0.5, 0.75), ind_factor_pct = FALSE,
-  period = NULL, period_factors = NULL, period_alwaysinclude = TRUE,
+rccShinyIndTable(
+  language = "sv",
+  group = NULL,
+  group_factors = NULL,
+  group_hide_less_than = FALSE,
+  group_hide_less_than_label = FALSE,
+  group_hide_less_than_cell = FALSE,
+  ind = NULL,
+  ind_type = class(ind),
+  ind_numeric_percentiles = c(0.25, 0.5, 0.75),
+  ind_factor_pct = FALSE,
+  period = NULL,
+  period_factors = NULL,
+  period_alwaysinclude = TRUE,
   all_lab = rccShinyTXT(language = language)$RIKET,
-  lab_percentiles = c(rccShinyTXT(language = language)$q1,
-  rccShinyTXT(language = language)$median, rccShinyTXT(language =
-  language)$q3), lab_noofcases = rccShinyTXT(language =
-  language)$noofcases, lab_numerator = rccShinyTXT(language =
-  language)$numerator, lab_denominator = rccShinyTXT(language =
-  language)$denominator, lab_percent = rccShinyTXT(language =
-  language)$percent, lab_total = rccShinyTXT(language = language)$total,
+  lab_percentiles = c(rccShinyTXT(language = language)$q1, rccShinyTXT(language =
+    language)$median, rccShinyTXT(language = language)$q3),
+  lab_noofcases = rccShinyTXT(language = language)$noofcases,
+  lab_numerator = rccShinyTXT(language = language)$numerator,
+  lab_denominator = rccShinyTXT(language = language)$denominator,
+  lab_percent = rccShinyTXT(language = language)$percent,
+  lab_total = rccShinyTXT(language = language)$total,
   lab_period = rccShinyTXT(language = language)$period,
-  ndec = rccShinyDecimals(), subset = NULL, subset_lab = "SUBSET")
+  ndec = rccShinyDecimals(),
+  subset = NULL,
+  subset_lab = "SUBSET"
+)
 }
 \description{
 internal function used by server.R for table in tab Table.

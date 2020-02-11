@@ -4,15 +4,24 @@
 \alias{fMapPlot}
 \title{Creates map plot}
 \usage{
-fMapPlot(value = NULL, value_lim = NULL,
-  value_order = c("Östergötland", "Blekinge", "Dalarna", "Gävleborg",
-  "Gotland", "Halland", "Jämtland", "Jönköping", "Kalmar", "Kronoberg",
-  "Norrbotten", "Orebro", "Södermanland", "Skåne", "Stockholm",
-  "Uppsala", "Värmland", "Västerbotten", "Västernorrland",
-  "Västmanland", "Västra Götaland"), value_order_return = FALSE,
-  legend = "", col = NULL, col_border = "#7f7f7f", text_cex = 1,
-  title = NULL, subtitle1 = NULL, subtitle2 = NULL, ndec = 1,
-  rds_path = "./")
+fMapPlot(
+  value = NULL,
+  value_lim = NULL,
+  value_order = c("Östergötland", "Blekinge", "Dalarna", "Gävleborg", "Gotland",
+    "Halland", "Jämtland", "Jönköping", "Kalmar", "Kronoberg", "Norrbotten", "Orebro",
+    "Södermanland", "Skåne", "Stockholm", "Uppsala", "Värmland", "Västerbotten",
+    "Västernorrland", "Västmanland", "Västra Götaland"),
+  value_order_return = FALSE,
+  legend = "",
+  col = NULL,
+  col_border = "#7f7f7f",
+  text_cex = 1,
+  title = NULL,
+  subtitle1 = NULL,
+  subtitle2 = NULL,
+  ndec = 1,
+  rds_path = "./"
+)
 }
 \description{
 internal function used by server.R for plot in tab Map.
