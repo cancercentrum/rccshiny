@@ -1986,7 +1986,7 @@ rccShinyCheckData <-
     for (i in 1:length(optionsList$outcome)) {
       optionsList$outcomeClass[i] <- class(optionsList$data[, optionsList$outcome[i]])
       if (!(optionsList$outcomeClass[i]) %in% c("logical", "factor", "numeric")) {
-        optionsList$error <- paste0("Column '", optionsList$outcome[i], "' in 'data' if not of type logical, factor or numeric")
+        optionsList$error <- paste0("Column '", optionsList$outcome[i], "' in 'data' is not of type logical, factor or numeric")
         return(optionsList)
       }
     }
