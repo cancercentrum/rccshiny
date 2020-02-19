@@ -47,6 +47,12 @@
 #' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
+#' @param outputHighcharts should Highcharts be used to draw the figures? Default is FALSE.
+#' @param tabIncludeFigCompare should the tab with the comparison figure be included? Default is TRUE.
+#' @param tabIncludeTable should the tab with the table be included? Default is TRUE.
+#' @param tabIncludeFigTrend should the tab with the trend figure be included? Default is TRUE.
+#' @param tabIncludeFigMap should the tab with the map figure be included? Default is TRUE.
+#' @param tabIncludeDescription should the tab with the description be included? Default is TRUE.
 #'
 #' @details Valid values for geoUnitsCounty are:
 #'   \tabular{lll}{
@@ -189,7 +195,12 @@ rccShiny2 <-
     hideLessThanCell = 0,
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE,
-    outputHighcharts = FALSE
+    outputHighcharts = FALSE,
+    tabIncludeFigCompare = TRUE,
+    tabIncludeTable = TRUE,
+    tabIncludeFigTrend = TRUE,
+    tabIncludeFigMap = TRUE,
+    tabIncludeDescription = TRUE
   ) {
 
     # # # # # # # # # # # # # # # #
@@ -493,6 +504,18 @@ rccShiny2 <-
     if (is.null(outputHighcharts) | !is.logical(outputHighcharts) | length(outputHighcharts) != 1)
       stop("'outputHighcharts' should be a logical vector of length 1", call. = FALSE)
 
+    # tabInclude
+    if (is.null(tabIncludeFigCompare) | !is.logical(tabIncludeFigCompare) | length(tabIncludeFigCompare) != 1)
+      stop("'tabIncludeFigCompare' should be a logical vector of length 1", call. = FALSE)
+    if (is.null(tabIncludeTable) | !is.logical(tabIncludeTable) | length(tabIncludeTable) != 1)
+      stop("'tabIncludeTable' should be a logical vector of length 1", call. = FALSE)
+    if (is.null(tabIncludeFigTrend) | !is.logical(tabIncludeFigTrend) | length(tabIncludeFigTrend) != 1)
+      stop("'tabIncludeFigTrend' should be a logical vector of length 1", call. = FALSE)
+    if (is.null(tabIncludeFigMap) | !is.logical(tabIncludeFigMap) | length(tabIncludeFigMap) != 1)
+      stop("'tabIncludeFigMap' should be a logical vector of length 1", call. = FALSE)
+    if (is.null(tabIncludeDescription) | !is.logical(tabIncludeDescription) | length(tabIncludeDescription) != 1)
+      stop("'tabIncludeDescription' should be a logical vector of length 1", call. = FALSE)
+
     # # # # # # # # # # # # # # # #
     # Produce app for each language
     # # # # # # # # # # # # # # # #
@@ -549,7 +572,12 @@ rccShiny2 <-
           hideLessThanCell = hideLessThanCell,
           gaPath = gaPath,
           npcrGroupPrivateOthers = npcrGroupPrivateOthers,
-          outputHighcharts = outputHighcharts
+          outputHighcharts = outputHighcharts,
+          tabIncludeFigCompare = tabIncludeFigCompare,
+          tabIncludeTable = tabIncludeTable,
+          tabIncludeFigTrend = tabIncludeFigTrend,
+          tabIncludeFigMap = tabIncludeFigMap,
+          tabIncludeDescription = tabIncludeDescription
         )
 
       if (!inca) {

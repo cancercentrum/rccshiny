@@ -51,7 +51,12 @@ rccShiny2(
   hideLessThanCell = 0,
   gaPath = NULL,
   npcrGroupPrivateOthers = FALSE,
-  outputHighcharts = FALSE
+  outputHighcharts = FALSE,
+  tabIncludeFigCompare = TRUE,
+  tabIncludeTable = TRUE,
+  tabIncludeFigTrend = TRUE,
+  tabIncludeFigMap = TRUE,
+  tabIncludeDescription = TRUE
 )
 }
 \arguments{
@@ -146,6 +151,18 @@ rccShiny2(
 \item{gaPath}{optional path to Google Analytics .js-file. Default is NULL.}
 
 \item{npcrGroupPrivateOthers}{should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.}
+
+\item{outputHighcharts}{should Highcharts be used to draw the figures? Default is FALSE.}
+
+\item{tabIncludeFigCompare}{should the tab with the comparison figure be included? Default is TRUE.}
+
+\item{tabIncludeTable}{should the tab with the table be included? Default is TRUE.}
+
+\item{tabIncludeFigTrend}{should the tab with the trend figure be included? Default is TRUE.}
+
+\item{tabIncludeFigMap}{should the tab with the map figure be included? Default is TRUE.}
+
+\item{tabIncludeDescription}{should the tab with the description be included? Default is TRUE.}
 }
 \value{
 A folder path/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.

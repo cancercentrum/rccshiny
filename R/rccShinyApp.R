@@ -670,20 +670,25 @@ rccShinyApp <-
 
         output$theTabs <-
           renderUI({
-            theTabs <-
-              list(
-                if (GLOBAL_outputHighcharts) {
-                  tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highcharter::highchartOutput("indPlot", height = "980px"), icon = icon("bar-chart"))
-                } else {
-                  tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("bar-chart"))
-                }
-              )
+            theTabs <- list()
+
+            if (GLOBAL_tabIncludeFigCompare) {
+              if (GLOBAL_outputHighcharts) {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highcharter::highchartOutput("indPlot", height = "980px"), icon = icon("bar-chart"))
+              } else {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("bar-chart"))
+              }
+            }
             if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", DT::dataTableOutput("indTableNum"), icon = icon("table"))
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", DT::dataTableOutput("indTablePct"), icon = icon("table"))
+              if (GLOBAL_tabIncludeTable) {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", DT::dataTableOutput("indTableNum"), icon = icon("table"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", DT::dataTableOutput("indTablePct"), icon = icon("table"))
+              }
             } else {
-              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"), icon = icon("table"))
-              if (GLOBAL_geoUnitsCountyInclude) {
+              if (GLOBAL_tabIncludeTable) {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"), icon = icon("table"))
+              }
+              if (GLOBAL_geoUnitsCountyInclude & GLOBAL_tabIncludeFigMap) {
                 if (GLOBAL_outputHighcharts) {
                   theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", highcharter::highchartOutput("indMap", height = "980px"), icon = icon("map-marker"))
                 } else {
@@ -691,7 +696,7 @@ rccShinyApp <-
                 }
               }
             }
-            if (GLOBAL_periodInclude) {
+            if (GLOBAL_periodInclude & GLOBAL_tabIncludeFigTrend) {
               if (GLOBAL_outputHighcharts) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("line-chart"))
               } else {
@@ -701,7 +706,9 @@ rccShinyApp <-
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", DT::dataTableOutput("indList"), icon = icon("list"))
             }
-            theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"), icon = icon("info-circle"))
+            if (GLOBAL_tabIncludeDescription) {
+              theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"), icon = icon("info-circle"))
+            }
             do.call(tabBox, c(theTabs, id = "tab", width = 9))
           })
 
