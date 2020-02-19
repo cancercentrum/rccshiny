@@ -343,6 +343,7 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
+                  "input.tab!='fig_trend' & ",
                   ifelse(GLOBAL_periodStart == GLOBAL_periodEnd, "false", "true"),
                   " & (",
                   ifelse(
@@ -350,14 +351,13 @@ rccShinyApp <-
                     "true",
                     "false"
                   ),
-                  " | (input.tab!='fig_trend' & input.param_periodtype=='",
+                  " | input.param_periodtype=='",
                   ifelse(
                     rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "År", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
                     "År",
                     rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
                   ),
-                  "')",
-                  ")"
+                  "')"
                 ),
                 sliderInput(
                   inputId = "param_period_year",
@@ -378,6 +378,7 @@ rccShinyApp <-
             tagList(
               conditionalPanel(
                 condition = paste0(
+                  "input.tab!='fig_trend' & ",
                   ifelse(head(GLOBAL_periodValues_quarters, 1) == tail(GLOBAL_periodValues_quarters, 1), "false", "true"),
                   " & (",
                   ifelse(
@@ -385,8 +386,7 @@ rccShinyApp <-
                     "true",
                     "false"
                   ),
-                  " | (input.tab!='fig_trend' & input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "')",
-                  ")"
+                  " | input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "')"
                 ),
                 sliderTextInput(
                   inputId = "param_period_quarter",
@@ -677,7 +677,7 @@ rccShinyApp <-
           renderUI({
             theTabs <- list()
 
-            if (GLOBAL_tabIncludeFigCompare) {
+            if ("compare" %in% GLOBAL_includeTabs) {
               if (GLOBAL_outputHighcharts) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highcharter::highchartOutput("indPlot", height = "980px"), icon = icon("bar-chart"))
               } else {
@@ -685,15 +685,15 @@ rccShinyApp <-
               }
             }
             if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-              if (GLOBAL_tabIncludeTable) {
+              if ("table" %in% GLOBAL_includeTabs) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", DT::dataTableOutput("indTableNum"), icon = icon("table"))
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", DT::dataTableOutput("indTablePct"), icon = icon("table"))
               }
             } else {
-              if (GLOBAL_tabIncludeTable) {
+              if ("table" %in% GLOBAL_includeTabs) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"), icon = icon("table"))
               }
-              if (GLOBAL_geoUnitsCountyInclude & GLOBAL_tabIncludeFigMap) {
+              if (GLOBAL_geoUnitsCountyInclude & "map" %in% GLOBAL_includeTabs) {
                 if (GLOBAL_outputHighcharts) {
                   theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", highcharter::highchartOutput("indMap", height = "980px"), icon = icon("map-marker"))
                 } else {
@@ -701,7 +701,7 @@ rccShinyApp <-
                 }
               }
             }
-            if (GLOBAL_periodInclude & GLOBAL_tabIncludeFigTrend) {
+            if (GLOBAL_periodInclude & "trend" %in% GLOBAL_includeTabs) {
               if (GLOBAL_outputHighcharts) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("line-chart"))
               } else {
@@ -711,7 +711,7 @@ rccShinyApp <-
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", DT::dataTableOutput("indList"), icon = icon("list"))
             }
-            if (GLOBAL_tabIncludeDescription) {
+            if ("description" %in% GLOBAL_includeTabs) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"), icon = icon("info-circle"))
             }
             do.call(tabBox, c(theTabs, id = "tab", width = 9))

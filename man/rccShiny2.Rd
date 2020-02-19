@@ -52,11 +52,7 @@ rccShiny2(
   gaPath = NULL,
   npcrGroupPrivateOthers = FALSE,
   outputHighcharts = FALSE,
-  tabIncludeFigCompare = TRUE,
-  tabIncludeTable = TRUE,
-  tabIncludeFigTrend = TRUE,
-  tabIncludeFigMap = TRUE,
-  tabIncludeDescription = TRUE
+  includeTabs = c("compare", "table", "map", "trend", "description")
 )
 }
 \arguments{
@@ -154,15 +150,7 @@ rccShiny2(
 
 \item{outputHighcharts}{should Highcharts be used to draw the figures? Default is FALSE.}
 
-\item{tabIncludeFigCompare}{should the tab with the comparison figure be included? Default is TRUE.}
-
-\item{tabIncludeTable}{should the tab with the table be included? Default is TRUE.}
-
-\item{tabIncludeFigTrend}{should the tab with the trend figure be included? Default is TRUE.}
-
-\item{tabIncludeFigMap}{should the tab with the map figure be included? Default is TRUE.}
-
-\item{tabIncludeDescription}{should the tab with the description be included? Default is TRUE.}
+\item{includeTabs}{vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").}
 }
 \value{
 A folder path/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
