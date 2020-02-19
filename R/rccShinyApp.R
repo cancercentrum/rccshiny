@@ -458,7 +458,12 @@ rccShinyApp <-
                         choices = tempList$choices,
                         selected = tempList$selected,
                         multiple = tempList$multiple,
-                        options = list('none-selected-text' = ""),
+                        options = list(
+                          'actions-box' = TRUE,
+                          'deselect-all-text' = rccShinyTXT(language = GLOBAL_language)$deselectAll,
+                          'select-all-text' = rccShinyTXT(language = GLOBAL_language)$selectAll,
+                          'none-selected-text' = "-"
+                        ),
                         width = "100%"
                       )
                     }

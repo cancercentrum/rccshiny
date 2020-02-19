@@ -320,6 +320,8 @@ rccShinyTXT <-
         no = c("Nej", "No"),
         idOverviewLink = c("Översikt", "Overview"),
         grouphidelessthan = c("(otillräcklig data)", "(insufficient data)"),
+        selectAll = c("Markera alla", "Select all"),
+        deselectAll = c("Avmarkera alla", "Deselect all"),
         stringsAsFactors = FALSE
       )
     tab <- fixEncoding(tab)
