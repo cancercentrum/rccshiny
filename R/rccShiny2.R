@@ -43,6 +43,7 @@
 #' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
 #' @param propWithinUnit change the default unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.
+#' @param prob a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).
 #' @param hideLessThan value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.
 #' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
@@ -187,6 +188,7 @@ rccShiny2 <-
     propWithinShow = TRUE,
     propWithinUnit = NULL,
     propWithinValue = 30,
+    prob = c(0.25, 0.50, 0.75),
     hideLessThan = 5,
     hideLessThanCell = 0,
     gaPath = NULL,
@@ -474,6 +476,12 @@ rccShiny2 <-
     } else if (!is.character(propWithinUnit) | !(length(propWithinUnit) %in% c(1, length(language))))
       stop("'propWithinUnit' should be either NULL or a character vector of length 1 or same length as 'language'", call. = FALSE)
 
+    # prob
+    if (is.null(prob)) {
+      prob <- c(0.25, 0.50, 0.75)
+    } else if (length(prob) != 3 | !is.numeric(prob) | !(1 >= prob[3] & prob[3] >= prob[2] & prob[2] >= prob[1]))
+      stop("'prob' should be an increasing numeric vector of length 3 with values in [0,1]", call. = FALSE)
+
     # hideLessThan
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
@@ -552,6 +560,7 @@ rccShiny2 <-
           propWithinShow = propWithinShow,
           propWithinUnit = propWithinUnit,
           propWithinValue = propWithinValue,
+          prob = prob,
           hideLessThan = hideLessThan,
           hideLessThanCell = hideLessThanCell,
           gaPath = gaPath,
