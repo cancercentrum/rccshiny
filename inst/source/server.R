@@ -641,6 +641,7 @@ shinyServer(function(input, output, clientData) {
           ),
           ind_noofcasestxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
           ind_noofcasestxt_nOfN = rccShinyTXT(language = GLOBAL_language)$noofcases_nOfN,
+          ind_numeric_percentiles = GLOBAL_prob,
           period = if (input$param_periodSplit) {dfuse$period} else {NULL},
           x_lab = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
@@ -717,6 +718,7 @@ shinyServer(function(input, output, clientData) {
             group_hide_less_than = GLOBAL_hideLessThan,
             all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
             ind = dfuse$outcome,
+            ind_numeric_percentiles = GLOBAL_prob,
             ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
             period = dfuse$period,
             period_factors = GLOBAL_periodValues,
@@ -742,6 +744,7 @@ shinyServer(function(input, output, clientData) {
               group_hide_less_than = GLOBAL_hideLessThan,
               all_lab = NULL,
               ind = dfuse$outcome,
+              ind_numeric_percentiles = GLOBAL_prob,
               period = dfuse$period,
               period_factors = GLOBAL_periodValues,
               period_alwaysinclude = TRUE
@@ -968,6 +971,7 @@ shinyServer(function(input, output, clientData) {
           ind = dfuse$outcome,
           period = dfuse$period,
           period_alwaysinclude = GLOBAL_periodInclude,
+          ind_numeric_percentiles = GLOBAL_prob,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -1036,6 +1040,7 @@ shinyServer(function(input, output, clientData) {
           ind_factor_pct = TRUE,
           period = dfuse$period,
           period_alwaysinclude = GLOBAL_periodInclude,
+          ind_numeric_percentiles = GLOBAL_prob,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -1105,6 +1110,7 @@ shinyServer(function(input, output, clientData) {
           period = dfuse$period,
           period_alwaysinclude = GLOBAL_periodInclude,
           lab_period = GLOBAL_periodLabel,
+          ind_numeric_percentiles = GLOBAL_prob,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
         )
@@ -1182,6 +1188,7 @@ shinyServer(function(input, output, clientData) {
             group = dfuse$group,
             group_hide_less_than = GLOBAL_hideLessThan,
             group_factors = tab_order,
+            ind_numeric_percentiles = GLOBAL_prob,
             all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
             ind = dfuse$outcome
           )

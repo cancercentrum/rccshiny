@@ -29,6 +29,7 @@
 #' @param propWithinShow display the choice "Andel inom..."/"Proportion within..." for numeric outcome(s). Default is TRUE.
 #' @param propWithinUnit unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. If the length of the vector is less than the number of numeric outcomes the values are recycled. Default is 30.
+#' @param prob a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).
 #' @param hideLessThan value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.
 #' @param showHide To be implemented: Should levels with values < 5 be shown but without values? Default is TRUE.
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
@@ -158,10 +159,12 @@ rccShiny <-
     propWithinShow = TRUE,
     propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
     propWithinValue = 30,
+    prob = c(0.25,0.50,0.75),
     hideLessThan = 5,
     showHide = TRUE,
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE
+
   ) {
 
     # # # # # # # # # # # # # # # #
@@ -369,6 +372,12 @@ rccShiny <-
 
     if (is.null(propWithinValue) | is.na(propWithinValue) | length(propWithinValue) != 1 | (!is.integer(propWithinValue) & !is.numeric(propWithinValue)))
       stop(paste0("'propWithinValue' should be a a numeric och integer value of length 1"), call. = FALSE)
+
+    if (is.null(prob)) {
+      prob <- c(0.25, 0.50, 0.75)
+    } else if (length(prob) != 3 | !is.numeric(prob) | !( 1 >= prob[3] & prob[3] >= prob[2] & prob[2] >= prob[1]))
+      stop("'prob' should be an increasing numeric vector of length 3 with values in [0,1]", call. = FALSE)
+
 
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
@@ -624,6 +633,8 @@ rccShiny <-
 
       GLOBAL_npcrGroupPrivateOthers <- npcrGroupPrivateOthers
 
+      GLOBAL_prob <- prob
+
       if (!dir.exists(paste0(path,"/apps/"))) {
         dir.create(paste0(path,"/apps/"), showWarnings = FALSE)
       }
@@ -644,7 +655,7 @@ rccShiny <-
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodInclude, GLOBAL_periodLabel, GLOBAL_periodDate, GLOBAL_periodDateLevel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_periodValues, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
-           GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers,
+           GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers, GLOBAL_prob,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
       # Output description to .html-file
