@@ -876,7 +876,6 @@ rccShinyApp <-
                   emphLab = emphLabel(dfuse),
                   ind = dfuse$outcome,
                   indNumericExcludeNeg = FALSE,
-                  indNumericPercentiles = GLOBAL_prob,
                   indTitle = ifelse(
                     class(dfuse$outcome) %in% "numeric",
                     rccShinyTXT(language = GLOBAL_language)$median,
@@ -954,7 +953,6 @@ rccShinyApp <-
                   emphLab = emphLabel(dfuse),
                   ind = dfuse$outcome,
                   indNumericExcludeNeg = FALSE,
-                  indNumericPercentiles = GLOBAL_prob,
                   indTitle = ifelse(
                     class(dfuse$outcome) %in% "numeric",
                     rccShinyTXT(language = GLOBAL_language)$median,
@@ -1029,7 +1027,6 @@ rccShinyApp <-
                     all_lab = GLOBAL_allLabel,
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
-                    ind_numeric_percentiles = GLOBAL_prob,
                     period = dfuse$period,
                     period_factors = periodValues(),
                     period_alwaysinclude = TRUE
@@ -1054,7 +1051,6 @@ rccShinyApp <-
                       group_hide_less_than = GLOBAL_hideLessThan,
                       all_lab = NULL,
                       ind = dfuse$outcome,
-                      ind_numeric_percentiles = GLOBAL_prob,
                       period = dfuse$period,
                       period_factors = periodValues(),
                       period_alwaysinclude = TRUE
@@ -1217,7 +1213,6 @@ rccShinyApp <-
                     all_lab = GLOBAL_allLabel,
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
-                    ind_numeric_percentiles = GLOBAL_prob,
                     period = dfuse$period,
                     period_factors = periodValues(),
                     period_alwaysinclude = TRUE
@@ -1242,7 +1237,6 @@ rccShinyApp <-
                       group_hide_less_than = GLOBAL_hideLessThan,
                       all_lab = NULL,
                       ind = dfuse$outcome,
-                      ind_numeric_percentiles = GLOBAL_prob,
                       period = dfuse$period,
                       period_factors = periodValues(),
                       period_alwaysinclude = TRUE
@@ -1456,7 +1450,6 @@ rccShinyApp <-
                 group_hide_less_than = GLOBAL_hideLessThan,
                 group_hide_less_than_cell = GLOBAL_hideLessThanCell,
                 all_lab = GLOBAL_allLabel,
-                ind_numeric_percentiles = GLOBAL_prob,
                 ind = dfuse$outcome,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
@@ -1530,7 +1523,6 @@ rccShinyApp <-
                 all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 ind_factor_pct = TRUE,
-                ind_numeric_percentiles = GLOBAL_prob,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
@@ -1603,7 +1595,6 @@ rccShinyApp <-
                 group_hide_less_than_cell = GLOBAL_hideLessThanCell,
                 all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
-                ind_numeric_percentiles = GLOBAL_prob,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
@@ -1682,7 +1673,6 @@ rccShinyApp <-
                     group_hide_less_than = GLOBAL_hideLessThan,
                     group_factors = tab_order,
                     all_lab = GLOBAL_allLabel,
-                    ind_numeric_percentiles = GLOBAL_prob,
                     ind = dfuse$outcome
                   )
 
@@ -1757,7 +1747,6 @@ rccShinyApp <-
                     group_hide_less_than = GLOBAL_hideLessThan,
                     group_factors = tab_order,
                     all_lab = GLOBAL_allLabel,
-                    ind_numeric_percentiles = GLOBAL_prob,
                     ind = dfuse$outcome
                   )
 

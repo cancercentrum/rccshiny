@@ -47,7 +47,6 @@ rccShiny2(
   propWithinShow = TRUE,
   propWithinUnit = NULL,
   propWithinValue = 30,
-  prob = c(0.25, 0.5, 0.75),
   hideLessThan = 5,
   hideLessThanCell = 0,
   gaPath = NULL,
@@ -140,8 +139,6 @@ rccShiny2(
 \item{propWithinUnit}{change the default unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.}
 
 \item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.}
-
-\item{prob}{a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).}
 
 \item{hideLessThan}{value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.}
 
