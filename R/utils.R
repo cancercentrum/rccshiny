@@ -187,7 +187,11 @@ rccShinyLevelNames <-
     language = "sv"
   ) {
     if (level == "region") {
-      levelName <- "Region"
+      levelName <- if (language == "en") {
+        "Healthcare region"
+      } else {
+        "Sjukvårdsregion"
+      }
     } else if (level == "county_lkf") {
       levelName <- if (language == "en") {
         "County of residence"
@@ -196,9 +200,9 @@ rccShinyLevelNames <-
       }
     } else if (level == "county") {
       levelName <- if (language == "en") {
-        "County"
+        "Region"
       } else {
-        "Landsting"
+        "Region"
       }
     } else if (level == "hospital") {
       levelName <- if (language == "en") {
@@ -221,9 +225,9 @@ rccShinyLevelNames <-
 #' @export
 rccShinyGroupVariable <-
   function(label = "sjukhus") {
-    if (tolower(label) %in% c("region")) {
+    if (tolower(label) %in% c("sjukvårdsregion", "healthcare region")) {
       "region"
-    } else if (tolower(label) %in% c("landsting", "county", "bostadslän", "county of residence")) {
+    } else if (tolower(label) %in% c("region", "county", "bostadslän", "county of residence")) {
       "landsting"
     } else if (tolower(label) %in% c("sjukhus", "hospital")) {
       "sjukhus"
@@ -310,7 +314,7 @@ rccShinyTXT <-
         periodTypeInputLabelYear = c("År", "Year"),
         RIKET = c("RIKET", "SWEDEN"),
         dxYear = c("Diagnosår", "Year of diagnosis"),
-        limitRegion = c("Begränsa till region", "Limit to region"),
+        limitRegion = c("Begränsa till sjukvårdsregion", "Limit to healthcare region"),
         descriptionAbout = c("Om indikatorn", "About"),
         descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"),
         descriptionTechnical = c("Teknisk beskrivning", "Technical description"),
@@ -320,8 +324,6 @@ rccShinyTXT <-
         no = c("Nej", "No"),
         idOverviewLink = c("Översikt", "Overview"),
         grouphidelessthan = c("(otillräcklig data)", "(insufficient data)"),
-        selectAll = c("Markera alla", "Select all"),
-        deselectAll = c("Avmarkera alla", "Deselect all"),
         stringsAsFactors = FALSE
       )
     tab <- fixEncoding(tab)
