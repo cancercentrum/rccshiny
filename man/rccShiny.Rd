@@ -33,6 +33,7 @@ rccShiny(
   propWithinShow = TRUE,
   propWithinUnit = rccShinyTXT(language = language)$propWithinUnit,
   propWithinValue = 30,
+  prob = c(0.25, 0.5, 0.75),
   hideLessThan = 5,
   showHide = TRUE,
   gaPath = NULL,
@@ -95,6 +96,8 @@ rccShiny(
 \item{propWithinUnit}{unit shown for numeric outcome when "Andel inom..."/"Proportion within..." is selected. Default is "dagar", "days" depending on language.}
 
 \item{propWithinValue}{vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. If the length of the vector is less than the number of numeric outcomes the values are recycled. Default is 30.}
+
+\item{prob}{a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).}
 
 \item{hideLessThan}{value under which groups (cells) are supressed. Default is 5 and all values < 5 are set to 5.}
 
