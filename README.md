@@ -1,3 +1,8 @@
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/oc1lojo/rccshiny?branch=master&svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
+[![Travis build
+status](https://travis-ci.org/oc1lojo/rccshiny.svg?branch=master)](https://travis-ci.org/oc1lojo/rccshiny)
+
 Syfte
 =====
 
