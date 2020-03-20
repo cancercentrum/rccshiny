@@ -7,8 +7,6 @@ rccShinyApp <-
     optionsList = NULL
   ) {
 
-    options(spinner.type = 3, spinner.color.background = "#ffffff")
-
     shinyApp(
       ui = dashboardPage(
         skin = "black",
@@ -66,7 +64,7 @@ rccShinyApp <-
               ),
               uiOutput("comment")
             ),
-            shinycssloaders::withSpinner(uiOutput("theTabs"))
+            uiOutput("theTabs")
           )
         )
       ),
@@ -83,7 +81,7 @@ rccShinyApp <-
                   optionsList$incaUserHospital <- environmentVariables$UserParentUnitCode
               }
               incProgress(0.50)
-              source(optionsList$incaScript, encoding = "UTF-8")
+              source(optionsList$incaScript, encoding = "UTF-8", local = TRUE)
               if (!exists("df")) {
                 stop("The script '", optionsList$incaScript, "' did not produce a data.frame 'df'", call. = FALSE)
               }
