@@ -75,7 +75,17 @@ rccShinyApp <-
             message = "Laddar data och genererar rapport...",
             value = 0,
             {
-              INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
+              tryCatch(
+                expr = {
+                  incaEnv <- INCA::getDataFrames(shinySession = session)
+                  for (i in ls(envir = incaEnv)) {
+                    assign(x = i, value = get(i, envir = incaEnv))
+                  }
+                },
+                error = function (e) {
+                  INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
+                }
+              )
               if (exists("environmentVariables")) {
                 if (!is.null(environmentVariables$UserParentUnitCode))
                   optionsList$incaUserHospital <- environmentVariables$UserParentUnitCode
