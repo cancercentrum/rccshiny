@@ -7,8 +7,6 @@ rccShinyApp <-
     optionsList = NULL
   ) {
 
-    options(spinner.type = 3, spinner.color.background = "#ffffff")
-
     shinyApp(
       ui = dashboardPage(
         skin = "black",
@@ -66,7 +64,7 @@ rccShinyApp <-
               ),
               uiOutput("comment")
             ),
-            shinycssloaders::withSpinner(uiOutput("theTabs"))
+            uiOutput("theTabs")
           )
         )
       ),
@@ -77,13 +75,23 @@ rccShinyApp <-
             message = "Laddar data och genererar rapport...",
             value = 0,
             {
-              INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
+              tryCatch(
+                expr = {
+                  incaEnv <- INCA::getDataFrames(shinySession = session)
+                  for (i in ls(envir = incaEnv)) {
+                    assign(x = i, value = get(i, envir = incaEnv))
+                  }
+                },
+                error = function (e) {
+                  INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
+                }
+              )
               if (exists("environmentVariables")) {
                 if (!is.null(environmentVariables$UserParentUnitCode))
                   optionsList$incaUserHospital <- environmentVariables$UserParentUnitCode
               }
               incProgress(0.50)
-              source(optionsList$incaScript, encoding = "UTF-8")
+              source(optionsList$incaScript, encoding = "UTF-8", local = TRUE)
               if (!exists("df")) {
                 stop("The script '", optionsList$incaScript, "' did not produce a data.frame 'df'", call. = FALSE)
               }

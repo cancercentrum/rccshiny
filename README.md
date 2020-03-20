@@ -1,44 +1,45 @@
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/master?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
+rccShiny
+========
+
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/master?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
 [![Travis build
 status](https://travis-ci.org/oc1lojo/rccshiny.svg?branch=master)](https://travis-ci.org/oc1lojo/rccshiny)
 
-Syfte
-=====
+Shiny möjliggör skapandet av webbapplikationer med R. Paketet `rccShiny`
+är en RCC implementering vars syfte är att skapa ett komplement till
+årsrapporterna där slutanvändaren själv kan välja selektionskriterier
+och format på statistiken på ett flexibelt sätt.
 
-Shiny möjliggör skapandet av webbapplikationer med R. Paketet `rccShiny` är en RCC implementering vars syfte är att skapa ett komplement till årsrapporterna där slutanvändaren själv kan välja selektionskriterier och format på statistiken på ett flexibelt sätt.
-
-Nedladdning
-===========
-
-Installera R paketet `devtools` från CRAN:
+Installation
+------------
 
 ``` r
-install.packages("devtools")
+if (!requireNamespace("remotes")) {
+  install.packages("remotes")
+}
+
+remotes::install_bitbucket("cancercentrum/rccshiny")
 ```
 
-Installera R paketet `rccShiny`:
+Användning
+----------
+
+Ladda paketet.
 
 ``` r
-devtools::install_bitbucket("cancercentrum/rccshiny")
+library(rccShiny)
 ```
 
-Ladda paketet:
+Läs hjälpfil.
 
 ``` r
-library(rccShiny) 
+?rccShiny::rccShiny2
 ```
 
-Läs hjälpfil:
-
-``` r
-?rccShiny::rccShiny
-```
-
-Gogogo!
-
-För fler exempel: Koden för Bröstcancerregistrets appar finns <https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny> och årsrapporten <http://statistik.incanet.se/brostcancer/>.
-
-Frågor och förbättringsförslag
-==============================
-
-Lägg upp en issue <https://bitbucket.org/cancercentrum/rccshiny/issues> eller kontakta Fredrik Sandin, <fredrik.sandin@rccuppsalaorebro.se> eller Erik Lindberg, <erik.g.lindberg@regionvasterbotten.se>.
+För fler exempel, se t.ex. R-koden för för Bröstcancerregistrets
+interaktiva rapporter
+(<a href="http://statistik.incanet.se/brostcancer/" class="uri">http://statistik.incanet.se/brostcancer/</a>)
+på
+<a href="https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny" class="uri">https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny</a>
+.
