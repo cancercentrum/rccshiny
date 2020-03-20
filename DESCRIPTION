@@ -17,7 +17,7 @@ Imports:
 Encoding: UTF-8
 LazyData: TRUE
 License: GPL-3
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Authors@R: c(
     person("Fredrik", "Sandin", email = "fredrik.sandin@rccuppsalaorebro.se", role = c("aut", "cre")),
     person("Lina", "Benson", role = "ctb"),
