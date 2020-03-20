@@ -1,6 +1,6 @@
 Package: rccShiny
 Type: Package
-Version: 1.3
+Version: 1.4.0
 Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
 Depends: R (>= 3.0.0)
@@ -16,9 +16,15 @@ Imports:
   shinydashboard
 Encoding: UTF-8
 LazyData: TRUE
-License: GPL (>= 3)
-RoxygenNote: 7.0.2
-Author: Fredrik Sandin, RCC Uppsala-Örebro
-Maintainer: Fredrik Sandin <fredrik.sandin@rccuppsalaorebro.se>
-Repository: bitbucket.org/cancercentrum/rccshiny
-Date: 2020-02-11
+License: GPL-3
+RoxygenNote: 7.1.0
+Authors@R: c(
+    person("Fredrik", "Sandin", email = "fredrik.sandin@rccuppsalaorebro.se", role = c("aut", "cre")),
+    person("Lina", "Benson", role = "ctb"),
+    person("Erik", "Lindberg", role = "ctb"),
+    person("John", "Lövrot", role = "ctb"),
+    person("Chenyang", "Zhang", role = "ctb"),
+    person("RCC", role = c("cph", "fnd"))
+    )
+URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancercentrum/rccshiny
+Date: 2020-03-20
