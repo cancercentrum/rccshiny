@@ -740,7 +740,7 @@ shinyServer(function(input, output, clientData) {
 
           tab_region <-
             rccShinyIndTable(
-              group = dfuse[,rccShinyGroupVariable("region")],
+              group = dfuse[,rccShinyGroupVariable("sjukvårdsregion")],
               group_hide_less_than = GLOBAL_hideLessThan,
               all_lab = NULL,
               ind = dfuse$outcome,
@@ -1166,7 +1166,7 @@ shinyServer(function(input, output, clientData) {
         }
       }
 
-      dfuse$group <- dfuse[, rccShinyGroupVariable(label = "landsting")]
+      dfuse$group <- dfuse[, rccShinyGroupVariable(label = "region")]
 
       dfuse <- subset(dfuse,group %in% tab_order)
 
