@@ -27,6 +27,11 @@ if (!requireNamespace("remotes")) {
 remotes::install_bitbucket("cancercentrum/rccshiny")
 ```
 
+Man kan också hämta en komprimerad arkiv-fil med senaste släppta versionen från https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz
+
+Arkiv-filer för olika versioner av paketet finns på
+https://bitbucket.org/cancercentrum/rccshiny/downloads/?tab=tags
+
 ## Användning
 
 Ladda paketet.
