@@ -28,3 +28,7 @@ Authors@R: c(
     )
 URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancercentrum/rccshiny
 Date: 2020-03-20
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
