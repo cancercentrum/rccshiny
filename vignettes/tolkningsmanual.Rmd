@@ -31,13 +31,13 @@ startsida. Där finns information från registret om rapporten. Du finner
 även en flikmeny högst upp på sidan under rubriken. Dessa flikar är
 kapitlen som finns i det aktuella registret.
 
-![](figures/Overmeny1.PNG)
+![](figures/Overmeny1.PNG){width=100%}
 
 När du klickar på en flik visas de indikatorer som finns i den filken i
 en undermeny. För att se en av dessa indikatorer klickar du på den och
 så ska figuren öppnas nedanför.
 
-![](figures/Overmeny2.PNG)
+![](figures/Overmeny2.PNG){width=100%}
 
 ## Urvalsdialog
 
@@ -48,13 +48,13 @@ urvalsruta där du kan göra urval för den öppnade indikatorn. Om du
 figuren/tabellen baseras på dina urval. Figurerna/tabellerna uppdateras
 i realtid direkt du ändrar något urval.
 
-![](figures/Urvalsdialog_gemensam.png)
+![](figures/Urvalsdialog_gemensam.png){width=60%}
 
 Under titeln för indikatorn återfinns de aktuella urvalen som är gjorda.
 Om urval på en variabel inte är gjort utan samtliga möjliga val är valda
 kommer denna variabel ej att stå i listan.
 
-![](figures/Urvalstext.PNG)
+![](figures/Urvalstext.PNG){width=60%}
 
 ## Resultat
 
@@ -62,7 +62,8 @@ När du gjort dina urval finner du den uppdaterade indikatorn till höger.
 Det finns en meny där som kan se ut på lite olika sätt beroeden på vad
 för typ av indikator det är och vad registret valt att visa.
 
-![](figures/Grafval1.PNG) ![](figures/Grafval2.PNG)
+![](figures/Grafval1.PNG){width=80%}
+![](figures/Grafval2.PNG){width=68%}
 
 Under **Jämförelse** hittar du stapelfigurer. De är
 uppdelade på antingen Region, Sjukvårdsregion eller Sjukhus. Om
@@ -78,7 +79,8 @@ stapeln går över det det skuggade området. Ett gult skuggat område
 betyder att målnivån har 2 nivåer och det gula är ett lättare mål att
 uppnå.
 
-![](figures/Jamforelse1.PNG) ![](figures/Jamforelse2.PNG)
+![](figures/Jamforelse1.PNG){width=50%}
+![](figures/Jamforelse2.PNG){width=50%}
 
 Under **Tabell**, **Tabell (Antal)** och **Tabell (Andel)** hittar du tabeller över de data som
 presenteras i Jämförelse-fliken. Vilken/Vilka av de 3 tabell-flikarna
@@ -86,7 +88,7 @@ som visas beror på vad det är för typ av indikator. Via kapparna i
 tabellerna kan antalssiffrona hämtas hem i lite olika format, Excel,
 PDF, eller i utskriftsformat.
 
-![](figures/Tabell.PNG)
+![](figures/Tabell.PNG){width=100%}
 
 Under **Trend** hittar du trender över per år över data
 enligt dina urval (du får dock alltid samtliga år här). Hur trenderna
@@ -99,14 +101,15 @@ för sjukvårdsregionerna samt riket. Här kan du även lägga till ett
 specifikt sjukhus trendkurva om registret presenterar data på
 sjukhusnivå.
 
-![](figures/Trend1.PNG) ![](figures/Trend2.PNG)
+![](figures/Trend1.PNG){width=50%}
+![](figures/Trend2.PNG){width=50%}
 
 Under **Karta** hittar du indikatorn på kartform, denna
 finns endast med om landsting är en av jämförelsenivåerna och figuren
 inte är en så kallad stackad stapel. Län som är gråa har ej tillräckligt
 med data för att visa resultatet.
 
-![](figures/Karta.PNG)
+![](figures/Karta.PNG){width=50%}
 
 Under **Beskrivning** hittar du information om indikatorn.
 Där kan du hitta 3 underrubriker, Om indikatorn, Att tänka på vid
@@ -114,4 +117,4 @@ tolkning samt Teknisk beskrivning. Om du har någon fundering kring en
 indikator kan du titta här för att förhoppningsvis få svar på din
 fundering.
 
-![](figures/Beskrivning.PNG)
+![](figures/Beskrivning.PNG){width=100%}
