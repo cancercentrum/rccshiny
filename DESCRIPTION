@@ -3,21 +3,6 @@ Type: Package
 Version: 1.4.1
 Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
-Depends: R (>= 3.0.0)
-Imports: 
-  gplots,
-  plyr,
-  Hmisc,
-  sp,
-  highcharter,
-  shiny,
-  shinyWidgets,
-  DT,
-  shinydashboard
-Encoding: UTF-8
-LazyData: TRUE
-License: GPL-3
-RoxygenNote: 7.1.0
 Authors@R: c(
     person("Fredrik", "Sandin", email = "fredrik.sandin@rccuppsalaorebro.se", role = c("aut", "cre")),
     person("Lina", "Benson", role = "ctb"),
@@ -26,5 +11,25 @@ Authors@R: c(
     person("Chenyang", "Zhang", role = "ctb"),
     person("RCC", role = c("cph", "fnd"))
     )
+Depends: 
+    R (>= 3.0.0)
+Imports: 
+    DT,
+    gplots,
+    highcharter,
+    Hmisc,
+    plyr,
+    shiny,
+    shinydashboard,
+    shinyWidgets,
+    sp
+Suggests: 
+    knitr,
+    rmarkdown
+License: GPL-3
 URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancercentrum/rccshiny
-Date: 2020-03-20
+LazyData: true
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Encoding: UTF-8
