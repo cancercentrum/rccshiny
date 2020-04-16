@@ -19,6 +19,7 @@ if (!requireNamespace("remotes")) {
 }
 
 remotes::install_bitbucket("cancercentrum/rccshiny")
+# remotes::install_bitbucket("cancercentrum/rccshiny", build_vignettes = TRUE) # även vinjetter
 ```
 
 Man kan också hämta en komprimerad arkiv-fil med senaste släppta
