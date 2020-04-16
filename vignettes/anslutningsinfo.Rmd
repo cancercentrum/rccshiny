@@ -1,0 +1,113 @@
+---
+title: "Anslutningsinformation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Anslutningsinformation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Syfte
+
+Detta dokument beskriver kort processen för att bygga upp årsrapporten i
+shiny och riktar sig framför allt till nationella statistiker.
+
+## Bakgrund
+
+Shiny är ett R paket som möjliggör skapandet av webbapplikationer med R.
+För mer information om Shiny: <https://shiny.rstudio.com>. Cheatsheet:
+<https://shiny.rstudio.com/articles/cheatsheet.html>.
+
+I nuläget är syftet med användningen på RCC att skapa ett komplement
+till årsrapporterna där slutanvändaren själv kan välja
+selektionskriterier och format på statistiken på ett flexibelt sätt.
+Detta genomfördes för första gången 2016 (för årsrapport 2015) av
+Nationella prostatacancerregistret (NPCR).
+
+## Anslutningsinformation
+
+### Steg 1: Anmäl intresse
+
+Kontakta Marie Lindquist, <marie.lindquist@sll.se> för att anmäla
+intresse.
+
+### Steg 2: Skapa shinyappar i R
+
+-   Om du inte redan har detta installera R
+    (<https://cran.r-project.org>) och RStudio
+    (<https://www.rstudio.com>).
+
+-   Installera R paketet remotes
+
+         install.packages("remotes")
+
+-   Installera R paketet rccShiny
+
+         remotes::install_bitbucket("cancercentrum/rccshiny")
+
+-   Ladda paketet
+
+         library(rccShiny)
+
+-   Läs hjälpfil
+
+        ?rccShiny::rccShiny
+
+-   Gogogo!
+
+För fler exempel: Koden för Bröstcancerregistrets appar finns publikt i
+Bitbucket <https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny> och
+årsrapporten <http://statistik.incanet.se/brostcancer/>.
+
+### Steg 3: Uppladdning av appar till shinyservern
+
+-   Aktivera uppkoppling med VPN mot its (vpn.its.umu.se/rcc).
+
+-   Använd WinSCP (Windows)/Cyberduck (Mac) för att koppla upp mot
+    testservern ([testrshiny.incanet.se](testrshiny.incanet.se)) eller
+    produktionsservern ([statistik.incanet.se)](statistik.incanet.se)).
+    Uppladdade sidor/appar på produktionsservern är nåbara publikt men
+    sidor/appar uppladdade på testservern är endast nåbara med ansluten
+    VPN.
+
+-   I den mjukvara du använder för filöverföring skall du skapa en ny
+    SFTP-uppkoppling med portnummer 22.
+
+-   Ange [testrshiny.incanet.se](testrshiny.incanet.se) alternativt
+    [statistik.incanet.se](statistik.incanet.se) som server.
+
+-   Användarnamn/lösenord är samma som till R-servern/VPN men med
+    tillägget \@RCCEXT.local på användarnamnet (ex.
+    förnamn.efternamn\@RCCEXT.local).
+
+-   Du kan nu koppla upp dig och föra över dina Shiny-appar.
+
+### Steg 4: Skapa ram
+
+Ramverket (länkarna till shiny apparna) skrivs för närvarande av
+statistikern själv i html.
+
+-   Lägg mappen \_libs (byt ändelse från .rcc till .zip och packa upp
+    först) under diagnosmappen på shinyservern.
+
+-   Använd index.html som gjorts för NPCR och modifiera efter behov
+    (öppna och editera i ex Notepad++) genom att klistra in de länkar
+    som returneras från rccShiny.
+
+### Steg 5: Publicera
+
+Peka ut länken http://statistik.incanet.se/xxx/.
+
+Det är upp till varje enskilt register att utifrån sina förutsättnignar
+bestämma när och hur ofta publicering ska ske. En riktlinje kan dock
+vara att publicering för en tidsperiod kan ske 4 månader efter avslutad
+tidsperiod (ex data för år 2016 sker då 2017-04-30). Detta i linje med
+default fördröjningen i vården i siffror. Därefter kan ytterligare en
+uppdatering ske senare under tidsperioden.

@@ -112,7 +112,7 @@ rccShinyApp <-
           )
         }
         for (i in 1:length(optionsList)) {
-          assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]], envir = .GlobalEnv)
+          assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]])
         }
 
         whichOutcome <-
@@ -413,14 +413,13 @@ rccShinyApp <-
               conditionalPanel(
                 condition = paste0(
                   "!input.param_funnelplot & input.tab!='fig_trend' & input.tab!='fig_map' & input.tab!='list' & ",
-                  "((input.param_periodtype=='",
-                  ifelse(
-                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "År", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
-                    "År",
-                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
-                  ),
-                  "' & input.param_period_year[0]!=input.param_period_year[1]) | ",
-                  "(input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "' & input.param_period_quarter[0]!=input.param_period_quarter[1]))"
+                  if (is.null(periodInput())) {
+                    "false"
+                  } else if (periodInput()[1] != periodInput()[2]) {
+                    "true"
+                  } else {
+                    "false"
+                  }
                 ),
                 checkboxInput(
                   inputId = "param_periodSplit",
