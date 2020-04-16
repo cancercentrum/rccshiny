@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^README\.Rmd$
 ^Anslutningsinfo$
 ^Tolkningsmanual$
 ^appveyor\.yml$
