@@ -1434,7 +1434,8 @@ rccShinyApp <-
 
           }
 
-        output$indTableNum <- DT::renderDataTable({
+        output$indTableNum <-
+          DT::renderDataTable({
 
           dfuse <- dfInput()
 
@@ -1484,29 +1485,46 @@ rccShinyApp <-
             colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
           }
 
-          assign("nColTab", ncol(tab), envir = .GlobalEnv)
+          tempColumnDefs <-
+            list(
+              list(
+                className = 'dt-left',
+                targets = 0
+              )
+            )
+          if (ncol(tab) > 1) {
+            tempColumnDefs[[2]] <-
+              list(
+                className = 'dt-right',
+                targets = 1:(ncol(tab)-1)
+              )
+          }
+
+          tab <-
+            DT::datatable(
+              tab,
+              rownames = FALSE,
+              extensions = 'Buttons',
+              options = list(
+                columnDefs = tempColumnDefs,
+                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                searching = TRUE,
+                paging = FALSE,
+                dom = 'Bfrtip',
+                scrollX = TRUE,
+                buttons = list(
+                  list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                  list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                  list(extend = 'print', title = indTitle())
+                )
+              )
+            )
 
           tab
+        })
 
-        },
-        extensions = 'Buttons',
-        options = list(
-          columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = 1:(nColTab-1))),
-          language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-          searching = TRUE,
-          paging = FALSE,
-          dom = 'Bfrtip',
-          scrollX = TRUE,
-          buttons = list(
-            list(extend = 'excel', filename = 'tableExport'),
-            list(extend = 'pdf', filename = 'tableExport'),
-            list(extend = 'print')
-          )
-        ),
-        rownames = FALSE
-        )
-
-        output$indTablePct <- DT::renderDataTable({
+        output$indTablePct <-
+          DT::renderDataTable({
 
           dfuse <- dfInput()
 
@@ -1558,29 +1576,46 @@ rccShinyApp <-
             colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
           }
 
-          assign("nColTab", ncol(tab), envir = .GlobalEnv)
+          tempColumnDefs <-
+            list(
+              list(
+                className = 'dt-left',
+                targets = 0
+              )
+            )
+          if (ncol(tab) > 1) {
+            tempColumnDefs[[2]] <-
+              list(
+                className = 'dt-right',
+                targets = 1:(ncol(tab)-1)
+              )
+          }
+
+          tab <-
+            DT::datatable(
+              tab,
+              rownames = FALSE,
+              extensions = 'Buttons',
+              options = list(
+                columnDefs = tempColumnDefs,
+                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                searching = TRUE,
+                paging = FALSE,
+                dom = 'Bfrtip',
+                scrollX = TRUE,
+                buttons = list(
+                  list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                  list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                  list(extend = 'print', title = indTitle())
+                )
+              )
+            )
 
           tab
+        })
 
-        },
-        extensions = 'Buttons',
-        options = list(
-          columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = 1:(nColTab-1))),
-          language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-          searching = TRUE,
-          paging = FALSE,
-          dom = 'Bfrtip',
-          scrollX = TRUE,
-          buttons = list(
-            list(extend = 'excel', filename = 'tableExport'),
-            list(extend = 'pdf', filename = 'tableExport'),
-            list(extend = 'print')
-          )
-        ),
-        rownames = FALSE
-        )
-
-        output$indTable <- DT::renderDataTable({
+        output$indTable <-
+          DT::renderDataTable({
 
           dfuse <- dfInput()
 
@@ -1630,27 +1665,43 @@ rccShinyApp <-
             colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
           }
 
-          assign("nColTab", ncol(tab), envir = .GlobalEnv)
+          tempColumnDefs <-
+            list(
+              list(
+                className = 'dt-left',
+                targets = 0
+              )
+            )
+          if (ncol(tab) > 1) {
+            tempColumnDefs[[2]] <-
+              list(
+                className = 'dt-right',
+                targets = 1:(ncol(tab)-1)
+              )
+          }
+
+          tab <-
+            DT::datatable(
+              tab,
+              rownames = FALSE,
+              extensions = 'Buttons',
+              options = list(
+                columnDefs = tempColumnDefs,
+                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                searching = TRUE,
+                paging = FALSE,
+                dom = 'Bfrtip',
+                scrollX = TRUE,
+                buttons = list(
+                  list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                  list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                  list(extend = 'print', title = indTitle())
+                )
+              )
+            )
 
           tab
-
-        },
-        extensions = 'Buttons',
-        options = list(
-          columnDefs = list(list(className = 'dt-left', targets = 0),list(className = 'dt-right', targets = 1:(nColTab-1))),
-          language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-          searching = TRUE,
-          paging = FALSE,
-          dom = 'Bfrtip',
-          scrollX = TRUE,
-          buttons = list(
-            list(extend = 'excel', filename = 'tableExport'),
-            list(extend = 'pdf', filename = 'tableExport'),
-            list(extend = 'print')
-          )
-        ),
-        rownames = FALSE
-        )
+        })
 
         output$indMap <-
 
@@ -1903,9 +1954,9 @@ rccShinyApp <-
                   dom = 'Bfrtip',
                   scrollX = TRUE,
                   buttons = list(
-                    list(extend = 'excel', filename = 'tableExport'),
-                    list(extend = 'pdf', filename = 'tableExport'),
-                    list(extend = 'print')
+                    list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                    list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                    list(extend = 'print', title = indTitle())
                   )
                 )
               )
