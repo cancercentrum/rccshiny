@@ -58,7 +58,7 @@ https://statistik.incanet.se/npcr/_libs/ga.js
 
 I anropet till rccShiny kan man ange sökvägen till ens .js-fil i en parameter med namnet **gaPath**. I exemplet för NPCR anges därför följande parameter vid skapandet av varje rccShiny-applikation:
 
-```r
+```{r, eval = FALSE}
 rccShiny2(
   ...,
   gaPath = "/npcr/_libs/ga.js"
