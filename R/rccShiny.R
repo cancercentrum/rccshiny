@@ -635,6 +635,41 @@ rccShiny <-
 
       GLOBAL_prob <- prob
 
+      if(language == "sv"){
+        GLOBAL_prob_labels = c('Första kvartil', 'Median', 'Tredje kvartil')
+        GLOBAL_iqrlab = "kvartilavstånd"
+
+        if (prob[1] != 0.25){
+          GLOBAL_prob_labels[1] = paste0(GLOBAL_prob[1] * 100, '-percentil')
+          GLOBAL_iqrlab = "kvantilavstånd"
+
+        }
+        if (prob[2] != 0.5){
+          GLOBAL_prob_labels[2] = paste0(GLOBAL_prob[2] * 100, '-percentil')
+        }
+        if (prob[3] != 0.75){
+          GLOBAL_prob_labels[3] = paste0(GLOBAL_prob[3] * 100, '-percentil')
+          GLOBAL_iqrlab = "kvantilavstånd"
+        }
+        GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "samt", GLOBAL_iqrlab)
+      }
+      if(language == "en"){
+        GLOBAL_prob_labels = c('First quartile', 'Median', 'Third quartile')
+        GLOBAL_iqrlab = "interquartile range"
+        if (GLOBAL_prob[1] != 0.25){
+          GLOBAL_prob_labels[1] = paste0(GLOBAL_prob[1] * 100, '-percentile')
+          GLOBAL_iqrlab = "interquantile range"
+        }
+        if (GLOBAL_prob[2] != 0.5){
+          GLOBAL_prob_labels[2] = paste0(GLOBAL_prob[2] * 100, '-percentile')
+        }
+        if (prob[3] != 0.75){
+          GLOBAL_prob_labels[3] = paste0(GLOBAL_prob[3] * 100, '-percentile')
+          GLOBAL_iqrlab = "interquantile range"
+        }
+        GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "and", GLOBAL_iqrlab)
+      }
+
       if (!dir.exists(paste0(path,"/apps/"))) {
         dir.create(paste0(path,"/apps/"), showWarnings = FALSE)
       }
@@ -655,7 +690,7 @@ rccShiny <-
       save(GLOBAL_data, GLOBAL_outcome, GLOBAL_outcomeNumericExcludeNeg, GLOBAL_outcomeTitle, GLOBAL_outcomeClass, GLOBAL_textBeforeSubtitle, GLOBAL_textAfterSubtitle, GLOBAL_comment, GLOBAL_description,
            GLOBAL_periodInclude, GLOBAL_periodLabel, GLOBAL_periodDate, GLOBAL_periodDateLevel, GLOBAL_periodStart, GLOBAL_periodEnd, GLOBAL_periodValues, GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude, GLOBAL_geoUnitsPatient,
            GLOBAL_regionSelection, GLOBAL_regionLabel, GLOBAL_regionChoices, GLOBAL_regionSelected, GLOBAL_targetValues, GLOBAL_funnelplot, GLOBAL_sortDescending,
-           GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers, GLOBAL_prob,
+           GLOBAL_propWithinShow, GLOBAL_propWithinUnit, GLOBAL_propWithinValue, GLOBAL_varOther, GLOBAL_hideLessThan, GLOBAL_language, GLOBAL_gaPath, GLOBAL_npcrGroupPrivateOthers, GLOBAL_prob,GLOBAL_prob_labels,GLOBAL_medianiqrlab,
            file = paste0(path,"/apps/", loop_language, "/", folder, "/data/data.RData"))
 
       # Output description to .html-file

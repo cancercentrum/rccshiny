@@ -1,5 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+# Same R version as on the INCA platform (last updated 2020-05-06)
+r: 3.6.2
 cache: packages
 warnings_are_errors: false

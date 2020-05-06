@@ -115,7 +115,7 @@ returns shiny apps that can be used as a complement to the annual reports from t
 }
 \details{
 Valid values for geoUnitsCounty are:
-  \tabular{lll}{
+\tabular{lll}{
 \strong{geoUnitsPatient}   \tab \strong{!geoUnitsPatient} \tab \strong{Text shown}\cr
 1\tab 10,11 \tab  Stockholm\cr
 3\tab 12 \tab  Uppsala\cr
@@ -141,8 +141,6 @@ Valid values for geoUnitsCounty are:
 -\tab 91,92,93,94,95,96 \tab  Övriga/privata - region\cr
 NA\tab NA \tab  Uppgift saknas
 }
-
-
 
 If language = c("sv", "en") the following applies to arguments: textBeforeSubtitle, textAfterSubtitle, comment,
 regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
