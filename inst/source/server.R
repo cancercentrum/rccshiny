@@ -25,7 +25,7 @@ shinyServer(function(input, output, clientData) {
             inputId = "param_numerictype",
             label = rccShinyTXT(language = GLOBAL_language)$presentation,
             choices = c(paste0(
-              rccShinyTXT(language = GLOBAL_language)$median,
+              GLOBAL_prob_labels[2],
               " (", GLOBAL_propWithinUnit, ")"),
               paste(
                 rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
@@ -33,7 +33,7 @@ shinyServer(function(input, output, clientData) {
               )
             ),
             selected = paste0(
-              rccShinyTXT(language = GLOBAL_language)$median,
+              GLOBAL_prob_labels[2],
               " (", GLOBAL_propWithinUnit, ")")
 
           )
@@ -636,7 +636,7 @@ shinyServer(function(input, output, clientData) {
           ind_numeric_exclude_neg = FALSE,
           ind_title = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
-            rccShinyTXT(language = GLOBAL_language)$median,
+            GLOBAL_prob_labels[2],
             rccShinyTXT(language = GLOBAL_language)$percent
           ),
           ind_noofcasestxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
@@ -646,7 +646,7 @@ shinyServer(function(input, output, clientData) {
           x_lab = ifelse(
             class(dfuse$outcome) %in% c("difftime", "numeric", "integer"),
             paste0(
-              rccShinyTXT(language = GLOBAL_language)$median,
+              GLOBAL_medianiqrlab,
               " (", GLOBAL_propWithinUnit, ")"),
             rccShinyTXT(language = GLOBAL_language)$percent
           ),
@@ -719,6 +719,7 @@ shinyServer(function(input, output, clientData) {
             all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
             ind = dfuse$outcome,
             ind_numeric_percentiles = GLOBAL_prob,
+            lab_percentiles = GLOBAL_prob_labels,
             ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
             period = dfuse$period,
             period_factors = GLOBAL_periodValues,
@@ -745,6 +746,7 @@ shinyServer(function(input, output, clientData) {
               all_lab = NULL,
               ind = dfuse$outcome,
               ind_numeric_percentiles = GLOBAL_prob,
+              lab_percentiles = GLOBAL_prob_labels,
               period = dfuse$period,
               period_factors = GLOBAL_periodValues,
               period_alwaysinclude = TRUE
@@ -851,9 +853,9 @@ shinyServer(function(input, output, clientData) {
           tab$PeriodNum <- as.numeric(tab$Period)
 
           if (outcomeClassNumeric() & !numericTypeProp()) {
-            y_varinterest <- "Median"
+            y_varinterest <-  GLOBAL_prob_labels[2]
             y_varinterest_txt <- paste0(
-              rccShinyTXT(language = GLOBAL_language)$median,
+              GLOBAL_prob_labels[2],
               " (", GLOBAL_propWithinUnit, ")")
 
           } else {
@@ -893,7 +895,7 @@ shinyServer(function(input, output, clientData) {
               pretty(
                 c(0,
                   ifelse(
-                    y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
+                    y_varinterest == GLOBAL_prob_labels[2],
                     max(unlist(y),na.rm = TRUE),
                     100
                   )
@@ -972,6 +974,7 @@ shinyServer(function(input, output, clientData) {
           period = dfuse$period,
           period_alwaysinclude = GLOBAL_periodInclude,
           ind_numeric_percentiles = GLOBAL_prob,
+          lab_percentiles = GLOBAL_prob_labels,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -1041,6 +1044,7 @@ shinyServer(function(input, output, clientData) {
           period = dfuse$period,
           period_alwaysinclude = GLOBAL_periodInclude,
           ind_numeric_percentiles = GLOBAL_prob,
+          lab_percentiles = GLOBAL_prob_labels,
           lab_period = GLOBAL_periodLabel,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
@@ -1111,6 +1115,7 @@ shinyServer(function(input, output, clientData) {
           period_alwaysinclude = GLOBAL_periodInclude,
           lab_period = GLOBAL_periodLabel,
           ind_numeric_percentiles = GLOBAL_prob,
+          lab_percentiles = GLOBAL_prob_labels,
           subset = tempSubset,
           subset_lab = paste(input[["param_region"]], collapse = "/")
         )
@@ -1189,6 +1194,7 @@ shinyServer(function(input, output, clientData) {
             group_hide_less_than = GLOBAL_hideLessThan,
             group_factors = tab_order,
             ind_numeric_percentiles = GLOBAL_prob,
+            lab_percentiles = GLOBAL_prob_labels,
             all_lab = rccShinyTXT(language = GLOBAL_language)$RIKET,
             ind = dfuse$outcome
           )
@@ -1196,13 +1202,13 @@ shinyServer(function(input, output, clientData) {
         tab <- tab[match(tab_order, tab$group),]
 
         fMapPlot(
-          value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
+          value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab[[GLOBAL_prob_labels[2]]])},
           value_lim = if (showPercentage) {c(0,100)} else {NULL},
           legend = ifelse(
             showPercentage,
             rccShinyTXT(language = GLOBAL_language)$percent,
             paste0(
-              rccShinyTXT(language = GLOBAL_language)$median,
+              GLOBAL_prob_labels[2],
               " (", GLOBAL_propWithinUnit, ")")
           ),
           title = NULL,

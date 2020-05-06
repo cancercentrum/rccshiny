@@ -155,7 +155,7 @@ rccShinyApp <-
                   label = rccShinyTXT(language = GLOBAL_language)$presentation,
                   choices = c(
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")"
                     ),
                     paste(
@@ -164,7 +164,7 @@ rccShinyApp <-
                     )
                   ),
                   selected = paste0(
-                    rccShinyTXT(language = GLOBAL_language)$median,
+                    GLOBAL_prob_labels[2],
                     " (", GLOBAL_propWithinUnit, ")"
                   ),
                   width = "100%"
@@ -886,7 +886,7 @@ rccShinyApp <-
                   indNumericPercentiles = GLOBAL_prob,
                   indTitle = ifelse(
                     class(dfuse$outcome) %in% "numeric",
-                    rccShinyTXT(language = GLOBAL_language)$median,
+                    GLOBAL_prob_labels[2],
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
                   indNCasesTxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
@@ -895,7 +895,7 @@ rccShinyApp <-
                   xLab = ifelse(
                     class(dfuse$outcome) %in% "numeric",
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$medianiqr,
+                      GLOBAL_medianiqrlab,
                       " (", GLOBAL_propWithinUnit, ")"),
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
@@ -964,7 +964,7 @@ rccShinyApp <-
                   indNumericPercentiles = GLOBAL_prob,
                   indTitle = ifelse(
                     class(dfuse$outcome) %in% "numeric",
-                    rccShinyTXT(language = GLOBAL_language)$median,
+                    GLOBAL_prob_labels[2],
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
                   indNCasesTxt = rccShinyTXT(language = GLOBAL_language)$noofcases,
@@ -973,7 +973,7 @@ rccShinyApp <-
                   xLab = ifelse(
                     class(dfuse$outcome) %in% "numeric",
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$medianiqr,
+                      GLOBAL_medianiqrlab,
                       " (", GLOBAL_propWithinUnit, ")"),
                     rccShinyTXT(language = GLOBAL_language)$percent
                   ),
@@ -1037,6 +1037,7 @@ rccShinyApp <-
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     ind_numeric_percentiles = GLOBAL_prob,
+                    lab_percentiles = GLOBAL_prob_labels,
                     period = dfuse$period,
                     period_factors = periodValues(),
                     period_alwaysinclude = TRUE
@@ -1062,6 +1063,7 @@ rccShinyApp <-
                       all_lab = NULL,
                       ind = dfuse$outcome,
                       ind_numeric_percentiles = GLOBAL_prob,
+                      lab_percentiles = GLOBAL_prob_labels,
                       period = dfuse$period,
                       period_factors = periodValues(),
                       period_alwaysinclude = TRUE
@@ -1115,9 +1117,9 @@ rccShinyApp <-
                   legend <- vector()
 
                   if (outcomeClassNumeric() & !numericTypeProp()) {
-                    y_varinterest <- "Median"
+                    y_varinterest <- GLOBAL_prob_labels[2]
                     y_varinterest_txt <- paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
 
                   } else {
@@ -1167,7 +1169,7 @@ rccShinyApp <-
                       pretty(
                         c(0,
                           ifelse(
-                            y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
+                            y_varinterest == GLOBAL_prob_labels[2],
                             max(unlist(y),na.rm = TRUE),
                             100
                           )
@@ -1225,6 +1227,7 @@ rccShinyApp <-
                     ind = dfuse$outcome,
                     ind_factor_pct = GLOBAL_outcomeClass[whichOutcome()] == "factor",
                     ind_numeric_percentiles = GLOBAL_prob,
+                    lab_percentiles = GLOBAL_prob_labels,
                     period = dfuse$period,
                     period_factors = periodValues(),
                     period_alwaysinclude = TRUE
@@ -1250,6 +1253,7 @@ rccShinyApp <-
                       all_lab = NULL,
                       ind = dfuse$outcome,
                       ind_numeric_percentiles = GLOBAL_prob,
+                      lab_percentiles = GLOBAL_prob_labels,
                       period = dfuse$period,
                       period_factors = periodValues(),
                       period_alwaysinclude = TRUE
@@ -1334,9 +1338,9 @@ rccShinyApp <-
                   legend <- vector()
 
                   if (outcomeClassNumeric() & !numericTypeProp()) {
-                    y_varinterest <- "Median"
+                    y_varinterest <- GLOBAL_prob_labels[2]
                     y_varinterest_txt <- paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
 
                   } else {
@@ -1386,7 +1390,7 @@ rccShinyApp <-
                       pretty(
                         c(0,
                           ifelse(
-                            y_varinterest == rccShinyTXT(language = GLOBAL_language)$median,
+                            y_varinterest == GLOBAL_prob_labels[2],
                             max(unlist(y),na.rm = TRUE),
                             100
                           )
@@ -1465,6 +1469,7 @@ rccShinyApp <-
                 group_hide_less_than_cell = GLOBAL_hideLessThanCell,
                 all_lab = GLOBAL_allLabel,
                 ind_numeric_percentiles = GLOBAL_prob,
+                lab_percentiles = GLOBAL_prob_labels,
                 ind = dfuse$outcome,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
@@ -1556,6 +1561,7 @@ rccShinyApp <-
                 ind = dfuse$outcome,
                 ind_factor_pct = TRUE,
                 ind_numeric_percentiles = GLOBAL_prob,
+                lab_percentiles = GLOBAL_prob_labels,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
@@ -1646,6 +1652,7 @@ rccShinyApp <-
                 all_lab = GLOBAL_allLabel,
                 ind = dfuse$outcome,
                 ind_numeric_percentiles = GLOBAL_prob,
+                lab_percentiles = GLOBAL_prob_labels,
                 period = dfuse$period,
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
@@ -1741,19 +1748,20 @@ rccShinyApp <-
                     group_factors = tab_order,
                     all_lab = GLOBAL_allLabel,
                     ind_numeric_percentiles = GLOBAL_prob,
+                    lab_percentiles = GLOBAL_prob_labels,
                     ind = dfuse$outcome
                   )
 
                 tab <- tab[match(tab_order, tab$group),]
 
                 rcc2PlotMap(
-                  value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
+                  value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab[[GLOBAL_prob_labels[2]]])},
                   valueLim = if (showPercentage) {c(0,100)} else {NULL},
                   legend = ifelse(
                     showPercentage,
                     rccShinyTXT(language = GLOBAL_language)$percent,
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
                   ),
                   col = if (showPercentage){
@@ -1816,19 +1824,20 @@ rccShinyApp <-
                     group_factors = tab_order,
                     all_lab = GLOBAL_allLabel,
                     ind_numeric_percentiles = GLOBAL_prob,
+                    lab_percentiles = GLOBAL_prob_labels,
                     ind = dfuse$outcome
                   )
 
                 tab <- tab[match(tab_order, tab$group),]
 
                 rcc2PlotMap(
-                  value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab$Median)},
+                  value = if (showPercentage) {as.numeric(tab$Procent)} else {as.numeric(tab[[GLOBAL_prob_labels[2]]])},
                   valueLim = if (showPercentage) {c(0,100)} else {NULL},
                   legend = ifelse(
                     showPercentage,
                     rccShinyTXT(language = GLOBAL_language)$percent,
                     paste0(
-                      rccShinyTXT(language = GLOBAL_language)$median,
+                      GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
                   ),
                   col = if (showPercentage){
