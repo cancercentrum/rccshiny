@@ -111,6 +111,25 @@ rccShinyApp <-
             }
           )
         }
+
+        # Hotfix for backward compatibility with apps built before 1.5.0
+        if (is.null(optionsList$prob)) {
+          optionsList$prob <- c(0.25, 0.50, 0.75)
+        }
+        if (is.null(optionsList$prob_labels)) {
+          optionsList$prob_labels <- c(
+            rccShinyTXT(language = optionsList$language)$q1,
+            rccShinyTXT(language = optionsList$language)$median,
+            rccShinyTXT(language = optionsList$language)$q3
+          )
+          optionsList$iqrlab <- rccShinyTXT(language = optionsList$language)$iqr
+          optionsList$medianiqrlab <- paste(
+            optionsList$prob_labels[2],
+            rccShinyTXT(language = optionsList$language)$iqr_and,
+            optionsList$iqrlab
+          )
+        }
+
         for (i in 1:length(optionsList)) {
           assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]])
         }
@@ -2447,6 +2466,36 @@ rccShinyCheckData <-
     if (length(optionsList$propWithinValue) == 1) {
       optionsList$propWithinValue <- rep(optionsList$propWithinValue, length(optionsList$outcome))
     }
+
+    # prop
+    if (is.null(optionsList$prob)) {
+      optionsList$prob <- c(0.25, 0.50, 0.75)
+    }
+
+    # prob_labels
+    optionsList$prob_labels <- c(
+      rccShinyTXT(language = optionsList$language)$q1,
+      rccShinyTXT(language = optionsList$language)$median,
+      rccShinyTXT(language = optionsList$language)$q3
+    )
+    optionsList$iqrlab <- rccShinyTXT(language = optionsList$language)$iqr
+
+    if (optionsList$prob[1] != 0.25){
+      optionsList$prob_labels[1] <- paste0(optionsList$prob[1] * 100, "-", rccShinyTXT(language = optionsList$language)$percentile)
+      optionsList$iqrlab <- rccShinyTXT(language = optionsList$language)$interquantilerange
+    }
+    if (optionsList$prob[2] != 0.5){
+      optionsList$prob_labels[2] <- paste0(optionsList$prob[2] * 100, "-", rccShinyTXT(language = optionsList$language)$percentile)
+    }
+    if (optionsList$prob[3] != 0.75){
+      optionsList$prob_labels[3] <- paste0(optionsList$prob[3] * 100, "-", rccShinyTXT(language = optionsList$language)$percentile)
+      optionsList$iqrlab <- rccShinyTXT(language = optionsList$language)$interquantilerange
+    }
+    optionsList$medianiqrlab <- paste(
+      optionsList$prob_labels[2],
+      rccShinyTXT(language = optionsList$language)$iqr_and,
+      optionsList$iqrlab
+    )
 
     # hideLessThan
     optionsList$hideLessThan <-
