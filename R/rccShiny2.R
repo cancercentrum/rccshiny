@@ -479,42 +479,8 @@ rccShiny2 <-
     # prob
     if (is.null(prob)) {
       prob <- c(0.25, 0.50, 0.75)
-    } else if (length(prob) != 3 | !is.numeric(prob) | !(1 >= prob[3] & prob[3] >= prob[2] & prob[2] >= prob[1]))
+    } else if (length(prob) != 3 | !is.numeric(prob) | !(1 >= prob[3] & prob[3] >= prob[2] & prob[2] >= prob[1])) {
       stop("'prob' should be an increasing numeric vector of length 3 with values in [0,1]", call. = FALSE)
-
-    if(language == "sv"){
-      prob_labels = c('Första kvartil', 'Median', 'Tredje kvartil')
-      iqrlab = "kvartilavstånd"
-
-      if (prob[1] != 0.25){
-        prob_labels[1] = paste0(prob[1] * 100, '-percentil')
-        iqrlab = "kvantilavstånd"
-
-      }
-      if (prob[2] != 0.5){
-        prob_labels[2] = paste0(prob[2] * 100, '-percentil')
-      }
-      if (prob[3] != 0.75){
-        prob_labels[3] = paste0(prob[3] * 100, '-percentil')
-        iqrlab = "kvantilavstånd"
-      }
-      medianiqrlab = paste(prob_labels[2], "samt", iqrlab)
-    }
-    if(language == "en"){
-      prob_labels = c('First quartile', 'Median', 'Third quartile')
-      iqrlab = "interquartile range"
-      if (prob[1] != 0.25){
-        prob_labels[1] = paste0(prob[1] * 100, '-percentile')
-        iqrlab = "interquantile range"
-      }
-      if (prob[2] != 0.5){
-        prob_labels[2] = paste0(prob[2] * 100, '-percentile')
-      }
-      if (prob[3] != 0.75){
-        prob_labels[3] = paste0(prob[3] * 100, '-percentile')
-        iqrlab = "interquantile range"
-      }
-      medianiqrlab = paste(prob_labels[2], "and", iqrlab)
     }
 
     # hideLessThan
@@ -596,8 +562,6 @@ rccShiny2 <-
           propWithinUnit = propWithinUnit,
           propWithinValue = propWithinValue,
           prob = prob,
-          prob_labels = prob_labels,
-          medianiqrlab = medianiqrlab,
           hideLessThan = hideLessThan,
           hideLessThanCell = hideLessThanCell,
           gaPath = gaPath,
