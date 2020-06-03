@@ -12,3 +12,4 @@ internal function used by rccShiny to "clean" data to utf8 encoding.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

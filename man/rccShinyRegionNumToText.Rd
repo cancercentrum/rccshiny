@@ -12,3 +12,4 @@ internal function that creates variable from numeric codes (given by user) to co
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

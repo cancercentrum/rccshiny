@@ -59,3 +59,4 @@ internal function.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

@@ -1,6 +1,7 @@
 #' rcc2PlotLine
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @keywords internal
 #' @export
 rcc2PlotLine <-
   function(

@@ -38,3 +38,4 @@ internal function used by server.R for table in tab Table.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

@@ -1,6 +1,7 @@
 #' Creates trend plot
 #' @description internal function used by server.R for plot in tab Trend.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @keywords internal
 #' @export
 fLinePlot <- function(x = NULL, y = NULL, legend = NULL, legend_pos = "bottom", legend_pch = 15, legend_ncol = NULL, legend_textwidth = NULL, col = NULL, stacked_area = FALSE,
     linewidth = 4, linetype = "l", markers = TRUE, x_lim = NULL, y_lim = NULL, x_by = NULL, y_by = NULL, x_ticks_labels = NULL, title = NULL, subtitle1 = NULL, subtitle2 = NULL,

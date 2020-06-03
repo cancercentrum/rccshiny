@@ -12,3 +12,4 @@ internal function used to supply text printed in Level of comparison widget.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}
