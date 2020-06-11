@@ -29,7 +29,9 @@ rccShinyIndTable(
   lab_period = rccShinyTXT(language = language)$period,
   ndec = rccShinyDecimals(),
   subset = NULL,
-  subset_lab = "SUBSET"
+  subset_lab = "SUBSET",
+  include_missing_column = FALSE,
+  lab_missing = rccShinyTXT(language = language)$missing
 )
 }
 \description{

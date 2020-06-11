@@ -28,7 +28,9 @@ rccShinyIndTable <-
     lab_period = rccShinyTXT(language = language)$period,
     ndec = rccShinyDecimals(),
     subset = NULL,
-    subset_lab = "SUBSET"
+    subset_lab = "SUBSET",
+    include_missing_column = FALSE,
+    lab_missing = rccShinyTXT(language = language)$missing
   ) {
 
     if (is.null(subset)) {
@@ -44,7 +46,11 @@ rccShinyIndTable <-
     }
 
     # Handle missing values
-    include <- !is.na(ind) & !is.na(period)
+    if (include_missing_column){
+      include <- !is.na(period)
+    } else {
+      include <- !is.na(ind) & !is.na(period)
+    }
 
     group <- as.character(group)
     group[is.na(group)] <- "(NA)"
@@ -72,11 +78,23 @@ rccShinyIndTable <-
           )
         if (ind_type %in% c("numeric", "integer")) {
           if (hide) {
-            measurements <- c(NA, NA, NA, NA)
+            if (include_missing_column){
+              measurements <- c(NA, NA, NA, NA, NA)
+            } else {
+              measurements <- c(NA, NA, NA, NA)
+            }
           } else {
-            measurements <- c(quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)))
+            if (include_missing_column){
+              measurements <- c(quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)), sum(is.na(x$ind)))
+            } else {
+              measurements <- c(quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)))
+            }
           }
-          names(measurements) <- c(lab_percentiles[1], lab_percentiles[2], lab_percentiles[3], lab_noofcases)
+          if (include_missing_column){
+            names(measurements) <- c(lab_percentiles[1], lab_percentiles[2], lab_percentiles[3], lab_noofcases, lab_missing)
+          } else {
+            names(measurements) <- c(lab_percentiles[1], lab_percentiles[2], lab_percentiles[3], lab_noofcases)
+          }
         } else if (ind_type == "logical") {
           hideCellLessThan <-
             ifelse(
@@ -91,11 +109,23 @@ rccShinyIndTable <-
             measurements <- c(sum(x$ind, na.rm = TRUE), sum(!is.na(x$ind)))
           }
           if (hide) {
-            measurements <- c(measurements, NA)
+            if (include_missing_column){
+              measurements <- c(measurements, NA, NA)
+            } else {
+              measurements <- c(measurements, NA)
+            }
           } else {
-            measurements <- c(measurements, format(round(100 * (sum(x$ind, na.rm = TRUE) / sum(!is.na(x$ind))), digits = ndec), nsmall = ndec))
+            if (include_missing_column){
+              measurements <- c(measurements, format(round(100 * (sum(x$ind, na.rm = TRUE) / sum(!is.na(x$ind))), digits = ndec), nsmall = ndec), sum(is.na(x$ind)))
+            } else {
+              measurements <- c(measurements, format(round(100 * (sum(x$ind, na.rm = TRUE) / sum(!is.na(x$ind))), digits = ndec), nsmall = ndec))
+            }
           }
-          names(measurements) <- c(lab_numerator, lab_denominator, lab_percent)
+          if (include_missing_column){
+            names(measurements) <- c(lab_numerator, lab_denominator, lab_percent, lab_missing)
+          } else {
+            names(measurements) <- c(lab_numerator, lab_denominator, lab_percent)
+          }
         } else if (ind_type == "factor") {
           hideCellLessThan <-
             ifelse(
@@ -104,20 +134,36 @@ rccShinyIndTable <-
               FALSE
             )
           if (hide) {
-            measurements <- rep(NA, length(levels(x$ind)) + 1)
+            if (include_missing_column){
+              measurements <- rep(NA, length(levels(x$ind)) + 2)
+            } else {
+              measurements <- rep(NA, length(levels(x$ind)) + 1)
+            }
           } else {
             measurements <-
               if (ind_factor_pct) {
                 format(round(addmargins(100 * prop.table(table(x$ind))), digits = ndec), nsmall = ndec)
               } else {
                 if (hideCellLessThan) {
-                  rep(NA, length(levels(x$ind)) + 1)
+                  if (include_missing_column){
+                    rep(NA, length(levels(x$ind)) + 2)
+                  } else {
+                    rep(NA, length(levels(x$ind)) + 1)
+                  }
                 } else {
-                  c(table(x$ind), sum(!is.na(x$ind)))
+                  if (include_missing_column){
+                    c(table(x$ind), sum(!is.na(x$ind)), sum(is.na(x$ind)))
+                  } else {
+                    c(table(x$ind), sum(!is.na(x$ind)))
+                  }
                 }
               }
           }
-          names(measurements) <- c(levels(x$ind), lab_total)
+          if (include_missing_column){
+            names(measurements) <- c(levels(x$ind), lab_total, lab_missing)
+          } else {
+            names(measurements) <- c(levels(x$ind), lab_total)
+          }
         }
         return(measurements)
       }

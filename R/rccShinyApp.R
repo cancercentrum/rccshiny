@@ -726,7 +726,10 @@ rccShinyApp <-
             if (numericTypeProp())
               dftemp$outcome <- dftemp$outcome <= input$param_numerictype_prop
           }
-          dftemp <- subset(dftemp, !is.na(outcome))
+          if (!GLOBAL_includeMissingColumn){
+            dftemp <- subset(dftemp, !is.na(outcome))
+          }
+
 
           selectionPeriods <- periodValues()
           if (GLOBAL_periodDate & periodType() == "quarter") {
@@ -1445,7 +1448,8 @@ rccShinyApp <-
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
                 subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/")
+                subset_lab = paste(input[["param_region"]], collapse = "/"),
+                include_missing_column = GLOBAL_includeMissingColumn
               )
 
             colnames(tab)[1] <- input$param_levelpresent
@@ -1627,7 +1631,8 @@ rccShinyApp <-
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
                 subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/")
+                subset_lab = paste(input[["param_region"]], collapse = "/"),
+                include_missing_column = GLOBAL_includeMissingColumn
               )
 
             colnames(tab)[1] <- input$param_levelpresent

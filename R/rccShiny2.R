@@ -51,6 +51,7 @@
 #' @param npcrGroupPrivateOthers deprecated argument, see geoUnitsHospitalAlt.
 #' @param outputHighcharts should Highcharts be used to draw the figures? Default is FALSE.
 #' @param includeTabs vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").
+#' @param includeMissingColumn Include a column in Table tab for the number of post with a missing value. Default is FALSE.
 #'
 #' @details Valid values for geoUnitsCounty are:
 #'   \tabular{lll}{
@@ -196,7 +197,8 @@ rccShiny2 <-
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE,
     outputHighcharts = FALSE,
-    includeTabs = c("compare", "table", "map", "trend", "description")
+    includeTabs = c("compare", "table", "map", "trend", "description"),
+    includeMissingColumn = FALSE
   ) {
 
     # # # # # # # # # # # # # # # #
@@ -573,7 +575,8 @@ rccShiny2 <-
           gaPath = gaPath,
           npcrGroupPrivateOthers = npcrGroupPrivateOthers,
           outputHighcharts = outputHighcharts,
-          includeTabs = includeTabs
+          includeTabs = includeTabs,
+          includeMissingColumn = includeMissingColumn
         )
 
       if (!inca) {
