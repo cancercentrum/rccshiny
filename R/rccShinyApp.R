@@ -130,6 +130,9 @@ rccShinyApp <-
             optionsList$iqrlab
           )
         }
+        if (is.null(optionsList$includeMissingColumn)) {
+          optionsList$includeMissingColumn <- FALSE
+        }
 
         for (i in 1:length(optionsList)) {
           assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]])
