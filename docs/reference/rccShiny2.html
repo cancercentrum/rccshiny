@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
       </span>
     </div>
 
@@ -150,6 +150,7 @@
   <span class='kw'>comment</span> <span class='kw'>=</span> <span class='st'>""</span>,
   <span class='kw'>description</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>NA</span>, <span class='fl'>3</span>),
   <span class='kw'>geoUnitsHospital</span> <span class='kw'>=</span> <span class='st'>"sjukhus"</span>,
+  <span class='kw'>geoUnitsHospitalAlt</span> <span class='kw'>=</span> <span class='st'>"sjukhus_alt"</span>,
   <span class='kw'>geoUnitsHospitalCode</span> <span class='kw'>=</span> <span class='st'>"sjukhuskod"</span>,
   <span class='kw'>geoUnitsHospitalSelected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>geoUnitsCounty</span> <span class='kw'>=</span> <span class='st'>"landsting"</span>,
@@ -179,7 +180,8 @@
   <span class='kw'>gaPath</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>npcrGroupPrivateOthers</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>outputHighcharts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>includeTabs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"compare"</span>, <span class='st'>"table"</span>, <span class='st'>"map"</span>, <span class='st'>"trend"</span>, <span class='st'>"description"</span>)
+  <span class='kw'>includeTabs</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"compare"</span>, <span class='st'>"table"</span>, <span class='st'>"map"</span>, <span class='st'>"trend"</span>, <span class='st'>"description"</span>),
+  <span class='kw'>includeMissingColumn</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -260,6 +262,10 @@
     <tr>
       <th>geoUnitsHospital</th>
       <td><p>optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if variable is not found in 'data', hospital is not available as a level of presentation. Default is "sjukhus". At least one geoUnit must be given.</p></td>
+    </tr>
+    <tr>
+      <th>geoUnitsHospitalAlt</th>
+      <td><p>optional name of variable in data containing alternative hospital names to be used when only one region is selected to be shown. Variable must be of type character. If NULL or if variable is not found in 'data', geoUnitsHospital is used. Default is "sjukhus_alt".</p></td>
     </tr>
     <tr>
       <th>geoUnitsHospitalCode</th>
@@ -371,7 +377,7 @@
     </tr>
     <tr>
       <th>npcrGroupPrivateOthers</th>
-      <td><p>should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.</p></td>
+      <td><p>deprecated argument, see geoUnitsHospitalAlt.</p></td>
     </tr>
     <tr>
       <th>outputHighcharts</th>
@@ -380,6 +386,10 @@
     <tr>
       <th>includeTabs</th>
       <td><p>vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").</p></td>
+    </tr>
+    <tr>
+      <th>includeMissingColumn</th>
+      <td><p>Include a column in Table tab for the number of post with a missing value. Default is FALSE.</p></td>
     </tr>
     </table>
 
@@ -418,7 +428,7 @@
 
 <p>If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, comment, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
 The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
-The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.</p>
+The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAlt, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='no'>ind1</span> <span class='kw'>&lt;-</span> <span class='fu'>rccShiny2</span>(
@@ -446,7 +456,7 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, ge
 )
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/runApp.html'>runApp</a></span>(<span class='st'>"./sv/Indikator1"</span>)
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/runApp.html'>runApp</a></span>(<span class='st'>"./sv/Indikator1"</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>ind1</span>) <span class='co'># displays the html link that can be used in index.html</span>
 }
