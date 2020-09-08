@@ -29,3 +29,4 @@ internal function used by server.R for plot in tab Map.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

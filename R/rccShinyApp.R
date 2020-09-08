@@ -1,6 +1,7 @@
 #' Creates shiny app
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @keywords internal
 #' @export
 rccShinyApp <-
   function(
@@ -128,6 +129,9 @@ rccShinyApp <-
             rccShinyTXT(language = optionsList$language)$iqr_and,
             optionsList$iqrlab
           )
+        }
+        if (is.null(optionsList$includeMissingColumn)) {
+          optionsList$includeMissingColumn <- FALSE
         }
 
         for (i in 1:length(optionsList)) {
@@ -517,46 +521,17 @@ rccShinyApp <-
           })
 
         hospitalChoices <- reactive({
-          tempHospitals <- sort(unique(GLOBAL_data$sjukhus))
+          tempHospitalsVar <- GLOBAL_data$sjukhus
+          tempHospitals <- sort(unique(tempHospitalsVar))
           if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
             if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
-              tempHospitals <- tempHospitals[tempHospitals %in% GLOBAL_data$sjukhus[GLOBAL_data$region %in% input[["param_region"]]]]
-            }
-          }
-
-          # Speciallösning för NPCR
-          # -----------------------
-          if (GLOBAL_npcrGroupPrivateOthers) {
-            showPrivateHospitals <- TRUE
-            if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
-              showPrivateHospitals <- FALSE
-            } else {
-              if (rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]]) {
-                showPrivateHospitals <- FALSE
+              if ("sjukhus_alt" %in% colnames(GLOBAL_data)) {
+                tempHospitalsVar <- GLOBAL_data$sjukhus_alt
+                tempHospitals <- sort(unique(tempHospitalsVar))
               }
-            }
-
-            if (!showPrivateHospitals) {
-              npcrListPrivateAlwaysShow <- c(
-                "Capio Lundby Närsjukhus",
-                "Carlanderska sjukhuset",
-                "Sophiahemmet",
-                "Capio S:t Görans sjukhus",
-                "Capio S:t Görans sjukhus - UroClinic"
-              )
-              privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
-              landstingName <- privateOthersName[[GLOBAL_language]]$landsting
-              sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-              tempHospitals <- tempHospitals[!(tempHospitals %in% GLOBAL_data$sjukhus[substr(GLOBAL_data$landsting,1,nchar(landstingName)) == landstingName]) | tempHospitals %in% npcrListPrivateAlwaysShow]
-              tempHospitals <- c(
-                tempHospitals,
-                paste0(sjukhusName," - ",rccShinyRegionNames(language = GLOBAL_language))
-              )
-              tempHospitals <- sort(tempHospitals)
+              tempHospitals <- tempHospitals[tempHospitals %in% tempHospitalsVar[GLOBAL_data$region %in% input[["param_region"]]]]
             }
           }
-          # -----------------------
-
           tempHospitals <- c("",tempHospitals)
           tempHospitals
         })
@@ -754,7 +729,10 @@ rccShinyApp <-
             if (numericTypeProp())
               dftemp$outcome <- dftemp$outcome <= input$param_numerictype_prop
           }
-          dftemp <- subset(dftemp, !is.na(outcome))
+          if (!GLOBAL_includeMissingColumn){
+            dftemp <- subset(dftemp, !is.na(outcome))
+          }
+
 
           selectionPeriods <- periodValues()
           if (GLOBAL_periodDate & periodType() == "quarter") {
@@ -781,34 +759,13 @@ rccShinyApp <-
               dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
             }
 
-            # Speciallösning för NPCR
-            # -----------------------
-            if (GLOBAL_npcrGroupPrivateOthers) {
-              showPrivateHospitals <- TRUE
-              if (!GLOBAL_regionSelection | is.null(input[["param_region"]])) {
-                showPrivateHospitals <- FALSE
-              } else {
-                if (rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]]) {
-                  showPrivateHospitals <- FALSE
+            if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+              if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                if ("sjukhus_alt" %in% colnames(GLOBAL_data)) {
+                  dftemp$sjukhus <- dftemp$sjukhus_alt
                 }
               }
-
-              if (!showPrivateHospitals) {
-                npcrListPrivateAlwaysShow <- c(
-                  "Capio Lundby Närsjukhus",
-                  "Carlanderska sjukhuset",
-                  "Sophiahemmet",
-                  "Capio S:t Görans sjukhus",
-                  "Capio S:t Görans sjukhus - UroClinic"
-                )
-                privateOthersName <- npcrPreparePeriodRegionCountyHospitalVariables(language = GLOBAL_language,returnPrivateOthersNames = TRUE)
-                landstingName <- privateOthersName[[GLOBAL_language]]$landsting
-                sjukhusName <- privateOthersName[[GLOBAL_language]]$sjukhus_privatovriga
-                changeName <- substr(dftemp$landsting, 1, nchar(landstingName)) == landstingName & !(dftemp$sjukhus %in% npcrListPrivateAlwaysShow)
-                dftemp$sjukhus[changeName] <- paste0(sjukhusName," - ",dftemp$region[changeName])
-              }
             }
-            # -----------------------
 
             dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent)]
             dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
@@ -1494,7 +1451,8 @@ rccShinyApp <-
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
                 subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/")
+                subset_lab = paste(input[["param_region"]], collapse = "/"),
+                include_missing_column = GLOBAL_includeMissingColumn
               )
 
             colnames(tab)[1] <- input$param_levelpresent
@@ -1676,7 +1634,8 @@ rccShinyApp <-
                 period_alwaysinclude = GLOBAL_periodInclude,
                 lab_period = GLOBAL_periodLabel,
                 subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/")
+                subset_lab = paste(input[["param_region"]], collapse = "/"),
+                include_missing_column = GLOBAL_includeMissingColumn
               )
 
             colnames(tab)[1] <- input$param_levelpresent
@@ -2056,6 +2015,7 @@ rccShinyApp <-
 #' Checks input to rccShiny
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @keywords internal
 #' @export
 rccShinyCheckData <-
   function(
@@ -2186,6 +2146,32 @@ rccShinyCheckData <-
       optionsList$data$sjukhus[is.na(optionsList$data$sjukhus) | optionsList$data$sjukhus %in% ""] <- rccShinyTXT(language = optionsList$language)$missing
     } else {
       optionsList$data$sjukhus <- rep("(not displayed)", nrow(optionsList$data))
+    }
+
+    # geoUnitsHospitalAlt
+    optionsList$geoUnitsHospitalAltInclude <- TRUE
+    if (is.null(optionsList$geoUnitsHospitalAlt)) {
+      optionsList$geoUnitsHospitalAltInclude <- FALSE
+      optionsList$geoUnitsHospitalAlt <- "sjukhus_alt"
+    } else if (!(optionsList$geoUnitsHospitalAlt %in% colnames(optionsList$data))) {
+      optionsList$geoUnitsHospitalAltInclude <- FALSE
+    } else if (!class(optionsList$data[, optionsList$geoUnitsHospitalAlt]) %in% c("character", "numeric", "integer")) {
+      optionsList$error <- paste0("The data in the variable '", optionsList$geoUnitsHospitalAlt, "' should be one of the following classes: 'character', 'numeric' or 'integer'")
+      return(optionsList)
+    }
+
+    # sjukhus_alt
+    if (optionsList$geoUnitsHospitalAltInclude) {
+      optionsList$data$sjukhus_alt <-
+        if (paste0(optionsList$geoUnitsHospitalAlt, "_", optionsList$language) %in% colnames(optionsList$data)) {
+          optionsList$data[, paste0(optionsList$geoUnitsHospitalAlt, "_", optionsList$language)]
+        } else {
+          optionsList$data[, optionsList$geoUnitsHospitalAlt]
+        }
+      # Fix missing in hospital variable
+      optionsList$data$sjukhus_alt[is.na(optionsList$data$sjukhus_alt) | optionsList$data$sjukhus_alt %in% ""] <- rccShinyTXT(language = optionsList$language)$missing
+    } else {
+      optionsList$data$sjukhus_alt <- optionsList$data$sjukhus
     }
 
     # geoUnitsHospitalCode
@@ -2384,7 +2370,7 @@ rccShinyCheckData <-
       )
 
     # includeVariables
-    includeVariables <- c(optionsList$outcome, "region", "landsting", "sjukhus", "sjukhuskod", "period")
+    includeVariables <- c(optionsList$outcome, "region", "landsting", "sjukhus", "sjukhus_alt", "sjukhuskod", "period")
 
     if (optionsList$idInclude)
       includeVariables <- c(includeVariables, optionsList$id)
@@ -2510,12 +2496,6 @@ rccShinyCheckData <-
         1,
         optionsList$hideLessThan
       )
-
-    # npcrGroupPrivateOthers
-    if (optionsList$npcrGroupPrivateOthers & sum(optionsList$geoUnitsHospitalInclude, optionsList$geoUnitsCountyInclude, optionsList$geoUnitsRegionInclude) < 3) {
-      optionsList$npcrGroupPrivateOthers <- FALSE
-      warning("'npcrGroupPrivateOthers' = TRUE can only be used when all levels of comparison (geoUnitsHospital, geoUnitsCounty and geoUnitsRegion) are active. 'npcrGroupPrivateOthers' set to FALSE.", call. = FALSE)
-    }
 
     # data
     optionsList$data <-

@@ -1,6 +1,7 @@
 #' Creates map plot
 #' @description internal function used by server.R for plot in tab Map.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @keywords internal
 #' @export
 fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergötland", "Blekinge", "Dalarna", "Gävleborg", "Gotland", "Halland", "Jämtland", "Jönköping",
     "Kalmar", "Kronoberg", "Norrbotten", "Orebro", "Södermanland", "Skåne", "Stockholm", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland"),

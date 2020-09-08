@@ -24,6 +24,7 @@ rccShiny2(
   comment = "",
   description = rep(NA, 3),
   geoUnitsHospital = "sjukhus",
+  geoUnitsHospitalAlt = "sjukhus_alt",
   geoUnitsHospitalCode = "sjukhuskod",
   geoUnitsHospitalSelected = NULL,
   geoUnitsCounty = "landsting",
@@ -53,7 +54,8 @@ rccShiny2(
   gaPath = NULL,
   npcrGroupPrivateOthers = FALSE,
   outputHighcharts = FALSE,
-  includeTabs = c("compare", "table", "map", "trend", "description")
+  includeTabs = c("compare", "table", "map", "trend", "description"),
+  includeMissingColumn = FALSE
 )
 }
 \arguments{
@@ -94,6 +96,8 @@ rccShiny2(
 \item{description}{vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).}
 
 \item{geoUnitsHospital}{optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if variable is not found in 'data', hospital is not available as a level of presentation. Default is "sjukhus". At least one geoUnit must be given.}
+
+\item{geoUnitsHospitalAlt}{optional name of variable in data containing alternative hospital names to be used when only one region is selected to be shown. Variable must be of type character. If NULL or if variable is not found in 'data', geoUnitsHospital is used. Default is "sjukhus_alt".}
 
 \item{geoUnitsHospitalCode}{optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".}
 
@@ -149,11 +153,13 @@ rccShiny2(
 
 \item{gaPath}{optional path to Google Analytics .js-file. Default is NULL.}
 
-\item{npcrGroupPrivateOthers}{should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.}
+\item{npcrGroupPrivateOthers}{deprecated argument, see geoUnitsHospitalAlt.}
 
 \item{outputHighcharts}{should Highcharts be used to draw the figures? Default is FALSE.}
 
 \item{includeTabs}{vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").}
+
+\item{includeMissingColumn}{Include a column in Table tab for the number of post with a missing value. Default is FALSE.}
 }
 \value{
 A folder path/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
@@ -192,7 +198,7 @@ NA\tab NA \tab  Uppgift saknas
 
 If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, comment, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
 The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
-The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
+The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAlt, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 }
 \examples{
 ind1 <- rccShiny2(

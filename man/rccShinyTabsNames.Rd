@@ -12,3 +12,4 @@ internal function used to supply names of the tabs.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

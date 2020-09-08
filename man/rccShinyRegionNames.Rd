@@ -12,3 +12,4 @@ internal function that gives names of regions used by rccShinyRegionNumToText.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

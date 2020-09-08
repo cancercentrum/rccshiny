@@ -12,3 +12,4 @@ internal function used by server.R to simplify code.
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}

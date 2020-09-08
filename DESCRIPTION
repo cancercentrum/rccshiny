@@ -1,6 +1,6 @@
 Package: rccShiny
 Type: Package
-Version: 1.5.1
+Version: 1.6.0
 Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
 Authors@R: c(
@@ -31,5 +31,5 @@ URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancerce
 LazyData: true
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8

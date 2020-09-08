@@ -20,6 +20,7 @@
 #' @param comment optional comment printed under the sidebar panel.
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if variable is not found in 'data', hospital is not available as a level of presentation. Default is "sjukhus". At least one geoUnit must be given.
+#' @param geoUnitsHospitalAlt optional name of variable in data containing alternative hospital names to be used when only one region is selected to be shown. Variable must be of type character. If NULL or if variable is not found in 'data', geoUnitsHospital is used. Default is "sjukhus_alt".
 #' @param geoUnitsHospitalCode optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".
 #' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
@@ -47,9 +48,10 @@
 #' @param hideLessThan value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.
 #' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
-#' @param npcrGroupPrivateOthers should private hospitals be grouped when displaying data for the entire country. Applicable for NPCR. Default is FALSE.
+#' @param npcrGroupPrivateOthers deprecated argument, see geoUnitsHospitalAlt.
 #' @param outputHighcharts should Highcharts be used to draw the figures? Default is FALSE.
 #' @param includeTabs vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").
+#' @param includeMissingColumn Include a column in Table tab for the number of post with a missing value. Default is FALSE.
 #'
 #' @details Valid values for geoUnitsCounty are:
 #'   \tabular{lll}{
@@ -83,7 +85,7 @@
 #'
 #' If language = c("sv", "en") the following applies to arguments textBeforeSubtitle, textAfterSubtitle, comment, regionLabel, label in list varOther: if there are two values the first is used in the Swedish version and the second in the English version. If there is only one value this is recycled in both versions.
 #' The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
-#' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
+#' The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAlt, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 #'
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #'
@@ -165,6 +167,7 @@ rccShiny2 <-
     comment = "",
     description = rep(NA, 3),
     geoUnitsHospital = "sjukhus",
+    geoUnitsHospitalAlt = "sjukhus_alt",
     geoUnitsHospitalCode = "sjukhuskod",
     geoUnitsHospitalSelected = NULL,
     geoUnitsCounty = "landsting",
@@ -194,7 +197,8 @@ rccShiny2 <-
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE,
     outputHighcharts = FALSE,
-    includeTabs = c("compare", "table", "map", "trend", "description")
+    includeTabs = c("compare", "table", "map", "trend", "description"),
+    includeMissingColumn = FALSE
   ) {
 
     # # # # # # # # # # # # # # # #
@@ -343,7 +347,11 @@ rccShiny2 <-
     if (!is.null(geoUnitsHospital) & (!is.character(geoUnitsHospital) | length(geoUnitsHospital) != 1))
       stop("'geoUnitsHospital' should be either NULL or a character vector of length 1", call. = FALSE)
 
-    # geoUnitsHospital
+    # geoUnitsHospitalAlt
+    if (!is.null(geoUnitsHospitalAlt) & (!is.character(geoUnitsHospitalAlt) | length(geoUnitsHospitalAlt) != 1))
+      stop("'geoUnitsHospitalAlt' should be either NULL or a character vector of length 1", call. = FALSE)
+
+    # geoUnitsHospitalCode
     if (!is.null(geoUnitsHospitalCode) & (!is.character(geoUnitsHospitalCode) | length(geoUnitsHospitalCode) != 1))
       stop("'geoUnitsHospitalCode' should be either NULL or a character vector of length 1", call. = FALSE)
 
@@ -497,9 +505,8 @@ rccShiny2 <-
     if (!is.null(gaPath))
       gaPath <- ifelse(substr(gaPath, 1, 1) == "/", gaPath, paste0("/", gaPath))
 
-    # npcrGroupPrivateOthers
-    if (is.null(npcrGroupPrivateOthers) | !is.logical(npcrGroupPrivateOthers) | length(npcrGroupPrivateOthers) != 1)
-      stop("'npcrGroupPrivateOthers' should be a logical vector of length 1", call. = FALSE)
+    # npcrGroupPrivateOthers (deprecated)
+    npcrGroupPrivateOthers <- FALSE
 
     # outputHighcharts
     if (is.null(outputHighcharts) | !is.logical(outputHighcharts) | length(outputHighcharts) != 1)
@@ -538,6 +545,7 @@ rccShiny2 <-
           comment = comment,
           description = description,
           geoUnitsHospital = geoUnitsHospital,
+          geoUnitsHospitalAlt = geoUnitsHospitalAlt,
           geoUnitsHospitalCode = geoUnitsHospitalCode,
           geoUnitsHospitalSelected = geoUnitsHospitalSelected,
           geoUnitsCounty = geoUnitsCounty,
@@ -567,7 +575,8 @@ rccShiny2 <-
           gaPath = gaPath,
           npcrGroupPrivateOthers = npcrGroupPrivateOthers,
           outputHighcharts = outputHighcharts,
-          includeTabs = includeTabs
+          includeTabs = includeTabs,
+          includeMissingColumn = includeMissingColumn
         )
 
       if (!inca) {

@@ -1,9 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^docs$
 ^README\.Rmd$
-^Anslutningsinfo$
-^Tolkningsmanual$
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^pkgdown$

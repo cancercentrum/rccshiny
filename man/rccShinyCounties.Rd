@@ -12,3 +12,4 @@ internal function that creates dataset with numeric codes (given by user) and co
 \author{
 Fredrik Sandin, RCC Uppsala-Örebro
 }
+\keyword{internal}
