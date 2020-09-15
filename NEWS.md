@@ -36,11 +36,9 @@ En liten felrättningsversion.
 
 # rccShiny 1.4.2
 
-## Ny funktionalitet
+En liten felrättningsversion med några mindre förbättringar.
 
 * Skapat vinjetter för anslutningsinfo och tolkningsmanual (SNY-72)
-
-## Mindre förbättringar och felrättningar
 
 * Justerat assign så att problemet med generisk parametriserad mall avhjälps (SNY-71)
 
