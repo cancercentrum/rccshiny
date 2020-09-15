@@ -26,7 +26,7 @@ En liten felrättningsversion.
 
 * Vinjett om hur man får Google Analytics att logga besök på varje enskild app (parametern `gaPath`) (SNY-62)
 
-* Justerat filnamn samt rubriker i exporterade filer (Excel, PDF) (SNY50)
+* Justerat filnamn samt rubriker i exporterade filer (Excel, PDF) (SNY-50)
 
 ## Mindre förbättringar och felrättningar
 
