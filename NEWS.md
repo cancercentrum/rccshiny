@@ -26,23 +26,23 @@ En liten felrättningsversion.
 
 * Vinjett om hur man får Google Analytics att logga besök på varje enskild app (parametern `gaPath`) (SNY-62)
 
-* Justerat filnamn samt rubriker i exporterade filer (Excel, PDF) (SNY-50)
-
 ## Mindre förbättringar och felrättningar
 
 * Lagt till `selectAll` och `deselectAll` i `rccShinyTXT()` (SNY-73)
 
 * Rättat felstavningar i engelska versionen (SNY-69)
 
+* Justerat filnamn samt rubriker i exporterade filer (Excel, PDF) (SNY-50)
+
 # rccShiny 1.4.2
 
-En liten felrättningsversion med några mindre förbättringar.
-
-* Skapat vinjetter för anslutningsinfo och tolkningsmanual (SNY-72)
+En liten felrättningsversion (främst).
 
 * Justerat assign så att problemet med generisk parametriserad mall avhjälps (SNY-71)
 
 * Rättat fel som gjorde att Javaskript-error från conditionalPanel ledde till att app ibland inte laddas på INCA (SNY-70)
+
+* Skapat vinjetter för anslutningsinfo och tolkningsmanual (SNY-72)
 
 # rccShiny 1.4.1
 
@@ -60,21 +60,21 @@ En liten felrättningsversion.
 
 Nyheter i version 1.3 och tidigare versioner.
 
-* Döp om "landsting" till "region" och "region" till "sjukvårdsregion" (SNY-56)
+* Döpt om "landsting" till "region" och "region" till "sjukvårdsregion" (SNY-56)
 
-* Ange percentiler i anropet till funktionen (SNY-22)
+* Kan ange percentiler i anropet till funktionen (SNY-22)
 
-* Webbplats för R-paketet (SNY-66)
+* Skapat webbplats för R-paketet (SNY-66)
 
-* "Markera alla" och "Avmarkera alla"" i pickerinputs (SNY-59, 4cfc0e7)
+* Lagt till "Markera alla" och "Avmarkera alla"" i pickerinputs (SNY-59, 4cfc0e7)
 
-* Lägga till möjlighet att exkludera flikar (SNY-39, 54dbd9f)
+* Lagt till möjlighet att exkludera flikar (SNY-39, 54dbd9f)
 
 * Röjandekontroll: Möjlighet att dölja absoluta antal i figurer/tabeller där antalet i en cell är mindre än gränsvärde (SNY-55, cc51329)	
 
-* Återinför möjlighet att få ut länktext (SNY-57, a8f9dc7)
+* Återinfört möjlighet att få ut länktext (SNY-57, a8f9dc7)
 
-* Manual för användning/tolkning av Shiny-rapporter och KPL (SNY-38, 81cb132)
+* Skapat manual för användning/tolkning av Shiny-rapporter (SNY-38, 81cb132)
 
 * Möjlighet att i appen växla mellan urval på period utifrån kvartal eller år (SNY-53, f19f7db)
 
