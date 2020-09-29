@@ -19,8 +19,8 @@ Installation
       install.packages("remotes")
     }
 
-    remotes::install_bitbucket("cancercentrum/rccshiny")
-    # remotes::install_bitbucket("cancercentrum/rccshiny", build_vignettes = TRUE) # även vinjetter
+    remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+    # remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", build_vignettes = TRUE) # även vinjetter
 
 Man kan också manuellt hämta en komprimerad arkiv-fil med senaste
 släppta versionen från
