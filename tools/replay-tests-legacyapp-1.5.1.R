@@ -4,5 +4,9 @@ library(shinytest)
 library(rccShiny)
 
 appdir <- file.path("inst", "testapps", "sv", "legacyapp-1.5.1")
-testApp(appdir, compareImages = FALSE, suffix = "windows")
+
+if (packageVersion("rccShiny") == "1.5.1") {
+  testApp(appdir, compareImages = FALSE, suffix = "windows")
+}
+
 # snapshotUpdate(appdir, suffix = "windows")

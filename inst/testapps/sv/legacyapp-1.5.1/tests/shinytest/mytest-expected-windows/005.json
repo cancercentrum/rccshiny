@@ -32,7 +32,7 @@
   "output": {
     "comment": null,
     "funnelPlotInput": {
-      "html": "<div data-display-if=\"input.tab==&#39;fig_compare&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_funnelplot\" type=\"checkbox\"/>\n        <span>Funnel plot<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab==&#39;fig_compare&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_funnelplot\" type=\"checkbox\"/>\n        <span>Funnel plot<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
