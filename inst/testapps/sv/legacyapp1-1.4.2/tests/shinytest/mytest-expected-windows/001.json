@@ -24,10 +24,7 @@
       18,
       99
     ],
-    "userInputId2": [
-      "I",
-      "II"
-    ]
+    "userInputId2": "I"
   },
   "output": {
     "comment": null,
@@ -38,7 +35,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 47c32b9a17bbefa5821a7c46a926bee34d3aa8f1]",
+      "src": "[image data sha1: 985a1f7e36b0de8ca4891f9cb2661d54b0c91668]",
       "width": 694,
       "height": 971.6
     },
@@ -229,7 +226,7 @@
     },
     "text0": "Dikotom",
     "text1": "Period: <strong>2016<\/strong>. ",
-    "text2": "",
+    "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
       "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"5380\">\n      <li class=\"active\">\n        <a href=\"#tab-5380-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"5380\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-5380-1\">\n        <div id=\"indPlot\" class=\"shiny-plot-output\" style=\"width: 100% ; height: auto\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-5380-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-5380-3\">\n        <div id=\"indMap\" class=\"shiny-plot-output\" style=\"width: 100% ; height: auto\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-5380-4\">\n        <div id=\"indPlotTrend\" class=\"shiny-plot-output\" style=\"width: 100% ; height: auto\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-5380-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
