@@ -1,7 +1,7 @@
 {
   "input": {
     "param_funnelplot": false,
-    "param_levelpresent": "Sjukhus",
+    "param_levelpresent": "Region",
     "param_numerictype": "Median (dagar)",
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
@@ -38,7 +38,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 1cc6adfaefc1f7031c776f4cc0b381b91712f332]",
+      "src": "[image data sha1: d299b5eaa2867aa4755b1a828e8b10206afa3505]",
       "width": 694,
       "height": 971.6
     },

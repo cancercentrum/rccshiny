@@ -5,16 +5,16 @@
     "param_numerictype": "Median (dagar)",
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
-    "param_ownhospital": "Sjukhus 10-1-a",
+    "param_ownhospital": "",
     "param_period_quarter": [
       2012,
       2016
     ],
     "param_period_year": [
-      2013,
+      2016,
       2016
     ],
-    "param_periodSplit": true,
+    "param_periodSplit": false,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
@@ -22,7 +22,7 @@
     "tab": "fig_compare",
     "userInputId1": [
       18,
-      70
+      99
     ],
     "userInputId2": [
       "I",
@@ -38,7 +38,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 13480e422970066bbbe5f757ace9029fcf0ea257]",
+      "src": "[image data sha1: 484d6a96691d73481ff3830c1d3e70d81596ad14]",
       "width": 694,
       "height": 971.6
     },
@@ -197,7 +197,7 @@
       ]
     },
     "periodSplitInput": {
-      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
@@ -228,8 +228,8 @@
       ]
     },
     "text0": "Dikotom",
-    "text1": "Period: <strong>2013-2016<\/strong>. ",
-    "text2": "Alder vid diagnos: <strong>18-70<\/strong>. ",
+    "text1": "Period: <strong>2016<\/strong>. ",
+    "text2": "",
     "theTabs": {
       "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"5380\">\n      <li class=\"active\">\n        <a href=\"#tab-5380-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"5380\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-5380-1\">\n        <div id=\"indPlot\" class=\"shiny-plot-output\" style=\"width: 100% ; height: auto\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-5380-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-5380-3\">\n        <div id=\"indMap\" class=\"shiny-plot-output\" style=\"width: 100% ; height: auto\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-5380-4\">\n        <div id=\"indPlotTrend\" class=\"shiny-plot-output\" style=\"width: 100% ; height: auto\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-5380-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [

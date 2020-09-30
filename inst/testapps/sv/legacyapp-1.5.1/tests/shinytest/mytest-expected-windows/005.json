@@ -14,7 +14,7 @@
       2013,
       2016
     ],
-    "param_periodSplit": true,
+    "param_periodSplit": false,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
@@ -38,7 +38,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 72f9e812daeb93e3e13b88caef9b7065749904a4]",
+      "src": "[image data sha1: 532df82df9de70095cbba8522bdb24d12b796ce9]",
       "width": 694,
       "height": 971.6
     },
