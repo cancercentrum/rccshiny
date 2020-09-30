@@ -6,19 +6,19 @@ library(rccShiny)
 # Expect test results as when running the legacyapp using the latest release
 if (packageVersion("rccShiny") == "1.6.0") {
 
-  appdir <- file.path("inst", "testapps", "sv", "legacyapp-1.3")
+  appdir <- file.path("inst", "testapps", "sv", "legacyapp1-1.3")
   x <- testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "windows")
   if(!x$results[[1]]$pass) {
     snapshotUpdate(appdir, "mytest", quiet = TRUE, suffix = "windows")
   }
 
-  appdir <- file.path("inst", "testapps", "sv", "legacyapp-1.4.2")
+  appdir <- file.path("inst", "testapps", "sv", "legacyapp1-1.4.2")
   x <- testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "windows")
   if(!x$results[[1]]$pass) {
     snapshotUpdate(appdir, "mytest", quiet = TRUE, suffix = "windows")
   }
 
-  appdir <- file.path("inst", "testapps", "sv", "legacyapp-1.5.1")
+  appdir <- file.path("inst", "testapps", "sv", "legacyapp1-1.5.1")
   x <- testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "windows")
   if(!x$results[[1]]$pass) {
     snapshotUpdate(appdir, "mytest", quiet = TRUE, suffix = "windows")
