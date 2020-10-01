@@ -8,7 +8,11 @@ test_that("running legacyapp1-1.4.2 works on windows", {
   skip_on_os(c("mac", "linux", "solaris"))
 
   appdir <- file.path("apps", "sv", "legacyapp1-1.4.2")
-  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "windows"))
+  if (identical(Sys.getenv("APPVEYOR"), "True")) {
+    expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "appveyor"))
+  } else {
+    expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "windows"))
+  }
 })
 
 test_that("running legacyapp1-1.4.2 works on mac", {
