@@ -1,5 +1,16 @@
 library(shinytest)
 
+test_that("running legacyapp1-1.5.1 works on linux", {
+  # skip_on_travis()
+  # skip_on_appveyor()
+
+  # Skip on other OS than Linux
+  skip_on_os(c("windows", "mac", "solaris"))
+
+  appdir <- file.path("apps", "sv", "legacyapp1-1.5.1")
+  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "linux"))
+})
+
 test_that("running legacyapp1-1.5.1 works on windows", {
   skip_on_travis()
   # skip_on_appveyor()
