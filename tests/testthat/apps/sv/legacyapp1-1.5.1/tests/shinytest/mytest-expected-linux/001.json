@@ -1,6 +1,6 @@
 {
   "input": {
-    "param_funnelplot": false,
+    "param_funnelplot": true,
     "param_levelpresent": "Region",
     "param_numerictype": "Median (dagar)",
     "param_numerictype_prop": 30,
