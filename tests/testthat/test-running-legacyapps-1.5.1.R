@@ -8,7 +8,9 @@ test_that("running legacyapp1-1.5.1 works on windows", {
   skip_on_os(c("mac", "linux", "solaris"))
 
   appdir <- system.file(package = "rccShiny", file.path("testapps", "sv", "legacyapp1-1.5.1"))
-  expect_pass(testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "windows"))
+  # expect_pass(testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "windows"))
+  x <- testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "windows")
+  testthat::expect(x$results[[1]]$pass, paste("shinytest failed for", x$appDir))
 })
 
 test_that("running legacyapp1-1.5.1 works on mac", {
@@ -19,5 +21,7 @@ test_that("running legacyapp1-1.5.1 works on mac", {
   skip_on_os(c("windows", "linux", "solaris"))
 
   appdir <- system.file(package = "rccShiny", file.path("testapps", "sv", "legacyapp1-1.5.1"))
-  expect_pass(testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "mac"))
+  # expect_pass(testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "mac"))
+  x <- testApp(appdir, "mytest", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = "mac")
+  testthat::expect(x$results[[1]]$pass, paste("shinytest failed for", x$appDir))
 })
