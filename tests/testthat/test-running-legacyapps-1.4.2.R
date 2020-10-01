@@ -1,9 +1,6 @@
 library(shinytest)
 
 test_that("running legacyapp1-1.4.2 works on windows", {
-  # skip_on_travis()
-  # skip_on_appveyor()
-
   # Skip on other OS than Windows
   skip_on_os(c("mac", "linux", "solaris"))
 
@@ -16,9 +13,6 @@ test_that("running legacyapp1-1.4.2 works on windows", {
 })
 
 test_that("running legacyapp1-1.4.2 works on mac and linux", {
-  # skip_on_travis()
-  # skip_on_appveyor()
-
   # Skip on other OS than Mac and linux
   skip_on_os(c("windows", "solaris"))
 
