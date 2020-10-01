@@ -9,9 +9,9 @@ sysname <- tolower(Sys.info()[["sysname"]])
 if (packageVersion("rccShiny") == "1.6.0" & sysname == "darwin") {
 
   appdir_list <- list(
-    file.path("inst", "testapps", "sv", "legacyapp1-1.3"),
-    file.path("inst", "testapps", "sv", "legacyapp1-1.4.2"),
-    file.path("inst", "testapps", "sv", "legacyapp1-1.5.1")
+    file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.3"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.4.2"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.5.1")
   )
 
   for (appdir in appdir_list) {

@@ -10,7 +10,7 @@ if (packageVersion("rccShiny") == "1.3") {
   rccShiny2(
     data = rccShinyData,
     folder = "legacyapp1-1.3",
-    path = file.path("inst", "testapps"),
+    path = file.path("tests", "testthat", "apps"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
     description = c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
@@ -37,7 +37,7 @@ if (packageVersion("rccShiny") == "1.3") {
     language = c("sv", "en"),
     data = rccShinyData,
     folder = "legacyapp2-1.3",
-    path = file.path("inst", "testapps"),
+    path = file.path("tests", "testthat", "apps"),
     outcome = "outcome1",
     outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
     textBeforeSubtitle = c("Nagot pa svenska", "Something in English"),
@@ -60,7 +60,7 @@ if (packageVersion("rccShiny") == "1.3") {
   rccShiny2(
     data = rccShinyData,
     folder = "legacyapp3-1.3",
-    path = file.path("inst", "testapps"),
+    path = file.path("tests", "testthat", "apps"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
     comment = "Skovde och Lidkoping tillhor Skaraborg",
