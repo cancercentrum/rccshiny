@@ -10,8 +10,17 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
 
   appdir_list <- list(
     file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.3"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp2-1.3"),
+    file.path("tests", "testthat", "apps", "en", "legacyapp2-1.3"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.4.2"),
-    file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.5.1")
+    file.path("tests", "testthat", "apps", "sv", "legacyapp2-1.4.2"),
+    file.path("tests", "testthat", "apps", "en", "legacyapp2-1.4.2"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.4.2"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp2-1.5.1"),
+    file.path("tests", "testthat", "apps", "en", "legacyapp2-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.5.1")
   )
 
   for (appdir in appdir_list) {
