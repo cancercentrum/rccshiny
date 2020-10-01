@@ -23,6 +23,21 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.5.1")
   )
 
+  # mytest-expected (without suffix)
+  for (appdir in appdir_list) {
+    x <- testApp(
+      appDir = appdir,
+      testnames = "mytest",
+      quiet = TRUE,
+      compareImages = FALSE,
+      interactive = FALSE
+    )
+    if (!x$results[[1]]$pass) {
+      snapshotUpdate(appdir, "mytest", quiet = TRUE)
+    }
+  }
+
+  # mytest-expected-windows
   for (appdir in appdir_list) {
     x <- testApp(
       appDir = appdir,
