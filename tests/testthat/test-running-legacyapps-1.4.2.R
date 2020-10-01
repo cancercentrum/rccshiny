@@ -1,21 +1,20 @@
 library(shinytest)
 
-test_that("running legacyapp1-1.4.2 works on windows", {
-  # Skip on other OS than Windows
-  skip_on_os(c("mac", "linux", "solaris"))
+sysname <- tolower(Sys.info()[["sysname"]])
+
+if (identical(Sys.getenv("APPVEYOR"), "True")) {
+  suffix <- "appveyor"
+} else if (sysname == "windows") {
+  suffix <- "windows"
+} else if (sysname %in% c("mac", "linux")) {
+  suffix <- "mac"
+} else {
+  suffix <- NULL
+}
+
+test_that("running legacyapp1-1.4.2 works", {
+  skip_on_os("solaris")
 
   appdir <- file.path("apps", "sv", "legacyapp1-1.4.2")
-  if (identical(Sys.getenv("APPVEYOR"), "True")) {
-    expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "appveyor"))
-  } else {
-    expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "windows"))
-  }
-})
-
-test_that("running legacyapp1-1.4.2 works on mac and linux", {
-  # Skip on other OS than Mac and linux
-  skip_on_os(c("windows", "solaris"))
-
-  appdir <- file.path("apps", "sv", "legacyapp1-1.4.2")
-  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = "mac"))
+  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })
