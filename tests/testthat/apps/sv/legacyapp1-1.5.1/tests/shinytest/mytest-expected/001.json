@@ -248,9 +248,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.1",
+          "version": "1.5.2",
           "src": {
-            "href": "htmlwidgets-1.5.1"
+            "href": "htmlwidgets-1.5.2"
           },
           "meta": null,
           "script": "htmlwidgets.js",
