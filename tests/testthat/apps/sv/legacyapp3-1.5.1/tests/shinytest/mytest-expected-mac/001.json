@@ -255,22 +255,22 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.3",
+          "version": "0.5.4",
           "src": {
             "href": "shinyWidgets"
           },
           "meta": null,
           "script": "shinyWidgets-bindings.min.js",
-          "stylesheet": "shinyWidgets.css",
+          "stylesheet": "shinyWidgets.min.css",
           "head": null,
           "attachment": null,
           "all_files": false
         },
         {
-          "name": "selectPicker",
-          "version": "1.13.12",
+          "name": "bootstrap-select",
+          "version": "1.13.18",
           "src": {
-            "href": "shinyWidgets/selectPicker"
+            "href": "shinyWidgets/bootstrap-select"
           },
           "meta": null,
           "script": "js/bootstrap-select.min.js",
