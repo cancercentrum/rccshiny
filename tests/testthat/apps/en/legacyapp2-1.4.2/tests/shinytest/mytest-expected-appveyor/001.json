@@ -143,13 +143,13 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.3",
+          "version": "0.5.4",
           "src": {
             "href": "shinyWidgets"
           },
           "meta": null,
           "script": "shinyWidgets-bindings.min.js",
-          "stylesheet": "shinyWidgets.css",
+          "stylesheet": "shinyWidgets.min.css",
           "head": null,
           "attachment": null,
           "all_files": false
@@ -247,9 +247,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.1",
+          "version": "1.5.2",
           "src": {
-            "href": "htmlwidgets-1.5.1"
+            "href": "htmlwidgets-1.5.2"
           },
           "meta": null,
           "script": "htmlwidgets.js",
