@@ -2,6 +2,7 @@
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @keywords internal
+#' @import highcharter
 #' @export
 rcc2PlotInd <-
   function(
@@ -52,10 +53,10 @@ rcc2PlotInd <-
     outputHighchart = FALSE
   ) {
 
-    suppressMessages(require(gplots))
-    suppressMessages(require(plyr))
-    suppressMessages(require(Hmisc))
-    suppressMessages(require(highcharter))
+    # requireNamespace("gplots", quietly = TRUE)
+    # requireNamespace("plyr", quietly = TRUE)
+    # requireNamespace("Hmisc", quietly = TRUE)
+    requireNamespace("highcharter", quietly = TRUE)
 
     rcc2LightenCol <-
       function(
@@ -161,9 +162,9 @@ rcc2PlotInd <-
     if (is.null(period)) {
       period <- rep(1, length(group))
     }
-    show_periods <- tail(sort(unique(period)), periodMaxN)
+    show_periods <- utils::tail(sort(unique(period)), periodMaxN)
     num_periods <- length(show_periods)
-    act_period <- tail(show_periods, 1)
+    act_period <- utils::tail(show_periods, 1)
 
     # Handle missing values
     include <- !is.na(ind) & !is.na(period)
@@ -250,7 +251,7 @@ rcc2PlotInd <-
             measurements <-
               data.frame(
                 rbind(
-                  quantile(
+                  stats::quantile(
                     as.numeric(x$ind),
                     probs = indNumericPercentiles,
                     na.rm = TRUE
@@ -291,7 +292,7 @@ rcc2PlotInd <-
             measurements <-
               data.frame(
                 rbind(
-                  100 * binconf(
+                  100 * Hmisc::binconf(
                     sum(x$ind, na.rm = TRUE),
                     sum(!is.na(x$ind), na.rm = TRUE),
                     method = "exact"
@@ -432,7 +433,7 @@ rcc2PlotInd <-
         )
       tabdata_subset$group <- factor(tabdata_subset$group)
       tab <-
-        ddply(
+        plyr::ddply(
           .data = tabdata_subset,
           .variables = byvars,
           .fun = summaryFunction,
@@ -451,7 +452,7 @@ rcc2PlotInd <-
       subsetUniqueGroups <- unique(tabdata$group[tabdata$subset & tabdata$period == act_period])
       if (!all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subsetLab))) {
         tab_subset <-
-          ddply(
+          plyr::ddply(
             .data = subset(tabdata, subset),
             .variables = byvars[byvars != "group"],
             .fun = summaryFunction,
@@ -469,7 +470,7 @@ rcc2PlotInd <-
 
       if (any(extra)) {
         tab_extra <-
-          ddply(
+          plyr::ddply(
             .data = subset(tabdata, extra),
             .variables = byvars[byvars != "group"],
             .fun = summaryFunction,
@@ -487,7 +488,7 @@ rcc2PlotInd <-
 
       if (!is.null(allLab)) {
         tab_all <-
-          ddply(
+          plyr::ddply(
             .data = tabdata,
             .variables = byvars[byvars != "group"],
             .fun=summaryFunction,
@@ -520,7 +521,7 @@ rcc2PlotInd <-
         temp_n[is.na(temp_n)] <- 0
         for (i in 1:length(funnelplotProbs)) {
           temp_binconf <-
-            binconf(
+            Hmisc::binconf(
               x = temp_x,
               n = temp_n,
               method = "exact",
@@ -644,7 +645,7 @@ rcc2PlotInd <-
       }
 
       alphacol <-
-        tail(
+        utils::tail(
           255 * seq(0.25, 1, length.out = max(2, min(periodMaxN, num_periods))),
           min(periodMaxN,num_periods)
         )
@@ -1220,7 +1221,7 @@ rcc2PlotInd <-
         # Plot
         if (indNumeric) {
           for (i in 1:num_periods) {
-            plotCI(
+            gplots::plotCI(
               x = rev(tab_list[[i]]$ind),
               y = y_bp + (num_periods - i) * barheight,
               li = rev(tab_list[[i]]$lower),

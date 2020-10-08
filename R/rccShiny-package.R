@@ -2,6 +2,11 @@
 #' @keywords internal
 "_PACKAGE"
 
+#' @import shiny
+#' @import shinydashboard
+#' @import shinyWidgets
+NULL
+
 # To avoid undefined global variables when running check
 utils::globalVariables(
   c(

@@ -206,10 +206,10 @@ rccShiny2 <-
     # Needed when on INCA
     # # # # # # # # # # # # # # # #
 
-    library(shiny)
-    library(shinydashboard)
-    library(shinyWidgets)
-    library(DT)
+    requireNamespace("shiny", quietly = TRUE)
+    requireNamespace("shinydashboard", quietly = TRUE)
+    requireNamespace("shinyWidgets", quietly = TRUE)
+    requireNamespace("DT", quietly = TRUE)
 
     # # # # # # # # # # # # # # # #
     # Checking input parameters

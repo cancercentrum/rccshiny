@@ -587,8 +587,8 @@ rccShiny <-
           data$period <- tempPeriod
 
           tempYearsUnique <- sort(unique(tempYear))
-          GLOBAL_periodStart <- head(sort(unique(tempPeriod)), 1)
-          GLOBAL_periodEnd <- tail(sort(unique(tempPeriod)), 1)
+          GLOBAL_periodStart <- utils::head(sort(unique(tempPeriod)), 1)
+          GLOBAL_periodEnd <- utils::tail(sort(unique(tempPeriod)), 1)
           GLOBAL_periodValues <-
             paste0(
               rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),

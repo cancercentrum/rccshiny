@@ -33,7 +33,7 @@ rcc2PlotLine <-
     outputHighchart = FALSE
   ) {
 
-    suppressMessages(require(highcharter))
+    requireNamespace("highcharter", quietly = TRUE)
 
     rcc2LightenCol <-
       function(

@@ -125,16 +125,16 @@ fIndPlot <-
     target_values_high <- TRUE
   }
 
-  #suppressMessages(require(gplots))
-  #suppressMessages(require(plyr))
-  #suppressMessages(require(Hmisc))
+  # requireNamespace("gplots", quietly = TRUE)
+  # requireNamespace("plyr", quietly = TRUE)
+  # requireNamespace("Hmisc", quietly = TRUE)
 
   if (is.null(period)) {
     period <- rep(1, length(group))
   }
-  show_periods <- tail(sort(unique(period)), max_periods)
+  show_periods <- utils::tail(sort(unique(period)), max_periods)
   num_periods <- length(show_periods)
-  act_period <- tail(show_periods, 1)
+  act_period <- utils::tail(show_periods, 1)
 
   # Handle missing values
   include <- !is.na(ind) & !is.na(period)
@@ -173,7 +173,7 @@ fIndPlot <-
       if (hide) {
         measurements <- c(NA, NA, NA, NA)
       } else {
-        measurements <- quantile(as.numeric(x$ind), probs = ind_numeric_percentiles, na.rm = TRUE)
+        measurements <- stats::quantile(as.numeric(x$ind), probs = ind_numeric_percentiles, na.rm = TRUE)
         measurements <- c(measurements, sum(!is.na(x$ind), na.rm = TRUE))
       }
       measurements <- c(measurements, hide)
@@ -326,7 +326,7 @@ fIndPlot <-
     tab$group[nchar(tab$group) > group_maxchars] <- paste0(substr(tab$group[nchar(tab$group) > group_maxchars], 1, group_maxchars - 3), "...")
   }
 
-  alphacol <- tail(255 * seq(0.25, 1, length.out = max(2, min(max_periods, num_periods))), min(max_periods, num_periods))
+  alphacol <- utils::tail(255 * seq(0.25, 1, length.out = max(2, min(max_periods, num_periods))), min(max_periods, num_periods))
 
   tab_list <- list()
   for (i in 1:num_periods) {

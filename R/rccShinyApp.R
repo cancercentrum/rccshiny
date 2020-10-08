@@ -410,7 +410,7 @@ rccShinyApp <-
               conditionalPanel(
                 condition = paste0(
                   "input.tab!='fig_trend' & ",
-                  ifelse(head(GLOBAL_periodValues_quarters, 1) == tail(GLOBAL_periodValues_quarters, 1), "false", "true"),
+                  ifelse(utils::head(GLOBAL_periodValues_quarters, 1) == utils::tail(GLOBAL_periodValues_quarters, 1), "false", "true"),
                   " & (",
                   ifelse(
                     length(GLOBAL_periodDateLevel) == 1 & GLOBAL_periodDateLevel[1] == "quarter",
@@ -2318,8 +2318,8 @@ rccShinyCheckData <-
       optionsList$data$period <- tempPeriod
 
       tempYearsUnique <- sort(unique(tempYear))
-      optionsList$periodStart <- head(sort(unique(tempPeriod)), 1)
-      optionsList$periodEnd <- tail(sort(unique(tempPeriod)), 1)
+      optionsList$periodStart <- utils::head(sort(unique(tempPeriod)), 1)
+      optionsList$periodEnd <- utils::tail(sort(unique(tempPeriod)), 1)
       optionsList$periodValues <-
         paste0(
           rep(min(tempYearsUnique):max(tempYearsUnique), each = 4),
@@ -2354,11 +2354,11 @@ rccShinyCheckData <-
     }
     optionsList$periodDefaultStart_quarters <- paste0(optionsList$periodDefaultStart, "Q1")
     if (!(optionsList$periodDefaultStart_quarters %in% optionsList$periodValues_quarters)) {
-      optionsList$periodDefaultStart_quarters <- head(optionsList$periodValues_quarters, 1)
+      optionsList$periodDefaultStart_quarters <- utils::head(optionsList$periodValues_quarters, 1)
     }
     optionsList$periodDefaultEnd_quarters <- paste0(optionsList$periodDefaultEnd, "Q4")
     if (!(optionsList$periodDefaultEnd_quarters %in% optionsList$periodValues_quarters)) {
-      optionsList$periodDefaultEnd_quarters <- tail(optionsList$periodValues_quarters, 1)
+      optionsList$periodDefaultEnd_quarters <- utils::tail(optionsList$periodValues_quarters, 1)
     }
 
     # periodLabel
