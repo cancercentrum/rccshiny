@@ -41,6 +41,19 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
     }
   }
 
+  # navigate-app1-expected (without suffix)
+  appdir <- file.path("tests", "testthat", "apps", "sv", "legacyapp1-latest")
+  x <- testApp(
+    appDir = appdir,
+    testnames = "navigate-app1",
+    quiet = TRUE,
+    compareImages = FALSE,
+    interactive = FALSE
+  )
+  if (!x$results[[1]]$pass) {
+    snapshotUpdate(appdir, "navigate-app1", quiet = TRUE)
+  }
+
   # load-app-expected-windows
   for (appdir in appdir_list) {
     x <- testApp(
@@ -54,5 +67,19 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
     if (!x$results[[1]]$pass) {
       snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "windows")
     }
+  }
+
+  # navigate-app1-expected-windows
+  appdir <- file.path("tests", "testthat", "apps", "sv", "legacyapp1-latest")
+  x <- testApp(
+    appDir = appdir,
+    testnames = "navigate-app1",
+    quiet = TRUE,
+    compareImages = FALSE,
+    interactive = FALSE,
+    suffix = "windows"
+  )
+  if (!x$results[[1]]$pass) {
+    snapshotUpdate(appdir, "navigate-app1", quiet = TRUE, suffix = "windows")
   }
 }

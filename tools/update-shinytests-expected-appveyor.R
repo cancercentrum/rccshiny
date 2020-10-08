@@ -28,3 +28,6 @@ appdir_list <- list(
 for (appdir in appdir_list) {
   try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "appveyor"))
 }
+
+appdir <- file.path("tests", "testthat", "apps", "sv", "legacyapp1-latest")
+try(snapshotUpdate(appdir, "navigate-app1", quiet = TRUE, suffix = "appveyor"))

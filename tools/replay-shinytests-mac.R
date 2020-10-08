@@ -40,4 +40,17 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "darwin") {
       snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "mac")
     }
   }
+
+  appdir <- file.path("tests", "testthat", "apps", "sv", "legacyapp1-latest")
+  x <- testApp(
+    appDir = appdir,
+    testnames = "navigate-app1",
+    quiet = TRUE,
+    compareImages = FALSE,
+    interactive = FALSE,
+    suffix = "mac"
+  )
+  if (!x$results[[1]]$pass) {
+    snapshotUpdate(appdir, "navigate-app1", quiet = TRUE, suffix = "mac")
+  }
 }
