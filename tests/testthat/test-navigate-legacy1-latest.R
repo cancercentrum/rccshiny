@@ -12,9 +12,9 @@ if (identical(Sys.getenv("APPVEYOR"), "True")) {
   suffix <- NULL
 }
 
-test_that("navigating legacyapp1-latest works", {
+test_that("navigating legacy1-latest works", {
   skip_on_os("solaris")
 
-  appdir <- file.path("apps", "sv", "legacyapp1-latest")
-  expect_pass(testApp(appdir, "navigate-app1", quiet = TRUE, compareImages = FALSE, suffix = suffix))
+  appdir <- file.path("apps", "sv", "legacy1-latest")
+  expect_pass(testApp(appdir, "nav-app1", quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })

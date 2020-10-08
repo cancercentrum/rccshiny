@@ -5,11 +5,11 @@ library(rccShiny)
 
 if (packageVersion("rccShiny") == "1.3") {
 
-  # Create legacyapp1-1.3
+  # Create legacy1-1.3
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-94
   rccShiny2(
     data = rccShinyData,
-    folder = "legacyapp1-1.3",
+    folder = "legacy1-1.3",
     path = file.path("tests", "testthat", "apps"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
@@ -30,13 +30,13 @@ if (packageVersion("rccShiny") == "1.3") {
     )
   )
 
-  # Create legacyapp2-1.3
+  # Create legacy2-1.3
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-124
   rccShinyData$outcome1_en <- rccShinyData$outcome1
   rccShiny2(
     language = c("sv", "en"),
     data = rccShinyData,
-    folder = "legacyapp2-1.3",
+    folder = "legacy2-1.3",
     path = file.path("tests", "testthat", "apps"),
     outcome = "outcome1",
     outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
@@ -55,11 +55,11 @@ if (packageVersion("rccShiny") == "1.3") {
     targetValues = c(95, 99)
   )
 
-  # Create legacyapp3-1.3
+  # Create legacy3-1.3
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny.R#lines-77
   rccShiny(
     data = rccShinyData,
-    folder = "legacyapp3-1.3",
+    folder = "legacy3-1.3",
     path = file.path("tests", "testthat"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),

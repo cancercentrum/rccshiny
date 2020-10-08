@@ -2,7 +2,7 @@
 # https://rstudio.github.io/shinytest/articles/in-depth.html#waiting-for-an-input-or-output-value
 
 app <- ShinyDriver$new("../../", seed = 1234, loadTimeout = 60000)
-app$snapshotInit("navigate-app1", screenshot = FALSE)
+app$snapshotInit("nav-app1", screenshot = FALSE)
 
 app$snapshot()
 

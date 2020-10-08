@@ -1,15 +1,16 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "1.4.2")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
 
 library(shiny)
 library(rccShiny)
 
-if (packageVersion("rccShiny") == "1.4.2") {
+# Latest release (1.6.0 at th moment)
+if (packageVersion("rccShiny") == "1.6.0") {
 
-  # Create legacyapp1-1.4.2
+  # Create legacy1-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-94
   rccShiny2(
     data = rccShinyData,
-    folder = "legacyapp1-1.4.2",
+    folder = "legacy1-latest",
     path = file.path("tests", "testthat", "apps"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
@@ -30,13 +31,13 @@ if (packageVersion("rccShiny") == "1.4.2") {
     )
   )
 
-  # Create legacyapp2-1.4.2
+  # Create legacy2-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-124
   rccShinyData$outcome1_en <- rccShinyData$outcome1
   rccShiny2(
     language = c("sv", "en"),
     data = rccShinyData,
-    folder = "legacyapp2-1.4.2",
+    folder = "legacy2-latest",
     path = file.path("tests", "testthat", "apps"),
     outcome = "outcome1",
     outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
@@ -55,11 +56,11 @@ if (packageVersion("rccShiny") == "1.4.2") {
     targetValues = c(95, 99)
   )
 
-  # Create legacyapp3-1.4.2
+  # Create legacy3-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny.R#lines-77
   rccShiny(
     data = rccShinyData,
-    folder = "legacyapp3-1.4.2",
+    folder = "legacy3-latest",
     path = file.path("tests", "testthat"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
