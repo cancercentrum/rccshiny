@@ -85,9 +85,9 @@ rccShinyIndTable <-
             }
           } else {
             if (include_missing_column){
-              measurements <- c(quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)), sum(is.na(x$ind)))
+              measurements <- c(stats::quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)), sum(is.na(x$ind)))
             } else {
-              measurements <- c(quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)))
+              measurements <- c(stats::quantile(x$ind, na.rm = TRUE, probs = ind_numeric_percentiles), sum(!is.na(x$ind)))
             }
           }
           if (include_missing_column){
@@ -142,7 +142,7 @@ rccShinyIndTable <-
           } else {
             measurements <-
               if (ind_factor_pct) {
-                format(round(addmargins(100 * prop.table(table(x$ind))), digits = ndec), nsmall = ndec)
+                format(round(stats::addmargins(100 * prop.table(table(x$ind))), digits = ndec), nsmall = ndec)
               } else {
                 if (hideCellLessThan) {
                   if (include_missing_column){

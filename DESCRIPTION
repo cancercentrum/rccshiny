@@ -16,18 +16,23 @@ Depends:
 Imports: 
     DT,
     gplots,
+    graphics,
+    grDevices,
     highcharter,
     Hmisc,
     plyr,
     shiny,
     shinydashboard,
     shinyWidgets,
-    sp
+    sp,
+    stats,
+    utils
 Suggests: 
     knitr,
     rmarkdown,
     shinytest,
-    testthat
+    testthat,
+    webdriver
 License: GPL-3
 URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancercentrum/rccshiny
 LazyData: true
