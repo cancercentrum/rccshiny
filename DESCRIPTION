@@ -16,13 +16,17 @@ Depends:
 Imports: 
     DT,
     gplots,
+    graphics,
+    grDevices,
     highcharter,
     Hmisc,
     plyr,
     shiny,
     shinydashboard,
     shinyWidgets,
-    sp
+    sp,
+    stats,
+    utils
 Suggests: 
     knitr,
     rmarkdown,
