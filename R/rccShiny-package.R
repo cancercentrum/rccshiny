@@ -5,6 +5,8 @@
 #' @import shiny
 #' @import shinydashboard
 #' @import shinyWidgets
+#' @importFrom grDevices col2rgb dev.off png rgb
+#' @importFrom graphics axis grconvertX grconvertY legend lines par points polygon rect strheight strwidth text
 NULL
 
 # To avoid undefined global variables when running check
