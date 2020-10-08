@@ -5,8 +5,8 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-# Expect test results as when running the legacyapp using the latest release
-if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
+# Expect shinytest results as when running the legacyapp using the latest release
+if (packageVersion("rccShiny") == "1.6.0" & sysname == "darwin") {
 
   appdir_list <- list(
     file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.3"),
@@ -23,32 +23,17 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.5.1")
   )
 
-  # mytest-expected (without suffix)
   for (appdir in appdir_list) {
     x <- testApp(
       appDir = appdir,
-      testnames = "mytest",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "mytest", quiet = TRUE)
-    }
-  }
-
-  # mytest-expected-windows
-  for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "mytest",
+      testnames = "load-app",
       quiet = TRUE,
       compareImages = FALSE,
       interactive = FALSE,
-      suffix = "windows"
+      suffix = "mac"
     )
     if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "mytest", quiet = TRUE, suffix = "windows")
+      snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "mac")
     }
   }
 }

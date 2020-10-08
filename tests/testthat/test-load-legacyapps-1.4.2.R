@@ -12,30 +12,30 @@ if (identical(Sys.getenv("APPVEYOR"), "True")) {
   suffix <- NULL
 }
 
-test_that("running legacyapp1-1.4.2 works", {
+test_that("loading legacyapp1-1.4.2 works", {
   skip_on_os("solaris")
 
   appdir <- file.path("apps", "sv", "legacyapp1-1.4.2")
-  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = suffix))
+  expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })
 
-test_that("running legacyapp2-1.4.2 (sv) works", {
+test_that("loading legacyapp2-1.4.2 (sv) works", {
   skip_on_os("solaris")
 
   appdir <- file.path("apps", "sv", "legacyapp2-1.4.2")
-  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = suffix))
+  expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })
 
-test_that("running legacyapp2-1.4.2 (en) works", {
+test_that("loading legacyapp2-1.4.2 (en) works", {
   skip_on_os("solaris")
 
   appdir <- file.path("apps", "en", "legacyapp2-1.4.2")
-  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = suffix))
+  expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })
 
-test_that("running legacyapp3-1.4.2 works", {
+test_that("loading legacyapp3-1.4.2 works", {
   skip_on_os("solaris")
 
   appdir <- file.path("apps", "sv", "legacyapp3-1.4.2")
-  expect_pass(testApp(appdir, quiet = TRUE, compareImages = FALSE, suffix = suffix))
+  expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })

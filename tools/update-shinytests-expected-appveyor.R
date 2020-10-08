@@ -22,5 +22,5 @@ appdir_list <- list(
 )
 
 for (appdir in appdir_list) {
-  try(snapshotUpdate(appdir, "mytest", quiet = TRUE, suffix = "appveyor"))
+  try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "appveyor"))
 }
