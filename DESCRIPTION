@@ -27,7 +27,8 @@ Suggests:
     knitr,
     rmarkdown,
     shinytest,
-    testthat
+    testthat,
+    webdriver
 License: GPL-3
 URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancercentrum/rccshiny
 LazyData: true
