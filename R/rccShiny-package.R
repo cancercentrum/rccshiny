@@ -67,6 +67,8 @@ utils::globalVariables(
     "GLOBAL_targetValues",
     "GLOBAL_textAfterSubtitle",
     "GLOBAL_textBeforeSubtitle",
-    "GLOBAL_varOther"
+    "GLOBAL_varOther",
+    "df",
+    "environmentVariables"
   )
 )
