@@ -20,7 +20,11 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacyapp1-1.5.1"),
     file.path("tests", "testthat", "apps", "sv", "legacyapp2-1.5.1"),
     file.path("tests", "testthat", "apps", "en", "legacyapp2-1.5.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.5.1")
+    file.path("tests", "testthat", "apps", "sv", "legacyapp3-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp1-latest"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp2-latest"),
+    file.path("tests", "testthat", "apps", "en", "legacyapp2-latest"),
+    file.path("tests", "testthat", "apps", "sv", "legacyapp3-latest")
   )
 
   # load-app-expected (without suffix)
