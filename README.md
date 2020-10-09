@@ -1,4 +1,3 @@
-
 rccShiny
 ========
 
@@ -15,40 +14,43 @@ och format på statistiken på ett flexibelt sätt.
 Installation
 ------------
 
-    if (!requireNamespace("remotes")) {
-      install.packages("remotes")
-    }
+``` {.r}
+if (!requireNamespace("remotes")) {
+  install.packages("remotes")
+}
 
-    remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
-    # remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", build_vignettes = TRUE) # även vinjetter
+remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", build_vignettes = TRUE) # även vinjetter
+```
 
 Man kan också manuellt hämta en komprimerad arkiv-fil med senaste
 släppta versionen från
-<a href="https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz" class="uri">https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz</a>
-och installera med  
-`install.packages("cancercentrum-rccshiny-COMMIT.tar.gz", repos = NULL, type = "source")`  
+<https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz> och
+installera med\
+`install.packages("cancercentrum-rccshiny-COMMIT.tar.gz", repos = NULL, type = "source")`\
 där COMMIT i Butbuckets namngivning av den komprimerade arkiv-filen
 baseras på identifieraren för sista ändringen i kodförrådet för den
 släppta versionen (se
-<a href="https://bitbucket.org/cancercentrum/rccshiny/commits/branch/master" class="uri">https://bitbucket.org/cancercentrum/rccshiny/commits/branch/master</a>).
+<https://bitbucket.org/cancercentrum/rccshiny/commits/branch/master>).
 
 Arkiv-filer för olika versioner av paketet finns på
-<a href="https://bitbucket.org/cancercentrum/rccshiny/downloads/?tab=tags" class="uri">https://bitbucket.org/cancercentrum/rccshiny/downloads/?tab=tags</a>
+<https://bitbucket.org/cancercentrum/rccshiny/downloads/?tab=tags>
 
 Användning
 ----------
 
 Ladda paketet.
 
-    library(rccShiny)
+``` {.r}
+library(rccShiny)
+```
 
 Läs hjälpfil.
 
-    ?rccShiny::rccShiny2
+``` {.r}
+?rccShiny::rccShiny2
+```
 
 För fler exempel, se t.ex. R-koden för för Bröstcancerregistrets
-interaktiva rapporter
-(<a href="http://statistik.incanet.se/brostcancer/" class="uri">http://statistik.incanet.se/brostcancer/</a>)
-på
-<a href="https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny" class="uri">https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny</a>
-.
+interaktiva rapporter (<http://statistik.incanet.se/brostcancer/>) på
+<https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny> .
