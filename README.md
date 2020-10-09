@@ -2,9 +2,9 @@ rccShiny
 ========
 
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/master?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
+status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/develop?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
 [![Travis build
-status](https://travis-ci.com/oc1lojo/rccshiny.svg?branch=master)](https://travis-ci.com/oc1lojo/rccshiny)
+status](https://travis-ci.com/oc1lojo/rccshiny.svg?branch=develop)](https://travis-ci.com/oc1lojo/rccshiny)
 
 Shiny möjliggör skapandet av webbapplikationer med R. Paketet `rccShiny`
 är en RCC implementering vars syfte är att skapa ett komplement till
