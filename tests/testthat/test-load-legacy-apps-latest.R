@@ -19,6 +19,13 @@ test_that("loading legacy1-latest works", {
   expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, suffix = suffix))
 })
 
+test_that("loading legacy1hc-latest works", {
+  skip_on_os("solaris")
+
+  appdir <- file.path("apps", "sv", "legacy1hc-latest")
+  expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, suffix = suffix))
+})
+
 test_that("loading legacy2-latest (sv) works", {
   skip_on_os("solaris")
 

@@ -20,14 +20,19 @@ appdir_list <- list(
   file.path("tests", "testthat", "apps", "en", "legacy2-1.5.1"),
   file.path("tests", "testthat", "apps", "sv", "legacy3-1.5.1"),
   file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
+  file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
   file.path("tests", "testthat", "apps", "sv", "legacy2-latest"),
   file.path("tests", "testthat", "apps", "en", "legacy2-latest"),
   file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
 )
-
 for (appdir in appdir_list) {
   try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "appveyor"))
 }
 
-appdir <- file.path("tests", "testthat", "apps", "sv", "legacy1-latest")
-try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "appveyor"))
+appdir_list <- list(
+  file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
+  file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
+)
+for (appdir in appdir_list) {
+  try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "appveyor"))
+}
