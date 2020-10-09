@@ -202,14 +202,20 @@ rccShiny2 <-
   ) {
 
     # # # # # # # # # # # # # # # #
-    # Loading libraries
-    # Needed when on INCA
+    # Attaching packages
+    # Needed when on INCA?
+    #
+    # TODO Investigate further
+    # See also
+    # https://r-pkgs.org/namespace.html#search-path
+    # https://r-pkgs.org/namespace.html#imports
     # # # # # # # # # # # # # # # #
-
-    requireNamespace("shiny", quietly = TRUE)
-    requireNamespace("shinydashboard", quietly = TRUE)
-    requireNamespace("shinyWidgets", quietly = TRUE)
-    requireNamespace("DT", quietly = TRUE)
+    require("shiny", quietly = TRUE)
+    require("shinydashboard", quietly = TRUE)
+    require("shinyWidgets", quietly = TRUE)
+    # require("DT", quietly = TRUE)
+    require("sp", quietly = TRUE)
+    if (outputHighcharts) require("highcharter", quietly = TRUE)
 
     # # # # # # # # # # # # # # # #
     # Checking input parameters
