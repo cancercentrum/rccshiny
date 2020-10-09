@@ -202,22 +202,6 @@ rccShiny2 <-
   ) {
 
     # # # # # # # # # # # # # # # #
-    # Attaching packages
-    # Needed when on INCA?
-    #
-    # TODO Investigate further
-    # See also
-    # https://r-pkgs.org/namespace.html#search-path
-    # https://r-pkgs.org/namespace.html#imports
-    # # # # # # # # # # # # # # # #
-    require("shiny", quietly = TRUE)
-    require("shinydashboard", quietly = TRUE)
-    require("shinyWidgets", quietly = TRUE)
-    # require("DT", quietly = TRUE)
-    require("sp", quietly = TRUE)
-    if (outputHighcharts) require("highcharter", quietly = TRUE)
-
-    # # # # # # # # # # # # # # # #
     # Checking input parameters
     # # # # # # # # # # # # # # # #
 
@@ -635,6 +619,23 @@ rccShiny2 <-
     }
 
     if (inca) {
+      # Attaching packages
+      # Needed when on INCA?
+      #
+      # TODO Investigate further
+      # See also
+      # https://r-pkgs.org/description.html#dependencies
+      # https://r-pkgs.org/namespace.html
+      # https://r-pkgs.org/namespace.html#imports
+      # https://r-pkgs.org/namespace.html#search-path
+
+      require("shiny", quietly = TRUE)
+      require("shinydashboard", quietly = TRUE)
+      require("shinyWidgets", quietly = TRUE)
+      # require("DT", quietly = TRUE)
+      require("sp", quietly = TRUE)
+      if (outputHighcharts) require("highcharter", quietly = TRUE)
+
       rccShinyApp(optionsList = optionsList)
     } else {
       return(invisible(tempLinks))

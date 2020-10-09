@@ -2,11 +2,18 @@
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @keywords internal
+#' @import shiny
+#' @import shinydashboard
+#' @import shinyWidgets
 #' @export
 rccShinyApp <-
   function(
     optionsList = NULL
   ) {
+
+    requireNamespace("shiny", quietly = TRUE)
+    requireNamespace("shinydashboard", quietly = TRUE)
+    requireNamespace("shinyWidgets", quietly = TRUE)
 
     shinyApp(
       ui = dashboardPage(
