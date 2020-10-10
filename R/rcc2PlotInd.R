@@ -2,7 +2,6 @@
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @keywords internal
-#' @import highcharter
 #' @export
 rcc2PlotInd <-
   function(
@@ -53,10 +52,10 @@ rcc2PlotInd <-
     outputHighchart = FALSE
   ) {
 
-    # requireNamespace("gplots", quietly = TRUE)
-    # requireNamespace("plyr", quietly = TRUE)
-    # requireNamespace("Hmisc", quietly = TRUE)
-    requireNamespace("highcharter", quietly = TRUE)
+    # require("gplots", quietly = TRUE)
+    # require("plyr", quietly = TRUE)
+    # require("Hmisc", quietly = TRUE)
+    # require("highcharter", quietly = TRUE)
 
     rcc2LightenCol <-
       function(
@@ -726,7 +725,7 @@ rcc2PlotInd <-
           hc_xAxis(
             categories = tab_list[[num_periods]]$group,
             labels = list(
-              formatter = JS(
+              formatter = highcharter::JS(
                 "function() {",
                 "var tempColor = '#000000';",
                 "var tempString = this.value.toString();",
@@ -906,7 +905,7 @@ rcc2PlotInd <-
               )
             ) %>%
             hc_tooltip(
-              formatter = JS(
+              formatter = highcharter::JS(
                 "function () {",
                 "var seriesAll = this.point.series.chart.series, ",
                 "hoverIndex = this.point.series.xData.indexOf(this.point.x), ",
@@ -1309,8 +1308,8 @@ rcc2PlotInd <-
           if (funnelplot) {
             temp_funnelplot_alphacol <- 255 * seq(0.75, 0.25, length.out = length(funnelplotProbs))
             temp_funnelplot_col <-
-              rgb(
-                t(col2rgb("#e74903")),
+              grDevices::rgb(
+                t(grDevices::col2rgb("#e74903")),
                 alpha = temp_funnelplot_alphacol,
                 maxColorValue = 255
               )

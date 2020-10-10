@@ -2,8 +2,6 @@
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @keywords internal
-#' @import sp
-#' @import highcharter
 #' @export
 rcc2PlotMap <-
   function(
@@ -45,8 +43,8 @@ rcc2PlotMap <-
     outputHighchart = FALSE
   ) {
 
-    requireNamespace("sp", quietly = TRUE)
-    requireNamespace("highcharter", quietly = TRUE)
+    # require("sp", quietly = TRUE)
+    # require("highcharter", quietly = TRUE)
 
     rcc2LightenCol <-
       function(

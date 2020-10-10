@@ -125,9 +125,9 @@ fIndPlot <-
     target_values_high <- TRUE
   }
 
-  # requireNamespace("gplots", quietly = TRUE)
-  # requireNamespace("plyr", quietly = TRUE)
-  # requireNamespace("Hmisc", quietly = TRUE)
+  # require("gplots", quietly = TRUE)
+  # require("plyr", quietly = TRUE)
+  # require("Hmisc", quietly = TRUE)
 
   if (is.null(period)) {
     period <- rep(1, length(group))
@@ -514,7 +514,7 @@ fIndPlot <-
     # Funnelplot
     if (funnelplot) {
       temp_funnelplot_alphacol <- 255 * seq(0.75, 0.25, length.out = length(funnelplot_probs))
-      temp_funnelplot_col <- rgb(t(col2rgb("#95bf5d")), alpha = temp_funnelplot_alphacol, maxColorValue = 255)
+      temp_funnelplot_col <- grDevices::rgb(t(grDevices::col2rgb("#95bf5d")), alpha = temp_funnelplot_alphacol, maxColorValue = 255)
       temp_funnelplot_data <- tab_list[[num_periods]]
       temp_funnelplot_sectionheight <- barheight * barheight_factor
       temp_funnelplot_prev_lo <- 0

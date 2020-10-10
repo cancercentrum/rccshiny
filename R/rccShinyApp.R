@@ -2,25 +2,18 @@
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @keywords internal
-#' @import shiny
-#' @import shinydashboard
-#' @import shinyWidgets
 #' @export
 rccShinyApp <-
   function(
     optionsList = NULL
   ) {
 
-    requireNamespace("shiny", quietly = TRUE)
-    requireNamespace("shinydashboard", quietly = TRUE)
-    requireNamespace("shinyWidgets", quietly = TRUE)
-
     shinyApp(
-      ui = dashboardPage(
+      ui = shinydashboard::dashboardPage(
         skin = "black",
-        dashboardHeader(disable = TRUE),
-        dashboardSidebar(disable = TRUE),
-        dashboardBody(
+        shinydashboard::dashboardHeader(disable = TRUE),
+        shinydashboard::dashboardSidebar(disable = TRUE),
+        shinydashboard::dashboardBody(
           tags$style(
             HTML("
               .content-wrapper, .right-side {
@@ -53,7 +46,7 @@ rccShinyApp <-
           fluidRow(
             column(
               width = 3,
-              box(
+              shinydashboard::box(
                 title = NULL,
                 status = "primary",
                 width = NULL,
@@ -426,7 +419,7 @@ rccShinyApp <-
                   ),
                   " | input.param_periodtype=='", rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter, "')"
                 ),
-                sliderTextInput(
+                shinyWidgets::sliderTextInput(
                   inputId = "param_period_quarter",
                   label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {NULL} else {GLOBAL_periodLabel},
                   choices = GLOBAL_periodValues_quarters,
@@ -489,7 +482,7 @@ rccShinyApp <-
                         width = "100%"
                       )
                     } else {
-                      pickerInput(
+                      shinyWidgets::pickerInput(
                         inputId = paste0("userInputId", i),
                         label = tempList$label,
                         choices = tempList$choices,
@@ -668,7 +661,7 @@ rccShinyApp <-
 
         output$comment <- renderUI({
           if (GLOBAL_comment != "") {
-            box(
+            shinydashboard::box(
               title = NULL,
               status = "primary",
               width = "100%",
@@ -722,7 +715,7 @@ rccShinyApp <-
             if ("description" %in% GLOBAL_includeTabs) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$description, value = "description", htmlOutput("description"), icon = icon("info-circle"))
             }
-            do.call(tabBox, c(theTabs, id = "tab", width = 9))
+            do.call(shinydashboard::tabBox, c(theTabs, id = "tab", width = 9))
           })
 
         dfInput <- reactive({
@@ -932,7 +925,7 @@ rccShinyApp <-
 
               outfile <- tempfile(fileext = ".png")
 
-              png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+              grDevices::png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
               if (nrow(dfuse) >= GLOBAL_hideLessThan) {
                 rcc2PlotInd(
@@ -991,7 +984,7 @@ rccShinyApp <-
                 text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
               }
 
-              dev.off()
+              grDevices::dev.off()
 
               list(src = outfile,
                    contentType = "image/png",
@@ -1254,7 +1247,7 @@ rccShinyApp <-
 
               }
 
-              png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+              grDevices::png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
               if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
@@ -1410,7 +1403,7 @@ rccShinyApp <-
                 text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
               }
 
-              dev.off()
+              grDevices::dev.off()
 
               list(src = outfile,
                    contentType = "image/png",
@@ -1791,7 +1784,7 @@ rccShinyApp <-
 
               outfile <- tempfile(fileext = ".png")
 
-              png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+              grDevices::png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
               if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
 
@@ -1842,7 +1835,7 @@ rccShinyApp <-
                 text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
               }
 
-              dev.off()
+              grDevices::dev.off()
 
               list(src = outfile,
                    contentType = "image/png",

@@ -2,7 +2,6 @@
 #' @description internal function used by server.R for plot in tab Map.
 #' @author Fredrik Sandin, RCC Uppsala-Örebro
 #' @keywords internal
-#' @import sp
 #' @export
 fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergötland", "Blekinge", "Dalarna", "Gävleborg", "Gotland", "Halland", "Jämtland", "Jönköping",
     "Kalmar", "Kronoberg", "Norrbotten", "Orebro", "Södermanland", "Skåne", "Stockholm", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland"),
@@ -61,7 +60,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
             stop("Length of value must be 21")
         }
 
-        # requireNamespace("sp", quietly = TRUE)
+        # require("sp", quietly = TRUE)
 
         # Color
         if (is.null(col))

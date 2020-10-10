@@ -2,11 +2,22 @@
 #' @keywords internal
 "_PACKAGE"
 
+# Import all functions in 'shiny', 'graphics' and 'sp' since they are repeatedly
+# used.
+# Use :: for the few calls of functions in 'shinydashboard', 'shinyWidgets',
+# 'DT', 'grDevices', 'Hmisc', 'dplyr', etc.
+# Use @importFrom to import functions from 'highcharter' that are repeatedly used.
+#
+# Inspiration: https://r-pkgs.org/namespace.html#imports
+#
 #' @import shiny
-#' @import shinydashboard
-#' @import shinyWidgets
-#' @importFrom grDevices col2rgb dev.off png rgb
-#' @importFrom graphics axis grconvertX grconvertY legend lines par points polygon rect strheight strwidth text
+#' @import graphics
+#' @import sp
+#' @importFrom highcharter hc_add_series hc_boost hc_chart hc_colorAxis
+#' @importFrom highcharter hc_credits hc_legend hc_plotOptions hc_subtitle
+#' @importFrom highcharter hc_title hc_tooltip hc_xAxis hc_yAxis hcaes hcmap
+#' @importFrom highcharter highchart
+#' @importFrom highcharter %>%
 NULL
 
 # To avoid undefined global variables when running check

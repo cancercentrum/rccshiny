@@ -176,7 +176,7 @@ shinyServer(function(input, output, clientData) {
               sep = ""
             )
           } else {
-            sliderTextInput(
+            shinyWidgets::sliderTextInput(
               inputId = "param_period",
               label = GLOBAL_periodLabel,
               choices = GLOBAL_periodValues,
@@ -235,7 +235,7 @@ shinyServer(function(input, output, clientData) {
                   sep = ""
                 )
               } else {
-                pickerInput(
+                shinyWidgets::pickerInput(
                   inputId = paste0("userInputId", i),
                   label = tempList$label,
                   choices = tempList$choices,
@@ -624,7 +624,7 @@ shinyServer(function(input, output, clientData) {
 
       outfile <- tempfile(fileext = ".png")
 
-      png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+      grDevices::png(filename = outfile, width = 9,height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
       if (nrow(dfuse) >= GLOBAL_hideLessThan) {
         fIndPlot(
@@ -691,7 +691,7 @@ shinyServer(function(input, output, clientData) {
         text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
       }
 
-      dev.off()
+      grDevices::dev.off()
 
       list(src = outfile,
            contentType = "image/png",
@@ -757,7 +757,7 @@ shinyServer(function(input, output, clientData) {
 
       }
 
-      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+      grDevices::png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
       if (nrow(dfuse) >= GLOBAL_hideLessThan) {
 
@@ -935,7 +935,7 @@ shinyServer(function(input, output, clientData) {
         text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
       }
 
-      dev.off()
+      grDevices::dev.off()
 
       list(src = outfile,
            contentType = "image/png",
@@ -1177,7 +1177,7 @@ shinyServer(function(input, output, clientData) {
 
       outfile <- tempfile(fileext = ".png")
 
-      png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
+      grDevices::png(filename = outfile, width = 9, height = 9 * yx_ratio, units = "in", res = 2*x_width/9)
 
       if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
 
@@ -1232,7 +1232,7 @@ shinyServer(function(input, output, clientData) {
         text(1, 1, rccShinyNoObservationsText(language = GLOBAL_language))
       }
 
-      dev.off()
+      grDevices::dev.off()
 
       list(src = outfile,
            contentType = "image/png",

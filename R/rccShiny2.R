@@ -632,9 +632,7 @@ rccShiny2 <-
       require("shiny", quietly = TRUE)
       require("shinydashboard", quietly = TRUE)
       require("shinyWidgets", quietly = TRUE)
-      # require("DT", quietly = TRUE)
-      require("sp", quietly = TRUE)
-      if (outputHighcharts) require("highcharter", quietly = TRUE)
+      require("DT", quietly = TRUE)
 
       rccShinyApp(optionsList = optionsList)
     } else {
