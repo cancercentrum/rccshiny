@@ -76,17 +76,24 @@ rccShinyApp <-
             message = "Laddar data och genererar rapport...",
             value = 0,
             {
-              tryCatch(
-                expr = {
-                  incaEnv <- INCA::getDataFrames(shinySession = session)
-                  for (i in ls(envir = incaEnv)) {
-                    assign(x = i, value = get(i, envir = incaEnv))
+              if (requireNamespace("INCA", quietly = TRUE)) {
+                tryCatch(
+                  expr = {
+                    incaEnv <- INCA::getDataFrames(shinySession = session)
+                    for (i in ls(envir = incaEnv)) {
+                      assign(x = i, value = get(i, envir = incaEnv))
+                    }
+                  },
+                  error = function (e) {
+                    INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
                   }
-                },
-                error = function (e) {
-                  INCA::loadDataFrames(parseQueryString(isolate(session$clientData$url_search))[['token']])
-                }
-              )
+                )
+              } else {
+                warning(
+                  "inca = TRUE but INCA pkg not installed (you're probably not on INCA). ",
+                  "OK during rccShiny pkg testing."
+                )
+              }
               if (exists("environmentVariables")) {
                 if (!is.null(environmentVariables$UserParentUnitCode))
                   optionsList$incaUserHospital <- environmentVariables$UserParentUnitCode
