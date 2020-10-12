@@ -1,0 +1,1476 @@
+{
+  "input": {
+    "indTable_cell_clicked": {
+
+    },
+    "indTable_cells_selected": [
+
+    ],
+    "indTable_columns_selected": null,
+    "indTable_rows_all": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "indTable_rows_current": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "indTable_rows_selected": null,
+    "indTable_search": "",
+    "indTable_state": null,
+    "param_funnelplot": false,
+    "param_levelpresent": "Region",
+    "param_numerictype": "Median (dagar)",
+    "param_numerictype_prop": 30,
+    "param_outcome": "Dikotom",
+    "param_ownhospital": "",
+    "param_period_quarter": [
+      2012,
+      2016
+    ],
+    "param_period_year": [
+      2016,
+      2016
+    ],
+    "param_periodSplit": false,
+    "param_periodtype": "År",
+    "param_region": "Alla",
+    "sidebarCollapsed": true,
+    "sidebarItemExpanded": null,
+    "tab": "table",
+    "userInputId1": [
+      18,
+      99
+    ],
+    "userInputId2": "I"
+  },
+  "output": {
+    "comment": null,
+    "funnelPlotInput": {
+      "html": "<div data-display-if=\"input.tab==&#39;fig_compare&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_funnelplot\" type=\"checkbox\"/>\n        <span>Funnel plot<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "indPlot": {
+      "x": {
+        "hc_opts": {
+          "chart": {
+            "reflow": true,
+            "type": "bar",
+            "spacing": [
+              20,
+              20,
+              20,
+              20
+            ]
+          },
+          "title": {
+            "text": null
+          },
+          "yAxis": {
+            "title": {
+              "text": "Procent",
+              "style": {
+                "color": "#000000",
+                "fontWeight": "bold",
+                "fontSize": "12px"
+              }
+            },
+            "reversedStacks": false,
+            "min": 0,
+            "max": 100,
+            "tickInterval": 20,
+            "labels": {
+              "style": {
+                "color": "#000000",
+                "fontSize": "12px"
+              }
+            },
+            "tickLength": 5,
+            "tickWidth": 2,
+            "lineWidth": 2,
+            "lineColor": "#bdbdbd",
+            "gridLineColor": "#bdbdbd"
+          },
+          "credits": {
+            "enabled": false
+          },
+          "exporting": {
+            "enabled": false
+          },
+          "boost": {
+            "enabled": false
+          },
+          "plotOptions": {
+            "series": {
+              "label": {
+                "enabled": false
+              },
+              "turboThreshold": 0
+            },
+            "treemap": {
+              "layoutAlgorithm": "squarified"
+            },
+            "bar": {
+              "pointPadding": 0.1,
+              "groupPadding": 0.15,
+              "borderColor": "#7f7f7f",
+              "events": {
+                "legendItemClick": "function() {return false;}"
+              }
+            }
+          },
+          "xAxis": {
+            "categories": [
+              "Övriga/privat - Södra",
+              "Dalarna",
+              "Övriga/privat - Stockholm-Gotland",
+              "Västerbotten",
+              "Kronoberg",
+              "Övriga/privat - Västra",
+              "Halland",
+              "Blekinge",
+              "Övriga/privat - Uppsala-Örebro",
+              "Västernorrland",
+              "Jönköping",
+              "Övriga/privat - Norra",
+              "Gotland",
+              "Örebro",
+              "RIKET",
+              "Kalmar",
+              "Skåne",
+              "Södermanland",
+              "Västra Götaland",
+              "Stockholm",
+              "Jämtland",
+              "Gävleborg",
+              "Västmanland",
+              "Östergötland",
+              "Värmland",
+              "Uppsala",
+              "Övriga/privat - Sydöstra",
+              "Norrbotten"
+            ],
+            "labels": {
+              "formatter": "function() {\nvar tempColor = '#000000';\nvar tempString = this.value.toString();\nif (tempString.substr(0, 8) == '_(hide)_') {tempColor = '#7f7f7f'; tempString = tempString.replace('_(hide)_', '');}\nreturn '<span style = \"color: ' + tempColor + '; font-size: 12px;\">' + tempString + '<\/span>';\n}",
+              "useHTML": true
+            },
+            "tickWidth": 0,
+            "floor": 0,
+            "ceiling": 27,
+            "lineColor": "#bdbdbd"
+          },
+          "legend": {
+            "enabled": false,
+            "symbolHeight": 10,
+            "symbolWidth": 10,
+            "symbolRadius": 0,
+            "itemStyle": {
+              "color": "#000000",
+              "fontWeight": "normal",
+              "fontSize": "12px",
+              "cursor": "default"
+            }
+          },
+          "tooltip": {
+            "shared": true,
+            "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>¦<\/span> <span style='font-size: 10px'><b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
+            "useHTML": true,
+            "outside": true
+          },
+          "series": [
+            {
+              "group": "group",
+              "data": [
+                {
+                  "period": 1,
+                  "ind": 50,
+                  "lower": 31.8874964234164,
+                  "upper": 68.1125035765836,
+                  "n": "16 av 32",
+                  "N": 32,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 50,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Södra",
+                  "yRound": 50,
+                  "y": 50,
+                  "color": "#00b3f6",
+                  "name": "Övriga/privat - Södra"
+                },
+                {
+                  "period": 1,
+                  "ind": 45.8333333333333,
+                  "lower": 25.5530201994746,
+                  "upper": 67.1791924304822,
+                  "n": "11 av 24",
+                  "N": 24,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 45.8333333333333,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Dalarna",
+                  "yRound": 46,
+                  "y": 45.8333333333333,
+                  "color": "#00b3f6",
+                  "name": "Dalarna"
+                },
+                {
+                  "period": 1,
+                  "ind": 42.3076923076923,
+                  "lower": 23.3521983127443,
+                  "upper": 63.0819619076033,
+                  "n": "11 av 26",
+                  "N": 26,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 42.3076923076923,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Stockholm-Gotland",
+                  "yRound": 42,
+                  "y": 42.3076923076923,
+                  "color": "#00b3f6",
+                  "name": "Övriga/privat - Stockholm-Gotland"
+                },
+                {
+                  "period": 1,
+                  "ind": 41.3793103448276,
+                  "lower": 23.5240209752899,
+                  "upper": 61.0637208603094,
+                  "n": "12 av 29",
+                  "N": 29,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 41.3793103448276,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Västerbotten",
+                  "yRound": 41,
+                  "y": 41.3793103448276,
+                  "color": "#00b3f6",
+                  "name": "Västerbotten"
+                },
+                {
+                  "period": 1,
+                  "ind": 38.0952380952381,
+                  "lower": 18.1071625540173,
+                  "upper": 61.5645609621354,
+                  "n": "8 av 21",
+                  "N": 21,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 38.0952380952381,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Kronoberg",
+                  "yRound": 38,
+                  "y": 38.0952380952381,
+                  "color": "#00b3f6",
+                  "name": "Kronoberg"
+                },
+                {
+                  "period": 1,
+                  "ind": 37.9310344827586,
+                  "lower": 20.6868699486507,
+                  "upper": 57.7395359335599,
+                  "n": "11 av 29",
+                  "N": 29,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 37.9310344827586,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Västra",
+                  "yRound": 38,
+                  "y": 37.9310344827586,
+                  "color": "#00b3f6",
+                  "name": "Övriga/privat - Västra"
+                },
+                {
+                  "period": 1,
+                  "ind": 36.3636363636364,
+                  "lower": 23.8138379213483,
+                  "upper": 50.4368545088014,
+                  "n": "20 av 55",
+                  "N": 55,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 36.3636363636364,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Halland",
+                  "yRound": 36,
+                  "y": 36.3636363636364,
+                  "color": "#00b3f6",
+                  "name": "Halland"
+                },
+                {
+                  "period": 1,
+                  "ind": 33.3333333333333,
+                  "lower": 17.2874221526039,
+                  "upper": 52.812004478988,
+                  "n": "10 av 30",
+                  "N": 30,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 33.3333333333333,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Blekinge",
+                  "yRound": 33,
+                  "y": 33.3333333333333,
+                  "color": "#00b3f6",
+                  "name": "Blekinge"
+                },
+                {
+                  "period": 1,
+                  "ind": 33.3333333333333,
+                  "lower": 18.5561809825921,
+                  "upper": 50.9702546651891,
+                  "n": "12 av 36",
+                  "N": 36,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 33.3333333333333,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
+                  "yRound": 33,
+                  "y": 33.3333333333333,
+                  "color": "#00b3f6",
+                  "name": "Övriga/privat - Uppsala-Örebro"
+                },
+                {
+                  "period": 1,
+                  "ind": 32.258064516129,
+                  "lower": 16.682363742296,
+                  "upper": 51.372982959275,
+                  "n": "10 av 31",
+                  "N": 31,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 32.258064516129,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Västernorrland",
+                  "yRound": 32,
+                  "y": 32.258064516129,
+                  "color": "#00b3f6",
+                  "name": "Västernorrland"
+                },
+                {
+                  "period": 1,
+                  "ind": 31.8181818181818,
+                  "lower": 13.8646521553798,
+                  "upper": 54.8724427573771,
+                  "n": "7 av 22",
+                  "N": 22,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 31.8181818181818,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Jönköping",
+                  "yRound": 32,
+                  "y": 31.8181818181818,
+                  "color": "#00b3f6",
+                  "name": "Jönköping"
+                },
+                {
+                  "period": 1,
+                  "ind": 30,
+                  "lower": 14.7345184754701,
+                  "upper": 49.3959041462554,
+                  "n": "9 av 30",
+                  "N": 30,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 30,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Norra",
+                  "yRound": 30,
+                  "y": 30,
+                  "color": "#00b3f6",
+                  "name": "Övriga/privat - Norra"
+                },
+                {
+                  "period": 1,
+                  "ind": 29.0322580645161,
+                  "lower": 14.2228529097525,
+                  "upper": 48.0360658228909,
+                  "n": "9 av 31",
+                  "N": 31,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 29.0322580645161,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Gotland",
+                  "yRound": 29,
+                  "y": 29.0322580645161,
+                  "color": "#00b3f6",
+                  "name": "Gotland"
+                },
+                {
+                  "period": 1,
+                  "ind": 28.9473684210526,
+                  "lower": 15.424628678791,
+                  "upper": 45.9032066924292,
+                  "n": "11 av 38",
+                  "N": 38,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 28.9473684210526,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Örebro",
+                  "yRound": 29,
+                  "y": 28.9473684210526,
+                  "color": "#00b3f6",
+                  "name": "Örebro"
+                },
+                {
+                  "period": 1,
+                  "ind": 28.6734693877551,
+                  "lower": 25.8586620202662,
+                  "upper": 31.6170388907178,
+                  "n": "281 av 980",
+                  "N": 980,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 28.6734693877551,
+                  "col": "#ffb117",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "RIKET",
+                  "yRound": 29,
+                  "y": 28.6734693877551,
+                  "color": "#ffb117",
+                  "name": "RIKET"
+                },
+                {
+                  "period": 1,
+                  "ind": 28,
+                  "lower": 16.2310600707175,
+                  "upper": 42.4905357016109,
+                  "n": "14 av 50",
+                  "N": 50,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 28,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Kalmar",
+                  "yRound": 28,
+                  "y": 28,
+                  "color": "#00b3f6",
+                  "name": "Kalmar"
+                },
+                {
+                  "period": 1,
+                  "ind": 26.8041237113402,
+                  "lower": 18.3150513867765,
+                  "upper": 36.7583969880107,
+                  "n": "26 av 97",
+                  "N": 97,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 26.8041237113402,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Skåne",
+                  "yRound": 27,
+                  "y": 26.8041237113402,
+                  "color": "#00b3f6",
+                  "name": "Skåne"
+                },
+                {
+                  "period": 1,
+                  "ind": 26.3157894736842,
+                  "lower": 9.14657849076665,
+                  "upper": 51.2029345345873,
+                  "n": "5 av 19",
+                  "N": 19,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 26.3157894736842,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Södermanland",
+                  "yRound": 26,
+                  "y": 26.3157894736842,
+                  "color": "#00b3f6",
+                  "name": "Södermanland"
+                },
+                {
+                  "period": 1,
+                  "ind": 24.6031746031746,
+                  "lower": 17.3692860642207,
+                  "upper": 33.0683445114965,
+                  "n": "31 av 126",
+                  "N": 126,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 24.6031746031746,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Västra Götaland",
+                  "yRound": 25,
+                  "y": 24.6031746031746,
+                  "color": "#00b3f6",
+                  "name": "Västra Götaland"
+                },
+                {
+                  "period": 1,
+                  "ind": 24.0740740740741,
+                  "lower": 13.4863421272461,
+                  "upper": 37.640524583401,
+                  "n": "13 av 54",
+                  "N": 54,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 24.0740740740741,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Stockholm",
+                  "yRound": 24,
+                  "y": 24.0740740740741,
+                  "color": "#00b3f6",
+                  "name": "Stockholm"
+                },
+                {
+                  "period": 1,
+                  "ind": 23.0769230769231,
+                  "lower": 8.97401108845752,
+                  "upper": 43.6475096941387,
+                  "n": "6 av 26",
+                  "N": 26,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 23.0769230769231,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Jämtland",
+                  "yRound": 23,
+                  "y": 23.0769230769231,
+                  "color": "#00b3f6",
+                  "name": "Jämtland"
+                },
+                {
+                  "period": 1,
+                  "ind": 21.4285714285714,
+                  "lower": 8.29606123876385,
+                  "upper": 40.9531026505828,
+                  "n": "6 av 28",
+                  "N": 28,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 21.4285714285714,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Gävleborg",
+                  "yRound": 21,
+                  "y": 21.4285714285714,
+                  "color": "#00b3f6",
+                  "name": "Gävleborg"
+                },
+                {
+                  "period": 1,
+                  "ind": 20,
+                  "lower": 6.8311464012484,
+                  "upper": 40.7037432278677,
+                  "n": "5 av 25",
+                  "N": 25,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 20,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Västmanland",
+                  "yRound": 20,
+                  "y": 20,
+                  "color": "#00b3f6",
+                  "name": "Västmanland"
+                },
+                {
+                  "period": 1,
+                  "ind": 20,
+                  "lower": 4.33120051058366,
+                  "upper": 48.0891133806853,
+                  "n": "3 av 15",
+                  "N": 15,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 20,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Östergötland",
+                  "yRound": 20,
+                  "y": 20,
+                  "color": "#00b3f6",
+                  "name": "Östergötland"
+                },
+                {
+                  "period": 1,
+                  "ind": 17.3913043478261,
+                  "lower": 4.95076453057934,
+                  "upper": 38.7811889954797,
+                  "n": "4 av 23",
+                  "N": 23,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 17.3913043478261,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Värmland",
+                  "yRound": 17,
+                  "y": 17.3913043478261,
+                  "color": "#00b3f6",
+                  "name": "Värmland"
+                },
+                {
+                  "period": 1,
+                  "ind": 16,
+                  "lower": 4.53794523717096,
+                  "upper": 36.0828454459272,
+                  "n": "4 av 25",
+                  "N": 25,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 16,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Uppsala",
+                  "yRound": 16,
+                  "y": 16,
+                  "color": "#00b3f6",
+                  "name": "Uppsala"
+                },
+                {
+                  "period": 1,
+                  "ind": 12.5,
+                  "lower": 3.51306531033114,
+                  "upper": 28.9948420190756,
+                  "n": "4 av 32",
+                  "N": 32,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 12.5,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Sydöstra",
+                  "yRound": 12,
+                  "y": 12.5,
+                  "color": "#00b3f6",
+                  "name": "Övriga/privat - Sydöstra"
+                },
+                {
+                  "period": 1,
+                  "ind": 11.5384615384615,
+                  "lower": 2.44580753179622,
+                  "upper": 30.1540400107568,
+                  "n": "3 av 26",
+                  "N": 26,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 11.5384615384615,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Norrbotten",
+                  "yRound": 12,
+                  "y": 11.5384615384615,
+                  "color": "#00b3f6",
+                  "name": "Norrbotten"
+                }
+              ],
+              "type": "bar",
+              "name": 1,
+              "showInLegend": true,
+              "color": "#00b3f6"
+            }
+          ]
+        },
+        "theme": {
+          "chart": {
+            "backgroundColor": "transparent"
+          },
+          "colors": [
+            "#7cb5ec",
+            "#434348",
+            "#90ed7d",
+            "#f7a35c",
+            "#8085e9",
+            "#f15c80",
+            "#e4d354",
+            "#2b908f",
+            "#f45b5b",
+            "#91e8e1"
+          ]
+        },
+        "conf_opts": {
+          "global": {
+            "Date": null,
+            "VMLRadialGradientURL": "http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png",
+            "canvasToolsURL": "http =//code.highcharts.com/list(version)/modules/canvas-tools.js",
+            "getTimezoneOffset": null,
+            "timezoneOffset": 0,
+            "useUTC": true
+          },
+          "lang": {
+            "contextButtonTitle": "Chart context menu",
+            "decimalPoint": ".",
+            "downloadJPEG": "Download JPEG image",
+            "downloadPDF": "Download PDF document",
+            "downloadPNG": "Download PNG image",
+            "downloadSVG": "Download SVG vector image",
+            "drillUpText": "Back to {series.name}",
+            "invalidDate": null,
+            "loading": "Loading...",
+            "months": [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December"
+            ],
+            "noData": "No data to display",
+            "numericSymbols": [
+              "k",
+              "M",
+              "G",
+              "T",
+              "P",
+              "E"
+            ],
+            "printChart": "Print chart",
+            "resetZoom": "Reset zoom",
+            "resetZoomTitle": "Reset zoom level 1:1",
+            "shortMonths": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "thousandsSep": " ",
+            "weekdays": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ]
+          }
+        },
+        "type": "chart",
+        "fonts": [
+
+        ],
+        "debug": false
+      },
+      "evals": [
+        "hc_opts.xAxis.labels.formatter"
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "indTable": {
+      "x": {
+        "filter": "none",
+        "extensions": [
+          "Buttons"
+        ],
+        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>Täljare<\/th>\n      <th>Nämnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "options": {
+          "columnDefs": [
+            {
+              "className": "dt-left",
+              "targets": 0
+            },
+            {
+              "className": "dt-right",
+              "targets": [
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          ],
+          "language": {
+            "emptyTable": "Ej tillräckligt med observationer för aktuellt urval"
+          },
+          "searching": true,
+          "paging": false,
+          "dom": "Bfrtip",
+          "scrollX": true,
+          "buttons": [
+            {
+              "extend": "excel",
+              "filename": "Dikotom",
+              "title": "Dikotom"
+            },
+            {
+              "extend": "pdf",
+              "filename": "Dikotom",
+              "title": "Dikotom"
+            },
+            {
+              "extend": "print",
+              "title": "Dikotom"
+            }
+          ],
+          "order": [
+
+          ],
+          "autoWidth": false,
+          "orderClasses": false,
+          "ajax": {
+            "type": "POST",
+            "data": "function(d) {\nd.search.caseInsensitive = true;\nd.search.smart = true;\nd.escape = true;\nvar encodeAmp = function(x) { x.value = x.value.replace(/&/g, \"%26\"); }\nencodeAmp(d.search);\n$.each(d.columns, function(i, v) {encodeAmp(v.search);});\n}"
+          },
+          "serverSide": true,
+          "processing": true
+        },
+        "selection": {
+          "mode": "multiple",
+          "selected": null,
+          "target": "row",
+          "selectable": null
+        }
+      },
+      "evals": [
+        "options.ajax.data"
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "dt-core",
+          "version": "1.10.20",
+          "src": {
+            "href": "dt-core-1.10.20"
+          },
+          "meta": null,
+          "script": "js/jquery.dataTables.min.js",
+          "stylesheet": [
+            "css/jquery.dataTables.min.css",
+            "css/jquery.dataTables.extra.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "jszip",
+          "version": "1.10.20",
+          "src": {
+            "href": "jszip-1.10.20"
+          },
+          "meta": null,
+          "script": "jszip.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "pdfmake",
+          "version": "1.10.20",
+          "src": {
+            "href": "pdfmake-1.10.20"
+          },
+          "meta": null,
+          "script": [
+            "pdfmake.js",
+            "vfs_fonts.js"
+          ],
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "dt-ext-buttons",
+          "version": "1.10.20",
+          "src": {
+            "href": "dt-ext-buttons-1.10.20"
+          },
+          "meta": null,
+          "script": [
+            "js/dataTables.buttons.min.js",
+            "js/buttons.flash.min.js",
+            "js/buttons.html5.min.js",
+            "js/buttons.colVis.min.js",
+            "js/buttons.print.min.js"
+          ],
+          "stylesheet": "css/buttons.dataTables.min.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "jquery",
+          "version": "1.11.3",
+          "src": {
+            "href": "jquery-1.11.3"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.1.0.1",
+          "src": {
+            "href": "crosstalk-1.1.0.1"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "levelpresentInput": {
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "numericTypeInput": {
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_numerictype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label\" for=\"param_numerictype\">Redovisning<\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_numerictype\" value=\"Median (dagar)\" checked=\"checked\"/>\n          <span>Median (dagar)<\/span>\n        <\/label>\n      <\/div>\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_numerictype\" value=\"Andel inom ... dagar\"/>\n          <span>Andel inom ... dagar<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "numericTypePropInput": {
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label shiny-label-null\" for=\"param_numerictype_prop\"><\/label>\n    <input id=\"param_numerictype_prop\" type=\"number\" class=\"form-control\" value=\"30\" min=\"0\" max=\"1000\" step=\"1\"/>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "outcomeInput": {
+      "html": "<div data-display-if=\"true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_outcome\">Variabel<\/label>\n    <div>\n      <select id=\"param_outcome\"><option value=\"Dikotom\" selected>Dikotom<\/option>\n<option value=\"Kontinuerlig\">Kontinuerlig<\/option>\n<option value=\"Kategorisk\">Kategorisk<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_outcome\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "ownhospitalInput": {
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 12-2-c\">Sjukhus 12-2-c<\/option>\n<option value=\"Sjukhus 13-2-a\">Sjukhus 13-2-a<\/option>\n<option value=\"Sjukhus 21-3-b\">Sjukhus 21-3-b<\/option>\n<option value=\"Sjukhus 22-3-c\">Sjukhus 22-3-c<\/option>\n<option value=\"Sjukhus 23-3-a\">Sjukhus 23-3-a<\/option>\n<option value=\"Sjukhus 24-3-b\">Sjukhus 24-3-b<\/option>\n<option value=\"Sjukhus 25-3-c\">Sjukhus 25-3-c<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 27-4-b\">Sjukhus 27-4-b<\/option>\n<option value=\"Sjukhus 28-4-c\">Sjukhus 28-4-c<\/option>\n<option value=\"Sjukhus 30-4-a\">Sjukhus 30-4-a<\/option>\n<option value=\"Sjukhus 41-4-b\">Sjukhus 41-4-b<\/option>\n<option value=\"Sjukhus 42-4-c\">Sjukhus 42-4-c<\/option>\n<option value=\"Sjukhus 42-5-a\">Sjukhus 42-5-a<\/option>\n<option value=\"Sjukhus 50-5-b\">Sjukhus 50-5-b<\/option>\n<option value=\"Sjukhus 51-5-c\">Sjukhus 51-5-c<\/option>\n<option value=\"Sjukhus 52-5-a\">Sjukhus 52-5-a<\/option>\n<option value=\"Sjukhus 53-5-b\">Sjukhus 53-5-b<\/option>\n<option value=\"Sjukhus 54-2-c\">Sjukhus 54-2-c<\/option>\n<option value=\"Sjukhus 55-2-a\">Sjukhus 55-2-a<\/option>\n<option value=\"Sjukhus 56-2-b\">Sjukhus 56-2-b<\/option>\n<option value=\"Sjukhus 57-2-c\">Sjukhus 57-2-c<\/option>\n<option value=\"Sjukhus 61-2-a\">Sjukhus 61-2-a<\/option>\n<option value=\"Sjukhus 62-6-b\">Sjukhus 62-6-b<\/option>\n<option value=\"Sjukhus 63-6-c\">Sjukhus 63-6-c<\/option>\n<option value=\"Sjukhus 64-6-a\">Sjukhus 64-6-a<\/option>\n<option value=\"Sjukhus 65-6-b\">Sjukhus 65-6-b<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option>\n<option value=\"Sjukhus 92-2-a\">Sjukhus 92-2-a<\/option>\n<option value=\"Sjukhus 93-3-b\">Sjukhus 93-3-b<\/option>\n<option value=\"Sjukhus 94-4-c\">Sjukhus 94-4-c<\/option>\n<option value=\"Sjukhus 95-5-a\">Sjukhus 95-5-a<\/option>\n<option value=\"Sjukhus 96-6-b\">Sjukhus 96-6-b<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "periodInputQuarter": {
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "ionrangeslider",
+          "version": "2.1.6",
+          "src": {
+            "href": "shared/ionrangeslider"
+          },
+          "meta": null,
+          "script": "js/ion.rangeSlider.min.js",
+          "stylesheet": [
+            "css/ion.rangeSlider.css",
+            "css/ion.rangeSlider.skinShiny.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "strftime",
+          "version": "0.9.2",
+          "src": {
+            "href": "shared/strftime"
+          },
+          "meta": null,
+          "script": "strftime-min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "shinyWidgets",
+          "version": "0.5.4",
+          "src": {
+            "href": "shinyWidgets"
+          },
+          "meta": null,
+          "script": "shinyWidgets-bindings.min.js",
+          "stylesheet": "shinyWidgets.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        }
+      ]
+    },
+    "periodInputYear": {
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;År&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "ionrangeslider",
+          "version": "2.1.6",
+          "src": {
+            "href": "shared/ionrangeslider"
+          },
+          "meta": null,
+          "script": "js/ion.rangeSlider.min.js",
+          "stylesheet": [
+            "css/ion.rangeSlider.css",
+            "css/ion.rangeSlider.skinShiny.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "strftime",
+          "version": "0.9.2",
+          "src": {
+            "href": "shared/strftime"
+          },
+          "meta": null,
+          "script": "strftime-min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "periodSplitInput": {
+      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "periodTypeInput": {
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"År\" checked=\"checked\"/>\n          <span>År<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "regionInput": {
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.11.2",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "text0": "Dikotom",
+    "text1": "Period: <strong>2016<\/strong>. ",
+    "text2": "Stadium: <strong>I<\/strong>. ",
+    "theTabs": {
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"5380\">\n      <li class=\"active\">\n        <a href=\"#tab-5380-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"5380\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-5380-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-5380-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-5380-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-5380-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-5380-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "font-awesome",
+          "version": "5.13.0",
+          "src": {
+            "href": "font-awesome-5.13.0"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": [
+            "css/all.min.css",
+            "css/v4-shims.min.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "htmlwidgets",
+          "version": "1.5.2",
+          "src": {
+            "href": "htmlwidgets-1.5.2"
+          },
+          "meta": null,
+          "script": "htmlwidgets.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "jquery",
+          "version": "3.5.0",
+          "src": {
+            "href": "jquery-3.5.0"
+          },
+          "meta": null,
+          "script": "jquery.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "proj4js",
+          "version": "2.3.15",
+          "src": {
+            "href": "proj4js-2.3.15"
+          },
+          "meta": null,
+          "script": "proj4.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "highcharts",
+          "version": "8.1.2",
+          "src": {
+            "href": "highcharts-8.1.2"
+          },
+          "meta": null,
+          "script": [
+            "highcharts.js",
+            "highcharts-3d.js",
+            "highcharts-more.js",
+            "modules/stock.js",
+            "modules/map.js",
+            "modules/annotations.js",
+            "modules/data.js",
+            "modules/drilldown.js",
+            "modules/item-series.js",
+            "modules/offline-exporting.js",
+            "modules/overlapping-datalabels.js",
+            "modules/exporting.js",
+            "modules/export-data.js",
+            "modules/funnel.js",
+            "modules/heatmap.js",
+            "modules/treemap.js",
+            "modules/sankey.js",
+            "modules/dependency-wheel.js",
+            "modules/organization.js",
+            "modules/solid-gauge.js",
+            "modules/streamgraph.js",
+            "modules/sunburst.js",
+            "modules/vector.js",
+            "modules/wordcloud.js",
+            "modules/xrange.js",
+            "modules/tilemap.js",
+            "modules/venn.js",
+            "modules/gantt.js",
+            "modules/timeline.js",
+            "modules/parallel-coordinates.js",
+            "modules/bullet.js",
+            "modules/coloraxis.js",
+            "modules/dumbbell.js",
+            "modules/lollipop.js",
+            "modules/series-label.js",
+            "plugins/motion.js",
+            "custom/reset.js",
+            "modules/boost.js"
+          ],
+          "stylesheet": "css/motion.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "highchart-binding",
+          "version": "0.8.2",
+          "src": {
+            "href": "highchart-binding-0.8.2"
+          },
+          "meta": null,
+          "script": "highchart.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "datatables-css",
+          "version": "0.0.0",
+          "src": {
+            "href": "datatables-css-0.0.0"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "datatables-crosstalk.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "datatables-binding",
+          "version": "0.15",
+          "src": {
+            "href": "datatables-binding-0.15"
+          },
+          "meta": null,
+          "script": "datatables.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "crosstalk",
+          "version": "1.1.0.1",
+          "src": {
+            "href": "crosstalk-1.1.0.1"
+          },
+          "meta": null,
+          "script": "js/crosstalk.min.js",
+          "stylesheet": "css/crosstalk.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "userInput": {
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInputId1\">Alder vid diagnos<\/label>\n  <input class=\"js-range-slider\" id=\"userInputId1\" data-type=\"double\" data-min=\"18\" data-max=\"99\" data-from=\"18\" data-to=\"99\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n<\/div>\n<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInputId2\">Stadium<\/label>\n  <select data-actions-box=\"true\" data-deselect-all-text=\"Avmarkera alla\" data-select-all-text=\"Markera alla\" data-none-selected-text=\"-\" data-width=\"100%\" id=\"userInputId2\" class=\"selectpicker form-control\" multiple=\"multiple\"><option value=\"I\" selected>I<\/option>\n<option value=\"II\">II<\/option><\/select>\n<\/div>",
+      "deps": [
+        {
+          "name": "ionrangeslider",
+          "version": "2.1.6",
+          "src": {
+            "href": "shared/ionrangeslider"
+          },
+          "meta": null,
+          "script": "js/ion.rangeSlider.min.js",
+          "stylesheet": [
+            "css/ion.rangeSlider.css",
+            "css/ion.rangeSlider.skinShiny.css"
+          ],
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "strftime",
+          "version": "0.9.2",
+          "src": {
+            "href": "shared/strftime"
+          },
+          "meta": null,
+          "script": "strftime-min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
+          "name": "shinyWidgets",
+          "version": "0.5.4",
+          "src": {
+            "href": "shinyWidgets"
+          },
+          "meta": null,
+          "script": "shinyWidgets-bindings.min.js",
+          "stylesheet": "shinyWidgets.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
+        {
+          "name": "bootstrap-select",
+          "version": "1.13.18",
+          "src": {
+            "href": "shinyWidgets/bootstrap-select"
+          },
+          "meta": null,
+          "script": "js/bootstrap-select.min.js",
+          "stylesheet": "css/bootstrap-select.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
