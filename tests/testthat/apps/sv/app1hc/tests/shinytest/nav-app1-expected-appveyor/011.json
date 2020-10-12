@@ -71,33 +71,42 @@
     "indTable_search": "",
     "indTable_state": null,
     "param_funnelplot": false,
-    "param_levelpresent": "Region",
+    "param_levelpresent": "Sjukhus",
     "param_numerictype": "Median (dagar)",
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
-    "param_ownhospital": "",
+    "param_ownhospital": "Sjukhus 10-1-a",
+    "param_periodSplit": true,
     "param_period_quarter": [
       2012,
       2016
     ],
     "param_period_year": [
-      2016,
+      2012,
       2016
     ],
-    "param_periodSplit": false,
     "param_periodtype": "År",
-    "param_region": "Alla",
+    "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
     "sidebarItemExpanded": null,
-    "tab": "fig_map",
+    "tab": "fig_compare",
     "userInputId1": [
       18,
-      99
+      80
     ],
-    "userInputId2": "I"
+    "userInputId2": [
+      "I",
+      "II"
+    ]
   },
   "output": {
     "comment": null,
+    "description": {
+      "html": "<p><\/p><p><b>Om indikatorn<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Har beskrivs indikatorn.<\/div><p><b>Att tänka på vid tolkning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Viktig information!<p><\/p>Resultat från grupper med färre än 5 fall redovisas ej separat. <\/div><p><b>Teknisk beskrivning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Information om variabler etc.<\/div>",
+      "deps": [
+
+      ]
+    },
     "funnelPlotInput": {
       "html": "<div data-display-if=\"input.tab==&#39;fig_compare&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_funnelplot\" type=\"checkbox\"/>\n        <span>Funnel plot<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
@@ -8214,107 +8223,107 @@
               "data": [
                 {
                   "key": "Blekinge",
-                  "value": 33.3,
+                  "value": 34.2,
                   "keyCode": "se-bl"
                 },
                 {
                   "key": "Dalarna",
-                  "value": 45.8,
+                  "value": 34.5,
                   "keyCode": "se-ko"
                 },
                 {
                   "key": "Gotland",
-                  "value": 29,
+                  "value": 24.1,
                   "keyCode": "se-gt"
                 },
                 {
                   "key": "Gävleborg",
-                  "value": 21.4,
+                  "value": 34.7,
                   "keyCode": "se-gv"
                 },
                 {
                   "key": "Halland",
-                  "value": 36.4,
+                  "value": 36.7,
                   "keyCode": "se-ha"
                 },
                 {
                   "key": "Jämtland",
-                  "value": 23.1,
+                  "value": 27,
                   "keyCode": "se-ja"
                 },
                 {
                   "key": "Jönköping",
-                  "value": 31.8,
+                  "value": 33.6,
                   "keyCode": "se-jo"
                 },
                 {
                   "key": "Kalmar",
-                  "value": 28,
+                  "value": 32,
                   "keyCode": "se-ka"
                 },
                 {
                   "key": "Kronoberg",
-                  "value": 38.1,
+                  "value": 28.4,
                   "keyCode": "se-kr"
                 },
                 {
                   "key": "Norrbotten",
-                  "value": 11.5,
+                  "value": 31.3,
                   "keyCode": "se-nb"
                 },
                 {
                   "key": "Orebro",
-                  "value": 28.9,
+                  "value": 26.4,
                   "keyCode": "se-or"
                 },
                 {
                   "key": "Skåne",
-                  "value": 26.8,
+                  "value": 31.8,
                   "keyCode": "se-sn"
                 },
                 {
                   "key": "Stockholm",
-                  "value": 24.1,
+                  "value": 30.2,
                   "keyCode": "se-st"
                 },
                 {
                   "key": "Södermanland",
-                  "value": 26.3,
+                  "value": 29.3,
                   "keyCode": "se-sd"
                 },
                 {
                   "key": "Uppsala",
-                  "value": 16,
+                  "value": 26.4,
                   "keyCode": "se-up"
                 },
                 {
                   "key": "Värmland",
-                  "value": 17.4,
+                  "value": 26.1,
                   "keyCode": "se-vr"
                 },
                 {
                   "key": "Västerbotten",
-                  "value": 41.4,
+                  "value": 29.5,
                   "keyCode": "se-vb"
                 },
                 {
                   "key": "Västernorrland",
-                  "value": 32.3,
+                  "value": 28.9,
                   "keyCode": "se-vn"
                 },
                 {
                   "key": "Västmanland",
-                  "value": 20,
+                  "value": 24.6,
                   "keyCode": "se-vm"
                 },
                 {
                   "key": "Västra Götaland",
-                  "value": 24.6,
+                  "value": 32.7,
                   "keyCode": "se-vg"
                 },
                 {
                   "key": "Östergötland",
-                  "value": 20,
+                  "value": 28.5,
                   "keyCode": "se-og"
                 }
               ],
@@ -8515,7 +8524,7 @@
               "layoutAlgorithm": "squarified"
             },
             "bar": {
-              "pointPadding": 0.1,
+              "pointPadding": -0.2,
               "groupPadding": 0.15,
               "borderColor": "#7f7f7f",
               "events": {
@@ -8525,34 +8534,12 @@
           },
           "xAxis": {
             "categories": [
-              "Övriga/privat - Södra",
-              "Dalarna",
-              "Övriga/privat - Stockholm-Gotland",
-              "Västerbotten",
-              "Kronoberg",
-              "Övriga/privat - Västra",
-              "Halland",
-              "Blekinge",
-              "Övriga/privat - Uppsala-Örebro",
-              "Västernorrland",
-              "Jönköping",
-              "Övriga/privat - Norra",
-              "Gotland",
-              "Örebro",
+              "Sjukhus 26-1-a",
+              "Sjukhus 91-1-c",
+              "Stockholm-Gotland",
               "RIKET",
-              "Kalmar",
-              "Skåne",
-              "Södermanland",
-              "Västra Götaland",
-              "Stockholm",
-              "Jämtland",
-              "Gävleborg",
-              "Västmanland",
-              "Östergötland",
-              "Värmland",
-              "Uppsala",
-              "Övriga/privat - Sydöstra",
-              "Norrbotten"
+              "Sjukhus 10-1-a",
+              "Sjukhus 11-1-b"
             ],
             "labels": {
               "formatter": "function() {\nvar tempColor = '#000000';\nvar tempString = this.value.toString();\nif (tempString.substr(0, 8) == '_(hide)_') {tempColor = '#7f7f7f'; tempString = tempString.replace('_(hide)_', '');}\nreturn '<span style = \"color: ' + tempColor + '; font-size: 12px;\">' + tempString + '<\/span>';\n}",
@@ -8560,11 +8547,11 @@
             },
             "tickWidth": 0,
             "floor": 0,
-            "ceiling": 27,
+            "ceiling": 5,
             "lineColor": "#bdbdbd"
           },
           "legend": {
-            "enabled": false,
+            "enabled": true,
             "symbolHeight": 10,
             "symbolWidth": 10,
             "symbolRadius": 0,
@@ -8578,7 +8565,7 @@
           "tooltip": {
             "shared": true,
             "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
-            "pointFormat": "<span style='color:{point.color}'>¦<\/span> <span style='font-size: 10px'><b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>¦<\/span> <span style='font-size: 10px'>{series.name}: <b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -8587,254 +8574,471 @@
               "group": "group",
               "data": [
                 {
-                  "period": 1,
-                  "ind": 50,
-                  "lower": 31.8874964234164,
-                  "upper": 68.1125035765836,
-                  "n": "16 av 32",
-                  "N": 32,
+                  "period": 2012,
+                  "ind": 23.8095238095238,
+                  "lower": 12.051618649218,
+                  "upper": 39.4502429021576,
+                  "n": "10 av 42",
+                  "N": 42,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 50,
-                  "col": "#00b3f6",
+                  "ind_sort": 23.8095238095238,
+                  "col": "#ecebea",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Södra",
-                  "yRound": 50,
-                  "y": 50,
-                  "color": "#00b3f6",
-                  "name": "Övriga/privat - Södra"
+                  "groupOriginal": "Sjukhus 26-1-a",
+                  "yRound": 24,
+                  "y": 23.8095238095238,
+                  "color": "#ecebea",
+                  "name": "Sjukhus 26-1-a"
                 },
                 {
-                  "period": 1,
-                  "ind": 45.8333333333333,
-                  "lower": 25.5530201994746,
-                  "upper": 67.1791924304822,
-                  "n": "11 av 24",
-                  "N": 24,
+                  "period": 2012,
+                  "ind": 23.9130434782609,
+                  "lower": 12.5861394822569,
+                  "upper": 38.7668910114072,
+                  "n": "11 av 46",
+                  "N": 46,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 45.8333333333333,
-                  "col": "#00b3f6",
+                  "ind_sort": 23.9130434782609,
+                  "col": "#ecebea",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Dalarna",
-                  "yRound": 46,
-                  "y": 45.8333333333333,
-                  "color": "#00b3f6",
-                  "name": "Dalarna"
+                  "groupOriginal": "Sjukhus 91-1-c",
+                  "yRound": 24,
+                  "y": 23.9130434782609,
+                  "color": "#ecebea",
+                  "name": "Sjukhus 91-1-c"
                 },
                 {
-                  "period": 1,
-                  "ind": 42.3076923076923,
-                  "lower": 23.3521983127443,
-                  "upper": 63.0819619076033,
-                  "n": "11 av 26",
-                  "N": 26,
+                  "period": 2012,
+                  "ind": 28.5714285714286,
+                  "lower": 21.8774128709465,
+                  "upper": 36.0385689512161,
+                  "n": "48 av 168",
+                  "N": 168,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 42.3076923076923,
-                  "col": "#00b3f6",
+                  "ind_sort": 28.5714285714286,
+                  "col": "#ecebea",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Stockholm-Gotland",
-                  "yRound": 42,
-                  "y": 42.3076923076923,
-                  "color": "#00b3f6",
-                  "name": "Övriga/privat - Stockholm-Gotland"
+                  "groupOriginal": "Stockholm-Gotland",
+                  "yRound": 29,
+                  "y": 28.5714285714286,
+                  "color": "#ecebea",
+                  "name": "Stockholm-Gotland"
                 },
                 {
-                  "period": 1,
-                  "ind": 41.3793103448276,
-                  "lower": 23.5240209752899,
-                  "upper": 61.0637208603094,
-                  "n": "12 av 29",
-                  "N": 29,
+                  "period": 2012,
+                  "ind": 31.1621966794381,
+                  "lower": 28.8734362576987,
+                  "upper": 33.5218007709157,
+                  "n": "488 av 1566",
+                  "N": 1566,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 41.3793103448276,
-                  "col": "#00b3f6",
+                  "ind_sort": 31.1621966794381,
+                  "col": "#ecebea",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Västerbotten",
-                  "yRound": 41,
-                  "y": 41.3793103448276,
-                  "color": "#00b3f6",
-                  "name": "Västerbotten"
+                  "groupOriginal": "RIKET",
+                  "yRound": 31,
+                  "y": 31.1621966794381,
+                  "color": "#ecebea",
+                  "name": "RIKET"
                 },
                 {
-                  "period": 1,
-                  "ind": 38.0952380952381,
-                  "lower": 18.1071625540173,
-                  "upper": 61.5645609621354,
-                  "n": "8 av 21",
-                  "N": 21,
+                  "period": 2012,
+                  "ind": 29.5454545454545,
+                  "lower": 16.7643981228676,
+                  "upper": 45.2021848084055,
+                  "n": "13 av 44",
+                  "N": 44,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 38.0952380952381,
-                  "col": "#00b3f6",
+                  "ind_sort": 29.5454545454545,
+                  "col": "#ecebea",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Kronoberg",
-                  "yRound": 38,
-                  "y": 38.0952380952381,
-                  "color": "#00b3f6",
-                  "name": "Kronoberg"
+                  "groupOriginal": "Sjukhus 10-1-a",
+                  "yRound": 30,
+                  "y": 29.5454545454545,
+                  "color": "#ecebea",
+                  "name": "Sjukhus 10-1-a"
                 },
                 {
-                  "period": 1,
-                  "ind": 37.9310344827586,
-                  "lower": 20.6868699486507,
-                  "upper": 57.7395359335599,
-                  "n": "11 av 29",
-                  "N": 29,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 37.9310344827586,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Västra",
-                  "yRound": 38,
-                  "y": 37.9310344827586,
-                  "color": "#00b3f6",
-                  "name": "Övriga/privat - Västra"
-                },
-                {
-                  "period": 1,
-                  "ind": 36.3636363636364,
-                  "lower": 23.8138379213483,
-                  "upper": 50.4368545088014,
-                  "n": "20 av 55",
-                  "N": 55,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 36.3636363636364,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Halland",
-                  "yRound": 36,
-                  "y": 36.3636363636364,
-                  "color": "#00b3f6",
-                  "name": "Halland"
-                },
-                {
-                  "period": 1,
-                  "ind": 33.3333333333333,
-                  "lower": 17.2874221526039,
-                  "upper": 52.812004478988,
-                  "n": "10 av 30",
-                  "N": 30,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 33.3333333333333,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Blekinge",
-                  "yRound": 33,
-                  "y": 33.3333333333333,
-                  "color": "#00b3f6",
-                  "name": "Blekinge"
-                },
-                {
-                  "period": 1,
-                  "ind": 33.3333333333333,
-                  "lower": 18.5561809825921,
-                  "upper": 50.9702546651891,
-                  "n": "12 av 36",
+                  "period": 2012,
+                  "ind": 38.8888888888889,
+                  "lower": 23.1424401662143,
+                  "upper": 56.5361952551575,
+                  "n": "14 av 36",
                   "N": 36,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 33.3333333333333,
-                  "col": "#00b3f6",
+                  "ind_sort": 38.8888888888889,
+                  "col": "#ecebea",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
-                  "yRound": 33,
-                  "y": 33.3333333333333,
-                  "color": "#00b3f6",
-                  "name": "Övriga/privat - Uppsala-Örebro"
-                },
+                  "groupOriginal": "Sjukhus 11-1-b",
+                  "yRound": 39,
+                  "y": 38.8888888888889,
+                  "color": "#ecebea",
+                  "name": "Sjukhus 11-1-b"
+                }
+              ],
+              "type": "bar",
+              "name": 2012,
+              "showInLegend": true,
+              "color": "#ecebea"
+            },
+            {
+              "group": "group",
+              "data": [
                 {
-                  "period": 1,
-                  "ind": 32.258064516129,
-                  "lower": 16.682363742296,
-                  "upper": 51.372982959275,
-                  "n": "10 av 31",
-                  "N": 31,
+                  "period": 2013,
+                  "ind": 29.5454545454545,
+                  "lower": 16.7643981228676,
+                  "upper": 45.2021848084055,
+                  "n": "13 av 44",
+                  "N": 44,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 32.258064516129,
-                  "col": "#00b3f6",
+                  "ind_sort": 29.5454545454545,
+                  "col": "#dad7d5",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Västernorrland",
-                  "yRound": 32,
-                  "y": 32.258064516129,
-                  "color": "#00b3f6",
-                  "name": "Västernorrland"
-                },
-                {
-                  "period": 1,
-                  "ind": 31.8181818181818,
-                  "lower": 13.8646521553798,
-                  "upper": 54.8724427573771,
-                  "n": "7 av 22",
-                  "N": 22,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 31.8181818181818,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Jönköping",
-                  "yRound": 32,
-                  "y": 31.8181818181818,
-                  "color": "#00b3f6",
-                  "name": "Jönköping"
-                },
-                {
-                  "period": 1,
-                  "ind": 30,
-                  "lower": 14.7345184754701,
-                  "upper": 49.3959041462554,
-                  "n": "9 av 30",
-                  "N": 30,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 30,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Norra",
+                  "groupOriginal": "Sjukhus 26-1-a",
                   "yRound": 30,
-                  "y": 30,
-                  "color": "#00b3f6",
-                  "name": "Övriga/privat - Norra"
+                  "y": 29.5454545454545,
+                  "color": "#dad7d5",
+                  "name": "Sjukhus 26-1-a"
                 },
                 {
-                  "period": 1,
-                  "ind": 29.0322580645161,
-                  "lower": 14.2228529097525,
-                  "upper": 48.0360658228909,
-                  "n": "9 av 31",
-                  "N": 31,
+                  "period": 2013,
+                  "ind": 26.8292682926829,
+                  "lower": 14.2213003340871,
+                  "upper": 42.9444705266082,
+                  "n": "11 av 41",
+                  "N": 41,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 29.0322580645161,
-                  "col": "#00b3f6",
+                  "ind_sort": 26.8292682926829,
+                  "col": "#dad7d5",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Gotland",
-                  "yRound": 29,
-                  "y": 29.0322580645161,
-                  "color": "#00b3f6",
-                  "name": "Gotland"
+                  "groupOriginal": "Sjukhus 91-1-c",
+                  "yRound": 27,
+                  "y": 26.8292682926829,
+                  "color": "#dad7d5",
+                  "name": "Sjukhus 91-1-c"
                 },
                 {
-                  "period": 1,
+                  "period": 2013,
+                  "ind": 32.5714285714286,
+                  "lower": 25.6924089283768,
+                  "upper": 40.0525902589342,
+                  "n": "57 av 175",
+                  "N": 175,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 32.5714285714286,
+                  "col": "#dad7d5",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Stockholm-Gotland",
+                  "yRound": 33,
+                  "y": 32.5714285714286,
+                  "color": "#dad7d5",
+                  "name": "Stockholm-Gotland"
+                },
+                {
+                  "period": 2013,
+                  "ind": 30.0593276203032,
+                  "lower": 27.7594773785079,
+                  "upper": 32.4366253886506,
+                  "n": "456 av 1517",
+                  "N": 1517,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 30.0593276203032,
+                  "col": "#dad7d5",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "RIKET",
+                  "yRound": 30,
+                  "y": 30.0593276203032,
+                  "color": "#dad7d5",
+                  "name": "RIKET"
+                },
+                {
+                  "period": 2013,
+                  "ind": 30.952380952381,
+                  "lower": 17.6221082641955,
+                  "upper": 47.0860628932117,
+                  "n": "13 av 42",
+                  "N": 42,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 30.952380952381,
+                  "col": "#dad7d5",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 10-1-a",
+                  "yRound": 31,
+                  "y": 30.952380952381,
+                  "color": "#dad7d5",
+                  "name": "Sjukhus 10-1-a"
+                },
+                {
+                  "period": 2013,
+                  "ind": 41.6666666666667,
+                  "lower": 27.6127423864464,
+                  "upper": 56.786828865926,
+                  "n": "20 av 48",
+                  "N": 48,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 41.6666666666667,
+                  "col": "#dad7d5",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 11-1-b",
+                  "yRound": 42,
+                  "y": 41.6666666666667,
+                  "color": "#dad7d5",
+                  "name": "Sjukhus 11-1-b"
+                }
+              ],
+              "type": "bar",
+              "name": 2013,
+              "showInLegend": true,
+              "color": "#dad7d5"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "period": 2014,
+                  "ind": 32.6086956521739,
+                  "lower": 19.5325436673894,
+                  "upper": 48.0172040637535,
+                  "n": "15 av 46",
+                  "N": 46,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 32.6086956521739,
+                  "col": "#c7c3c0",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 26-1-a",
+                  "yRound": 33,
+                  "y": 32.6086956521739,
+                  "color": "#c7c3c0",
+                  "name": "Sjukhus 26-1-a"
+                },
+                {
+                  "period": 2014,
+                  "ind": 24.5614035087719,
+                  "lower": 14.126857773596,
+                  "upper": 37.7610304801946,
+                  "n": "14 av 57",
+                  "N": 57,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 24.5614035087719,
+                  "col": "#c7c3c0",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 91-1-c",
+                  "yRound": 25,
+                  "y": 24.5614035087719,
+                  "color": "#c7c3c0",
+                  "name": "Sjukhus 91-1-c"
+                },
+                {
+                  "period": 2014,
+                  "ind": 26.9035532994924,
+                  "lower": 20.8480339722186,
+                  "upper": 33.6684396638327,
+                  "n": "53 av 197",
+                  "N": 197,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 26.9035532994924,
+                  "col": "#c7c3c0",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Stockholm-Gotland",
+                  "yRound": 27,
+                  "y": 26.9035532994924,
+                  "color": "#c7c3c0",
+                  "name": "Stockholm-Gotland"
+                },
+                {
+                  "period": 2014,
+                  "ind": 30.3107165504122,
+                  "lower": 28.0490385360713,
+                  "upper": 32.6459299182319,
+                  "n": "478 av 1577",
+                  "N": 1577,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 30.3107165504122,
+                  "col": "#c7c3c0",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "RIKET",
+                  "yRound": 30,
+                  "y": 30.3107165504122,
+                  "color": "#c7c3c0",
+                  "name": "RIKET"
+                },
+                {
+                  "period": 2014,
+                  "ind": 26.7857142857143,
+                  "lower": 15.8325248442037,
+                  "upper": 40.3020284100581,
+                  "n": "15 av 56",
+                  "N": 56,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 26.7857142857143,
+                  "col": "#c7c3c0",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 10-1-a",
+                  "yRound": 27,
+                  "y": 26.7857142857143,
+                  "color": "#c7c3c0",
+                  "name": "Sjukhus 10-1-a"
+                },
+                {
+                  "period": 2014,
+                  "ind": 23.6842105263158,
+                  "lower": 11.4441704822531,
+                  "upper": 40.2412360571491,
+                  "n": "9 av 38",
+                  "N": 38,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 23.6842105263158,
+                  "col": "#c7c3c0",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 11-1-b",
+                  "yRound": 24,
+                  "y": 23.6842105263158,
+                  "color": "#c7c3c0",
+                  "name": "Sjukhus 11-1-b"
+                }
+              ],
+              "type": "bar",
+              "name": 2014,
+              "showInLegend": true,
+              "color": "#c7c3c0"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "period": 2015,
+                  "ind": 14.2857142857143,
+                  "lower": 5.42838583787648,
+                  "upper": 28.5393841913271,
+                  "n": "6 av 42",
+                  "N": 42,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 14.2857142857143,
+                  "col": "#b5afab",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 26-1-a",
+                  "yRound": 14,
+                  "y": 14.2857142857143,
+                  "color": "#b5afab",
+                  "name": "Sjukhus 26-1-a"
+                },
+                {
+                  "period": 2015,
+                  "ind": 23.2558139534884,
+                  "lower": 11.7553571108702,
+                  "upper": 38.6308211839583,
+                  "n": "10 av 43",
+                  "N": 43,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 23.2558139534884,
+                  "col": "#b5afab",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 91-1-c",
+                  "yRound": 23,
+                  "y": 23.2558139534884,
+                  "color": "#b5afab",
+                  "name": "Sjukhus 91-1-c"
+                },
+                {
+                  "period": 2015,
+                  "ind": 23.4285714285714,
+                  "lower": 17.3677934166867,
+                  "upper": 30.4121155004872,
+                  "n": "41 av 175",
+                  "N": 175,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 23.4285714285714,
+                  "col": "#b5afab",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Stockholm-Gotland",
+                  "yRound": 23,
+                  "y": 23.4285714285714,
+                  "color": "#b5afab",
+                  "name": "Stockholm-Gotland"
+                },
+                {
+                  "period": 2015,
+                  "ind": 30.0397877984085,
+                  "lower": 27.7335811105446,
+                  "upper": 32.4239846503449,
+                  "n": "453 av 1508",
+                  "N": 1508,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 30.0397877984085,
+                  "col": "#b5afab",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "RIKET",
+                  "yRound": 30,
+                  "y": 30.0397877984085,
+                  "color": "#b5afab",
+                  "name": "RIKET"
+                },
+                {
+                  "period": 2015,
+                  "ind": 26.9230769230769,
+                  "lower": 15.5682650119077,
+                  "upper": 41.0242955459418,
+                  "n": "14 av 52",
+                  "N": 52,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 26.9230769230769,
+                  "col": "#b5afab",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 10-1-a",
+                  "yRound": 27,
+                  "y": 26.9230769230769,
+                  "color": "#b5afab",
+                  "name": "Sjukhus 10-1-a"
+                },
+                {
+                  "period": 2015,
                   "ind": 28.9473684210526,
                   "lower": 15.424628678791,
                   "upper": 45.9032066924292,
@@ -8843,284 +9047,141 @@
                   "hide": false,
                   "hideCellLessThan": false,
                   "ind_sort": 28.9473684210526,
+                  "col": "#b5afab",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 11-1-b",
+                  "yRound": 29,
+                  "y": 28.9473684210526,
+                  "color": "#b5afab",
+                  "name": "Sjukhus 11-1-b"
+                }
+              ],
+              "type": "bar",
+              "name": 2015,
+              "showInLegend": true,
+              "color": "#b5afab"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "period": 2016,
+                  "ind": 40,
+                  "lower": 26.4078395094537,
+                  "upper": 54.820597152082,
+                  "n": "20 av 50",
+                  "N": 50,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 40,
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Örebro",
-                  "yRound": 29,
-                  "y": 28.9473684210526,
+                  "groupOriginal": "Sjukhus 26-1-a",
+                  "yRound": 40,
+                  "y": 40,
                   "color": "#00b3f6",
-                  "name": "Örebro"
+                  "name": "Sjukhus 26-1-a"
                 },
                 {
-                  "period": 1,
-                  "ind": 28.6734693877551,
-                  "lower": 25.8586620202662,
-                  "upper": 31.6170388907178,
-                  "n": "281 av 980",
-                  "N": 980,
+                  "period": 2016,
+                  "ind": 34.2857142857143,
+                  "lower": 19.1324102188266,
+                  "upper": 52.2109983393521,
+                  "n": "12 av 35",
+                  "N": 35,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 28.6734693877551,
+                  "ind_sort": 34.2857142857143,
+                  "col": "#00b3f6",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 91-1-c",
+                  "yRound": 34,
+                  "y": 34.2857142857143,
+                  "color": "#00b3f6",
+                  "name": "Sjukhus 91-1-c"
+                },
+                {
+                  "period": 2016,
+                  "ind": 29.2134831460674,
+                  "lower": 22.6503307626514,
+                  "upper": 36.4835376559885,
+                  "n": "52 av 178",
+                  "N": 178,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 29.2134831460674,
+                  "col": "#19975d",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Stockholm-Gotland",
+                  "yRound": 29,
+                  "y": 29.2134831460674,
+                  "color": "#19975d",
+                  "name": "Stockholm-Gotland"
+                },
+                {
+                  "period": 2016,
+                  "ind": 29.0445859872611,
+                  "lower": 26.8080923629349,
+                  "upper": 31.3597129656233,
+                  "n": "456 av 1570",
+                  "N": 1570,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 29.0445859872611,
                   "col": "#ffb117",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
                   "groupOriginal": "RIKET",
                   "yRound": 29,
-                  "y": 28.6734693877551,
+                  "y": 29.0445859872611,
                   "color": "#ffb117",
                   "name": "RIKET"
                 },
                 {
-                  "period": 1,
-                  "ind": 28,
-                  "lower": 16.2310600707175,
-                  "upper": 42.4905357016109,
-                  "n": "14 av 50",
+                  "period": 2016,
+                  "ind": 25.5813953488372,
+                  "lower": 13.5185950288531,
+                  "upper": 41.171572108486,
+                  "n": "11 av 43",
+                  "N": 43,
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 25.5813953488372,
+                  "col": "#db5524",
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Sjukhus 10-1-a",
+                  "yRound": 26,
+                  "y": 25.5813953488372,
+                  "color": "#db5524",
+                  "name": "Sjukhus 10-1-a"
+                },
+                {
+                  "period": 2016,
+                  "ind": 18,
+                  "lower": 8.57620781096637,
+                  "upper": 31.436941128565,
+                  "n": "9 av 50",
                   "N": 50,
                   "hide": false,
                   "hideCellLessThan": false,
-                  "ind_sort": 28,
+                  "ind_sort": 18,
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Kalmar",
-                  "yRound": 28,
-                  "y": 28,
+                  "groupOriginal": "Sjukhus 11-1-b",
+                  "yRound": 18,
+                  "y": 18,
                   "color": "#00b3f6",
-                  "name": "Kalmar"
-                },
-                {
-                  "period": 1,
-                  "ind": 26.8041237113402,
-                  "lower": 18.3150513867765,
-                  "upper": 36.7583969880107,
-                  "n": "26 av 97",
-                  "N": 97,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 26.8041237113402,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Skåne",
-                  "yRound": 27,
-                  "y": 26.8041237113402,
-                  "color": "#00b3f6",
-                  "name": "Skåne"
-                },
-                {
-                  "period": 1,
-                  "ind": 26.3157894736842,
-                  "lower": 9.14657849076665,
-                  "upper": 51.2029345345873,
-                  "n": "5 av 19",
-                  "N": 19,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 26.3157894736842,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Södermanland",
-                  "yRound": 26,
-                  "y": 26.3157894736842,
-                  "color": "#00b3f6",
-                  "name": "Södermanland"
-                },
-                {
-                  "period": 1,
-                  "ind": 24.6031746031746,
-                  "lower": 17.3692860642207,
-                  "upper": 33.0683445114965,
-                  "n": "31 av 126",
-                  "N": 126,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 24.6031746031746,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Västra Götaland",
-                  "yRound": 25,
-                  "y": 24.6031746031746,
-                  "color": "#00b3f6",
-                  "name": "Västra Götaland"
-                },
-                {
-                  "period": 1,
-                  "ind": 24.0740740740741,
-                  "lower": 13.4863421272461,
-                  "upper": 37.640524583401,
-                  "n": "13 av 54",
-                  "N": 54,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 24.0740740740741,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Stockholm",
-                  "yRound": 24,
-                  "y": 24.0740740740741,
-                  "color": "#00b3f6",
-                  "name": "Stockholm"
-                },
-                {
-                  "period": 1,
-                  "ind": 23.0769230769231,
-                  "lower": 8.97401108845752,
-                  "upper": 43.6475096941387,
-                  "n": "6 av 26",
-                  "N": 26,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 23.0769230769231,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Jämtland",
-                  "yRound": 23,
-                  "y": 23.0769230769231,
-                  "color": "#00b3f6",
-                  "name": "Jämtland"
-                },
-                {
-                  "period": 1,
-                  "ind": 21.4285714285714,
-                  "lower": 8.29606123876385,
-                  "upper": 40.9531026505828,
-                  "n": "6 av 28",
-                  "N": 28,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 21.4285714285714,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Gävleborg",
-                  "yRound": 21,
-                  "y": 21.4285714285714,
-                  "color": "#00b3f6",
-                  "name": "Gävleborg"
-                },
-                {
-                  "period": 1,
-                  "ind": 20,
-                  "lower": 6.8311464012484,
-                  "upper": 40.7037432278677,
-                  "n": "5 av 25",
-                  "N": 25,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 20,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Västmanland",
-                  "yRound": 20,
-                  "y": 20,
-                  "color": "#00b3f6",
-                  "name": "Västmanland"
-                },
-                {
-                  "period": 1,
-                  "ind": 20,
-                  "lower": 4.33120051058366,
-                  "upper": 48.0891133806853,
-                  "n": "3 av 15",
-                  "N": 15,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 20,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Östergötland",
-                  "yRound": 20,
-                  "y": 20,
-                  "color": "#00b3f6",
-                  "name": "Östergötland"
-                },
-                {
-                  "period": 1,
-                  "ind": 17.3913043478261,
-                  "lower": 4.95076453057934,
-                  "upper": 38.7811889954797,
-                  "n": "4 av 23",
-                  "N": 23,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 17.3913043478261,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Värmland",
-                  "yRound": 17,
-                  "y": 17.3913043478261,
-                  "color": "#00b3f6",
-                  "name": "Värmland"
-                },
-                {
-                  "period": 1,
-                  "ind": 16,
-                  "lower": 4.53794523717096,
-                  "upper": 36.0828454459272,
-                  "n": "4 av 25",
-                  "N": 25,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 16,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Uppsala",
-                  "yRound": 16,
-                  "y": 16,
-                  "color": "#00b3f6",
-                  "name": "Uppsala"
-                },
-                {
-                  "period": 1,
-                  "ind": 12.5,
-                  "lower": 3.51306531033114,
-                  "upper": 28.9948420190756,
-                  "n": "4 av 32",
-                  "N": 32,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 12.5,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Sydöstra",
-                  "yRound": 12,
-                  "y": 12.5,
-                  "color": "#00b3f6",
-                  "name": "Övriga/privat - Sydöstra"
-                },
-                {
-                  "period": 1,
-                  "ind": 11.5384615384615,
-                  "lower": 2.44580753179622,
-                  "upper": 30.1540400107568,
-                  "n": "3 av 26",
-                  "N": 26,
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 11.5384615384615,
-                  "col": "#00b3f6",
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Norrbotten",
-                  "yRound": 12,
-                  "y": 11.5384615384615,
-                  "color": "#00b3f6",
-                  "name": "Norrbotten"
+                  "name": "Sjukhus 11-1-b"
                 }
               ],
               "type": "bar",
-              "name": 1,
+              "name": 2016,
               "showInLegend": true,
               "color": "#00b3f6"
             }
@@ -9222,6 +9283,475 @@
       },
       "evals": [
         "hc_opts.xAxis.labels.formatter"
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "indPlotTrend": {
+      "x": {
+        "hc_opts": {
+          "chart": {
+            "reflow": true,
+            "spacing": [
+              20,
+              20,
+              20,
+              20
+            ]
+          },
+          "title": {
+            "text": null
+          },
+          "yAxis": {
+            "title": {
+              "text": "Procent",
+              "style": {
+                "color": "#000000",
+                "fontWeight": "bold",
+                "fontSize": "12px"
+              }
+            },
+            "reversedStacks": false,
+            "min": 0,
+            "max": 100,
+            "tickInterval": 20,
+            "labels": {
+              "style": {
+                "color": "#000000",
+                "fontSize": "12px"
+              }
+            },
+            "tickLength": 5,
+            "tickWidth": 2,
+            "lineWidth": 2,
+            "lineColor": "#bdbdbd",
+            "gridLineColor": "#bdbdbd"
+          },
+          "credits": {
+            "enabled": false
+          },
+          "exporting": {
+            "enabled": false
+          },
+          "boost": {
+            "enabled": false
+          },
+          "plotOptions": {
+            "series": {
+              "label": {
+                "enabled": false
+              },
+              "turboThreshold": 0
+            },
+            "treemap": {
+              "layoutAlgorithm": "squarified"
+            },
+            "line": {
+              "lineWidth": 4,
+              "marker": {
+                "enabled": true,
+                "symbol": "circle",
+                "radius": 6
+              },
+              "events": {
+                "legendItemClick": "function() {return false;}"
+              }
+            },
+            "area": {
+              "stacking": "normal",
+              "lineWidth": 4,
+              "marker": {
+                "enabled": true,
+                "symbol": "circle",
+                "radius": 6
+              },
+              "events": {
+                "legendItemClick": "function() {return false;}"
+              }
+            }
+          },
+          "xAxis": {
+            "type": "category",
+            "labels": {
+              "style": {
+                "color": "#000000",
+                "fontSize": "12px"
+              }
+            },
+            "tickLength": 5,
+            "tickWidth": 2,
+            "lineWidth": 2,
+            "lineColor": "#bdbdbd",
+            "gridLineColor": "#bdbdbd",
+            "title": {
+              "text": "Period",
+              "style": {
+                "color": "#000000",
+                "fontWeight": "bold",
+                "fontSize": "12px"
+              }
+            }
+          },
+          "legend": {
+            "enabled": true,
+            "symbolHeight": 10,
+            "symbolWidth": 10,
+            "symbolRadius": 0,
+            "itemStyle": {
+              "color": "#000000",
+              "fontWeight": "normal",
+              "fontSize": "12px",
+              "cursor": "default"
+            }
+          },
+          "tooltip": {
+            "shared": true,
+            "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'><U+25CF><\/span> <span style='font-size: 10px'>{series.name}: <b>{point.y}<\/b><\/span><br>",
+            "useHTML": true,
+            "outside": true
+          },
+          "series": [
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#99b9d3",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#99b9d3",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#99b9d3",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#99b9d3",
+                  "name": "2015"
+                },
+                {
+                  "y": 28.2,
+                  "color": "#99b9d3",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Norra",
+              "showInLegend": true,
+              "color": "#99b9d3"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#f5c0ce",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#f5c0ce",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#f5c0ce",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#f5c0ce",
+                  "name": "2015"
+                },
+                {
+                  "y": 29.7,
+                  "color": "#f5c0ce",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Stockholm-Gotland",
+              "showInLegend": true,
+              "color": "#f5c0ce"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#c2ebeb",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#c2ebeb",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#c2ebeb",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#c2ebeb",
+                  "name": "2015"
+                },
+                {
+                  "y": 25.7,
+                  "color": "#c2ebeb",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Sydöstra",
+              "showInLegend": true,
+              "color": "#c2ebeb"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#ccaf9b",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#ccaf9b",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#ccaf9b",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#ccaf9b",
+                  "name": "2015"
+                },
+                {
+                  "y": 34,
+                  "color": "#ccaf9b",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Södra",
+              "showInLegend": true,
+              "color": "#ccaf9b"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#cbb5d0",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#cbb5d0",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#cbb5d0",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#cbb5d0",
+                  "name": "2015"
+                },
+                {
+                  "y": 26.6,
+                  "color": "#cbb5d0",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Uppsala-Örebro",
+              "showInLegend": true,
+              "color": "#cbb5d0"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#d5e5be",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#d5e5be",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#d5e5be",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#d5e5be",
+                  "name": "2015"
+                },
+                {
+                  "y": 27.6,
+                  "color": "#d5e5be",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Västra",
+              "showInLegend": true,
+              "color": "#d5e5be"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#ffb117",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#ffb117",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#ffb117",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#ffb117",
+                  "name": "2015"
+                },
+                {
+                  "y": 28.7,
+                  "color": "#ffb117",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "RIKET",
+              "showInLegend": true,
+              "color": "#ffb117"
+            }
+          ]
+        },
+        "theme": {
+          "chart": {
+            "backgroundColor": "transparent"
+          },
+          "colors": [
+            "#7cb5ec",
+            "#434348",
+            "#90ed7d",
+            "#f7a35c",
+            "#8085e9",
+            "#f15c80",
+            "#e4d354",
+            "#2b908f",
+            "#f45b5b",
+            "#91e8e1"
+          ]
+        },
+        "conf_opts": {
+          "global": {
+            "Date": null,
+            "VMLRadialGradientURL": "http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png",
+            "canvasToolsURL": "http =//code.highcharts.com/list(version)/modules/canvas-tools.js",
+            "getTimezoneOffset": null,
+            "timezoneOffset": 0,
+            "useUTC": true
+          },
+          "lang": {
+            "contextButtonTitle": "Chart context menu",
+            "decimalPoint": ".",
+            "downloadJPEG": "Download JPEG image",
+            "downloadPDF": "Download PDF document",
+            "downloadPNG": "Download PNG image",
+            "downloadSVG": "Download SVG vector image",
+            "drillUpText": "Back to {series.name}",
+            "invalidDate": null,
+            "loading": "Loading...",
+            "months": [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December"
+            ],
+            "noData": "No data to display",
+            "numericSymbols": [
+              "k",
+              "M",
+              "G",
+              "T",
+              "P",
+              "E"
+            ],
+            "printChart": "Print chart",
+            "resetZoom": "Reset zoom",
+            "resetZoomTitle": "Reset zoom level 1:1",
+            "shortMonths": [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "Oct",
+              "Nov",
+              "Dec"
+            ],
+            "thousandsSep": " ",
+            "weekdays": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ]
+          }
+        },
+        "type": "chart",
+        "fonts": [
+
+        ],
+        "debug": false
+      },
+      "evals": [
+
       ],
       "jsHooks": [
 
@@ -9449,7 +9979,7 @@
       ]
     },
     "ownhospitalInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 12-2-c\">Sjukhus 12-2-c<\/option>\n<option value=\"Sjukhus 13-2-a\">Sjukhus 13-2-a<\/option>\n<option value=\"Sjukhus 21-3-b\">Sjukhus 21-3-b<\/option>\n<option value=\"Sjukhus 22-3-c\">Sjukhus 22-3-c<\/option>\n<option value=\"Sjukhus 23-3-a\">Sjukhus 23-3-a<\/option>\n<option value=\"Sjukhus 24-3-b\">Sjukhus 24-3-b<\/option>\n<option value=\"Sjukhus 25-3-c\">Sjukhus 25-3-c<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 27-4-b\">Sjukhus 27-4-b<\/option>\n<option value=\"Sjukhus 28-4-c\">Sjukhus 28-4-c<\/option>\n<option value=\"Sjukhus 30-4-a\">Sjukhus 30-4-a<\/option>\n<option value=\"Sjukhus 41-4-b\">Sjukhus 41-4-b<\/option>\n<option value=\"Sjukhus 42-4-c\">Sjukhus 42-4-c<\/option>\n<option value=\"Sjukhus 42-5-a\">Sjukhus 42-5-a<\/option>\n<option value=\"Sjukhus 50-5-b\">Sjukhus 50-5-b<\/option>\n<option value=\"Sjukhus 51-5-c\">Sjukhus 51-5-c<\/option>\n<option value=\"Sjukhus 52-5-a\">Sjukhus 52-5-a<\/option>\n<option value=\"Sjukhus 53-5-b\">Sjukhus 53-5-b<\/option>\n<option value=\"Sjukhus 54-2-c\">Sjukhus 54-2-c<\/option>\n<option value=\"Sjukhus 55-2-a\">Sjukhus 55-2-a<\/option>\n<option value=\"Sjukhus 56-2-b\">Sjukhus 56-2-b<\/option>\n<option value=\"Sjukhus 57-2-c\">Sjukhus 57-2-c<\/option>\n<option value=\"Sjukhus 61-2-a\">Sjukhus 61-2-a<\/option>\n<option value=\"Sjukhus 62-6-b\">Sjukhus 62-6-b<\/option>\n<option value=\"Sjukhus 63-6-c\">Sjukhus 63-6-c<\/option>\n<option value=\"Sjukhus 64-6-a\">Sjukhus 64-6-a<\/option>\n<option value=\"Sjukhus 65-6-b\">Sjukhus 65-6-b<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option>\n<option value=\"Sjukhus 92-2-a\">Sjukhus 92-2-a<\/option>\n<option value=\"Sjukhus 93-3-b\">Sjukhus 93-3-b<\/option>\n<option value=\"Sjukhus 94-4-c\">Sjukhus 94-4-c<\/option>\n<option value=\"Sjukhus 95-5-a\">Sjukhus 95-5-a<\/option>\n<option value=\"Sjukhus 96-6-b\">Sjukhus 96-6-b<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -9553,7 +10083,7 @@
       ]
     },
     "periodSplitInput": {
-      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
@@ -9584,10 +10114,10 @@
       ]
     },
     "text0": "Dikotom",
-    "text1": "Period: <strong>2016<\/strong>. ",
-    "text2": "Stadium: <strong>I<\/strong>. ",
+    "text1": "Period: <strong>2012-2016<\/strong>. ",
+    "text2": "Alder vid diagnos: <strong>18-80<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"5380\">\n      <li class=\"active\">\n        <a href=\"#tab-5380-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-5380-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"5380\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-5380-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-5380-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-5380-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-5380-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-5380-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"9655\">\n      <li class=\"active\">\n        <a href=\"#tab-9655-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9655-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9655-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9655-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9655-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"9655\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-9655-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-9655-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-9655-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-9655-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-9655-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "font-awesome",
@@ -9821,6 +10351,3 @@
     }
   },
   "export": {
-
-  }
-}
