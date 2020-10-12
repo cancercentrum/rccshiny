@@ -7,6 +7,10 @@ library(shinytest)
 library(rccShiny)
 
 appdir_list <- list(
+  file.path("tests", "testthat", "apps", "sv", "app1"),
+  file.path("tests", "testthat", "apps", "sv", "app1hc"),
+  file.path("tests", "testthat", "apps", "sv", "inca1"),
+  file.path("tests", "testthat", "apps", "sv", "inca1hc"),
   file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),
   file.path("tests", "testthat", "apps", "sv", "legacy2-1.3"),
   file.path("tests", "testthat", "apps", "en", "legacy2-1.3"),
@@ -30,9 +34,19 @@ for (appdir in appdir_list) {
 }
 
 appdir_list <- list(
+  file.path("tests", "testthat", "apps", "sv", "app1"),
+  file.path("tests", "testthat", "apps", "sv", "app1hc"),
   file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
   file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
 )
 for (appdir in appdir_list) {
   try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "appveyor"))
+}
+
+appdir_list <- list(
+  file.path("tests", "testthat", "apps", "sv", "inca1"),
+  file.path("tests", "testthat", "apps", "sv", "inca1hc")
+)
+for (appdir in appdir_list) {
+  try(snapshotUpdate(appdir, "nav-inca1", quiet = TRUE, suffix = "appveyor"))
 }
