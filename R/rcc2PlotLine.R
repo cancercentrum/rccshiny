@@ -33,8 +33,6 @@ rcc2PlotLine <-
     outputHighchart = FALSE
   ) {
 
-    # require("highcharter", quietly = TRUE)
-
     rcc2LightenCol <-
       function(
         col = "#000000",

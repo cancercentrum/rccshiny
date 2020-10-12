@@ -43,9 +43,6 @@ rcc2PlotMap <-
     outputHighchart = FALSE
   ) {
 
-    # require("sp", quietly = TRUE)
-    # require("highcharter", quietly = TRUE)
-
     rcc2LightenCol <-
       function(
         col = "#000000",

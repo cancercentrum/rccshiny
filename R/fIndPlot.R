@@ -125,10 +125,6 @@ fIndPlot <-
     target_values_high <- TRUE
   }
 
-  # require("gplots", quietly = TRUE)
-  # require("plyr", quietly = TRUE)
-  # require("Hmisc", quietly = TRUE)
-
   if (is.null(period)) {
     period <- rep(1, length(group))
   }

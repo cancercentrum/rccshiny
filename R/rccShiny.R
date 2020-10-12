@@ -99,8 +99,7 @@
 #'   funnelplot = TRUE
 #' )
 #' \dontrun{
-#' library(shiny)
-#' runApp("./apps/sv/Indikator1")
+#' shiny::runApp("./apps/sv/Indikator1")
 #'
 #' cat(ind1) # displays the html link that can be used in index.html
 #' }

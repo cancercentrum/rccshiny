@@ -60,8 +60,6 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
             stop("Length of value must be 21")
         }
 
-        # require("sp", quietly = TRUE)
-
         # Color
         if (is.null(col))
             col <- "#ffb117"

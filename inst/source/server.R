@@ -1,7 +1,3 @@
-
-library(shiny)
-library(shinyWidgets)
-library(DT)
 library(rccShiny)
 
 shinyServer(function(input, output, clientData) {
@@ -466,10 +462,10 @@ shinyServer(function(input, output, clientData) {
           tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot"))
         )
       if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", dataTableOutput("indTableNum"))
-        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", dataTableOutput("indTablePct"))
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_n, value = "table_num", DT::dataTableOutput("indTableNum"))
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab_p, value = "table_pct", DT::dataTableOutput("indTablePct"))
       } else {
-        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", dataTableOutput("indTable"))
+        theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"))
         if (GLOBAL_geoUnitsCountyInclude) {
           theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap"))
         }
