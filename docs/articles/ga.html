@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0.9000</span>
       </span>
     </div>
 
@@ -64,6 +64,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -75,7 +78,7 @@
 
       
 
-      </header><script src="ga_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="ga_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Använda Google Analytics med rccShiny</h1>
@@ -109,13 +112,13 @@
 <p>Vi kommer nu behöva spara ner en .js-fil innehållande lite JavaScript-kod som refererar till er egendoms spårnings-id. Instruktioner för att hitta denna kod finns i nedanstående länk samt i exemplet i nedanstående skärmdump:<br><a href="https://support.google.com/analytics/answer/1008080" class="uri">https://support.google.com/analytics/answer/1008080</a></p>
 <p><img src="figures/ga-fig-1.png" style="width:100.0%"></p>
 <p>Använd nu en texteditor för att skapa en .js-fil med valfritt namn (t.ex. ga.js) och klistra in nedanstående kod där ni också ersätter <strong>UA-XXXXX-Y</strong> med er eget spårnings-id.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>(<span class="kw">function</span>(i<span class="op">,</span>s<span class="op">,</span>o<span class="op">,</span>g<span class="op">,</span>r<span class="op">,</span>a<span class="op">,</span>m){i[<span class="st">'GoogleAnalyticsObject'</span>]<span class="op">=</span>r<span class="op">;</span>i[r]<span class="op">=</span>i[r]<span class="op">||</span><span class="kw">function</span>(){</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>(i[r]<span class="op">.</span><span class="at">q</span><span class="op">=</span>i[r]<span class="op">.</span><span class="at">q</span><span class="op">||</span>[])<span class="op">.</span><span class="fu">push</span>(<span class="kw">arguments</span>)}<span class="op">,</span>i[r]<span class="op">.</span><span class="at">l</span><span class="op">=</span><span class="dv">1</span><span class="op">*</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">;</span>a<span class="op">=</span>s<span class="op">.</span><span class="fu">createElement</span>(o)<span class="op">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>m<span class="op">=</span>s<span class="op">.</span><span class="fu">getElementsByTagName</span>(o)[<span class="dv">0</span>]<span class="op">;</span>a<span class="op">.</span><span class="at">async</span><span class="op">=</span><span class="dv">1</span><span class="op">;</span>a<span class="op">.</span><span class="at">src</span><span class="op">=</span>g<span class="op">;</span>m<span class="op">.</span><span class="at">parentNode</span><span class="op">.</span><span class="fu">insertBefore</span>(a<span class="op">,</span>m)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>})(<span class="bu">window</span><span class="op">,</span><span class="bu">document</span><span class="op">,</span><span class="st">'script'</span><span class="op">,</span><span class="st">'https://www.google-analytics.com/analytics.js'</span><span class="op">,</span><span class="st">'ga'</span>)<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">ga</span>(<span class="st">'create'</span><span class="op">,</span> <span class="st">'UA-XXXXX-Y'</span><span class="op">,</span> <span class="st">'auto'</span>)<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="fu">ga</span>(<span class="st">'send'</span><span class="op">,</span> <span class="st">'pageview'</span>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span>(i<span class="op">,</span>s<span class="op">,</span>o<span class="op">,</span>g<span class="op">,</span>r<span class="op">,</span>a<span class="op">,</span>m){i[<span class="st">'GoogleAnalyticsObject'</span>]<span class="op">=</span>r<span class="op">;</span>i[r]<span class="op">=</span>i[r]<span class="op">||</span><span class="kw">function</span>(){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(i[r]<span class="op">.</span><span class="at">q</span><span class="op">=</span>i[r]<span class="op">.</span><span class="at">q</span><span class="op">||</span>[])<span class="op">.</span><span class="fu">push</span>(<span class="kw">arguments</span>)}<span class="op">,</span>i[r]<span class="op">.</span><span class="at">l</span><span class="op">=</span><span class="dv">1</span><span class="op">*</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">;</span>a<span class="op">=</span>s<span class="op">.</span><span class="fu">createElement</span>(o)<span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>m<span class="op">=</span>s<span class="op">.</span><span class="fu">getElementsByTagName</span>(o)[<span class="dv">0</span>]<span class="op">;</span>a<span class="op">.</span><span class="at">async</span><span class="op">=</span><span class="dv">1</span><span class="op">;</span>a<span class="op">.</span><span class="at">src</span><span class="op">=</span>g<span class="op">;</span>m<span class="op">.</span><span class="at">parentNode</span><span class="op">.</span><span class="fu">insertBefore</span>(a<span class="op">,</span>m)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>})(<span class="bu">window</span><span class="op">,</span><span class="bu">document</span><span class="op">,</span><span class="st">'script'</span><span class="op">,</span><span class="st">'https://www.google-analytics.com/analytics.js'</span><span class="op">,</span><span class="st">'ga'</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ga</span>(<span class="st">'create'</span><span class="op">,</span> <span class="st">'UA-XXXXX-Y'</span><span class="op">,</span> <span class="st">'auto'</span>)<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ga</span>(<span class="st">'send'</span><span class="op">,</span> <span class="st">'pageview'</span>)<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="steg-3-kopiera--js-filen-till-servern" class="section level3">
 <h3 class="hasAnchor">
@@ -126,17 +129,18 @@
 <h3 class="hasAnchor">
 <a href="#steg-4-justera-anropet-till-rccshiny" class="anchor"></a>Steg 4: Justera anropet till rccShiny</h3>
 <p>I anropet till rccShiny kan man ange sökvägen till ens .js-fil i en parameter med namnet <strong>gaPath</strong>. I exemplet för NPCR anges därför följande parameter vid skapandet av varje rccShiny-applikation:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/rccShiny2.html">rccShiny2</a></span>(
-  <span class="no">...</span>,
-  <span class="kw">gaPath</span> <span class="kw">=</span> <span class="st">"/npcr/_libs/ga.js"</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/rccShiny2.html">rccShiny2</a></span><span class="op">(</span>
+  <span class="va">...</span>,
+  gaPath <span class="op">=</span> <span class="st">"/npcr/_libs/ga.js"</span>
+<span class="op">)</span></pre></div>
 <p>Ersätt således sökvägen ovan med korrekt sökväg till .js-filen för er interaktiva årsrapport. Ni behöver inte ange <a href="https://statistik.incanet.se" class="uri">https://statistik.incanet.se</a> i början av sökvägen. När sökvägen börjar med / antas sökvägen referera till den server som sidan ligger på.</p>
 </div>
 <div id="steg-5-lägg-till-referens-till-google-analytics-i-index-html" class="section level3">
 <h3 class="hasAnchor">
 <a href="#steg-5-l%C3%A4gg-till-referens-till-google-analytics-i-index-html" class="anchor"></a>Steg 5: Lägg till referens till Google Analytics i index.html</h3>
 <p>Utöver att spåra besökare på varje rccShiny-applikation vill ni säkert också vilja kunna spåra hur många besökare ni har på själva menysidan (index.html). Detta görs genom att lägga till följande kodsnutt i &lt;head&gt;-sektionen i index.html (nedanstående exempel förutsätter att .js-filen heter ga.js och ligger i en katalog “_libs” som är en underkatalog till katalogen där index.html ligger):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">'_libs/ga.js'</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">'_libs/ga.js'</span><span class="kw">&gt;&lt;/script&gt;</span></span></code></pre></div>
 <p>I exemplet för NPCR kan det således se ut som såhär:</p>
 <p><img src="figures/ga-fig-2.png" style="width:100.0%"></p>
 </div>
@@ -163,7 +167,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
