@@ -1,6 +1,6 @@
 Package: rccShiny
 Type: Package
-Version: 1.6.0.9000
+Version: 1.6.0.9001
 Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
 Authors@R: c(
