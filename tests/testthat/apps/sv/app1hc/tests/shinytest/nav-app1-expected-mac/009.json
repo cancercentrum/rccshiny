@@ -9765,9 +9765,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.15",
+          "version": "0.16",
           "src": {
-            "href": "datatables-binding-0.15"
+            "href": "datatables-binding-0.16"
           },
           "meta": null,
           "script": "datatables.js",
