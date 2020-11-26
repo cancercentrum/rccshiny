@@ -98,7 +98,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
             linchheight, 1 * linchheight), bg = "#ffffff", xpd = TRUE)
 
         # Plot
-        plot(gadm, col = value_col, border = col_border, lwd = 1, main = "")
+        sp::plot(gadm, col = value_col, border = col_border, lwd = 1, main = "")
 
         luserheight <- strheight("X", "user", cex = text_cex)
         luserwidth <- strwidth("X", "user", cex = text_cex)
@@ -114,7 +114,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
         gadm <- readRDS(system.file("mapdata", "map_swe_adm2.rds", package = "rccShiny"))
         #gadm <- readRDS(paste0(rds_path, "map_swe_adm2.rds"))
 
-        plot(gadm[gadm$NAME_2 %in% "Heby", ], col = value_col[value_names == "Uppsala"], border = value_col[value_names == "Uppsala"], add = TRUE)
+        sp::plot(gadm[gadm$NAME_2 %in% "Heby", ], col = value_col[value_names == "Uppsala"], border = value_col[value_names == "Uppsala"], add = TRUE)
         temp_y_border <- 59.864  #min(coordinates_heby[,2][coordinates_heby[,1]%in%coordinates_vastmanland[,1] & coordinates_heby[,2]%in%coordinates_vastmanland[,2]]) #59.864
 
         coordinates_heby <- gadm[gadm$NAME_2 %in% "Heby", ]@polygons[[1]]@Polygons[[1]]@coords
@@ -130,7 +130,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
             temp_y_border - 0.03
         lines(coordinates_vastmanland[match, 1], coordinates_vastmanland[match, 2], lwd = 1, col = col_border)
 
-        plot(gadm[gadm$NAME_1 %in% "Gävleborg", ], col = value_col[value_names == "Gävleborg"], border = col_border, add = TRUE)
+        sp::plot(gadm[gadm$NAME_1 %in% "Gävleborg", ], col = value_col[value_names == "Gävleborg"], border = col_border, add = TRUE)
 
         # Title
         if (!is.null(title)) {
