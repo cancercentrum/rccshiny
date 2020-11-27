@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -78,7 +78,8 @@
 
       
 
-      </header><script src="ga_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
+      </header><script src="ga_files/header-attrs-2.5/header-attrs.js"></script><link href="ga_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="ga_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Använda Google Analytics med rccShiny</h1>
@@ -129,11 +130,11 @@
 <h3 class="hasAnchor">
 <a href="#steg-4-justera-anropet-till-rccshiny" class="anchor"></a>Steg 4: Justera anropet till rccShiny</h3>
 <p>I anropet till rccShiny kan man ange sökvägen till ens .js-fil i en parameter med namnet <strong>gaPath</strong>. I exemplet för NPCR anges därför följande parameter vid skapandet av varje rccShiny-applikation:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="../reference/rccShiny2.html">rccShiny2</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/rccShiny2.html">rccShiny2</a></span><span class="op">(</span>
   <span class="va">...</span>,
   gaPath <span class="op">=</span> <span class="st">"/npcr/_libs/ga.js"</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p>Ersätt således sökvägen ovan med korrekt sökväg till .js-filen för er interaktiva årsrapport. Ni behöver inte ange <a href="https://statistik.incanet.se" class="uri">https://statistik.incanet.se</a> i början av sökvägen. När sökvägen börjar med / antas sökvägen referera till den server som sidan ligger på.</p>
 </div>
 <div id="steg-5-lägg-till-referens-till-google-analytics-i-index-html" class="section level3">
