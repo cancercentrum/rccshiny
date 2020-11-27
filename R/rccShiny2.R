@@ -506,6 +506,19 @@ rccShiny2 <-
     if (is.null(includeTabs) | !is.character(includeTabs))
       stop("'includeTabs' should be a character vector", call. = FALSE)
 
+    # includeMissingColumn
+    if (is.null(includeMissingColumn) | !is.logical(includeMissingColumn) | length(includeMissingColumn) != 1)
+      stop("'includeMissingColumn' should be a logical vector of length 1", call. = FALSE)
+    # includeMissingColumn=TRUE but factor contains 'Uppgift saknas' or 'Missing'
+    miss.values <- c("Uppgift saknas", "Missing")
+    if (isTRUE(includeMissingColumn) & any(unlist(lapply(data.frame(data[,outcome]), levels)) %in% miss.values)){
+      tmp <- outcome[unlist(lapply(data.frame(data[,outcome]), function(x) any(levels(x) %in% miss.values)))]
+      data[, tmp][data[, tmp] == miss.values[1] | data[, tmp] == miss.values[2]] <- NA
+      data[, tmp] <- droplevels(data[, tmp])
+      message("'includeMissingColumn' = TRUE and 'outcome' contains value 'Uppgift saknas' or 'Missing'. \nTo avoid errors the levels 'Uppgift saknas' and/or 'Missing' have been converted to 'NA'. \nIf you want to keep your Missing value level, change 'includeMissingColumn' to FALSE")
+    }
+
+
     # # # # # # # # # # # # # # # #
     # Produce app for each language
     # # # # # # # # # # # # # # # #
