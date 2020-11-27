@@ -635,7 +635,7 @@ rccShiny <-
 
       GLOBAL_prob <- prob
 
-      if(language == "sv"){
+      if(loop_language == "sv"){
         GLOBAL_prob_labels = c('Första kvartil', 'Median', 'Tredje kvartil')
         GLOBAL_iqrlab = "kvartilavstånd"
 
@@ -653,7 +653,7 @@ rccShiny <-
         }
         GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "samt", GLOBAL_iqrlab)
       }
-      if(language == "en"){
+      if(loop_language == "en"){
         GLOBAL_prob_labels = c('First quartile', 'Median', 'Third quartile')
         GLOBAL_iqrlab = "interquartile range"
         if (GLOBAL_prob[1] != 0.25){
