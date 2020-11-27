@@ -1,7 +1,8 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-# Same minor version of R (3.6) as on the INCA platform, but latest patch
-r: 3.6.3
+r:
+  - 3.6.3
+  - 4.0.3
 cache: packages
 warnings_are_errors: false
