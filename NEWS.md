@@ -1,6 +1,10 @@
 # rccShiny (development version)
 
-## Mindre förbättringar och felrättningar
+# rccShiny 1.6.1
+
+En liten felrättningsversion (främst).
+
+* Kartan funkar inte i R version 4+ (SNY-87)
 
 * Nyheter om varje ny version av paketet (SNY-83)
 
