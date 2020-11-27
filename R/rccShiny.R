@@ -635,7 +635,22 @@ rccShiny <-
 
       GLOBAL_prob <- prob
 
-      if(language == "sv"){
+      if (loop_language == "en") {
+        GLOBAL_prob_labels = c('First quartile', 'Median', 'Third quartile')
+        GLOBAL_iqrlab = "interquartile range"
+        if (GLOBAL_prob[1] != 0.25){
+          GLOBAL_prob_labels[1] = paste0(GLOBAL_prob[1] * 100, '-percentile')
+          GLOBAL_iqrlab = "interquantile range"
+        }
+        if (GLOBAL_prob[2] != 0.5){
+          GLOBAL_prob_labels[2] = paste0(GLOBAL_prob[2] * 100, '-percentile')
+        }
+        if (prob[3] != 0.75){
+          GLOBAL_prob_labels[3] = paste0(GLOBAL_prob[3] * 100, '-percentile')
+          GLOBAL_iqrlab = "interquantile range"
+        }
+        GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "and", GLOBAL_iqrlab)
+      } else {
         GLOBAL_prob_labels = c('Första kvartil', 'Median', 'Tredje kvartil')
         GLOBAL_iqrlab = "kvartilavstånd"
 
@@ -652,22 +667,6 @@ rccShiny <-
           GLOBAL_iqrlab = "kvantilavstånd"
         }
         GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "samt", GLOBAL_iqrlab)
-      }
-      if(language == "en"){
-        GLOBAL_prob_labels = c('First quartile', 'Median', 'Third quartile')
-        GLOBAL_iqrlab = "interquartile range"
-        if (GLOBAL_prob[1] != 0.25){
-          GLOBAL_prob_labels[1] = paste0(GLOBAL_prob[1] * 100, '-percentile')
-          GLOBAL_iqrlab = "interquantile range"
-        }
-        if (GLOBAL_prob[2] != 0.5){
-          GLOBAL_prob_labels[2] = paste0(GLOBAL_prob[2] * 100, '-percentile')
-        }
-        if (prob[3] != 0.75){
-          GLOBAL_prob_labels[3] = paste0(GLOBAL_prob[3] * 100, '-percentile')
-          GLOBAL_iqrlab = "interquantile range"
-        }
-        GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "and", GLOBAL_iqrlab)
       }
 
       if (!dir.exists(paste0(path,"/apps/"))) {
