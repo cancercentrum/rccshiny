@@ -1,5 +1,9 @@
 # rccShiny (development version)
 
+## Mindre förbättringar och felrättningar
+
+* includeMissingColumn = TRUE + outcome som faktor med en nivå = "Uppgift saknas" orsakar krasch (SNY-81)
+
 # rccShiny 1.6.1
 
 En liten felrättningsversion (främst).
