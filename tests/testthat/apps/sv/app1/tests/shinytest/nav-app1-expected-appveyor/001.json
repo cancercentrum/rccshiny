@@ -35,7 +35,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: ed771d564b1d0007681997746b387bcd8869d52a]",
+      "src": "[image data sha1: cb435a248685bd56840f0d083837fcb7c197e4ee]",
       "width": 694,
       "height": 971.6
     },
@@ -248,9 +248,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
