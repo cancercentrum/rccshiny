@@ -6,7 +6,7 @@ library(rccShiny)
 sysname <- tolower(Sys.info()[["sysname"]])
 
 # Expect shinytest results as when running the legacy apps using the latest release
-if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
+if (packageVersion("rccShiny") == "1.6.1" & sysname == "windows") {
 
   appdir_list <- list(
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),

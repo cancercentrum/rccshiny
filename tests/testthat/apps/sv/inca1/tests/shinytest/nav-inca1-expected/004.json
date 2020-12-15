@@ -496,9 +496,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
@@ -538,9 +538,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.15",
+          "version": "0.16",
           "src": {
-            "href": "datatables-binding-0.15"
+            "href": "datatables-binding-0.16"
           },
           "meta": null,
           "script": "datatables.js",
