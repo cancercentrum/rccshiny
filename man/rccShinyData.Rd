@@ -4,7 +4,8 @@
 \name{rccShinyData}
 \alias{rccShinyData}
 \title{Testdata for RCC shiny apps}
-\format{A data frame with 20000 rows and 9 variables:
+\format{
+A data frame with 20000 rows and 9 variables:
 \describe{
 \item{sjukhus}{hospital names (character).}
 \item{landsting}{county codes for hospital (numeric).}
@@ -15,7 +16,8 @@
 \item{outcome2}{continuous outcome (numeric).}
 \item{outcome3}{categorical outcome with 5 levels (factor).}
 \item{stage}{patients stage at diagnosis.}
-}}
+}
+}
 \usage{
 rccShinyData
 }

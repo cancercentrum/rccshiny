@@ -10,6 +10,6 @@ rccShinyGroupVariable(label = "sjukhus")
 internal function used by server.R to simplify code.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

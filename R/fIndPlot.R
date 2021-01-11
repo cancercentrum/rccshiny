@@ -1,6 +1,6 @@
 #' Creates proportion or q1, q2, q3 plot
 #' @description internal function used by server.R for plot in tab Comparison.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 fIndPlot <-

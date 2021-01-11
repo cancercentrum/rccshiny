@@ -15,7 +15,7 @@
 #' @param description vector of 3 character strings, or a list of vectors, one for each language, shown in the three subsections in the tab Beskrivning/Description. Default is c(NA, NA, NA).
 #' @param geoUnitsHospital optional name of variable in data containing hospital names. Variable must be of type character. If NULL or if "sjukhus" is not found in 'data', hospital is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Hospital codes.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if "landsting" is not found in 'data', county is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if "region" is not found in 'data', region is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if "region" is not found in 'data', region is not available as a level of presentation. At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionLabel if regionSelection = TRUE label of widget shown in the sidebar panel. Default is "Begränsa till region", "Limit to region" depending on language.
@@ -70,7 +70,7 @@
 #' The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
 #' The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 #'
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #'
 #' @return A folder path/apps/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
 #' @examples
