@@ -1,12 +1,13 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "4b5a97a7")
 
 library(shinytest)
 library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-# Expect shinytest results as when running the legacy apps using the latest release
-if (packageVersion("rccShiny") == "1.6.1" & sysname == "darwin") {
+# Expect shinytest results as when running the legacy apps using the latest release/stable release
+if (packageVersion("rccShiny") == "1.6.1.9000" & sysname == "darwin") {
+
   appdir_list <- list(
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.3"),

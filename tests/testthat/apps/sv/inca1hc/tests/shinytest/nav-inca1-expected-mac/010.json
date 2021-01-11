@@ -9168,13 +9168,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 28.2,
+                  "y": 26.6,
                   "color": "#99b9d3",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Norra",
+              "name": "Mellansverige",
               "showInLegend": true,
               "color": "#99b9d3"
             },
@@ -9202,13 +9202,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 29.7,
+                  "y": 28.2,
                   "color": "#f5c0ce",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Stockholm-Gotland",
+              "name": "Norra",
               "showInLegend": true,
               "color": "#f5c0ce"
             },
@@ -9236,13 +9236,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 25.7,
+                  "y": 29.7,
                   "color": "#c2ebeb",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Sydöstra",
+              "name": "Stockholm-Gotland",
               "showInLegend": true,
               "color": "#c2ebeb"
             },
@@ -9270,13 +9270,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 34,
+                  "y": 25.7,
                   "color": "#ccaf9b",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Södra",
+              "name": "Sydöstra",
               "showInLegend": true,
               "color": "#ccaf9b"
             },
@@ -9304,13 +9304,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 26.6,
+                  "y": 34,
                   "color": "#cbb5d0",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Uppsala-Örebro",
+              "name": "Södra",
               "showInLegend": true,
               "color": "#cbb5d0"
             },
@@ -9823,7 +9823,7 @@
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -9988,9 +9988,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
