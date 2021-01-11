@@ -5,11 +5,13 @@
 #' @export
 rccShinyApp <-
   function(
-    optionsList = NULL
+    optionsList = NULL,
+    pageTitle = ""
   ) {
 
     shinyApp(
       ui = shinydashboard::dashboardPage(
+        title = pageTitle,
         skin = "black",
         shinydashboard::dashboardHeader(disable = TRUE),
         shinydashboard::dashboardSidebar(disable = TRUE),

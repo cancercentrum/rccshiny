@@ -536,6 +536,7 @@ rccShiny2 <-
           incaUserHospital = NA,
           language = loopLanguage,
           whichLanguage = which(language == loopLanguage),
+          pageTitle = paste0(folder, "_", loopLanguage),
           data = data,
           id = id,
           idOverviewLink = idOverviewLink,
