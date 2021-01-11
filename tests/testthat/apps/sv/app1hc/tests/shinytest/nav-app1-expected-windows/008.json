@@ -8553,11 +8553,11 @@
               "Västra Götaland",
               "Örebro",
               "Östergötland",
+              "Övriga/privat - Mellansverige",
               "Övriga/privat - Norra",
               "Övriga/privat - Stockholm-Gotland",
               "Övriga/privat - Sydöstra",
               "Övriga/privat - Södra",
-              "Övriga/privat - Uppsala-Örebro",
               "Övriga/privat - Västra",
               "RIKET"
             ],
@@ -9118,6 +9118,31 @@
                 },
                 {
                   "period": 1,
+                  "factor1": 2.77777777777778,
+                  "factor2": 16.6666666666667,
+                  "factor3": 36.1111111111111,
+                  "factor4": 27.7777777777778,
+                  "factor5": 16.6666666666667,
+                  "ind": 100,
+                  "n": "36",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Mellansverige",
+                  "tempInd": 2.77777777777778,
+                  "tempCol": "#00b3f6",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 2.77777777777778,
+                  "color": "#00b3f6",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "Övriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
                   "factor1": 3.33333333333333,
                   "factor2": 30,
                   "factor3": 33.3333333333333,
@@ -9215,31 +9240,6 @@
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
                   "name": "Övriga/privat - Södra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 2.77777777777778,
-                  "factor2": 16.6666666666667,
-                  "factor3": 36.1111111111111,
-                  "factor4": 27.7777777777778,
-                  "factor5": 16.6666666666667,
-                  "ind": 100,
-                  "n": "36",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
-                  "tempInd": 2.77777777777778,
-                  "tempCol": "#00b3f6",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 2.77777777777778,
-                  "color": "#00b3f6",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "Övriga/privat - Uppsala-Örebro"
                 },
                 {
                   "period": 1,
@@ -9828,6 +9828,31 @@
                 },
                 {
                   "period": 1,
+                  "factor1": 2.77777777777778,
+                  "factor2": 16.6666666666667,
+                  "factor3": 36.1111111111111,
+                  "factor4": 27.7777777777778,
+                  "factor5": 16.6666666666667,
+                  "ind": 100,
+                  "n": "36",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Mellansverige",
+                  "tempInd": 16.6666666666667,
+                  "tempCol": "#ffb117",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 16.6666666666667,
+                  "color": "#ffb117",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "Övriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
                   "factor1": 3.33333333333333,
                   "factor2": 30,
                   "factor3": 33.3333333333333,
@@ -9925,31 +9950,6 @@
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
                   "name": "Övriga/privat - Södra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 2.77777777777778,
-                  "factor2": 16.6666666666667,
-                  "factor3": 36.1111111111111,
-                  "factor4": 27.7777777777778,
-                  "factor5": 16.6666666666667,
-                  "ind": 100,
-                  "n": "36",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
-                  "tempInd": 16.6666666666667,
-                  "tempCol": "#ffb117",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 16.6666666666667,
-                  "color": "#ffb117",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "Övriga/privat - Uppsala-Örebro"
                 },
                 {
                   "period": 1,
@@ -10538,6 +10538,31 @@
                 },
                 {
                   "period": 1,
+                  "factor1": 2.77777777777778,
+                  "factor2": 16.6666666666667,
+                  "factor3": 36.1111111111111,
+                  "factor4": 27.7777777777778,
+                  "factor5": 16.6666666666667,
+                  "ind": 100,
+                  "n": "36",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Mellansverige",
+                  "tempInd": 36.1111111111111,
+                  "tempCol": "#005092",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 36.1111111111111,
+                  "color": "#005092",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "Övriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
                   "factor1": 3.33333333333333,
                   "factor2": 30,
                   "factor3": 33.3333333333333,
@@ -10635,31 +10660,6 @@
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
                   "name": "Övriga/privat - Södra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 2.77777777777778,
-                  "factor2": 16.6666666666667,
-                  "factor3": 36.1111111111111,
-                  "factor4": 27.7777777777778,
-                  "factor5": 16.6666666666667,
-                  "ind": 100,
-                  "n": "36",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
-                  "tempInd": 36.1111111111111,
-                  "tempCol": "#005092",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 36.1111111111111,
-                  "color": "#005092",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "Övriga/privat - Uppsala-Örebro"
                 },
                 {
                   "period": 1,
@@ -11248,6 +11248,31 @@
                 },
                 {
                   "period": 1,
+                  "factor1": 2.77777777777778,
+                  "factor2": 16.6666666666667,
+                  "factor3": 36.1111111111111,
+                  "factor4": 27.7777777777778,
+                  "factor5": 16.6666666666667,
+                  "ind": 100,
+                  "n": "36",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Mellansverige",
+                  "tempInd": 27.7777777777778,
+                  "tempCol": "#19975d",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 27.7777777777778,
+                  "color": "#19975d",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "Övriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
                   "factor1": 3.33333333333333,
                   "factor2": 30,
                   "factor3": 33.3333333333333,
@@ -11345,31 +11370,6 @@
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
                   "name": "Övriga/privat - Södra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 2.77777777777778,
-                  "factor2": 16.6666666666667,
-                  "factor3": 36.1111111111111,
-                  "factor4": 27.7777777777778,
-                  "factor5": 16.6666666666667,
-                  "ind": 100,
-                  "n": "36",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
-                  "tempInd": 27.7777777777778,
-                  "tempCol": "#19975d",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 27.7777777777778,
-                  "color": "#19975d",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "Övriga/privat - Uppsala-Örebro"
                 },
                 {
                   "period": 1,
@@ -11958,6 +11958,31 @@
                 },
                 {
                   "period": 1,
+                  "factor1": 2.77777777777778,
+                  "factor2": 16.6666666666667,
+                  "factor3": 36.1111111111111,
+                  "factor4": 27.7777777777778,
+                  "factor5": 16.6666666666667,
+                  "ind": 100,
+                  "n": "36",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "Övriga/privat - Mellansverige",
+                  "tempInd": 16.6666666666667,
+                  "tempCol": "#e56284",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 16.6666666666667,
+                  "color": "#e56284",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "Övriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
                   "factor1": 3.33333333333333,
                   "factor2": 30,
                   "factor3": 33.3333333333333,
@@ -12055,31 +12080,6 @@
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
                   "name": "Övriga/privat - Södra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 2.77777777777778,
-                  "factor2": 16.6666666666667,
-                  "factor3": 36.1111111111111,
-                  "factor4": 27.7777777777778,
-                  "factor5": 16.6666666666667,
-                  "ind": 100,
-                  "n": "36",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
-                  "tempInd": 16.6666666666667,
-                  "tempCol": "#e56284",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 16.6666666666667,
-                  "color": "#e56284",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "Övriga/privat - Uppsala-Örebro"
                 },
                 {
                   "period": 1,
@@ -12394,13 +12394,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 28.2,
+                  "y": 26.6,
                   "color": "#99b9d3",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Norra",
+              "name": "Mellansverige",
               "showInLegend": true,
               "color": "#99b9d3"
             },
@@ -12428,13 +12428,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 29.7,
+                  "y": 28.2,
                   "color": "#f5c0ce",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Stockholm-Gotland",
+              "name": "Norra",
               "showInLegend": true,
               "color": "#f5c0ce"
             },
@@ -12462,13 +12462,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 25.7,
+                  "y": 29.7,
                   "color": "#c2ebeb",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Sydöstra",
+              "name": "Stockholm-Gotland",
               "showInLegend": true,
               "color": "#c2ebeb"
             },
@@ -12496,13 +12496,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 34,
+                  "y": 25.7,
                   "color": "#ccaf9b",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Södra",
+              "name": "Sydöstra",
               "showInLegend": true,
               "color": "#ccaf9b"
             },
@@ -12530,13 +12530,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 26.6,
+                  "y": 34,
                   "color": "#cbb5d0",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Uppsala-Örebro",
+              "name": "Södra",
               "showInLegend": true,
               "color": "#cbb5d0"
             },
@@ -13049,7 +13049,7 @@
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -13214,9 +13214,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",

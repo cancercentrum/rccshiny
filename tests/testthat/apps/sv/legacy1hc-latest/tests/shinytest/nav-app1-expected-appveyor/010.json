@@ -9418,66 +9418,32 @@
               "data": [
                 {
                   "y": null,
-                  "color": "#99b9d3",
+                  "color": "#f5c0ce",
                   "name": "2012"
                 },
                 {
                   "y": null,
-                  "color": "#99b9d3",
+                  "color": "#f5c0ce",
                   "name": "2013"
                 },
                 {
                   "y": null,
-                  "color": "#99b9d3",
+                  "color": "#f5c0ce",
                   "name": "2014"
                 },
                 {
                   "y": null,
-                  "color": "#99b9d3",
+                  "color": "#f5c0ce",
                   "name": "2015"
                 },
                 {
                   "y": 28.2,
-                  "color": "#99b9d3",
+                  "color": "#f5c0ce",
                   "name": "2016"
                 }
               ],
               "type": "line",
               "name": "Norra",
-              "showInLegend": true,
-              "color": "#99b9d3"
-            },
-            {
-              "group": "group",
-              "data": [
-                {
-                  "y": null,
-                  "color": "#f5c0ce",
-                  "name": "2012"
-                },
-                {
-                  "y": null,
-                  "color": "#f5c0ce",
-                  "name": "2013"
-                },
-                {
-                  "y": null,
-                  "color": "#f5c0ce",
-                  "name": "2014"
-                },
-                {
-                  "y": null,
-                  "color": "#f5c0ce",
-                  "name": "2015"
-                },
-                {
-                  "y": 29.7,
-                  "color": "#f5c0ce",
-                  "name": "2016"
-                }
-              ],
-              "type": "line",
-              "name": "Stockholm-Gotland",
               "showInLegend": true,
               "color": "#f5c0ce"
             },
@@ -9505,13 +9471,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 25.7,
+                  "y": 29.7,
                   "color": "#c2ebeb",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Sydöstra",
+              "name": "Stockholm-Gotland",
               "showInLegend": true,
               "color": "#c2ebeb"
             },
@@ -9539,13 +9505,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 34,
+                  "y": 25.7,
                   "color": "#ccaf9b",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Södra",
+              "name": "Sydöstra",
               "showInLegend": true,
               "color": "#ccaf9b"
             },
@@ -9573,15 +9539,49 @@
                   "name": "2015"
                 },
                 {
-                  "y": 26.6,
+                  "y": 34,
                   "color": "#cbb5d0",
+                  "name": "2016"
+                }
+              ],
+              "type": "line",
+              "name": "Södra",
+              "showInLegend": true,
+              "color": "#cbb5d0"
+            },
+            {
+              "group": "group",
+              "data": [
+                {
+                  "y": null,
+                  "color": "#000000",
+                  "name": "2012"
+                },
+                {
+                  "y": null,
+                  "color": "#000000",
+                  "name": "2013"
+                },
+                {
+                  "y": null,
+                  "color": "#000000",
+                  "name": "2014"
+                },
+                {
+                  "y": null,
+                  "color": "#000000",
+                  "name": "2015"
+                },
+                {
+                  "y": 26.6,
+                  "color": "#000000",
                   "name": "2016"
                 }
               ],
               "type": "line",
               "name": "Uppsala-Örebro",
               "showInLegend": true,
-              "color": "#cbb5d0"
+              "color": "#000000"
             },
             {
               "group": "group",
@@ -10257,9 +10257,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",

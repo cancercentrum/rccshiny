@@ -35,9 +35,9 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 74b5db51ff585e76c14aee04199b6e408c4f167e]",
-      "width": 678,
-      "height": 949.2
+      "src": "[image data sha1: 985a1f7e36b0de8ca4891f9cb2661d54b0c91668]",
+      "width": 694,
+      "height": 971.6
     },
     "levelpresentInput": {
       "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
@@ -290,9 +290,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",

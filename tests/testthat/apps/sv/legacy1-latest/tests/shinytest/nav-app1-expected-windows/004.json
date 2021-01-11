@@ -115,7 +115,7 @@
       "height": 971.6
     },
     "indPlotTrend": {
-      "src": "[image data sha1: ceef81a764bf944d27fd3cd08a7ffb7b872474b9]",
+      "src": "[image data sha1: 2ce63fb57366b792a56b4d9907479e596cd48d47]",
       "width": 694,
       "height": 624.6
     },
@@ -538,9 +538,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
