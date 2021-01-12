@@ -27,20 +27,6 @@ if (packageVersion("rccShiny") == "1.6.1.9000" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "en", "legacy2-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
   )
-  # load-app-expected (without suffix)
-  for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "load-app",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "load-app", quiet = TRUE)
-    }
-  }
-  # load-app-expected-windows
   for (appdir in appdir_list) {
     x <- testApp(
       appDir = appdir,
@@ -59,20 +45,6 @@ if (packageVersion("rccShiny") == "1.6.1.9000" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
   )
-  # nav-app1-expected (without suffix)
-  for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "nav-app1",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "nav-app1", quiet = TRUE)
-    }
-  }
-  # nav-app1-expected-windows
   for (appdir in appdir_list) {
     x <- testApp(
       appDir = appdir,
