@@ -5,7 +5,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-# Expect shinytest results as when running the legacy apps using the latest release/stable release
+# Expect shinytest results as when running the legacy apps using the latest release/stable version
 if (packageVersion("rccShiny") == "1.6.1.9000" & sysname == "darwin") {
 
   appdir_list <- list(
