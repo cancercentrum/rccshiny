@@ -4,7 +4,7 @@
 \alias{rccShinyApp}
 \title{Creates shiny app}
 \usage{
-rccShinyApp(optionsList = NULL)
+rccShinyApp(optionsList = NULL, pageTitle = "")
 }
 \description{
 internal function.
