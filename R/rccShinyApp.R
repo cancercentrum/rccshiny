@@ -1440,276 +1440,276 @@ rccShinyApp <-
         output$indTableNum <-
           DT::renderDataTable({
 
-          dfuse <- dfInput()
+            dfuse <- dfInput()
 
-          tempSubset <- NULL
-          if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-            if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
-              tempSubset <- dfuse$region %in% input[["param_region"]]
+            tempSubset <- NULL
+            if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+              if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                tempSubset <- dfuse$region %in% input[["param_region"]]
+              }
             }
-          }
 
-          if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-            tempPeriodInput <- periodInput()
-            if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
-              dfuse$period <-
-                paste0(
-                  tempPeriodInput[1],
-                  "-",
-                  tempPeriodInput[2]
+            if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+              tempPeriodInput <- periodInput()
+              if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
+                dfuse$period <-
+                  paste0(
+                    tempPeriodInput[1],
+                    "-",
+                    tempPeriodInput[2]
+                  )
+              }
+
+              tab <-
+                rccShinyIndTable(
+                  language = GLOBAL_language,
+                  group = dfuse$group,
+                  group_hide_less_than = GLOBAL_hideLessThan,
+                  group_hide_less_than_cell = GLOBAL_hideLessThanCell,
+                  all_lab = GLOBAL_allLabel,
+                  ind_numeric_percentiles = GLOBAL_prob,
+                  lab_percentiles = GLOBAL_prob_labels,
+                  ind = dfuse$outcome,
+                  period = dfuse$period,
+                  period_alwaysinclude = GLOBAL_periodInclude,
+                  lab_period = GLOBAL_periodLabel,
+                  subset = tempSubset,
+                  subset_lab = paste(input[["param_region"]], collapse = "/"),
+                  include_missing_column = GLOBAL_includeMissingColumn
+                )
+
+              colnames(tab)[1] <- input$param_levelpresent
+            } else {
+              tab <-
+                subset(
+                  data.frame(
+                    rccShinyNoObservationsText(language = GLOBAL_language)
+                  ),
+                  FALSE
+                )
+              colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
+            }
+
+            tempColumnDefs <-
+              list(
+                list(
+                  className = 'dt-left',
+                  targets = 0
+                )
+              )
+            if (ncol(tab) > 1) {
+              tempColumnDefs[[2]] <-
+                list(
+                  className = 'dt-right',
+                  targets = 1:(ncol(tab)-1)
                 )
             }
 
             tab <-
-              rccShinyIndTable(
-                language = GLOBAL_language,
-                group = dfuse$group,
-                group_hide_less_than = GLOBAL_hideLessThan,
-                group_hide_less_than_cell = GLOBAL_hideLessThanCell,
-                all_lab = GLOBAL_allLabel,
-                ind_numeric_percentiles = GLOBAL_prob,
-                lab_percentiles = GLOBAL_prob_labels,
-                ind = dfuse$outcome,
-                period = dfuse$period,
-                period_alwaysinclude = GLOBAL_periodInclude,
-                lab_period = GLOBAL_periodLabel,
-                subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/"),
-                include_missing_column = GLOBAL_includeMissingColumn
-              )
-
-            colnames(tab)[1] <- input$param_levelpresent
-          } else {
-            tab <-
-              subset(
-                data.frame(
-                  rccShinyNoObservationsText(language = GLOBAL_language)
-                ),
-                FALSE
-              )
-            colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
-          }
-
-          tempColumnDefs <-
-            list(
-              list(
-                className = 'dt-left',
-                targets = 0
-              )
-            )
-          if (ncol(tab) > 1) {
-            tempColumnDefs[[2]] <-
-              list(
-                className = 'dt-right',
-                targets = 1:(ncol(tab)-1)
-              )
-          }
-
-          tab <-
-            DT::datatable(
-              tab,
-              rownames = FALSE,
-              extensions = 'Buttons',
-              options = list(
-                columnDefs = tempColumnDefs,
-                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-                searching = TRUE,
-                paging = FALSE,
-                dom = 'Bfrtip',
-                scrollX = TRUE,
-                buttons = list(
-                  list(extend = 'excel', filename = indTitle(), title = indTitle()),
-                  list(extend = 'pdf', filename = indTitle(), title = indTitle()),
-                  list(extend = 'print', title = indTitle())
+              DT::datatable(
+                tab,
+                rownames = FALSE,
+                extensions = 'Buttons',
+                options = list(
+                  columnDefs = tempColumnDefs,
+                  language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                  searching = TRUE,
+                  paging = FALSE,
+                  dom = 'Bfrtip',
+                  scrollX = TRUE,
+                  buttons = list(
+                    list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                    list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                    list(extend = 'print', title = indTitle())
+                  )
                 )
               )
-            )
 
-          tab
-        })
+            tab
+          })
 
         output$indTablePct <-
           DT::renderDataTable({
 
-          dfuse <- dfInput()
+            dfuse <- dfInput()
 
-          tempSubset <- NULL
-          if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-            if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
-              tempSubset <- dfuse$region %in% input[["param_region"]]
+            tempSubset <- NULL
+            if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+              if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                tempSubset <- dfuse$region %in% input[["param_region"]]
+              }
             }
-          }
 
-          if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
-            tempPeriodInput <- periodInput()
-            if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
-              dfuse$period <-
-                paste0(
-                  tempPeriodInput[1],
-                  "-",
-                  tempPeriodInput[2]
+            if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+              tempPeriodInput <- periodInput()
+              if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
+                dfuse$period <-
+                  paste0(
+                    tempPeriodInput[1],
+                    "-",
+                    tempPeriodInput[2]
+                  )
+              }
+
+              tab <-
+                rccShinyIndTable(
+                  language = GLOBAL_language,
+                  group = dfuse$group,
+                  group_hide_less_than = GLOBAL_hideLessThan,
+                  group_hide_less_than_cell = GLOBAL_hideLessThanCell,
+                  all_lab = GLOBAL_allLabel,
+                  ind = dfuse$outcome,
+                  ind_factor_pct = TRUE,
+                  ind_numeric_percentiles = GLOBAL_prob,
+                  lab_percentiles = GLOBAL_prob_labels,
+                  period = dfuse$period,
+                  period_alwaysinclude = GLOBAL_periodInclude,
+                  lab_period = GLOBAL_periodLabel,
+                  subset = tempSubset,
+                  subset_lab = paste(input[["param_region"]], collapse = "/")
+                )
+
+              colnames(tab)[1] <- input$param_levelpresent
+              colnames(tab)[3:ncol(tab)] <- paste(colnames(tab)[3:ncol(tab)],"(%)")
+            } else {
+              tab <-
+                subset(
+                  data.frame(
+                    rccShinyNoObservationsText(language = GLOBAL_language)
+                  ),
+                  FALSE
+                )
+              colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
+            }
+
+            tempColumnDefs <-
+              list(
+                list(
+                  className = 'dt-left',
+                  targets = 0
+                )
+              )
+            if (ncol(tab) > 1) {
+              tempColumnDefs[[2]] <-
+                list(
+                  className = 'dt-right',
+                  targets = 1:(ncol(tab)-1)
                 )
             }
 
             tab <-
-              rccShinyIndTable(
-                language = GLOBAL_language,
-                group = dfuse$group,
-                group_hide_less_than = GLOBAL_hideLessThan,
-                group_hide_less_than_cell = GLOBAL_hideLessThanCell,
-                all_lab = GLOBAL_allLabel,
-                ind = dfuse$outcome,
-                ind_factor_pct = TRUE,
-                ind_numeric_percentiles = GLOBAL_prob,
-                lab_percentiles = GLOBAL_prob_labels,
-                period = dfuse$period,
-                period_alwaysinclude = GLOBAL_periodInclude,
-                lab_period = GLOBAL_periodLabel,
-                subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/")
-              )
-
-            colnames(tab)[1] <- input$param_levelpresent
-            colnames(tab)[3:ncol(tab)] <- paste(colnames(tab)[3:ncol(tab)],"(%)")
-          } else {
-            tab <-
-              subset(
-                data.frame(
-                  rccShinyNoObservationsText(language = GLOBAL_language)
-                ),
-                FALSE
-              )
-            colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
-          }
-
-          tempColumnDefs <-
-            list(
-              list(
-                className = 'dt-left',
-                targets = 0
-              )
-            )
-          if (ncol(tab) > 1) {
-            tempColumnDefs[[2]] <-
-              list(
-                className = 'dt-right',
-                targets = 1:(ncol(tab)-1)
-              )
-          }
-
-          tab <-
-            DT::datatable(
-              tab,
-              rownames = FALSE,
-              extensions = 'Buttons',
-              options = list(
-                columnDefs = tempColumnDefs,
-                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-                searching = TRUE,
-                paging = FALSE,
-                dom = 'Bfrtip',
-                scrollX = TRUE,
-                buttons = list(
-                  list(extend = 'excel', filename = indTitle(), title = indTitle()),
-                  list(extend = 'pdf', filename = indTitle(), title = indTitle()),
-                  list(extend = 'print', title = indTitle())
+              DT::datatable(
+                tab,
+                rownames = FALSE,
+                extensions = 'Buttons',
+                options = list(
+                  columnDefs = tempColumnDefs,
+                  language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                  searching = TRUE,
+                  paging = FALSE,
+                  dom = 'Bfrtip',
+                  scrollX = TRUE,
+                  buttons = list(
+                    list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                    list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                    list(extend = 'print', title = indTitle())
+                  )
                 )
               )
-            )
 
-          tab
-        })
+            tab
+          })
 
         output$indTable <-
           DT::renderDataTable({
 
-          dfuse <- dfInput()
+            dfuse <- dfInput()
 
-          tempSubset <- NULL
-          if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
-            if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
-              tempSubset <- dfuse$region %in% input[["param_region"]]
+            tempSubset <- NULL
+            if (GLOBAL_regionSelection & !is.null(input[["param_region"]])) {
+              if (!(rccShinyTXT(language = GLOBAL_language)$all %in% input[["param_region"]])) {
+                tempSubset <- dfuse$region %in% input[["param_region"]]
+              }
             }
-          }
 
-          if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
-            tempPeriodInput <- periodInput()
-            if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
-              dfuse$period <-
-                paste0(
-                  tempPeriodInput[1],
-                  "-",
-                  tempPeriodInput[2]
+            if (nrow(dfuse) >= GLOBAL_hideLessThan & GLOBAL_outcomeClass[whichOutcome()] != "factor") {
+              tempPeriodInput <- periodInput()
+              if (!input$param_periodSplit & tempPeriodInput[1] != tempPeriodInput[2]) {
+                dfuse$period <-
+                  paste0(
+                    tempPeriodInput[1],
+                    "-",
+                    tempPeriodInput[2]
+                  )
+              }
+
+              tab <-
+                rccShinyIndTable(
+                  language = GLOBAL_language,
+                  group = dfuse$group,
+                  group_hide_less_than = GLOBAL_hideLessThan,
+                  group_hide_less_than_cell = GLOBAL_hideLessThanCell,
+                  all_lab = GLOBAL_allLabel,
+                  ind = dfuse$outcome,
+                  ind_numeric_percentiles = GLOBAL_prob,
+                  lab_percentiles = GLOBAL_prob_labels,
+                  period = dfuse$period,
+                  period_alwaysinclude = GLOBAL_periodInclude,
+                  lab_period = GLOBAL_periodLabel,
+                  subset = tempSubset,
+                  subset_lab = paste(input[["param_region"]], collapse = "/"),
+                  include_missing_column = GLOBAL_includeMissingColumn
+                )
+
+              colnames(tab)[1] <- input$param_levelpresent
+            } else {
+              tab <-
+                subset(
+                  data.frame(
+                    rccShinyNoObservationsText(language = GLOBAL_language)
+                  ),
+                  FALSE
+                )
+              colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
+            }
+
+            tempColumnDefs <-
+              list(
+                list(
+                  className = 'dt-left',
+                  targets = 0
+                )
+              )
+            if (ncol(tab) > 1) {
+              tempColumnDefs[[2]] <-
+                list(
+                  className = 'dt-right',
+                  targets = 1:(ncol(tab)-1)
                 )
             }
 
             tab <-
-              rccShinyIndTable(
-                language = GLOBAL_language,
-                group = dfuse$group,
-                group_hide_less_than = GLOBAL_hideLessThan,
-                group_hide_less_than_cell = GLOBAL_hideLessThanCell,
-                all_lab = GLOBAL_allLabel,
-                ind = dfuse$outcome,
-                ind_numeric_percentiles = GLOBAL_prob,
-                lab_percentiles = GLOBAL_prob_labels,
-                period = dfuse$period,
-                period_alwaysinclude = GLOBAL_periodInclude,
-                lab_period = GLOBAL_periodLabel,
-                subset = tempSubset,
-                subset_lab = paste(input[["param_region"]], collapse = "/"),
-                include_missing_column = GLOBAL_includeMissingColumn
-              )
-
-            colnames(tab)[1] <- input$param_levelpresent
-          } else {
-            tab <-
-              subset(
-                data.frame(
-                  rccShinyNoObservationsText(language = GLOBAL_language)
-                ),
-                FALSE
-              )
-            colnames(tab) <- rccShinyTXT(language = GLOBAL_language)$message
-          }
-
-          tempColumnDefs <-
-            list(
-              list(
-                className = 'dt-left',
-                targets = 0
-              )
-            )
-          if (ncol(tab) > 1) {
-            tempColumnDefs[[2]] <-
-              list(
-                className = 'dt-right',
-                targets = 1:(ncol(tab)-1)
-              )
-          }
-
-          tab <-
-            DT::datatable(
-              tab,
-              rownames = FALSE,
-              extensions = 'Buttons',
-              options = list(
-                columnDefs = tempColumnDefs,
-                language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
-                searching = TRUE,
-                paging = FALSE,
-                dom = 'Bfrtip',
-                scrollX = TRUE,
-                buttons = list(
-                  list(extend = 'excel', filename = indTitle(), title = indTitle()),
-                  list(extend = 'pdf', filename = indTitle(), title = indTitle()),
-                  list(extend = 'print', title = indTitle())
+              DT::datatable(
+                tab,
+                rownames = FALSE,
+                extensions = 'Buttons',
+                options = list(
+                  columnDefs = tempColumnDefs,
+                  language = list(emptyTable = rccShinyNoObservationsText(language = GLOBAL_language)),
+                  searching = TRUE,
+                  paging = FALSE,
+                  dom = 'Bfrtip',
+                  scrollX = TRUE,
+                  buttons = list(
+                    list(extend = 'excel', filename = indTitle(), title = indTitle()),
+                    list(extend = 'pdf', filename = indTitle(), title = indTitle()),
+                    list(extend = 'print', title = indTitle())
+                  )
                 )
               )
-            )
 
-          tab
-        })
+            tab
+          })
 
         output$indMap <-
 
