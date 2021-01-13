@@ -179,7 +179,7 @@ rcc2PlotInd <-
           group,
           levels = c(levels(group), NA),
           exclude = NULL,
-          labels = c(levels(group), "Uppgift saknas")
+          labels = c(levels(group), "(NA)")
         )
     }
 

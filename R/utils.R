@@ -231,13 +231,19 @@ rccShinyLevelNames <-
 #' @keywords internal
 #' @export
 rccShinyGroupVariable <-
-  function(label = "sjukhus") {
+  function(
+    label = "sjukhus",
+    otherVariables = NULL,
+    otherLabels = NULL
+  ) {
     if (tolower(label) %in% c("sjukvårdsregion", "healthcare region")) {
       "region"
     } else if (tolower(label) %in% c("region", "county", "bostadslän", "county of residence")) {
       "landsting"
     } else if (tolower(label) %in% c("sjukhus", "hospital")) {
       "sjukhus"
+    } else if (label %in% otherLabels) {
+      otherVariables[which(otherLabels == label)]
     } else {
       "sjukhus"
     }
