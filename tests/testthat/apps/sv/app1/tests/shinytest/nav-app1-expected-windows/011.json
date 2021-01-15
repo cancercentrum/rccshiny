@@ -270,9 +270,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -283,9 +283,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -505,9 +505,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
@@ -519,16 +519,15 @@
         },
         {
           "name": "jquery",
-          "version": "1.12.4",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.12.4"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -547,9 +546,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
@@ -561,9 +560,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",

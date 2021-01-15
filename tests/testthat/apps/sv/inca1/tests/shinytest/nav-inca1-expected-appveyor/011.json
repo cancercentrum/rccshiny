@@ -140,7 +140,6 @@
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
     "param_ownhospital": "Sjukhus 10-1-a",
-    "param_periodSplit": true,
     "param_period_quarter": [
       2012,
       2016
@@ -149,6 +148,7 @@
       2012,
       2016
     ],
+    "param_periodSplit": true,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
@@ -307,9 +307,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -320,9 +320,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -334,17 +334,17 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: cbcb56e6cc74b0574519499b19345ef6e11ae194]",
+      "src": "[image data sha1: 44a324bd149c72b1e18b6469c0fcdfcdf5ff27a5]",
       "width": 694,
       "height": 971.6
     },
     "indPlot": {
-      "src": "[image data sha1: a372c9445837d3fa3a08f5b077a0d94b51d8e9ce]",
+      "src": "[image data sha1: b8053647977baab91c6e00924946069110c08c79]",
       "width": 694,
       "height": 971.6
     },
     "indPlotTrend": {
-      "src": "[image data sha1: 53f1d05bdb16226ec15512d67858a746894b6933]",
+      "src": "[image data sha1: f4e039c3c49a56c2e552c76738da000269f63e6d]",
       "width": 694,
       "height": 624.6
     },
@@ -490,9 +490,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -503,9 +503,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -725,9 +725,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
@@ -739,16 +739,15 @@
         },
         {
           "name": "jquery",
-          "version": "1.12.4",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.12.4"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -767,9 +766,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
@@ -781,9 +780,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
