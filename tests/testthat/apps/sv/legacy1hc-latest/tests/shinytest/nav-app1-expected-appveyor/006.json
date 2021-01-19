@@ -9154,6 +9154,7 @@
               "id": "scatter1",
               "name": 1,
               "pointPlacement": 0.3,
+              "pointRange": 1,
               "showInLegend": true,
               "color": "#00b3f6",
               "marker": {
