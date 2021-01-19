@@ -108,7 +108,7 @@
       ]
     },
     "periodInputQuarter": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Quarter&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Quarter&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -143,7 +143,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -205,7 +205,7 @@
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Limit to healthcare region<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"All\" selected>All<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Southeast\">Southeast<\/option>\n<option value=\"South\">South<\/option>\n<option value=\"West\">West<\/option>\n<option value=\"North\">North<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Limit to healthcare region<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"All\" selected>All<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Ã–rebro\">Uppsala-Ã–rebro<\/option>\n<option value=\"Southeast\">Southeast<\/option>\n<option value=\"South\">South<\/option>\n<option value=\"West\">West<\/option>\n<option value=\"North\">North<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
