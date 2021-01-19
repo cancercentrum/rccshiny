@@ -140,6 +140,7 @@
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
     "param_ownhospital": "Sjukhus 10-1-a",
+    "param_periodSplit": false,
     "param_period_quarter": [
       2012,
       2016
@@ -148,7 +149,6 @@
       2016,
       2016
     ],
-    "param_periodSplit": false,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
@@ -334,17 +334,17 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: 44a324bd149c72b1e18b6469c0fcdfcdf5ff27a5]",
+      "src": "[image data sha1: cbcb56e6cc74b0574519499b19345ef6e11ae194]",
       "width": 694,
       "height": 971.6
     },
     "indPlot": {
-      "src": "[image data sha1: c2b656039ff331d2e462a25d71e4f3854f4e1b5a]",
+      "src": "[image data sha1: 5a1028fbdd6d0fa9376bc95ff40ef7a467ac9589]",
       "width": 694,
       "height": 971.6
     },
     "indPlotTrend": {
-      "src": "[image data sha1: 5fbdfbb67bdac402d879a3db6edc9fd0ccf8f509]",
+      "src": "[image data sha1: 2bcbb50bf679ea32b11c22f6a366ac4618bcd1e7]",
       "width": 694,
       "height": 624.6
     },

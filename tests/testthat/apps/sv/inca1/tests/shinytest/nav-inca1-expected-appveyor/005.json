@@ -140,6 +140,7 @@
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
     "param_ownhospital": "",
+    "param_periodSplit": false,
     "param_period_quarter": [
       2012,
       2016
@@ -148,7 +149,6 @@
       2016,
       2016
     ],
-    "param_periodSplit": false,
     "param_periodtype": "År",
     "param_region": "Alla",
     "sidebarCollapsed": true,
@@ -336,17 +336,17 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: 44a324bd149c72b1e18b6469c0fcdfcdf5ff27a5]",
+      "src": "[image data sha1: cbcb56e6cc74b0574519499b19345ef6e11ae194]",
       "width": 694,
       "height": 971.6
     },
     "indPlot": {
-      "src": "[image data sha1: 9f9e097121ab75b3624a28342bb7492b3c5453bd]",
+      "src": "[image data sha1: 25404275f3edc8306d770d2b86a4627cc90a8269]",
       "width": 694,
       "height": 971.6
     },
     "indPlotTrend": {
-      "src": "[image data sha1: 5fbdfbb67bdac402d879a3db6edc9fd0ccf8f509]",
+      "src": "[image data sha1: 2bcbb50bf679ea32b11c22f6a366ac4618bcd1e7]",
       "width": 694,
       "height": 624.6
     },
