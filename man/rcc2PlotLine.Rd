@@ -38,6 +38,6 @@ rcc2PlotLine(
 internal function.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

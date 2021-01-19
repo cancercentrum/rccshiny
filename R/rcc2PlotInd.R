@@ -1,6 +1,6 @@
 #' rcc2PlotInd
 #' @description internal function.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rcc2PlotInd <-
@@ -179,7 +179,7 @@ rcc2PlotInd <-
           group,
           levels = c(levels(group), NA),
           exclude = NULL,
-          labels = c(levels(group), "Uppgift saknas")
+          labels = c(levels(group), "(NA)")
         )
     }
 

@@ -27,6 +27,6 @@ fMapPlot(
 internal function used by server.R for plot in tab Map.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

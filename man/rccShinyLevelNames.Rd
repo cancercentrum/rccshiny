@@ -10,6 +10,6 @@ rccShinyLevelNames(level = "region", language = "sv")
 internal function used to supply text printed in Level of comparison widget.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

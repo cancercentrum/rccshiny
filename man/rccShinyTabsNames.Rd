@@ -10,6 +10,6 @@ rccShinyTabsNames(language = "sv")
 internal function used to supply names of the tabs.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}
