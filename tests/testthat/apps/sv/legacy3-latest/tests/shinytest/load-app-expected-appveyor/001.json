@@ -27,12 +27,12 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: ffb51237af8b723e8c669bd72120644cbb2c8483]",
+      "src": "[image data sha1: e95b4e4cceeb287999083a3967d45967e9952f79]",
       "width": 700,
       "height": 980
     },
     "levelpresentInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" for=\"param_levelpresent\">JÃ¤mfÃ¶relsenivÃ¥<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"SjukvÃ¥rdsregion\">SjukvÃ¥rdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -82,7 +82,7 @@
       ]
     },
     "periodInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" for=\"param_period\">Diagnosår<\/label>\n    <input class=\"js-range-slider\" id=\"param_period\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" for=\"param_period\">DiagnosÃ¥r<\/label>\n    <input class=\"js-range-slider\" id=\"param_period\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -118,13 +118,13 @@
       ]
     },
     "periodSplitInput": {
-      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.param_period[0]!=input.param_period[1]\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje diagnosår separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.param_period[0]!=input.param_period[1]\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje diagnosÃ¥r separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" for=\"param_region\">BegrÃ¤nsa till sjukvÃ¥rdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Ã–rebro\">Uppsala-Ã–rebro<\/option>\n<option value=\"SydÃ¶stra\">SydÃ¶stra<\/option>\n<option value=\"SÃ¶dra\">SÃ¶dra<\/option>\n<option value=\"VÃ¤stra\">VÃ¤stra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -143,10 +143,10 @@
       ]
     },
     "text0": "Dikotom",
-    "text1": "Diagnosår: <strong>2016<\/strong>. ",
+    "text1": "DiagnosÃ¥r: <strong>2016<\/strong>. ",
     "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"tabbable\">\n  <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"2926\">\n    <li class=\"active\">\n      <a href=\"#tab-2926-1\" data-toggle=\"tab\" data-value=\"fig_compare\">Jämförelse<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-2\" data-toggle=\"tab\" data-value=\"table\">Tabell<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-3\" data-toggle=\"tab\" data-value=\"fig_map\">Karta<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-4\" data-toggle=\"tab\" data-value=\"fig_trend\">Trend<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-5\" data-toggle=\"tab\" data-value=\"Beskrivning\">Beskrivning<\/a>\n    <\/li>\n  <\/ul>\n  <div class=\"tab-content\" data-tabsetid=\"2926\">\n    <div class=\"tab-pane active\" data-value=\"fig_compare\" id=\"tab-2926-1\">\n      <div id=\"indPlot\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"table\" id=\"tab-2926-2\">\n      <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"fig_map\" id=\"tab-2926-3\">\n      <div id=\"indMap\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"fig_trend\" id=\"tab-2926-4\">\n      <div id=\"indPlotTrend\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"Beskrivning\" id=\"tab-2926-5\"><!DOCTYPE html>\n<html>\n<body>\n<p><\/p>\n<p>Om indikatorn<\/p>\n<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>\nHar beskrivs indikatorn.\n<\/div>\n<p>Att tänka på vid tolkning<\/p>\n<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>\nViktig information!\n<p><\/p>\nResultat från grupper med färre än 5 fall redovisas ej separat.\n<\/div>\n<p>Teknisk beskrivning<\/p>\n<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>\nInformation om variabler etc.\n<\/div>\n<\/body>\n<\/html><\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"tabbable\">\n  <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"2926\">\n    <li class=\"active\">\n      <a href=\"#tab-2926-1\" data-toggle=\"tab\" data-value=\"fig_compare\">JÃ¤mfÃ¶relse<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-2\" data-toggle=\"tab\" data-value=\"table\">Tabell<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-3\" data-toggle=\"tab\" data-value=\"fig_map\">Karta<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-4\" data-toggle=\"tab\" data-value=\"fig_trend\">Trend<\/a>\n    <\/li>\n    <li>\n      <a href=\"#tab-2926-5\" data-toggle=\"tab\" data-value=\"Beskrivning\">Beskrivning<\/a>\n    <\/li>\n  <\/ul>\n  <div class=\"tab-content\" data-tabsetid=\"2926\">\n    <div class=\"tab-pane active\" data-value=\"fig_compare\" id=\"tab-2926-1\">\n      <div id=\"indPlot\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"table\" id=\"tab-2926-2\">\n      <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"fig_map\" id=\"tab-2926-3\">\n      <div id=\"indMap\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"fig_trend\" id=\"tab-2926-4\">\n      <div id=\"indPlotTrend\" class=\"shiny-plot-output\" style=\"width: 100% ; height: 400px\"><\/div>\n    <\/div>\n    <div class=\"tab-pane\" data-value=\"Beskrivning\" id=\"tab-2926-5\"><!DOCTYPE html>\n<html>\n<body>\n<p><\/p>\n<p>Om indikatorn<\/p>\n<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>\nHar beskrivs indikatorn.\n<\/div>\n<p>Att tÃ¤nka pÃ¥ vid tolkning<\/p>\n<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>\nViktig information!\n<p><\/p>\nResultat frÃ¥n grupper med fÃ¤rre Ã¤n 5 fall redovisas ej separat.\n<\/div>\n<p>Teknisk beskrivning<\/p>\n<div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>\nInformation om variabler etc.\n<\/div>\n<\/body>\n<\/html><\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "htmlwidgets",
@@ -164,16 +164,15 @@
         },
         {
           "name": "jquery",
-          "version": "1.12.4",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.12.4"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -206,9 +205,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -255,7 +254,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },

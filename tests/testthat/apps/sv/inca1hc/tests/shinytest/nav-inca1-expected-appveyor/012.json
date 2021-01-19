@@ -149,7 +149,7 @@
       2012,
       2016
     ],
-    "param_periodtype": "≈r",
+    "param_periodtype": "√Ör",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
     "sidebarItemExpanded": null,
@@ -166,7 +166,7 @@
   "output": {
     "comment": null,
     "description": {
-      "html": "<p><\/p><p><b>Om indikatorn<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Har beskrivs indikatorn.<\/div><p><b>Att t‰nka pÂ vid tolkning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Viktig information!<p><\/p>Resultat frÂn grupper med f‰rre ‰n 5 fall redovisas ej separat. <\/div><p><b>Teknisk beskrivning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Information om variabler etc.<\/div>",
+      "html": "<p><\/p><p><b>Om indikatorn<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Har beskrivs indikatorn.<\/div><p><b>Att t√§nka p√• vid tolkning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Viktig information!<p><\/p>Resultat fr√•n grupper med f√§rre √§n 5 fall redovisas ej separat. <\/div><p><b>Teknisk beskrivning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Information om variabler etc.<\/div>",
       "deps": [
 
       ]
@@ -192,7 +192,7 @@
             }
           ],
           "language": {
-            "emptyTable": "Ej tillr‰ckligt med observationer fˆr aktuellt urval"
+            "emptyTable": "Ej tillr√§ckligt med observationer f√∂r aktuellt urval"
           },
           "searching": true,
           "paging": false,
@@ -310,9 +310,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -323,9 +323,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -470,7 +470,7 @@
                       "hc-a2": "KA",
                       "labelrank": "7",
                       "hasc": "SE.KA",
-                      "alt-name": "Kalmar l‰n",
+                      "alt-name": "Kalmar l√§n",
                       "woe-id": "2347052",
                       "subregion": null,
                       "fips": "SW09",
@@ -483,7 +483,7 @@
                       "woe-name": "Kalmar",
                       "latitude": "57.2764",
                       "woe-label": "Kalmar, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -990,20 +990,20 @@
                       "hc-a2": "OG",
                       "labelrank": "7",
                       "hasc": "SE.OG",
-                      "alt-name": "÷stergˆtlands l‰n",
+                      "alt-name": "√ñsterg√∂tlands l√§n",
                       "woe-id": "2347059",
                       "subregion": null,
                       "fips": "SW16",
                       "postal-code": "OG",
-                      "name": "÷stergˆtland",
+                      "name": "√ñsterg√∂tland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "15.7022",
-                      "woe-name": "÷stergˆtland",
+                      "woe-name": "√ñsterg√∂tland",
                       "latitude": "58.3655",
                       "woe-label": "Ostergotland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -1406,7 +1406,7 @@
                       "hc-a2": "NB",
                       "labelrank": "7",
                       "hasc": "SE.NB",
-                      "alt-name": "Norrbottens l‰n",
+                      "alt-name": "Norrbottens l√§n",
                       "woe-id": "2347057",
                       "subregion": null,
                       "fips": "SW14",
@@ -1419,7 +1419,7 @@
                       "woe-name": "Norrbotten",
                       "latitude": "66.837",
                       "woe-label": "Norrbotten, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -2214,20 +2214,20 @@
                       "hc-a2": "VN",
                       "labelrank": "7",
                       "hasc": "SE.VN",
-                      "alt-name": "V‰sternorrlands l‰n",
+                      "alt-name": "V√§sternorrlands l√§n",
                       "woe-id": "2347065",
                       "subregion": null,
                       "fips": "SW24",
                       "postal-code": "VN",
-                      "name": "V‰sternorrland",
+                      "name": "V√§sternorrland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "17.3697",
-                      "woe-name": "V‰sternorrland",
+                      "woe-name": "V√§sternorrland",
                       "latitude": "62.9145",
                       "woe-label": "Vasternorrland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -2738,20 +2738,20 @@
                       "hc-a2": "VB",
                       "labelrank": "7",
                       "hasc": "SE.VB",
-                      "alt-name": "V‰sterbottens l‰n",
+                      "alt-name": "V√§sterbottens l√§n",
                       "woe-id": "2347064",
                       "subregion": null,
                       "fips": "SW23",
                       "postal-code": "VB",
-                      "name": "V‰sterbotten",
+                      "name": "V√§sterbotten",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "18.3726",
-                      "woe-name": "V‰sterbotten",
+                      "woe-name": "V√§sterbotten",
                       "latitude": "64.70480000000001",
                       "woe-label": "Vasterbotten, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -3282,7 +3282,7 @@
                       "hc-a2": "GT",
                       "labelrank": "7",
                       "hasc": "SE.GT",
-                      "alt-name": "Gotlands l‰n|Gothland|Gottland",
+                      "alt-name": "Gotlands l√§n|Gothland|Gottland",
                       "woe-id": "2347048",
                       "subregion": null,
                       "fips": "SW18",
@@ -3295,7 +3295,7 @@
                       "woe-name": "Gotland",
                       "latitude": "57.4733",
                       "woe-label": "Gotland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -3542,7 +3542,7 @@
                       "hc-a2": "ST",
                       "labelrank": "7",
                       "hasc": "SE.ST",
-                      "alt-name": "Stockholms l‰n|Estocolmo|Stoccolmo",
+                      "alt-name": "Stockholms l√§n|Estocolmo|Stoccolmo",
                       "woe-id": "2347067",
                       "subregion": null,
                       "fips": "SW26",
@@ -3555,7 +3555,7 @@
                       "woe-name": "Stockholm",
                       "latitude": "59.3659",
                       "woe-label": "Stockholm, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -4206,7 +4206,7 @@
                       "hc-a2": "UP",
                       "labelrank": "7",
                       "hasc": "SE.UP",
-                      "alt-name": "Uppsala l‰n",
+                      "alt-name": "Uppsala l√§n",
                       "woe-id": "2347062",
                       "subregion": null,
                       "fips": "SW21",
@@ -4219,7 +4219,7 @@
                       "woe-name": "Uppsala",
                       "latitude": "60.1522",
                       "woe-label": "Uppsala, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -4522,7 +4522,7 @@
                       "hc-a2": "BL",
                       "labelrank": "7",
                       "hasc": "SE.BL",
-                      "alt-name": "Blekinge l‰n",
+                      "alt-name": "Blekinge l√§n",
                       "woe-id": "2347045",
                       "subregion": null,
                       "fips": "SW02",
@@ -4535,7 +4535,7 @@
                       "woe-name": "Blekinge",
                       "latitude": "56.2929",
                       "woe-label": "Blekinge, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -4747,15 +4747,15 @@
                       "subregion": null,
                       "fips": null,
                       "postal-code": "VG",
-                      "name": "V‰stra Gˆtaland",
+                      "name": "V√§stra G√∂taland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "12.8371",
-                      "woe-name": "V‰stra Gˆtaland",
+                      "woe-name": "V√§stra G√∂taland",
                       "latitude": "58.2428",
                       "woe-label": "Vastra Gotaland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -5283,7 +5283,7 @@
                       "woe-name": "Dalarna",
                       "latitude": "60.814",
                       "woe-label": "Dalarna, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -5604,20 +5604,20 @@
                       "hc-a2": "GV",
                       "labelrank": "7",
                       "hasc": "SE.GV",
-                      "alt-name": "G‰vleborgs l‰n",
+                      "alt-name": "G√§vleborgs l√§n",
                       "woe-id": "2347046",
                       "subregion": null,
                       "fips": "SW03",
                       "postal-code": "GV",
-                      "name": "G‰vleborg",
+                      "name": "G√§vleborg",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "16.5023",
-                      "woe-name": "G‰vleborg",
+                      "woe-name": "G√§vleborg",
                       "latitude": "61.3691",
                       "woe-label": "Gavleborg, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -5974,20 +5974,20 @@
                       "hc-a2": "JO",
                       "labelrank": "7",
                       "hasc": "SE.JO",
-                      "alt-name": "Jˆnkˆpings l‰n",
+                      "alt-name": "J√∂nk√∂pings l√§n",
                       "woe-id": "2347051",
                       "subregion": null,
                       "fips": "SW08",
                       "postal-code": "JO",
-                      "name": "Jˆnkˆping",
+                      "name": "J√∂nk√∂ping",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "14.424",
-                      "woe-name": "Jˆnkˆping",
+                      "woe-name": "J√∂nk√∂ping",
                       "latitude": "57.5478",
                       "woe-label": "Jonkoping, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6248,7 +6248,7 @@
                       "hc-a2": "KR",
                       "labelrank": "7",
                       "hasc": "SE.KR",
-                      "alt-name": "Kronobergs l‰n",
+                      "alt-name": "Kronobergs l√§n",
                       "woe-id": "2347055",
                       "subregion": null,
                       "fips": "SW12",
@@ -6261,7 +6261,7 @@
                       "woe-name": "Kronoberg",
                       "latitude": "56.8265",
                       "woe-label": "Kronoberg, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6490,20 +6490,20 @@
                       "hc-a2": "OR",
                       "labelrank": "7",
                       "hasc": "SE.OR",
-                      "alt-name": "÷rebro|÷rebro l‰n",
+                      "alt-name": "√ñrebro|√ñrebro l√§n",
                       "woe-id": "2347058",
                       "subregion": null,
                       "fips": "SW15",
                       "postal-code": "OR",
-                      "name": "÷rebro",
+                      "name": "√ñrebro",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "15.0594",
-                      "woe-name": "÷rebro",
+                      "woe-name": "√ñrebro",
                       "latitude": "59.3913",
-                      "woe-label": "÷rebro, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "woe-label": "√ñrebro, SE, Sweden",
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6720,20 +6720,20 @@
                       "hc-a2": "VM",
                       "labelrank": "7",
                       "hasc": "SE.VM",
-                      "alt-name": "V‰stmanlands l‰n",
+                      "alt-name": "V√§stmanlands l√§n",
                       "woe-id": "2347066",
                       "subregion": null,
                       "fips": "SW25",
                       "postal-code": "VM",
-                      "name": "V‰stmanland",
+                      "name": "V√§stmanland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "16.4244",
-                      "woe-name": "V‰stmanland",
+                      "woe-name": "V√§stmanland",
                       "latitude": "59.7979",
                       "woe-label": "Vastmanland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6970,7 +6970,7 @@
                       "hc-a2": "HA",
                       "labelrank": "7",
                       "hasc": "SE.HA",
-                      "alt-name": "Hallands l‰n",
+                      "alt-name": "Hallands l√§n",
                       "woe-id": "2347049",
                       "subregion": null,
                       "fips": "SW06",
@@ -6983,7 +6983,7 @@
                       "woe-name": "Halland",
                       "latitude": "56.9745",
                       "woe-label": "Halland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7232,20 +7232,20 @@
                       "hc-a2": "SD",
                       "labelrank": "7",
                       "hasc": "SE.SD",
-                      "alt-name": "Sˆdermanlands l‰n|Sˆrmland",
+                      "alt-name": "S√∂dermanlands l√§n|S√∂rmland",
                       "woe-id": "2347061",
                       "subregion": null,
                       "fips": "SW18",
                       "postal-code": "SD",
-                      "name": "Sˆdermanland",
+                      "name": "S√∂dermanland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "16.6334",
-                      "woe-name": "Sˆdermanland",
+                      "woe-name": "S√∂dermanland",
                       "latitude": "59.0778",
                       "woe-label": "Sodermanland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7462,20 +7462,20 @@
                       "hc-a2": "VR",
                       "labelrank": "7",
                       "hasc": "SE.VR",
-                      "alt-name": "V‰rmlands l‰n",
+                      "alt-name": "V√§rmlands l√§n",
                       "woe-id": "2347063",
                       "subregion": null,
                       "fips": "SW22",
                       "postal-code": "VR",
-                      "name": "V‰rmland",
+                      "name": "V√§rmland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "13.0764",
-                      "woe-name": "V‰rmland",
+                      "woe-name": "V√§rmland",
                       "latitude": "59.8068",
                       "woe-label": "Varmland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7768,20 +7768,20 @@
                       "hc-a2": "JA",
                       "labelrank": "7",
                       "hasc": "SE.JA",
-                      "alt-name": "J‰mtlands l‰n",
+                      "alt-name": "J√§mtlands l√§n",
                       "woe-id": "2347050",
                       "subregion": null,
                       "fips": "SW07",
                       "postal-code": "JA",
-                      "name": "J‰mtland",
+                      "name": "J√§mtland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "14.4806",
-                      "woe-name": "J‰mtland",
+                      "woe-name": "J√§mtland",
                       "latitude": "63.3306",
                       "woe-label": "Jamtland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -8187,15 +8187,15 @@
                       "subregion": null,
                       "fips": "SW11",
                       "postal-code": "SN",
-                      "name": "SkÂne",
+                      "name": "Sk√•ne",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "13.5193",
-                      "woe-name": "SkÂne",
+                      "woe-name": "Sk√•ne",
                       "latitude": "55.9073",
                       "woe-label": "Skane, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -8460,7 +8460,7 @@
                   "keyCode": "se-gt"
                 },
                 {
-                  "key": "G‰vleborg",
+                  "key": "G√§vleborg",
                   "value": 34.7,
                   "keyCode": "se-gv"
                 },
@@ -8470,12 +8470,12 @@
                   "keyCode": "se-ha"
                 },
                 {
-                  "key": "J‰mtland",
+                  "key": "J√§mtland",
                   "value": 27,
                   "keyCode": "se-ja"
                 },
                 {
-                  "key": "Jˆnkˆping",
+                  "key": "J√∂nk√∂ping",
                   "value": 33.6,
                   "keyCode": "se-jo"
                 },
@@ -8500,7 +8500,7 @@
                   "keyCode": "se-or"
                 },
                 {
-                  "key": "SkÂne",
+                  "key": "Sk√•ne",
                   "value": 31.8,
                   "keyCode": "se-sn"
                 },
@@ -8510,7 +8510,7 @@
                   "keyCode": "se-st"
                 },
                 {
-                  "key": "Sˆdermanland",
+                  "key": "S√∂dermanland",
                   "value": 29.3,
                   "keyCode": "se-sd"
                 },
@@ -8520,32 +8520,32 @@
                   "keyCode": "se-up"
                 },
                 {
-                  "key": "V‰rmland",
+                  "key": "V√§rmland",
                   "value": 26.1,
                   "keyCode": "se-vr"
                 },
                 {
-                  "key": "V‰sterbotten",
+                  "key": "V√§sterbotten",
                   "value": 29.5,
                   "keyCode": "se-vb"
                 },
                 {
-                  "key": "V‰sternorrland",
+                  "key": "V√§sternorrland",
                   "value": 28.9,
                   "keyCode": "se-vn"
                 },
                 {
-                  "key": "V‰stmanland",
+                  "key": "V√§stmanland",
                   "value": 24.6,
                   "keyCode": "se-vm"
                 },
                 {
-                  "key": "V‰stra Gˆtaland",
+                  "key": "V√§stra G√∂taland",
                   "value": 32.7,
                   "keyCode": "se-vg"
                 },
                 {
-                  "key": "÷stergˆtland",
+                  "key": "√ñsterg√∂tland",
                   "value": 28.5,
                   "keyCode": "se-og"
                 }
@@ -8565,7 +8565,7 @@
           },
           "tooltip": {
             "headerFormat": "",
-            "pointFormat": "<span style='color:{point.color}'>¶<\/span> <span style='font-size: 10px'>{point.key}: <b>{point.value}<\/b><\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>‚ñ†<\/span> <span style='font-size: 10px'>{point.key}: <b>{point.value}<\/b><\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -8788,7 +8788,7 @@
           "tooltip": {
             "shared": true,
             "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
-            "pointFormat": "<span style='color:{point.color}'>¶<\/span> <span style='font-size: 10px'>{series.name}: <b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>‚ñ†<\/span> <span style='font-size: 10px'>{series.name}: <b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -9634,7 +9634,7 @@
           "tooltip": {
             "shared": true,
             "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
-            "pointFormat": "<span style='color:{point.color}'><U+25CF><\/span> <span style='font-size: 10px'>{series.name}: <b>{point.y}<\/b><\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>‚óè<\/span> <span style='font-size: 10px'>{series.name}: <b>{point.y}<\/b><\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -9771,7 +9771,7 @@
                 }
               ],
               "type": "line",
-              "name": "Sydˆstra",
+              "name": "Syd√∂stra",
               "showInLegend": true,
               "color": "#ccaf9b"
             },
@@ -9805,7 +9805,7 @@
                 }
               ],
               "type": "line",
-              "name": "Sˆdra",
+              "name": "S√∂dra",
               "showInLegend": true,
               "color": "#cbb5d0"
             },
@@ -9839,7 +9839,7 @@
                 }
               ],
               "type": "line",
-              "name": "V‰stra",
+              "name": "V√§stra",
               "showInLegend": true,
               "color": "#d5e5be"
             },
@@ -9989,7 +9989,7 @@
         "extensions": [
           "Buttons"
         ],
-        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>T‰ljare<\/th>\n      <th>N‰mnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>T√§ljare<\/th>\n      <th>N√§mnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
         "options": {
           "columnDefs": [
             {
@@ -10007,7 +10007,7 @@
             }
           ],
           "language": {
-            "emptyTable": "Ej tillr‰ckligt med observationer fˆr aktuellt urval"
+            "emptyTable": "Ej tillr√§ckligt med observationer f√∂r aktuellt urval"
           },
           "searching": true,
           "paging": false,
@@ -10125,9 +10125,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -10138,9 +10138,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -10152,7 +10152,7 @@
       ]
     },
     "levelpresentInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">J‰mfˆrelsenivÂ<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"SjukvÂrdsregion\">SjukvÂrdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">J√§mf√∂relseniv√•<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukv√•rdsregion\">Sjukv√•rdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -10202,7 +10202,7 @@
       ]
     },
     "ownhospitalInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -10221,7 +10221,7 @@
       ]
     },
     "periodInputQuarter": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -10256,7 +10256,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -10270,7 +10270,7 @@
       ]
     },
     "periodInputYear": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;≈r&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;√Ör&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -10312,13 +10312,13 @@
       ]
     },
     "periodTypeInput": {
-      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"≈r\" checked=\"checked\"/>\n          <span>≈r<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"√Ör\" checked=\"checked\"/>\n          <span>√Ör<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begr‰nsa till sjukvÂrdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydˆstra\">Sydˆstra<\/option>\n<option value=\"Sˆdra\">Sˆdra<\/option>\n<option value=\"V‰stra\">V‰stra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begr√§nsa till sjukv√•rdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Syd√∂stra\">Syd√∂stra<\/option>\n<option value=\"S√∂dra\">S√∂dra<\/option>\n<option value=\"V√§stra\">V√§stra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -10340,7 +10340,7 @@
     "text1": "Period: <strong>2012-2016<\/strong>. ",
     "text2": "Alder vid diagnos: <strong>18-80<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"9579\">\n      <li class=\"active\">\n        <a href=\"#tab-9579-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          J‰mfˆrelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-5\" data-toggle=\"tab\" data-value=\"list\">\n          <i class=\" fa fa-list fa-fw\"><\/i>\n          Lista\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-6\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"9579\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-9579-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-9579-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-9579-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-9579-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"list\" data-icon-class=\"fa fa-list\" id=\"tab-9579-5\">\n        <div id=\"indList\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-9579-6\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"9579\">\n      <li class=\"active\">\n        <a href=\"#tab-9579-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          J√§mf√∂relse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-5\" data-toggle=\"tab\" data-value=\"list\">\n          <i class=\" fa fa-list fa-fw\"><\/i>\n          Lista\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9579-6\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"9579\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-9579-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-9579-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-9579-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-9579-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"list\" data-icon-class=\"fa fa-list\" id=\"tab-9579-5\">\n        <div id=\"indList\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-9579-6\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "font-awesome",
@@ -10374,16 +10374,15 @@
         },
         {
           "name": "jquery",
-          "version": "3.5.0",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-3.5.0"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -10497,9 +10496,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -10546,7 +10545,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -10574,3 +10573,6 @@
     }
   },
   "export": {
+
+  }
+}
