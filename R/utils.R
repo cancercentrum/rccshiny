@@ -1,6 +1,6 @@
 #' Sets encoding to utf8 for data
 #' @description internal function used by rccShiny to "clean" data to utf8 encoding.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 fixEncoding <-
@@ -17,7 +17,7 @@ fixEncoding <-
   }
 #' Number of decimals
 #' @description internal function used by rccShinyIndTable to give number of decimals.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyDecimals <-
@@ -26,7 +26,7 @@ rccShinyDecimals <-
   }
 #' County dataset
 #' @description internal function that creates dataset with numeric codes (given by user) and corresponding names (printed in output) for county/county of residence.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyCounties <-
@@ -119,7 +119,7 @@ rccShinyCounties <-
   }
 #' Region variable
 #' @description internal function that creates variable from numeric codes (given by user) to corresponding names (printed in output) for region.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyRegionNumToText <-
@@ -138,7 +138,7 @@ rccShinyRegionNumToText <-
   }
 #' Region names
 #' @description internal function that gives names of regions used by rccShinyRegionNumToText.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyRegionNames <-
@@ -153,7 +153,7 @@ rccShinyRegionNames <-
       } else {
         regions <- c(
           "Stockholm-Gotland",
-          "Uppsala-Örebro",
+          "Mid Sweden",
           "Southeast",
           "South",
           "West",
@@ -167,7 +167,7 @@ rccShinyRegionNames <-
       } else {
         regions <- c(
           "Stockholm-Gotland",
-          "Uppsala-Örebro",
+          "Mellansverige",
           "Sydöstra",
           "Södra",
           "Västra",
@@ -184,7 +184,7 @@ rccShinyRegionNames <-
   }
 #' Names for choices in Level of comparison
 #' @description internal function used to supply text printed in Level of comparison widget.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyLevelNames <-
@@ -227,24 +227,30 @@ rccShinyLevelNames <-
   }
 #' Group together geoUnits
 #' @description internal function used by server.R to simplify code.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyGroupVariable <-
-  function(label = "sjukhus") {
+  function(
+    label = "sjukhus",
+    otherVariables = NULL,
+    otherLabels = NULL
+  ) {
     if (tolower(label) %in% c("sjukvårdsregion", "healthcare region")) {
       "region"
     } else if (tolower(label) %in% c("region", "county", "bostadslän", "county of residence")) {
       "landsting"
     } else if (tolower(label) %in% c("sjukhus", "hospital")) {
       "sjukhus"
+    } else if (label %in% otherLabels) {
+      otherVariables[which(otherLabels == label)]
     } else {
       "sjukhus"
     }
   }
 #' Text for no observations
 #' @description internal function with text to be printed if there is no data available.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyNoObservationsText <-
@@ -257,7 +263,7 @@ rccShinyNoObservationsText <-
   }
 #' Names for tabs
 #' @description internal function used to supply names of the tabs.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyTabsNames <-
@@ -282,7 +288,7 @@ rccShinyTabsNames <-
   }
 #' Miscellaneous text
 #' @description internal function used to supply text for various output.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyTXT <-
@@ -361,7 +367,7 @@ rccShinyTXT <-
 # # # # # # NPCR # # # # #
 #' Used by NPCR
 #' @description internal function.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 npcrPreparePeriodRegionCountyHospitalVariables <-
@@ -413,7 +419,7 @@ npcrPreparePeriodRegionCountyHospitalVariables <-
 
       data[, paste0("landsting_", loop_language)] <- data$landsting
       data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Stockholm-Gotland"] <- "Others/private - Stockholm-Gotland"
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Uppsala-Örebro"] <- "Others/private - Uppsala-Örebro"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Mid Sweden"] <- "Others/private - Mid Sweden"
       data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Sydöstra"] <- "Others/private - Southeast"
       data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Södra"] <- "Others/private - South"
       data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Västra"] <- "Others/private - West"
@@ -421,7 +427,7 @@ npcrPreparePeriodRegionCountyHospitalVariables <-
 
       data[, paste0("sjukhus_", loop_language)] <- data$sjukhus
       data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Stockholm-Gotland"] <- "Private practice - Stockholm-Gotland"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Uppsala-Örebro"] <- "Private practice - Uppsala-Örebro"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Mellansverige"] <- "Private practice - Mellansverige"
       data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Sydöstra"] <- "Private practice - Southeast"
       data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Södra"] <- "Private practice - South"
       data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Västra"] <- "Private practice - West"

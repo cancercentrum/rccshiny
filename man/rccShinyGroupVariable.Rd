@@ -4,12 +4,16 @@
 \alias{rccShinyGroupVariable}
 \title{Group together geoUnits}
 \usage{
-rccShinyGroupVariable(label = "sjukhus")
+rccShinyGroupVariable(
+  label = "sjukhus",
+  otherVariables = NULL,
+  otherLabels = NULL
+)
 }
 \description{
 internal function used by server.R to simplify code.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

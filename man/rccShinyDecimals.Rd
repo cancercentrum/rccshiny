@@ -10,6 +10,6 @@ rccShinyDecimals()
 internal function used by rccShinyIndTable to give number of decimals.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

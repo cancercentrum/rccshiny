@@ -10,6 +10,6 @@ rccShinyTXT(language = "sv")
 internal function used to supply text for various output.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

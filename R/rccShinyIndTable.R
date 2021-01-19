@@ -1,6 +1,6 @@
 #' Creates table
 #' @description internal function used by server.R for table in tab Table.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rccShinyIndTable <-

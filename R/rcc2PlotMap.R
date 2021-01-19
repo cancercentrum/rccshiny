@@ -1,6 +1,6 @@
 #' rcc2PlotMap
 #' @description internal function.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rcc2PlotMap <-
@@ -305,7 +305,7 @@ rcc2PlotMap <-
         value[value > valueLim[2]] <- valueLim[2]
 
         # Plot
-        plot(
+        sp::plot(
           gadm1,
           col = value_col,
           border = colBorder,
@@ -324,7 +324,7 @@ rcc2PlotMap <-
         y_lim <- par("usr")[3:4]
 
         # Fix Heby
-        plot(
+        sp::plot(
           gadm2[gadm2$NAME_2 %in% "Heby",],
           col = value_col[value_names == "Uppsala"],
           border = colBorder,

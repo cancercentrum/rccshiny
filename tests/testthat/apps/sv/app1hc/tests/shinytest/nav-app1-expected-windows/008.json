@@ -85,7 +85,7 @@
       2016
     ],
     "param_periodSplit": false,
-    "param_periodtype": "≈r",
+    "param_periodtype": "√Ör",
     "param_region": "Alla",
     "sidebarCollapsed": true,
     "sidebarItemExpanded": null,
@@ -99,7 +99,7 @@
   "output": {
     "comment": null,
     "description": {
-      "html": "<p><\/p><p><b>Om indikatorn<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Har beskrivs indikatorn.<\/div><p><b>Att t‰nka pÂ vid tolkning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Viktig information!<p><\/p>Resultat frÂn grupper med f‰rre ‰n 5 fall redovisas ej separat. <\/div><p><b>Teknisk beskrivning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Information om variabler etc.<\/div>",
+      "html": "<p><\/p><p><b>Om indikatorn<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Har beskrivs indikatorn.<\/div><p><b>Att t√§nka p√• vid tolkning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Viktig information!<p><\/p>Resultat fr√•n grupper med f√§rre √§n 5 fall redovisas ej separat. <\/div><p><b>Teknisk beskrivning<\/b><\/p><div style='background-color:#f7f7f7;width:100%;border-radius:3px;padding:3px 5px;margin:10px 0px;'>Information om variabler etc.<\/div>",
       "deps": [
 
       ]
@@ -244,7 +244,7 @@
                       "hc-a2": "KA",
                       "labelrank": "7",
                       "hasc": "SE.KA",
-                      "alt-name": "Kalmar l‰n",
+                      "alt-name": "Kalmar l√§n",
                       "woe-id": "2347052",
                       "subregion": null,
                       "fips": "SW09",
@@ -257,7 +257,7 @@
                       "woe-name": "Kalmar",
                       "latitude": "57.2764",
                       "woe-label": "Kalmar, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -764,20 +764,20 @@
                       "hc-a2": "OG",
                       "labelrank": "7",
                       "hasc": "SE.OG",
-                      "alt-name": "÷stergˆtlands l‰n",
+                      "alt-name": "√ñsterg√∂tlands l√§n",
                       "woe-id": "2347059",
                       "subregion": null,
                       "fips": "SW16",
                       "postal-code": "OG",
-                      "name": "÷stergˆtland",
+                      "name": "√ñsterg√∂tland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "15.7022",
-                      "woe-name": "÷stergˆtland",
+                      "woe-name": "√ñsterg√∂tland",
                       "latitude": "58.3655",
                       "woe-label": "Ostergotland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -1180,7 +1180,7 @@
                       "hc-a2": "NB",
                       "labelrank": "7",
                       "hasc": "SE.NB",
-                      "alt-name": "Norrbottens l‰n",
+                      "alt-name": "Norrbottens l√§n",
                       "woe-id": "2347057",
                       "subregion": null,
                       "fips": "SW14",
@@ -1193,7 +1193,7 @@
                       "woe-name": "Norrbotten",
                       "latitude": "66.837",
                       "woe-label": "Norrbotten, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -1988,20 +1988,20 @@
                       "hc-a2": "VN",
                       "labelrank": "7",
                       "hasc": "SE.VN",
-                      "alt-name": "V‰sternorrlands l‰n",
+                      "alt-name": "V√§sternorrlands l√§n",
                       "woe-id": "2347065",
                       "subregion": null,
                       "fips": "SW24",
                       "postal-code": "VN",
-                      "name": "V‰sternorrland",
+                      "name": "V√§sternorrland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "17.3697",
-                      "woe-name": "V‰sternorrland",
+                      "woe-name": "V√§sternorrland",
                       "latitude": "62.9145",
                       "woe-label": "Vasternorrland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -2512,20 +2512,20 @@
                       "hc-a2": "VB",
                       "labelrank": "7",
                       "hasc": "SE.VB",
-                      "alt-name": "V‰sterbottens l‰n",
+                      "alt-name": "V√§sterbottens l√§n",
                       "woe-id": "2347064",
                       "subregion": null,
                       "fips": "SW23",
                       "postal-code": "VB",
-                      "name": "V‰sterbotten",
+                      "name": "V√§sterbotten",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "18.3726",
-                      "woe-name": "V‰sterbotten",
+                      "woe-name": "V√§sterbotten",
                       "latitude": "64.70480000000001",
                       "woe-label": "Vasterbotten, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -3056,7 +3056,7 @@
                       "hc-a2": "GT",
                       "labelrank": "7",
                       "hasc": "SE.GT",
-                      "alt-name": "Gotlands l‰n|Gothland|Gottland",
+                      "alt-name": "Gotlands l√§n|Gothland|Gottland",
                       "woe-id": "2347048",
                       "subregion": null,
                       "fips": "SW18",
@@ -3069,7 +3069,7 @@
                       "woe-name": "Gotland",
                       "latitude": "57.4733",
                       "woe-label": "Gotland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -3316,7 +3316,7 @@
                       "hc-a2": "ST",
                       "labelrank": "7",
                       "hasc": "SE.ST",
-                      "alt-name": "Stockholms l‰n|Estocolmo|Stoccolmo",
+                      "alt-name": "Stockholms l√§n|Estocolmo|Stoccolmo",
                       "woe-id": "2347067",
                       "subregion": null,
                       "fips": "SW26",
@@ -3329,7 +3329,7 @@
                       "woe-name": "Stockholm",
                       "latitude": "59.3659",
                       "woe-label": "Stockholm, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -3980,7 +3980,7 @@
                       "hc-a2": "UP",
                       "labelrank": "7",
                       "hasc": "SE.UP",
-                      "alt-name": "Uppsala l‰n",
+                      "alt-name": "Uppsala l√§n",
                       "woe-id": "2347062",
                       "subregion": null,
                       "fips": "SW21",
@@ -3993,7 +3993,7 @@
                       "woe-name": "Uppsala",
                       "latitude": "60.1522",
                       "woe-label": "Uppsala, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -4296,7 +4296,7 @@
                       "hc-a2": "BL",
                       "labelrank": "7",
                       "hasc": "SE.BL",
-                      "alt-name": "Blekinge l‰n",
+                      "alt-name": "Blekinge l√§n",
                       "woe-id": "2347045",
                       "subregion": null,
                       "fips": "SW02",
@@ -4309,7 +4309,7 @@
                       "woe-name": "Blekinge",
                       "latitude": "56.2929",
                       "woe-label": "Blekinge, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -4521,15 +4521,15 @@
                       "subregion": null,
                       "fips": null,
                       "postal-code": "VG",
-                      "name": "V‰stra Gˆtaland",
+                      "name": "V√§stra G√∂taland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "12.8371",
-                      "woe-name": "V‰stra Gˆtaland",
+                      "woe-name": "V√§stra G√∂taland",
                       "latitude": "58.2428",
                       "woe-label": "Vastra Gotaland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "MultiPolygon",
@@ -5057,7 +5057,7 @@
                       "woe-name": "Dalarna",
                       "latitude": "60.814",
                       "woe-label": "Dalarna, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -5378,20 +5378,20 @@
                       "hc-a2": "GV",
                       "labelrank": "7",
                       "hasc": "SE.GV",
-                      "alt-name": "G‰vleborgs l‰n",
+                      "alt-name": "G√§vleborgs l√§n",
                       "woe-id": "2347046",
                       "subregion": null,
                       "fips": "SW03",
                       "postal-code": "GV",
-                      "name": "G‰vleborg",
+                      "name": "G√§vleborg",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "16.5023",
-                      "woe-name": "G‰vleborg",
+                      "woe-name": "G√§vleborg",
                       "latitude": "61.3691",
                       "woe-label": "Gavleborg, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -5748,20 +5748,20 @@
                       "hc-a2": "JO",
                       "labelrank": "7",
                       "hasc": "SE.JO",
-                      "alt-name": "Jˆnkˆpings l‰n",
+                      "alt-name": "J√∂nk√∂pings l√§n",
                       "woe-id": "2347051",
                       "subregion": null,
                       "fips": "SW08",
                       "postal-code": "JO",
-                      "name": "Jˆnkˆping",
+                      "name": "J√∂nk√∂ping",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "14.424",
-                      "woe-name": "Jˆnkˆping",
+                      "woe-name": "J√∂nk√∂ping",
                       "latitude": "57.5478",
                       "woe-label": "Jonkoping, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6022,7 +6022,7 @@
                       "hc-a2": "KR",
                       "labelrank": "7",
                       "hasc": "SE.KR",
-                      "alt-name": "Kronobergs l‰n",
+                      "alt-name": "Kronobergs l√§n",
                       "woe-id": "2347055",
                       "subregion": null,
                       "fips": "SW12",
@@ -6035,7 +6035,7 @@
                       "woe-name": "Kronoberg",
                       "latitude": "56.8265",
                       "woe-label": "Kronoberg, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6264,20 +6264,20 @@
                       "hc-a2": "OR",
                       "labelrank": "7",
                       "hasc": "SE.OR",
-                      "alt-name": "÷rebro|÷rebro l‰n",
+                      "alt-name": "√ñrebro|√ñrebro l√§n",
                       "woe-id": "2347058",
                       "subregion": null,
                       "fips": "SW15",
                       "postal-code": "OR",
-                      "name": "÷rebro",
+                      "name": "√ñrebro",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "15.0594",
-                      "woe-name": "÷rebro",
+                      "woe-name": "√ñrebro",
                       "latitude": "59.3913",
-                      "woe-label": "÷rebro, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "woe-label": "√ñrebro, SE, Sweden",
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6494,20 +6494,20 @@
                       "hc-a2": "VM",
                       "labelrank": "7",
                       "hasc": "SE.VM",
-                      "alt-name": "V‰stmanlands l‰n",
+                      "alt-name": "V√§stmanlands l√§n",
                       "woe-id": "2347066",
                       "subregion": null,
                       "fips": "SW25",
                       "postal-code": "VM",
-                      "name": "V‰stmanland",
+                      "name": "V√§stmanland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "16.4244",
-                      "woe-name": "V‰stmanland",
+                      "woe-name": "V√§stmanland",
                       "latitude": "59.7979",
                       "woe-label": "Vastmanland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -6744,7 +6744,7 @@
                       "hc-a2": "HA",
                       "labelrank": "7",
                       "hasc": "SE.HA",
-                      "alt-name": "Hallands l‰n",
+                      "alt-name": "Hallands l√§n",
                       "woe-id": "2347049",
                       "subregion": null,
                       "fips": "SW06",
@@ -6757,7 +6757,7 @@
                       "woe-name": "Halland",
                       "latitude": "56.9745",
                       "woe-label": "Halland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7006,20 +7006,20 @@
                       "hc-a2": "SD",
                       "labelrank": "7",
                       "hasc": "SE.SD",
-                      "alt-name": "Sˆdermanlands l‰n|Sˆrmland",
+                      "alt-name": "S√∂dermanlands l√§n|S√∂rmland",
                       "woe-id": "2347061",
                       "subregion": null,
                       "fips": "SW18",
                       "postal-code": "SD",
-                      "name": "Sˆdermanland",
+                      "name": "S√∂dermanland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "16.6334",
-                      "woe-name": "Sˆdermanland",
+                      "woe-name": "S√∂dermanland",
                       "latitude": "59.0778",
                       "woe-label": "Sodermanland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7236,20 +7236,20 @@
                       "hc-a2": "VR",
                       "labelrank": "7",
                       "hasc": "SE.VR",
-                      "alt-name": "V‰rmlands l‰n",
+                      "alt-name": "V√§rmlands l√§n",
                       "woe-id": "2347063",
                       "subregion": null,
                       "fips": "SW22",
                       "postal-code": "VR",
-                      "name": "V‰rmland",
+                      "name": "V√§rmland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "13.0764",
-                      "woe-name": "V‰rmland",
+                      "woe-name": "V√§rmland",
                       "latitude": "59.8068",
                       "woe-label": "Varmland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7542,20 +7542,20 @@
                       "hc-a2": "JA",
                       "labelrank": "7",
                       "hasc": "SE.JA",
-                      "alt-name": "J‰mtlands l‰n",
+                      "alt-name": "J√§mtlands l√§n",
                       "woe-id": "2347050",
                       "subregion": null,
                       "fips": "SW07",
                       "postal-code": "JA",
-                      "name": "J‰mtland",
+                      "name": "J√§mtland",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "14.4806",
-                      "woe-name": "J‰mtland",
+                      "woe-name": "J√§mtland",
                       "latitude": "63.3306",
                       "woe-label": "Jamtland, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -7961,15 +7961,15 @@
                       "subregion": null,
                       "fips": "SW11",
                       "postal-code": "SN",
-                      "name": "SkÂne",
+                      "name": "Sk√•ne",
                       "country": "Sweden",
                       "type-en": "County",
                       "region": null,
                       "longitude": "13.5193",
-                      "woe-name": "SkÂne",
+                      "woe-name": "Sk√•ne",
                       "latitude": "55.9073",
                       "woe-label": "Skane, SE, Sweden",
-                      "type": "Laen|l‰n"
+                      "type": "Laen|l√§n"
                     },
                     "geometry": {
                       "type": "Polygon",
@@ -8234,7 +8234,7 @@
                   "keyCode": "se-gt"
                 },
                 {
-                  "key": "G‰vleborg",
+                  "key": "G√§vleborg",
                   "value": 34.7,
                   "keyCode": "se-gv"
                 },
@@ -8244,12 +8244,12 @@
                   "keyCode": "se-ha"
                 },
                 {
-                  "key": "J‰mtland",
+                  "key": "J√§mtland",
                   "value": 27,
                   "keyCode": "se-ja"
                 },
                 {
-                  "key": "Jˆnkˆping",
+                  "key": "J√∂nk√∂ping",
                   "value": 33.6,
                   "keyCode": "se-jo"
                 },
@@ -8274,7 +8274,7 @@
                   "keyCode": "se-or"
                 },
                 {
-                  "key": "SkÂne",
+                  "key": "Sk√•ne",
                   "value": 31.8,
                   "keyCode": "se-sn"
                 },
@@ -8284,7 +8284,7 @@
                   "keyCode": "se-st"
                 },
                 {
-                  "key": "Sˆdermanland",
+                  "key": "S√∂dermanland",
                   "value": 29.3,
                   "keyCode": "se-sd"
                 },
@@ -8294,32 +8294,32 @@
                   "keyCode": "se-up"
                 },
                 {
-                  "key": "V‰rmland",
+                  "key": "V√§rmland",
                   "value": 26.1,
                   "keyCode": "se-vr"
                 },
                 {
-                  "key": "V‰sterbotten",
+                  "key": "V√§sterbotten",
                   "value": 29.5,
                   "keyCode": "se-vb"
                 },
                 {
-                  "key": "V‰sternorrland",
+                  "key": "V√§sternorrland",
                   "value": 28.9,
                   "keyCode": "se-vn"
                 },
                 {
-                  "key": "V‰stmanland",
+                  "key": "V√§stmanland",
                   "value": 24.6,
                   "keyCode": "se-vm"
                 },
                 {
-                  "key": "V‰stra Gˆtaland",
+                  "key": "V√§stra G√∂taland",
                   "value": 32.7,
                   "keyCode": "se-vg"
                 },
                 {
-                  "key": "÷stergˆtland",
+                  "key": "√ñsterg√∂tland",
                   "value": 28.5,
                   "keyCode": "se-og"
                 }
@@ -8339,7 +8339,7 @@
           },
           "tooltip": {
             "headerFormat": "",
-            "pointFormat": "<span style='color:{point.color}'>¶<\/span> <span style='font-size: 10px'>{point.key}: <b>{point.value}<\/b><\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>‚ñ†<\/span> <span style='font-size: 10px'>{point.key}: <b>{point.value}<\/b><\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -8535,30 +8535,30 @@
               "Blekinge",
               "Dalarna",
               "Gotland",
-              "G‰vleborg",
+              "G√§vleborg",
               "Halland",
-              "J‰mtland",
-              "Jˆnkˆping",
+              "J√§mtland",
+              "J√∂nk√∂ping",
               "Kalmar",
               "Kronoberg",
               "Norrbotten",
-              "SkÂne",
+              "Sk√•ne",
               "Stockholm",
-              "Sˆdermanland",
+              "S√∂dermanland",
               "Uppsala",
-              "V‰rmland",
-              "V‰sterbotten",
-              "V‰sternorrland",
-              "V‰stmanland",
-              "V‰stra Gˆtaland",
-              "÷rebro",
-              "÷stergˆtland",
-              "÷vriga/privat - Norra",
-              "÷vriga/privat - Stockholm-Gotland",
-              "÷vriga/privat - Sydˆstra",
-              "÷vriga/privat - Sˆdra",
-              "÷vriga/privat - Uppsala-÷rebro",
-              "÷vriga/privat - V‰stra",
+              "V√§rmland",
+              "V√§sterbotten",
+              "V√§sternorrland",
+              "V√§stmanland",
+              "V√§stra G√∂taland",
+              "√ñrebro",
+              "√ñsterg√∂tland",
+              "√ñvriga/privat - Mellansverige",
+              "√ñvriga/privat - Norra",
+              "√ñvriga/privat - Stockholm-Gotland",
+              "√ñvriga/privat - Syd√∂stra",
+              "√ñvriga/privat - S√∂dra",
+              "√ñvriga/privat - V√§stra",
               "RIKET"
             ],
             "labels": {
@@ -8583,7 +8583,7 @@
             }
           },
           "tooltip": {
-            "formatter": "function () {\nvar seriesAll = this.point.series.chart.series, \nhoverIndex = this.point.series.xData.indexOf(this.point.x), \nhoverStack = this.series.userOptions.stack, \nstr = '<span style=\"font-size: 10px\">' + this.key + ' (' + hoverStack + ')<\/span><br>'\n;\n$.each(seriesAll, function(i, s) {\nif (s.userOptions.stack == hoverStack) {\nstr += '<span style=\"font-size: 10px\">(N = ' + s.data[hoverIndex].n + ')<\/span><br>'\nreturn false;\n}\n});\n$.each(seriesAll, function(i, s) {\nif (s.userOptions.stack == hoverStack) {\nstr += '<span style=\"color:' + s.data[0].color + '\">¶<\/span><span style=\"font-size: 10px\"> ' + s.name + ': <b>' + s.data[hoverIndex].y.toFixed(0) + ' %<\/b><\/span><br>';\n}\n});\nreturn str;\n}",
+            "formatter": "function () {\nvar seriesAll = this.point.series.chart.series, \nhoverIndex = this.point.series.xData.indexOf(this.point.x), \nhoverStack = this.series.userOptions.stack, \nstr = '<span style=\"font-size: 10px\">' + this.key + ' (' + hoverStack + ')<\/span><br>'\n;\n$.each(seriesAll, function(i, s) {\nif (s.userOptions.stack == hoverStack) {\nstr += '<span style=\"font-size: 10px\">(N = ' + s.data[hoverIndex].n + ')<\/span><br>'\nreturn false;\n}\n});\n$.each(seriesAll, function(i, s) {\nif (s.userOptions.stack == hoverStack) {\nstr += '<span style=\"color:' + s.data[0].color + '\">‚ñ†<\/span><span style=\"font-size: 10px\"> ' + s.name + ': <b>' + s.data[hoverIndex].y.toFixed(0) + ' %<\/b><\/span><br>';\n}\n});\nreturn str;\n}",
             "useHTML": true,
             "outside": true
           },
@@ -8680,7 +8680,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "G‰vleborg",
+                  "groupOriginal": "G√§vleborg",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8689,7 +8689,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "G‰vleborg"
+                  "name": "G√§vleborg"
                 },
                 {
                   "period": 1,
@@ -8730,7 +8730,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "J‰mtland",
+                  "groupOriginal": "J√§mtland",
                   "tempInd": 7.69230769230769,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8739,7 +8739,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "J‰mtland"
+                  "name": "J√§mtland"
                 },
                 {
                   "period": 1,
@@ -8755,7 +8755,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jˆnkˆping",
+                  "groupOriginal": "J√∂nk√∂ping",
                   "tempInd": 4.54545454545455,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8764,7 +8764,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Jˆnkˆping"
+                  "name": "J√∂nk√∂ping"
                 },
                 {
                   "period": 1,
@@ -8855,7 +8855,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "SkÂne",
+                  "groupOriginal": "Sk√•ne",
                   "tempInd": 5.15463917525773,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8864,7 +8864,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "SkÂne"
+                  "name": "Sk√•ne"
                 },
                 {
                   "period": 1,
@@ -8905,7 +8905,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Sˆdermanland",
+                  "groupOriginal": "S√∂dermanland",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8914,7 +8914,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Sˆdermanland"
+                  "name": "S√∂dermanland"
                 },
                 {
                   "period": 1,
@@ -8955,7 +8955,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰rmland",
+                  "groupOriginal": "V√§rmland",
                   "tempInd": 4.34782608695652,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8964,7 +8964,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰rmland"
+                  "name": "V√§rmland"
                 },
                 {
                   "period": 1,
@@ -8980,7 +8980,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sterbotten",
+                  "groupOriginal": "V√§sterbotten",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -8989,7 +8989,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sterbotten"
+                  "name": "V√§sterbotten"
                 },
                 {
                   "period": 1,
@@ -9005,7 +9005,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sternorrland",
+                  "groupOriginal": "V√§sternorrland",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9014,7 +9014,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sternorrland"
+                  "name": "V√§sternorrland"
                 },
                 {
                   "period": 1,
@@ -9030,7 +9030,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stmanland",
+                  "groupOriginal": "V√§stmanland",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9039,7 +9039,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stmanland"
+                  "name": "V√§stmanland"
                 },
                 {
                   "period": 1,
@@ -9055,7 +9055,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stra Gˆtaland",
+                  "groupOriginal": "V√§stra G√∂taland",
                   "tempInd": 1.58730158730159,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9064,7 +9064,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stra Gˆtaland"
+                  "name": "V√§stra G√∂taland"
                 },
                 {
                   "period": 1,
@@ -9080,7 +9080,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷rebro",
+                  "groupOriginal": "√ñrebro",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9089,7 +9089,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷rebro"
+                  "name": "√ñrebro"
                 },
                 {
                   "period": 1,
@@ -9105,7 +9105,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷stergˆtland",
+                  "groupOriginal": "√ñsterg√∂tland",
                   "tempInd": 6.66666666666667,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9114,107 +9114,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷stergˆtland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.33333333333333,
-                  "factor2": 30,
-                  "factor3": 33.3333333333333,
-                  "factor4": 30,
-                  "factor5": 3.33333333333333,
-                  "ind": 100,
-                  "n": "30",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Norra",
-                  "tempInd": 3.33333333333333,
-                  "tempCol": "#00b3f6",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 3.33333333333333,
-                  "color": "#00b3f6",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Norra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 23.0769230769231,
-                  "factor3": 50,
-                  "factor4": 19.2307692307692,
-                  "factor5": 7.69230769230769,
-                  "ind": 100,
-                  "n": "26",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Stockholm-Gotland",
-                  "tempInd": 0,
-                  "tempCol": "#00b3f6",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 0,
-                  "color": "#00b3f6",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Stockholm-Gotland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.125,
-                  "factor2": 12.5,
-                  "factor3": 34.375,
-                  "factor4": 40.625,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sydˆstra",
-                  "tempInd": 3.125,
-                  "tempCol": "#00b3f6",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 3.125,
-                  "color": "#00b3f6",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sydˆstra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 9.375,
-                  "factor3": 46.875,
-                  "factor4": 34.375,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sˆdra",
-                  "tempInd": 0,
-                  "tempCol": "#00b3f6",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 0,
-                  "color": "#00b3f6",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sˆdra"
+                  "name": "√ñsterg√∂tland"
                 },
                 {
                   "period": 1,
@@ -9230,7 +9130,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Uppsala-÷rebro",
+                  "groupOriginal": "√ñvriga/privat - Mellansverige",
                   "tempInd": 2.77777777777778,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9239,7 +9139,107 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - Uppsala-÷rebro"
+                  "name": "√ñvriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.33333333333333,
+                  "factor2": 30,
+                  "factor3": 33.3333333333333,
+                  "factor4": 30,
+                  "factor5": 3.33333333333333,
+                  "ind": 100,
+                  "n": "30",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Norra",
+                  "tempInd": 3.33333333333333,
+                  "tempCol": "#00b3f6",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 3.33333333333333,
+                  "color": "#00b3f6",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Norra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 23.0769230769231,
+                  "factor3": 50,
+                  "factor4": 19.2307692307692,
+                  "factor5": 7.69230769230769,
+                  "ind": 100,
+                  "n": "26",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Stockholm-Gotland",
+                  "tempInd": 0,
+                  "tempCol": "#00b3f6",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 0,
+                  "color": "#00b3f6",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Stockholm-Gotland"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.125,
+                  "factor2": 12.5,
+                  "factor3": 34.375,
+                  "factor4": 40.625,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Syd√∂stra",
+                  "tempInd": 3.125,
+                  "tempCol": "#00b3f6",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 3.125,
+                  "color": "#00b3f6",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Syd√∂stra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 9.375,
+                  "factor3": 46.875,
+                  "factor4": 34.375,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - S√∂dra",
+                  "tempInd": 0,
+                  "tempCol": "#00b3f6",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 0,
+                  "color": "#00b3f6",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - S√∂dra"
                 },
                 {
                   "period": 1,
@@ -9255,7 +9255,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - V‰stra",
+                  "groupOriginal": "√ñvriga/privat - V√§stra",
                   "tempInd": 0,
                   "tempCol": "#00b3f6",
                   "tempColBorder": "#7f7f7f",
@@ -9264,7 +9264,7 @@
                   "color": "#00b3f6",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - V‰stra"
+                  "name": "√ñvriga/privat - V√§stra"
                 },
                 {
                   "period": 1,
@@ -9390,7 +9390,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "G‰vleborg",
+                  "groupOriginal": "G√§vleborg",
                   "tempInd": 17.8571428571429,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9399,7 +9399,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "G‰vleborg"
+                  "name": "G√§vleborg"
                 },
                 {
                   "period": 1,
@@ -9440,7 +9440,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "J‰mtland",
+                  "groupOriginal": "J√§mtland",
                   "tempInd": 15.3846153846154,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9449,7 +9449,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "J‰mtland"
+                  "name": "J√§mtland"
                 },
                 {
                   "period": 1,
@@ -9465,7 +9465,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jˆnkˆping",
+                  "groupOriginal": "J√∂nk√∂ping",
                   "tempInd": 13.6363636363636,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9474,7 +9474,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Jˆnkˆping"
+                  "name": "J√∂nk√∂ping"
                 },
                 {
                   "period": 1,
@@ -9565,7 +9565,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "SkÂne",
+                  "groupOriginal": "Sk√•ne",
                   "tempInd": 26.8041237113402,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9574,7 +9574,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "SkÂne"
+                  "name": "Sk√•ne"
                 },
                 {
                   "period": 1,
@@ -9615,7 +9615,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Sˆdermanland",
+                  "groupOriginal": "S√∂dermanland",
                   "tempInd": 5.26315789473684,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9624,7 +9624,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Sˆdermanland"
+                  "name": "S√∂dermanland"
                 },
                 {
                   "period": 1,
@@ -9665,7 +9665,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰rmland",
+                  "groupOriginal": "V√§rmland",
                   "tempInd": 17.3913043478261,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9674,7 +9674,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰rmland"
+                  "name": "V√§rmland"
                 },
                 {
                   "period": 1,
@@ -9690,7 +9690,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sterbotten",
+                  "groupOriginal": "V√§sterbotten",
                   "tempInd": 10.3448275862069,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9699,7 +9699,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sterbotten"
+                  "name": "V√§sterbotten"
                 },
                 {
                   "period": 1,
@@ -9715,7 +9715,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sternorrland",
+                  "groupOriginal": "V√§sternorrland",
                   "tempInd": 22.5806451612903,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9724,7 +9724,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sternorrland"
+                  "name": "V√§sternorrland"
                 },
                 {
                   "period": 1,
@@ -9740,7 +9740,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stmanland",
+                  "groupOriginal": "V√§stmanland",
                   "tempInd": 12,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9749,7 +9749,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stmanland"
+                  "name": "V√§stmanland"
                 },
                 {
                   "period": 1,
@@ -9765,7 +9765,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stra Gˆtaland",
+                  "groupOriginal": "V√§stra G√∂taland",
                   "tempInd": 16.6666666666667,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9774,7 +9774,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stra Gˆtaland"
+                  "name": "V√§stra G√∂taland"
                 },
                 {
                   "period": 1,
@@ -9790,7 +9790,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷rebro",
+                  "groupOriginal": "√ñrebro",
                   "tempInd": 23.6842105263158,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9799,7 +9799,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷rebro"
+                  "name": "√ñrebro"
                 },
                 {
                   "period": 1,
@@ -9815,7 +9815,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷stergˆtland",
+                  "groupOriginal": "√ñsterg√∂tland",
                   "tempInd": 0,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9824,107 +9824,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷stergˆtland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.33333333333333,
-                  "factor2": 30,
-                  "factor3": 33.3333333333333,
-                  "factor4": 30,
-                  "factor5": 3.33333333333333,
-                  "ind": 100,
-                  "n": "30",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Norra",
-                  "tempInd": 30,
-                  "tempCol": "#ffb117",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 30,
-                  "color": "#ffb117",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Norra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 23.0769230769231,
-                  "factor3": 50,
-                  "factor4": 19.2307692307692,
-                  "factor5": 7.69230769230769,
-                  "ind": 100,
-                  "n": "26",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Stockholm-Gotland",
-                  "tempInd": 23.0769230769231,
-                  "tempCol": "#ffb117",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 23.0769230769231,
-                  "color": "#ffb117",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Stockholm-Gotland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.125,
-                  "factor2": 12.5,
-                  "factor3": 34.375,
-                  "factor4": 40.625,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sydˆstra",
-                  "tempInd": 12.5,
-                  "tempCol": "#ffb117",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 12.5,
-                  "color": "#ffb117",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sydˆstra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 9.375,
-                  "factor3": 46.875,
-                  "factor4": 34.375,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sˆdra",
-                  "tempInd": 9.375,
-                  "tempCol": "#ffb117",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 9.375,
-                  "color": "#ffb117",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sˆdra"
+                  "name": "√ñsterg√∂tland"
                 },
                 {
                   "period": 1,
@@ -9940,7 +9840,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Uppsala-÷rebro",
+                  "groupOriginal": "√ñvriga/privat - Mellansverige",
                   "tempInd": 16.6666666666667,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9949,7 +9849,107 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - Uppsala-÷rebro"
+                  "name": "√ñvriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.33333333333333,
+                  "factor2": 30,
+                  "factor3": 33.3333333333333,
+                  "factor4": 30,
+                  "factor5": 3.33333333333333,
+                  "ind": 100,
+                  "n": "30",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Norra",
+                  "tempInd": 30,
+                  "tempCol": "#ffb117",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 30,
+                  "color": "#ffb117",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Norra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 23.0769230769231,
+                  "factor3": 50,
+                  "factor4": 19.2307692307692,
+                  "factor5": 7.69230769230769,
+                  "ind": 100,
+                  "n": "26",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Stockholm-Gotland",
+                  "tempInd": 23.0769230769231,
+                  "tempCol": "#ffb117",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 23.0769230769231,
+                  "color": "#ffb117",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Stockholm-Gotland"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.125,
+                  "factor2": 12.5,
+                  "factor3": 34.375,
+                  "factor4": 40.625,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Syd√∂stra",
+                  "tempInd": 12.5,
+                  "tempCol": "#ffb117",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 12.5,
+                  "color": "#ffb117",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Syd√∂stra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 9.375,
+                  "factor3": 46.875,
+                  "factor4": 34.375,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - S√∂dra",
+                  "tempInd": 9.375,
+                  "tempCol": "#ffb117",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 9.375,
+                  "color": "#ffb117",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - S√∂dra"
                 },
                 {
                   "period": 1,
@@ -9965,7 +9965,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - V‰stra",
+                  "groupOriginal": "√ñvriga/privat - V√§stra",
                   "tempInd": 20.6896551724138,
                   "tempCol": "#ffb117",
                   "tempColBorder": "#7f7f7f",
@@ -9974,7 +9974,7 @@
                   "color": "#ffb117",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - V‰stra"
+                  "name": "√ñvriga/privat - V√§stra"
                 },
                 {
                   "period": 1,
@@ -10100,7 +10100,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "G‰vleborg",
+                  "groupOriginal": "G√§vleborg",
                   "tempInd": 28.5714285714286,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10109,7 +10109,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "G‰vleborg"
+                  "name": "G√§vleborg"
                 },
                 {
                   "period": 1,
@@ -10150,7 +10150,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "J‰mtland",
+                  "groupOriginal": "J√§mtland",
                   "tempInd": 26.9230769230769,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10159,7 +10159,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "J‰mtland"
+                  "name": "J√§mtland"
                 },
                 {
                   "period": 1,
@@ -10175,7 +10175,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jˆnkˆping",
+                  "groupOriginal": "J√∂nk√∂ping",
                   "tempInd": 40.9090909090909,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10184,7 +10184,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Jˆnkˆping"
+                  "name": "J√∂nk√∂ping"
                 },
                 {
                   "period": 1,
@@ -10275,7 +10275,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "SkÂne",
+                  "groupOriginal": "Sk√•ne",
                   "tempInd": 30.9278350515464,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10284,7 +10284,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "SkÂne"
+                  "name": "Sk√•ne"
                 },
                 {
                   "period": 1,
@@ -10325,7 +10325,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Sˆdermanland",
+                  "groupOriginal": "S√∂dermanland",
                   "tempInd": 63.1578947368421,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10334,7 +10334,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Sˆdermanland"
+                  "name": "S√∂dermanland"
                 },
                 {
                   "period": 1,
@@ -10375,7 +10375,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰rmland",
+                  "groupOriginal": "V√§rmland",
                   "tempInd": 39.1304347826087,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10384,7 +10384,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰rmland"
+                  "name": "V√§rmland"
                 },
                 {
                   "period": 1,
@@ -10400,7 +10400,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sterbotten",
+                  "groupOriginal": "V√§sterbotten",
                   "tempInd": 48.2758620689655,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10409,7 +10409,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sterbotten"
+                  "name": "V√§sterbotten"
                 },
                 {
                   "period": 1,
@@ -10425,7 +10425,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sternorrland",
+                  "groupOriginal": "V√§sternorrland",
                   "tempInd": 45.1612903225806,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10434,7 +10434,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sternorrland"
+                  "name": "V√§sternorrland"
                 },
                 {
                   "period": 1,
@@ -10450,7 +10450,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stmanland",
+                  "groupOriginal": "V√§stmanland",
                   "tempInd": 48,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10459,7 +10459,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stmanland"
+                  "name": "V√§stmanland"
                 },
                 {
                   "period": 1,
@@ -10475,7 +10475,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stra Gˆtaland",
+                  "groupOriginal": "V√§stra G√∂taland",
                   "tempInd": 44.4444444444444,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10484,7 +10484,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stra Gˆtaland"
+                  "name": "V√§stra G√∂taland"
                 },
                 {
                   "period": 1,
@@ -10500,7 +10500,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷rebro",
+                  "groupOriginal": "√ñrebro",
                   "tempInd": 36.8421052631579,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10509,7 +10509,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷rebro"
+                  "name": "√ñrebro"
                 },
                 {
                   "period": 1,
@@ -10525,7 +10525,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷stergˆtland",
+                  "groupOriginal": "√ñsterg√∂tland",
                   "tempInd": 46.6666666666667,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10534,107 +10534,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷stergˆtland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.33333333333333,
-                  "factor2": 30,
-                  "factor3": 33.3333333333333,
-                  "factor4": 30,
-                  "factor5": 3.33333333333333,
-                  "ind": 100,
-                  "n": "30",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Norra",
-                  "tempInd": 33.3333333333333,
-                  "tempCol": "#005092",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 33.3333333333333,
-                  "color": "#005092",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Norra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 23.0769230769231,
-                  "factor3": 50,
-                  "factor4": 19.2307692307692,
-                  "factor5": 7.69230769230769,
-                  "ind": 100,
-                  "n": "26",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Stockholm-Gotland",
-                  "tempInd": 50,
-                  "tempCol": "#005092",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 50,
-                  "color": "#005092",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Stockholm-Gotland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.125,
-                  "factor2": 12.5,
-                  "factor3": 34.375,
-                  "factor4": 40.625,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sydˆstra",
-                  "tempInd": 34.375,
-                  "tempCol": "#005092",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 34.375,
-                  "color": "#005092",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sydˆstra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 9.375,
-                  "factor3": 46.875,
-                  "factor4": 34.375,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sˆdra",
-                  "tempInd": 46.875,
-                  "tempCol": "#005092",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 46.875,
-                  "color": "#005092",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sˆdra"
+                  "name": "√ñsterg√∂tland"
                 },
                 {
                   "period": 1,
@@ -10650,7 +10550,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Uppsala-÷rebro",
+                  "groupOriginal": "√ñvriga/privat - Mellansverige",
                   "tempInd": 36.1111111111111,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10659,7 +10559,107 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - Uppsala-÷rebro"
+                  "name": "√ñvriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.33333333333333,
+                  "factor2": 30,
+                  "factor3": 33.3333333333333,
+                  "factor4": 30,
+                  "factor5": 3.33333333333333,
+                  "ind": 100,
+                  "n": "30",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Norra",
+                  "tempInd": 33.3333333333333,
+                  "tempCol": "#005092",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 33.3333333333333,
+                  "color": "#005092",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Norra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 23.0769230769231,
+                  "factor3": 50,
+                  "factor4": 19.2307692307692,
+                  "factor5": 7.69230769230769,
+                  "ind": 100,
+                  "n": "26",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Stockholm-Gotland",
+                  "tempInd": 50,
+                  "tempCol": "#005092",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 50,
+                  "color": "#005092",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Stockholm-Gotland"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.125,
+                  "factor2": 12.5,
+                  "factor3": 34.375,
+                  "factor4": 40.625,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Syd√∂stra",
+                  "tempInd": 34.375,
+                  "tempCol": "#005092",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 34.375,
+                  "color": "#005092",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Syd√∂stra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 9.375,
+                  "factor3": 46.875,
+                  "factor4": 34.375,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - S√∂dra",
+                  "tempInd": 46.875,
+                  "tempCol": "#005092",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 46.875,
+                  "color": "#005092",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - S√∂dra"
                 },
                 {
                   "period": 1,
@@ -10675,7 +10675,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - V‰stra",
+                  "groupOriginal": "√ñvriga/privat - V√§stra",
                   "tempInd": 51.7241379310345,
                   "tempCol": "#005092",
                   "tempColBorder": "#7f7f7f",
@@ -10684,7 +10684,7 @@
                   "color": "#005092",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - V‰stra"
+                  "name": "√ñvriga/privat - V√§stra"
                 },
                 {
                   "period": 1,
@@ -10810,7 +10810,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "G‰vleborg",
+                  "groupOriginal": "G√§vleborg",
                   "tempInd": 42.8571428571429,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -10819,7 +10819,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "G‰vleborg"
+                  "name": "G√§vleborg"
                 },
                 {
                   "period": 1,
@@ -10860,7 +10860,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "J‰mtland",
+                  "groupOriginal": "J√§mtland",
                   "tempInd": 38.4615384615385,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -10869,7 +10869,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "J‰mtland"
+                  "name": "J√§mtland"
                 },
                 {
                   "period": 1,
@@ -10885,7 +10885,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jˆnkˆping",
+                  "groupOriginal": "J√∂nk√∂ping",
                   "tempInd": 27.2727272727273,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -10894,7 +10894,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Jˆnkˆping"
+                  "name": "J√∂nk√∂ping"
                 },
                 {
                   "period": 1,
@@ -10985,7 +10985,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "SkÂne",
+                  "groupOriginal": "Sk√•ne",
                   "tempInd": 28.8659793814433,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -10994,7 +10994,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "SkÂne"
+                  "name": "Sk√•ne"
                 },
                 {
                   "period": 1,
@@ -11035,7 +11035,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Sˆdermanland",
+                  "groupOriginal": "S√∂dermanland",
                   "tempInd": 31.5789473684211,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11044,7 +11044,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Sˆdermanland"
+                  "name": "S√∂dermanland"
                 },
                 {
                   "period": 1,
@@ -11085,7 +11085,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰rmland",
+                  "groupOriginal": "V√§rmland",
                   "tempInd": 34.7826086956522,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11094,7 +11094,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰rmland"
+                  "name": "V√§rmland"
                 },
                 {
                   "period": 1,
@@ -11110,7 +11110,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sterbotten",
+                  "groupOriginal": "V√§sterbotten",
                   "tempInd": 34.4827586206897,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11119,7 +11119,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sterbotten"
+                  "name": "V√§sterbotten"
                 },
                 {
                   "period": 1,
@@ -11135,7 +11135,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sternorrland",
+                  "groupOriginal": "V√§sternorrland",
                   "tempInd": 25.8064516129032,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11144,7 +11144,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sternorrland"
+                  "name": "V√§sternorrland"
                 },
                 {
                   "period": 1,
@@ -11160,7 +11160,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stmanland",
+                  "groupOriginal": "V√§stmanland",
                   "tempInd": 24,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11169,7 +11169,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stmanland"
+                  "name": "V√§stmanland"
                 },
                 {
                   "period": 1,
@@ -11185,7 +11185,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stra Gˆtaland",
+                  "groupOriginal": "V√§stra G√∂taland",
                   "tempInd": 26.984126984127,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11194,7 +11194,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stra Gˆtaland"
+                  "name": "V√§stra G√∂taland"
                 },
                 {
                   "period": 1,
@@ -11210,7 +11210,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷rebro",
+                  "groupOriginal": "√ñrebro",
                   "tempInd": 34.2105263157895,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11219,7 +11219,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷rebro"
+                  "name": "√ñrebro"
                 },
                 {
                   "period": 1,
@@ -11235,7 +11235,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷stergˆtland",
+                  "groupOriginal": "√ñsterg√∂tland",
                   "tempInd": 40,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11244,107 +11244,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷stergˆtland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.33333333333333,
-                  "factor2": 30,
-                  "factor3": 33.3333333333333,
-                  "factor4": 30,
-                  "factor5": 3.33333333333333,
-                  "ind": 100,
-                  "n": "30",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Norra",
-                  "tempInd": 30,
-                  "tempCol": "#19975d",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 30,
-                  "color": "#19975d",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Norra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 23.0769230769231,
-                  "factor3": 50,
-                  "factor4": 19.2307692307692,
-                  "factor5": 7.69230769230769,
-                  "ind": 100,
-                  "n": "26",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Stockholm-Gotland",
-                  "tempInd": 19.2307692307692,
-                  "tempCol": "#19975d",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 19.2307692307692,
-                  "color": "#19975d",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Stockholm-Gotland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.125,
-                  "factor2": 12.5,
-                  "factor3": 34.375,
-                  "factor4": 40.625,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sydˆstra",
-                  "tempInd": 40.625,
-                  "tempCol": "#19975d",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 40.625,
-                  "color": "#19975d",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sydˆstra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 9.375,
-                  "factor3": 46.875,
-                  "factor4": 34.375,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sˆdra",
-                  "tempInd": 34.375,
-                  "tempCol": "#19975d",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 34.375,
-                  "color": "#19975d",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sˆdra"
+                  "name": "√ñsterg√∂tland"
                 },
                 {
                   "period": 1,
@@ -11360,7 +11260,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Uppsala-÷rebro",
+                  "groupOriginal": "√ñvriga/privat - Mellansverige",
                   "tempInd": 27.7777777777778,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11369,7 +11269,107 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - Uppsala-÷rebro"
+                  "name": "√ñvriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.33333333333333,
+                  "factor2": 30,
+                  "factor3": 33.3333333333333,
+                  "factor4": 30,
+                  "factor5": 3.33333333333333,
+                  "ind": 100,
+                  "n": "30",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Norra",
+                  "tempInd": 30,
+                  "tempCol": "#19975d",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 30,
+                  "color": "#19975d",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Norra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 23.0769230769231,
+                  "factor3": 50,
+                  "factor4": 19.2307692307692,
+                  "factor5": 7.69230769230769,
+                  "ind": 100,
+                  "n": "26",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Stockholm-Gotland",
+                  "tempInd": 19.2307692307692,
+                  "tempCol": "#19975d",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 19.2307692307692,
+                  "color": "#19975d",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Stockholm-Gotland"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.125,
+                  "factor2": 12.5,
+                  "factor3": 34.375,
+                  "factor4": 40.625,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Syd√∂stra",
+                  "tempInd": 40.625,
+                  "tempCol": "#19975d",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 40.625,
+                  "color": "#19975d",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Syd√∂stra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 9.375,
+                  "factor3": 46.875,
+                  "factor4": 34.375,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - S√∂dra",
+                  "tempInd": 34.375,
+                  "tempCol": "#19975d",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 34.375,
+                  "color": "#19975d",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - S√∂dra"
                 },
                 {
                   "period": 1,
@@ -11385,7 +11385,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - V‰stra",
+                  "groupOriginal": "√ñvriga/privat - V√§stra",
                   "tempInd": 20.6896551724138,
                   "tempCol": "#19975d",
                   "tempColBorder": "#7f7f7f",
@@ -11394,7 +11394,7 @@
                   "color": "#19975d",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - V‰stra"
+                  "name": "√ñvriga/privat - V√§stra"
                 },
                 {
                   "period": 1,
@@ -11520,7 +11520,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "G‰vleborg",
+                  "groupOriginal": "G√§vleborg",
                   "tempInd": 10.7142857142857,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11529,7 +11529,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "G‰vleborg"
+                  "name": "G√§vleborg"
                 },
                 {
                   "period": 1,
@@ -11570,7 +11570,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "J‰mtland",
+                  "groupOriginal": "J√§mtland",
                   "tempInd": 11.5384615384615,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11579,7 +11579,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "J‰mtland"
+                  "name": "J√§mtland"
                 },
                 {
                   "period": 1,
@@ -11595,7 +11595,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jˆnkˆping",
+                  "groupOriginal": "J√∂nk√∂ping",
                   "tempInd": 13.6363636363636,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11604,7 +11604,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Jˆnkˆping"
+                  "name": "J√∂nk√∂ping"
                 },
                 {
                   "period": 1,
@@ -11695,7 +11695,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "SkÂne",
+                  "groupOriginal": "Sk√•ne",
                   "tempInd": 8.24742268041237,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11704,7 +11704,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "SkÂne"
+                  "name": "Sk√•ne"
                 },
                 {
                   "period": 1,
@@ -11745,7 +11745,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Sˆdermanland",
+                  "groupOriginal": "S√∂dermanland",
                   "tempInd": 0,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11754,7 +11754,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "Sˆdermanland"
+                  "name": "S√∂dermanland"
                 },
                 {
                   "period": 1,
@@ -11795,7 +11795,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰rmland",
+                  "groupOriginal": "V√§rmland",
                   "tempInd": 4.34782608695652,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11804,7 +11804,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰rmland"
+                  "name": "V√§rmland"
                 },
                 {
                   "period": 1,
@@ -11820,7 +11820,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sterbotten",
+                  "groupOriginal": "V√§sterbotten",
                   "tempInd": 6.89655172413793,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11829,7 +11829,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sterbotten"
+                  "name": "V√§sterbotten"
                 },
                 {
                   "period": 1,
@@ -11845,7 +11845,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰sternorrland",
+                  "groupOriginal": "V√§sternorrland",
                   "tempInd": 6.45161290322581,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11854,7 +11854,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰sternorrland"
+                  "name": "V√§sternorrland"
                 },
                 {
                   "period": 1,
@@ -11870,7 +11870,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stmanland",
+                  "groupOriginal": "V√§stmanland",
                   "tempInd": 16,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11879,7 +11879,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stmanland"
+                  "name": "V√§stmanland"
                 },
                 {
                   "period": 1,
@@ -11895,7 +11895,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "V‰stra Gˆtaland",
+                  "groupOriginal": "V√§stra G√∂taland",
                   "tempInd": 10.3174603174603,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11904,7 +11904,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "V‰stra Gˆtaland"
+                  "name": "V√§stra G√∂taland"
                 },
                 {
                   "period": 1,
@@ -11920,7 +11920,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷rebro",
+                  "groupOriginal": "√ñrebro",
                   "tempInd": 5.26315789473684,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11929,7 +11929,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷rebro"
+                  "name": "√ñrebro"
                 },
                 {
                   "period": 1,
@@ -11945,7 +11945,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷stergˆtland",
+                  "groupOriginal": "√ñsterg√∂tland",
                   "tempInd": 6.66666666666667,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -11954,107 +11954,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷stergˆtland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.33333333333333,
-                  "factor2": 30,
-                  "factor3": 33.3333333333333,
-                  "factor4": 30,
-                  "factor5": 3.33333333333333,
-                  "ind": 100,
-                  "n": "30",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Norra",
-                  "tempInd": 3.33333333333333,
-                  "tempCol": "#e56284",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 3.33333333333333,
-                  "color": "#e56284",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Norra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 23.0769230769231,
-                  "factor3": 50,
-                  "factor4": 19.2307692307692,
-                  "factor5": 7.69230769230769,
-                  "ind": 100,
-                  "n": "26",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Stockholm-Gotland",
-                  "tempInd": 7.69230769230769,
-                  "tempCol": "#e56284",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 7.69230769230769,
-                  "color": "#e56284",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Stockholm-Gotland"
-                },
-                {
-                  "period": 1,
-                  "factor1": 3.125,
-                  "factor2": 12.5,
-                  "factor3": 34.375,
-                  "factor4": 40.625,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sydˆstra",
-                  "tempInd": 9.375,
-                  "tempCol": "#e56284",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 9.375,
-                  "color": "#e56284",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sydˆstra"
-                },
-                {
-                  "period": 1,
-                  "factor1": 0,
-                  "factor2": 9.375,
-                  "factor3": 46.875,
-                  "factor4": 34.375,
-                  "factor5": 9.375,
-                  "ind": 100,
-                  "n": "32",
-                  "hide": false,
-                  "hideCellLessThan": false,
-                  "ind_sort": 100,
-                  "col_border": "#7f7f7f",
-                  "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Sˆdra",
-                  "tempInd": 9.375,
-                  "tempCol": "#e56284",
-                  "tempColBorder": "#7f7f7f",
-                  "tempWidthBorder": 1,
-                  "y": 9.375,
-                  "color": "#e56284",
-                  "borderColor": "#7f7f7f",
-                  "borderWidth": 1,
-                  "name": "÷vriga/privat - Sˆdra"
+                  "name": "√ñsterg√∂tland"
                 },
                 {
                   "period": 1,
@@ -12070,7 +11970,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - Uppsala-÷rebro",
+                  "groupOriginal": "√ñvriga/privat - Mellansverige",
                   "tempInd": 16.6666666666667,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -12079,7 +11979,107 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - Uppsala-÷rebro"
+                  "name": "√ñvriga/privat - Mellansverige"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.33333333333333,
+                  "factor2": 30,
+                  "factor3": 33.3333333333333,
+                  "factor4": 30,
+                  "factor5": 3.33333333333333,
+                  "ind": 100,
+                  "n": "30",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Norra",
+                  "tempInd": 3.33333333333333,
+                  "tempCol": "#e56284",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 3.33333333333333,
+                  "color": "#e56284",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Norra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 23.0769230769231,
+                  "factor3": 50,
+                  "factor4": 19.2307692307692,
+                  "factor5": 7.69230769230769,
+                  "ind": 100,
+                  "n": "26",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Stockholm-Gotland",
+                  "tempInd": 7.69230769230769,
+                  "tempCol": "#e56284",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 7.69230769230769,
+                  "color": "#e56284",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Stockholm-Gotland"
+                },
+                {
+                  "period": 1,
+                  "factor1": 3.125,
+                  "factor2": 12.5,
+                  "factor3": 34.375,
+                  "factor4": 40.625,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - Syd√∂stra",
+                  "tempInd": 9.375,
+                  "tempCol": "#e56284",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 9.375,
+                  "color": "#e56284",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - Syd√∂stra"
+                },
+                {
+                  "period": 1,
+                  "factor1": 0,
+                  "factor2": 9.375,
+                  "factor3": 46.875,
+                  "factor4": 34.375,
+                  "factor5": 9.375,
+                  "ind": 100,
+                  "n": "32",
+                  "hide": false,
+                  "hideCellLessThan": false,
+                  "ind_sort": 100,
+                  "col_border": "#7f7f7f",
+                  "col_text": "#000000",
+                  "groupOriginal": "√ñvriga/privat - S√∂dra",
+                  "tempInd": 9.375,
+                  "tempCol": "#e56284",
+                  "tempColBorder": "#7f7f7f",
+                  "tempWidthBorder": 1,
+                  "y": 9.375,
+                  "color": "#e56284",
+                  "borderColor": "#7f7f7f",
+                  "borderWidth": 1,
+                  "name": "√ñvriga/privat - S√∂dra"
                 },
                 {
                   "period": 1,
@@ -12095,7 +12095,7 @@
                   "ind_sort": 100,
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "÷vriga/privat - V‰stra",
+                  "groupOriginal": "√ñvriga/privat - V√§stra",
                   "tempInd": 6.89655172413793,
                   "tempCol": "#e56284",
                   "tempColBorder": "#7f7f7f",
@@ -12104,7 +12104,7 @@
                   "color": "#e56284",
                   "borderColor": "#7f7f7f",
                   "borderWidth": 1,
-                  "name": "÷vriga/privat - V‰stra"
+                  "name": "√ñvriga/privat - V√§stra"
                 },
                 {
                   "period": 1,
@@ -12365,7 +12365,7 @@
           "tooltip": {
             "shared": true,
             "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
-            "pointFormat": "<span style='color:{point.color}'><U+25CF><\/span> <span style='font-size: 10px'>{series.name}: <b>{point.y}<\/b><\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>‚óè<\/span> <span style='font-size: 10px'>{series.name}: <b>{point.y}<\/b><\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -12394,13 +12394,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 28.2,
+                  "y": 26.6,
                   "color": "#99b9d3",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Norra",
+              "name": "Mellansverige",
               "showInLegend": true,
               "color": "#99b9d3"
             },
@@ -12428,13 +12428,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 29.7,
+                  "y": 28.2,
                   "color": "#f5c0ce",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Stockholm-Gotland",
+              "name": "Norra",
               "showInLegend": true,
               "color": "#f5c0ce"
             },
@@ -12462,13 +12462,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 25.7,
+                  "y": 29.7,
                   "color": "#c2ebeb",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Sydˆstra",
+              "name": "Stockholm-Gotland",
               "showInLegend": true,
               "color": "#c2ebeb"
             },
@@ -12496,13 +12496,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 34,
+                  "y": 25.7,
                   "color": "#ccaf9b",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Sˆdra",
+              "name": "Syd√∂stra",
               "showInLegend": true,
               "color": "#ccaf9b"
             },
@@ -12530,13 +12530,13 @@
                   "name": "2015"
                 },
                 {
-                  "y": 26.6,
+                  "y": 34,
                   "color": "#cbb5d0",
                   "name": "2016"
                 }
               ],
               "type": "line",
-              "name": "Uppsala-÷rebro",
+              "name": "S√∂dra",
               "showInLegend": true,
               "color": "#cbb5d0"
             },
@@ -12570,7 +12570,7 @@
                 }
               ],
               "type": "line",
-              "name": "V‰stra",
+              "name": "V√§stra",
               "showInLegend": true,
               "color": "#d5e5be"
             },
@@ -12720,7 +12720,7 @@
         "extensions": [
           "Buttons"
         ],
-        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>T‰ljare<\/th>\n      <th>N‰mnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>T√§ljare<\/th>\n      <th>N√§mnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
         "options": {
           "columnDefs": [
             {
@@ -12738,7 +12738,7 @@
             }
           ],
           "language": {
-            "emptyTable": "Ej tillr‰ckligt med observationer fˆr aktuellt urval"
+            "emptyTable": "Ej tillr√§ckligt med observationer f√∂r aktuellt urval"
           },
           "searching": true,
           "paging": false,
@@ -12856,9 +12856,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -12869,9 +12869,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -12883,7 +12883,7 @@
       ]
     },
     "levelpresentInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">J‰mfˆrelsenivÂ<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"SjukvÂrdsregion\">SjukvÂrdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">J√§mf√∂relseniv√•<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukv√•rdsregion\">Sjukv√•rdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -12933,7 +12933,7 @@
       ]
     },
     "ownhospitalInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 12-2-c\">Sjukhus 12-2-c<\/option>\n<option value=\"Sjukhus 13-2-a\">Sjukhus 13-2-a<\/option>\n<option value=\"Sjukhus 21-3-b\">Sjukhus 21-3-b<\/option>\n<option value=\"Sjukhus 22-3-c\">Sjukhus 22-3-c<\/option>\n<option value=\"Sjukhus 23-3-a\">Sjukhus 23-3-a<\/option>\n<option value=\"Sjukhus 24-3-b\">Sjukhus 24-3-b<\/option>\n<option value=\"Sjukhus 25-3-c\">Sjukhus 25-3-c<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 27-4-b\">Sjukhus 27-4-b<\/option>\n<option value=\"Sjukhus 28-4-c\">Sjukhus 28-4-c<\/option>\n<option value=\"Sjukhus 30-4-a\">Sjukhus 30-4-a<\/option>\n<option value=\"Sjukhus 41-4-b\">Sjukhus 41-4-b<\/option>\n<option value=\"Sjukhus 42-4-c\">Sjukhus 42-4-c<\/option>\n<option value=\"Sjukhus 42-5-a\">Sjukhus 42-5-a<\/option>\n<option value=\"Sjukhus 50-5-b\">Sjukhus 50-5-b<\/option>\n<option value=\"Sjukhus 51-5-c\">Sjukhus 51-5-c<\/option>\n<option value=\"Sjukhus 52-5-a\">Sjukhus 52-5-a<\/option>\n<option value=\"Sjukhus 53-5-b\">Sjukhus 53-5-b<\/option>\n<option value=\"Sjukhus 54-2-c\">Sjukhus 54-2-c<\/option>\n<option value=\"Sjukhus 55-2-a\">Sjukhus 55-2-a<\/option>\n<option value=\"Sjukhus 56-2-b\">Sjukhus 56-2-b<\/option>\n<option value=\"Sjukhus 57-2-c\">Sjukhus 57-2-c<\/option>\n<option value=\"Sjukhus 61-2-a\">Sjukhus 61-2-a<\/option>\n<option value=\"Sjukhus 62-6-b\">Sjukhus 62-6-b<\/option>\n<option value=\"Sjukhus 63-6-c\">Sjukhus 63-6-c<\/option>\n<option value=\"Sjukhus 64-6-a\">Sjukhus 64-6-a<\/option>\n<option value=\"Sjukhus 65-6-b\">Sjukhus 65-6-b<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option>\n<option value=\"Sjukhus 92-2-a\">Sjukhus 92-2-a<\/option>\n<option value=\"Sjukhus 93-3-b\">Sjukhus 93-3-b<\/option>\n<option value=\"Sjukhus 94-4-c\">Sjukhus 94-4-c<\/option>\n<option value=\"Sjukhus 95-5-a\">Sjukhus 95-5-a<\/option>\n<option value=\"Sjukhus 96-6-b\">Sjukhus 96-6-b<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 12-2-c\">Sjukhus 12-2-c<\/option>\n<option value=\"Sjukhus 13-2-a\">Sjukhus 13-2-a<\/option>\n<option value=\"Sjukhus 21-3-b\">Sjukhus 21-3-b<\/option>\n<option value=\"Sjukhus 22-3-c\">Sjukhus 22-3-c<\/option>\n<option value=\"Sjukhus 23-3-a\">Sjukhus 23-3-a<\/option>\n<option value=\"Sjukhus 24-3-b\">Sjukhus 24-3-b<\/option>\n<option value=\"Sjukhus 25-3-c\">Sjukhus 25-3-c<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 27-4-b\">Sjukhus 27-4-b<\/option>\n<option value=\"Sjukhus 28-4-c\">Sjukhus 28-4-c<\/option>\n<option value=\"Sjukhus 30-4-a\">Sjukhus 30-4-a<\/option>\n<option value=\"Sjukhus 41-4-b\">Sjukhus 41-4-b<\/option>\n<option value=\"Sjukhus 42-4-c\">Sjukhus 42-4-c<\/option>\n<option value=\"Sjukhus 42-5-a\">Sjukhus 42-5-a<\/option>\n<option value=\"Sjukhus 50-5-b\">Sjukhus 50-5-b<\/option>\n<option value=\"Sjukhus 51-5-c\">Sjukhus 51-5-c<\/option>\n<option value=\"Sjukhus 52-5-a\">Sjukhus 52-5-a<\/option>\n<option value=\"Sjukhus 53-5-b\">Sjukhus 53-5-b<\/option>\n<option value=\"Sjukhus 54-2-c\">Sjukhus 54-2-c<\/option>\n<option value=\"Sjukhus 55-2-a\">Sjukhus 55-2-a<\/option>\n<option value=\"Sjukhus 56-2-b\">Sjukhus 56-2-b<\/option>\n<option value=\"Sjukhus 57-2-c\">Sjukhus 57-2-c<\/option>\n<option value=\"Sjukhus 61-2-a\">Sjukhus 61-2-a<\/option>\n<option value=\"Sjukhus 62-6-b\">Sjukhus 62-6-b<\/option>\n<option value=\"Sjukhus 63-6-c\">Sjukhus 63-6-c<\/option>\n<option value=\"Sjukhus 64-6-a\">Sjukhus 64-6-a<\/option>\n<option value=\"Sjukhus 65-6-b\">Sjukhus 65-6-b<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option>\n<option value=\"Sjukhus 92-2-a\">Sjukhus 92-2-a<\/option>\n<option value=\"Sjukhus 93-3-b\">Sjukhus 93-3-b<\/option>\n<option value=\"Sjukhus 94-4-c\">Sjukhus 94-4-c<\/option>\n<option value=\"Sjukhus 95-5-a\">Sjukhus 95-5-a<\/option>\n<option value=\"Sjukhus 96-6-b\">Sjukhus 96-6-b<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -12952,7 +12952,7 @@
       ]
     },
     "periodInputQuarter": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -12987,7 +12987,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -13001,7 +13001,7 @@
       ]
     },
     "periodInputYear": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;≈r&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;√Ör&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -13043,13 +13043,13 @@
       ]
     },
     "periodTypeInput": {
-      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"≈r\" checked=\"checked\"/>\n          <span>≈r<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"√Ör\" checked=\"checked\"/>\n          <span>√Ör<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begr‰nsa till sjukvÂrdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-÷rebro\">Uppsala-÷rebro<\/option>\n<option value=\"Sydˆstra\">Sydˆstra<\/option>\n<option value=\"Sˆdra\">Sˆdra<\/option>\n<option value=\"V‰stra\">V‰stra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begr√§nsa till sjukv√•rdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Syd√∂stra\">Syd√∂stra<\/option>\n<option value=\"S√∂dra\">S√∂dra<\/option>\n<option value=\"V√§stra\">V√§stra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -13071,7 +13071,7 @@
     "text1": "Period: <strong>2016<\/strong>. ",
     "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"4160\">\n      <li class=\"active\">\n        <a href=\"#tab-4160-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          J‰mfˆrelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-2\" data-toggle=\"tab\" data-value=\"table_num\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell (antal)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-3\" data-toggle=\"tab\" data-value=\"table_pct\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell (andel)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"4160\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-4160-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_num\" data-icon-class=\"fa fa-table\" id=\"tab-4160-2\">\n        <div id=\"indTableNum\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_pct\" data-icon-class=\"fa fa-table\" id=\"tab-4160-3\">\n        <div id=\"indTablePct\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-4160-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-4160-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"4160\">\n      <li class=\"active\">\n        <a href=\"#tab-4160-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          J√§mf√∂relse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-2\" data-toggle=\"tab\" data-value=\"table_num\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell (antal)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-3\" data-toggle=\"tab\" data-value=\"table_pct\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell (andel)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"4160\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-4160-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_num\" data-icon-class=\"fa fa-table\" id=\"tab-4160-2\">\n        <div id=\"indTableNum\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_pct\" data-icon-class=\"fa fa-table\" id=\"tab-4160-3\">\n        <div id=\"indTablePct\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-4160-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-4160-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "font-awesome",
@@ -13091,9 +13091,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
@@ -13105,16 +13105,15 @@
         },
         {
           "name": "jquery",
-          "version": "3.5.0",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-3.5.0"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -13214,9 +13213,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.15",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.15"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
@@ -13228,9 +13227,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -13277,7 +13276,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -13305,3 +13304,6 @@
     }
   },
   "export": {
+
+  }
+}

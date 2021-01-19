@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -64,6 +64,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -85,22 +88,22 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"remotes"</span>)) {
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
+<pre class="{.r}"><code>if (!requireNamespace("remotes")) {
+  install.packages("remotes")
 }
 
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_bitbucket.html">install_bitbucket</a></span>(<span class="st">"cancercentrum/rccshiny"</span>)
-<span class="co"># remotes::install_bitbucket("cancercentrum/rccshiny", build_vignettes = TRUE) # även vinjetter</span></pre></div>
-<p>Man kan också hämta en komprimerad arkiv-fil med senaste släppta versionen från <a href="https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz" class="uri">https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz</a></p>
+remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", build_vignettes = TRUE) # även vinjetter</code></pre>
+<p>Man kan också manuellt hämta en komprimerad arkiv-fil med senaste släppta versionen från <a href="https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz" class="uri">https://bitbucket.org/cancercentrum/rccshiny/get/master.tar.gz</a> och installera med <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("cancercentrum-rccshiny-COMMIT.tar.gz", repos = NULL, type = "source")</a></code> där COMMIT i Butbuckets namngivning av den komprimerade arkiv-filen baseras på identifieraren för sista ändringen i kodförrådet för den släppta versionen (se <a href="https://bitbucket.org/cancercentrum/rccshiny/commits/branch/master" class="uri">https://bitbucket.org/cancercentrum/rccshiny/commits/branch/master</a>).</p>
 <p>Arkiv-filer för olika versioner av paketet finns på <a href="https://bitbucket.org/cancercentrum/rccshiny/downloads/?tab=tags" class="uri">https://bitbucket.org/cancercentrum/rccshiny/downloads/?tab=tags</a></p>
 </div>
 <div id="användning" class="section level2">
 <h2 class="hasAnchor">
 <a href="#anv%C3%A4ndning" class="anchor"></a>Användning</h2>
 <p>Ladda paketet.</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rccShiny</span>)</pre></div>
+<pre class="{.r}"><code><a href="https://cancercentrum.bitbucket.io/rccshiny/">library(rccShiny)</a></code></pre>
 <p>Läs hjälpfil.</p>
-<div class="sourceCode" id="cb3"><pre class="r">?<span class="kw pkg">rccShiny</span><span class="kw ns">::</span><span class="no"><a href="reference/rccShiny2.html">rccShiny2</a></span></pre></div>
+<pre class="{.r}"><code><a href="reference/rccShiny2.html">?rccShiny::rccShiny2</a></code></pre>
 <p>För fler exempel, se t.ex. R-koden för för Bröstcancerregistrets interaktiva rapporter (<a href="http://statistik.incanet.se/brostcancer/" class="uri">http://statistik.incanet.se/brostcancer/</a>) på <a href="https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny" class="uri">https://bitbucket.org/cancercentrum/nkbc-arsrapportshiny</a> .</p>
 </div>
 </div>
@@ -132,8 +135,8 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://ci.appveyor.com/project/oc1lojo/rccshiny"><img src="https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/master?svg=true" alt="AppVeyor build status"></a></li>
-<li><a href="https://travis-ci.org/oc1lojo/rccshiny"><img src="https://travis-ci.org/oc1lojo/rccshiny.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://ci.appveyor.com/project/oc1lojo/rccshiny"><img src="https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/develop?svg=true" alt="AppVeyor build status"></a></li>
+<li><a href="https://travis-ci.com/oc1lojo/rccshiny"><img src="https://travis-ci.com/oc1lojo/rccshiny.svg?branch=develop" alt="Travis build status"></a></li>
 </ul>
 </div>
 </div>
@@ -145,7 +148,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

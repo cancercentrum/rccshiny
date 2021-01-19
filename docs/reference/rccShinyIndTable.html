@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
       </span>
     </div>
 
@@ -105,6 +105,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -130,37 +133,40 @@
     <p>internal function used by server.R for table in tab Table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rccShinyIndTable</span>(
-  <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"sv"</span>,
-  <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>group_factors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>group_hide_less_than</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>group_hide_less_than_label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>group_hide_less_than_cell</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>ind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ind_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>ind</span>),
-  <span class='kw'>ind_numeric_percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>),
-  <span class='kw'>ind_factor_pct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>period</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>period_factors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>period_alwaysinclude</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>all_lab</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>RIKET</span>,
-  <span class='kw'>lab_percentiles</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>q1</span>, <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span>
-    <span class='no'>language</span>)$<span class='no'>median</span>, <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>q3</span>),
-  <span class='kw'>lab_noofcases</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>noofcases</span>,
-  <span class='kw'>lab_numerator</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>numerator</span>,
-  <span class='kw'>lab_denominator</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>denominator</span>,
-  <span class='kw'>lab_percent</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>percent</span>,
-  <span class='kw'>lab_total</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>total</span>,
-  <span class='kw'>lab_period</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>period</span>,
-  <span class='kw'>ndec</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyDecimals.html'>rccShinyDecimals</a></span>(),
-  <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subset_lab</span> <span class='kw'>=</span> <span class='st'>"SUBSET"</span>,
-  <span class='kw'>include_missing_column</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>lab_missing</span> <span class='kw'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span>(<span class='kw'>language</span> <span class='kw'>=</span> <span class='no'>language</span>)$<span class='no'>missing</span>
-)</pre>
+    <pre class="usage"><span class='fu'>rccShinyIndTable</span><span class='op'>(</span>
+  language <span class='op'>=</span> <span class='st'>"sv"</span>,
+  group <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group_factors <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group_hide_less_than <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  group_hide_less_than_label <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  group_hide_less_than_cell <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ind <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ind_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>ind</span><span class='op'>)</span>,
+  ind_numeric_percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span><span class='op'>)</span>,
+  ind_factor_pct <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  period <span class='op'>=</span> <span class='cn'>NULL</span>,
+  period_factors <span class='op'>=</span> <span class='cn'>NULL</span>,
+  period_alwaysinclude <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  all_lab <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>RIKET</span>,
+  lab_percentiles <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>q1</span>, <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span>
+    <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>median</span>, <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>q3</span><span class='op'>)</span>,
+  lab_noofcases <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>noofcases</span>,
+  lab_numerator <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>numerator</span>,
+  lab_denominator <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>denominator</span>,
+  lab_percent <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>percent</span>,
+  lab_total <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>total</span>,
+  lab_period <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>period</span>,
+  ndec <span class='op'>=</span> <span class='fu'><a href='rccShinyDecimals.html'>rccShinyDecimals</a></span><span class='op'>(</span><span class='op'>)</span>,
+  subset <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subset_lab <span class='op'>=</span> <span class='st'>"SUBSET"</span>,
+  include_missing_column <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  lab_missing <span class='op'>=</span> <span class='fu'><a href='rccShinyTXT.html'>rccShinyTXT</a></span><span class='op'>(</span>language <span class='op'>=</span> <span class='va'>language</span><span class='op'>)</span><span class='op'>$</span><span class='va'>missing</span>
+<span class='op'>)</span></pre>
 
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Fredrik Sandin, RCC Uppsala-Örebro</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -177,7 +183,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

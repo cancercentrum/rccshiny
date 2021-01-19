@@ -1,6 +1,6 @@
 #' rcc2PlotInd
 #' @description internal function.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rcc2PlotInd <-
@@ -174,7 +174,7 @@ rcc2PlotInd <-
           group,
           levels = c(levels(group), NA),
           exclude = NULL,
-          labels = c(levels(group), "Uppgift saknas")
+          labels = c(levels(group), "(NA)")
         )
     }
 
@@ -877,7 +877,7 @@ rcc2PlotInd <-
             tab_list[[i]]$lowRound <- round(tab_list[[i]]$lower, 1)
             tab_list[[i]]$highRound <- round(tab_list[[i]]$upper, 1)
             tempPlot <- tempPlot %>%
-              hc_add_series(data = tab_list[[i]], type = "scatter", id = paste0("scatter", i), mapping = hcaes(x = groupOriginal, y = ind, color = col), name = tab_list[[i]]$period[1], pointPlacement = tempPlacements[i], showInLegend = TRUE, color = tempLegendCol, marker = list(symbol = "circle", radius = 6 * tempCexPoint, lineWidth = 5 * tempCexPoint, lineColor = NULL, fillColor = "#ffffff"), zIndex = 2 * i, enableMouseTracking = FALSE) %>%
+              hc_add_series(data = tab_list[[i]], type = "scatter", id = paste0("scatter", i), mapping = hcaes(x = groupOriginal, y = ind, color = col), name = tab_list[[i]]$period[1], pointPlacement = tempPlacements[i], pointRange = 1, showInLegend = TRUE, color = tempLegendCol, marker = list(symbol = "circle", radius = 6 * tempCexPoint, lineWidth = 5 * tempCexPoint, lineColor = NULL, fillColor = "#ffffff"), zIndex = 2 * i, enableMouseTracking = FALSE) %>%
               hc_add_series(data = tab_list[[i]], type = "errorbar", linkedTo = paste0("scatter", i), mapping = hcaes(x = groupOriginal, low = lower, high = upper, color = col), name = tab_list[[i]]$period[1], pointPlacement = tempPlacements[i], showInLegend = FALSE, color = tempLegendCol, whiskerLength = 0, lineWidth = 5 * tempCexPoint, zIndex = 2 * (i - 1) + 1, enableMouseTracking = TRUE)
           }
 

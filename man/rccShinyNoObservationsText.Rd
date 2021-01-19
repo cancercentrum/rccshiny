@@ -10,6 +10,6 @@ rccShinyNoObservationsText(language = "sv")
 internal function with text to be printed if there is no data available.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

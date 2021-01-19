@@ -39,6 +39,7 @@ rccShiny2(
   periodLabel = NULL,
   periodDefaultStart = NULL,
   periodDefaultEnd = NULL,
+  varOtherComparison = NULL,
   varOther = NULL,
   allLabel = NULL,
   targetValues = NULL,
@@ -105,11 +106,11 @@ rccShiny2(
 
 \item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
 
-\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
+\item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
 
 \item{geoUnitsPatient}{if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
 
-\item{geoUnitsDefault}{optional default level of presentation. Valid values are "region", "county" and "hospital". Default is "county".}
+\item{geoUnitsDefault}{optional default level of presentation. Valid values are "region", "county", "hospital", and any of the variable names (var) in varOtherComparison. Default is "county".}
 
 \item{regionSelection}{adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.}
 
@@ -126,6 +127,8 @@ rccShiny2(
 \item{periodDefaultStart}{optional value which specifies the preselected default start of the period of interest. Default is NULL.}
 
 \item{periodDefaultEnd}{optional value which specifies the preselected default end of the period of interest. Default is NULL.}
+
+\item{varOtherComparison}{optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).}
 
 \item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.}
 
@@ -205,9 +208,9 @@ ind1 <- rccShiny2(
   data = rccShinyData,
   folder = "Indikator1",
   folderLinkText = "Indikator 1",
-  outcome = paste0("outcome",1:3),
+  outcome = paste0("outcome", 1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-  description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
+  description = c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
   varOther = list(
     list(
       var = "age",
@@ -239,21 +242,54 @@ rccShiny2(
   folderLinkText = c("Indikator 2", "Indicator 2"),
   outcome = "outcome1",
   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
-  textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
+  textBeforeSubtitle = c("Nagot pa svenska", "Something in English"),
   description = list(
-    c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
-    c("Description of the indicator","Important information!","Information on variables etc.")
+    c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
+    c("Description of the indicator", "Important information!", "Information on variables etc.")
   ),
   varOther = list(
     list(
       var = "age",
-     label = c("Alder vid diagnos","Age at diagnosis"),
-      choices = c(0,120)
+     label = c("Alder vid diagnos", "Age at diagnosis"),
+      choices = c(0, 120)
     )
   ),
-  targetValues = c(95,99)
+  targetValues = c(95, 99)
+)
+
+# Using stage as level of presentation
+rccShiny2(
+  language = c("sv", "en"),
+  data = rccShinyData,
+  folder = "Indikator3",
+  outcome = "outcome1",
+  outcomeTitle = list("Dikotom", "Dichotomous"),
+  description = list(
+    c("Beskrivning!", "Viktigt!", "Information!"),
+    c("Description!", "Important!", "Information!")
+  ),
+  geoUnitsDefault = "stage",
+  varOtherComparison = list(
+    list(
+      var = "stage",
+      label = c(
+        "Stadium",
+        "Stage"
+      )
+    )
+  ),
+  varOther = list(
+    list(
+      var = "age",
+      label = c(
+        "Alder vid diagnos",
+        "Age at diagnosis"
+      )
+    )
+  ),
+  sort = FALSE
 )
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
