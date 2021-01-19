@@ -310,9 +310,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -323,9 +323,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -493,9 +493,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -506,9 +506,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -589,7 +589,7 @@
       ]
     },
     "periodInputQuarter": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider",
@@ -624,7 +624,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -728,9 +728,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
@@ -742,16 +742,15 @@
         },
         {
           "name": "jquery",
-          "version": "1.12.4",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.12.4"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -770,9 +769,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
@@ -784,9 +783,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -833,7 +832,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.5",
           "src": {
             "href": "shinyWidgets"
           },
