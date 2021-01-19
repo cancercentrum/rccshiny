@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", type = "binary")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "d66737c", type = "binary")
 
 library(testthat)
 library(shinytest)
@@ -6,7 +6,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.6.1" & sysname == "windows") {
+if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "windows") {
 
   # Run tests using the latest release/stable version
   test_file(test_path("test-create-load-navigate-app1.R"), package = "rccShiny")

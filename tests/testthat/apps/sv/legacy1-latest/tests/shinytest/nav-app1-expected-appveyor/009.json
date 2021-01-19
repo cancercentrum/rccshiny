@@ -76,7 +76,6 @@
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
     "param_ownhospital": "Sjukhus 10-1-a",
-    "param_periodSplit": false,
     "param_period_quarter": [
       2012,
       2016
@@ -85,6 +84,7 @@
       2016,
       2016
     ],
+    "param_periodSplit": false,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
@@ -111,17 +111,17 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: cbcb56e6cc74b0574519499b19345ef6e11ae194]",
+      "src": "[image data sha1: 44a324bd149c72b1e18b6469c0fcdfcdf5ff27a5]",
       "width": 694,
       "height": 971.6
     },
     "indPlot": {
-      "src": "[image data sha1: 5a1028fbdd6d0fa9376bc95ff40ef7a467ac9589]",
+      "src": "[image data sha1: c2b656039ff331d2e462a25d71e4f3854f4e1b5a]",
       "width": 694,
       "height": 971.6
     },
     "indPlotTrend": {
-      "src": "[image data sha1: 53f1d05bdb16226ec15512d67858a746894b6933]",
+      "src": "[image data sha1: c57cc57df893662bb22c37c266bc222fcae2d05e]",
       "width": 694,
       "height": 624.6
     },
@@ -294,7 +294,7 @@
       ]
     },
     "levelpresentInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -344,7 +344,7 @@
       ]
     },
     "ownhospitalInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
