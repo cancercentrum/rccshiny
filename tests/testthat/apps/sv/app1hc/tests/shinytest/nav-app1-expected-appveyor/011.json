@@ -76,6 +76,7 @@
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
     "param_ownhospital": "Sjukhus 10-1-a",
+    "param_periodSplit": true,
     "param_period_quarter": [
       2012,
       2016
@@ -84,7 +85,6 @@
       2012,
       2016
     ],
-    "param_periodSplit": true,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
