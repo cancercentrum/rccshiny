@@ -35,7 +35,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: ed771d564b1d0007681997746b387bcd8869d52a]",
+      "src": "[image data sha1: cb435a248685bd56840f0d083837fcb7c197e4ee]",
       "width": 694,
       "height": 971.6
     },
@@ -144,7 +144,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.5",
+          "version": "0.5.6",
           "src": {
             "href": "shinyWidgets"
           },
@@ -352,7 +352,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.5",
+          "version": "0.5.6",
           "src": {
             "href": "shinyWidgets"
           },
