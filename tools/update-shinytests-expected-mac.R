@@ -9,7 +9,7 @@ sysname <- tolower(Sys.info()[["sysname"]])
 if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "darwin") {
 
   # Run tests using the latest release/stable version
-  testthat::test_dir("tests/testthat", stop_on_failure = FALSE, package = "rccShiny")
+  testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
 
   # Update snapshots of expected shinytest results
   appdir_list <- list(
