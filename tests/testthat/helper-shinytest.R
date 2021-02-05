@@ -9,7 +9,11 @@ shinytest_suffix <- function() {
   if (identical(Sys.getenv("APPVEYOR"), "True")) {
     suffix <- "appveyor"
   } else if (sysname == "windows") {
-    suffix <- "windows"
+    if (identical(Sys.getenv("NOT_CRAN"), "true")) {
+      suffix <- "appveyor"
+    } else {
+      suffix <- "windows"
+    }
   } else if (sysname %in% c("darwin", "linux")) {
     suffix <- "mac"
   } else {
