@@ -7,7 +7,6 @@
 # 5. Copy contents of failure\rccShiny.Rcheck\tests\testthat\apps to tests/testthat/apps
 
 library(shinytest)
-library(rccShiny)
 
 appdir_list <- list(
   file.path("tests", "testthat", "apps", "sv", "app1"),

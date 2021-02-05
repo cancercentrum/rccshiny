@@ -9,16 +9,7 @@ sysname <- tolower(Sys.info()[["sysname"]])
 if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "windows") {
 
   # Run tests using the latest release/stable version
-  test_file(test_path("test-create-load-navigate-app1.R"), package = "rccShiny")
-  test_file(test_path("test-create-load-navigate-app1hc.R"), package = "rccShiny")
-  test_file(test_path("test-create-load-navigate-inca1.R"), package = "rccShiny")
-  test_file(test_path("test-create-load-navigate-inca1hc.R"), package = "rccShiny")
-  test_file(test_path("test-load-legacy-apps-1.3.R"), package = "rccShiny")
-  test_file(test_path("test-load-legacy-apps-1.4.2.R"), package = "rccShiny")
-  test_file(test_path("test-load-legacy-apps-1.5.1.R"), package = "rccShiny")
-  test_file(test_path("test-load-legacy-apps-latest.R"), package = "rccShiny")
-  test_file(test_path("test-navigate-legacy1-latest.R"), package = "rccShiny")
-  test_file(test_path("test-navigate-legacy1hc-latest.R"), package = "rccShiny")
+  testthat::test_dir("tests/testthat", stop_on_failure = FALSE, package = "rccShiny")
 
   # Update snapshots of expected shinytest results
   appdir_list <- list(
