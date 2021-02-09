@@ -10,6 +10,6 @@ rccShinyCounties(language = "sv", lkf = FALSE)
 internal function that creates dataset with numeric codes (given by user) and corresponding names (printed in output) for county/county of residence.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

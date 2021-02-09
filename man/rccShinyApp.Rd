@@ -4,12 +4,12 @@
 \alias{rccShinyApp}
 \title{Creates shiny app}
 \usage{
-rccShinyApp(optionsList = NULL)
+rccShinyApp(optionsList = NULL, pageTitle = "")
 }
 \description{
 internal function.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

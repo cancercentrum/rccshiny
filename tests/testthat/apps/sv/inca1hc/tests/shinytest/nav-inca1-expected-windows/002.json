@@ -85,7 +85,7 @@
       2016
     ],
     "param_periodSplit": false,
-    "param_periodtype": "År",
+    "param_periodtype": "Ã…r",
     "param_region": "Alla",
     "sidebarCollapsed": true,
     "sidebarItemExpanded": null,
@@ -99,7 +99,7 @@
   "output": {
     "comment": null,
     "funnelPlotInput": {
-      "html": "<div data-display-if=\"input.tab==&#39;fig_compare&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_funnelplot\" type=\"checkbox\"/>\n        <span>Funnel plot<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab==&#39;fig_compare&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_funnelplot\" type=\"checkbox\"/>\n        <span>Funnel plot<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
@@ -175,33 +175,33 @@
           },
           "xAxis": {
             "categories": [
-              "Övriga/privat - Södra",
+              "Ã–vriga/privat - SÃ¶dra",
               "Dalarna",
-              "Övriga/privat - Stockholm-Gotland",
-              "Västerbotten",
+              "Ã–vriga/privat - Stockholm-Gotland",
+              "VÃ¤sterbotten",
               "Kronoberg",
-              "Övriga/privat - Västra",
+              "Ã–vriga/privat - VÃ¤stra",
               "Halland",
               "Blekinge",
-              "Övriga/privat - Uppsala-Örebro",
-              "Västernorrland",
-              "Jönköping",
-              "Övriga/privat - Norra",
+              "Ã–vriga/privat - Mellansverige",
+              "VÃ¤sternorrland",
+              "JÃ¶nkÃ¶ping",
+              "Ã–vriga/privat - Norra",
               "Gotland",
-              "Örebro",
+              "Ã–rebro",
               "RIKET",
               "Kalmar",
-              "Skåne",
-              "Södermanland",
-              "Västra Götaland",
+              "SkÃ¥ne",
+              "SÃ¶dermanland",
+              "VÃ¤stra GÃ¶taland",
               "Stockholm",
-              "Jämtland",
-              "Gävleborg",
-              "Västmanland",
-              "Östergötland",
-              "Värmland",
+              "JÃ¤mtland",
+              "GÃ¤vleborg",
+              "VÃ¤stmanland",
+              "Ã–stergÃ¶tland",
+              "VÃ¤rmland",
               "Uppsala",
-              "Övriga/privat - Sydöstra",
+              "Ã–vriga/privat - SydÃ¶stra",
               "Norrbotten"
             ],
             "labels": {
@@ -228,7 +228,7 @@
           "tooltip": {
             "shared": true,
             "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
-            "pointFormat": "<span style='color:{point.color}'>¦<\/span> <span style='font-size: 10px'><b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
+            "pointFormat": "<span style='color:{point.color}'>â– <\/span> <span style='font-size: 10px'><b>{point.yRound} %<\/b> ({point.n})<\/span><br>",
             "useHTML": true,
             "outside": true
           },
@@ -249,11 +249,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Södra",
+                  "groupOriginal": "Ã–vriga/privat - SÃ¶dra",
                   "yRound": 50,
                   "y": 50,
                   "color": "#00b3f6",
-                  "name": "Övriga/privat - Södra"
+                  "name": "Ã–vriga/privat - SÃ¶dra"
                 },
                 {
                   "period": 1,
@@ -287,11 +287,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Stockholm-Gotland",
+                  "groupOriginal": "Ã–vriga/privat - Stockholm-Gotland",
                   "yRound": 42,
                   "y": 42.3076923076923,
                   "color": "#00b3f6",
-                  "name": "Övriga/privat - Stockholm-Gotland"
+                  "name": "Ã–vriga/privat - Stockholm-Gotland"
                 },
                 {
                   "period": 1,
@@ -306,11 +306,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Västerbotten",
+                  "groupOriginal": "VÃ¤sterbotten",
                   "yRound": 41,
                   "y": 41.3793103448276,
                   "color": "#00b3f6",
-                  "name": "Västerbotten"
+                  "name": "VÃ¤sterbotten"
                 },
                 {
                   "period": 1,
@@ -344,11 +344,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Västra",
+                  "groupOriginal": "Ã–vriga/privat - VÃ¤stra",
                   "yRound": 38,
                   "y": 37.9310344827586,
                   "color": "#00b3f6",
-                  "name": "Övriga/privat - Västra"
+                  "name": "Ã–vriga/privat - VÃ¤stra"
                 },
                 {
                   "period": 1,
@@ -401,11 +401,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Uppsala-Örebro",
+                  "groupOriginal": "Ã–vriga/privat - Mellansverige",
                   "yRound": 33,
                   "y": 33.3333333333333,
                   "color": "#00b3f6",
-                  "name": "Övriga/privat - Uppsala-Örebro"
+                  "name": "Ã–vriga/privat - Mellansverige"
                 },
                 {
                   "period": 1,
@@ -420,11 +420,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Västernorrland",
+                  "groupOriginal": "VÃ¤sternorrland",
                   "yRound": 32,
                   "y": 32.258064516129,
                   "color": "#00b3f6",
-                  "name": "Västernorrland"
+                  "name": "VÃ¤sternorrland"
                 },
                 {
                   "period": 1,
@@ -439,11 +439,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jönköping",
+                  "groupOriginal": "JÃ¶nkÃ¶ping",
                   "yRound": 32,
                   "y": 31.8181818181818,
                   "color": "#00b3f6",
-                  "name": "Jönköping"
+                  "name": "JÃ¶nkÃ¶ping"
                 },
                 {
                   "period": 1,
@@ -458,11 +458,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Norra",
+                  "groupOriginal": "Ã–vriga/privat - Norra",
                   "yRound": 30,
                   "y": 30,
                   "color": "#00b3f6",
-                  "name": "Övriga/privat - Norra"
+                  "name": "Ã–vriga/privat - Norra"
                 },
                 {
                   "period": 1,
@@ -496,11 +496,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Örebro",
+                  "groupOriginal": "Ã–rebro",
                   "yRound": 29,
                   "y": 28.9473684210526,
                   "color": "#00b3f6",
-                  "name": "Örebro"
+                  "name": "Ã–rebro"
                 },
                 {
                   "period": 1,
@@ -553,11 +553,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Skåne",
+                  "groupOriginal": "SkÃ¥ne",
                   "yRound": 27,
                   "y": 26.8041237113402,
                   "color": "#00b3f6",
-                  "name": "Skåne"
+                  "name": "SkÃ¥ne"
                 },
                 {
                   "period": 1,
@@ -572,11 +572,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Södermanland",
+                  "groupOriginal": "SÃ¶dermanland",
                   "yRound": 26,
                   "y": 26.3157894736842,
                   "color": "#00b3f6",
-                  "name": "Södermanland"
+                  "name": "SÃ¶dermanland"
                 },
                 {
                   "period": 1,
@@ -591,11 +591,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Västra Götaland",
+                  "groupOriginal": "VÃ¤stra GÃ¶taland",
                   "yRound": 25,
                   "y": 24.6031746031746,
                   "color": "#00b3f6",
-                  "name": "Västra Götaland"
+                  "name": "VÃ¤stra GÃ¶taland"
                 },
                 {
                   "period": 1,
@@ -629,11 +629,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Jämtland",
+                  "groupOriginal": "JÃ¤mtland",
                   "yRound": 23,
                   "y": 23.0769230769231,
                   "color": "#00b3f6",
-                  "name": "Jämtland"
+                  "name": "JÃ¤mtland"
                 },
                 {
                   "period": 1,
@@ -648,11 +648,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Gävleborg",
+                  "groupOriginal": "GÃ¤vleborg",
                   "yRound": 21,
                   "y": 21.4285714285714,
                   "color": "#00b3f6",
-                  "name": "Gävleborg"
+                  "name": "GÃ¤vleborg"
                 },
                 {
                   "period": 1,
@@ -667,11 +667,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Västmanland",
+                  "groupOriginal": "VÃ¤stmanland",
                   "yRound": 20,
                   "y": 20,
                   "color": "#00b3f6",
-                  "name": "Västmanland"
+                  "name": "VÃ¤stmanland"
                 },
                 {
                   "period": 1,
@@ -686,11 +686,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Östergötland",
+                  "groupOriginal": "Ã–stergÃ¶tland",
                   "yRound": 20,
                   "y": 20,
                   "color": "#00b3f6",
-                  "name": "Östergötland"
+                  "name": "Ã–stergÃ¶tland"
                 },
                 {
                   "period": 1,
@@ -705,11 +705,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Värmland",
+                  "groupOriginal": "VÃ¤rmland",
                   "yRound": 17,
                   "y": 17.3913043478261,
                   "color": "#00b3f6",
-                  "name": "Värmland"
+                  "name": "VÃ¤rmland"
                 },
                 {
                   "period": 1,
@@ -743,11 +743,11 @@
                   "col": "#00b3f6",
                   "col_border": "#7f7f7f",
                   "col_text": "#000000",
-                  "groupOriginal": "Övriga/privat - Sydöstra",
+                  "groupOriginal": "Ã–vriga/privat - SydÃ¶stra",
                   "yRound": 12,
                   "y": 12.5,
                   "color": "#00b3f6",
-                  "name": "Övriga/privat - Sydöstra"
+                  "name": "Ã–vriga/privat - SydÃ¶stra"
                 },
                 {
                   "period": 1,
@@ -886,7 +886,7 @@
         "extensions": [
           "Buttons"
         ],
-        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>Täljare<\/th>\n      <th>Nämnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>TÃ¤ljare<\/th>\n      <th>NÃ¤mnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
         "options": {
           "columnDefs": [
             {
@@ -904,7 +904,7 @@
             }
           ],
           "language": {
-            "emptyTable": "Ej tillräckligt med observationer för aktuellt urval"
+            "emptyTable": "Ej tillrÃ¤ckligt med observationer fÃ¶r aktuellt urval"
           },
           "searching": true,
           "paging": false,
@@ -1022,9 +1022,9 @@
         },
         {
           "name": "jquery",
-          "version": "1.11.3",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-1.11.3"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
@@ -1035,9 +1035,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -1049,18 +1049,21 @@
       ]
     },
     "levelpresentInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; input.tab!=&#39;fig_trend&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_levelpresent-label\" for=\"param_levelpresent\">JÃ¤mfÃ¶relsenivÃ¥<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"SjukvÃ¥rdsregion\">SjukvÃ¥rdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
-          "version": "0.11.2",
+          "version": "0.12.4",
           "src": {
             "href": "shared/selectize"
           },
           "meta": null,
-          "script": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
           "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "head": null,
           "attachment": null,
           "package": null,
           "all_files": true
@@ -1068,30 +1071,33 @@
       ]
     },
     "numericTypeInput": {
-      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_numerictype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label\" for=\"param_numerictype\">Redovisning<\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_numerictype\" value=\"Median (dagar)\" checked=\"checked\"/>\n          <span>Median (dagar)<\/span>\n        <\/label>\n      <\/div>\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_numerictype\" value=\"Andel inom ... dagar\"/>\n          <span>Andel inom ... dagar<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_numerictype\" style=\"width:100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\" role=\"radiogroup\" aria-labelledby=\"param_numerictype-label\">\n    <label class=\"control-label\" id=\"param_numerictype-label\" for=\"param_numerictype\">Redovisning<\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_numerictype\" value=\"Median (dagar)\" checked=\"checked\"/>\n          <span>Median (dagar)<\/span>\n        <\/label>\n      <\/div>\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_numerictype\" value=\"Andel inom ... dagar\"/>\n          <span>Andel inom ... dagar<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "numericTypePropInput": {
-      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label shiny-label-null\" for=\"param_numerictype_prop\"><\/label>\n    <input id=\"param_numerictype_prop\" type=\"number\" class=\"form-control\" value=\"30\" min=\"0\" max=\"1000\" step=\"1\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label shiny-label-null\" for=\"param_numerictype_prop\" id=\"param_numerictype_prop-label\"><\/label>\n    <input id=\"param_numerictype_prop\" type=\"number\" class=\"form-control\" value=\"30\" min=\"0\" max=\"1000\" step=\"1\"/>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "outcomeInput": {
-      "html": "<div data-display-if=\"true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_outcome\">Variabel<\/label>\n    <div>\n      <select id=\"param_outcome\"><option value=\"Dikotom\" selected>Dikotom<\/option>\n<option value=\"Kontinuerlig\">Kontinuerlig<\/option>\n<option value=\"Kategorisk\">Kategorisk<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_outcome\" data-nonempty=\"\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_outcome-label\" for=\"param_outcome\">Variabel<\/label>\n    <div>\n      <select id=\"param_outcome\"><option value=\"Dikotom\" selected>Dikotom<\/option>\n<option value=\"Kontinuerlig\">Kontinuerlig<\/option>\n<option value=\"Kategorisk\">Kategorisk<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_outcome\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
-          "version": "0.11.2",
+          "version": "0.12.4",
           "src": {
             "href": "shared/selectize"
           },
           "meta": null,
-          "script": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
           "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "head": null,
           "attachment": null,
           "package": null,
           "all_files": true
@@ -1099,18 +1105,21 @@
       ]
     },
     "ownhospitalInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 12-2-c\">Sjukhus 12-2-c<\/option>\n<option value=\"Sjukhus 13-2-a\">Sjukhus 13-2-a<\/option>\n<option value=\"Sjukhus 21-3-b\">Sjukhus 21-3-b<\/option>\n<option value=\"Sjukhus 22-3-c\">Sjukhus 22-3-c<\/option>\n<option value=\"Sjukhus 23-3-a\">Sjukhus 23-3-a<\/option>\n<option value=\"Sjukhus 24-3-b\">Sjukhus 24-3-b<\/option>\n<option value=\"Sjukhus 25-3-c\">Sjukhus 25-3-c<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 27-4-b\">Sjukhus 27-4-b<\/option>\n<option value=\"Sjukhus 28-4-c\">Sjukhus 28-4-c<\/option>\n<option value=\"Sjukhus 30-4-a\">Sjukhus 30-4-a<\/option>\n<option value=\"Sjukhus 41-4-b\">Sjukhus 41-4-b<\/option>\n<option value=\"Sjukhus 42-4-c\">Sjukhus 42-4-c<\/option>\n<option value=\"Sjukhus 42-5-a\">Sjukhus 42-5-a<\/option>\n<option value=\"Sjukhus 50-5-b\">Sjukhus 50-5-b<\/option>\n<option value=\"Sjukhus 51-5-c\">Sjukhus 51-5-c<\/option>\n<option value=\"Sjukhus 52-5-a\">Sjukhus 52-5-a<\/option>\n<option value=\"Sjukhus 53-5-b\">Sjukhus 53-5-b<\/option>\n<option value=\"Sjukhus 54-2-c\">Sjukhus 54-2-c<\/option>\n<option value=\"Sjukhus 55-2-a\">Sjukhus 55-2-a<\/option>\n<option value=\"Sjukhus 56-2-b\">Sjukhus 56-2-b<\/option>\n<option value=\"Sjukhus 57-2-c\">Sjukhus 57-2-c<\/option>\n<option value=\"Sjukhus 61-2-a\">Sjukhus 61-2-a<\/option>\n<option value=\"Sjukhus 62-6-b\">Sjukhus 62-6-b<\/option>\n<option value=\"Sjukhus 63-6-c\">Sjukhus 63-6-c<\/option>\n<option value=\"Sjukhus 64-6-a\">Sjukhus 64-6-a<\/option>\n<option value=\"Sjukhus 65-6-b\">Sjukhus 65-6-b<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option>\n<option value=\"Sjukhus 92-2-a\">Sjukhus 92-2-a<\/option>\n<option value=\"Sjukhus 93-3-b\">Sjukhus 93-3-b<\/option>\n<option value=\"Sjukhus 94-4-c\">Sjukhus 94-4-c<\/option>\n<option value=\"Sjukhus 95-5-a\">Sjukhus 95-5-a<\/option>\n<option value=\"Sjukhus 96-6-b\">Sjukhus 96-6-b<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_ownhospital-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 12-2-c\">Sjukhus 12-2-c<\/option>\n<option value=\"Sjukhus 13-2-a\">Sjukhus 13-2-a<\/option>\n<option value=\"Sjukhus 21-3-b\">Sjukhus 21-3-b<\/option>\n<option value=\"Sjukhus 22-3-c\">Sjukhus 22-3-c<\/option>\n<option value=\"Sjukhus 23-3-a\">Sjukhus 23-3-a<\/option>\n<option value=\"Sjukhus 24-3-b\">Sjukhus 24-3-b<\/option>\n<option value=\"Sjukhus 25-3-c\">Sjukhus 25-3-c<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 27-4-b\">Sjukhus 27-4-b<\/option>\n<option value=\"Sjukhus 28-4-c\">Sjukhus 28-4-c<\/option>\n<option value=\"Sjukhus 30-4-a\">Sjukhus 30-4-a<\/option>\n<option value=\"Sjukhus 41-4-b\">Sjukhus 41-4-b<\/option>\n<option value=\"Sjukhus 42-4-c\">Sjukhus 42-4-c<\/option>\n<option value=\"Sjukhus 42-5-a\">Sjukhus 42-5-a<\/option>\n<option value=\"Sjukhus 50-5-b\">Sjukhus 50-5-b<\/option>\n<option value=\"Sjukhus 51-5-c\">Sjukhus 51-5-c<\/option>\n<option value=\"Sjukhus 52-5-a\">Sjukhus 52-5-a<\/option>\n<option value=\"Sjukhus 53-5-b\">Sjukhus 53-5-b<\/option>\n<option value=\"Sjukhus 54-2-c\">Sjukhus 54-2-c<\/option>\n<option value=\"Sjukhus 55-2-a\">Sjukhus 55-2-a<\/option>\n<option value=\"Sjukhus 56-2-b\">Sjukhus 56-2-b<\/option>\n<option value=\"Sjukhus 57-2-c\">Sjukhus 57-2-c<\/option>\n<option value=\"Sjukhus 61-2-a\">Sjukhus 61-2-a<\/option>\n<option value=\"Sjukhus 62-6-b\">Sjukhus 62-6-b<\/option>\n<option value=\"Sjukhus 63-6-c\">Sjukhus 63-6-c<\/option>\n<option value=\"Sjukhus 64-6-a\">Sjukhus 64-6-a<\/option>\n<option value=\"Sjukhus 65-6-b\">Sjukhus 65-6-b<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option>\n<option value=\"Sjukhus 92-2-a\">Sjukhus 92-2-a<\/option>\n<option value=\"Sjukhus 93-3-b\">Sjukhus 93-3-b<\/option>\n<option value=\"Sjukhus 94-4-c\">Sjukhus 94-4-c<\/option>\n<option value=\"Sjukhus 95-5-a\">Sjukhus 95-5-a<\/option>\n<option value=\"Sjukhus 96-6-b\">Sjukhus 96-6-b<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
-          "version": "0.11.2",
+          "version": "0.12.4",
           "src": {
             "href": "shared/selectize"
           },
           "meta": null,
-          "script": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
           "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "head": null,
           "attachment": null,
           "package": null,
           "all_files": true
@@ -1118,20 +1127,17 @@
       ]
     },
     "periodInputQuarter": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
-          "name": "ionrangeslider",
-          "version": "2.1.6",
+          "name": "ionrangeslider-javascript",
+          "version": "2.3.1",
           "src": {
             "href": "shared/ionrangeslider"
           },
           "meta": null,
           "script": "js/ion.rangeSlider.min.js",
-          "stylesheet": [
-            "css/ion.rangeSlider.css",
-            "css/ion.rangeSlider.skinShiny.css"
-          ],
+          "stylesheet": null,
           "head": null,
           "attachment": null,
           "package": null,
@@ -1152,8 +1158,22 @@
           "all_files": true
         },
         {
+          "name": "ionrangeslider-css",
+          "version": "2.3.1",
+          "src": {
+            "href": "shared/ionrangeslider"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/ion.rangeSlider.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.7",
           "src": {
             "href": "shinyWidgets"
           },
@@ -1167,20 +1187,17 @@
       ]
     },
     "periodInputYear": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;År&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (true | input.param_periodtype==&#39;Ã…r&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_period_year-label\" for=\"param_period_year\">Period<\/label>\n    <input class=\"js-range-slider\" id=\"param_period_year\" data-skin=\"shiny\" data-type=\"double\" data-min=\"2012\" data-max=\"2016\" data-from=\"2016\" data-to=\"2016\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n  <\/div>\n<\/div>",
       "deps": [
         {
-          "name": "ionrangeslider",
-          "version": "2.1.6",
+          "name": "ionrangeslider-javascript",
+          "version": "2.3.1",
           "src": {
             "href": "shared/ionrangeslider"
           },
           "meta": null,
           "script": "js/ion.rangeSlider.min.js",
-          "stylesheet": [
-            "css/ion.rangeSlider.css",
-            "css/ion.rangeSlider.skinShiny.css"
-          ],
+          "stylesheet": null,
           "head": null,
           "attachment": null,
           "package": null,
@@ -1199,34 +1216,51 @@
           "attachment": null,
           "package": null,
           "all_files": true
+        },
+        {
+          "name": "ionrangeslider-css",
+          "version": "2.3.1",
+          "src": {
+            "href": "shared/ionrangeslider"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/ion.rangeSlider.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
         }
       ]
     },
     "periodSplitInput": {
-      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"!input.param_funnelplot &amp; input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; false\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <div class=\"checkbox\">\n      <label>\n        <input id=\"param_periodSplit\" type=\"checkbox\"/>\n        <span>Redovisa varje period separat<\/span>\n      <\/label>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "periodTypeInput": {
-      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width: 100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"År\" checked=\"checked\"/>\n          <span>År<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"false\" data-ns-prefix=\"\">\n  <div id=\"param_periodtype\" style=\"width:100%;\" class=\"form-group shiny-input-radiogroup shiny-input-container\" role=\"radiogroup\" aria-labelledby=\"param_periodtype-label\">\n    <label class=\"control-label shiny-label-null\" for=\"param_periodtype\" id=\"param_periodtype-label\"><\/label>\n    <div class=\"shiny-options-group\">\n      <div class=\"radio\">\n        <label>\n          <input type=\"radio\" name=\"param_periodtype\" value=\"Ã…r\" checked=\"checked\"/>\n          <span>Ã…r<\/span>\n        <\/label>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
 
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">BegrÃ¤nsa till sjukvÃ¥rdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"SydÃ¶stra\">SydÃ¶stra<\/option>\n<option value=\"SÃ¶dra\">SÃ¶dra<\/option>\n<option value=\"VÃ¤stra\">VÃ¤stra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
-          "version": "0.11.2",
+          "version": "0.12.4",
           "src": {
             "href": "shared/selectize"
           },
           "meta": null,
-          "script": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
           "stylesheet": "css/selectize.bootstrap3.css",
-          "head": "<!--[if lt IE 9]>\n<script src=\"shared/selectize/js/es5-shim.min.js\"><\/script>\n<![endif]-->\n<script src=\"shared/selectize/js/selectize.min.js\"><\/script>",
+          "head": null,
           "attachment": null,
           "package": null,
           "all_files": true
@@ -1237,7 +1271,7 @@
     "text1": "Period: <strong>2016<\/strong>. ",
     "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"9015\">\n      <li class=\"active\">\n        <a href=\"#tab-9015-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-5\" data-toggle=\"tab\" data-value=\"list\">\n          <i class=\" fa fa-list fa-fw\"><\/i>\n          Lista\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-6\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"9015\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-9015-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-9015-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-9015-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-9015-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"list\" data-icon-class=\"fa fa-list\" id=\"tab-9015-5\">\n        <div id=\"indList\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-9015-6\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"9015\">\n      <li class=\"active\">\n        <a href=\"#tab-9015-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          JÃ¤mfÃ¶relse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-2\" data-toggle=\"tab\" data-value=\"table\">\n          <i class=\" fa fa-table fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-3\" data-toggle=\"tab\" data-value=\"fig_map\">\n          <i class=\" fa fa-map-marker fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-5\" data-toggle=\"tab\" data-value=\"list\">\n          <i class=\" fa fa-list fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Lista\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-6\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"9015\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-9015-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table\" id=\"tab-9015-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker\" id=\"tab-9015-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-9015-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"list\" data-icon-class=\"fa fa-list\" id=\"tab-9015-5\">\n        <div id=\"indList\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-9015-6\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "font-awesome",
@@ -1257,9 +1291,9 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.2",
+          "version": "1.5.3",
           "src": {
-            "href": "htmlwidgets-1.5.2"
+            "href": "htmlwidgets-1.5.3"
           },
           "meta": null,
           "script": "htmlwidgets.js",
@@ -1271,16 +1305,15 @@
         },
         {
           "name": "jquery",
-          "version": "3.5.0",
+          "version": "3.5.1",
           "src": {
-            "href": "jquery-3.5.0"
+            "href": "jquery-3.5.1"
           },
           "meta": null,
           "script": "jquery.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -1380,9 +1413,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.16",
+          "version": "0.17",
           "src": {
-            "href": "datatables-binding-0.16"
+            "href": "datatables-binding-0.17"
           },
           "meta": null,
           "script": "datatables.js",
@@ -1394,9 +1427,9 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.0.1",
+          "version": "1.1.1",
           "src": {
-            "href": "crosstalk-1.1.0.1"
+            "href": "crosstalk-1.1.1"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
@@ -1408,20 +1441,17 @@
       ]
     },
     "userInput": {
-      "html": "<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInputId1\">Alder vid diagnos<\/label>\n  <input class=\"js-range-slider\" id=\"userInputId1\" data-type=\"double\" data-min=\"18\" data-max=\"99\" data-from=\"18\" data-to=\"99\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n<\/div>\n<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInputId2\">Stadium<\/label>\n  <select data-actions-box=\"true\" data-deselect-all-text=\"Avmarkera alla\" data-select-all-text=\"Markera alla\" data-none-selected-text=\"-\" data-width=\"100%\" id=\"userInputId2\" class=\"selectpicker form-control\" multiple=\"multiple\"><option value=\"I\" selected>I<\/option>\n<option value=\"II\">II<\/option><\/select>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n  <label class=\"control-label\" id=\"userInputId1-label\" for=\"userInputId1\">Alder vid diagnos<\/label>\n  <input class=\"js-range-slider\" id=\"userInputId1\" data-skin=\"shiny\" data-type=\"double\" data-min=\"18\" data-max=\"99\" data-from=\"18\" data-to=\"99\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n<\/div>\n<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInputId2\">Stadium<\/label>\n  <select data-actions-box=\"true\" data-deselect-all-text=\"Avmarkera alla\" data-select-all-text=\"Markera alla\" data-none-selected-text=\"-\" data-width=\"100%\" id=\"userInputId2\" class=\"selectpicker form-control\" multiple=\"multiple\"><option value=\"I\" selected>I<\/option>\n<option value=\"II\">II<\/option><\/select>\n<\/div>",
       "deps": [
         {
-          "name": "ionrangeslider",
-          "version": "2.1.6",
+          "name": "ionrangeslider-javascript",
+          "version": "2.3.1",
           "src": {
             "href": "shared/ionrangeslider"
           },
           "meta": null,
           "script": "js/ion.rangeSlider.min.js",
-          "stylesheet": [
-            "css/ion.rangeSlider.css",
-            "css/ion.rangeSlider.skinShiny.css"
-          ],
+          "stylesheet": null,
           "head": null,
           "attachment": null,
           "package": null,
@@ -1442,8 +1472,22 @@
           "all_files": true
         },
         {
+          "name": "ionrangeslider-css",
+          "version": "2.3.1",
+          "src": {
+            "href": "shared/ionrangeslider"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/ion.rangeSlider.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        },
+        {
           "name": "shinyWidgets",
-          "version": "0.5.4",
+          "version": "0.5.7",
           "src": {
             "href": "shinyWidgets"
           },

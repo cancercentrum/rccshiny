@@ -1,14 +1,22 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "d66737c", type = "binary")
 
+library(testthat)
 library(shinytest)
 library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-# Expect shinytest results as when running the legacy apps using the latest release
-if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
+if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "darwin") {
 
+  # Run tests using the latest release/stable version
+  testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
+
+  # Update snapshots of expected shinytest results
   appdir_list <- list(
+    file.path("tests", "testthat", "apps", "sv", "app1"),
+    file.path("tests", "testthat", "apps", "sv", "app1hc"),
+    file.path("tests", "testthat", "apps", "sv", "inca1"),
+    file.path("tests", "testthat", "apps", "sv", "inca1hc"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.3"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.3"),
@@ -27,63 +35,25 @@ if (packageVersion("rccShiny") == "1.6.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "en", "legacy2-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
   )
-  # load-app-expected (without suffix)
   for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "load-app",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "load-app", quiet = TRUE)
-    }
-  }
-  # load-app-expected-windows
-  for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "load-app",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE,
-      suffix = "windows"
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "windows")
-    }
+    try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "mac"))
   }
 
   appdir_list <- list(
+    file.path("tests", "testthat", "apps", "sv", "app1"),
+    file.path("tests", "testthat", "apps", "sv", "app1hc"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
   )
-  # nav-app1-expected (without suffix)
   for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "nav-app1",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "nav-app1", quiet = TRUE)
-    }
+    try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "mac"))
   }
-  # nav-app1-expected-windows
+
+  appdir_list <- list(
+    file.path("tests", "testthat", "apps", "sv", "inca1"),
+    file.path("tests", "testthat", "apps", "sv", "inca1hc")
+  )
   for (appdir in appdir_list) {
-    x <- testApp(
-      appDir = appdir,
-      testnames = "nav-app1",
-      quiet = TRUE,
-      compareImages = FALSE,
-      interactive = FALSE,
-      suffix = "windows"
-    )
-    if (!x$results[[1]]$pass) {
-      snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "windows")
-    }
+    try(snapshotUpdate(appdir, "nav-inca1", quiet = TRUE, suffix = "mac"))
   }
 }

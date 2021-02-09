@@ -14,11 +14,12 @@ cache:
   - C:\RLibrary
 
 environment:
-  # global:
-  #   # USE_RTOOLS: true
-  #   # R_REMOTES_STANDALONE: true
+  global:
+    PKGTYPE: binary
+    # USE_RTOOLS: true
+    # R_REMOTES_STANDALONE: true
   matrix:
-  - R_VERSION: 3.6.3
+  # - R_VERSION: 3.6.3
   - R_VERSION: 4.0.3
 
 # Adapt as necessary starting from here

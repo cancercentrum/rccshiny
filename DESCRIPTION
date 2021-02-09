@@ -1,6 +1,6 @@
 Package: rccShiny
 Type: Package
-Version: 1.6.1
+Version: 1.7.0
 Title: Shiny apps for RCC
 Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
 Authors@R: c(
@@ -12,7 +12,8 @@ Authors@R: c(
     person("RCC", role = c("cph", "fnd"))
     )
 Depends: 
-    R (>= 3.5.0)
+    R (>= 3.5.0), 
+    shiny
 Imports: 
     DT,
     gplots,
@@ -21,7 +22,6 @@ Imports:
     highcharter,
     Hmisc,
     plyr,
-    shiny,
     shinydashboard,
     shinyWidgets,
     sp,

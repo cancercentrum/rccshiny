@@ -10,6 +10,6 @@ rcc2ColShade(col = "#000000", factor = seq(0, 2, 0.1))
 internal function.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

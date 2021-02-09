@@ -10,6 +10,6 @@ rccShinyRegionNumToText(var = NULL, language = "sv")
 internal function that creates variable from numeric codes (given by user) to corresponding names (printed in output) for region.
 }
 \author{
-Fredrik Sandin, RCC Uppsala-Örebro
+Fredrik Sandin, RCC Mellansverige
 }
 \keyword{internal}

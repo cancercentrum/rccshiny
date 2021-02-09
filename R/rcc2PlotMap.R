@@ -1,6 +1,6 @@
 #' rcc2PlotMap
 #' @description internal function.
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 rcc2PlotMap <-

@@ -1,10 +1,14 @@
 # Preparations
 #
-# 1. Download https://ci.appveyor.com/project/oc1lojo/rccshiny/builds/BUILD_NUMBER/artifacts > failure.zip
-# 2. Copy contents of failure\rccShiny.Rcheck\tests\testthat\apps to tests/testthat/apps
+# 1. Run update-shinytests-expected-windows.R
+# 2. Run update-shinytests-expected-appveyor-1.R
+# 3. Run Check Package in RStudio
+# 4. Run update-shinytests-expected-appveyor-2.R
+# 5. Commit and push to BitBucket
+# 6. Download https://ci.appveyor.com/project/oc1lojo/rccshiny/builds/BUILD_NUMBER/artifacts > failure.zip
+# 7. Copy contents of failure\rccShiny.Rcheck\tests\testthat\apps to tests/testthat/apps
 
 library(shinytest)
-library(rccShiny)
 
 appdir_list <- list(
   file.path("tests", "testthat", "apps", "sv", "app1"),

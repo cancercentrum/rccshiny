@@ -24,9 +24,9 @@
 #' @param geoUnitsHospitalCode optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".
 #' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
-#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
-#' @param geoUnitsDefault optional default level of presentation. Valid values are "region", "county" and "hospital". Default is "county".
+#' @param geoUnitsDefault optional default level of presentation. Valid values are "region", "county", "hospital", and any of the variable names (var) in varOtherComparison. Default is "county".
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
 #' @param regionSelectionDefault optional numeric value (1-6) which specifies the default selection in the list of regions. Default is NULL, which selects all regions.
 #' @param regionLabel change the default label of widget shown in the sidebar panel if regionSelection = TRUE. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
@@ -35,6 +35,7 @@
 #' @param periodLabel change the default label of the period widget in the sidebar panel. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param periodDefaultStart optional value which specifies the preselected default start of the period of interest. Default is NULL.
 #' @param periodDefaultEnd optional value which specifies the preselected default end of the period of interest. Default is NULL.
+#' @param varOtherComparison optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all avalible values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE). Observe that observations with missing values for varOthers are not included in the output.
 #' @param allLabel change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param targetValues optional vector or list of vectors (one for each outcome) with 1-2 target levels to be plotted in the tabs Jämförelse/Comparison and Trend for outcomes of type logical or numeric. If the outcome is numeric the target levels are shown when "Andel inom..."/"Proportion within..." is selected, and then only for the default propWithinValue.
@@ -87,7 +88,7 @@
 #' The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
 #' The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAlt, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 #'
-#' @author Fredrik Sandin, RCC Uppsala-Örebro
+#' @author Fredrik Sandin, RCC Mellansverige
 #'
 #' @return A folder path/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
 #' @examples
@@ -95,9 +96,9 @@
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
 #'   folderLinkText = "Indikator 1",
-#'   outcome = paste0("outcome",1:3),
+#'   outcome = paste0("outcome", 1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-#'   description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
+#'   description = c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
 #'   varOther = list(
 #'     list(
 #'       var = "age",
@@ -115,13 +116,12 @@
 #'   funnelplot = TRUE
 #' )
 #' \dontrun{
-#' library(shiny)
-#' runApp("./sv/Indikator1")
+#' shiny::runApp("./sv/Indikator1")
 #'
 #' cat(ind1) # displays the html link that can be used in index.html
 #' }
 #'
-#'# For Swedish/English version
+#' # For Swedish/English version
 #' rccShinyData$outcome1_en <- rccShinyData$outcome1
 #' rccShiny2(
 #'   language = c("sv", "en"),
@@ -130,19 +130,52 @@
 #'   folderLinkText = c("Indikator 2", "Indicator 2"),
 #'   outcome = "outcome1",
 #'   outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
-#'   textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
+#'   textBeforeSubtitle = c("Nagot pa svenska", "Something in English"),
 #'   description = list(
-#'     c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
-#'     c("Description of the indicator","Important information!","Information on variables etc.")
+#'     c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
+#'     c("Description of the indicator", "Important information!", "Information on variables etc.")
 #'   ),
 #'   varOther = list(
 #'     list(
 #'       var = "age",
-#'      label = c("Alder vid diagnos","Age at diagnosis"),
-#'       choices = c(0,120)
+#'      label = c("Alder vid diagnos", "Age at diagnosis"),
+#'       choices = c(0, 120)
 #'     )
 #'   ),
-#'   targetValues = c(95,99)
+#'   targetValues = c(95, 99)
+#' )
+#'
+#' # Using stage as level of presentation
+#' rccShiny2(
+#'   language = c("sv", "en"),
+#'   data = rccShinyData,
+#'   folder = "Indikator3",
+#'   outcome = "outcome1",
+#'   outcomeTitle = list("Dikotom", "Dichotomous"),
+#'   description = list(
+#'     c("Beskrivning!", "Viktigt!", "Information!"),
+#'     c("Description!", "Important!", "Information!")
+#'   ),
+#'   geoUnitsDefault = "stage",
+#'   varOtherComparison = list(
+#'     list(
+#'       var = "stage",
+#'       label = c(
+#'         "Stadium",
+#'         "Stage"
+#'       )
+#'     )
+#'   ),
+#'   varOther = list(
+#'     list(
+#'       var = "age",
+#'       label = c(
+#'         "Alder vid diagnos",
+#'         "Age at diagnosis"
+#'       )
+#'     )
+#'   ),
+#'   sort = FALSE
 #' )
 #' @export
 
@@ -182,6 +215,7 @@ rccShiny2 <-
     periodLabel = NULL,
     periodDefaultStart = NULL,
     periodDefaultEnd = NULL,
+    varOtherComparison = NULL,
     varOther = NULL,
     allLabel = NULL,
     targetValues = NULL,
@@ -364,8 +398,6 @@ rccShiny2 <-
     # geoUnitsDefault
     if (is.null(geoUnitsDefault) | !is.character(geoUnitsDefault) | length(geoUnitsDefault) != 1)
       stop("'geoUnitsDefault' should a character vector of length 1", call. = FALSE)
-    if (!(geoUnitsDefault %in% c("region", "county", "hospital")))
-      stop("Valid values for 'geoUnitsDefault' are 'region', 'county' or 'hospital'", call. = FALSE)
 
     # regionSelection
     if (is.null(regionSelection) | !is.logical(regionSelection) | length(regionSelection) != 1)
@@ -410,6 +442,18 @@ rccShiny2 <-
       stop("'periodDefaultStart' should be either NULL or a vector of length 1", call. = FALSE)
     if (!is.null(periodDefaultEnd) & length(periodDefaultEnd) != 1)
       stop("'periodDefaultEnd' should be either NULL or a vector of length 1", call. = FALSE)
+
+    # varOtherComparison
+    if (!is.null(varOtherComparison) & (!is.list(varOtherComparison) | length(varOtherComparison) < 1))
+      stop("'varOtherComparison' should be either NULL or a list with at least one element", call. = FALSE)
+    if (!all(sapply(varOtherComparison, is.list)))
+      stop("The elements of 'varOtherComparison' should be lists", call. = FALSE)
+    if (!is.null(varOtherComparison)) {
+      for (i in 1:length(varOtherComparison)) {
+        if (!("var" %in% names(varOtherComparison[[i]])) | is.null(varOtherComparison[[i]]$var))
+          stop("'var' is missing from varOtherComparison[[", i, "]]", call. = FALSE)
+      }
+    }
 
     # varOther
     if (!is.null(varOther) & (!is.list(varOther) | length(varOther) < 1))
@@ -506,6 +550,18 @@ rccShiny2 <-
     if (is.null(includeTabs) | !is.character(includeTabs))
       stop("'includeTabs' should be a character vector", call. = FALSE)
 
+    # includeMissingColumn
+    if (is.null(includeMissingColumn) | !is.logical(includeMissingColumn) | length(includeMissingColumn) != 1)
+      stop("'includeMissingColumn' should be a logical vector of length 1", call. = FALSE)
+    # includeMissingColumn=TRUE but factor contains 'Uppgift saknas' or 'Missing'
+    miss.values <- c("Uppgift saknas", "Missing")
+    if (isTRUE(includeMissingColumn) & any(unlist(lapply(data.frame(data[,outcome]), levels)) %in% miss.values)){
+      tmp <- outcome[unlist(lapply(data.frame(data[,outcome]), function(x) any(levels(x) %in% miss.values)))]
+      data[, tmp][data[, tmp] == miss.values[1] | data[, tmp] == miss.values[2]] <- NA
+      data[, tmp] <- droplevels(data[, tmp])
+      message("'includeMissingColumn' = TRUE and 'outcome' contains value 'Uppgift saknas' or 'Missing'. \nTo avoid errors the levels 'Uppgift saknas' and/or 'Missing' have been converted to 'NA'. \nIf you want to keep your Missing value level, change 'includeMissingColumn' to FALSE")
+    }
+
     # # # # # # # # # # # # # # # #
     # Produce app for each language
     # # # # # # # # # # # # # # # #
@@ -523,6 +579,7 @@ rccShiny2 <-
           incaUserHospital = NA,
           language = loopLanguage,
           whichLanguage = which(language == loopLanguage),
+          pageTitle = paste0(folder, "_", loopLanguage),
           data = data,
           id = id,
           idOverviewLink = idOverviewLink,
@@ -550,6 +607,7 @@ rccShiny2 <-
           periodLabel = periodLabel,
           periodDefaultStart = periodDefaultStart,
           periodDefaultEnd = periodDefaultEnd,
+          varOtherComparison = varOtherComparison,
           varOther = varOther,
           allLabel = allLabel,
           targetValues = targetValues,
@@ -597,7 +655,6 @@ rccShiny2 <-
           file = paste0(path, "/", loopLanguage, "/", folder, "/data/data.RData")
         )
 
-
         whichLanguage <- which(language == loopLanguage)
 
         tempLinks <-
@@ -629,7 +686,7 @@ rccShiny2 <-
       # https://r-pkgs.org/namespace.html#imports
       # https://r-pkgs.org/namespace.html#search-path
 
-      require("shiny", quietly = TRUE)
+      # require("shiny", quietly = TRUE)
       require("shinydashboard", quietly = TRUE)
       require("shinyWidgets", quietly = TRUE)
       require("DT", quietly = TRUE)
