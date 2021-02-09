@@ -10,13 +10,14 @@
 # - https://r-pkgs.org/description.html#other-dependencies
 # - https://r-pkgs.org/namespace.html#search-path
 
-# Import all functions in 'graphics' and 'sp' since they are repeatedly used.
+# Import all functions in 'shiny', graphics' and 'sp' since they are repeatedly used.
 # Use :: for the few calls of functions in 'shinydashboard', 'shinyWidgets',
 # 'DT', 'grDevices', 'Hmisc', 'dplyr', etc.
 # Use @importFrom to import functions from 'highcharter' that are repeatedly used.
 #
 # Inspiration: https://r-pkgs.org/namespace.html#imports
 #
+#' @import shiny
 #' @import graphics
 #' @import sp
 #' @importFrom highcharter hc_add_series hc_boost hc_chart hc_colorAxis
