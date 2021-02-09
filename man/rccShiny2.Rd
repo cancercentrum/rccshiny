@@ -228,8 +228,7 @@ ind1 <- rccShiny2(
   funnelplot = TRUE
 )
 \dontrun{
-library(shiny)
-runApp("./sv/Indikator1")
+shiny::runApp("./sv/Indikator1")
 
 cat(ind1) # displays the html link that can be used in index.html
 }

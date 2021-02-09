@@ -116,8 +116,7 @@
 #'   funnelplot = TRUE
 #' )
 #' \dontrun{
-#' library(shiny)
-#' runApp("./sv/Indikator1")
+#' shiny::runApp("./sv/Indikator1")
 #'
 #' cat(ind1) # displays the html link that can be used in index.html
 #' }
@@ -687,7 +686,7 @@ rccShiny2 <-
       # https://r-pkgs.org/namespace.html#imports
       # https://r-pkgs.org/namespace.html#search-path
 
-      require("shiny", quietly = TRUE)
+      # require("shiny", quietly = TRUE)
       require("shinydashboard", quietly = TRUE)
       require("shinyWidgets", quietly = TRUE)
       require("DT", quietly = TRUE)
