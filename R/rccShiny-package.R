@@ -81,6 +81,8 @@ utils::globalVariables(
     "GLOBAL_textAfterSubtitle",
     "GLOBAL_textBeforeSubtitle",
     "GLOBAL_varOther",
+    "GLOBAL_varOtherComparisonVariables",
+    "GLOBAL_varOtherComparisonLabels",
     "df",
     "environmentVariables"
   )
