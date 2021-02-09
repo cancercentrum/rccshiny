@@ -12,7 +12,8 @@ Authors@R: c(
     person("RCC", role = c("cph", "fnd"))
     )
 Depends: 
-    R (>= 3.5.0)
+    R (>= 3.5.0), 
+    shiny
 Imports: 
     DT,
     gplots,
@@ -21,7 +22,6 @@ Imports:
     highcharter,
     Hmisc,
     plyr,
-    shiny,
     shinydashboard,
     shinyWidgets,
     sp,
