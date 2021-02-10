@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", type = "binary")
 
 library(shiny)
 library(rccShiny)
