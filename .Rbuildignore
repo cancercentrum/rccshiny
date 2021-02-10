@@ -6,6 +6,6 @@
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^/\.gitattributes$
+^guides$
 ^pkgdown$
 ^renv$
-^vignettes/rsconnect$

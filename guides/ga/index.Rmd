@@ -1,18 +1,11 @@
 ---
 title: "Använda Google Analytics med rccShiny"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Använda Google Analytics med rccShiny}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: 
+  html_document:
+    theme: cosmo
+    toc: true
+    toc_float: true
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
 ## Vad är Google Analytics?
 

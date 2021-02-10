@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 inst/doc
+guides/ga/rsconnect/
+guides/tolkningsmanual/rsconnect/
 renv/
-vignettes/rsconnect/

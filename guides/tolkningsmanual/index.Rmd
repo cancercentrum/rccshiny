@@ -1,18 +1,11 @@
 ---
 title: "Tolkningsmanual för interaktiva Shinyrapporter"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Tolkningsmanual för interaktiva Shinyrapporter}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: 
+  html_document:
+    theme: cosmo
+    toc: true
+    toc_float: true
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
 ## Instruktioner för användande av de interaktiva shinyrapporterna
 
