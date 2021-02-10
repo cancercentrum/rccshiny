@@ -5,4 +5,8 @@ library(rccShiny)
 if (is.null(webdriver:::find_phantom())) webdriver::install_phantomjs()
 cat("Using phantom.js from", webdriver:::find_phantom(), "\n")
 
-test_check("rccShiny")
+# For diagnostics
+cat(paste0("Sys.getenv('NOT_CRAN'): ", Sys.getenv("NOT_CRAN"), "\n"))
+cat(paste0("packageVersion('shinyWidgets'): ", packageVersion("shinyWidgets"), "\n"))
+
+test_check("rccShiny", reporter = "minimal")

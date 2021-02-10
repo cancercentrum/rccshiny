@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,9 +94,6 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/anslutningsinfo.html">Anslutningsinformation</a>
-    </li>
     <li>
       <a href="../articles/ga.html">Använda Google Analytics med rccShiny</a>
     </li>
@@ -168,6 +165,7 @@
   periodLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
   periodDefaultStart <span class='op'>=</span> <span class='cn'>NULL</span>,
   periodDefaultEnd <span class='op'>=</span> <span class='cn'>NULL</span>,
+  varOtherComparison <span class='op'>=</span> <span class='cn'>NULL</span>,
   varOther <span class='op'>=</span> <span class='cn'>NULL</span>,
   allLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
   targetValues <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -284,7 +282,7 @@
     </tr>
     <tr>
       <th>geoUnitsRegion</th>
-      <td><p>optional name of variable in data containing region codes (1=Stockholm, 2=Uppsala-Örebro, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.</p></td>
+      <td><p>optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.</p></td>
     </tr>
     <tr>
       <th>geoUnitsPatient</th>
@@ -292,7 +290,7 @@
     </tr>
     <tr>
       <th>geoUnitsDefault</th>
-      <td><p>optional default level of presentation. Valid values are "region", "county" and "hospital". Default is "county".</p></td>
+      <td><p>optional default level of presentation. Valid values are "region", "county", "hospital", and any of the variable names (var) in varOtherComparison. Default is "county".</p></td>
     </tr>
     <tr>
       <th>regionSelection</th>
@@ -325,6 +323,10 @@
     <tr>
       <th>periodDefaultEnd</th>
       <td><p>optional value which specifies the preselected default end of the period of interest. Default is NULL.</p></td>
+    </tr>
+    <tr>
+      <th>varOtherComparison</th>
+      <td><p>optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).</p></td>
     </tr>
     <tr>
       <th>varOther</th>
@@ -434,16 +436,16 @@ The following applies to argument outcomeTitle, description: the arguments shoul
 The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAlt, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Fredrik Sandin, RCC Uppsala-Örebro</p>
+    <p>Fredrik Sandin, RCC Mellansverige</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='va'>ind1</span> <span class='op'>&lt;-</span> <span class='fu'>rccShiny2</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>rccShinyData</span>,
   folder <span class='op'>=</span> <span class='st'>"Indikator1"</span>,
   folderLinkText <span class='op'>=</span> <span class='st'>"Indikator 1"</span>,
-  outcome <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"outcome"</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>,
+  outcome <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"outcome"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>,
   outcomeTitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Dikotom"</span>, <span class='st'>"Kontinuerlig"</span>, <span class='st'>"Kategorisk"</span><span class='op'>)</span>,
-  description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Har beskrivs indikatorn."</span>,<span class='st'>"Viktig information!"</span>,<span class='st'>"Information om variabler etc."</span><span class='op'>)</span>,
+  description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Har beskrivs indikatorn."</span>, <span class='st'>"Viktig information!"</span>, <span class='st'>"Information om variabler etc."</span><span class='op'>)</span>,
   varOther <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
       var <span class='op'>=</span> <span class='st'>"age"</span>,
@@ -461,8 +463,7 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAl
   funnelplot <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/runApp.html'>runApp</a></span><span class='op'>(</span><span class='st'>"./sv/Indikator1"</span><span class='op'>)</span>
+<span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/runApp.html'>runApp</a></span><span class='op'>(</span><span class='st'>"./sv/Indikator1"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>ind1</span><span class='op'>)</span> <span class='co'># displays the html link that can be used in index.html</span>
 <span class='op'>}</span>
@@ -476,19 +477,52 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAl
   folderLinkText <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Indikator 2"</span>, <span class='st'>"Indicator 2"</span><span class='op'>)</span>,
   outcome <span class='op'>=</span> <span class='st'>"outcome1"</span>,
   outcomeTitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Kontaktsjukskoterska"</span>, <span class='st'>"Contact nurse"</span><span class='op'>)</span>,
-  textBeforeSubtitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Nagot pa svenska"</span>,<span class='st'>"Something in English"</span><span class='op'>)</span>,
+  textBeforeSubtitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Nagot pa svenska"</span>, <span class='st'>"Something in English"</span><span class='op'>)</span>,
   description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Har beskrivs indikatorn."</span>,<span class='st'>"Viktig information!"</span>,<span class='st'>"Information om variabler etc."</span><span class='op'>)</span>,
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Description of the indicator"</span>,<span class='st'>"Important information!"</span>,<span class='st'>"Information on variables etc."</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Har beskrivs indikatorn."</span>, <span class='st'>"Viktig information!"</span>, <span class='st'>"Information om variabler etc."</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Description of the indicator"</span>, <span class='st'>"Important information!"</span>, <span class='st'>"Information on variables etc."</span><span class='op'>)</span>
   <span class='op'>)</span>,
   varOther <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
       var <span class='op'>=</span> <span class='st'>"age"</span>,
-     label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Alder vid diagnos"</span>,<span class='st'>"Age at diagnosis"</span><span class='op'>)</span>,
-      choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>120</span><span class='op'>)</span>
+     label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Alder vid diagnos"</span>, <span class='st'>"Age at diagnosis"</span><span class='op'>)</span>,
+      choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>120</span><span class='op'>)</span>
     <span class='op'>)</span>
   <span class='op'>)</span>,
-  targetValues <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>95</span>,<span class='fl'>99</span><span class='op'>)</span>
+  targetValues <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>95</span>, <span class='fl'>99</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='co'># Using stage as level of presentation</span>
+<span class='fu'>rccShiny2</span><span class='op'>(</span>
+  language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sv"</span>, <span class='st'>"en"</span><span class='op'>)</span>,
+  data <span class='op'>=</span> <span class='va'>rccShinyData</span>,
+  folder <span class='op'>=</span> <span class='st'>"Indikator3"</span>,
+  outcome <span class='op'>=</span> <span class='st'>"outcome1"</span>,
+  outcomeTitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"Dikotom"</span>, <span class='st'>"Dichotomous"</span><span class='op'>)</span>,
+  description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Beskrivning!"</span>, <span class='st'>"Viktigt!"</span>, <span class='st'>"Information!"</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Description!"</span>, <span class='st'>"Important!"</span>, <span class='st'>"Information!"</span><span class='op'>)</span>
+  <span class='op'>)</span>,
+  geoUnitsDefault <span class='op'>=</span> <span class='st'>"stage"</span>,
+  varOtherComparison <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+      var <span class='op'>=</span> <span class='st'>"stage"</span>,
+      label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+        <span class='st'>"Stadium"</span>,
+        <span class='st'>"Stage"</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  varOther <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+      var <span class='op'>=</span> <span class='st'>"age"</span>,
+      label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+        <span class='st'>"Alder vid diagnos"</span>,
+        <span class='st'>"Age at diagnosis"</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  sort <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 </pre>
   </div>

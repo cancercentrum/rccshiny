@@ -2,8 +2,15 @@
 #' @keywords internal
 "_PACKAGE"
 
-# Import all functions in 'shiny', 'graphics' and 'sp' since they are repeatedly
-# used.
+# The rccShiny-package Depends on the R package 'shiny' (in DESCRIPTION) since
+# 'rccShiny' is build on top of 'shiny' and is designed to be used in conjunction
+# with 'shiny'.
+#
+# Inspiration:
+# - https://r-pkgs.org/description.html#other-dependencies
+# - https://r-pkgs.org/namespace.html#search-path
+
+# Import all functions in 'shiny', graphics' and 'sp' since they are repeatedly used.
 # Use :: for the few calls of functions in 'shinydashboard', 'shinyWidgets',
 # 'DT', 'grDevices', 'Hmisc', 'dplyr', etc.
 # Use @importFrom to import functions from 'highcharter' that are repeatedly used.
@@ -81,6 +88,8 @@ utils::globalVariables(
     "GLOBAL_textAfterSubtitle",
     "GLOBAL_textBeforeSubtitle",
     "GLOBAL_varOther",
+    "GLOBAL_varOtherComparisonVariables",
+    "GLOBAL_varOtherComparisonLabels",
     "df",
     "environmentVariables"
   )

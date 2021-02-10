@@ -1,5 +1,21 @@
 # rccShiny (development version)
 
+## Ny funktionalitet
+
+
+
+## Mindre förbättringar och felrättningar
+
+
+
+# rccShiny 1.7.0
+
+## Ny funktionalitet
+
+* Lagt till alternativ för att inkludera andra variabler som presentationsnivå (SNY-9, SNY-45)
+* Döpt om sjukvårdsregionen "Uppsala-Örebro" till "Mellansverige" i alla presentationer (SNY-88)
+* "folder" används nu som webbsidans titel och kan ses i Google Analytics. Om INCA sätts ingen sidrubrik (SNY-86)
+
 ## Mindre förbättringar och felrättningar
 
 * includeMissingColumn = TRUE + outcome som faktor med en nivå = "Uppgift saknas" orsakar krasch (SNY-81)
