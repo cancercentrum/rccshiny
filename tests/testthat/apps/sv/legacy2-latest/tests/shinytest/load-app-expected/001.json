@@ -34,7 +34,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 12c6549546f67280c6e2ee0c61ee5dc7b96eab3a]",
+      "src": "[image data sha1: aa57a29d02b1869160ab09e8b312bb26ab8aa6ec]",
       "width": 694,
       "height": 971.6
     },
@@ -236,7 +236,7 @@
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",

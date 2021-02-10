@@ -27,7 +27,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: e95b4e4cceeb287999083a3967d45967e9952f79]",
+      "src": "[image data sha1: bfa35d88a782cf0b7f97c950c62522ef1f7b4913]",
       "width": 700,
       "height": 980
     },
@@ -141,7 +141,7 @@
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Uppsala-Örebro\">Uppsala-Örebro<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",

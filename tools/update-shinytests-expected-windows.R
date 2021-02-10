@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "d66737c", type = "binary")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "1.7.0", type = "binary")
 
 library(testthat)
 library(shinytest)
@@ -6,7 +6,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "windows") {
+if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
 
   # Run tests using the latest release/stable version
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
@@ -29,6 +29,10 @@ if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.5.1"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.5.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy3-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy1-1.6.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy2-1.6.1"),
+    file.path("tests", "testthat", "apps", "en", "legacy2-1.6.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy3-1.6.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-latest"),
