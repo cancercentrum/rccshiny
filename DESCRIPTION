@@ -30,6 +30,7 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
+    rsconnect,
     shinytest,
     testthat,
     webdriver
