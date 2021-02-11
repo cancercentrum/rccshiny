@@ -8,6 +8,11 @@
 
 
 
+## Ytterligare innformation
+
+* Innehållet i vinjetten "Tolkningsmanual för interaktiva Shinyrapporter" har flyttat till https://statistik.incanet.se/tolkningsmanual/
+* Innehållet i vinjetten "Använda Google Analytics med rccShiny" har flyttat till https://statistik.incanet.se/ga/
+
 # rccShiny 1.7.0
 
 ## Ny funktionalitet
