@@ -6,3 +6,5 @@ inst/doc
 guides/ga/rsconnect/
 guides/tolkningsmanual/rsconnect/
 renv/
+vignettes/*.html
+vignettes/*.R

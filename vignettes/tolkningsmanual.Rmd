@@ -1,0 +1,17 @@
+---
+title: "Tolkningsmanual för interaktiva Shinyrapporter"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tolkningsmanual för interaktiva Shinyrapporter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Denna guide har flyttat till https://statistik.incanet.se/tolkningsmanual/

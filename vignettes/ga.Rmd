@@ -1,0 +1,17 @@
+---
+title: "Använda Google Analytics med rccShiny"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Använda Google Analytics med rccShiny}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Denna guide har flyttat till https://statistik.incanet.se/ga/
