@@ -1,7 +1,7 @@
 # Preparations
 #
 # 1. Run update-shinytests-expected-windows.R
-# 2. Run update-shinytests-expected-appveyor-1.R
+# 2. Run update-shinytests-expected-wincheck-1.R
 # 3. Run Check Package in RStudio
 
 dirs_expected_wincheck <- stringr::str_subset(
@@ -20,7 +20,7 @@ for (dir_expected_wincheck in dirs_expected_wincheck) {
           replacement = "tests/testthat/apps/"
         ),
         pattern = "current",
-        replacement = "expected-appveyor"
+        replacement = "expected-wincheck"
       ),
       overwrite = TRUE
     )

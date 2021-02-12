@@ -7,10 +7,10 @@ shinytest_suffix <- function() {
   sysname <- tolower(Sys.info()[["sysname"]])
 
   if (identical(Sys.getenv("APPVEYOR"), "True")) {
-    suffix <- "appveyor"
+    suffix <- "wincheck"
   } else if (sysname == "windows") {
     if (identical(Sys.getenv("NOT_CRAN"), "true")) {
-      suffix <- "appveyor"
+      suffix <- "wincheck"
     } else {
       suffix <- "windows"
     }

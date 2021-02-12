@@ -14,7 +14,7 @@ for (dir_expected_windows in dirs_expected_windows) {
       to = stringr::str_replace(
         file_expected_windows,
         pattern = "expected-windows",
-        replacement = "expected-appveyor"
+        replacement = "expected-wincheck"
       ),
       overwrite = TRUE
     )
