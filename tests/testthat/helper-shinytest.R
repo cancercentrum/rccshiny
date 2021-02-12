@@ -3,16 +3,15 @@ file_remove_if_exists <- function(x) {
 }
 
 shinytest_suffix <- function() {
-
   sysname <- tolower(Sys.info()[["sysname"]])
 
-  if (identical(Sys.getenv("APPVEYOR"), "True")) {
-    suffix <- "appveyor"
-  } else if (sysname == "windows") {
-    if (identical(Sys.getenv("NOT_CRAN"), "true")) {
-      suffix <- "appveyor"
+  if (sysname == "windows") {
+    # Use different expected shinytest results on Windows for different scenarios
+    if (identical(Sys.getenv("R_CMD"), "R CMD")) {
+      # Probably running R CMD check
+      suffix <- "wincheck"
     } else {
-      suffix <- "windows"
+      suffix <- "wintest"
     }
   } else if (sysname %in% c("darwin", "linux")) {
     suffix <- "mac"
