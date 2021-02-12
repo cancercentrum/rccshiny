@@ -1,19 +1,19 @@
 # Preparations
 #
-# Run update-shinytest-expected-windows.R
+# Run update-shinytest-expected-wintest.R
 
-dirs_expected_windows <- stringr::str_subset(
+dirs_expected_wintest <- stringr::str_subset(
   list.dirs("tests/testthat/apps/"),
-  pattern = "expected-windows"
+  pattern = "expected-wintest"
 )
 
-for (dir_expected_windows in dirs_expected_windows) {
-  for (file_expected_windows in list.files(dir_expected_windows, "*.json",  full.names = TRUE)) {
+for (dir_expected_wintest in dirs_expected_wintest) {
+  for (file_expected_wintest in list.files(dir_expected_wintest, "*.json",  full.names = TRUE)) {
     file.copy(
-      from = file_expected_windows,
+      from = file_expected_wintest,
       to = stringr::str_replace(
-        file_expected_windows,
-        pattern = "expected-windows",
+        file_expected_wintest,
+        pattern = "expected-wintest",
         replacement = "expected-wincheck"
       ),
       overwrite = TRUE

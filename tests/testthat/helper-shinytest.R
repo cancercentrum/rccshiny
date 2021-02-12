@@ -11,7 +11,7 @@ shinytest_suffix <- function() {
       # Probably running R CMD check
       suffix <- "wincheck"
     } else {
-      suffix <- "windows"
+      suffix <- "wintest"
     }
   } else if (sysname %in% c("darwin", "linux")) {
     suffix <- "mac"

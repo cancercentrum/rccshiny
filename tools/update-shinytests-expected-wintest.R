@@ -40,7 +40,7 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "windows"))
+    try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "wintest"))
   }
 
   appdir_list <- list(
@@ -50,7 +50,7 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "windows"))
+    try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "wintest"))
   }
 
   appdir_list <- list(
@@ -58,21 +58,21 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "inca1hc")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-inca1", quiet = TRUE, suffix = "windows"))
+    try(snapshotUpdate(appdir, "nav-inca1", quiet = TRUE, suffix = "wintest"))
   }
 
-  # Also copy expected shinytest results from -expected-windows to -expected
-  dirs_expected_windows <- stringr::str_subset(
+  # Also copy expected shinytest results from -expected-wintest to -expected
+  dirs_expected_wintest <- stringr::str_subset(
     list.dirs("tests/testthat/apps/"),
-    pattern = "expected-windows"
+    pattern = "expected-wintest"
   )
-  for (dir_expected_windows in dirs_expected_windows) {
-    for (file_expected_windows in list.files(dir_expected_windows, "*.json",  full.names = TRUE)) {
+  for (dir_expected_wintest in dirs_expected_wintest) {
+    for (file_expected_wintest in list.files(dir_expected_wintest, "*.json",  full.names = TRUE)) {
       file.copy(
-        from = file_expected_windows,
+        from = file_expected_wintest,
         to = stringr::str_replace(
-          file_expected_windows,
-          pattern = "expected-windows",
+          file_expected_wintest,
+          pattern = "expected-wintest",
           replacement = "expected"
         ),
         overwrite = TRUE

@@ -1,6 +1,6 @@
 # Preparations
 #
-# 1. Run update-shinytests-expected-windows.R
+# 1. Run update-shinytests-expected-wintest.R
 # 2. Run update-shinytests-expected-wincheck-1.R
 # 3. Run Check Package in RStudio
 
