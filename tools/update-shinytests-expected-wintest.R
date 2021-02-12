@@ -40,7 +40,7 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "wintest"))
+    try(snapshotUpdate(appdir, "load-app", suffix = "wintest"))
   }
 
   appdir_list <- list(
@@ -50,7 +50,7 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "wintest"))
+    try(snapshotUpdate(appdir, "nav-app1", suffix = "wintest"))
   }
 
   appdir_list <- list(
@@ -58,7 +58,7 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "inca1hc")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-inca1", quiet = TRUE, suffix = "wintest"))
+    try(snapshotUpdate(appdir, "nav-inca1", suffix = "wintest"))
   }
 
   # Also copy expected shinytest results from -expected-wintest to -expected

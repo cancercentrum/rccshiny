@@ -42,13 +42,13 @@ test_that("creating app1hc works", {
 test_that("loading app1hc works", {
   skip_on_os("linux")
 
-  expect_pass(testApp(appdir, "load-app", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
+  expect_pass(testApp(appdir, "load-app", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
 })
 
 test_that("navigating app1hc works", {
   skip_on_os("linux")
 
-  expect_pass(testApp(appdir, "nav-app1", quiet = TRUE, compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
+  expect_pass(testApp(appdir, "nav-app1", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
 })
 
 # Clean up
