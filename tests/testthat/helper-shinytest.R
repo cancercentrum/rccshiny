@@ -21,10 +21,8 @@ shinytest_suffix <- function() {
         # Probably running another devtools function, e.g. devtools::test()
         suffix <- "windows"
       }
-    } else if (!identical(Sys.getenv("R_TESTS"), "")) {
+    } else if (identical(Sys.getenv("R_CMD"), "R CMD")) {
       # Probably running R CMD check
-      # When R CMD check runs tests, it sets R_TESTS.
-      # see https://github.com/r-lib/devtools/blob/v2.3.2/R/R.R#L17
       suffix <- "wincheck"
     } else {
       suffix <- "windows"
