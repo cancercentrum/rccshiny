@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "d66737c", type = "binary")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "1.7.0", type = "binary")
 
 library(testthat)
 library(shinytest)
@@ -6,7 +6,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "darwin") {
+if (packageVersion("rccShiny") == "1.7.0" & sysname == "darwin") {
 
   # Run tests using the latest release/stable version
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
@@ -20,23 +20,27 @@ if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.3"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.3"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.3"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.4.2"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.4.2"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.4.2"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.4.2"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.4.2"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.5.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.5.1"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.5.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy1-1.6.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy2-1.6.1"),
+    file.path("tests", "testthat", "apps", "en", "legacy2-1.6.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.6.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-latest"),
     file.path("tests", "testthat", "apps", "en", "legacy2-latest"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
+    file.path("tests", "testthat", "apps", "sv", "legacy0-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "load-app", quiet = TRUE, suffix = "mac"))
+    try(snapshotUpdate(appdir, "load-app", suffix = "mac"))
   }
 
   appdir_list <- list(
@@ -46,7 +50,7 @@ if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-app1", quiet = TRUE, suffix = "mac"))
+    try(snapshotUpdate(appdir, "nav-app1", suffix = "mac"))
   }
 
   appdir_list <- list(
@@ -54,6 +58,6 @@ if (packageVersion("rccShiny") == "1.6.1.9001" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "inca1hc")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-inca1", quiet = TRUE, suffix = "mac"))
+    try(snapshotUpdate(appdir, "nav-inca1", suffix = "mac"))
   }
 }

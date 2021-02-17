@@ -1,10 +1,10 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", type = "binary")
 
 library(shiny)
 library(rccShiny)
 
-# Latest release (1.6.1 at th moment)
-if (packageVersion("rccShiny") == "1.6.1") {
+# Latest release (1.7.0 at the moment)
+if (packageVersion("rccShiny") == "1.7.0") {
 
   # Create legacy1-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-94
@@ -82,11 +82,11 @@ if (packageVersion("rccShiny") == "1.6.1") {
     targetValues = c(95, 99)
   )
 
-  # Create legacy3-latest
+  # Create legacy0-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny.R#lines-77
   rccShiny(
     data = rccShinyData,
-    folder = "legacy3-latest",
+    folder = "legacy0-latest",
     path = file.path("tests", "testthat"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),

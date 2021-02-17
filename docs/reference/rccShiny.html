@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
@@ -345,7 +345,8 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, ge
     <p>Fredrik Sandin, RCC Mellansverige</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>ind1</span> <span class='op'>&lt;-</span> <span class='fu'>rccShiny</span><span class='op'>(</span>
+    <pre class="examples"><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>ind1</span> <span class='op'>&lt;-</span> <span class='fu'>rccShiny</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>rccShinyData</span>,
   folder <span class='op'>=</span> <span class='st'>"Indikator1"</span>,
   folderLinkText <span class='op'>=</span> <span class='st'>"Indikator 1"</span>,
@@ -369,12 +370,9 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, ge
   <span class='op'>)</span>,
   funnelplot <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/runApp.html'>runApp</a></span><span class='op'>(</span><span class='st'>"./apps/sv/Indikator1"</span><span class='op'>)</span>
+<span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/runApp.html'>runApp</a></span><span class='op'>(</span><span class='st'>"./apps/sv/Indikator1"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>ind1</span><span class='op'>)</span> <span class='co'># displays the html link that can be used in index.html</span>
-<span class='op'>}</span>
 
 <span class='co'># For Swedish/English version</span>
 <span class='va'>rccShinyData</span><span class='op'>$</span><span class='va'>outcome1_en</span> <span class='op'>&lt;-</span> <span class='va'>rccShinyData</span><span class='op'>$</span><span class='va'>outcome1</span>
@@ -398,6 +396,7 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, ge
   <span class='op'>)</span>,
   targetValues <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>95</span>,<span class='fl'>99</span><span class='op'>)</span>
 <span class='op'>)</span>
+<span class='op'>}</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

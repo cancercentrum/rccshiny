@@ -2436,6 +2436,18 @@ rccShinyCheckData <-
     optionsList$varOtherComparisonVariables <- varOtherComparisonVariables
     optionsList$varOtherComparisonLabels <- varOtherComparisonLabels
 
+    # Check for conflicts in labels (to be fixed in future version)
+    tempReservedLabels <- c(
+      rccShinyLevelNames("region", language = optionsList$language),
+      rccShinyLevelNames("county_lkf", language = optionsList$language),
+      rccShinyLevelNames("county", language = optionsList$language),
+      rccShinyLevelNames("hospital", language = optionsList$language)
+    )
+    if (any(tolower(optionsList$varOtherComparisonLabels) %in% tolower(tempReservedLabels))) {
+      optionsList$error <- paste0(paste(paste0("'", tempReservedLabels, "'"), collapse = "/"), " are currently not allowed as labels in varOtherComparison when language = '", optionsList$language, "'. This will be fixed in a future version. For now, try adding a whitespace after the label in order for it to be distinct.")
+      return(optionsList)
+    }
+
     # geoUnitsHospitalInclude, geoUnitsCountyInclude, geoUnitsRegionInclude, varOtherComparison
     if (sum(optionsList$geoUnitsHospitalInclude, optionsList$geoUnitsCountyInclude, optionsList$geoUnitsRegionInclude, length(optionsList$varOtherComparisonVariables)) < 1) {
       optionsList$error <- paste0("At least one level of comparison (hospital/county/region/varOtherComparison) must be available")

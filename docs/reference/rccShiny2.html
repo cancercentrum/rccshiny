@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
@@ -439,13 +439,16 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAl
     <p>Fredrik Sandin, RCC Mellansverige</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>ind1</span> <span class='op'>&lt;-</span> <span class='fu'>rccShiny2</span><span class='op'>(</span>
+    <pre class="examples"><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>ind1</span> <span class='op'>&lt;-</span> <span class='fu'>rccShiny2</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>rccShinyData</span>,
   folder <span class='op'>=</span> <span class='st'>"Indikator1"</span>,
   folderLinkText <span class='op'>=</span> <span class='st'>"Indikator 1"</span>,
   outcome <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"outcome"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>,
   outcomeTitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Dikotom"</span>, <span class='st'>"Kontinuerlig"</span>, <span class='st'>"Kategorisk"</span><span class='op'>)</span>,
-  description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Har beskrivs indikatorn."</span>, <span class='st'>"Viktig information!"</span>, <span class='st'>"Information om variabler etc."</span><span class='op'>)</span>,
+  description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+    <span class='st'>"Har beskrivs indikatorn."</span>, <span class='st'>"Viktig information!"</span>, <span class='st'>"Information om variabler etc."</span>
+  <span class='op'>)</span>,
   varOther <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
       var <span class='op'>=</span> <span class='st'>"age"</span>,
@@ -462,11 +465,10 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAl
   <span class='op'>)</span>,
   funnelplot <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+
 <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/runApp.html'>runApp</a></span><span class='op'>(</span><span class='st'>"./sv/Indikator1"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>ind1</span><span class='op'>)</span> <span class='co'># displays the html link that can be used in index.html</span>
-<span class='op'>}</span>
 
 <span class='co'># For Swedish/English version</span>
 <span class='va'>rccShinyData</span><span class='op'>$</span><span class='va'>outcome1_en</span> <span class='op'>&lt;-</span> <span class='va'>rccShinyData</span><span class='op'>$</span><span class='va'>outcome1</span>
@@ -524,6 +526,7 @@ The following applies to arguments outcome, geoUnitsHospital, geoUnitsHospitalAl
   <span class='op'>)</span>,
   sort <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
+<span class='op'>}</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

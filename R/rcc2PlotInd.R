@@ -52,11 +52,6 @@ rcc2PlotInd <-
     outputHighchart = FALSE
   ) {
 
-    # require("gplots", quietly = TRUE)
-    # require("plyr", quietly = TRUE)
-    # require("Hmisc", quietly = TRUE)
-    # require("highcharter", quietly = TRUE)
-
     rcc2LightenCol <-
       function(
         col = "#000000",

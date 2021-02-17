@@ -148,6 +148,7 @@ The following applies to argument outcomeTitle, description: the arguments shoul
 The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 }
 \examples{
+\dontrun{
 ind1 <- rccShiny(
   data = rccShinyData,
   folder = "Indikator1",
@@ -172,12 +173,9 @@ ind1 <- rccShiny(
   ),
   funnelplot = TRUE
 )
-\dontrun{
-library(shiny)
-runApp("./apps/sv/Indikator1")
+shiny::runApp("./apps/sv/Indikator1")
 
 cat(ind1) # displays the html link that can be used in index.html
-}
 
 # For Swedish/English version
 rccShinyData$outcome1_en <- rccShinyData$outcome1
@@ -201,6 +199,7 @@ rccShiny(
   ),
   targetValues = c(95,99)
 )
+}
 }
 \author{
 Fredrik Sandin, RCC Mellansverige

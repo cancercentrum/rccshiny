@@ -2,8 +2,6 @@
 
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/develop?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
-[![Travis build
-status](https://travis-ci.com/oc1lojo/rccshiny.svg?branch=develop)](https://travis-ci.com/oc1lojo/rccshiny)
 
 Shiny möjliggör skapandet av webbapplikationer med R. Paketet `rccShiny`
 är en RCC implementering vars syfte är att skapa ett komplement till
@@ -18,7 +16,6 @@ if (!requireNamespace("remotes")) {
 }
 
 remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", build_vignettes = TRUE) # även vinjetter
 ```
 
 Man kan också manuellt hämta en komprimerad arkiv-fil med senaste

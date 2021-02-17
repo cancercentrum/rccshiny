@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "1.3")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "1.3", type = "binary")
 
 library(shiny)
 library(rccShiny)
@@ -55,11 +55,11 @@ if (packageVersion("rccShiny") == "1.3") {
     targetValues = c(95, 99)
   )
 
-  # Create legacy3-1.3
+  # Create legacy0-1.3
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny.R#lines-77
   rccShiny(
     data = rccShinyData,
-    folder = "legacy3-1.3",
+    folder = "legacy0-1.3",
     path = file.path("tests", "testthat"),
     outcome = paste0("outcome", 1:3),
     outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
