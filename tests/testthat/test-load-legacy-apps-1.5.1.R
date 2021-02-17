@@ -15,7 +15,7 @@ test_that("loading legacy2-1.5.1 (en) works", {
   expect_pass(testApp(appdir, "load-app", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
 })
 
-test_that("loading legacy3-1.5.1 works", {
-  appdir <- file.path("apps", "sv", "legacy3-1.5.1")
+test_that("loading legacy0-1.5.1 works", {
+  appdir <- file.path("apps", "sv", "legacy0-1.5.1")
   expect_pass(testApp(appdir, "load-app", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
 })

@@ -20,24 +20,24 @@ if (packageVersion("rccShiny") == "1.7.0" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.3"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.3"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.3"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.3"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.4.2"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.4.2"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.4.2"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.4.2"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.4.2"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.5.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.5.1"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.5.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.5.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.5.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.6.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.6.1"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.6.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-1.6.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.6.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-latest"),
     file.path("tests", "testthat", "apps", "en", "legacy2-latest"),
-    file.path("tests", "testthat", "apps", "sv", "legacy3-latest")
+    file.path("tests", "testthat", "apps", "sv", "legacy0-latest")
   )
   for (appdir in appdir_list) {
     try(snapshotUpdate(appdir, "load-app", suffix = "wintest"))
