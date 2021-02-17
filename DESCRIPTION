@@ -21,6 +21,7 @@ Imports:
     grDevices,
     highcharter,
     Hmisc,
+    lifecycle,
     plyr,
     shinydashboard,
     shinyWidgets,
