@@ -6,7 +6,7 @@
 
 ## Mindre förbättringar och felrättningar
 
-
+* Ett fel meddelas om _labels_ i varOtherComparison är i konflikt med de som används för sjukvårdsregion/region/län/sjukhus (SNY-91)
 
 ## Ytterligare innformation
 
