@@ -211,7 +211,9 @@ ind1 <- rccShiny2(
   folderLinkText = "Indikator 1",
   outcome = paste0("outcome", 1:3),
   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-  description = c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
+  description = c(
+    "Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."
+  ),
   varOther = list(
     list(
       var = "age",
