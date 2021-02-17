@@ -1,16 +1,12 @@
-# rccShiny (development version)
+# rccShiny 1.7.1
 
-## Ny funktionalitet
+En liten felrättningsversion (främst).
 
-
-
-## Mindre förbättringar och felrättningar
-
-* Ett fel meddelas om _labels_ i varOtherComparison är i konflikt med de som används för sjukvårdsregion/region/län/sjukhus (SNY-91)
-
-## Ytterligare innformation
+* Ett fel meddelas om _labels_ i varOtherComparison är i konflikt med de som används för 
+sjukvårdsregion/bostadslän/region/sjukhus (SNY-91)
 
 * Innehållet i vinjetten "Tolkningsmanual för interaktiva Shinyrapporter" har flyttat till https://statistik.incanet.se/tolkningsmanual/
+
 * Innehållet i vinjetten "Använda Google Analytics med rccShiny" har flyttat till https://statistik.incanet.se/ga/
 
 # rccShiny 1.7.0
@@ -18,7 +14,9 @@
 ## Ny funktionalitet
 
 * Lagt till alternativ för att inkludera andra variabler som presentationsnivå (SNY-9, SNY-45)
+
 * Döpt om sjukvårdsregionen "Uppsala-Örebro" till "Mellansverige" i alla presentationer (SNY-88)
+
 * "folder" används nu som webbsidans titel och kan ses i Google Analytics. Om INCA sätts ingen sidrubrik (SNY-86)
 
 ## Mindre förbättringar och felrättningar
