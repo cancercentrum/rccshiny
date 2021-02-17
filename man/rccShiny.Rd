@@ -113,7 +113,7 @@ A folder path/apps/sv|en/folder containing: global.R, server.R, ui.R, data/data.
 \description{
 returns shiny apps that can be used as a complement to the annual reports from the cancer quality registries in Sweden.
 
-`r lifecycle::badge("deprecated")
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \details{
 Valid values for geoUnitsCounty are:
