@@ -3,8 +3,8 @@
 library(shiny)
 library(rccShiny)
 
-# Latest release (1.7.0 at the moment)
-if (packageVersion("rccShiny") == "1.7.0") {
+# Latest release (1.7.1 at the moment)
+if (packageVersion("rccShiny") == "1.7.1") {
 
   # Create legacy1-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-94
