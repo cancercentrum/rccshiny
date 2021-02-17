@@ -3,7 +3,7 @@
 En liten felrättningsversion (främst).
 
 * Ett fel meddelas om _labels_ i varOtherComparison är i konflikt med de som används för 
-sjukvårdsregion/region/län/sjukhus (SNY-91)
+sjukvårdsregion/bostadslän/region/sjukhus (SNY-91)
 
 * Innehållet i vinjetten "Tolkningsmanual för interaktiva Shinyrapporter" har flyttat till https://statistik.incanet.se/tolkningsmanual/
 
