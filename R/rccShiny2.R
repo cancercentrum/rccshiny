@@ -92,13 +92,16 @@
 #'
 #' @return A folder path/sv|en/folder containing: global.R, server.R, ui.R, data/data.RData, docs/description.html.
 #' @examples
+#' \dontrun{
 #' ind1 <- rccShiny2(
 #'   data = rccShinyData,
 #'   folder = "Indikator1",
 #'   folderLinkText = "Indikator 1",
 #'   outcome = paste0("outcome", 1:3),
 #'   outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-#'   description = c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
+#'   description = c(
+#'     "Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."
+#'   ),
 #'   varOther = list(
 #'     list(
 #'       var = "age",
@@ -115,11 +118,10 @@
 #'   ),
 #'   funnelplot = TRUE
 #' )
-#' \dontrun{
+#'
 #' shiny::runApp("./sv/Indikator1")
 #'
 #' cat(ind1) # displays the html link that can be used in index.html
-#' }
 #'
 #' # For Swedish/English version
 #' rccShinyData$outcome1_en <- rccShinyData$outcome1
@@ -177,6 +179,7 @@
 #'   ),
 #'   sort = FALSE
 #' )
+#' }
 #' @export
 
 rccShiny2 <-
