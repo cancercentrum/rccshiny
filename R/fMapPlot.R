@@ -1,11 +1,16 @@
 #' Creates map plot
 #' @description internal function used by server.R for plot in tab Map.
+#'
+#' `r lifecycle::badge("deprecated")`
+#'
 #' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
 fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergötland", "Blekinge", "Dalarna", "Gävleborg", "Gotland", "Halland", "Jämtland", "Jönköping",
     "Kalmar", "Kronoberg", "Norrbotten", "Orebro", "Södermanland", "Skåne", "Stockholm", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland"),
     value_order_return = FALSE, legend = "", col = NULL, col_border = "#7f7f7f", text_cex = 1, title = NULL, subtitle1 = NULL, subtitle2 = NULL, ndec = 1, rds_path = "./") {
+
+    lifecycle::deprecate_soft("1.8.0", "rccShiny::fMapPlot()", "rccShiny::rcc2PlotMap()")
 
     lightenCol <- function(col = "#000000", factor = 0.8, bg = "#ffffff") {
 

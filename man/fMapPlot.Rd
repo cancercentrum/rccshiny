@@ -25,6 +25,8 @@ fMapPlot(
 }
 \description{
 internal function used by server.R for plot in tab Map.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \author{
 Fredrik Sandin, RCC Mellansverige

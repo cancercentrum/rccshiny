@@ -206,3 +206,4 @@ rccShiny(
 \author{
 Fredrik Sandin, RCC Mellansverige
 }
+\keyword{internal}

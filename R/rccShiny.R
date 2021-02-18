@@ -128,6 +128,7 @@
 #'   targetValues = c(95,99)
 #' )
 #' }
+#' @keywords internal
 #' @export
 
 rccShiny <-

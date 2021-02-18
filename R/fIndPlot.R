@@ -1,5 +1,8 @@
 #' Creates proportion or q1, q2, q3 plot
 #' @description internal function used by server.R for plot in tab Comparison.
+#'
+#' `r lifecycle::badge("deprecated")`
+#'
 #' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
@@ -50,6 +53,8 @@ fIndPlot <-
     subset = NULL,
     subset_lab = "SUBSET"
   ) {
+
+    lifecycle::deprecate_soft("1.8.0", "rccShiny::fIndPlot()", "rccShiny::rcc2PlotInd()")
 
     lightenCol <- function(col = "#000000", factor = 0.8, bg = "#ffffff") {
 
