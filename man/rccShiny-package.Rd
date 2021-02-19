@@ -4,9 +4,10 @@
 \name{rccShiny-package}
 \alias{rccShiny-package}
 \alias{_PACKAGE}
-\title{rccShiny: Shiny apps for RCC}
+\title{rccShiny: Shiny Apps for RCC}
 \description{
-Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
+Creates shiny apps used as a complement to the
+    annual reports from the cancer quality registries in Sweden.
 }
 \seealso{
 Useful links:
