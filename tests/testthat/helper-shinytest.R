@@ -12,15 +12,13 @@ shinytest_suffix <- function() {
     } else {
       suffix <- "wintest"
     }
-  } else if (sysname == "darwin") {
+  } else if (sysname %in% c("darwin", "linux")) {
     if (identical(Sys.getenv("_R_CHECK_PACKAGE_NAME_"), "rccShiny")) {
       # Probably running R CMD check
       suffix <- "macheck"
     } else {
       suffix <- "mactest"
     }
-  } else if (sysname == "linux") {
-    suffix <- "maccheck"
   } else {
     suffix <- NULL
   }
