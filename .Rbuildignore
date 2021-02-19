@@ -8,3 +8,4 @@
 ^guides$
 ^pkgdown$
 ^renv$
+^\.github$
