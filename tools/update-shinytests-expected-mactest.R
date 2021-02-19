@@ -40,7 +40,7 @@ if (packageVersion("rccShiny") == "1.7.1" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "legacy0-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "load-app", suffix = "mac"))
+    try(snapshotUpdate(appdir, "load-app", suffix = "mactest"))
   }
 
   appdir_list <- list(
@@ -50,7 +50,7 @@ if (packageVersion("rccShiny") == "1.7.1" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-app1", suffix = "mac"))
+    try(snapshotUpdate(appdir, "nav-app1", suffix = "mactest"))
   }
 
   appdir_list <- list(
@@ -58,6 +58,6 @@ if (packageVersion("rccShiny") == "1.7.1" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "inca1hc")
   )
   for (appdir in appdir_list) {
-    try(snapshotUpdate(appdir, "nav-inca1", suffix = "mac"))
+    try(snapshotUpdate(appdir, "nav-inca1", suffix = "mactest"))
   }
 }
