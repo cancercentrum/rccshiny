@@ -8,27 +8,27 @@ rcc2PlotMap <-
     value = NULL,
     valueLim = NULL,
     valueOrder = c(
-      "Östergötland",
+      "\u00d6sterg\u00f6tland",
       "Blekinge",
       "Dalarna",
-      "Gävleborg",
+      "G\u00e4vleborg",
       "Gotland",
       "Halland",
-      "Jämtland",
-      "Jönköping",
+      "J\u00e4mtland",
+      "J\u00f6nk\u00f6ping",
       "Kalmar",
       "Kronoberg",
       "Norrbotten",
       "Orebro",
-      "Södermanland",
-      "Skåne",
+      "S\u00f6dermanland",
+      "Sk\u00e5ne",
       "Stockholm",
       "Uppsala",
-      "Värmland",
-      "Västerbotten",
-      "Västernorrland",
-      "Västmanland",
-      "Västra Götaland"
+      "V\u00e4rmland",
+      "V\u00e4sterbotten",
+      "V\u00e4sternorrland",
+      "V\u00e4stmanland",
+      "V\u00e4stra G\u00f6taland"
     ),
     valueOrderReturn = FALSE,
     legend = "",
@@ -94,7 +94,7 @@ rcc2PlotMap <-
 
     if (valueOrderReturn) {
 
-      valueOrder[valueOrder == "Orebro"] <- "Örebro"
+      valueOrder[valueOrder == "Orebro"] <- "\u00d6rebro"
       return(valueOrder)
 
     } else {
@@ -141,27 +141,27 @@ rcc2PlotMap <-
         tempKey <-
           data.frame(
             key = c(
-              "Östergötland",
+              "\u00d6sterg\u00f6tland",
               "Blekinge",
               "Dalarna",
-              "Gävleborg",
+              "G\u00e4vleborg",
               "Gotland",
               "Halland",
-              "Jämtland",
-              "Jönköping",
+              "J\u00e4mtland",
+              "J\u00f6nk\u00f6ping",
               "Kalmar",
               "Kronoberg",
               "Norrbotten",
               "Orebro",
-              "Södermanland",
-              "Skåne",
+              "S\u00f6dermanland",
+              "Sk\u00e5ne",
               "Stockholm",
               "Uppsala",
-              "Värmland",
-              "Västerbotten",
-              "Västernorrland",
-              "Västmanland",
-              "Västra Götaland"
+              "V\u00e4rmland",
+              "V\u00e4sterbotten",
+              "V\u00e4sternorrland",
+              "V\u00e4stmanland",
+              "V\u00e4stra G\u00f6taland"
             ),
             keyCode = c(
               "se-og",
