@@ -407,8 +407,8 @@ rccShinyApp <-
                   ),
                   " | input.param_periodtype=='",
                   ifelse(
-                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "År", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
-                    "År",
+                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "\u00c5r", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
+                    "\u00c5r",
                     rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
                   ),
                   "')"
@@ -778,7 +778,7 @@ rccShinyApp <-
             dftemp$groupCode <- dftemp[, "sjukhuskod"]
           } else {
             if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
-              dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "Södra Halland"
+              dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "S\u00f6dra Halland"
               dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
             }
 
@@ -815,7 +815,7 @@ rccShinyApp <-
               rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] &
               !(rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])
             ) {
-              hallandLabel <- "Södra Halland"
+              hallandLabel <- "S\u00f6dra Halland"
             } else if (
               rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]] &
               !(rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]])
@@ -1057,7 +1057,7 @@ rccShinyApp <-
 
                   tab_region <-
                     rccShinyIndTable(
-                      group = dfuse[,rccShinyGroupVariable("sjukvårdsregion")],
+                      group = dfuse[,rccShinyGroupVariable("sjukv\u00e5rdsregion")],
                       group_hide_less_than = GLOBAL_hideLessThan,
                       all_lab = NULL,
                       ind = dfuse$outcome,
@@ -1247,7 +1247,7 @@ rccShinyApp <-
 
                   tab_region <-
                     rccShinyIndTable(
-                      group = dfuse[,rccShinyGroupVariable("sjukvårdsregion")],
+                      group = dfuse[,rccShinyGroupVariable("sjukv\u00e5rdsregion")],
                       group_hide_less_than = GLOBAL_hideLessThan,
                       all_lab = NULL,
                       ind = dfuse$outcome,

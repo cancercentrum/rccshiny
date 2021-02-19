@@ -29,7 +29,7 @@ rcc2PlotLine <-
     cexText = 1,
     targetValues = NULL,
     targetValuesHigh = NULL,
-    targetValuesLabels = c("Mellannivå av måluppfyllelse", "Hög nivå av måluppfyllelse"),
+    targetValuesLabels = c("Mellanniv\u00e5 av m\u00e5luppfyllelse", "H\u00f6g niv\u00e5 av m\u00e5luppfyllelse"),
     outputHighchart = FALSE
   ) {
 

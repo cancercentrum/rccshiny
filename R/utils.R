@@ -40,24 +40,24 @@ rccShinyCounties <-
         landsting = c(
           "Stockholm",
           "Uppsala",
-          "Södermanland",
-          "Östergötland",
-          "Jönköping",
+          "S\u00f6dermanland",
+          "\u00d6sterg\u00f6tland",
+          "J\u00f6nk\u00f6ping",
           "Kronoberg",
           "Kalmar",
           "Gotland",
           "Blekinge",
-          "Skåne",
+          "Sk\u00e5ne",
           "Halland",
-          "Västra Götaland",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
+          "V\u00e4stra G\u00f6taland",
+          "V\u00e4rmland",
+          "\u00d6rebro",
+          "V\u00e4stmanland",
           "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
+          "G\u00e4vleborg",
+          "V\u00e4sternorrland",
+          "J\u00e4mtland",
+          "V\u00e4sterbotten",
           "Norrbotten",
           if (language == "en") {
             "Missing"
@@ -74,36 +74,36 @@ rccShinyCounties <-
           "Stockholm",
           "Stockholm",
           "Uppsala",
-          "Södermanland",
-          "Östergötland",
-          "Jönköping",
+          "S\u00f6dermanland",
+          "\u00d6sterg\u00f6tland",
+          "J\u00f6nk\u00f6ping",
           "Kronoberg",
           "Kalmar",
           "Kalmar",
           "Gotland",
           "Blekinge",
-          "Skåne",
-          "Skåne",
-          "Skåne",
+          "Sk\u00e5ne",
+          "Sk\u00e5ne",
+          "Sk\u00e5ne",
           "Halland",
-          "Västra Götaland",
-          "Västra Götaland",
-          "Västra Götaland",
-          "Västra Götaland",
-          "Värmland",
-          "Örebro",
-          "Västmanland",
+          "V\u00e4stra G\u00f6taland",
+          "V\u00e4stra G\u00f6taland",
+          "V\u00e4stra G\u00f6taland",
+          "V\u00e4stra G\u00f6taland",
+          "V\u00e4rmland",
+          "\u00d6rebro",
+          "V\u00e4stmanland",
           "Dalarna",
-          "Gävleborg",
-          "Västernorrland",
-          "Jämtland",
-          "Västerbotten",
+          "G\u00e4vleborg",
+          "V\u00e4sternorrland",
+          "J\u00e4mtland",
+          "V\u00e4sterbotten",
           "Norrbotten",
           paste0(
             if (language == "en") {
               "Others/private - "
             } else {
-              "Övriga/privat - "
+              "\u00d6vriga/privat - "
             },
             rccShinyRegionNames(language = language)[1:6]
           ),
@@ -168,9 +168,9 @@ rccShinyRegionNames <-
         regions <- c(
           "Stockholm-Gotland",
           "Mellansverige",
-          "Sydöstra",
-          "Södra",
-          "Västra",
+          "Syd\u00f6stra",
+          "S\u00f6dra",
+          "V\u00e4stra",
           "Norra",
           rccShinyTXT(language = "sv")$missing
         )
@@ -196,13 +196,13 @@ rccShinyLevelNames <-
       levelName <- if (language == "en") {
         "Healthcare region"
       } else {
-        "Sjukvårdsregion"
+        "Sjukv\u00e5rdsregion"
       }
     } else if (level == "county_lkf") {
       levelName <- if (language == "en") {
         "County of residence"
       } else {
-        "Bostadslän"
+        "Bostadsl\u00e4n"
       }
     } else if (level == "county") {
       levelName <- if (language == "en") {
@@ -220,7 +220,7 @@ rccShinyLevelNames <-
       levelName <- if (language == "en") {
         "Unknown"
       } else {
-        "Okänd"
+        "Ok\u00e4nd"
       }
     }
     return(levelName)
@@ -236,9 +236,9 @@ rccShinyGroupVariable <-
     otherVariables = NULL,
     otherLabels = NULL
   ) {
-    if (tolower(label) %in% c("sjukvårdsregion", "healthcare region")) {
+    if (tolower(label) %in% c("sjukv\u00e5rdsregion", "healthcare region")) {
       "region"
-    } else if (tolower(label) %in% c("region", "county", "bostadslän", "county of residence")) {
+    } else if (tolower(label) %in% c("region", "county", "bostadsl\u00e4n", "county of residence")) {
       "landsting"
     } else if (tolower(label) %in% c("sjukhus", "hospital")) {
       "sjukhus"
@@ -258,7 +258,7 @@ rccShinyNoObservationsText <-
     if (language == "en") {
       return("Not enough observations available for current selection criteria")
     } else {
-      return("Ej tillräckligt med observationer för aktuellt urval")
+      return("Ej tillr\u00e4ckligt med observationer f\u00f6r aktuellt urval")
     }
   }
 #' Names for tabs
@@ -271,7 +271,7 @@ rccShinyTabsNames <-
     tab <-
       data.frame(
         tab_language = c("sv", "en"),
-        fig_compare = c("Jämförelse", "Comparison"),
+        fig_compare = c("J\u00e4mf\u00f6relse", "Comparison"),
         fig_trend = c("Trend", "Trend"),
         tab_n = c("Tabell (antal)", "Table (number)"),
         tab_p = c("Tabell (andel)", "Table (proportion)"),
@@ -300,7 +300,7 @@ rccShinyTXT <-
         missing = c("Uppgift saknas", "Missing"),
         outcome = c("Variabel", "Variable"),
         presentation = c("Redovisning", "Presentation"),
-        levelofcomparison = c("Jämförelsenivå", "Level of comparison"),
+        levelofcomparison = c("J\u00e4mf\u00f6relseniv\u00e5", "Level of comparison"),
         hospitalinterest = c("Sjukhus av intresse", "Hospital of interest"),
         periodSplit1 = c("Redovisa varje", "Present each"),
         periodSplit2 = c("separat", "separate"),
@@ -310,40 +310,40 @@ rccShinyTXT <-
         numericchoices_prop = c("Andel inom ...", "Proportion within ..."),
         numeric_proportionwithin = c("andel inom ", "proportion within "),
         propWithinUnit = c("dagar", "days"),
-        fewcases1 = c("Resultat från grupper med färre än", "Results from groups with fewer than"),
+        fewcases1 = c("Resultat fr\u00e5n grupper med f\u00e4rre \u00e4n", "Results from groups with fewer than"),
         fewcases2 = c("fall redovisas ej separat", "cases are not shown separately"),
-        fewcases1cell = c("Om en enskild cell för en grupp innehåller färre än", "If a single cell for a group contains fewer than"),
-        fewcases2cell = c("fall redovisas ej absoluta antal för gruppen", "cases, absolute numbers for that group are not displayed"),
+        fewcases1cell = c("Om en enskild cell f\u00f6r en grupp inneh\u00e5ller f\u00e4rre \u00e4n", "If a single cell for a group contains fewer than"),
+        fewcases2cell = c("fall redovisas ej absoluta antal f\u00f6r gruppen", "cases, absolute numbers for that group are not displayed"),
         median = c("Median", "Median"),
-        medianiqr = c("Median samt kvartilavstånd", "Median and interquartile range"),
-        q1 = c("Första kvartil", "First quartile"),
+        medianiqr = c("Median samt kvartilavst\u00e5nd", "Median and interquartile range"),
+        q1 = c("F\u00f6rsta kvartil", "First quartile"),
         q3 = c("Tredje kvartil", "Third quartile"),
-        iqr = c("kvartilavstånd", "interquartile range"),
-        interquantilerange = c("kvantilavstånd", "interquantile range"),
+        iqr = c("kvartilavst\u00e5nd", "interquartile range"),
+        interquantilerange = c("kvantilavst\u00e5nd", "interquantile range"),
         iqr_and = c("samt", "and"),
         percentile = c("percentil", "percentile"),
         percent = c("Procent", "Percent"),
         noofcases = c("Antal fall", "No. of cases"),
         noofcases_nOfN = c("av", "of"),
         message = c("Meddelande", "Message"),
-        numerator = c("Täljare", "Numerator"),
-        denominator = c("Nämnare", "Denominator"),
+        numerator = c("T\u00e4ljare", "Numerator"),
+        denominator = c("N\u00e4mnare", "Denominator"),
         total = c("Totalt", "Total"),
         period = c("Period", "Period"),
         periodTypeInputLabelQuarter = c("Kvartal", "Quarter"),
-        periodTypeInputLabelYear = c("År", "Year"),
+        periodTypeInputLabelYear = c("\u00c5r", "Year"),
         RIKET = c("RIKET", "SWEDEN"),
-        dxYear = c("Diagnosår", "Year of diagnosis"),
-        limitRegion = c("Begränsa till sjukvårdsregion", "Limit to healthcare region"),
+        dxYear = c("Diagnos\u00e5r", "Year of diagnosis"),
+        limitRegion = c("Begr\u00e4nsa till sjukv\u00e5rdsregion", "Limit to healthcare region"),
         descriptionAbout = c("Om indikatorn", "About"),
-        descriptionInterpretation = c("Att tänka på vid tolkning", "Interpretation"),
+        descriptionInterpretation = c("Att t\u00e4nka p\u00e5 vid tolkning", "Interpretation"),
         descriptionTechnical = c("Teknisk beskrivning", "Technical description"),
-        targetValuesLabelIntermediate = c("Mellannivå av måluppfyllelse", "Intermediate level of performance"),
-        targetValuesLabelHigh = c("Hög nivå av måluppfyllelse", "High level of performance"),
+        targetValuesLabelIntermediate = c("Mellanniv\u00e5 av m\u00e5luppfyllelse", "Intermediate level of performance"),
+        targetValuesLabelHigh = c("H\u00f6g niv\u00e5 av m\u00e5luppfyllelse", "High level of performance"),
         yes = c("Ja", "Yes"),
         no = c("Nej", "No"),
-        idOverviewLink = c("Översikt", "Overview"),
-        grouphidelessthan = c("(otillräcklig data)", "(insufficient data)"),
+        idOverviewLink = c("\u00d6versikt", "Overview"),
+        grouphidelessthan = c("(otillr\u00e4cklig data)", "(insufficient data)"),
         selectAll = c("Markera alla", "Select all"),
         deselectAll = c("Avmarkera alla", "Deselect all"),
         stringsAsFactors = FALSE
@@ -381,19 +381,19 @@ npcrPreparePeriodRegionCountyHospitalVariables <-
     privateOthersNames <- list()
     for (i in 1:length(language)) {
       tempNames <- data.frame(landsting = if (language[i] == "sv") {
-        "Övriga/privat"
+        "\u00d6vriga/privat"
       } else {
         "Others/private"
       }, sjukhus_privat = if (language[i] == "sv") {
-        "Privat vårdgivare"
+        "Privat v\u00e5rdgivare"
       } else {
         "Private practice"
       }, sjukhus_ovriga = if (language[i] == "sv") {
-        "Övriga"
+        "\u00d6vriga"
       } else {
         "Others"
       }, sjukhus_privatovriga = if (language[i] == "sv") {
-        "Privat vårdgivare/övriga"
+        "Privat v\u00e5rdgivare/\u00f6vriga"
       } else {
         "Private practice/others"
       }, stringsAsFactors = FALSE)
@@ -418,21 +418,21 @@ npcrPreparePeriodRegionCountyHospitalVariables <-
       data[, paste0("region_", loop_language)] <- rccShinyRegionNumToText(language = loop_language, var = data[, paste0(prefix, "_region")])
 
       data[, paste0("landsting_", loop_language)] <- data$landsting
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Stockholm-Gotland"] <- "Others/private - Stockholm-Gotland"
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Mid Sweden"] <- "Others/private - Mid Sweden"
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Sydöstra"] <- "Others/private - Southeast"
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Södra"] <- "Others/private - South"
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Västra"] <- "Others/private - West"
-      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "Övriga/privat - Norra"] <- "Others/private - North"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "\u00d6vriga/privat - Stockholm-Gotland"] <- "Others/private - Stockholm-Gotland"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "\u00d6vriga/privat - Mid Sweden"] <- "Others/private - Mid Sweden"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "\u00d6vriga/privat - Syd\u00f6stra"] <- "Others/private - Southeast"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "\u00d6vriga/privat - S\u00f6dra"] <- "Others/private - South"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "\u00d6vriga/privat - V\u00e4stra"] <- "Others/private - West"
+      data[, paste0("landsting_", loop_language)][data[, paste0("landsting_", loop_language)] == "\u00d6vriga/privat - Norra"] <- "Others/private - North"
 
       data[, paste0("sjukhus_", loop_language)] <- data$sjukhus
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Stockholm-Gotland"] <- "Private practice - Stockholm-Gotland"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Mellansverige"] <- "Private practice - Mellansverige"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Sydöstra"] <- "Private practice - Southeast"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Södra"] <- "Private practice - South"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Västra"] <- "Private practice - West"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat vårdgivare - Norra"] <- "Private practice - North"
-      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Övriga"] <- "Others"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat v\u00e5rdgivare - Stockholm-Gotland"] <- "Private practice - Stockholm-Gotland"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat v\u00e5rdgivare - Mellansverige"] <- "Private practice - Mellansverige"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat v\u00e5rdgivare - Syd\u00f6stra"] <- "Private practice - Southeast"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat v\u00e5rdgivare - S\u00f6dra"] <- "Private practice - South"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat v\u00e5rdgivare - V\u00e4stra"] <- "Private practice - West"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "Privat v\u00e5rdgivare - Norra"] <- "Private practice - North"
+      data[, paste0("sjukhus_", loop_language)][data[, paste0("sjukhus_", loop_language)] == "\u00d6vriga"] <- "Others"
     }
     data
   }
