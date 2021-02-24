@@ -247,9 +247,9 @@ rccShinyApp <-
               conditionalPanel(
                 condition = paste0(
                   "input.tab!='list' & ",
-                  ifelse(GLOBAL_regionSelection, "true", "false"),
-                  " & ",
-                  ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false")
+                  ifelse(GLOBAL_regionSelection, "true", "false"), " & ",
+                  ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false"), " & ",
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), ")"
                 ),
                 selectizeInput(
                   inputId = "param_region",
@@ -330,7 +330,8 @@ rccShinyApp <-
                   "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & input.tab!='list' & ",
                   ifelse(varOtherComparisonChosen(), "input.tab=='fig_trend'", "true"), " & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"), " & ",
-                  "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language), "' & input.tab == 'fig_compare')"
+                  "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language), "' & input.tab == 'fig_compare') & ",
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
                 ),
                 selectInput(
                   inputId = "param_ownhospital",
