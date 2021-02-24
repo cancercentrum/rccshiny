@@ -294,8 +294,14 @@ rcc2PlotInd <-
                 )
               )
           }
-          if (hide | hideCellLessThan) {
+          if (hide) {
             measurements <- cbind(measurements, NA)
+          } else if (hideCellLessThan) {
+            measurements <- cbind(
+              measurements,
+              "-",
+              stringsAsFactors = FALSE
+            )
           } else {
             measurements <- cbind(
               measurements,
@@ -363,10 +369,10 @@ rcc2PlotInd <-
               sum(measurements)
             )
           }
-          if (hide | hideCellLessThan) {
+          if (hide) {
             measurements <- cbind(measurements, NA)
           } else {
-            if (indFactorShowN & !is.null(indFactorHide)) {
+            if (indFactorShowN & !is.null(indFactorHide) & !hideCellLessThan) {
               measurements <- cbind(
                 measurements,
                 paste0(
@@ -707,8 +713,6 @@ rcc2PlotInd <-
               " ",
               groupHideLessThanLabel
             )
-
-          tab_list[[i]]$n[tab_list[[i]]$hideCellLessThan] <- "-"
         }
 
 
@@ -923,7 +927,7 @@ rcc2PlotInd <-
                 "});",
                 "$.each(seriesAll, function(i, s) {",
                 "if (s.userOptions.stack == hoverStack) {",
-                "str += '<span style=\"color:' + s.data[0].color + '\">\u25A0</span><span style=\"font-size: 10px\"> ' + s.name + ': <b>' + s.data[hoverIndex].y.toFixed(0) + ' %</b></span><br>';",
+                "str += '<span style=\"color:' + s.data[0].color + '\">\u25A0</span><span style=\"font-size: 10px\"> ' + s.name + ': <b>' + s.data[hoverIndex].yTooltip + ' %</b></span><br>';",
                 "}",
                 "});",
                 "return str;",
@@ -937,6 +941,8 @@ rcc2PlotInd <-
           for (i in 1:length(tab_list)) {
             for (j in 1:tempNFactors) {
               tab_list[[i]]$tempInd <- as.numeric(tab_list[[i]][, paste0("factor", j)])
+              tab_list[[i]]$tempIndTooltip <- round(tab_list[[i]]$tempInd)
+              tab_list[[i]]$tempIndTooltip[tab_list[[i]]$hideCellLessThan] <- "-"
               tab_list[[i]]$tempCol <- rcc2LightenCol(col = col[j], factor = i / num_periods)
               tab_list[[i]]$tempColBorder <- "#7f7f7f"
               tab_list[[i]]$tempWidthBorder <- 1
@@ -945,7 +951,7 @@ rcc2PlotInd <-
                 tab_list[[i]]$tempWidthBorder[tab_list[[i]]$groupOriginal %in% emphLab] <- 2
               }
               tempPlot <- tempPlot %>%
-                hc_add_series(data = tab_list[[i]], stack = tab_list[[i]]$period[1], type = "bar", mapping = hcaes(x = groupOriginal, y = tempInd, color = tempCol, borderColor = tempColBorder, borderWidth = tempWidthBorder), name = factor_legend[j], showInLegend = i == length(tab_list), color = tab_list[[i]]$tempCol[1])
+                hc_add_series(data = tab_list[[i]], stack = tab_list[[i]]$period[1], type = "bar", mapping = hcaes(x = groupOriginal, y = tempInd, yTooltip = tempIndTooltip, color = tempCol, borderColor = tempColBorder, borderWidth = tempWidthBorder), name = factor_legend[j], showInLegend = i == length(tab_list), color = tab_list[[i]]$tempCol[1])
             }
           }
 
@@ -1529,7 +1535,6 @@ rcc2PlotInd <-
           tempCex <- rep(cexText, length(tab_list[[num_periods]]$n))
           tempCex[is.na(tab_list[[num_periods]]$n)] <- 0.7 * cexText
           tab_list[[num_periods]]$n[tab_list[[num_periods]]$hide] <- groupHideLessThanLabel
-          tab_list[[num_periods]]$n[tab_list[[num_periods]]$hideCellLessThan] <- "-"
           text(
             x = -luserwidth,
             y = y_bp,

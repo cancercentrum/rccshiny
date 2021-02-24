@@ -1106,7 +1106,8 @@ rccShinyApp <-
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent,
-                    outputHighchart = TRUE
+                    outputHighchart = TRUE,
+                    outputHighchartHideTooltip = GLOBAL_hideLessThanCell > 1
                   )
 
                 } else {
