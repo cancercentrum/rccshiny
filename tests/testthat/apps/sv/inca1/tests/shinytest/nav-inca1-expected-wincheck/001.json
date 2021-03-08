@@ -35,9 +35,9 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: e8961188e17acb4de9d0c1a4fa24f41065c16ea6]",
-      "width": 678,
-      "height": 949.2
+      "src": "[image data sha1: 5285e24cb547185d0c2ae18e1f70b50b73395184]",
+      "width": 694,
+      "height": 971.6
     },
     "levelpresentInput": {
       "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_levelpresent-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
