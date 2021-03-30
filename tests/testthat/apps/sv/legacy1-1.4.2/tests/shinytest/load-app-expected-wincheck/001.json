@@ -35,9 +35,9 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 985a1f7e36b0de8ca4891f9cb2661d54b0c91668]",
-      "width": 694,
-      "height": 971.6
+      "src": "[image data sha1: 40a35cc94c1f15ea8e8786d9be4afedfaf6a3ee5]",
+      "width": 681,
+      "height": 953.4
     },
     "levelpresentInput": {
       "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_levelpresent-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
@@ -164,7 +164,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.7",
+          "version": "0.6.0",
           "src": {
             "href": "shinyWidgets"
           },
@@ -397,7 +397,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.7",
+          "version": "0.6.0",
           "src": {
             "href": "shinyWidgets"
           },

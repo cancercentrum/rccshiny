@@ -10274,7 +10274,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.7",
+          "version": "0.6.0",
           "src": {
             "href": "shinyWidgets"
           },
@@ -10588,7 +10588,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.7",
+          "version": "0.6.0",
           "src": {
             "href": "shinyWidgets"
           },

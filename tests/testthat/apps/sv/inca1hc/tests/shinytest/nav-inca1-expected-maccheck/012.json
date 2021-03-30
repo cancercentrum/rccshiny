@@ -140,7 +140,6 @@
     "param_numerictype_prop": 30,
     "param_outcome": "Dikotom",
     "param_ownhospital": "Sjukhus 10-1-a",
-    "param_periodSplit": true,
     "param_period_quarter": [
       2012,
       2016
@@ -149,6 +148,7 @@
       2012,
       2016
     ],
+    "param_periodSplit": true,
     "param_periodtype": "År",
     "param_region": "Stockholm-Gotland",
     "sidebarCollapsed": true,
@@ -9632,6 +9632,7 @@
             }
           },
           "tooltip": {
+            "enabled": true,
             "shared": true,
             "headerFormat": "<span style='font-size: 10px'>{point.key}<\/span><br>",
             "pointFormat": "<span style='color:{point.color}'>●<\/span> <span style='font-size: 10px'>{series.name}: <b>{point.y}<\/b><\/span><br>",
@@ -10208,7 +10209,7 @@
       ]
     },
     "ownhospitalInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_ownhospital-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;table_num&#39; &amp; input.tab!=&#39;table_pct&#39; &amp; input.tab!=&#39;table&#39; &amp; input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(false &amp; input.param_levelpresent != &#39;Sjukhus&#39; &amp; input.tab == &#39;fig_compare&#39;) &amp; !(input.tab==&#39;fig_trend&#39; &amp; false &amp; true)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_ownhospital-label\" for=\"param_ownhospital\">Sjukhus av intresse<\/label>\n    <div>\n      <select id=\"param_ownhospital\"><option value=\"\" selected><\/option>\n<option value=\"Sjukhus 10-1-a\">Sjukhus 10-1-a<\/option>\n<option value=\"Sjukhus 11-1-b\">Sjukhus 11-1-b<\/option>\n<option value=\"Sjukhus 26-1-a\">Sjukhus 26-1-a<\/option>\n<option value=\"Sjukhus 91-1-c\">Sjukhus 91-1-c<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_ownhospital\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -10276,7 +10277,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.7",
+          "version": "0.6.0",
           "src": {
             "href": "shinyWidgets"
           },
@@ -10349,7 +10350,7 @@
       ]
     },
     "regionInput": {
-      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;list&#39; &amp; true &amp; true &amp; !(input.tab==&#39;fig_trend&#39; &amp; false)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_region-label\" for=\"param_region\">Begränsa till sjukvårdsregion<\/label>\n    <div>\n      <select id=\"param_region\" class=\"form-control\"><option value=\"Alla\" selected>Alla<\/option>\n<option value=\"Stockholm-Gotland\">Stockholm-Gotland<\/option>\n<option value=\"Mellansverige\">Mellansverige<\/option>\n<option value=\"Sydöstra\">Sydöstra<\/option>\n<option value=\"Södra\">Södra<\/option>\n<option value=\"Västra\">Västra<\/option>\n<option value=\"Norra\">Norra<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_region\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "selectize",
@@ -10590,7 +10591,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.5.7",
+          "version": "0.6.0",
           "src": {
             "href": "shinyWidgets"
           },
