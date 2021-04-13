@@ -40,52 +40,9 @@ rcc2PlotMap <-
     subtitle2 = NULL,
     nDec = 0,
     rdsPath = "./data/",
-    outputHighchart = FALSE
+    outputHighchart = FALSE,
+    palette = NULL
   ) {
-
-    rcc2LightenCol <-
-      function(
-        col = "#000000",
-        factor = 0.8,
-        bg = "#ffffff"
-      ) {
-        # Check
-        if (length(factor) > 1) col <- col[1]
-        factor[factor < 0] <- 0
-        factor[factor > 1] <- 1
-
-        R <- strtoi(substr(col, 2, 3), 16)
-        G <- strtoi(substr(col, 4, 5), 16)
-        B <- strtoi(substr(col, 6, 7), 16)
-
-        R_bg <- strtoi(substr(bg[1], 2, 3), 16)
-        G_bg <- strtoi(substr(bg[1], 2, 3), 16)
-        B_bg <- strtoi(substr(bg[1], 2, 3), 16)
-
-        RR <- R * factor + R_bg * (1 - factor)
-        GG <- G * factor + G_bg * (1 - factor)
-        BB <- B * factor + B_bg * (1 - factor)
-
-        RR <- as.character(as.hexmode(round(RR)))
-        GG <- as.character(as.hexmode(round(GG)))
-        BB <- as.character(as.hexmode(round(BB)))
-
-        RR_lengtone <- nchar(RR) == 1
-        GG_lengtone <- nchar(GG) == 1
-        BB_lengtone <- nchar(BB) == 1
-        RR[RR_lengtone] <- paste0("0", RR[RR_lengtone])
-        GG[GG_lengtone] <- paste0("0", GG[GG_lengtone])
-        BB[BB_lengtone] <- paste0("0", BB[BB_lengtone])
-
-        return(
-          paste0(
-            "#",
-            RR,
-            GG,
-            BB
-          )
-        )
-      }
 
     if (is.null(subtitle1) & !is.null(subtitle2)) {
       subtitle1 <- subtitle2
@@ -103,12 +60,6 @@ rcc2PlotMap <-
       if (length(value) != 21) {
         stop("Length of value must be 21")
       }
-
-      # Color
-      if (is.null(col)) col <- "#db5524"
-
-      temp_value <- value
-      temp_value[is.na(value)] <- 0
 
       if (is.null(valueLim)) {
         valueLim <-
@@ -129,12 +80,15 @@ rcc2PlotMap <-
           )
       }
 
-      value_col <-
-        rcc2LightenCol(
-          col = col,
-          factor = (temp_value - valueLim[1]) / (valueLim[2] - valueLim[1])
-        )
-      value_col[is.na(value)] <- "#bfbfbf"
+      if (!is.null(col) & !is.null(palette)) {
+        stop("Can't provide values for both arguments col and palette")
+      } else if (is.null(palette) & !is.null(col)) {
+        palette <- scales::seq_gradient_pal(low = "#ffffff", high = col)
+      } else if (is.null(palette) & is.null(col)) {
+        palette <- scales::seq_gradient_pal(low = "#ffffff", high = "#db5524")
+      }
+
+      value_col <- scales::col_numeric(palette, domain = valueLim, na.color = "#bfbfbf")(value)
 
       if (outputHighchart) {
 
@@ -230,8 +184,7 @@ rcc2PlotMap <-
           hc_colorAxis(
             min = valueLim[1],
             max = valueLim[2],
-            minColor = "#ffffff",
-            maxColor = col,
+            stops = lapply(seq(0, 1, length.out = 9), FUN = function(x) list(x, palette(x))),
             reversed = FALSE
           ) %>%
           hc_legend(
@@ -403,7 +356,7 @@ rcc2PlotMap <-
             polygon(
               x = c(0, 1, 1, 0) * Xscale + Xshift,
               y = c(-1, -1, 1, 1) * Yscale + Yshift,
-              col = rcc2LightenCol(col = col, factor = i / 100),
+              col = palette(i / 100),
               border = NA
             )
           }

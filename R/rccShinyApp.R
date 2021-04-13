@@ -1767,9 +1767,9 @@ rccShinyApp <-
                       GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
                   ),
-                  col = if (showPercentage){
+                  palette = if (showPercentage){
                     if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                      "#00b3f6"
+                      scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
                     } else {
                       NULL
                     }
@@ -1843,9 +1843,9 @@ rccShinyApp <-
                       GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
                   ),
-                  col = if (showPercentage){
+                  palette = if (showPercentage){
                     if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                      "#00b3f6"
+                      scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
                     } else {
                       NULL
                     }
