@@ -1769,12 +1769,15 @@ rccShinyApp <-
                   ),
                   palette = if (showPercentage){
                     if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                      scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
+                      # scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlGnBu")(9))
                     } else {
-                      NULL
+                      # NULL
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                     }
                   } else {
-                    NULL
+                    # NULL
+                    scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                   },
                   nDec = ifelse(showPercentage, 0, 1),
                   outputHighchart = TRUE
@@ -1845,12 +1848,15 @@ rccShinyApp <-
                   ),
                   palette = if (showPercentage){
                     if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                      scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
+                      # scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlGnBu")(9))
                     } else {
-                      NULL
+                      # NULL
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                     }
                   } else {
-                    NULL
+                    # NULL
+                    scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                   },
                   nDec = ifelse(showPercentage, 0, 1)
                 )

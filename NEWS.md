@@ -6,6 +6,8 @@
 
 ## Mindre förbättringar och felrättningar
 
+* Förbättrat färgskalor för kartor (SNY-85)
+
 * Uppdaterat Google Analytics-guiden med vägledning om anonymizeIp
 
 * Tagit bort "Begränsa till sjukvårdsregion" i trendfliken när utfallet är en kategorisk variabel (SNY-93)
