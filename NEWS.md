@@ -2,11 +2,13 @@
 
 ## Ny funktionalitet
 
-
+* Justerat presentation när hideLessThanCell> 1 och utfallet är en kategorisk variabel. Det totala antalet visas nu alltid om N >= hideLessThan medan enskilda celler är dolda (i tabell) om någon n < hideLessThanCell (SNY-89)
 
 ## Mindre förbättringar och felrättningar
 
+* Uppdaterat Google Analytics-guiden med vägledning om anonymizeIp
 
+* Tagit bort "Begränsa till sjukvårdsregion" i trendfliken när utfallet är en kategorisk variabel (SNY-93)
 
 # rccShiny 1.7.1
 
