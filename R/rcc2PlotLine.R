@@ -29,8 +29,9 @@ rcc2PlotLine <-
     cexText = 1,
     targetValues = NULL,
     targetValuesHigh = NULL,
-    targetValuesLabels = c("Mellannivå av måluppfyllelse", "Hög nivå av måluppfyllelse"),
-    outputHighchart = FALSE
+    targetValuesLabels = c("Mellanniv\u00e5 av m\u00e5luppfyllelse", "H\u00f6g niv\u00e5 av m\u00e5luppfyllelse"),
+    outputHighchart = FALSE,
+    outputHighchartHideTooltip = FALSE
   ) {
 
     rcc2LightenCol <-
@@ -342,6 +343,7 @@ rcc2PlotLine <-
           )
         ) %>%
         hc_tooltip(
+          enabled = !outputHighchartHideTooltip,
           shared = TRUE,
           headerFormat = "<span style='font-size: 10px'>{point.key}</span><br>",
           pointFormat = paste0("<span style='color:{point.color}'>\u25CF</span> <span style='font-size: 10px'>", ifelse(length(y) > 1, "{series.name}: ", ""), "<b>{point.y}</b></span><br>"),

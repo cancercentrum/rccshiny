@@ -655,12 +655,12 @@ rccShiny <-
         }
         GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "and", GLOBAL_iqrlab)
       } else {
-        GLOBAL_prob_labels = c('Första kvartil', 'Median', 'Tredje kvartil')
-        GLOBAL_iqrlab = "kvartilavstånd"
+        GLOBAL_prob_labels = c('F\u00f6rsta kvartil', 'Median', 'Tredje kvartil')
+        GLOBAL_iqrlab = "kvartilavst\u00e5nd"
 
         if (prob[1] != 0.25){
           GLOBAL_prob_labels[1] = paste0(GLOBAL_prob[1] * 100, '-percentil')
-          GLOBAL_iqrlab = "kvantilavstånd"
+          GLOBAL_iqrlab = "kvantilavst\u00e5nd"
 
         }
         if (prob[2] != 0.5){
@@ -668,7 +668,7 @@ rccShiny <-
         }
         if (prob[3] != 0.75){
           GLOBAL_prob_labels[3] = paste0(GLOBAL_prob[3] * 100, '-percentil')
-          GLOBAL_iqrlab = "kvantilavstånd"
+          GLOBAL_iqrlab = "kvantilavst\u00e5nd"
         }
         GLOBAL_medianiqrlab = paste(GLOBAL_prob_labels[2], "samt", GLOBAL_iqrlab)
       }

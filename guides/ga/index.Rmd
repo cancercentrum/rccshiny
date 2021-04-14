@@ -31,6 +31,7 @@ https://support.google.com/analytics/answer/1008080
 
 Använd nu en texteditor för att skapa en .js-fil med valfritt namn (t.ex. ga.js) och klistra in nedanstående kod där ni också ersätter **UA-XXXXX-Y** med er eget spårnings-id.
 
+Observera att raden innehållande *anonymizeIp* är viktig då den förhindrar Google från att lagra besökares fullständiga IP-adress.
 
 ```javascript
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,6 +40,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-XXXXX-Y', 'auto');
+ga('set', 'anonymizeIp', true);
 ga('send', 'pageview');
 ```
 

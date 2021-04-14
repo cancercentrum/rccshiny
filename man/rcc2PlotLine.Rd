@@ -31,7 +31,8 @@ rcc2PlotLine(
   targetValuesHigh = NULL,
   targetValuesLabels = c("Mellannivå av måluppfyllelse",
     "Hög nivå av måluppfyllelse"),
-  outputHighchart = FALSE
+  outputHighchart = FALSE,
+  outputHighchartHideTooltip = FALSE
 )
 }
 \description{

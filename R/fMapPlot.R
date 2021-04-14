@@ -6,8 +6,8 @@
 #' @author Fredrik Sandin, RCC Mellansverige
 #' @keywords internal
 #' @export
-fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergötland", "Blekinge", "Dalarna", "Gävleborg", "Gotland", "Halland", "Jämtland", "Jönköping",
-    "Kalmar", "Kronoberg", "Norrbotten", "Orebro", "Södermanland", "Skåne", "Stockholm", "Uppsala", "Värmland", "Västerbotten", "Västernorrland", "Västmanland", "Västra Götaland"),
+fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("\u00d6sterg\u00f6tland", "Blekinge", "Dalarna", "G\u00e4vleborg", "Gotland", "Halland", "J\u00e4mtland", "J\u00f6nk\u00f6ping",
+    "Kalmar", "Kronoberg", "Norrbotten", "Orebro", "S\u00f6dermanland", "Sk\u00e5ne", "Stockholm", "Uppsala", "V\u00e4rmland", "V\u00e4sterbotten", "V\u00e4sternorrland", "V\u00e4stmanland", "V\u00e4stra G\u00f6taland"),
     value_order_return = FALSE, legend = "", col = NULL, col_border = "#7f7f7f", text_cex = 1, title = NULL, subtitle1 = NULL, subtitle2 = NULL, ndec = 1, rds_path = "./") {
 
     lifecycle::deprecate_soft("1.8.0", "rccShiny::fMapPlot()", "rccShiny::rcc2PlotMap()")
@@ -55,7 +55,7 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
 
     if (value_order_return) {
 
-        value_order[value_order == "Orebro"] <- "Örebro"
+        value_order[value_order == "Orebro"] <- "\u00d6rebro"
         return(value_order)
 
     } else {
@@ -128,12 +128,12 @@ fMapPlot <- function(value = NULL, value_lim = NULL, value_order = c("Östergöt
         #gadm <- readRDS(paste0(rds_path, "map_swe_adm1.rds"))
         gadm <- readRDS(system.file("mapdata", "map_swe_adm1.rds", package = "rccShiny"))
 
-        coordinates_vastmanland <- gadm[gadm$NAME_1 %in% "Västmanland", ]@polygons[[1]]@Polygons[[2]]@coords
+        coordinates_vastmanland <- gadm[gadm$NAME_1 %in% "V\u00e4stmanland", ]@polygons[[1]]@Polygons[[2]]@coords
         match <- coordinates_vastmanland[, 1] <= 16.85 & coordinates_vastmanland[, 1] >= 16.8 & coordinates_vastmanland[, 2] <= temp_y_border & coordinates_vastmanland[, 2] >=
             temp_y_border - 0.03
         lines(coordinates_vastmanland[match, 1], coordinates_vastmanland[match, 2], lwd = 1, col = col_border)
 
-        sp::plot(gadm[gadm$NAME_1 %in% "Gävleborg", ], col = value_col[value_names == "Gävleborg"], border = col_border, add = TRUE)
+        sp::plot(gadm[gadm$NAME_1 %in% "G\u00e4vleborg", ], col = value_col[value_names == "G\u00e4vleborg"], border = col_border, add = TRUE)
 
         # Title
         if (!is.null(title)) {

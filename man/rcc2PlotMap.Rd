@@ -21,7 +21,8 @@ rcc2PlotMap(
   subtitle2 = NULL,
   nDec = 0,
   rdsPath = "./data/",
-  outputHighchart = FALSE
+  outputHighchart = FALSE,
+  palette = NULL
 )
 }
 \description{
