@@ -1,4 +1,4 @@
-# rccShiny (development version)
+# rccShiny 1.8.0
 
 ## Ny funktionalitet
 
