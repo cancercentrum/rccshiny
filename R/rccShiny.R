@@ -1,6 +1,8 @@
 #' Shiny apps for RCC
 #' @description returns shiny apps that can be used as a complement to the annual reports from the cancer quality registries in Sweden.
 #'
+#' `r lifecycle::badge("deprecated")`
+#'
 #' @param language vector giving the language for the app. Possible values are "sv" and "en". Default is "sv". See details.
 #' @param data data frame containing the variables used.
 #' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.
@@ -126,6 +128,7 @@
 #'   targetValues = c(95,99)
 #' )
 #' }
+#' @keywords internal
 #' @export
 
 rccShiny <-
@@ -165,6 +168,8 @@ rccShiny <-
     npcrGroupPrivateOthers = FALSE
 
   ) {
+
+    lifecycle::deprecate_soft("1.8.0", "rccShiny::rccShiny()", "rccShiny::rccShiny2()")
 
     # # # # # # # # # # # # # # # #
     # Checking input parameters!
