@@ -1,3 +1,19 @@
+# rccShiny 1.8.0
+
+* Den gamla funktionen `rccShiny()` börjar nu gradvis fasas ut (SNY-90), använd `rccShiny2()` istället
+
+## Ny funktionalitet
+
+* Justerat presentation när hideLessThanCell> 1 och utfallet är en kategorisk variabel. Det totala antalet visas nu alltid om N >= hideLessThan medan enskilda celler är dolda (i tabell) om någon n < hideLessThanCell (SNY-89)
+
+## Mindre förbättringar och felrättningar
+
+* Förbättrat färgskalor för kartor (SNY-85)
+
+* Uppdaterat Google Analytics-guiden med vägledning om anonymizeIp
+
+* Tagit bort "Begränsa till sjukvårdsregion" i trendfliken när utfallet är en kategorisk variabel (SNY-93)
+
 # rccShiny 1.7.1
 
 En liten felrättningsversion (främst).

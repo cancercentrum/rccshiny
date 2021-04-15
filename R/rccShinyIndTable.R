@@ -142,13 +142,17 @@ rccShinyIndTable <-
           } else {
             measurements <-
               if (ind_factor_pct) {
-                format(round(stats::addmargins(100 * prop.table(table(x$ind))), digits = ndec), nsmall = ndec)
+                if (hideCellLessThan) {
+                  rep(NA, length(levels(x$ind)) + 1)
+                } else {
+                  format(round(stats::addmargins(100 * prop.table(table(x$ind))), digits = ndec), nsmall = ndec)
+                }
               } else {
                 if (hideCellLessThan) {
                   if (include_missing_column){
-                    rep(NA, length(levels(x$ind)) + 2)
+                    c(rep(NA, length(levels(x$ind))), sum(!is.na(x$ind)), NA)
                   } else {
-                    rep(NA, length(levels(x$ind)) + 1)
+                    c(rep(NA, length(levels(x$ind))), sum(!is.na(x$ind)))
                   }
                 } else {
                   if (include_missing_column){

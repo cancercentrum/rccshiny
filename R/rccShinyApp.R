@@ -247,9 +247,9 @@ rccShinyApp <-
               conditionalPanel(
                 condition = paste0(
                   "input.tab!='list' & ",
-                  ifelse(GLOBAL_regionSelection, "true", "false"),
-                  " & ",
-                  ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false")
+                  ifelse(GLOBAL_regionSelection, "true", "false"), " & ",
+                  ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false"), " & ",
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), ")"
                 ),
                 selectizeInput(
                   inputId = "param_region",
@@ -330,7 +330,8 @@ rccShinyApp <-
                   "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & input.tab!='list' & ",
                   ifelse(varOtherComparisonChosen(), "input.tab=='fig_trend'", "true"), " & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"), " & ",
-                  "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language), "' & input.tab == 'fig_compare')"
+                  "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language), "' & input.tab == 'fig_compare') & ",
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
                 ),
                 selectInput(
                   inputId = "param_ownhospital",
@@ -407,8 +408,8 @@ rccShinyApp <-
                   ),
                   " | input.param_periodtype=='",
                   ifelse(
-                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "År", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
-                    "År",
+                    rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear %in% "\u00c5r", # Fullösning eftersom åäö verkar krångla i JavaScriptkoden för condition
+                    "\u00c5r",
                     rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear
                   ),
                   "')"
@@ -778,7 +779,7 @@ rccShinyApp <-
             dftemp$groupCode <- dftemp[, "sjukhuskod"]
           } else {
             if (!(all(rccShinyRegionNames(language = GLOBAL_language)[4:5] %in% input[["param_region"]])) & (rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] | rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])) {
-              dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "Södra Halland"
+              dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[4]] <- "S\u00f6dra Halland"
               dftemp$landsting[dftemp$landsting == "Halland" & dftemp$region == rccShinyRegionNames(language = GLOBAL_language)[5]] <- "Norra Halland"
             }
 
@@ -815,7 +816,7 @@ rccShinyApp <-
               rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]] &
               !(rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]])
             ) {
-              hallandLabel <- "Södra Halland"
+              hallandLabel <- "S\u00f6dra Halland"
             } else if (
               rccShinyRegionNames(language = GLOBAL_language)[5] %in% input[["param_region"]] &
               !(rccShinyRegionNames(language = GLOBAL_language)[4] %in% input[["param_region"]])
@@ -1057,7 +1058,7 @@ rccShinyApp <-
 
                   tab_region <-
                     rccShinyIndTable(
-                      group = dfuse[,rccShinyGroupVariable("sjukvårdsregion")],
+                      group = dfuse[,rccShinyGroupVariable("sjukv\u00e5rdsregion")],
                       group_hide_less_than = GLOBAL_hideLessThan,
                       all_lab = NULL,
                       ind = dfuse$outcome,
@@ -1106,7 +1107,8 @@ rccShinyApp <-
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent,
-                    outputHighchart = TRUE
+                    outputHighchart = TRUE,
+                    outputHighchartHideTooltip = GLOBAL_hideLessThanCell > 1
                   )
 
                 } else {
@@ -1247,7 +1249,7 @@ rccShinyApp <-
 
                   tab_region <-
                     rccShinyIndTable(
-                      group = dfuse[,rccShinyGroupVariable("sjukvårdsregion")],
+                      group = dfuse[,rccShinyGroupVariable("sjukv\u00e5rdsregion")],
                       group_hide_less_than = GLOBAL_hideLessThan,
                       all_lab = NULL,
                       ind = dfuse$outcome,
@@ -1765,14 +1767,17 @@ rccShinyApp <-
                       GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
                   ),
-                  col = if (showPercentage){
+                  palette = if (showPercentage){
                     if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                      "#00b3f6"
+                      # scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlGnBu")(9))
                     } else {
-                      NULL
+                      # NULL
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                     }
                   } else {
-                    NULL
+                    # NULL
+                    scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                   },
                   nDec = ifelse(showPercentage, 0, 1),
                   outputHighchart = TRUE
@@ -1841,14 +1846,17 @@ rccShinyApp <-
                       GLOBAL_prob_labels[2],
                       " (", GLOBAL_propWithinUnit, ")")
                   ),
-                  col = if (showPercentage){
+                  palette = if (showPercentage){
                     if (ifelse(is.null(GLOBAL_sortDescending[whichOutcome()]), TRUE, GLOBAL_sortDescending[whichOutcome()])){
-                      "#00b3f6"
+                      # scales::seq_gradient_pal(low = "#ffffff", high = "#00b3f6")
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlGnBu")(9))
                     } else {
-                      NULL
+                      # NULL
+                      scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                     }
                   } else {
-                    NULL
+                    # NULL
+                    scales::gradient_n_pal(scales::brewer_pal(palette = "YlOrRd")(9))
                   },
                   nDec = ifelse(showPercentage, 0, 1)
                 )

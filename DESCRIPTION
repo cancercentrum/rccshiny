@@ -1,18 +1,32 @@
 Package: rccShiny
-Type: Package
-Version: 1.7.1
-Title: Shiny apps for RCC
-Description: Creates shiny apps used as a complement to the annual reports from the cancer quality registries in Sweden.
-Authors@R: c(
-    person("Fredrik", "Sandin", email = "fredrik.sandin@rccuppsalaorebro.se", role = c("aut", "cre")),
-    person("Lina", "Benson", role = "ctb"),
-    person("Erik", "Lindberg", role = "ctb"),
-    person("John", "Lövrot", role = "ctb"),
-    person("Chenyang", "Zhang", role = "ctb"),
-    person("RCC", role = c("cph", "fnd"))
-    )
+Title: Shiny Apps for RCC
+Version: 1.8.0
+Authors@R: 
+    c(person(given = "Fredrik",
+             family = "Sandin",
+             role = c("aut", "cre"),
+             email = "fredrik.sandin@rccuppsalaorebro.se"),
+      person(given = "Lina",
+             family = "Benson",
+             role = "ctb"),
+      person(given = "Erik",
+             family = "Lindberg",
+             role = "ctb"),
+      person(given = "John",
+             family = "Lövrot",
+             role = "ctb"),
+      person(given = "Chenyang",
+             family = "Zhang",
+             role = "ctb"),
+      person(given = "RCC",
+             role = c("cph", "fnd")))
+Description: Creates shiny apps used as a complement to the
+    annual reports from the cancer quality registries in Sweden.
+License: GPL-3
+URL: https://cancercentrum.bitbucket.io/rccshiny/,
+    http://bitbucket.org/cancercentrum/rccshiny
 Depends: 
-    R (>= 3.5.0), 
+    R (>= 3.5.0),
     shiny
 Imports: 
     DT,
@@ -21,7 +35,9 @@ Imports:
     grDevices,
     highcharter,
     Hmisc,
+    lifecycle,
     plyr,
+    scales,
     shinydashboard,
     shinyWidgets,
     sp,
@@ -34,10 +50,9 @@ Suggests:
     shinytest,
     testthat,
     webdriver
-License: GPL-3
-URL: https://cancercentrum.bitbucket.io/rccshiny/, http://bitbucket.org/cancercentrum/rccshiny
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
 LazyData: true
-VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Encoding: UTF-8
