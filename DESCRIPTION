@@ -35,6 +35,7 @@ Imports:
     grDevices,
     highcharter,
     Hmisc,
+    lifecycle,
     plyr,
     scales,
     shinydashboard,
