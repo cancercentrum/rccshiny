@@ -1,4 +1,6 @@
-# rccShiny (development version)
+# rccShiny 1.8.0
+
+* Den gamla funktionen `rccShiny()` börjar nu gradvis fasas ut (SNY-90), använd `rccShiny2()` istället
 
 ## Ny funktionalitet
 

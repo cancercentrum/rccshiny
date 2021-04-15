@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "662f407", type = "binary")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "41e0ecb", type = "binary")
 
 library(testthat)
 library(shinytest)
@@ -33,6 +33,10 @@ if (packageVersion("rccShiny") == "1.7.1.9000" & sysname == "windows") {
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.6.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.6.1"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.6.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy0-1.7.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy1-1.7.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy2-1.7.1"),
+    file.path("tests", "testthat", "apps", "en", "legacy2-1.7.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy0-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
