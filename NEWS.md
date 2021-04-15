@@ -1,5 +1,7 @@
 # rccShiny 1.8.0
 
+* Den gamla funktionen `rccShiny()` börjar nu gradvis fasas ut (SNY-90), använd `rccShiny2()` istället
+
 ## Ny funktionalitet
 
 * Justerat presentation när hideLessThanCell> 1 och utfallet är en kategorisk variabel. Det totala antalet visas nu alltid om N >= hideLessThan medan enskilda celler är dolda (i tabell) om någon n < hideLessThanCell (SNY-89)
