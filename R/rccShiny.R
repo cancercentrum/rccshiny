@@ -169,7 +169,7 @@ rccShiny <-
 
   ) {
 
-    lifecycle::deprecate_soft("1.8.0", "rccShiny::rccShiny()", "rccShiny::rccShiny2()")
+    lifecycle::deprecate_warn("1.8.0", "rccShiny::rccShiny()", "rccShiny::rccShiny2()")
 
     # # # # # # # # # # # # # # # #
     # Checking input parameters!

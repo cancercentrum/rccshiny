@@ -54,7 +54,7 @@ fIndPlot <-
     subset_lab = "SUBSET"
   ) {
 
-    lifecycle::deprecate_soft("1.8.0", "rccShiny::fIndPlot()", "rccShiny::rcc2PlotInd()")
+    lifecycle::deprecate_warn("1.8.0", "rccShiny::fIndPlot()", "rccShiny::rcc2PlotInd()")
 
     lightenCol <- function(col = "#000000", factor = 0.8, bg = "#ffffff") {
 
