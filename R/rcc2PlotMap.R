@@ -389,13 +389,14 @@ rcc2PlotMap <-
         )
 
         # Print numbers
+        value_hcl <- farver::decode_colour(value_col, to = "hcl")
         for (i in 1:length(value)) {
           if (!is.na(value[i])) {
             text(
               coordinates(gadm1[gadm1$NAME_1 == value_names[i],]),
               labels = format(round(value[i], digits = nDec), nsmall = nDec),
               font = 2,
-              col = "#000000",
+              col = ifelse(value_hcl[i, "l"] > 50, "black",  "white"),
               cex = 0.7 * cexText
             )
           }

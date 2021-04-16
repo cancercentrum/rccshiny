@@ -30,6 +30,7 @@ Depends:
     shiny
 Imports: 
     DT,
+    farver,
     gplots,
     graphics,
     grDevices,
