@@ -105,7 +105,7 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: d32c3ced3dfe5665f186187b901120548ec6794c]",
+      "src": "[image data sha1: 621d7816c89ecc894f738ce0512808219ee2ba42]",
       "width": 694,
       "height": 971.6
     },
@@ -566,9 +566,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.17",
+          "version": "0.18",
           "src": {
-            "href": "datatables-binding-0.17"
+            "href": "datatables-binding-0.18"
           },
           "meta": null,
           "script": "datatables.js",
