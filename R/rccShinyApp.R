@@ -799,7 +799,7 @@ rccShinyApp <-
           if (!is.null(GLOBAL_varOther)) {
             for (i in 1:length(GLOBAL_varOther)) {
               if (GLOBAL_varOther[[i]]$classNumeric) {
-                dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] %in% input[[paste0("userInputId",i)]][1]:input[[paste0("userInputId",i)]][2],]
+                dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] >= input[[paste0("userInputId",i)]][1] & dftemp[,GLOBAL_varOther[[i]]$var] <= input[[paste0("userInputId",i)]][2],]
               } else {
                 dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] %in% input[[paste0("userInputId",i)]],]
               }
