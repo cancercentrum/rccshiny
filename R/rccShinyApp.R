@@ -496,7 +496,7 @@ rccShinyApp <-
                         label = tempList$label,
                         min = min(tempList$choices, na.rm = TRUE),
                         max = max(tempList$choices, na.rm = TRUE),
-                        step = 1,
+                        step = tempList$sliderStep,
                         ticks = FALSE,
                         value = c(
                           min(tempList$selected, na.rm = TRUE),
@@ -2513,6 +2513,8 @@ rccShinyCheckData <-
         # varOther[[i]]$showInTitle
         if (!("showInTitle" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$showInTitle))
           optionsList$varOther[[i]]$showInTitle <- TRUE
+        if (!("sliderStep" %in% names(optionsList$varOther[[i]])) | is.null(optionsList$varOther[[i]]$sliderStep))
+          optionsList$varOther[[i]]$sliderStep <- 1
       }
       includeVariables <- c(includeVariables, varOtherVariables)
     }
