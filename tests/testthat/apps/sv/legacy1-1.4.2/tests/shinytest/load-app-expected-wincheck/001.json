@@ -35,7 +35,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: cb435a248685bd56840f0d083837fcb7c197e4ee]",
+      "src": "[image data sha1: 985a1f7e36b0de8ca4891f9cb2661d54b0c91668]",
       "width": 694,
       "height": 971.6
     },
@@ -323,9 +323,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.17",
+          "version": "0.18",
           "src": {
-            "href": "datatables-binding-0.17"
+            "href": "datatables-binding-0.18"
           },
           "meta": null,
           "script": "datatables.js",
