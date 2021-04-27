@@ -1,12 +1,12 @@
-# rccShiny (development version)
+# rccShiny 1.8.1
 
-## Ny funktionalitet
+En liten felrättningsversion (främst).
 
+* Fixat problem med numerisk extra urvalsvariabel varOther när variabeln inte bara innehåller heltal (SNY-102)
 
+* Lagt till alternativ för att justera intervallet mellan varje valbart värde på skjutreglaget för varje numerisk variabel i varOther
 
-## Mindre förbättringar och felrättningar
-
-
+* Färgen på siffror i kartor anpassas efter bakgrundsfärgens ljusstyrka (05c3519)
 
 # rccShiny 1.8.0
 
