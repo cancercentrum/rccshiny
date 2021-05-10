@@ -652,8 +652,6 @@ rccShinyApp <-
                         ),
                         ". "
                       )
-                  } else {
-                    tempText <- ""
                   }
                 } else if (!(all(tempList$choices %in% tempValues))) {
                   tempText <-
