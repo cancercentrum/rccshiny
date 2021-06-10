@@ -2595,7 +2595,7 @@ rccShinyCheckData <-
     miss.values <- c("Uppgift saknas", "Missing")
     if (isTRUE(optionsList$includeMissingColumn) & any(unlist(lapply(data.frame(optionsList$data[, optionsList$outcome]), levels)) %in% miss.values)){
       tmp <- optionsList$outcome[unlist(lapply(data.frame(optionsList$data[, optionsList$outcome]), function(x) any(levels(x) %in% miss.values)))]
-      optionsList$data[, tmp][optionsList$data[, tmp] %in% miss.values[1] | optionsList$data[, tmp] %in% miss.values[2]] <- NA
+      optionsList$data[, tmp][optionsList$data[, tmp] == miss.values[1] | optionsList$data[, tmp] == miss.values[2]] <- NA
       optionsList$data[, tmp] <- droplevels(optionsList$data[, tmp])
       message("'includeMissingColumn' = TRUE and 'outcome' contains value 'Uppgift saknas' or 'Missing'. \nTo avoid errors the levels 'Uppgift saknas' and/or 'Missing' have been converted to 'NA'. \nIf you want to keep your Missing value level, change 'includeMissingColumn' to FALSE")
     }
