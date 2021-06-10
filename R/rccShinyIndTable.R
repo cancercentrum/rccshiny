@@ -30,14 +30,20 @@ rccShinyIndTable <-
     subset = NULL,
     subset_lab = "SUBSET",
     include_missing_column = FALSE,
-    lab_missing = rccShinyTXT(language = language)$missing
+    lab_missing = rccShinyTXT(language = language)$missing,
+    lab_ind_null = rccShinyTXT(language = language)$noofcases
   ) {
+
+    if (is.null(ind)) {
+      ind_type <- "NULL"
+      ind <- rep(TRUE, length(group))
+    }
 
     if (is.null(subset)) {
       subset <- rep(TRUE, length(group))
     }
 
-    if (!(ind_type %in% c("logical", "numeric", "integer", "factor"))) {
+    if (!(ind_type %in% c("logical", "numeric", "integer", "factor", "NULL"))) {
       stop(paste0("Variable of class ", ind_type, " is not supported."))
     }
 
@@ -76,7 +82,14 @@ rccShinyIndTable <-
             sum(!is.na(x$ind), na.rm = TRUE) < group_hide_less_than,
             FALSE
           )
-        if (ind_type %in% c("numeric", "integer")) {
+        if (ind_type == "NULL") {
+          if (nrow(x) < group_hide_less_than) {
+            measurements <- c(NA)
+          } else {
+            measurements <- nrow(x)
+          }
+          names(measurements) <- lab_ind_null
+        } else if (ind_type %in% c("numeric", "integer")) {
           if (hide) {
             if (include_missing_column){
               measurements <- c(NA, NA, NA, NA, NA)

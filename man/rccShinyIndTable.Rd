@@ -31,7 +31,8 @@ rccShinyIndTable(
   subset = NULL,
   subset_lab = "SUBSET",
   include_missing_column = FALSE,
-  lab_missing = rccShinyTXT(language = language)$missing
+  lab_missing = rccShinyTXT(language = language)$missing,
+  lab_ind_null = rccShinyTXT(language = language)$noofcases
 )
 }
 \description{

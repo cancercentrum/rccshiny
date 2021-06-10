@@ -96,6 +96,15 @@ rcc2PlotInd <-
         )
       }
 
+    if (is.null(ind)) {
+      indType <- "NULL"
+      ind <- rep(TRUE, length(group))
+      indNumeric <- FALSE
+      funnelplot <- FALSE
+      xMax <- NULL
+      indShowPct <- FALSE
+    }
+
     if (is.null(subset)) {
       subset <- rep(TRUE, length(group))
     }
@@ -118,7 +127,7 @@ rcc2PlotInd <-
         )
     }
 
-    if (!(indType %in% c("difftime", "numeric", "integer", "logical", "factor"))) {
+    if (!(indType %in% c("difftime", "numeric", "integer", "logical", "factor", "NULL"))) {
       stop(
         paste0(
           "Variable of class ",
@@ -231,7 +240,25 @@ rcc2PlotInd <-
     # Tabulate
     summaryFunction <-
       function(x){
-        if (indNumeric) {
+        if (indType == "NULL") {
+          tempN <- nrow(x)
+          hide <- tempN < groupHideLessThan
+          hideCellLessThan <- FALSE
+          if (hide) {
+            measurements <- data.frame(NA, NA)
+          } else {
+            measurements <- data.frame(tempN, tempN, tempN, tempN)
+          }
+          measurements <- cbind(measurements, hide, hideCellLessThan)
+          names(measurements) <- c(
+            "lower",
+            "ind",
+            "upper",
+            "n",
+            "hide",
+            "hideCellLessThan"
+          )
+        } else if (indNumeric) {
           hide <-
             ifelse(
               hideLowVolume,
@@ -450,7 +477,7 @@ rcc2PlotInd <-
       }
 
       subsetUniqueGroups <- unique(tabdata$group[tabdata$subset & tabdata$period == act_period])
-      if (!all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subsetLab))) {
+      if (indType != "NULL" & !all(tabdata$subset) & !(length(subsetUniqueGroups) == 1 & all(subsetUniqueGroups %in% subsetLab))) {
         tab_subset <-
           plyr::ddply(
             .data = subset(tabdata, subset),
@@ -486,7 +513,7 @@ rcc2PlotInd <-
           )
       }
 
-      if (!is.null(allLab)) {
+      if (indType != "NULL" & !is.null(allLab)) {
         tab_all <-
           plyr::ddply(
             .data = tabdata,
@@ -975,7 +1002,7 @@ rcc2PlotInd <-
             hc_tooltip(
               shared = TRUE,
               headerFormat = "<span style='font-size: 10px'>{point.key}</span><br>",
-              pointFormat = paste0("<span style='color:{point.color}'>\u25A0</span> <span style='font-size: 10px'>", ifelse(length(tab_list) > 1, "{series.name}: ", ""), "<b>{point.yRound} %</b> ({point.n})</span><br>"),
+              pointFormat = paste0("<span style='color:{point.color}'>\u25A0</span> <span style='font-size: 10px'>", ifelse(length(tab_list) > 1, "{series.name}: ", ""), "<b>{point.yRound}", ifelse(indType == "NULL", "</b>", " %</b> ({point.n})"), "</span><br>"),
               useHTML = TRUE,
               outside = TRUE
             )
@@ -998,7 +1025,7 @@ rcc2PlotInd <-
 
       } else {
 
-        if (indType %in% c("logical", "factor")) {
+        if (indType %in% c("logical", "factor", "NULL")) {
           y_bp <-
             0.5 * barheight_factor * barheight +
             barheight * (barheight_factor + 0.5 * (num_periods - 1)) * (0:(nrow(tab_list[[num_periods]]) - 1))
