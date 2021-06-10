@@ -287,11 +287,7 @@ rccShiny2 <-
 
     # folderLinkTest
     if (is.null(folderLinkText)) {
-      if (length(outcome) > 1 | length(language) > 1) {
-        folderLinkText <- paste0(folder, "_", language)
-      } else {
-        folderLinkText <- unlist(outcomeTitle)
-      }
+      folderLinkText <- paste0(folder, if (length(language) > 1) {paste0("_", language)})
     }
     testVariableError("folderLinkText", listAllowed = FALSE)
     if (length(language) != length(folderLinkText))
