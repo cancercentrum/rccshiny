@@ -1,8 +1,7 @@
 #' Sets encoding to utf8 for data
 #' @description internal function used by rccShiny to "clean" data to utf8 encoding.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 fixEncoding <-
   function(data) {
     numCols <- ncol(data)
@@ -15,20 +14,20 @@ fixEncoding <-
     }
     data
   }
+
 #' Number of decimals
 #' @description internal function used by rccShinyIndTable to give number of decimals.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyDecimals <-
   function() {
     return(1)
   }
+
 #' County dataset
 #' @description internal function that creates dataset with numeric codes (given by user) and corresponding names (printed in output) for county/county of residence.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyCounties <-
   function(
     language = "sv",
@@ -117,11 +116,11 @@ rccShinyCounties <-
       )
     }
   }
+
 #' Region variable
 #' @description internal function that creates variable from numeric codes (given by user) to corresponding names (printed in output) for region.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyRegionNumToText <-
   function(
     var = NULL,
@@ -136,11 +135,11 @@ rccShinyRegionNumToText <-
       )
     as.character(var)
   }
+
 #' Region names
 #' @description internal function that gives names of regions used by rccShinyRegionNumToText.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyRegionNames <-
   function(
     all = FALSE,
@@ -182,11 +181,11 @@ rccShinyRegionNames <-
     regions <- enc2utf8(regions)
     return(regions)
   }
+
 #' Names for choices in Level of comparison
 #' @description internal function used to supply text printed in Level of comparison widget.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyLevelNames <-
   function(
     level = "region",
@@ -234,11 +233,11 @@ rccShinyLevelNames <-
     }
     return(levelName)
   }
+
 #' Group together geoUnits
 #' @description internal function used by server.R to simplify code.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyGroupVariable <-
   function(
     label = "sjukhus",
@@ -260,11 +259,11 @@ rccShinyGroupVariable <-
       "sjukhus"
     }
   }
+
 #' Text for no observations
 #' @description internal function with text to be printed if there is no data available.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyNoObservationsText <-
   function(language = "sv") {
     if (language == "en") {
@@ -273,11 +272,11 @@ rccShinyNoObservationsText <-
       return("Ej tillr\u00e4ckligt med observationer f\u00f6r aktuellt urval")
     }
   }
+
 #' Names for tabs
 #' @description internal function used to supply names of the tabs.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyTabsNames <-
   function(language = "sv") {
     tab <-
@@ -298,11 +297,11 @@ rccShinyTabsNames <-
       tab_language == language
     )
   }
+
 #' Miscellaneous text
 #' @description internal function used to supply text for various output.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyTXT <-
   function(language = "sv") {
     tab <-
@@ -380,8 +379,7 @@ rccShinyTXT <-
 #' Used by NPCR
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 npcrPreparePeriodRegionCountyHospitalVariables <-
   function(
     prefix = "d0",
