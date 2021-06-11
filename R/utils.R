@@ -226,11 +226,7 @@ rccShinyLevelNames <-
         }
       }
     } else {
-      levelName <- if (language == "en") {
-        optionalLabel[2]
-      } else {
-        optionalLabel[1]
-      }
+      levelName <- optionalLabel
     }
     return(levelName)
   }
