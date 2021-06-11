@@ -2247,6 +2247,16 @@ rccShinyCheckData <-
       optionsList$data$sjukhuskod <- rep(NA, nrow(optionsList$data))
     }
 
+    # geoUnitsHospitalLabel
+    if (!is.null(optionsList$geoUnitsHospitalLabel)) {
+      optionsList$geoUnitsHospitalLabel <-
+        ifelse(
+          length(optionsList$geoUnitsHospitalLabel) >= optionsList$whichLanguage,
+          optionsList$geoUnitsHospitalLabel[optionsList$whichLanguage],
+          optionsList$geoUnitsHospitalLabel[1]
+        )
+    }
+
     # geoUnitsCounty
     optionsList$geoUnitsCountyInclude <- TRUE
     if (is.null(optionsList$geoUnitsCounty)) {
@@ -2284,6 +2294,16 @@ rccShinyCheckData <-
       optionsList$data$landsting <- rep("(not displayed)", nrow(optionsList$data))
     }
 
+    # geoUnitsCountyLabel
+    if (!is.null(optionsList$geoUnitsCountyLabel)) {
+      optionsList$geoUnitsCountyLabel <-
+        ifelse(
+          length(optionsList$geoUnitsCountyLabel) >= optionsList$whichLanguage,
+          optionsList$geoUnitsCountyLabel[optionsList$whichLanguage],
+          optionsList$geoUnitsCountyLabel[1]
+        )
+    }
+
     # geoUnitsRegion
     optionsList$geoUnitsRegionInclude <- TRUE
     if (is.null(optionsList$geoUnitsRegion)) {
@@ -2313,6 +2333,16 @@ rccShinyCheckData <-
         )
     } else {
       optionsList$data$region <- rep("(not displayed)", nrow(optionsList$data))
+    }
+
+    # geoUnitsRegionLabel
+    if (!is.null(optionsList$geoUnitsRegionLabel)) {
+      optionsList$geoUnitsRegionLabel <-
+        ifelse(
+          length(optionsList$geoUnitsRegionLabel) >= optionsList$whichLanguage,
+          optionsList$geoUnitsRegionLabel[optionsList$whichLanguage],
+          optionsList$geoUnitsRegionLabel[1]
+        )
     }
 
     # regionLabel
