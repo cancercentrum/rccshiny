@@ -6,7 +6,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.8.0" & sysname == "darwin") {
+if (packageVersion("rccShiny") == "1.8.1" & sysname == "darwin") {
 
   # Run tests using the latest release/stable version
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
