@@ -1,3 +1,13 @@
+# rccShiny (development version)
+
+## Ny funktionalitet
+
+* Lagt till presentationsform: Antal fall (SNY-51)
+
+## Mindre förbättringar och felrättningar
+
+* Rättat fel när urvalstexten under figurrubriken inte syntes om "reglage"-urval fanns längst ner bland urvalen (SNY-95)
+
 # rccShiny 1.8.1
 
 En liten felrättningsversion (främst).
