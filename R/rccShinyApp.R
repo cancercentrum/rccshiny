@@ -147,6 +147,15 @@ rccShinyApp <-
           optionsList$varOtherComparisonVariables <- vector()
           optionsList$varOtherComparisonLabels <- vector()
         }
+        if (!("geoUnitsHospitalLabel" %in% names(optionsList))) {
+          optionsList["geoUnitsHospitalLabel"] <- list(NULL)
+        }
+        if (!("geoUnitsCountyLabel" %in% names(optionsList))) {
+          optionsList["geoUnitsCountyLabel"] <- list(NULL)
+        }
+        if (!("geoUnitsRegionLabel" %in% names(optionsList))) {
+          optionsList["geoUnitsRegionLabel"] <- list(NULL)
+        }
 
         for (i in 1:length(optionsList)) {
           assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]])
@@ -269,9 +278,9 @@ rccShinyApp <-
             tempSumGeo <- sum(GLOBAL_geoUnitsHospitalInclude, GLOBAL_geoUnitsCountyInclude, GLOBAL_geoUnitsRegionInclude)
             if (tempSumGeo > 0) {
               tempChoices[[" "]] <- as.list(c(
-                if (GLOBAL_geoUnitsRegionInclude) {rccShinyLevelNames("region", language = GLOBAL_language)},
-                if (GLOBAL_geoUnitsCountyInclude) {rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language)},
-                if (GLOBAL_geoUnitsHospitalInclude) {rccShinyLevelNames("hospital", language = GLOBAL_language)}
+                if (GLOBAL_geoUnitsRegionInclude) {rccShinyLevelNames("region", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsRegionLabel)},
+                if (GLOBAL_geoUnitsCountyInclude) {rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsCountyLabel)},
+                if (GLOBAL_geoUnitsHospitalInclude) {rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel)}
               ))
             }
             tempSumOther <- length(GLOBAL_varOtherComparisonVariables)
@@ -292,9 +301,9 @@ rccShinyApp <-
                   choices = tempChoices,
                   selected =
                     if (GLOBAL_geoUnitsRegionInclude & GLOBAL_geoUnitsDefault %in% "region") {
-                      rccShinyLevelNames("region", language = GLOBAL_language)
+                      rccShinyLevelNames("region", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsRegionLabel)
                     } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
-                      rccShinyLevelNames("hospital", language = GLOBAL_language)
+                      rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel)
                     } else if (GLOBAL_geoUnitsDefault %in% GLOBAL_varOtherComparisonVariables) {
                       GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)]
                     } else {
@@ -304,7 +313,8 @@ rccShinyApp <-
                           "county_lkf",
                           "county"
                         ),
-                        language = GLOBAL_language
+                        language = GLOBAL_language,
+                        optionalLabel = GLOBAL_geoUnitsCountyLabel
                       )
                     },
                   width = "100%"
@@ -330,7 +340,7 @@ rccShinyApp <-
                   "input.tab!='fig_map' & input.tab!='table_num' & input.tab!='table_pct' & input.tab!='table' & input.tab!='list' & ",
                   ifelse(varOtherComparisonChosen(), "input.tab=='fig_trend'", "true"), " & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"), " & ",
-                  "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language), "' & input.tab == 'fig_compare') & ",
+                  "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel), "' & input.tab == 'fig_compare') & ",
                   "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
                 ),
                 selectInput(
@@ -789,7 +799,7 @@ rccShinyApp <-
               }
             }
 
-            dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent, otherVariables = GLOBAL_varOtherComparisonVariables, otherLabels = GLOBAL_varOtherComparisonLabels)]
+            dftemp$group <- dftemp[,rccShinyGroupVariable(label = input$param_levelpresent, otherVariables = GLOBAL_varOtherComparisonVariables, otherLabels = GLOBAL_varOtherComparisonLabels, optionalHospitalLabel = GLOBAL_geoUnitsHospitalLabel, optionalCountyLabel = GLOBAL_geoUnitsCountyLabel, optionalRegionLabel = GLOBAL_geoUnitsRegionLabel)]
             dftemp$group_ownhospital <- dftemp[,"sjukhus"] == input$param_ownhospital
             dftemp$groupCode <- rep(NA, nrow(dftemp))
           }
@@ -838,16 +848,16 @@ rccShinyApp <-
         emphLabel <-
           function(data) {
             tempEmphLabelReactive <- emphLabelReactive()
-            if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language)) {
+            if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("hospital",language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel)) {
               emph_lab <- tempEmphLabelReactive$param_ownhospital
             } else if (GLOBAL_geoUnitsPatient) {
               emph_lab <- ""
-            } else if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("county",language = GLOBAL_language) & nrow(data) > 0) {
+            } else if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("county",language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsCountyLabel) & nrow(data) > 0) {
               emph_lab <- data$landsting[data$sjukhus == tempEmphLabelReactive$param_ownhospital][1]
               if (!is.na(emph_lab) & emph_lab == "Halland") {
                 emph_lab <- hallandLabel()
               }
-            } else if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("region",language = GLOBAL_language) & nrow(data) > 0) {
+            } else if (tempEmphLabelReactive$param_levelpresent == rccShinyLevelNames("region",language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsRegionLabel) & nrow(data) > 0) {
               emph_lab <- data$region[data$sjukhus == tempEmphLabelReactive$param_ownhospital][1]
             } else {
               emph_lab <- ""
@@ -1904,7 +1914,7 @@ rccShinyApp <-
             listIncludeVariablesTxt <- c(
               if (GLOBAL_idInclude) {"ID"},
               if (GLOBAL_idOverviewLinkInclude) {rccShinyTXT(language = GLOBAL_language)$idOverviewLink},
-              rccShinyLevelNames("hospital", language = GLOBAL_language),
+              rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel),
               if (GLOBAL_periodInclude) {GLOBAL_periodLabel},
               rccShinyTXT(language = GLOBAL_language)$outcome
             )
@@ -2449,9 +2459,16 @@ rccShinyCheckData <-
       rccShinyLevelNames("county", language = optionsList$language),
       rccShinyLevelNames("hospital", language = optionsList$language)
     )
+    tempReservedOptionalLabels <- c(
+      unlist(optionsList$geoUnitsHospitalLabel),
+      unlist(optionsList$geoUnitsCountyLabel),
+      unlist(optionsList$geoUnitsRegionLabel)
+    )
     if (any(tolower(optionsList$varOtherComparisonLabels) %in% tolower(tempReservedLabels))) {
       optionsList$error <- paste0(paste(paste0("'", tempReservedLabels, "'"), collapse = "/"), " are currently not allowed as labels in varOtherComparison when language = '", optionsList$language, "'. This will be fixed in a future version. For now, try adding a whitespace after the label in order for it to be distinct.")
       return(optionsList)
+    } else if (any(tolower(optionsList$varOtherComparisonLabels) %in% tolower(tempReservedOptionalLabels))) {
+      optionsList$error <- paste0(paste(paste0("'", tempReservedOptionalLabels, "'"), collapse = "/"), " are currently used as labels in one of 'geoUnitsHospitalLabel', 'geoUnitsCountyLabel' or 'geoUnitsRegionLabel' and cannot also be used in varOtherComparison. If you still want that label, try adding a whitespace after the it in order for it to be distinct.")
     }
 
     # geoUnitsHospitalInclude, geoUnitsCountyInclude, geoUnitsRegionInclude, varOtherComparison

@@ -190,37 +190,46 @@ rccShinyRegionNames <-
 rccShinyLevelNames <-
   function(
     level = "region",
-    language = "sv"
+    language = "sv",
+    optionalLabel = NULL
   ) {
-    if (level == "region") {
-      levelName <- if (language == "en") {
-        "Healthcare region"
+    if (is.null(optionalLabel)){
+      if (level == "region") {
+        levelName <- if (language == "en") {
+          "Healthcare region"
+        } else {
+          "Sjukv\u00e5rdsregion"
+        }
+      } else if (level == "county_lkf") {
+        levelName <- if (language == "en") {
+          "County of residence"
+        } else {
+          "Bostadsl\u00e4n"
+        }
+      } else if (level == "county") {
+        levelName <- if (language == "en") {
+          "Region"
+        } else {
+          "Region"
+        }
+      } else if (level == "hospital") {
+        levelName <- if (language == "en") {
+          "Hospital"
+        } else {
+          "Sjukhus"
+        }
       } else {
-        "Sjukv\u00e5rdsregion"
-      }
-    } else if (level == "county_lkf") {
-      levelName <- if (language == "en") {
-        "County of residence"
-      } else {
-        "Bostadsl\u00e4n"
-      }
-    } else if (level == "county") {
-      levelName <- if (language == "en") {
-        "Region"
-      } else {
-        "Region"
-      }
-    } else if (level == "hospital") {
-      levelName <- if (language == "en") {
-        "Hospital"
-      } else {
-        "Sjukhus"
+        levelName <- if (language == "en") {
+          "Unknown"
+        } else {
+          "Ok\u00e4nd"
+        }
       }
     } else {
       levelName <- if (language == "en") {
-        "Unknown"
+        optionalLabel[2]
       } else {
-        "Ok\u00e4nd"
+        optionalLabel[1]
       }
     }
     return(levelName)
@@ -234,13 +243,16 @@ rccShinyGroupVariable <-
   function(
     label = "sjukhus",
     otherVariables = NULL,
-    otherLabels = NULL
+    otherLabels = NULL,
+    optionalHospitalLabel = NULL,
+    optionalCountyLabel = NULL,
+    optionalRegionLabel = NULL
   ) {
-    if (tolower(label) %in% c("sjukv\u00e5rdsregion", "healthcare region")) {
+    if (tolower(label) %in% c("sjukv\u00e5rdsregion", "healthcare region", tolower(optionalRegionLabel))) {
       "region"
-    } else if (tolower(label) %in% c("region", "county", "bostadsl\u00e4n", "county of residence")) {
+    } else if (tolower(label) %in% c("region", "county", "bostadsl\u00e4n", "county of residence", tolower(optionalCountyLabel))) {
       "landsting"
-    } else if (tolower(label) %in% c("sjukhus", "hospital")) {
+    } else if (tolower(label) %in% c("sjukhus", "hospital", tolower(optionalHospitalLabel))) {
       "sjukhus"
     } else if (label %in% otherLabels) {
       otherVariables[which(otherLabels == label)]

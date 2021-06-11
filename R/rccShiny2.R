@@ -23,8 +23,11 @@
 #' @param geoUnitsHospitalAlt optional name of variable in data containing alternative hospital names to be used when only one region is selected to be shown. Variable must be of type character. If NULL or if variable is not found in 'data', geoUnitsHospital is used. Default is "sjukhus_alt".
 #' @param geoUnitsHospitalCode optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".
 #' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.
+#' @param geoUnitsHospitalLabel optional label for 'geoUnitsHospital'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsCountyLabel optional label for 'geoUnitsCounty'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label..
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegionLabel optional label for 'geoUnitsRegion'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param geoUnitsDefault optional default level of presentation. Valid values are "region", "county", "hospital", and any of the variable names (var) in varOtherComparison. Default is "county".
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
@@ -206,8 +209,11 @@ rccShiny2 <-
     geoUnitsHospitalAlt = "sjukhus_alt",
     geoUnitsHospitalCode = "sjukhuskod",
     geoUnitsHospitalSelected = NULL,
+    geoUnitsHospitalLabel = NULL,
     geoUnitsCounty = "landsting",
+    geoUnitsCountyLabel = NULL,
     geoUnitsRegion = "region",
+    geoUnitsRegionLabel = NULL,
     geoUnitsPatient = FALSE,
     geoUnitsDefault = "county",
     regionSelection = TRUE,
@@ -386,13 +392,28 @@ rccShiny2 <-
     if (!is.null(geoUnitsHospitalSelected) & (!is.character(geoUnitsHospitalSelected) | length(geoUnitsHospitalSelected) != 1))
       stop("'geoUnitsHospitalSelected' should be either NULL or a character vector of length 1", call. = FALSE)
 
+    # geoUnitsHospitalLabel
+    if (!is.null(geoUnitsHospitalLabel) & (!is.character(geoUnitsHospitalLabel) | !length(geoUnitsHospitalLabel) %in% length(language))){
+      stop("'geoUnitsHospitalLabel' should be either NULL or a character vector of the same length as 'language'", call. = FALSE)
+    }
+
     # geoUnitsCounty
     if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) != 1))
       stop("'geoUnitsCounty' should be either NULL or a character vector of length 1", call. = FALSE)
 
+    # geoUnitsCountyLabel
+    if (!is.null(geoUnitsCountyLabel) & (!is.character(geoUnitsCountyLabel) | !length(geoUnitsCountyLabel) %in% length(language))) {
+      stop("'geoUnitsCountyLabel' should be either NULL or a character vector of the same length as 'language'", call. = FALSE)
+    }
+
     # geoUnitsRegion
     if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) != 1))
       stop("'geoUnitsRegion' should be either NULL or a character vector of length 1", call. = FALSE)
+
+    # geoUnitsRegionLabel
+    if (!is.null(geoUnitsRegionLabel) & (!is.character(geoUnitsRegionLabel) | !length(geoUnitsRegionLabel) %in% length(language))) {
+      stop("'geoUnitsRegionLabel' should be either NULL or a character vector of the same length as 'language'", call. = FALSE)
+    }
 
     # geoUnitsPatient
     if (is.null(geoUnitsPatient) | !is.logical(geoUnitsPatient) | length(geoUnitsPatient) != 1)
@@ -598,8 +619,11 @@ rccShiny2 <-
           geoUnitsHospitalAlt = geoUnitsHospitalAlt,
           geoUnitsHospitalCode = geoUnitsHospitalCode,
           geoUnitsHospitalSelected = geoUnitsHospitalSelected,
+          geoUnitsHospitalLabel = geoUnitsHospitalLabel,
           geoUnitsCounty = geoUnitsCounty,
+          geoUnitsCountyLabel = geoUnitsCountyLabel,
           geoUnitsRegion = geoUnitsRegion,
+          geoUnitsRegionLabel = geoUnitsRegionLabel,
           geoUnitsPatient = geoUnitsPatient,
           geoUnitsDefault = geoUnitsDefault,
           regionSelection = regionSelection,

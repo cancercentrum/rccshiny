@@ -4,7 +4,7 @@
 \alias{rccShinyLevelNames}
 \title{Names for choices in Level of comparison}
 \usage{
-rccShinyLevelNames(level = "region", language = "sv")
+rccShinyLevelNames(level = "region", language = "sv", optionalLabel = NULL)
 }
 \description{
 internal function used to supply text printed in Level of comparison widget.
