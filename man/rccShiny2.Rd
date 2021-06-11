@@ -85,7 +85,7 @@ rccShiny2(
 
 \item{idAuthorisedToView}{optional name of binary variable in data containing information on whether or not (1 = yes or 0 = no) the user running the app is authorised to see the id and idOverviewLink in the patient list on INCA. If id or idOverviewLink is provided, idAuthorisedToView must also be provided. Default is NULL.}
 
-\item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.}
+\item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output. A variable name in 'outcome' can be left as NA, in which case the number of observations will be displayed as outcome in the app.}
 
 \item{outcomeNumericExcludeNeg}{should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.}
 

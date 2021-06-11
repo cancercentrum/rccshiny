@@ -6,32 +6,6 @@ library(rccShiny)
 # Latest release (1.8.0 at the moment)
 if (packageVersion("rccShiny") == "1.8.0") {
 
-  # Create legacy0-latest
-  # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny.R#lines-77
-  rccShiny(
-    data = rccShinyData,
-    folder = "legacy0-latest",
-    path = file.path("tests", "testthat"),
-    outcome = paste0("outcome", 1:3),
-    outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-    comment = "Skovde och Lidkoping tillhor Skaraborg",
-    description = c("Har beskrivs indikatorn.", "Viktig information!", "Information om variabler etc."),
-    varOther = list(
-      list(
-        var = "age",
-        label = "Alder vid diagnos"
-      ),
-      list(
-        var = "stage",
-        label = "Stadium",
-        choices = c("I", "II"),
-        selected = "I",
-        multiple = TRUE,
-        showInTitle = TRUE
-      )
-    )
-  )
-
   # Create legacy1-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-94
   rccShiny2(

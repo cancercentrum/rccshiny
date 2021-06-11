@@ -12,7 +12,7 @@
 #' @param id optional name of variable in data containing the id of each individual. This is displayed in the list tab if on the INCA platform. Default is NULL.
 #' @param idOverviewLink optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.
 #' @param idAuthorisedToView optional name of binary variable in data containing information on whether or not (1 = yes or 0 = no) the user running the app is authorised to see the id and idOverviewLink in the patient list on INCA. If id or idOverviewLink is provided, idAuthorisedToView must also be provided. Default is NULL.
-#' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.
+#' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output. A variable name in 'outcome' can be left as NA, in which case the number of observations will be displayed as outcome in the app.
 #' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
@@ -252,11 +252,12 @@ rccShiny2 <-
     testVariableError <-
       function(
         var = "var",
-        listAllowed = TRUE
+        listAllowed = TRUE,
+        naAllowed = FALSE
       ) {
         if (is.null(get(var)))
           stop("'", var, "' is missing", call. = FALSE)
-        if (any(is.na(get(var))))
+        if (any(is.na(get(var))) & !naAllowed)
           stop("'", var, "' is missing", call. = FALSE)
         if (is.list(get(var))) {
           if (!listAllowed) {
@@ -264,11 +265,11 @@ rccShiny2 <-
           } else {
             tempList <- get(var)
             for (i in 1:length(tempList)) {
-              if (!is.character(tempList[[i]]))
+              if (!is.character(tempList[[i]]) & !(all(is.na(tempList[[i]])) & naAllowed))
                 stop("'", var, "' should be of type character", call. = FALSE)
             }
           }
-        } else if (!is.character(get(var))) {
+        } else if (!is.character(get(var)) & !(all(is.na(get(var))) & naAllowed)) {
             stop("'", var, "' should be of type character", call. = FALSE)
         }
       }
@@ -293,11 +294,7 @@ rccShiny2 <-
 
     # folderLinkTest
     if (is.null(folderLinkText)) {
-      if (length(outcome) > 1 | length(language) > 1) {
-        folderLinkText <- paste0(folder, "_", language)
-      } else {
-        folderLinkText <- unlist(outcomeTitle)
-      }
+      folderLinkText <- paste0(folder, if (length(language) > 1) {paste0("_", language)})
     }
     testVariableError("folderLinkText", listAllowed = FALSE)
     if (length(language) != length(folderLinkText))
@@ -336,7 +333,7 @@ rccShiny2 <-
       stop("'idAuthorisedToView' should be either NULL or a character vector of length 1", call. = FALSE)
 
     # outcome
-    testVariableError("outcome", listAllowed = FALSE)
+    testVariableError("outcome", listAllowed = FALSE, naAllowed = TRUE)
 
     # outcomeNumericExcludeNeg
     if (is.null(outcomeNumericExcludeNeg) | !is.logical(outcomeNumericExcludeNeg) | length(outcomeNumericExcludeNeg) != 1)
@@ -577,14 +574,6 @@ rccShiny2 <-
     # includeMissingColumn
     if (is.null(includeMissingColumn) | !is.logical(includeMissingColumn) | length(includeMissingColumn) != 1)
       stop("'includeMissingColumn' should be a logical vector of length 1", call. = FALSE)
-    # includeMissingColumn=TRUE but factor contains 'Uppgift saknas' or 'Missing'
-    miss.values <- c("Uppgift saknas", "Missing")
-    if (isTRUE(includeMissingColumn) & any(unlist(lapply(data.frame(data[,outcome]), levels)) %in% miss.values)){
-      tmp <- outcome[unlist(lapply(data.frame(data[,outcome]), function(x) any(levels(x) %in% miss.values)))]
-      data[, tmp][data[, tmp] == miss.values[1] | data[, tmp] == miss.values[2]] <- NA
-      data[, tmp] <- droplevels(data[, tmp])
-      message("'includeMissingColumn' = TRUE and 'outcome' contains value 'Uppgift saknas' or 'Missing'. \nTo avoid errors the levels 'Uppgift saknas' and/or 'Missing' have been converted to 'NA'. \nIf you want to keep your Missing value level, change 'includeMissingColumn' to FALSE")
-    }
 
     # # # # # # # # # # # # # # # #
     # Produce app for each language
