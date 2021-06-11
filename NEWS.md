@@ -4,6 +4,8 @@
 
 * Lagt till presentationsform: Antal fall (SNY-51)
 
+* Lagt till möjlighet att ersätta "Sjukhus", "Region" och "Sjukvårdsregion" med egna etiketter (SNY-78)
+
 ## Mindre förbättringar och felrättningar
 
 * Rättat fel när urvalstexten under figurrubriken inte syntes om "reglage"-urval fanns längst ner bland urvalen (SNY-95)
