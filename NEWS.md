@@ -10,6 +10,8 @@
 
 * Rättat fel när urvalstexten under figurrubriken inte syntes om "reglage"-urval fanns längst ner bland urvalen (SNY-95)
 
+* Rättat fel så att labels i varOtherComparison kan vara de som normalt används för sjukvårdsregion, region, län, sjukhus givet den jämförelsenivån inte är inkluderad i figuren. (SNY-92)
+
 # rccShiny 1.8.1
 
 En liten felrättningsversion (främst).

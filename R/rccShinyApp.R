@@ -2493,28 +2493,29 @@ rccShinyCheckData <-
         optionsList$error <- paste0("'varOtherComparison' contains duplicate variable labels")
         return(optionsList)
       }
+      # Check so that no 'var' argument in varOtherComparison is the same as one of the reserved variable names
+      reservedVarNames <- c("sjukhus", "sjukhus_alt", "sjukhuskod", "landsting", "region", "period")
+      if (any(varOtherComparisonVariables %in% reservedVarNames)) {
+        optionsList$error <- paste0("The following variable names ", paste(paste0("'", reservedVarNames, "'"), collapse = "/"), " are reserved by rccShiny2 and are therefore not allowed as 'var' argument in varOtherComparison.")
+      }
+
       includeVariables <- c(includeVariables, varOtherComparisonVariables)
+
     }
     optionsList$varOtherComparisonVariables <- varOtherComparisonVariables
     optionsList$varOtherComparisonLabels <- varOtherComparisonLabels
 
-    # Check for conflicts in labels (to be fixed in future version)
+
+    # Check for conflicts in labels, if labels are
     tempReservedLabels <- c(
-      rccShinyLevelNames("region", language = optionsList$language),
-      rccShinyLevelNames("county_lkf", language = optionsList$language),
-      rccShinyLevelNames("county", language = optionsList$language),
-      rccShinyLevelNames("hospital", language = optionsList$language)
+      if (optionsList$geoUnitsRegionInclude) rccShinyLevelNames("region", language = optionsList$language, optionalLabel = optionsList$geoUnitsRegionLabel),
+      if (optionsList$geoUnitsCountyInclude & optionsList$geoUnitsPatient) rccShinyLevelNames("county_lkf", language = optionsList$language, optionalLabel = optionsList$geoUnitsCountyLabel),
+      if (optionsList$geoUnitsCountyInclude & !optionsList$geoUnitsPatient) rccShinyLevelNames("county", language = optionsList$language, optionalLabel = optionsList$geoUnitsCountyLabel),
+      if (optionsList$geoUnitsHospitalInclude) rccShinyLevelNames("hospital", language = optionsList$language, optionalLabel = optionsList$geoUnitsHospitalLabel)
     )
-    tempReservedOptionalLabels <- c(
-      unlist(optionsList$geoUnitsHospitalLabel),
-      unlist(optionsList$geoUnitsCountyLabel),
-      unlist(optionsList$geoUnitsRegionLabel)
-    )
-    if (any(tolower(optionsList$varOtherComparisonLabels) %in% tolower(tempReservedLabels))) {
-      optionsList$error <- paste0(paste(paste0("'", tempReservedLabels, "'"), collapse = "/"), " are currently not allowed as labels in varOtherComparison when language = '", optionsList$language, "'. This will be fixed in a future version. For now, try adding a whitespace after the label in order for it to be distinct.")
+    if (any(optionsList$varOtherComparisonLabels %in% tempReservedLabels)) {
+      optionsList$error <- paste0(paste(paste0("'", tempReservedLabels, "'"), collapse = "/"), " are reserved labels for language = '", optionsList$language, "' and can therefore not be used as labels in 'varOtherComparison'. If you for some reason still want the same label for two comparison-variabels you can add a whitespace after the label. \nIf you want to change the labels for ", paste(paste0("'", tempReservedLabels, "'"), collapse = "/"), " it can be done via the arguments 'geoUnitsRegionLabel', 'geoUnitsCountyLabel' and 'geoUnitsHospitalLabel'")
       return(optionsList)
-    } else if (any(tolower(optionsList$varOtherComparisonLabels) %in% tolower(tempReservedOptionalLabels))) {
-      optionsList$error <- paste0(paste(paste0("'", tempReservedOptionalLabels, "'"), collapse = "/"), " are currently used as labels in one of 'geoUnitsHospitalLabel', 'geoUnitsCountyLabel' or 'geoUnitsRegionLabel' and cannot also be used in varOtherComparison. If you still want that label, try adding a whitespace after the it in order for it to be distinct.")
     }
 
     # geoUnitsHospitalInclude, geoUnitsCountyInclude, geoUnitsRegionInclude, varOtherComparison
