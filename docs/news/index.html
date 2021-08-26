@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
       </span>
     </div>
 
@@ -124,6 +124,26 @@
       
     </div>
 
+    <div id="rccshiny-190" class="section level1">
+<h1 class="page-header" data-toc-text="1.9.0">
+<a href="#rccshiny-190" class="anchor"></a>rccShiny 1.9.0</h1>
+<div id="ny-funktionalitet" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ny-funktionalitet" class="anchor"></a>Ny funktionalitet</h2>
+<ul>
+<li><p>Lagt till presentationsform: Antal fall (SNY-51)</p></li>
+<li><p>Lagt till möjlighet att ersätta “Sjukhus”, “Region” och “Sjukvårdsregion” med egna etiketter (SNY-78)</p></li>
+</ul>
+</div>
+<div id="mindre-förbättringar-och-felrättningar" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
+<ul>
+<li><p>Rättat fel när urvalstexten under figurrubriken inte syntes om “reglage”-urval fanns längst ner bland urvalen (SNY-95)</p></li>
+<li><p>Rättat fel så att labels i varOtherComparison kan vara de som normalt används för sjukvårdsregion, region, län, sjukhus givet den jämförelsenivån inte är inkluderad i figuren. (SNY-92)</p></li>
+</ul>
+</div>
+</div>
     <div id="rccshiny-181" class="section level1">
 <h1 class="page-header" data-toc-text="1.8.1">
 <a href="#rccshiny-181" class="anchor"></a>rccShiny 1.8.1</h1>
@@ -140,16 +160,16 @@
 <ul>
 <li>Den gamla funktionen <code><a href="../reference/rccShiny.html">rccShiny()</a></code> börjar nu gradvis fasas ut (SNY-90), använd <code><a href="../reference/rccShiny2.html">rccShiny2()</a></code> istället</li>
 </ul>
-<div id="ny-funktionalitet" class="section level2">
+<div id="ny-funktionalitet-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-1" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
 <li>Justerat presentation när hideLessThanCell&gt; 1 och utfallet är en kategorisk variabel. Det totala antalet visas nu alltid om N &gt;= hideLessThan medan enskilda celler är dolda (i tabell) om någon n &lt; hideLessThanCell (SNY-89)</li>
 </ul>
 </div>
-<div id="mindre-förbättringar-och-felrättningar" class="section level2">
+<div id="mindre-förbättringar-och-felrättningar-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
+<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-1" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
 <li><p>Förbättrat färgskalor för kartor (SNY-85)</p></li>
 <li><p>Uppdaterat Google Analytics-guiden med vägledning om anonymizeIp</p></li>
@@ -170,18 +190,18 @@
     <div id="rccshiny-170" class="section level1">
 <h1 class="page-header" data-toc-text="1.7.0">
 <a href="#rccshiny-170" class="anchor"></a>rccShiny 1.7.0</h1>
-<div id="ny-funktionalitet-1" class="section level2">
+<div id="ny-funktionalitet-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-1" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-2" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
 <li><p>Lagt till alternativ för att inkludera andra variabler som presentationsnivå (SNY-9, SNY-45)</p></li>
 <li><p>Döpt om sjukvårdsregionen “Uppsala-Örebro” till “Mellansverige” i alla presentationer (SNY-88)</p></li>
 <li><p>“folder” används nu som webbsidans titel och kan ses i Google Analytics. Om INCA sätts ingen sidrubrik (SNY-86)</p></li>
 </ul>
 </div>
-<div id="mindre-förbättringar-och-felrättningar-1" class="section level2">
+<div id="mindre-förbättringar-och-felrättningar-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-1" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
+<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-2" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
 <li>includeMissingColumn = TRUE + outcome som faktor med en nivå = “Uppgift saknas” orsakar krasch (SNY-81)</li>
 </ul>
@@ -199,9 +219,9 @@
     <div id="rccshiny-160" class="section level1">
 <h1 class="page-header" data-toc-text="1.6.0">
 <a href="#rccshiny-160" class="anchor"></a>rccShiny 1.6.0</h1>
-<div id="ny-funktionalitet-2" class="section level2">
+<div id="ny-funktionalitet-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-2" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-3" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
 <li><p>Redovisning av missing - entydigt och med antal (SNY-8)</p></li>
 <li><p>Ny parameter med alternativa sjukhusnamn som kan ersätta fullösningen <code>npcrGroupPrivateOthers</code> (SNY-61)</p></li>
@@ -219,17 +239,17 @@
     <div id="rccshiny-150" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.0">
 <a href="#rccshiny-150" class="anchor"></a>rccShiny 1.5.0</h1>
-<div id="ny-funktionalitet-3" class="section level2">
+<div id="ny-funktionalitet-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-3" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-4" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
 <li><p>Namnsättning av percentiler i figurer och tabeller (SNY-63)</p></li>
 <li><p>Vinjett om hur man får Google Analytics att logga besök på varje enskild app (parametern <code>gaPath</code>) (SNY-62)</p></li>
 </ul>
 </div>
-<div id="mindre-förbättringar-och-felrättningar-2" class="section level2">
+<div id="mindre-förbättringar-och-felrättningar-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-2" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
+<a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-3" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
 <li><p>Lagt till <code>selectAll</code> och <code>deselectAll</code> i <code><a href="../reference/rccShinyTXT.html">rccShinyTXT()</a></code> (SNY-73)</p></li>
 <li><p>Rättat felstavningar i engelska versionen (SNY-69)</p></li>
@@ -271,7 +291,7 @@
 <li><p>Döpt om “landsting” till “region” och “region” till “sjukvårdsregion” (SNY-56)</p></li>
 <li><p>Kan ange percentiler i anropet till funktionen (SNY-22)</p></li>
 <li><p>Skapat webbplats för R-paketet (SNY-66)</p></li>
-<li><p>Lagt till “Markera alla” och “Avmarkera alla”" i pickerinputs (SNY-59, 4cfc0e7)</p></li>
+<li><p>Lagt till “Markera alla” och “Avmarkera alla”” i pickerinputs (SNY-59, 4cfc0e7)</p></li>
 <li><p>Lagt till möjlighet att exkludera flikar (SNY-39, 54dbd9f)</p></li>
 <li><p>Röjandekontroll: Möjlighet att dölja absoluta antal i figurer/tabeller där antalet i en cell är mindre än gränsvärde (SNY-55, cc51329)</p></li>
 <li><p>Återinfört möjlighet att få ut länktext (SNY-57, a8f9dc7)</p></li>
