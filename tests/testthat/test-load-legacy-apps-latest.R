@@ -21,8 +21,3 @@ test_that("loading legacy2-latest (en) works", {
   appdir <- file.path("apps", "en", "legacy2-latest")
   expect_pass(testApp(appdir, "load-app", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
 })
-
-test_that("loading legacy0-latest works", {
-  appdir <- file.path("apps", "sv", "legacy0-latest")
-  expect_pass(testApp(appdir, "load-app", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
-})

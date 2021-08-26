@@ -7,7 +7,10 @@
 rccShinyGroupVariable(
   label = "sjukhus",
   otherVariables = NULL,
-  otherLabels = NULL
+  otherLabels = NULL,
+  optionalHospitalLabel = NULL,
+  optionalCountyLabel = NULL,
+  optionalRegionLabel = NULL
 )
 }
 \description{

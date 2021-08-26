@@ -27,8 +27,11 @@ rccShiny2(
   geoUnitsHospitalAlt = "sjukhus_alt",
   geoUnitsHospitalCode = "sjukhuskod",
   geoUnitsHospitalSelected = NULL,
+  geoUnitsHospitalLabel = NULL,
   geoUnitsCounty = "landsting",
+  geoUnitsCountyLabel = NULL,
   geoUnitsRegion = "region",
+  geoUnitsRegionLabel = NULL,
   geoUnitsPatient = FALSE,
   geoUnitsDefault = "county",
   regionSelection = TRUE,
@@ -82,7 +85,7 @@ rccShiny2(
 
 \item{idAuthorisedToView}{optional name of binary variable in data containing information on whether or not (1 = yes or 0 = no) the user running the app is authorised to see the id and idOverviewLink in the patient list on INCA. If id or idOverviewLink is provided, idAuthorisedToView must also be provided. Default is NULL.}
 
-\item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.}
+\item{outcome}{vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output. A variable name in 'outcome' can be left as NA, in which case the number of observations will be displayed as outcome in the app.}
 
 \item{outcomeNumericExcludeNeg}{should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.}
 
@@ -104,9 +107,15 @@ rccShiny2(
 
 \item{geoUnitsHospitalSelected}{optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.}
 
+\item{geoUnitsHospitalLabel}{optional label for 'geoUnitsHospital'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.}
+
 \item{geoUnitsCounty}{optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.}
 
+\item{geoUnitsCountyLabel}{optional label for 'geoUnitsCounty'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label..}
+
 \item{geoUnitsRegion}{optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.}
+
+\item{geoUnitsRegionLabel}{optional label for 'geoUnitsRegion'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.}
 
 \item{geoUnitsPatient}{if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.}
 

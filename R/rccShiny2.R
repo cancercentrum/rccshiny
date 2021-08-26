@@ -12,7 +12,7 @@
 #' @param id optional name of variable in data containing the id of each individual. This is displayed in the list tab if on the INCA platform. Default is NULL.
 #' @param idOverviewLink optional name of variable in data containing the HTML link to the patient overview on INCA for each individual. This is displayed in the list if on the INCA platform. Default is NULL.
 #' @param idAuthorisedToView optional name of binary variable in data containing information on whether or not (1 = yes or 0 = no) the user running the app is authorised to see the id and idOverviewLink in the patient list on INCA. If id or idOverviewLink is provided, idAuthorisedToView must also be provided. Default is NULL.
-#' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.
+#' @param outcome vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output. A variable name in 'outcome' can be left as NA, in which case the number of observations will be displayed as outcome in the app.
 #' @param outcomeNumericExcludeNeg should negative values be excluded when presenting a numeric outcome? Particularly relevant for waiting times. Default is TRUE.
 #' @param outcomeTitle label(s) of the outcome(s) shown in the app. Must be the same length as argument outcome. Default is argument outcome.
 #' @param textBeforeSubtitle optional text placed before the subtitles in the tabs.
@@ -23,8 +23,11 @@
 #' @param geoUnitsHospitalAlt optional name of variable in data containing alternative hospital names to be used when only one region is selected to be shown. Variable must be of type character. If NULL or if variable is not found in 'data', geoUnitsHospital is used. Default is "sjukhus_alt".
 #' @param geoUnitsHospitalCode optional name of variable in data containing hospital codes. Variable must be of type numeric. If NULL or if variable is not found in 'data', the list tab can not be displayed. The hospital codes are used to determine which patients to show in the list tab by matching it to the enviromental variable on INCA containing the hospital code of the logged in user. Default is "sjukhuskod".
 #' @param geoUnitsHospitalSelected optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.
+#' @param geoUnitsHospitalLabel optional label for 'geoUnitsHospital'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.
 #' @param geoUnitsCounty optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsCountyLabel optional label for 'geoUnitsCounty'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label..
 #' @param geoUnitsRegion optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.
+#' @param geoUnitsRegionLabel optional label for 'geoUnitsRegion'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.
 #' @param geoUnitsPatient if geoUnitsCounty/geoUnitsRegion is county/region of residence for the patient (LKF). If FALSE and a hospital is chosen by the user in the sidebar panel the output is highlighted for the respective county/region that the hospital belongs to. Default is FALSE.
 #' @param geoUnitsDefault optional default level of presentation. Valid values are "region", "county", "hospital", and any of the variable names (var) in varOtherComparison. Default is "county".
 #' @param regionSelection adds a widget to the sidebar panel with the option to show only one region at a time. Default is TRUE.
@@ -206,8 +209,11 @@ rccShiny2 <-
     geoUnitsHospitalAlt = "sjukhus_alt",
     geoUnitsHospitalCode = "sjukhuskod",
     geoUnitsHospitalSelected = NULL,
+    geoUnitsHospitalLabel = NULL,
     geoUnitsCounty = "landsting",
+    geoUnitsCountyLabel = NULL,
     geoUnitsRegion = "region",
+    geoUnitsRegionLabel = NULL,
     geoUnitsPatient = FALSE,
     geoUnitsDefault = "county",
     regionSelection = TRUE,
@@ -246,11 +252,12 @@ rccShiny2 <-
     testVariableError <-
       function(
         var = "var",
-        listAllowed = TRUE
+        listAllowed = TRUE,
+        naAllowed = FALSE
       ) {
         if (is.null(get(var)))
           stop("'", var, "' is missing", call. = FALSE)
-        if (any(is.na(get(var))))
+        if (any(is.na(get(var))) & !naAllowed)
           stop("'", var, "' is missing", call. = FALSE)
         if (is.list(get(var))) {
           if (!listAllowed) {
@@ -258,11 +265,11 @@ rccShiny2 <-
           } else {
             tempList <- get(var)
             for (i in 1:length(tempList)) {
-              if (!is.character(tempList[[i]]))
+              if (!is.character(tempList[[i]]) & !(all(is.na(tempList[[i]])) & naAllowed))
                 stop("'", var, "' should be of type character", call. = FALSE)
             }
           }
-        } else if (!is.character(get(var))) {
+        } else if (!is.character(get(var)) & !(all(is.na(get(var))) & naAllowed)) {
             stop("'", var, "' should be of type character", call. = FALSE)
         }
       }
@@ -287,11 +294,7 @@ rccShiny2 <-
 
     # folderLinkTest
     if (is.null(folderLinkText)) {
-      if (length(outcome) > 1 | length(language) > 1) {
-        folderLinkText <- paste0(folder, "_", language)
-      } else {
-        folderLinkText <- unlist(outcomeTitle)
-      }
+      folderLinkText <- paste0(folder, if (length(language) > 1) {paste0("_", language)})
     }
     testVariableError("folderLinkText", listAllowed = FALSE)
     if (length(language) != length(folderLinkText))
@@ -330,7 +333,7 @@ rccShiny2 <-
       stop("'idAuthorisedToView' should be either NULL or a character vector of length 1", call. = FALSE)
 
     # outcome
-    testVariableError("outcome", listAllowed = FALSE)
+    testVariableError("outcome", listAllowed = FALSE, naAllowed = TRUE)
 
     # outcomeNumericExcludeNeg
     if (is.null(outcomeNumericExcludeNeg) | !is.logical(outcomeNumericExcludeNeg) | length(outcomeNumericExcludeNeg) != 1)
@@ -386,13 +389,28 @@ rccShiny2 <-
     if (!is.null(geoUnitsHospitalSelected) & (!is.character(geoUnitsHospitalSelected) | length(geoUnitsHospitalSelected) != 1))
       stop("'geoUnitsHospitalSelected' should be either NULL or a character vector of length 1", call. = FALSE)
 
+    # geoUnitsHospitalLabel
+    if (!is.null(geoUnitsHospitalLabel) & (!is.character(geoUnitsHospitalLabel) | !length(geoUnitsHospitalLabel) %in% length(language))){
+      stop("'geoUnitsHospitalLabel' should be either NULL or a character vector of the same length as 'language'", call. = FALSE)
+    }
+
     # geoUnitsCounty
     if (!is.null(geoUnitsCounty) & (!is.character(geoUnitsCounty) | length(geoUnitsCounty) != 1))
       stop("'geoUnitsCounty' should be either NULL or a character vector of length 1", call. = FALSE)
 
+    # geoUnitsCountyLabel
+    if (!is.null(geoUnitsCountyLabel) & (!is.character(geoUnitsCountyLabel) | !length(geoUnitsCountyLabel) %in% length(language))) {
+      stop("'geoUnitsCountyLabel' should be either NULL or a character vector of the same length as 'language'", call. = FALSE)
+    }
+
     # geoUnitsRegion
     if (!is.null(geoUnitsRegion) & (!is.character(geoUnitsRegion) | length(geoUnitsRegion) != 1))
       stop("'geoUnitsRegion' should be either NULL or a character vector of length 1", call. = FALSE)
+
+    # geoUnitsRegionLabel
+    if (!is.null(geoUnitsRegionLabel) & (!is.character(geoUnitsRegionLabel) | !length(geoUnitsRegionLabel) %in% length(language))) {
+      stop("'geoUnitsRegionLabel' should be either NULL or a character vector of the same length as 'language'", call. = FALSE)
+    }
 
     # geoUnitsPatient
     if (is.null(geoUnitsPatient) | !is.logical(geoUnitsPatient) | length(geoUnitsPatient) != 1)
@@ -556,14 +574,6 @@ rccShiny2 <-
     # includeMissingColumn
     if (is.null(includeMissingColumn) | !is.logical(includeMissingColumn) | length(includeMissingColumn) != 1)
       stop("'includeMissingColumn' should be a logical vector of length 1", call. = FALSE)
-    # includeMissingColumn=TRUE but factor contains 'Uppgift saknas' or 'Missing'
-    miss.values <- c("Uppgift saknas", "Missing")
-    if (isTRUE(includeMissingColumn) & any(unlist(lapply(data.frame(data[,outcome]), levels)) %in% miss.values)){
-      tmp <- outcome[unlist(lapply(data.frame(data[,outcome]), function(x) any(levels(x) %in% miss.values)))]
-      data[, tmp][data[, tmp] == miss.values[1] | data[, tmp] == miss.values[2]] <- NA
-      data[, tmp] <- droplevels(data[, tmp])
-      message("'includeMissingColumn' = TRUE and 'outcome' contains value 'Uppgift saknas' or 'Missing'. \nTo avoid errors the levels 'Uppgift saknas' and/or 'Missing' have been converted to 'NA'. \nIf you want to keep your Missing value level, change 'includeMissingColumn' to FALSE")
-    }
 
     # # # # # # # # # # # # # # # #
     # Produce app for each language
@@ -598,8 +608,11 @@ rccShiny2 <-
           geoUnitsHospitalAlt = geoUnitsHospitalAlt,
           geoUnitsHospitalCode = geoUnitsHospitalCode,
           geoUnitsHospitalSelected = geoUnitsHospitalSelected,
+          geoUnitsHospitalLabel = geoUnitsHospitalLabel,
           geoUnitsCounty = geoUnitsCounty,
+          geoUnitsCountyLabel = geoUnitsCountyLabel,
           geoUnitsRegion = geoUnitsRegion,
+          geoUnitsRegionLabel = geoUnitsRegionLabel,
           geoUnitsPatient = geoUnitsPatient,
           geoUnitsDefault = geoUnitsDefault,
           regionSelection = regionSelection,

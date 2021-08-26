@@ -149,60 +149,6 @@ regionLabel, label in list varOther: if there are two values the first is used i
 The following applies to argument outcomeTitle, description: the arguments should be given in a list, the first listargument is used in the Swedish version and the second in the English version. The Swedish title(s) will be recycled if English is missing.
 The following applies to arguments outcome, geoUnitsHospital, geoUnitsCounty, geoUnitsRegion, period, var in list varOther: in the English version the variable name with the suffix _en (for example "outcome_en") will be used if this exists and otherwise the Swedish variable name will be recycled.
 }
-\examples{
-\dontrun{
-ind1 <- rccShiny(
-  data = rccShinyData,
-  folder = "Indikator1",
-  folderLinkText = "Indikator 1",
-  outcome = paste0("outcome",1:3),
-  outcomeTitle = c("Dikotom", "Kontinuerlig", "Kategorisk"),
-  comment = "Skovde och Lidkoping tillhor Skaraborg",
-  description = c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
-  varOther = list(
-    list(
-      var = "age",
-      label = "Alder vid diagnos"
-    ),
-    list(
-      var = "stage",
-      label = "Stadium",
-      choices = c("I", "II"),
-      selected = "I",
-      multiple = TRUE,
-      showInTitle = TRUE
-    )
-  ),
-  funnelplot = TRUE
-)
-shiny::runApp("./apps/sv/Indikator1")
-
-cat(ind1) # displays the html link that can be used in index.html
-
-# For Swedish/English version
-rccShinyData$outcome1_en <- rccShinyData$outcome1
-rccShiny(
-  language = c("sv", "en"),
-  data = rccShinyData,
-  folder = "Indikator2",
-  outcome = "outcome1",
-  outcomeTitle = list("Kontaktsjukskoterska", "Contact nurse"),
-  textBeforeSubtitle = c("Nagot pa svenska","Something in English"),
-  description = list(
-    c("Har beskrivs indikatorn.","Viktig information!","Information om variabler etc."),
-    c("Description of the indicator","Important information!","Information on variables etc.")
-  ),
-  varOther = list(
-    list(
-      var = "age",
-     label = c("Alder vid diagnos","Age at diagnosis"),
-      choices = c(0,120)
-    )
-  ),
-  targetValues = c(95,99)
-)
-}
-}
 \author{
 Fredrik Sandin, RCC Mellansverige
 }

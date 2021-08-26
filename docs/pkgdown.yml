@@ -1,10 +1,10 @@
-pandoc: '2.13'
+pandoc: 2.14.2
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   ga: ga.html
   tolkningsmanual: tolkningsmanual.html
-last_built: 2021-04-27T05:41Z
+last_built: 2021-08-26T05:46Z
 urls:
   reference: https://cancercentrum.bitbucket.io/rccshiny//reference
   article: https://cancercentrum.bitbucket.io/rccshiny//articles

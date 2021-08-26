@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.9.0</span>
       </span>
     </div>
 
@@ -153,8 +153,11 @@
   geoUnitsHospitalAlt <span class='op'>=</span> <span class='st'>"sjukhus_alt"</span>,
   geoUnitsHospitalCode <span class='op'>=</span> <span class='st'>"sjukhuskod"</span>,
   geoUnitsHospitalSelected <span class='op'>=</span> <span class='cn'>NULL</span>,
+  geoUnitsHospitalLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
   geoUnitsCounty <span class='op'>=</span> <span class='st'>"landsting"</span>,
+  geoUnitsCountyLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
   geoUnitsRegion <span class='op'>=</span> <span class='st'>"region"</span>,
+  geoUnitsRegionLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
   geoUnitsPatient <span class='op'>=</span> <span class='cn'>FALSE</span>,
   geoUnitsDefault <span class='op'>=</span> <span class='st'>"county"</span>,
   regionSelection <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -234,7 +237,7 @@
     </tr>
     <tr>
       <th>outcome</th>
-      <td><p>vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output.</p></td>
+      <td><p>vector with names(s) of variable(s) in data containing the variable(s) to be presented in the app, for example a quality indicator. Variable(s) must be of type logical, factor or numeric. Default is "outcome". Observe that observations with missing values for outcome are not included in the output. A variable name in 'outcome' can be left as NA, in which case the number of observations will be displayed as outcome in the app.</p></td>
     </tr>
     <tr>
       <th>outcomeNumericExcludeNeg</th>
@@ -277,12 +280,24 @@
       <td><p>optional name of the choice that should initially be selected in the list of hospitals. Variable must be of type character. Default is NULL.</p></td>
     </tr>
     <tr>
+      <th>geoUnitsHospitalLabel</th>
+      <td><p>optional label for 'geoUnitsHospital'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.</p></td>
+    </tr>
+    <tr>
       <th>geoUnitsCounty</th>
       <td><p>optional name of variable in data containing county codes. Variable must be of type numeric. Can be either county of residence for the patient or the county the hospital belongs to. See details for valid values. If NULL or if variable is not found in 'data', county is not available as a level of presentation. Default is "landsting". At least one geoUnit must be given. To be implemented: Codes for county of hospital are fetched automatically from hospital codes.</p></td>
     </tr>
     <tr>
+      <th>geoUnitsCountyLabel</th>
+      <td><p>optional label for 'geoUnitsCounty'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label..</p></td>
+    </tr>
+    <tr>
       <th>geoUnitsRegion</th>
       <td><p>optional name of variable in data containing region codes (1=Stockholm, 2=Mellansverige, 3=Sydöstra, 4=Södra, 5=Västra, 6=Norra, NA=Uppgift saknas). Variable must be of type numeric. Can be either region of residence for the patient or the region the hospital belongs to. If NULL or if variable is not found in 'data', region is not available as a level of presentation. Default is "region". At least one geoUnit must be given. To be implemented: Codes for region of hospital are fetched automatically from hospital codes.</p></td>
+    </tr>
+    <tr>
+      <th>geoUnitsRegionLabel</th>
+      <td><p>optional label for 'geoUnitsRegion'. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL and labels will be the old default label.</p></td>
     </tr>
     <tr>
       <th>geoUnitsPatient</th>

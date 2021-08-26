@@ -1,3 +1,17 @@
+# rccShiny 1.9.0
+
+## Ny funktionalitet
+
+* Lagt till presentationsform: Antal fall (SNY-51)
+
+* Lagt till möjlighet att ersätta "Sjukhus", "Region" och "Sjukvårdsregion" med egna etiketter (SNY-78)
+
+## Mindre förbättringar och felrättningar
+
+* Rättat fel när urvalstexten under figurrubriken inte syntes om "reglage"-urval fanns längst ner bland urvalen (SNY-95)
+
+* Rättat fel så att labels i varOtherComparison kan vara de som normalt används för sjukvårdsregion, region, län, sjukhus givet den jämförelsenivån inte är inkluderad i figuren. (SNY-92)
+
 # rccShiny 1.8.1
 
 En liten felrättningsversion (främst).
