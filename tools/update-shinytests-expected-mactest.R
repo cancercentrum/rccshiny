@@ -6,7 +6,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.8.1" & sysname == "darwin") {
+if (packageVersion("rccShiny") == "1.9.0" & sysname == "darwin") {
 
   # Run tests using the latest release/stable version
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
@@ -32,6 +32,9 @@ if (packageVersion("rccShiny") == "1.8.1" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "legacy1-1.7.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-1.7.1"),
     file.path("tests", "testthat", "apps", "en", "legacy2-1.7.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy1-1.8.1"),
+    file.path("tests", "testthat", "apps", "sv", "legacy2-1.8.1"),
+    file.path("tests", "testthat", "apps", "en", "legacy2-1.8.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-latest"),
