@@ -10,7 +10,7 @@ for (dir_selected in dirs_list) {
     stringr::str_replace(
       dir_selected,
       pattern = "latest",
-      replacement = "1.7.1"
+      replacement = "1.8.1"
     )
   )
   shell(cmd, shell = "powershell")

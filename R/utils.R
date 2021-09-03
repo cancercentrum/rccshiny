@@ -243,14 +243,14 @@ rccShinyGroupVariable <-
     optionalCountyLabel = NULL,
     optionalRegionLabel = NULL
   ) {
-    if (tolower(label) %in% c("sjukv\u00e5rdsregion", "healthcare region", tolower(optionalRegionLabel))) {
+    if (label %in% otherLabels) {
+      otherVariables[which(otherLabels == label)]
+    } else if (tolower(label) %in% c("sjukv\u00e5rdsregion", "healthcare region", tolower(optionalRegionLabel))) {
       "region"
     } else if (tolower(label) %in% c("region", "county", "bostadsl\u00e4n", "county of residence", tolower(optionalCountyLabel))) {
       "landsting"
     } else if (tolower(label) %in% c("sjukhus", "hospital", tolower(optionalHospitalLabel))) {
       "sjukhus"
-    } else if (label %in% otherLabels) {
-      otherVariables[which(otherLabels == label)]
     } else {
       "sjukhus"
     }
