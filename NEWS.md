@@ -1,11 +1,9 @@
-# rccShiny (development version)
+# rccShiny 1.9.1
 
-## Ny funktionalitet
-
-
-## Mindre förbättringar och felrättningar
+En liten felrättningsversion (främst).
 
 * Rättat fel då presentationsform "antal fall" kraschar när sjukhus är NA (SNY-105)
+
 * Interna funktioner i paketet är numera strikt interna. För bakgrund, se t.ex.
     * https://www.r-bloggers.com/2019/12/internal-functions-in-r-packages/ och
     * https://style.tidyverse.org/documentation.html#internal-functions
