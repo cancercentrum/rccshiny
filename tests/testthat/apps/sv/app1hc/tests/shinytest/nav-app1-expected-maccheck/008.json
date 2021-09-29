@@ -13034,6 +13034,7 @@
     "indTable": {
       "x": {
         "filter": "none",
+        "vertical": false,
         "extensions": [
           "Buttons"
         ],
@@ -13104,6 +13105,19 @@
       ],
       "deps": [
         {
+          "name": "jquery",
+          "version": "3.6.0",
+          "src": {
+            "href": "jquery-3.6.0"
+          },
+          "meta": null,
+          "script": "jquery-3.6.0.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
           "name": "dt-core",
           "version": "1.10.20",
           "src": {
@@ -13170,19 +13184,6 @@
           "attachment": null,
           "package": null,
           "all_files": false
-        },
-        {
-          "name": "jquery",
-          "version": "3.5.1",
-          "src": {
-            "href": "jquery-3.5.1"
-          },
-          "meta": null,
-          "script": "jquery.min.js",
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "all_files": true
         },
         {
           "name": "crosstalk",
@@ -13278,8 +13279,21 @@
       ]
     },
     "periodInputQuarter": {
-      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"text\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
+      "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; true &amp; (false | input.param_periodtype==&#39;Kvartal&#39;)\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n    <label class=\"control-label\" for=\"param_period_quarter\">Period<\/label>\n    <input class=\"js-range-slider sw-slider-text\" data-data-type=\"num\" data-drag-interval=\"true\" data-force-edges=\"false\" data-from=\"0\" data-from-fixed=\"false\" data-from-shadow=\"false\" data-grid=\"false\" data-hide-min-max=\"false\" data-keyboard=\"true\" data-prettify-enabled=\"false\" data-skin=\"shiny\" data-swvalues=\"[&quot;2012&quot;,&quot;2013&quot;,&quot;2014&quot;,&quot;2015&quot;,&quot;2016&quot;]\" data-to=\"4\" data-to-fixed=\"false\" data-to-shadow=\"false\" data-type=\"double\" id=\"param_period_quarter\"/>\n  <\/div>\n<\/div>",
       "deps": [
+        {
+          "name": "shinyWidgets",
+          "version": "0.6.2",
+          "src": {
+            "href": "shinyWidgets"
+          },
+          "meta": null,
+          "script": "shinyWidgets-bindings.min.js",
+          "stylesheet": "shinyWidgets.min.css",
+          "head": null,
+          "attachment": null,
+          "all_files": false
+        },
         {
           "name": "ionrangeslider-javascript",
           "version": "2.3.1",
@@ -13321,19 +13335,6 @@
           "attachment": null,
           "package": null,
           "all_files": true
-        },
-        {
-          "name": "shinyWidgets",
-          "version": "0.6.0",
-          "src": {
-            "href": "shinyWidgets"
-          },
-          "meta": null,
-          "script": "shinyWidgets-bindings.min.js",
-          "stylesheet": "shinyWidgets.min.css",
-          "head": null,
-          "attachment": null,
-          "all_files": false
         }
       ]
     },
@@ -13422,13 +13423,13 @@
     "text1": "Period: <strong>2016<\/strong>. ",
     "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"4160\">\n      <li class=\"active\">\n        <a href=\"#tab-4160-1\" data-toggle=\"tab\" data-value=\"fig_compare\">\n          <i class=\" fa fa-bar-chart fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-2\" data-toggle=\"tab\" data-value=\"table_num\">\n          <i class=\" fa fa-table fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Tabell (antal)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-3\" data-toggle=\"tab\" data-value=\"table_pct\">\n          <i class=\" fa fa-table fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Tabell (andel)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-4\" data-toggle=\"tab\" data-value=\"fig_trend\">\n          <i class=\" fa fa-line-chart fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-5\" data-toggle=\"tab\" data-value=\"description\">\n          <i class=\" fa fa-info-circle fa-fw\" role=\"presentation\" aria-label=\" icon\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"4160\">\n      <div class=\"tab-pane active\" data-value=\"fig_compare\" data-icon-class=\"fa fa-bar-chart\" id=\"tab-4160-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_num\" data-icon-class=\"fa fa-table\" id=\"tab-4160-2\">\n        <div id=\"indTableNum\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_pct\" data-icon-class=\"fa fa-table\" id=\"tab-4160-3\">\n        <div id=\"indTablePct\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-line-chart\" id=\"tab-4160-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle\" id=\"tab-4160-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"4160\">\n      <li class=\"active\">\n        <a href=\"#tab-4160-1\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_compare\">\n          <i aria-label=\"chart-bar icon\" class=\"fa fa-chart-bar fa-fw\" role=\"presentation\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"table_num\">\n          <i aria-label=\"table icon\" class=\"fa fa-table fa-fw\" role=\"presentation\"><\/i>\n          Tabell (antal)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-3\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"table_pct\">\n          <i aria-label=\"table icon\" class=\"fa fa-table fa-fw\" role=\"presentation\"><\/i>\n          Tabell (andel)\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_trend\">\n          <i aria-label=\"chart-line icon\" class=\"fa fa-chart-line fa-fw\" role=\"presentation\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-4160-5\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"description\">\n          <i aria-label=\"info-circle icon\" class=\"fa fa-info-circle fa-fw\" role=\"presentation\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"4160\">\n      <div class=\"tab-pane active\" data-icon-class=\"fa fa-chart-bar fa-fw\" data-value=\"fig_compare\" id=\"tab-4160-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_num\" data-icon-class=\"fa fa-table fa-fw\" id=\"tab-4160-2\">\n        <div id=\"indTableNum\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table_pct\" data-icon-class=\"fa fa-table fa-fw\" id=\"tab-4160-3\">\n        <div id=\"indTablePct\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-chart-line fa-fw\" id=\"tab-4160-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle fa-fw\" id=\"tab-4160-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "font-awesome",
-          "version": "5.13.0",
+          "version": "5.15.3",
           "src": {
-            "href": "font-awesome-5.13.0"
+            "href": "font-awesome-5.15.3"
           },
           "meta": null,
           "script": null,
@@ -13442,16 +13443,15 @@
         },
         {
           "name": "htmlwidgets",
-          "version": "1.5.3",
+          "version": "1.5.4",
           "src": {
-            "href": "htmlwidgets-1.5.3"
+            "href": "htmlwidgets-1.5.4"
           },
           "meta": null,
           "script": "htmlwidgets.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -13478,7 +13478,6 @@
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -13531,7 +13530,6 @@
           "stylesheet": "css/motion.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
@@ -13545,7 +13543,6 @@
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": false
         },
         {
@@ -13559,21 +13556,19 @@
           "stylesheet": "datatables-crosstalk.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "datatables-binding",
-          "version": "0.18",
+          "version": "0.19",
           "src": {
-            "href": "datatables-binding-0.18"
+            "href": "datatables-binding-0.19"
           },
           "meta": null,
           "script": "datatables.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": false
         },
         {
@@ -13638,7 +13633,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.0",
+          "version": "0.6.2",
           "src": {
             "href": "shinyWidgets"
           },
