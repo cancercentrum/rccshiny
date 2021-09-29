@@ -2060,11 +2060,11 @@ rccShinyApp <-
     )
 
   }
+
 #' Checks input to rccShiny
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rccShinyCheckData <-
   function(
     optionsList = NULL

@@ -1,8 +1,7 @@
 #' rcc2ColShade
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rcc2ColShade <-
   function(
     col = "#000000",
