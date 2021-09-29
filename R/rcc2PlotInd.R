@@ -245,7 +245,7 @@ rcc2PlotInd <-
           hide <- tempN < groupHideLessThan
           hideCellLessThan <- FALSE
           if (hide) {
-            measurements <- data.frame(NA, NA)
+            measurements <- data.frame(NA, NA, NA, NA)
           } else {
             measurements <- data.frame(tempN, tempN, tempN, tempN)
           }
