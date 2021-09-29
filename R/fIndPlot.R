@@ -4,8 +4,7 @@
 #' `r lifecycle::badge("deprecated")`
 #'
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 fIndPlot <-
   function(
     group = NULL,
