@@ -1,8 +1,7 @@
 #' rcc2PlotMap
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rcc2PlotMap <-
   function(
     value = NULL,

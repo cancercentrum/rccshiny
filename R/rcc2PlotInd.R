@@ -1,8 +1,7 @@
 #' rcc2PlotInd
 #' @description internal function.
 #' @author Fredrik Sandin, RCC Mellansverige
-#' @keywords internal
-#' @export
+#' @noRd
 rcc2PlotInd <-
   function(
     group = NULL,
@@ -245,7 +244,7 @@ rcc2PlotInd <-
           hide <- tempN < groupHideLessThan
           hideCellLessThan <- FALSE
           if (hide) {
-            measurements <- data.frame(NA, NA)
+            measurements <- data.frame(NA, NA, NA, NA)
           } else {
             measurements <- data.frame(tempN, tempN, tempN, tempN)
           }
