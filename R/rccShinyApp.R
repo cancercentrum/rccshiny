@@ -717,9 +717,9 @@ rccShinyApp <-
 
             if ("compare" %in% GLOBAL_includeTabs) {
               if (GLOBAL_outputHighcharts) {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highcharter::highchartOutput("indPlot", height = "980px"), icon = icon("bar-chart"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highcharter::highchartOutput("indPlot", height = "980px"), icon = icon("chart-bar"))
               } else {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("bar-chart"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("chart-bar"))
               }
             }
             if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
@@ -741,9 +741,9 @@ rccShinyApp <-
             }
             if (GLOBAL_periodInclude & "trend" %in% GLOBAL_includeTabs & !outcomeClassNA()) {
               if (GLOBAL_outputHighcharts) {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("line-chart"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("chart-line"))
               } else {
-                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("line-chart"))
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
               }
             }
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
