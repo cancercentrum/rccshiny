@@ -5,6 +5,7 @@
 
 ## Mindre förbättringar och felrättningar
 
+* Rättat fel då presentationsform "antal fall" kraschar när sjukhus är NA (SNY-105)
 
 # rccShiny 1.9.0
 
