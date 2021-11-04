@@ -47,10 +47,13 @@ rccShinyApp <-
                 if (Sys.getenv("SHINY_PORT") == "") {""} else {
                   "$(function() {
                     $(document).on({'shiny:inputchanged': function(event) {
-                      console.log(event);
+                      //console.log(event);
                       if (window.self !== window.top) {
                         if (typeof window.parent.notifyVarChanged === 'function') {
-                          window.parent.notifyVarChanged(event.name, event.value);
+                          // Don't save userInputId, may contain special characters not allowed in URL query
+                          if (event.name.substr(0, 11) != 'userInputId') {
+                            window.parent.notifyVarChanged(event.name, event.value);
+                          }
                         }
                       }
                     }});
