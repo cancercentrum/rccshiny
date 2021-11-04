@@ -203,8 +203,10 @@ rccShinyApp <-
         inputInitialValuesSelected <-
           function(
             name = NULL,
-            valueDefault = NULL
+            valueDefault = NULL,
+            valuesValid = NULL
           ) {
+            returnValue <- valueDefault
             query <- parseQueryString(session$clientData$url_search)
             if (!is.null(query[[name]])) {
               tempValue <- jsonlite::fromJSON(query[[name]])
@@ -213,10 +215,14 @@ rccShinyApp <-
                   tempValue <- as.logical(toupper(tempValue))
                 }
               }
-              tempValue
-            } else {
-              valueDefault
+              returnValue <- tempValue
+              if (!is.null(valuesValid)) {
+                if (!all(tempValue %in% valuesValid)) {
+                  returnValue <- valueDefault
+                }
+              }
             }
+            returnValue
           }
 
         output$outcomeInput <-
@@ -228,7 +234,11 @@ rccShinyApp <-
                   inputId = "param_outcome",
                   label = rccShinyTXT(language = GLOBAL_language)$outcome,
                   choices = GLOBAL_outcomeTitle,
-                  selected = inputInitialValuesSelected("param_outcome", GLOBAL_outcomeTitle[1]),
+                  selected = inputInitialValuesSelected(
+                    name = "param_outcome",
+                    valueDefault = GLOBAL_outcomeTitle[1],
+                    valuesValid = GLOBAL_outcomeTitle
+                  ),
                   width = "100%"
                 )
               )
@@ -237,23 +247,28 @@ rccShinyApp <-
 
         output$numericTypeInput <-
           renderUI({
+            tempChoices <- c(
+              paste0(
+                GLOBAL_prob_labels[2],
+                " (", GLOBAL_propWithinUnit, ")"
+              ),
+              paste(
+                rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                GLOBAL_propWithinUnit
+              )
+            )
             tagList(
               conditionalPanel(
                 condition = ifelse(GLOBAL_propWithinShow & outcomeClassNumeric(), "true", "false"),
                 radioButtons(
                   inputId = "param_numerictype",
                   label = rccShinyTXT(language = GLOBAL_language)$presentation,
-                  choices = c(
-                    paste0(
-                      GLOBAL_prob_labels[2],
-                      " (", GLOBAL_propWithinUnit, ")"
-                    ),
-                    paste(
-                      rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
-                      GLOBAL_propWithinUnit
-                    )
+                  choices = tempChoices,
+                  selected = inputInitialValuesSelected(
+                    name = "param_numerictype",
+                    valueDefault = paste0(GLOBAL_prob_labels[2], " (", GLOBAL_propWithinUnit, ")"),
+                    valuesValid = tempChoices
                   ),
-                  selected = inputInitialValuesSelected("param_numerictype", paste0(GLOBAL_prob_labels[2], " (", GLOBAL_propWithinUnit, ")")),
                   width = "100%"
                 )
               )
@@ -281,7 +296,11 @@ rccShinyApp <-
                 numericInput(
                   inputId = "param_numerictype_prop",
                   label = NULL,
-                  value = inputInitialValuesSelected("param_numerictype_prop", GLOBAL_propWithinValue[whichOutcome()]),
+                  value = inputInitialValuesSelected(
+                    name = "param_numerictype_prop",
+                    valueDefault = GLOBAL_propWithinValue[whichOutcome()],
+                    valuesValid = 0:1000
+                  ),
                   min = 0,
                   max = 1000,
                   step = 1,
@@ -293,6 +312,7 @@ rccShinyApp <-
 
         output$regionInput <-
           renderUI({
+            tempChoices <- c(rccShinyTXT(language = GLOBAL_language)$all, GLOBAL_regionChoices)
             tagList(
               conditionalPanel(
                 condition = paste0(
@@ -304,8 +324,12 @@ rccShinyApp <-
                 selectizeInput(
                   inputId = "param_region",
                   label = GLOBAL_regionLabel,
-                  choices = c(rccShinyTXT(language = GLOBAL_language)$all,GLOBAL_regionChoices),
-                  selected = inputInitialValuesSelected("param_region", GLOBAL_regionSelected),
+                  choices = tempChoices,
+                  selected = inputInitialValuesSelected(
+                    name = "param_region",
+                    valueDefault = GLOBAL_regionSelected,
+                    valuesValid = tempChoices
+                  ),
                   multiple = FALSE,
                   width = "100%"
                 )
@@ -342,13 +366,29 @@ rccShinyApp <-
                   choices = tempChoices,
                   selected =
                     if (GLOBAL_geoUnitsRegionInclude & GLOBAL_geoUnitsDefault %in% "region") {
-                      inputInitialValuesSelected("param_levelpresent", rccShinyLevelNames("region", language = GLOBAL_language))
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = rccShinyLevelNames("region", language = GLOBAL_language),
+                        valuesValid = tempChoices
+                      )
                     } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
-                      inputInitialValuesSelected("param_levelpresent", rccShinyLevelNames("hospital", language = GLOBAL_language))
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = rccShinyLevelNames("hospital", language = GLOBAL_language),
+                        valuesValid = tempChoices
+                      )
                     } else if (GLOBAL_geoUnitsDefault %in% GLOBAL_varOtherComparisonVariables) {
-                      inputInitialValuesSelected("param_levelpresent", GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)])
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)],
+                        valuesValid = tempChoices
+                      )
                     } else {
-                      inputInitialValuesSelected("param_levelpresent", rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language))
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language),
+                        valuesValid = tempChoices
+                      )
                     },
                   width = "100%"
                 )
@@ -367,6 +407,7 @@ rccShinyApp <-
 
         output$ownhospitalInput <-
           renderUI({
+            tempChoices <- hospitalChoices()
             tagList(
               conditionalPanel(
                 condition = paste0(
@@ -379,8 +420,12 @@ rccShinyApp <-
                 selectInput(
                   inputId = "param_ownhospital",
                   label = rccShinyTXT(language = GLOBAL_language)$hospitalinterest,
-                  choices = hospitalChoices(),
-                  selected = inputInitialValuesSelected("param_ownhospital", ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, "")),
+                  choices = tempChoices,
+                  selected = inputInitialValuesSelected(
+                    name = "param_ownhospital",
+                    valueDefault = ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, ""),
+                    valuesValid = tempChoices
+                  ),
                   width = "100%"
                 )
               )
@@ -420,18 +465,23 @@ rccShinyApp <-
 
         output$periodTypeInput <-
           renderUI({
+            tempChoices <- c(
+              if ("year" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear},
+              if ("quarter" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter}
+            )
             tagList(
               conditionalPanel(
                 condition = ifelse(GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1, "true", "false"),
                 radioButtons(
                   inputId = "param_periodtype",
                   label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {GLOBAL_periodLabel} else {NULL},
-                  choices = c(
-                    if ("year" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear},
-                    if ("quarter" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter}
-                  ),
+                  choices = tempChoices,
                   width = "100%",
-                  selected = inputInitialValuesSelected("param_periodtype", NULL)
+                  selected = inputInitialValuesSelected(
+                    name = "param_periodtype",
+                    valueDefault = NULL,
+                    valuesValid = tempChoices
+                  )
                 )
               )
             )
@@ -465,7 +515,11 @@ rccShinyApp <-
                   max = GLOBAL_periodEnd,
                   step = 1,
                   ticks = FALSE,
-                  value = inputInitialValuesSelected("param_period_year", c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd)),
+                  value = inputInitialValuesSelected(
+                    name = "param_period_year",
+                    valueDefault = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
+                    valuesValid = GLOBAL_periodStart:GLOBAL_periodEnd
+                  ),
                   sep = "",
                   width = "100%"
                 )
@@ -491,7 +545,11 @@ rccShinyApp <-
                   inputId = "param_period_quarter",
                   label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {NULL} else {GLOBAL_periodLabel},
                   choices = GLOBAL_periodValues_quarters,
-                  selected = inputInitialValuesSelected("param_period_quarter", c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters)),
+                  selected = inputInitialValuesSelected(
+                    name = "param_period_quarter",
+                    valueDefault = c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters),
+                    valuesValid = GLOBAL_periodValues_quarters
+                  ),
                   width = "100%"
                 )
               )
@@ -519,7 +577,11 @@ rccShinyApp <-
                     tolower(GLOBAL_periodLabel),
                     rccShinyTXT(language = GLOBAL_language)$periodSplit2
                   ),
-                  value = inputInitialValuesSelected("param_periodSplit", FALSE),
+                  value = inputInitialValuesSelected(
+                    name = "param_periodSplit",
+                    valueDefault = FALSE,
+                    valuesValid = c(TRUE, FALSE)
+                  ),
                   width = "100%"
                 )
               )
@@ -542,7 +604,15 @@ rccShinyApp <-
                         max = max(tempList$choices, na.rm = TRUE),
                         step = tempList$sliderStep,
                         ticks = FALSE,
-                        value = inputInitialValuesSelected(paste0("userInputId", i), c(min(tempList$selected, na.rm = TRUE), max(tempList$selected, na.rm = TRUE))),
+                        value = inputInitialValuesSelected(
+                          name = paste0("userInputId", i),
+                          valueDefault = c(min(tempList$selected, na.rm = TRUE), max(tempList$selected, na.rm = TRUE)),
+                          valuesValid = seq(
+                            from = min(tempList$choices, na.rm = TRUE),
+                            to = max(tempList$choices, na.rm = TRUE),
+                            by = tempList$sliderStep
+                          )
+                        ),
                         sep = "",
                         width = "100%"
                       )
@@ -551,7 +621,11 @@ rccShinyApp <-
                         inputId = paste0("userInputId", i),
                         label = tempList$label,
                         choices = tempList$choices,
-                        selected = inputInitialValuesSelected(paste0("userInputId", i), tempList$selected),
+                        selected = inputInitialValuesSelected(
+                          name = paste0("userInputId", i),
+                          valueDefault = tempList$selected,
+                          valuesValid = tempList$choices
+                        ),
                         multiple = tempList$multiple,
                         options = list(
                           'actions-box' = TRUE,
@@ -578,7 +652,11 @@ rccShinyApp <-
                 checkboxInput(
                   inputId = "param_funnelplot",
                   label = rccShinyTXT(language = GLOBAL_language)$funnelplot,
-                  value = inputInitialValuesSelected("param_funnelplot", FALSE),
+                  value = inputInitialValuesSelected(
+                    name = "param_funnelplot",
+                    valueDefault = FALSE,
+                    valuesValid = c(TRUE, FALSE)
+                  ),
                   width = "100%"
                 )
               )
