@@ -38,7 +38,27 @@ rccShinyApp <-
               }
             ")
           ),
-          tags$head(tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}"))),
+          tags$head(
+            tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}")),
+            tags$script(
+              HTML(
+                # Test to see if app is running locally (app won't work with this JS when testing in RStudio for some reason, but works in browser...)
+                # Also check if app is running in iframe...
+                if (Sys.getenv("SHINY_PORT") == "") {""} else {
+                  "$(function() {
+                    $(document).on({'shiny:inputchanged': function(event) {
+                      console.log(event);
+                      if (window.self !== window.top) {
+                        if (typeof window.parent.notifyVarChanged === 'function') {
+                          window.parent.notifyVarChanged(event.name, event.value);
+                        }
+                      }
+                    }});
+                  });"
+                }
+              )
+            )
+          ),
           if (!is.null(optionsList$gaPath)) { tags$head(tags$script(src = optionsList$gaPath)) },
           h2(htmlOutput("text0")),
           p(
@@ -180,6 +200,25 @@ rccShinyApp <-
             GLOBAL_outcomeClass[whichOutcome()] %in% "NA"
           })
 
+        inputInitialValuesSelected <-
+          function(
+            name = NULL,
+            valueDefault = NULL
+          ) {
+            query <- parseQueryString(session$clientData$url_search)
+            if (!is.null(query[[name]])) {
+              tempValue <- jsonlite::fromJSON(query[[name]])
+              if (length(tempValue) == 1) {
+                if (toupper(tempValue) %in% c("TRUE", "FALSE")) {
+                  tempValue <- as.logical(toupper(tempValue))
+                }
+              }
+              tempValue
+            } else {
+              valueDefault
+            }
+          }
+
         output$outcomeInput <-
           renderUI({
             tagList(
@@ -189,7 +228,7 @@ rccShinyApp <-
                   inputId = "param_outcome",
                   label = rccShinyTXT(language = GLOBAL_language)$outcome,
                   choices = GLOBAL_outcomeTitle,
-                  selected = GLOBAL_outcomeTitle[1],
+                  selected = inputInitialValuesSelected("param_outcome", GLOBAL_outcomeTitle[1]),
                   width = "100%"
                 )
               )
@@ -214,10 +253,7 @@ rccShinyApp <-
                       GLOBAL_propWithinUnit
                     )
                   ),
-                  selected = paste0(
-                    GLOBAL_prob_labels[2],
-                    " (", GLOBAL_propWithinUnit, ")"
-                  ),
+                  selected = inputInitialValuesSelected("param_numerictype", paste0(GLOBAL_prob_labels[2], " (", GLOBAL_propWithinUnit, ")")),
                   width = "100%"
                 )
               )
@@ -245,7 +281,7 @@ rccShinyApp <-
                 numericInput(
                   inputId = "param_numerictype_prop",
                   label = NULL,
-                  value = GLOBAL_propWithinValue[whichOutcome()],
+                  value = inputInitialValuesSelected("param_numerictype_prop", GLOBAL_propWithinValue[whichOutcome()]),
                   min = 0,
                   max = 1000,
                   step = 1,
@@ -269,7 +305,7 @@ rccShinyApp <-
                   inputId = "param_region",
                   label = GLOBAL_regionLabel,
                   choices = c(rccShinyTXT(language = GLOBAL_language)$all,GLOBAL_regionChoices),
-                  selected = GLOBAL_regionSelected,
+                  selected = inputInitialValuesSelected("param_region", GLOBAL_regionSelected),
                   multiple = FALSE,
                   width = "100%"
                 )
@@ -306,21 +342,13 @@ rccShinyApp <-
                   choices = tempChoices,
                   selected =
                     if (GLOBAL_geoUnitsRegionInclude & GLOBAL_geoUnitsDefault %in% "region") {
-                      rccShinyLevelNames("region", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsRegionLabel)
+                      inputInitialValuesSelected("param_levelpresent", rccShinyLevelNames("region", language = GLOBAL_language))
                     } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
-                      rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel)
+                      inputInitialValuesSelected("param_levelpresent", rccShinyLevelNames("hospital", language = GLOBAL_language))
                     } else if (GLOBAL_geoUnitsDefault %in% GLOBAL_varOtherComparisonVariables) {
-                      GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)]
+                      inputInitialValuesSelected("param_levelpresent", GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)])
                     } else {
-                      rccShinyLevelNames(
-                        ifelse(
-                          GLOBAL_geoUnitsPatient,
-                          "county_lkf",
-                          "county"
-                        ),
-                        language = GLOBAL_language,
-                        optionalLabel = GLOBAL_geoUnitsCountyLabel
-                      )
+                      inputInitialValuesSelected("param_levelpresent", rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language))
                     },
                   width = "100%"
                 )
@@ -352,7 +380,7 @@ rccShinyApp <-
                   inputId = "param_ownhospital",
                   label = rccShinyTXT(language = GLOBAL_language)$hospitalinterest,
                   choices = hospitalChoices(),
-                  selected = ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, ""),
+                  selected = inputInitialValuesSelected("param_ownhospital", ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, "")),
                   width = "100%"
                 )
               )
@@ -402,7 +430,8 @@ rccShinyApp <-
                     if ("year" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear},
                     if ("quarter" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter}
                   ),
-                  width = "100%"
+                  width = "100%",
+                  selected = inputInitialValuesSelected("param_periodtype", NULL)
                 )
               )
             )
@@ -436,7 +465,7 @@ rccShinyApp <-
                   max = GLOBAL_periodEnd,
                   step = 1,
                   ticks = FALSE,
-                  value = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
+                  value = inputInitialValuesSelected("param_period_year", c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd)),
                   sep = "",
                   width = "100%"
                 )
@@ -462,7 +491,7 @@ rccShinyApp <-
                   inputId = "param_period_quarter",
                   label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {NULL} else {GLOBAL_periodLabel},
                   choices = GLOBAL_periodValues_quarters,
-                  selected = c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters),
+                  selected = inputInitialValuesSelected("param_period_quarter", c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters)),
                   width = "100%"
                 )
               )
@@ -490,7 +519,7 @@ rccShinyApp <-
                     tolower(GLOBAL_periodLabel),
                     rccShinyTXT(language = GLOBAL_language)$periodSplit2
                   ),
-                  value = FALSE,
+                  value = inputInitialValuesSelected("param_periodSplit", FALSE),
                   width = "100%"
                 )
               )
@@ -507,16 +536,13 @@ rccShinyApp <-
                     tempList <- GLOBAL_varOther[[i]]
                     if (tempList$classNumeric) {
                       sliderInput(
-                        inputId = paste0("userInputId",i),
+                        inputId = paste0("userInputId", i),
                         label = tempList$label,
                         min = min(tempList$choices, na.rm = TRUE),
                         max = max(tempList$choices, na.rm = TRUE),
                         step = tempList$sliderStep,
                         ticks = FALSE,
-                        value = c(
-                          min(tempList$selected, na.rm = TRUE),
-                          max(tempList$selected, na.rm = TRUE)
-                        ),
+                        value = inputInitialValuesSelected(paste0("userInputId", i), c(min(tempList$selected, na.rm = TRUE), max(tempList$selected, na.rm = TRUE))),
                         sep = "",
                         width = "100%"
                       )
@@ -525,7 +551,7 @@ rccShinyApp <-
                         inputId = paste0("userInputId", i),
                         label = tempList$label,
                         choices = tempList$choices,
-                        selected = tempList$selected,
+                        selected = inputInitialValuesSelected(paste0("userInputId", i), tempList$selected),
                         multiple = tempList$multiple,
                         options = list(
                           'actions-box' = TRUE,
@@ -552,7 +578,7 @@ rccShinyApp <-
                 checkboxInput(
                   inputId = "param_funnelplot",
                   label = rccShinyTXT(language = GLOBAL_language)$funnelplot,
-                  value = FALSE,
+                  value = inputInitialValuesSelected("param_funnelplot", FALSE),
                   width = "100%"
                 )
               )
