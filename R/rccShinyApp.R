@@ -50,10 +50,7 @@ rccShinyApp <-
                       //console.log(event);
                       if (window.self !== window.top) {
                         if (typeof window.parent.notifyVarChanged === 'function') {
-                          // Don't save userInputId, may contain special characters not allowed in URL query
-                          if (event.name.substr(0, 11) != 'userInputId') {
-                            window.parent.notifyVarChanged(event.name, event.value);
-                          }
+                          window.parent.notifyVarChanged(event.name, event.value);
                         }
                       }
                     }});
