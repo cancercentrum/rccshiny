@@ -596,16 +596,17 @@ rccShinyApp <-
                   1:length(GLOBAL_varOther),
                   function(i) {
                     tempList <- GLOBAL_varOther[[i]]
+                    tempId <- paste0("userInput_", tempList$var)
                     if (tempList$classNumeric) {
                       sliderInput(
-                        inputId = paste0("userInputId", i),
+                        inputId = tempId,
                         label = tempList$label,
                         min = min(tempList$choices, na.rm = TRUE),
                         max = max(tempList$choices, na.rm = TRUE),
                         step = tempList$sliderStep,
                         ticks = FALSE,
                         value = inputInitialValuesSelected(
-                          name = paste0("userInputId", i),
+                          name = tempId,
                           valueDefault = c(min(tempList$selected, na.rm = TRUE), max(tempList$selected, na.rm = TRUE)),
                           valuesValid = seq(
                             from = min(tempList$choices, na.rm = TRUE),
@@ -618,11 +619,11 @@ rccShinyApp <-
                       )
                     } else {
                       shinyWidgets::pickerInput(
-                        inputId = paste0("userInputId", i),
+                        inputId = tempId,
                         label = tempList$label,
                         choices = tempList$choices,
                         selected = inputInitialValuesSelected(
-                          name = paste0("userInputId", i),
+                          name = tempId,
                           valueDefault = tempList$selected,
                           valuesValid = tempList$choices
                         ),
@@ -748,7 +749,7 @@ rccShinyApp <-
           if (!is.null(GLOBAL_varOther)) {
             for (i in 1:length(GLOBAL_varOther)) {
               tempList <- GLOBAL_varOther[[i]]
-              tempValues <- input[[paste0("userInputId",i)]]
+              tempValues <- input[[paste0("userInput_", tempList$var)]]
               if (tempList$showInTitle) {
                 if (tempList$classNumeric) {
                   if (!(min(tempList$choices) %in% tempValues[1] &
@@ -919,10 +920,12 @@ rccShinyApp <-
 
           if (!is.null(GLOBAL_varOther)) {
             for (i in 1:length(GLOBAL_varOther)) {
-              if (GLOBAL_varOther[[i]]$classNumeric) {
-                dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] >= input[[paste0("userInputId",i)]][1] & dftemp[,GLOBAL_varOther[[i]]$var] <= input[[paste0("userInputId",i)]][2],]
+              tempList <- GLOBAL_varOther[[i]]
+              tempInput <- input[[paste0("userInput_", tempList$var)]]
+              if (tempList$classNumeric) {
+                dftemp <- dftemp[!is.na(dftemp[, tempList$var]) & dftemp[, tempList$var] >= tempInput[1] & dftemp[, tempList$var] <= tempInput[2],]
               } else {
-                dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] %in% input[[paste0("userInputId",i)]],]
+                dftemp <- dftemp[!is.na(dftemp[, tempList$var]) & dftemp[, tempList$var] %in% tempInput,]
               }
             }
           }
