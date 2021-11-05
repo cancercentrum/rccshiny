@@ -369,25 +369,25 @@ rccShinyApp <-
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
                         valueDefault = rccShinyLevelNames("region", language = GLOBAL_language),
-                        valuesValid = tempChoices
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
                         valueDefault = rccShinyLevelNames("hospital", language = GLOBAL_language),
-                        valuesValid = tempChoices
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     } else if (GLOBAL_geoUnitsDefault %in% GLOBAL_varOtherComparisonVariables) {
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
                         valueDefault = GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)],
-                        valuesValid = tempChoices
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     } else {
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
                         valueDefault = rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language),
-                        valuesValid = tempChoices
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     },
                   width = "100%"
