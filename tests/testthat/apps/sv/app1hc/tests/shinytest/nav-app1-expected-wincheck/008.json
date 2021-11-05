@@ -90,11 +90,11 @@
     "sidebarCollapsed": true,
     "sidebarItemExpanded": null,
     "tab": "fig_compare",
-    "userInputId1": [
+    "userInput_age": [
       18,
       99
     ],
-    "userInputId2": "I"
+    "userInput_stage": "I"
   },
   "output": {
     "comment": null,
@@ -13587,7 +13587,7 @@
       ]
     },
     "userInput": {
-      "html": "<div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n  <label class=\"control-label\" id=\"userInputId1-label\" for=\"userInputId1\">Alder vid diagnos<\/label>\n  <input class=\"js-range-slider\" id=\"userInputId1\" data-skin=\"shiny\" data-type=\"double\" data-min=\"18\" data-max=\"99\" data-from=\"18\" data-to=\"99\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n<\/div>\n<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInputId2\">Stadium<\/label>\n  <select data-actions-box=\"true\" data-deselect-all-text=\"Avmarkera alla\" data-select-all-text=\"Markera alla\" data-none-selected-text=\"-\" data-width=\"100%\" id=\"userInputId2\" class=\"selectpicker form-control\" multiple=\"multiple\"><option value=\"I\" selected>I<\/option>\n<option value=\"II\">II<\/option><\/select>\n<\/div>",
+      "html": "<div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n  <label class=\"control-label\" id=\"userInput_age-label\" for=\"userInput_age\">Alder vid diagnos<\/label>\n  <input class=\"js-range-slider\" id=\"userInput_age\" data-skin=\"shiny\" data-type=\"double\" data-min=\"18\" data-max=\"99\" data-from=\"18\" data-to=\"99\" data-step=\"1\" data-grid=\"false\" data-grid-snap=\"false\" data-prettify-separator=\"\" data-prettify-enabled=\"false\" data-keyboard=\"true\" data-drag-interval=\"true\" data-data-type=\"number\"/>\n<\/div>\n<div class=\"form-group shiny-input-container\" style=\"width: 100%;\">\n  <label class=\"control-label\" for=\"userInput_stage\">Stadium<\/label>\n  <select data-actions-box=\"true\" data-deselect-all-text=\"Avmarkera alla\" data-select-all-text=\"Markera alla\" data-none-selected-text=\"-\" data-width=\"100%\" id=\"userInput_stage\" class=\"selectpicker form-control\" multiple=\"multiple\"><option value=\"I\" selected>I<\/option>\n<option value=\"II\">II<\/option><\/select>\n<\/div>",
       "deps": [
         {
           "name": "ionrangeslider-javascript",
