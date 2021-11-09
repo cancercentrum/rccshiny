@@ -319,7 +319,7 @@ rccShinyApp <-
                   "input.tab!='list' & ",
                   ifelse(GLOBAL_regionSelection, "true", "false"), " & ",
                   ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false"), " & ",
-                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), ")"
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA(), "true", "false"), ")"
                 ),
                 selectizeInput(
                   inputId = "param_region",
@@ -415,7 +415,7 @@ rccShinyApp <-
                   ifelse(varOtherComparisonChosen(), "input.tab=='fig_trend'", "true"), " & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"), " & ",
                   "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel), "' & input.tab == 'fig_compare') & ",
-                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA(), "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
                 ),
                 selectInput(
                   inputId = "param_ownhospital",
@@ -851,6 +851,13 @@ rccShinyApp <-
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
               }
             }
+            if (GLOBAL_periodInclude & "trend" %in% GLOBAL_includeTabs & outcomeClassNA()) {
+              if (GLOBAL_outputHighcharts) {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("chart-line"))
+              } else {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
+              }
+            }
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", DT::dataTableOutput("indList"), icon = icon("list"))
             }
@@ -1172,7 +1179,7 @@ rccShinyApp <-
 
                 tab <- rbind(tab_total, tab_group)
 
-                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA()) {
 
                   if (nrow(tab_group) > 0) {
                     yx_ratio <- 1.8
@@ -1231,6 +1238,34 @@ rccShinyApp <-
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent,
+                    outputHighchart = TRUE,
+                    outputHighchartHideTooltip = GLOBAL_hideLessThanCell > 1
+                  )
+
+                } else if (outcomeClassNA()) {
+
+                  x <- list()
+                  y <- list()
+                  # legend <- vector()
+
+                  for (i in levels(dfuse$outcome)) {
+                    x <- append(x, list(tab_total$Period))
+                    y <- append(y, list(as.numeric(tab_total[,i])))
+                    # legend <- c(legend, i)
+                  }
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    # legend = legend,
+                    xLim = range(tab_total$Period),
+                    xBy = 1,
+                    yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                    title = GLOBAL_allLabel,
+                    subtitle1 = NULL,
+                    subtitle2 = NULL,
+                    xLab = GLOBAL_periodLabel,
+                    yLab = rccShinyTXT(language = GLOBAL_language)$noofcases,
                     outputHighchart = TRUE,
                     outputHighchartHideTooltip = GLOBAL_hideLessThanCell > 1
                   )
@@ -1363,7 +1398,7 @@ rccShinyApp <-
 
                 tab <- rbind(tab_total, tab_group)
 
-                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA()) {
 
                   if (nrow(tab_group) > 0) {
                     yx_ratio <- 1.8
@@ -1454,6 +1489,62 @@ rccShinyApp <-
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent
+                  )
+
+                } else if (outcomeClassNA()) {
+
+                  if (nrow(tab_group) > 0) {
+
+                    par(mfrow = c(2, 1))
+
+                    x <- list()
+                    y <- list()
+                    # legend <- vector()
+
+                    for (i in levels(dfuse$outcome)) {
+                      x <- append(x, list(tab_group$Period))
+                      y <- append(y, list(as.numeric(tab_group[,i])))
+                      # legend <- c(legend, i)
+                    }
+
+                    rcc2PlotLine(
+                      x = x,
+                      y = y,
+                      # legend = legend,
+                      xLim = range(tab_group$Period),
+                      xBy = 1,
+                      yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                      title = input$param_ownhospital,
+                      subtitle1 = NULL,
+                      subtitle2 = NULL,
+                      xLab = GLOBAL_periodLabel,
+                      yLab = rccShinyTXT(language = GLOBAL_language)$noofcases
+                    )
+
+                  }
+
+                  x <- list()
+                  y <- list()
+                  # legend <- vector()
+
+                  for (i in levels(dfuse$outcome)) {
+                    x <- append(x, list(tab_total$Period))
+                    y <- append(y, list(as.numeric(tab_total[,i])))
+                    # legend <- c(legend, i)
+                  }
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    # legend = legend,
+                    xLim = range(tab_total$Period),
+                    xBy = 1,
+                    yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                    title = GLOBAL_allLabel,
+                    subtitle1 = NULL,
+                    subtitle2 = NULL,
+                    xLab = GLOBAL_periodLabel,
+                    yLab = rccShinyTXT(language = GLOBAL_language)$noofcases
                   )
 
                 } else {
