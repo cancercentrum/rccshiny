@@ -1258,6 +1258,8 @@ rccShinyApp <-
                     x = x,
                     y = y,
                     # legend = legend,
+                    # Colour for "all", cf https://bitbucket.org/cancercentrum/rccshiny/src/1.9.1/R/rcc2PlotInd.R#lines-611
+                    col = "#ffb117",
                     xLim = range(tab_total$Period),
                     xBy = 1,
                     yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
@@ -1511,6 +1513,8 @@ rccShinyApp <-
                       x = x,
                       y = y,
                       # legend = legend,
+                      # Colour for "emphasised", cf https://bitbucket.org/cancercentrum/rccshiny/src/1.9.1/R/rcc2PlotInd.R#lines-612
+                      col = "#db5524",
                       xLim = range(tab_group$Period),
                       xBy = 1,
                       yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
@@ -1537,6 +1541,8 @@ rccShinyApp <-
                     x = x,
                     y = y,
                     # legend = legend,
+                    # Colour for "all", cf https://bitbucket.org/cancercentrum/rccshiny/src/1.9.1/R/rcc2PlotInd.R#lines-611
+                    col = "#ffb117",
                     xLim = range(tab_total$Period),
                     xBy = 1,
                     yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
