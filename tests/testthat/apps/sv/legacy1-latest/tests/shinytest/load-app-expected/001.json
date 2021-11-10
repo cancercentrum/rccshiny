@@ -35,7 +35,7 @@
       ]
     },
     "indPlot": {
-      "src": "[image data sha1: 9f9e097121ab75b3624a28342bb7492b3c5453bd]",
+      "src": "[image data sha1: 5285e24cb547185d0c2ae18e1f70b50b73395184]",
       "width": 694,
       "height": 971.6
     },
@@ -334,13 +334,13 @@
         },
         {
           "name": "crosstalk",
-          "version": "1.1.1",
+          "version": "1.2.0",
           "src": {
-            "href": "crosstalk-1.1.1"
+            "href": "crosstalk-1.2.0"
           },
           "meta": null,
           "script": "js/crosstalk.min.js",
-          "stylesheet": "css/crosstalk.css",
+          "stylesheet": "css/crosstalk.min.css",
           "head": null,
           "attachment": null,
           "all_files": true
