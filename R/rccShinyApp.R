@@ -1243,6 +1243,8 @@ rccShinyApp <-
                   )
 
                 } else if (outcomeClassNA()) {
+                  # The code in this else-if-statement for presentation of "Number of cases"
+                  # is a quick-and-dirty copy-paste adaptation from previous if-statement
 
                   x <- list()
                   y <- list()
@@ -1494,6 +1496,8 @@ rccShinyApp <-
                   )
 
                 } else if (outcomeClassNA()) {
+                  # The code in this else-if-statement for presentation of "Number of cases"
+                  # is a quick-and-dirty copy-paste adaptation from previous if-statement
 
                   if (nrow(tab_group) > 0) {
 
