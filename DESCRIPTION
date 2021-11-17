@@ -1,6 +1,6 @@
 Package: rccShiny
 Title: Shiny Apps for RCC
-Version: 1.9.1.9000
+Version: 1.9.1.9001
 Authors@R: 
     c(person(given = "Fredrik",
              family = "Sandin",
