@@ -2280,6 +2280,9 @@ rccShinyCheckData <-
 
     optionsList$error <- ""
 
+    # Ensure data is data.frame and not for example tbl_df
+    optionsList$data <- as.data.frame(optionsList$data)
+
     # id
     optionsList$idInclude <- TRUE
     if (is.null(optionsList$id)) {
