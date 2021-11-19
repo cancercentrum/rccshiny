@@ -308,9 +308,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.19",
+          "version": "0.20",
           "src": {
-            "href": "datatables-binding-0.19"
+            "href": "datatables-binding-0.20"
           },
           "meta": null,
           "script": "datatables.js",

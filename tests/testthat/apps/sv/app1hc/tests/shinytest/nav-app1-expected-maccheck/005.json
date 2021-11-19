@@ -69,7 +69,67 @@
     ],
     "indTable_rows_selected": null,
     "indTable_search": "",
-    "indTable_state": null,
+    "indTable_state": {
+      "time": 1637309658253,
+      "start": 0,
+      "length": 10,
+      "order": [
+
+      ],
+      "search": {
+        "search": "",
+        "smart": true,
+        "regex": false,
+        "caseInsensitive": true
+      },
+      "columns": [
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        },
+        {
+          "visible": true,
+          "search": {
+            "search": "",
+            "smart": true,
+            "regex": false,
+            "caseInsensitive": true
+          }
+        }
+      ]
+    },
     "param_funnelplot": false,
     "param_levelpresent": "Region",
     "param_numerictype": "Median (dagar)",
@@ -9830,9 +9890,9 @@
         },
         {
           "name": "dt-core",
-          "version": "1.10.20",
+          "version": "1.11.3",
           "src": {
-            "href": "dt-core-1.10.20"
+            "href": "dt-core-1.11.3"
           },
           "meta": null,
           "script": "js/jquery.dataTables.min.js",
@@ -9847,9 +9907,9 @@
         },
         {
           "name": "jszip",
-          "version": "1.10.20",
+          "version": "1.11.3",
           "src": {
-            "href": "jszip-1.10.20"
+            "href": "jszip-1.11.3"
           },
           "meta": null,
           "script": "jszip.min.js",
@@ -9861,9 +9921,9 @@
         },
         {
           "name": "pdfmake",
-          "version": "1.10.20",
+          "version": "1.11.3",
           "src": {
-            "href": "pdfmake-1.10.20"
+            "href": "pdfmake-1.11.3"
           },
           "meta": null,
           "script": [
@@ -9878,14 +9938,13 @@
         },
         {
           "name": "dt-ext-buttons",
-          "version": "1.10.20",
+          "version": "1.11.3",
           "src": {
-            "href": "dt-ext-buttons-1.10.20"
+            "href": "dt-ext-buttons-1.11.3"
           },
           "meta": null,
           "script": [
             "js/dataTables.buttons.min.js",
-            "js/buttons.flash.min.js",
             "js/buttons.html5.min.js",
             "js/buttons.colVis.min.js",
             "js/buttons.print.min.js"
@@ -10271,9 +10330,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.19",
+          "version": "0.20",
           "src": {
-            "href": "datatables-binding-0.19"
+            "href": "datatables-binding-0.20"
           },
           "meta": null,
           "script": "datatables.js",
