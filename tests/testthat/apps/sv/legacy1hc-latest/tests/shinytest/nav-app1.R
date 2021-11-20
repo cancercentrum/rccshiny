@@ -6,11 +6,11 @@ app$snapshotInit("nav-app1", screenshot = FALSE)
 
 app$snapshot()
 
-app$setInputs(tab = "table")
-# app$waitForValue()
-# Hope the newer report appears within 7 seconds
-Sys.sleep(7)
-app$snapshot()
+# app$setInputs(tab = "table")
+# # app$waitForValue()
+# # Hope the newer report appears within 7 seconds
+# Sys.sleep(7)
+# app$snapshot()
 app$setInputs(tab = "fig_map")
 # app$waitForValue()
 # Hope the newer report appears within 7 seconds

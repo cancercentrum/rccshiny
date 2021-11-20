@@ -1,135 +1,5 @@
 {
   "input": {
-    "indTable_cell_clicked": {
-
-    },
-    "indTable_cells_selected": [
-
-    ],
-    "indTable_columns_selected": null,
-    "indTable_rows_all": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28
-    ],
-    "indTable_rows_current": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28
-    ],
-    "indTable_rows_selected": null,
-    "indTable_search": "",
-    "indTable_state": {
-      "time": 1637309769328,
-      "start": 0,
-      "length": 10,
-      "order": [
-
-      ],
-      "search": {
-        "search": "",
-        "smart": true,
-        "regex": false,
-        "caseInsensitive": true
-      },
-      "columns": [
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        },
-        {
-          "visible": true,
-          "search": {
-            "search": "",
-            "smart": true,
-            "regex": false,
-            "caseInsensitive": true
-          }
-        }
-      ]
-    },
     "param_funnelplot": false,
     "param_levelpresent": "Region",
     "param_numerictype": "Median (dagar)",
@@ -149,7 +19,7 @@
     "param_region": "Alla",
     "sidebarCollapsed": true,
     "sidebarItemExpanded": null,
-    "tab": "fig_map",
+    "tab": "fig_trend",
     "userInput_age": [
       18,
       99
@@ -165,7 +35,7 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: 36f4a373d96302ccac14ca955cab6a752e52e799]",
+      "src": "[image data sha1: dec1da06451fca3a9ea9609e1e33a35144b57dc2]",
       "width": 694,
       "height": 971.6
     },
@@ -174,173 +44,10 @@
       "width": 694,
       "height": 971.6
     },
-    "indTable": {
-      "x": {
-        "filter": "none",
-        "vertical": false,
-        "extensions": [
-          "Buttons"
-        ],
-        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Region<\/th>\n      <th>Period<\/th>\n      <th>Täljare<\/th>\n      <th>Nämnare<\/th>\n      <th>Procent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
-        "options": {
-          "columnDefs": [
-            {
-              "className": "dt-left",
-              "targets": 0
-            },
-            {
-              "className": "dt-right",
-              "targets": [
-                1,
-                2,
-                3,
-                4
-              ]
-            }
-          ],
-          "language": {
-            "emptyTable": "Ej tillräckligt med observationer för aktuellt urval"
-          },
-          "searching": true,
-          "paging": false,
-          "dom": "Bfrtip",
-          "scrollX": true,
-          "buttons": [
-            {
-              "extend": "excel",
-              "filename": "Dikotom",
-              "title": "Dikotom"
-            },
-            {
-              "extend": "pdf",
-              "filename": "Dikotom",
-              "title": "Dikotom"
-            },
-            {
-              "extend": "print",
-              "title": "Dikotom"
-            }
-          ],
-          "order": [
-
-          ],
-          "autoWidth": false,
-          "orderClasses": false,
-          "ajax": {
-            "type": "POST",
-            "data": "function(d) {\nd.search.caseInsensitive = true;\nd.search.smart = true;\nd.escape = true;\nvar encodeAmp = function(x) { x.value = x.value.replace(/&/g, \"%26\"); }\nencodeAmp(d.search);\n$.each(d.columns, function(i, v) {encodeAmp(v.search);});\n}"
-          },
-          "serverSide": true,
-          "processing": true
-        },
-        "selection": {
-          "mode": "multiple",
-          "selected": null,
-          "target": "row",
-          "selectable": null
-        }
-      },
-      "evals": [
-        "options.ajax.data"
-      ],
-      "jsHooks": [
-
-      ],
-      "deps": [
-        {
-          "name": "jquery",
-          "version": "3.6.0",
-          "src": {
-            "href": "jquery-3.6.0"
-          },
-          "meta": null,
-          "script": "jquery-3.6.0.min.js",
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "all_files": true
-        },
-        {
-          "name": "dt-core",
-          "version": "1.11.3",
-          "src": {
-            "href": "dt-core-1.11.3"
-          },
-          "meta": null,
-          "script": "js/jquery.dataTables.min.js",
-          "stylesheet": [
-            "css/jquery.dataTables.min.css",
-            "css/jquery.dataTables.extra.css"
-          ],
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": false
-        },
-        {
-          "name": "jszip",
-          "version": "1.11.3",
-          "src": {
-            "href": "jszip-1.11.3"
-          },
-          "meta": null,
-          "script": "jszip.min.js",
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": false
-        },
-        {
-          "name": "pdfmake",
-          "version": "1.11.3",
-          "src": {
-            "href": "pdfmake-1.11.3"
-          },
-          "meta": null,
-          "script": [
-            "pdfmake.js",
-            "vfs_fonts.js"
-          ],
-          "stylesheet": null,
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": false
-        },
-        {
-          "name": "dt-ext-buttons",
-          "version": "1.11.3",
-          "src": {
-            "href": "dt-ext-buttons-1.11.3"
-          },
-          "meta": null,
-          "script": [
-            "js/dataTables.buttons.min.js",
-            "js/buttons.html5.min.js",
-            "js/buttons.colVis.min.js",
-            "js/buttons.print.min.js"
-          ],
-          "stylesheet": "css/buttons.dataTables.min.css",
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": false
-        },
-        {
-          "name": "crosstalk",
-          "version": "1.2.0",
-          "src": {
-            "href": "crosstalk-1.2.0"
-          },
-          "meta": null,
-          "script": "js/crosstalk.min.js",
-          "stylesheet": "css/crosstalk.min.css",
-          "head": null,
-          "attachment": null,
-          "all_files": true
-        }
-      ]
+    "indPlotTrend": {
+      "src": "[image data sha1: 57877ded7d7e9ebc4c51876de959d487dabc2507]",
+      "width": 694,
+      "height": 624.6
     },
     "levelpresentInput": {
       "html": "<div data-display-if=\"input.tab!=&#39;fig_trend&#39; &amp; input.tab!=&#39;fig_map&#39; &amp; input.tab!=&#39;list&#39; &amp; true\" data-ns-prefix=\"\">\n  <div class=\"form-group shiny-input-container\" style=\"width:100%;\">\n    <label class=\"control-label\" id=\"param_levelpresent-label\" for=\"param_levelpresent\">Jämförelsenivå<\/label>\n    <div>\n      <select id=\"param_levelpresent\"><option value=\"Sjukvårdsregion\">Sjukvårdsregion<\/option>\n<option value=\"Region\" selected>Region<\/option>\n<option value=\"Sjukhus\">Sjukhus<\/option><\/select>\n      <script type=\"application/json\" data-for=\"param_levelpresent\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n    <\/div>\n  <\/div>\n<\/div>",
@@ -562,7 +269,7 @@
       ]
     },
     "text0": "Dikotom",
-    "text1": "Period: <strong>2016<\/strong>. ",
+    "text1": "",
     "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
       "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"9015\">\n      <li class=\"active\">\n        <a href=\"#tab-9015-1\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_compare\">\n          <i aria-label=\"chart-bar icon\" class=\"fa fa-chart-bar fa-fw\" role=\"presentation\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"table\">\n          <i aria-label=\"table icon\" class=\"fa fa-table fa-fw\" role=\"presentation\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-3\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_map\">\n          <i aria-label=\"map-marker icon\" class=\"fa fa-map-marker fa-fw\" role=\"presentation\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_trend\">\n          <i aria-label=\"chart-line icon\" class=\"fa fa-chart-line fa-fw\" role=\"presentation\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-5\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"list\">\n          <i aria-label=\"list icon\" class=\"fa fa-list fa-fw\" role=\"presentation\"><\/i>\n          Lista\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-9015-6\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"description\">\n          <i aria-label=\"info-circle icon\" class=\"fa fa-info-circle fa-fw\" role=\"presentation\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"9015\">\n      <div class=\"tab-pane active\" data-icon-class=\"fa fa-chart-bar fa-fw\" data-value=\"fig_compare\" id=\"tab-9015-1\">\n        <div id=\"indPlot\" class=\"shiny-plot-output\" style=\"width:100%;height:auto;\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table fa-fw\" id=\"tab-9015-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker fa-fw\" id=\"tab-9015-3\">\n        <div id=\"indMap\" class=\"shiny-plot-output\" style=\"width:100%;height:auto;\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-chart-line fa-fw\" id=\"tab-9015-4\">\n        <div id=\"indPlotTrend\" class=\"shiny-plot-output\" style=\"width:100%;height:auto;\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"list\" data-icon-class=\"fa fa-list fa-fw\" id=\"tab-9015-5\">\n        <div id=\"indList\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle fa-fw\" id=\"tab-9015-6\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
