@@ -1580,7 +1580,7 @@ rccShinyApp <-
                     legend <- c(legend, i)
                   }
 
-                  master_colshade <- 1.6
+                  master_colshade <- 1.5
                   master_col <- c(
                     rcc2ColShade("#005092", master_colshade),
                     rcc2ColShade("#e56284", master_colshade),
