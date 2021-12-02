@@ -117,7 +117,37 @@ rcc2PlotLine <-
     # Colors
     if (is.null(col)) {
       col <- c(
-        "#00b3f6","#ffb117","#005092","#19975d","#e56284","#66cccc","#db5524","#7f3705","#7c458a","#95bf5d",
+        # Utifrån  i grafisk manual för INCA-plattformen -- lite modifierad
+        # Huvud- och komplementgärger (avsnitt färger):
+        # Färg 3 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        # Huvudfärg i RCC:s grafiska manual
+        "#00b3f6",
+        # Färg 5 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        # Huvudfärg i RCC:s grafiska manual
+        "#ffb117",
+        # Färg 1 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        # Komplementfärg i RCC:s grafiska manual
+        "#005092",
+        # Färg 2 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        # Komplementfärg i RCC:s grafiska manual
+        "#19975d",
+        # Färg 4 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        "#b70904",
+        # Extra komplementfärger till grafer och diagram (avsnitt färger):
+        # Färg 7 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        "#66cccc",
+        # Färg 8 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        "#db5524",
+        # Färg 9 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        "#7f3705",
+        # Färg 10 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        "#7c458a",
+        # Färg 11 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        "#95bf5d",
+        # Färg 12 i grafisk manual för INCA-plattformen, avsnitt grafer och diagram
+        # Komplementfärg i RCC:s grafiska manual
+        "#e56284",
+        #
         "#7f7f7f","#8c8c8c","#999999","#a6a6a6","#b2b2b2","#bfbfbf","#cccccc","#d9d9d9","#e5e5e5","#f2f2f2"
       )
     }
