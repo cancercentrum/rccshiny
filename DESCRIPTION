@@ -5,7 +5,7 @@ Authors@R:
     c(person(given = "Fredrik",
              family = "Sandin",
              role = c("aut", "cre"),
-             email = "fredrik.sandin@rccuppsalaorebro.se"),
+             email = "fredrik.sandin@rccmellan.se"),
       person(given = "Lina",
              family = "Benson",
              role = "ctb"),
