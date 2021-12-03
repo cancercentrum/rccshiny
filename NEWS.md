@@ -1,3 +1,13 @@
+# rccShiny (development version)
+
+## Ny funktionalitet
+
+
+
+## Mindre förbättringar och felrättningar
+
+
+
 # rccShiny 1.10.0
 
 ## Ny funktionalitet
