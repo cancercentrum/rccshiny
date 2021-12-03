@@ -38,7 +38,27 @@ rccShinyApp <-
               }
             ")
           ),
-          tags$head(tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}"))),
+          tags$head(
+            tags$style(HTML(".shiny-notification {position:fixed;top:0px;right:0px;width:300px;}")),
+            tags$script(
+              HTML(
+                # Test to see if app is running locally (app won't work with this JS when testing in RStudio for some reason, but works in browser...)
+                # Also check if app is running in iframe...
+                if (Sys.getenv("SHINY_PORT") == "") {""} else {
+                  "$(function() {
+                    $(document).on({'shiny:inputchanged': function(event) {
+                      //console.log(event);
+                      if (window.self !== window.top) {
+                        if (typeof window.parent.notifyVarChanged === 'function') {
+                          window.parent.notifyVarChanged(event.name, event.value);
+                        }
+                      }
+                    }});
+                  });"
+                }
+              )
+            )
+          ),
           if (!is.null(optionsList$gaPath)) { tags$head(tags$script(src = optionsList$gaPath)) },
           h2(htmlOutput("text0")),
           p(
@@ -180,6 +200,31 @@ rccShinyApp <-
             GLOBAL_outcomeClass[whichOutcome()] %in% "NA"
           })
 
+        inputInitialValuesSelected <-
+          function(
+            name = NULL,
+            valueDefault = NULL,
+            valuesValid = NULL
+          ) {
+            returnValue <- valueDefault
+            query <- parseQueryString(session$clientData$url_search)
+            if (!is.null(query[[name]])) {
+              tempValue <- jsonlite::fromJSON(query[[name]])
+              if (length(tempValue) == 1) {
+                if (toupper(tempValue) %in% c("TRUE", "FALSE")) {
+                  tempValue <- as.logical(toupper(tempValue))
+                }
+              }
+              returnValue <- tempValue
+              if (!is.null(valuesValid)) {
+                if (!all(tempValue %in% valuesValid)) {
+                  returnValue <- valueDefault
+                }
+              }
+            }
+            returnValue
+          }
+
         output$outcomeInput <-
           renderUI({
             tagList(
@@ -189,7 +234,11 @@ rccShinyApp <-
                   inputId = "param_outcome",
                   label = rccShinyTXT(language = GLOBAL_language)$outcome,
                   choices = GLOBAL_outcomeTitle,
-                  selected = GLOBAL_outcomeTitle[1],
+                  selected = inputInitialValuesSelected(
+                    name = "param_outcome",
+                    valueDefault = GLOBAL_outcomeTitle[1],
+                    valuesValid = GLOBAL_outcomeTitle
+                  ),
                   width = "100%"
                 )
               )
@@ -198,25 +247,27 @@ rccShinyApp <-
 
         output$numericTypeInput <-
           renderUI({
+            tempChoices <- c(
+              paste0(
+                GLOBAL_prob_labels[2],
+                " (", GLOBAL_propWithinUnit, ")"
+              ),
+              paste(
+                rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
+                GLOBAL_propWithinUnit
+              )
+            )
             tagList(
               conditionalPanel(
                 condition = ifelse(GLOBAL_propWithinShow & outcomeClassNumeric(), "true", "false"),
                 radioButtons(
                   inputId = "param_numerictype",
                   label = rccShinyTXT(language = GLOBAL_language)$presentation,
-                  choices = c(
-                    paste0(
-                      GLOBAL_prob_labels[2],
-                      " (", GLOBAL_propWithinUnit, ")"
-                    ),
-                    paste(
-                      rccShinyTXT(language = GLOBAL_language)$numericchoices_prop,
-                      GLOBAL_propWithinUnit
-                    )
-                  ),
-                  selected = paste0(
-                    GLOBAL_prob_labels[2],
-                    " (", GLOBAL_propWithinUnit, ")"
+                  choices = tempChoices,
+                  selected = inputInitialValuesSelected(
+                    name = "param_numerictype",
+                    valueDefault = paste0(GLOBAL_prob_labels[2], " (", GLOBAL_propWithinUnit, ")"),
+                    valuesValid = tempChoices
                   ),
                   width = "100%"
                 )
@@ -245,7 +296,11 @@ rccShinyApp <-
                 numericInput(
                   inputId = "param_numerictype_prop",
                   label = NULL,
-                  value = GLOBAL_propWithinValue[whichOutcome()],
+                  value = inputInitialValuesSelected(
+                    name = "param_numerictype_prop",
+                    valueDefault = GLOBAL_propWithinValue[whichOutcome()],
+                    valuesValid = 0:1000
+                  ),
                   min = 0,
                   max = 1000,
                   step = 1,
@@ -257,19 +312,24 @@ rccShinyApp <-
 
         output$regionInput <-
           renderUI({
+            tempChoices <- c(rccShinyTXT(language = GLOBAL_language)$all, GLOBAL_regionChoices)
             tagList(
               conditionalPanel(
                 condition = paste0(
                   "input.tab!='list' & ",
                   ifelse(GLOBAL_regionSelection, "true", "false"), " & ",
                   ifelse(GLOBAL_geoUnitsRegionInclude, "true", "false"), " & ",
-                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), ")"
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA(), "true", "false"), ")"
                 ),
                 selectizeInput(
                   inputId = "param_region",
                   label = GLOBAL_regionLabel,
-                  choices = c(rccShinyTXT(language = GLOBAL_language)$all,GLOBAL_regionChoices),
-                  selected = GLOBAL_regionSelected,
+                  choices = tempChoices,
+                  selected = inputInitialValuesSelected(
+                    name = "param_region",
+                    valueDefault = GLOBAL_regionSelected,
+                    valuesValid = tempChoices
+                  ),
                   multiple = FALSE,
                   width = "100%"
                 )
@@ -306,20 +366,28 @@ rccShinyApp <-
                   choices = tempChoices,
                   selected =
                     if (GLOBAL_geoUnitsRegionInclude & GLOBAL_geoUnitsDefault %in% "region") {
-                      rccShinyLevelNames("region", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsRegionLabel)
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = rccShinyLevelNames("region", language = GLOBAL_language),
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
+                      )
                     } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
-                      rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel)
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = rccShinyLevelNames("hospital", language = GLOBAL_language),
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
+                      )
                     } else if (GLOBAL_geoUnitsDefault %in% GLOBAL_varOtherComparisonVariables) {
-                      GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)]
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = GLOBAL_varOtherComparisonLabels[which(GLOBAL_varOtherComparisonVariables == GLOBAL_geoUnitsDefault)],
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
+                      )
                     } else {
-                      rccShinyLevelNames(
-                        ifelse(
-                          GLOBAL_geoUnitsPatient,
-                          "county_lkf",
-                          "county"
-                        ),
-                        language = GLOBAL_language,
-                        optionalLabel = GLOBAL_geoUnitsCountyLabel
+                      inputInitialValuesSelected(
+                        name = "param_levelpresent",
+                        valueDefault = rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language),
+                        valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     },
                   width = "100%"
@@ -339,6 +407,7 @@ rccShinyApp <-
 
         output$ownhospitalInput <-
           renderUI({
+            tempChoices <- hospitalChoices()
             tagList(
               conditionalPanel(
                 condition = paste0(
@@ -346,13 +415,17 @@ rccShinyApp <-
                   ifelse(varOtherComparisonChosen(), "input.tab=='fig_trend'", "true"), " & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"), " & ",
                   "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel), "' & input.tab == 'fig_compare') & ",
-                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor", "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA(), "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
                 ),
                 selectInput(
                   inputId = "param_ownhospital",
                   label = rccShinyTXT(language = GLOBAL_language)$hospitalinterest,
-                  choices = hospitalChoices(),
-                  selected = ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, ""),
+                  choices = tempChoices,
+                  selected = inputInitialValuesSelected(
+                    name = "param_ownhospital",
+                    valueDefault = ifelse(!is.null(GLOBAL_geoUnitsHospitalSelected), GLOBAL_geoUnitsHospitalSelected, ""),
+                    valuesValid = tempChoices
+                  ),
                   width = "100%"
                 )
               )
@@ -392,17 +465,23 @@ rccShinyApp <-
 
         output$periodTypeInput <-
           renderUI({
+            tempChoices <- c(
+              if ("year" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear},
+              if ("quarter" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter}
+            )
             tagList(
               conditionalPanel(
                 condition = ifelse(GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1, "true", "false"),
                 radioButtons(
                   inputId = "param_periodtype",
                   label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {GLOBAL_periodLabel} else {NULL},
-                  choices = c(
-                    if ("year" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelYear},
-                    if ("quarter" %in% GLOBAL_periodDateLevel) {rccShinyTXT(language = GLOBAL_language)$periodTypeInputLabelQuarter}
-                  ),
-                  width = "100%"
+                  choices = tempChoices,
+                  width = "100%",
+                  selected = inputInitialValuesSelected(
+                    name = "param_periodtype",
+                    valueDefault = NULL,
+                    valuesValid = tempChoices
+                  )
                 )
               )
             )
@@ -436,7 +515,11 @@ rccShinyApp <-
                   max = GLOBAL_periodEnd,
                   step = 1,
                   ticks = FALSE,
-                  value = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
+                  value = inputInitialValuesSelected(
+                    name = "param_period_year",
+                    valueDefault = c(GLOBAL_periodDefaultStart, GLOBAL_periodDefaultEnd),
+                    valuesValid = GLOBAL_periodStart:GLOBAL_periodEnd
+                  ),
                   sep = "",
                   width = "100%"
                 )
@@ -462,7 +545,11 @@ rccShinyApp <-
                   inputId = "param_period_quarter",
                   label = if (GLOBAL_periodDate & length(GLOBAL_periodDateLevel) > 1) {NULL} else {GLOBAL_periodLabel},
                   choices = GLOBAL_periodValues_quarters,
-                  selected = c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters),
+                  selected = inputInitialValuesSelected(
+                    name = "param_period_quarter",
+                    valueDefault = c(GLOBAL_periodDefaultStart_quarters, GLOBAL_periodDefaultEnd_quarters),
+                    valuesValid = GLOBAL_periodValues_quarters
+                  ),
                   width = "100%"
                 )
               )
@@ -490,7 +577,11 @@ rccShinyApp <-
                     tolower(GLOBAL_periodLabel),
                     rccShinyTXT(language = GLOBAL_language)$periodSplit2
                   ),
-                  value = FALSE,
+                  value = inputInitialValuesSelected(
+                    name = "param_periodSplit",
+                    valueDefault = FALSE,
+                    valuesValid = c(TRUE, FALSE)
+                  ),
                   width = "100%"
                 )
               )
@@ -505,27 +596,37 @@ rccShinyApp <-
                   1:length(GLOBAL_varOther),
                   function(i) {
                     tempList <- GLOBAL_varOther[[i]]
+                    tempId <- paste0("userInput_", tempList$var)
                     if (tempList$classNumeric) {
                       sliderInput(
-                        inputId = paste0("userInputId",i),
+                        inputId = tempId,
                         label = tempList$label,
                         min = min(tempList$choices, na.rm = TRUE),
                         max = max(tempList$choices, na.rm = TRUE),
                         step = tempList$sliderStep,
                         ticks = FALSE,
-                        value = c(
-                          min(tempList$selected, na.rm = TRUE),
-                          max(tempList$selected, na.rm = TRUE)
+                        value = inputInitialValuesSelected(
+                          name = tempId,
+                          valueDefault = c(min(tempList$selected, na.rm = TRUE), max(tempList$selected, na.rm = TRUE)),
+                          valuesValid = seq(
+                            from = min(tempList$choices, na.rm = TRUE),
+                            to = max(tempList$choices, na.rm = TRUE),
+                            by = tempList$sliderStep
+                          )
                         ),
                         sep = "",
                         width = "100%"
                       )
                     } else {
                       shinyWidgets::pickerInput(
-                        inputId = paste0("userInputId", i),
+                        inputId = tempId,
                         label = tempList$label,
                         choices = tempList$choices,
-                        selected = tempList$selected,
+                        selected = inputInitialValuesSelected(
+                          name = tempId,
+                          valueDefault = tempList$selected,
+                          valuesValid = tempList$choices
+                        ),
                         multiple = tempList$multiple,
                         options = list(
                           'actions-box' = TRUE,
@@ -552,7 +653,11 @@ rccShinyApp <-
                 checkboxInput(
                   inputId = "param_funnelplot",
                   label = rccShinyTXT(language = GLOBAL_language)$funnelplot,
-                  value = FALSE,
+                  value = inputInitialValuesSelected(
+                    name = "param_funnelplot",
+                    valueDefault = FALSE,
+                    valuesValid = c(TRUE, FALSE)
+                  ),
                   width = "100%"
                 )
               )
@@ -644,7 +749,7 @@ rccShinyApp <-
           if (!is.null(GLOBAL_varOther)) {
             for (i in 1:length(GLOBAL_varOther)) {
               tempList <- GLOBAL_varOther[[i]]
-              tempValues <- input[[paste0("userInputId",i)]]
+              tempValues <- input[[paste0("userInput_", tempList$var)]]
               if (tempList$showInTitle) {
                 if (tempList$classNumeric) {
                   if (!(min(tempList$choices) %in% tempValues[1] &
@@ -746,6 +851,13 @@ rccShinyApp <-
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
               }
             }
+            if (GLOBAL_periodInclude & "trend" %in% GLOBAL_includeTabs & outcomeClassNA()) {
+              if (GLOBAL_outputHighcharts) {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("chart-line"))
+              } else {
+                theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
+              }
+            }
             if (GLOBAL_inca & GLOBAL_incaIncludeList) {
               theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$list, value = "list", DT::dataTableOutput("indList"), icon = icon("list"))
             }
@@ -815,10 +927,12 @@ rccShinyApp <-
 
           if (!is.null(GLOBAL_varOther)) {
             for (i in 1:length(GLOBAL_varOther)) {
-              if (GLOBAL_varOther[[i]]$classNumeric) {
-                dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] >= input[[paste0("userInputId",i)]][1] & dftemp[,GLOBAL_varOther[[i]]$var] <= input[[paste0("userInputId",i)]][2],]
+              tempList <- GLOBAL_varOther[[i]]
+              tempInput <- input[[paste0("userInput_", tempList$var)]]
+              if (tempList$classNumeric) {
+                dftemp <- dftemp[!is.na(dftemp[, tempList$var]) & dftemp[, tempList$var] >= tempInput[1] & dftemp[, tempList$var] <= tempInput[2],]
               } else {
-                dftemp <- dftemp[!is.na(dftemp[,GLOBAL_varOther[[i]]$var]) & dftemp[,GLOBAL_varOther[[i]]$var] %in% input[[paste0("userInputId",i)]],]
+                dftemp <- dftemp[!is.na(dftemp[, tempList$var]) & dftemp[, tempList$var] %in% tempInput,]
               }
             }
           }
@@ -1065,7 +1179,7 @@ rccShinyApp <-
 
                 tab <- rbind(tab_total, tab_group)
 
-                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA()) {
 
                   if (nrow(tab_group) > 0) {
                     yx_ratio <- 1.8
@@ -1124,6 +1238,38 @@ rccShinyApp <-
                     subtitle2 = NULL,
                     xLab = GLOBAL_periodLabel,
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent,
+                    outputHighchart = TRUE,
+                    outputHighchartHideTooltip = GLOBAL_hideLessThanCell > 1
+                  )
+
+                } else if (outcomeClassNA()) {
+                  # The code in this else-if-statement for presentation of "Number of cases"
+                  # is a quick-and-dirty copy-paste adaptation from previous if-statement
+
+                  x <- list()
+                  y <- list()
+                  # legend <- vector()
+
+                  for (i in levels(dfuse$outcome)) {
+                    x <- append(x, list(tab_total$Period))
+                    y <- append(y, list(as.numeric(tab_total[,i])))
+                    # legend <- c(legend, i)
+                  }
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    # legend = legend,
+                    # Colour for "all", cf https://bitbucket.org/cancercentrum/rccshiny/src/1.9.1/R/rcc2PlotInd.R#lines-611
+                    col = "#ffb117",
+                    xLim = range(tab_total$Period),
+                    xBy = 1,
+                    yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                    title = GLOBAL_allLabel,
+                    subtitle1 = NULL,
+                    subtitle2 = NULL,
+                    xLab = GLOBAL_periodLabel,
+                    yLab = rccShinyTXT(language = GLOBAL_language)$noofcases,
                     outputHighchart = TRUE,
                     outputHighchartHideTooltip = GLOBAL_hideLessThanCell > 1
                   )
@@ -1256,7 +1402,7 @@ rccShinyApp <-
 
                 tab <- rbind(tab_total, tab_group)
 
-                if (GLOBAL_outcomeClass[whichOutcome()] == "factor") {
+                if (GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA()) {
 
                   if (nrow(tab_group) > 0) {
                     yx_ratio <- 1.8
@@ -1349,6 +1495,68 @@ rccShinyApp <-
                     yLab = rccShinyTXT(language = GLOBAL_language)$percent
                   )
 
+                } else if (outcomeClassNA()) {
+                  # The code in this else-if-statement for presentation of "Number of cases"
+                  # is a quick-and-dirty copy-paste adaptation from previous if-statement
+
+                  if (nrow(tab_group) > 0) {
+
+                    par(mfrow = c(2, 1))
+
+                    x <- list()
+                    y <- list()
+                    # legend <- vector()
+
+                    for (i in levels(dfuse$outcome)) {
+                      x <- append(x, list(tab_group$Period))
+                      y <- append(y, list(as.numeric(tab_group[,i])))
+                      # legend <- c(legend, i)
+                    }
+
+                    rcc2PlotLine(
+                      x = x,
+                      y = y,
+                      # legend = legend,
+                      # Colour for "emphasised", cf https://bitbucket.org/cancercentrum/rccshiny/src/1.9.1/R/rcc2PlotInd.R#lines-612
+                      col = "#db5524",
+                      xLim = range(tab_group$Period),
+                      xBy = 1,
+                      yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                      title = input$param_ownhospital,
+                      subtitle1 = NULL,
+                      subtitle2 = NULL,
+                      xLab = GLOBAL_periodLabel,
+                      yLab = rccShinyTXT(language = GLOBAL_language)$noofcases
+                    )
+
+                  }
+
+                  x <- list()
+                  y <- list()
+                  # legend <- vector()
+
+                  for (i in levels(dfuse$outcome)) {
+                    x <- append(x, list(tab_total$Period))
+                    y <- append(y, list(as.numeric(tab_total[,i])))
+                    # legend <- c(legend, i)
+                  }
+
+                  rcc2PlotLine(
+                    x = x,
+                    y = y,
+                    # legend = legend,
+                    # Colour for "all", cf https://bitbucket.org/cancercentrum/rccshiny/src/1.9.1/R/rcc2PlotInd.R#lines-611
+                    col = "#ffb117",
+                    xLim = range(tab_total$Period),
+                    xBy = 1,
+                    yLim = range(pretty(c(0, max(unlist(y), na.rm = TRUE)))),
+                    title = GLOBAL_allLabel,
+                    subtitle1 = NULL,
+                    subtitle2 = NULL,
+                    xLab = GLOBAL_periodLabel,
+                    yLab = rccShinyTXT(language = GLOBAL_language)$noofcases
+                  )
+
                 } else {
 
                   x <- list()
@@ -1372,7 +1580,7 @@ rccShinyApp <-
                     legend <- c(legend, i)
                   }
 
-                  master_colshade <- 1.6
+                  master_colshade <- 1.5
                   master_col <- c(
                     rcc2ColShade("#005092", master_colshade),
                     rcc2ColShade("#e56284", master_colshade),
@@ -2071,6 +2279,9 @@ rccShinyCheckData <-
   ) {
 
     optionsList$error <- ""
+
+    # Ensure data is data.frame and not for example tbl_df
+    optionsList$data <- as.data.frame(optionsList$data)
 
     # id
     optionsList$idInclude <- TRUE

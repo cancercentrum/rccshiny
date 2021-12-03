@@ -1,3 +1,15 @@
+# rccShiny 1.10.0
+
+## Ny funktionalitet
+
+* Slutanvändarens urval kan sparas mellan interaktiva rapporter om de används tillsammans med en ny version av startsidan (index.html), se guiden https://statistik.incanet.se/startsida/ (SNY-103)
+
+## Mindre förbättringar och felrättningar
+
+* Data för `rccShiny2()` (argumentet `data`) kan vara av en underklass till klassen `data.frame`, t.ex. `tibble::tbl_df` (SNY-109)
+* Färger i grafer är anpassade till den grafiska manualen för INCA-plattformen (SNY-94)
+* Den gamla funktionen `rccShiny()` är nu helt utfasad (SNY-90, SNY-101)
+
 # rccShiny 1.9.1
 
 En liten felrättningsversion (främst).

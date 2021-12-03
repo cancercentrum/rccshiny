@@ -1,0 +1,17 @@
+---
+title: "Skapa startsida för interaktiv årsrapport"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Skapa startsida för interaktiv årsrapport}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+En guide finns på https://statistik.incanet.se/startsida/

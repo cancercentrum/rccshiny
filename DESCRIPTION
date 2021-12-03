@@ -1,11 +1,11 @@
 Package: rccShiny
 Title: Shiny Apps for RCC
-Version: 1.9.1
+Version: 1.10.0
 Authors@R: 
     c(person(given = "Fredrik",
              family = "Sandin",
              role = c("aut", "cre"),
-             email = "fredrik.sandin@rccuppsalaorebro.se"),
+             email = "fredrik.sandin@rccmellan.se"),
       person(given = "Lina",
              family = "Benson",
              role = "ctb"),
@@ -36,6 +36,7 @@ Imports:
     grDevices,
     highcharter,
     Hmisc,
+    jsonlite,
     lifecycle,
     plyr,
     scales,

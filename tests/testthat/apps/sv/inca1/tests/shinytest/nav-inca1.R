@@ -6,11 +6,11 @@ app$snapshotInit("nav-inca1", screenshot = FALSE)
 
 app$snapshot()
 
-app$setInputs(tab = "table")
-# app$waitForValue()
-# Hope the newer report appears within 7 seconds
-Sys.sleep(7)
-app$snapshot()
+# app$setInputs(tab = "table")
+# # app$waitForValue()
+# # Hope the newer report appears within 7 seconds
+# Sys.sleep(7)
+# app$snapshot()
 app$setInputs(tab = "fig_map")
 # app$waitForValue()
 # Hope the newer report appears within 7 seconds
@@ -21,11 +21,11 @@ app$setInputs(tab = "fig_trend")
 # Hope the newer report appears within 7 seconds
 Sys.sleep(7)
 app$snapshot()
-app$setInputs(tab = "list")
-# app$waitForValue()
-# Hope the newer report appears within 7 seconds
-Sys.sleep(7)
-app$snapshot()
+# app$setInputs(tab = "list")
+# # app$waitForValue()
+# # Hope the newer report appears within 7 seconds
+# Sys.sleep(7)
+# app$snapshot()
 app$setInputs(tab = "description")
 # app$waitForValue()
 # Hope the newer report appears within 7 seconds
@@ -77,8 +77,8 @@ app$setInputs(param_periodSplit = TRUE)
 Sys.sleep(7)
 app$snapshot()
 
-app$setInputs(userInputId1 = c(18, 80))
-app$setInputs(userInputId2 = c("I", "II"))
+app$setInputs(userInput_age = c(18, 80))
+app$setInputs(userInput_stage = c("I", "II"))
 # app$waitForValue()
 # Hope the newer report appears within 7 seconds
 Sys.sleep(7)

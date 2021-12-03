@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Fredrik Sandin \email{fredrik.sandin@rccuppsalaorebro.se}
+\strong{Maintainer}: Fredrik Sandin \email{fredrik.sandin@rccmellan.se}
 
 Other contributors:
 \itemize{

@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", type = "binary")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "a9c2d4a", type = "binary")
 
 library(testthat)
 library(shinytest)
@@ -6,7 +6,7 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.9.0" & sysname == "darwin") {
+if (packageVersion("rccShiny") == "1.9.1.9001" & sysname == "darwin") {
 
   # Run tests using the latest release/stable version
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
