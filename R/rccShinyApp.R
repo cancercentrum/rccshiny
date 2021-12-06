@@ -44,7 +44,7 @@ rccShinyApp <-
               HTML(
                 # Test to see if app is running locally (app won't work with this JS when testing in RStudio for some reason, but works in browser...)
                 # Also check if app is running in iframe...
-                if (Sys.getenv("SHINY_PORT") == "") {""} else {
+                if (Sys.getenv("SHINY_PORT") == "" | optionsList$inca) {""} else {
                   "$(function() {
                     $(document).on({'shiny:inputchanged': function(event) {
                       //console.log(event);
