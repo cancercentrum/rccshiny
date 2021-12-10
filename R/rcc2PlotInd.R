@@ -6,6 +6,8 @@ rcc2PlotInd <-
   function(
     group = NULL,
     groupHideLessThan = FALSE,
+    groupHideLessThanGroup = FALSE,
+    groupHideLessThanGroupLabel = "\u00f6vriga",
     groupHideLessThanLabel = "(otillr\u00e4cklig data)",
     groupHideLessThanCell = FALSE,
     groupMaxChars = NULL,
@@ -239,9 +241,15 @@ rcc2PlotInd <-
     # Tabulate
     summaryFunction <-
       function(x){
+        hide_override_groupHideLessThanGroup <- any(x$hide_override_groupHideLessThanGroup)
         if (indType == "NULL") {
           tempN <- nrow(x)
-          hide <- tempN < groupHideLessThan
+          hide <-
+            ifelse(
+              hideLowVolume,
+              tempN < groupHideLessThan | hide_override_groupHideLessThanGroup,
+              FALSE
+            )
           hideCellLessThan <- FALSE
           if (hide) {
             measurements <- data.frame(NA, NA, NA, NA)
@@ -261,7 +269,7 @@ rcc2PlotInd <-
           hide <-
             ifelse(
               hideLowVolume,
-              sum(!is.na(x$ind),na.rm = TRUE) < groupHideLessThan,
+              sum(!is.na(x$ind),na.rm = TRUE) < groupHideLessThan | hide_override_groupHideLessThanGroup,
               FALSE
             )
           hideCellLessThan <- FALSE
@@ -296,7 +304,7 @@ rcc2PlotInd <-
           hide <-
             ifelse(
               hideLowVolume,
-              sum(!is.na(x$ind), na.rm = TRUE) < groupHideLessThan,
+              sum(!is.na(x$ind), na.rm = TRUE) < groupHideLessThan | hide_override_groupHideLessThanGroup,
               FALSE
             )
           hideCellLessThan <-
@@ -363,7 +371,7 @@ rcc2PlotInd <-
           hide <-
             ifelse(
               hideLowVolume,
-              sum(!is.na(x$ind), na.rm = TRUE) < groupHideLessThan,
+              sum(!is.na(x$ind), na.rm = TRUE) < groupHideLessThan | hide_override_groupHideLessThanGroup,
               FALSE
             )
           tempXInd <- factor(x$ind, levels = factor_legend)
@@ -452,11 +460,24 @@ rcc2PlotInd <-
 
       hideLowVolume <- as.logical(groupHideLessThan)
 
+      tabdata$hide_override_groupHideLessThanGroup <- FALSE
+
       tabdata_subset <-
         subset(
           tabdata,
           subset
         )
+
+      if (hideLowVolume & groupHideLessThanGroup) {
+        tempHideGroups <- table(as.character(tabdata_subset$group[tabdata_subset$period == act_period]))
+        tempHideGroups <- names(tempHideGroups[tempHideGroups < groupHideLessThan])
+        if (length(tempHideGroups) > 0) {
+          tabdata_subset$group <- as.character(tabdata_subset$group)
+          tabdata_subset$hide_override_groupHideLessThanGroup[tabdata_subset$group %in% tempHideGroups] <- TRUE
+          tabdata_subset$group[tabdata_subset$group %in% tempHideGroups] <- paste0(" ", groupHideLessThanGroupLabel)
+        }
+      }
+
       tabdata_subset$group <- factor(tabdata_subset$group)
       tab <-
         plyr::ddply(

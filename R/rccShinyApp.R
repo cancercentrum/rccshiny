@@ -176,6 +176,9 @@ rccShinyApp <-
         if (!("geoUnitsRegionLabel" %in% names(optionsList))) {
           optionsList["geoUnitsRegionLabel"] <- list(NULL)
         }
+        if (!("hideLessThanGroup" %in% names(optionsList))) {
+          optionsList["hideLessThanGroup"] <- FALSE
+        }
 
         for (i in 1:length(optionsList)) {
           assign(x = paste0("GLOBAL_", names(optionsList)[i]), value = optionsList[[i]])
@@ -1008,6 +1011,8 @@ rccShinyApp <-
                 rcc2PlotInd(
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
+                  groupHideLessThanGroup = GLOBAL_hideLessThanGroup,
+                  groupHideLessThanGroupLabel = rccShinyTXT(language = GLOBAL_language)$others,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
                   groupHideLessThanCell = GLOBAL_hideLessThanCell,
                   allLab = GLOBAL_allLabel,
@@ -1086,6 +1091,8 @@ rccShinyApp <-
                 rcc2PlotInd(
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
+                  groupHideLessThanGroup = GLOBAL_hideLessThanGroup,
+                  groupHideLessThanGroupLabel = rccShinyTXT(language = GLOBAL_language)$others,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
                   groupHideLessThanCell = GLOBAL_hideLessThanCell,
                   allLab = GLOBAL_allLabel,
