@@ -50,6 +50,7 @@
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.
 #' @param prob a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).
 #' @param hideLessThan value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.
+#' @param hideLessThanGroup should groups smaller than hideLessThan be grouped together in the comparison figure? Default is FALSE.
 #' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers deprecated argument, see geoUnitsHospitalAlt.
@@ -236,6 +237,7 @@ rccShiny2 <-
     propWithinValue = 30,
     prob = c(0.25, 0.50, 0.75),
     hideLessThan = 5,
+    hideLessThanGroup = FALSE,
     hideLessThanCell = 0,
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE,
@@ -550,6 +552,10 @@ rccShiny2 <-
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
 
+    # hideLessThanGroup
+    if (is.null(hideLessThanGroup) | !is.logical(hideLessThanGroup) | length(hideLessThanGroup) != 1)
+      stop("'hideLessThanGroup' should be a logical vector of length 1", call. = FALSE)
+
     # hideLessThanCell
     if (is.null(hideLessThanCell) | !is.numeric(hideLessThanCell) | length(hideLessThanCell) != 1)
       stop("'hideLessThanCell' should be a numeric vector of length 1", call. = FALSE)
@@ -635,6 +641,7 @@ rccShiny2 <-
           propWithinValue = propWithinValue,
           prob = prob,
           hideLessThan = hideLessThan,
+          hideLessThanGroup = hideLessThanGroup,
           hideLessThanCell = hideLessThanCell,
           gaPath = gaPath,
           npcrGroupPrivateOthers = npcrGroupPrivateOthers,

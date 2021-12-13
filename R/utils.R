@@ -353,6 +353,7 @@ rccShinyTXT <-
         grouphidelessthan = c("(otillr\u00e4cklig data)", "(insufficient data)"),
         selectAll = c("Markera alla", "Select all"),
         deselectAll = c("Avmarkera alla", "Deselect all"),
+        others = c("\u00d6vriga", "Others"),
         stringsAsFactors = FALSE
       )
     tab <- fixEncoding(tab)
