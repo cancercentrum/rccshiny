@@ -45,11 +45,11 @@ test_that("loading app1hc works", {
   expect_pass(testApp(appdir, "load-app", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
 })
 
-test_that("navigating app1hc works", {
-  skip_on_os("linux")
-
-  expect_pass(testApp(appdir, "nav-app1", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
-})
+# test_that("navigating app1hc works", {
+#   skip_on_os("linux")
+#
+#   expect_pass(testApp(appdir, "nav-app1", compareImages = FALSE, interactive = FALSE, suffix = shinytest_suffix()))
+# })
 
 # Clean up
 file_remove_if_exists(file.path(appdir, "app.R"))
