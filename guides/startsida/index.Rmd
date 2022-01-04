@@ -5,8 +5,6 @@ output:
     theme: cosmo
     toc: yes
     toc_float: yes
-resource_files:
-- zip/startsida.zip
 ---
 
 ## Vad menas med "startsida"?
