@@ -86,9 +86,9 @@
             {
               "mapData": {
                 "title": "Sweden",
-                "version": "1.1.3",
+                "version": "1.1.4",
                 "type": "FeatureCollection",
-                "copyright": "Copyright (c) 2020 Highsoft AS, Based on data from Natural Earth",
+                "copyright": "Copyright (c) 2021 Highsoft AS, Based on data from Natural Earth",
                 "copyrightShort": "Natural Earth",
                 "copyrightUrl": "http://www.naturalearthdata.com",
                 "crs": {
@@ -8351,11 +8351,20 @@
           "lang": {
             "contextButtonTitle": "Chart context menu",
             "decimalPoint": ".",
+            "downloadCSV": "Download CSV",
             "downloadJPEG": "Download JPEG image",
             "downloadPDF": "Download PDF document",
             "downloadPNG": "Download PNG image",
             "downloadSVG": "Download SVG vector image",
-            "drillUpText": "Back to {series.name}",
+            "downloadXLS": "Download XLS",
+            "drillUpText": "◁ Back to {series.name}",
+            "exitFullscreen": "Exit from full screen",
+            "exportData": {
+              "annotationHeader": "Annotations",
+              "categoryDatetimeHeader": "DateTime",
+              "categoryHeader": "Category"
+            },
+            "hideData": "Hide data table",
             "invalidDate": null,
             "loading": "Loading...",
             "months": [
@@ -8373,6 +8382,7 @@
               "December"
             ],
             "noData": "No data to display",
+            "numericSymbolMagnitude": 1000,
             "numericSymbols": [
               "k",
               "M",
@@ -8398,7 +8408,18 @@
               "Nov",
               "Dec"
             ],
+            "shortWeekdays": [
+              "Sat",
+              "Sun",
+              "Mon",
+              "Tue",
+              "Wed",
+              "Thu",
+              "Fri"
+            ],
             "thousandsSep": " ",
+            "viewData": "View data table",
+            "viewFullscreen": "View in full screen",
             "weekdays": [
               "Sunday",
               "Monday",
@@ -12415,11 +12436,20 @@
           "lang": {
             "contextButtonTitle": "Chart context menu",
             "decimalPoint": ".",
+            "downloadCSV": "Download CSV",
             "downloadJPEG": "Download JPEG image",
             "downloadPDF": "Download PDF document",
             "downloadPNG": "Download PNG image",
             "downloadSVG": "Download SVG vector image",
-            "drillUpText": "Back to {series.name}",
+            "downloadXLS": "Download XLS",
+            "drillUpText": "◁ Back to {series.name}",
+            "exitFullscreen": "Exit from full screen",
+            "exportData": {
+              "annotationHeader": "Annotations",
+              "categoryDatetimeHeader": "DateTime",
+              "categoryHeader": "Category"
+            },
+            "hideData": "Hide data table",
             "invalidDate": null,
             "loading": "Loading...",
             "months": [
@@ -12437,6 +12467,7 @@
               "December"
             ],
             "noData": "No data to display",
+            "numericSymbolMagnitude": 1000,
             "numericSymbols": [
               "k",
               "M",
@@ -12462,7 +12493,18 @@
               "Nov",
               "Dec"
             ],
+            "shortWeekdays": [
+              "Sat",
+              "Sun",
+              "Mon",
+              "Tue",
+              "Wed",
+              "Thu",
+              "Fri"
+            ],
             "thousandsSep": " ",
+            "viewData": "View data table",
+            "viewFullscreen": "View in full screen",
             "weekdays": [
               "Sunday",
               "Monday",
@@ -12886,11 +12928,20 @@
           "lang": {
             "contextButtonTitle": "Chart context menu",
             "decimalPoint": ".",
+            "downloadCSV": "Download CSV",
             "downloadJPEG": "Download JPEG image",
             "downloadPDF": "Download PDF document",
             "downloadPNG": "Download PNG image",
             "downloadSVG": "Download SVG vector image",
-            "drillUpText": "Back to {series.name}",
+            "downloadXLS": "Download XLS",
+            "drillUpText": "◁ Back to {series.name}",
+            "exitFullscreen": "Exit from full screen",
+            "exportData": {
+              "annotationHeader": "Annotations",
+              "categoryDatetimeHeader": "DateTime",
+              "categoryHeader": "Category"
+            },
+            "hideData": "Hide data table",
             "invalidDate": null,
             "loading": "Loading...",
             "months": [
@@ -12908,6 +12959,7 @@
               "December"
             ],
             "noData": "No data to display",
+            "numericSymbolMagnitude": 1000,
             "numericSymbols": [
               "k",
               "M",
@@ -12933,7 +12985,18 @@
               "Nov",
               "Dec"
             ],
+            "shortWeekdays": [
+              "Sat",
+              "Sun",
+              "Mon",
+              "Tue",
+              "Wed",
+              "Thu",
+              "Fri"
+            ],
             "thousandsSep": " ",
+            "viewData": "View data table",
+            "viewFullscreen": "View in full screen",
             "weekdays": [
               "Sunday",
               "Monday",
@@ -13243,9 +13306,9 @@
         },
         {
           "name": "highcharts",
-          "version": "8.1.2",
+          "version": "9.3.1",
           "src": {
-            "href": "highcharts-8.1.2"
+            "href": "highcharts-9.3.1"
           },
           "meta": null,
           "script": [
@@ -13254,13 +13317,13 @@
             "highcharts-more.js",
             "modules/stock.js",
             "modules/map.js",
-            "modules/annotations.js",
             "modules/data.js",
+            "modules/exporting.js",
+            "modules/offline-exporting.js",
             "modules/drilldown.js",
             "modules/item-series.js",
-            "modules/offline-exporting.js",
             "modules/overlapping-datalabels.js",
-            "modules/exporting.js",
+            "modules/annotations.js",
             "modules/export-data.js",
             "modules/funnel.js",
             "modules/heatmap.js",
@@ -13295,9 +13358,9 @@
         },
         {
           "name": "highchart-binding",
-          "version": "0.8.2",
+          "version": "0.9.4",
           "src": {
-            "href": "highchart-binding-0.8.2"
+            "href": "highchart-binding-0.9.4"
           },
           "meta": null,
           "script": "highchart.js",
