@@ -200,7 +200,7 @@ Efter att man har publicerat sin applikation kan man göra ytterligare inställn
 
 ![](figures/users-api.png){width="100%"}
 
-För att göra API-anropen direkt från RStudio används paketen [httr](https://cran.r-project.org/web/packages/httr/index.html) och [connectapi](https://github.com/rstudio/connectapi). Det senare av dessa två finns inte på CRAN utan installeras enklast från GitHub via anropet:
+För att göra API-anropen direkt från RStudio används paketet [connectapi](https://github.com/rstudio/connectapi). Paketet finns inte på CRAN utan installeras enklast från GitHub via anropet:
 ```{r eval=FALSE}
 remotes::install_github("rstudio/connectapi")
 ```
@@ -228,7 +228,7 @@ connectAPIKey <- "..."
 
 # Definiera uppkoppling för att använda i funktionerna i paketet connectapi
 client <- connectapi::connect(
-  host = connectServer,
+  server = connectServer,
   api_key = connectAPIKey
 )
 
@@ -247,21 +247,15 @@ tempListAddCollaboratorGroups <- c("grp.usr.stat.testGroup1")
 
 # Loopa igenom alla applikationer i urvalet
 for (i in 1:nrow(tempListApplications)) {
-  # Sätt Sharing settings till "all"
-  resp <- 
-    httr::POST(
-      paste0(connectServer, "/__api__/v1/experimental/content/", tempListApplications$guid[i]),
-      httr::add_headers(Authorization = paste("Key", connectAPIKey)),
-      body = list(access_type = "all"), 
-      encode = "json"
-    )
-  
   # Skapa ett objekt av typ connectapi::Content för applikation 
   tempContent <- 
     connectapi::content_item(
       connect = client, 
       guid = tempListApplications$guid[i]
     )
+  
+   # Sätt Sharing settings till "all"
+  tempContent$update(access_type = "all")
   
   # Lägg till användare
   for (j in tempListAddCollaboratorUsers) {
@@ -276,9 +270,9 @@ for (i in 1:nrow(tempListApplications)) {
   # Lägg till grupper
   for (j in tempListAddCollaboratorGroups) {
     if (j %in% tempGroups$name) {
-      connectapi::acl_add_group(
+      connectapi::content_add_group(
         content = tempContent, 
-        group_guid = tempGroups$guid[tempGroups$name %in% j], 
+        guid = tempGroups$guid[tempGroups$name %in% j], 
         role = "owner"
       )
     }
@@ -289,9 +283,6 @@ for (i in 1:nrow(tempListApplications)) {
     content = tempContent, 
     url = paste0("/", tempListApplications$name[i])
   )
-  
-  # Skriv ut meddelande
-  print(paste(tempListApplications$name[i], "...", ifelse(resp$status_code %in% 200, "SUCCESS", "FAILED")))
 }
 
 ```
@@ -350,7 +341,7 @@ connectServer <- "https://prestatistik.incanet.se"
 connectAPIKey <- "..."
 
 client <- connectapi::connect(
-  host = connectServer,
+  server = connectServer,
   api_key = connectAPIKey
 )
 
