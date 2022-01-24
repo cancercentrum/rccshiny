@@ -13107,7 +13107,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.6.2",
+          "version": "0.6.3",
           "src": {
             "href": "shinyWidgets"
           },
@@ -13457,7 +13457,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.2",
+          "version": "0.6.3",
           "src": {
             "href": "shinyWidgets"
           },

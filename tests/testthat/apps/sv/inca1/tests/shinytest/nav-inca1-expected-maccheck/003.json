@@ -45,7 +45,7 @@
       "height": 971.6
     },
     "indPlotTrend": {
-      "src": "[image data sha1: 57877ded7d7e9ebc4c51876de959d487dabc2507]",
+      "src": "[image data sha1: 64398a81707ef307e41383c4092ed5de9114548a]",
       "width": 694,
       "height": 624.6
     },
@@ -132,7 +132,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.6.2",
+          "version": "0.6.3",
           "src": {
             "href": "shinyWidgets"
           },
@@ -404,7 +404,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.2",
+          "version": "0.6.3",
           "src": {
             "href": "shinyWidgets"
           },
