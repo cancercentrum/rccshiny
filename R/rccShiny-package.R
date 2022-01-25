@@ -46,6 +46,7 @@ utils::globalVariables(
     "GLOBAL_geoUnitsRegionLabel",
     "GLOBAL_hideLessThan",
     "GLOBAL_hideLessThanCell",
+    "GLOBAL_hideLessThanGroup",
     "GLOBAL_id",
     "GLOBAL_idAuthorisedToView",
     "GLOBAL_idInclude",

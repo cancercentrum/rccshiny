@@ -54,6 +54,7 @@ rccShiny2(
   propWithinValue = 30,
   prob = c(0.25, 0.5, 0.75),
   hideLessThan = 5,
+  hideLessThanGroup = FALSE,
   hideLessThanCell = 0,
   gaPath = NULL,
   npcrGroupPrivateOthers = FALSE,
@@ -160,6 +161,8 @@ rccShiny2(
 \item{prob}{a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).}
 
 \item{hideLessThan}{value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.}
+
+\item{hideLessThanGroup}{should groups smaller than hideLessThan be grouped together in the comparison figure? Default is FALSE.}
 
 \item{hideLessThanCell}{if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).}
 
