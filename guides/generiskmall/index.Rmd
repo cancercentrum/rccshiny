@@ -163,3 +163,12 @@ optionsList$outputHighcharts <- TRUE
 optionsList$includeTabs <- c("compare", "table", "trend", "list", "description")
 optionsList$includeMissingColumn <- TRUE
 ```
+
+### <span style="color:red;">Viktig information vid skapande av en app med flera outcomes</span>
+När man använder denna workaround kringgår man som bekant en del kontroller av parametrarna. Om man ska skapa en app där flera outcomes visas (dvs. parametern **outcome** har längd >1) finns det två saker man behöver vara extra uppmärksam på:  
+
+* Parametern **targetValues** behöver vara NULL eller en *list* av samma längd om **outcome**. I vanliga fall går det bra att skicka in ett enda värde, eller en enda vektor. rccShiny2 omvandlar då detta till en *list* av rätt längd. Men denna kontroll kringgås i en generisk mall med ovan nämnda workaround. Lösningen är (om targetValues är något annat än NULL) att ange targetValues som en lista enligt exemplet ovan.  
+
+* Parametern **sortDescending** behöver av samma anledning vara NULL eller en vektor av samma längd som **outcome**. Lösningen är att ange sortDescending som en vektor enligt exemplet ovan.
+
+Har man inte gjort de nödvändiga justeringar enligt ovan kommer redovisningen av den första outcomen i appen fungera bra, men man kommer få ett error-meddelande när man väljer någon av de andra outcomes i listan.
