@@ -170,7 +170,7 @@ rccShiny2(
 
 \item{npcrGroupPrivateOthers}{deprecated argument, see geoUnitsHospitalAlt.}
 
-\item{outputHighcharts}{should Highcharts be used to draw the figures? Default is FALSE.}
+\item{outputHighcharts}{should Highcharts be used to draw the figures? A logical vector of length 1 or a character vector with tab names ("compare", "map" and/or "trend"). Default is FALSE.}
 
 \item{includeTabs}{vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").}
 

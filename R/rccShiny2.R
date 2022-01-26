@@ -54,7 +54,7 @@
 #' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers deprecated argument, see geoUnitsHospitalAlt.
-#' @param outputHighcharts should Highcharts be used to draw the figures? Default is FALSE.
+#' @param outputHighcharts should Highcharts be used to draw the figures? A logical vector of length 1 or a character vector with tab names ("compare", "map" and/or "trend"). Default is FALSE.
 #' @param includeTabs vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").
 #' @param includeMissingColumn Include a column in Table tab for the number of post with a missing value. Default is FALSE.
 #'
@@ -570,8 +570,8 @@ rccShiny2 <-
     npcrGroupPrivateOthers <- FALSE
 
     # outputHighcharts
-    if (is.null(outputHighcharts) | !is.logical(outputHighcharts) | length(outputHighcharts) != 1)
-      stop("'outputHighcharts' should be a logical vector of length 1", call. = FALSE)
+    if (is.null(outputHighcharts) | (!is.logical(outputHighcharts) | length(outputHighcharts) != 1) & (!is.character(outputHighcharts)))
+      stop("'outputHighcharts' should be a logical vector of length 1 or a character vector", call. = FALSE)
 
     # includeTabs
     if (is.null(includeTabs) | !is.character(includeTabs))

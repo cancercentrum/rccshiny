@@ -2,7 +2,7 @@
 
 ## Ny funktionalitet
 
-
+* Möjlighet att välja vilja flikar som ska använda Highcharts (SNY-110)
 
 ## Mindre förbättringar och felrättningar
 
