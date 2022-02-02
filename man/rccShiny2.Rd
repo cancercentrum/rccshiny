@@ -42,6 +42,7 @@ rccShiny2(
   periodLabel = NULL,
   periodDefaultStart = NULL,
   periodDefaultEnd = NULL,
+  periodSplitDefault = FALSE,
   varOtherComparison = NULL,
   varOther = NULL,
   allLabel = NULL,
@@ -137,6 +138,8 @@ rccShiny2(
 \item{periodDefaultStart}{optional value which specifies the preselected default start of the period of interest. Default is NULL.}
 
 \item{periodDefaultEnd}{optional value which specifies the preselected default end of the period of interest. Default is NULL.}
+
+\item{periodSplitDefault}{Should period be split by default? Default is FALSE.}
 
 \item{varOtherComparison}{optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).}
 

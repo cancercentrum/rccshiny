@@ -38,6 +38,7 @@
 #' @param periodLabel change the default label of the period widget in the sidebar panel. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param periodDefaultStart optional value which specifies the preselected default start of the period of interest. Default is NULL.
 #' @param periodDefaultEnd optional value which specifies the preselected default end of the period of interest. Default is NULL.
+#' @param periodSplitDefault Should period be split by default? Default is FALSE.
 #' @param varOtherComparison optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all available values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE), sliderStep (interval between each selectable value on the slider for a numeric variable, default is 1). Observe that observations with missing values for varOthers are not included in the output.
 #' @param allLabel change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
@@ -225,6 +226,7 @@ rccShiny2 <-
     periodLabel = NULL,
     periodDefaultStart = NULL,
     periodDefaultEnd = NULL,
+    periodSplitDefault = FALSE,
     varOtherComparison = NULL,
     varOther = NULL,
     allLabel = NULL,
@@ -466,6 +468,10 @@ rccShiny2 <-
     if (!is.null(periodDefaultEnd) & length(periodDefaultEnd) != 1)
       stop("'periodDefaultEnd' should be either NULL or a vector of length 1", call. = FALSE)
 
+    # periodSplitDefault
+    if (is.null(periodSplitDefault) | !is.logical(periodSplitDefault) | length(periodSplitDefault) != 1)
+      stop("'periodSplitDefault' should be a logical vector of length 1", call. = FALSE)
+
     # varOtherComparison
     if (!is.null(varOtherComparison) & (!is.list(varOtherComparison) | length(varOtherComparison) < 1))
       stop("'varOtherComparison' should be either NULL or a list with at least one element", call. = FALSE)
@@ -629,6 +635,7 @@ rccShiny2 <-
           periodLabel = periodLabel,
           periodDefaultStart = periodDefaultStart,
           periodDefaultEnd = periodDefaultEnd,
+          periodSplitDefault = periodSplitDefault,
           varOtherComparison = varOtherComparison,
           varOther = varOther,
           allLabel = allLabel,

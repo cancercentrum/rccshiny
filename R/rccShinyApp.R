@@ -142,6 +142,11 @@ rccShinyApp <-
           )
         }
 
+        # For backward compatibility with apps built before 1.10.2
+        if (is.null(optionsList$periodSplitDefault)) {
+          optionsList$periodSplitDefault <- FALSE
+        }
+
         # Hotfix for backward compatibility with apps built before 1.5.0
         if (is.null(optionsList$prob)) {
           optionsList$prob <- c(0.25, 0.50, 0.75)
@@ -582,7 +587,7 @@ rccShinyApp <-
                   ),
                   value = inputInitialValuesSelected(
                     name = "param_periodSplit",
-                    valueDefault = FALSE,
+                    valueDefault = GLOBAL_periodSplitDefault,
                     valuesValid = c(TRUE, FALSE)
                   ),
                   width = "100%"
