@@ -74,6 +74,7 @@ utils::globalVariables(
     "GLOBAL_periodEnd",
     "GLOBAL_periodInclude",
     "GLOBAL_periodLabel",
+    "GLOBAL_periodSplitDefault",
     "GLOBAL_periodStart",
     "GLOBAL_periodValues",
     "GLOBAL_periodValues_quarters",
