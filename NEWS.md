@@ -2,7 +2,15 @@
 
 ## Ny funktionalitet
 
+* Möjlighet att i anropet till rccShiny2 välja ifall de med otillräcklig data ska grupperas till en "Övrigt"-kategori i Jämförelse för att på så sätt kunna få en renare figur (SNY-80)
 * Möjlighet att välja vilja flikar som ska använda Highcharts (SNY-110)
+* Möjlighet att ha redovisning av varje diagnosperiod separat som standard med nytt argument periodSplitDefault till rccShiny2 (SNY-114)
+
+## Ny dokumentation och hjälp
+
+* Lagt till guide för att skapa rccShiny-rapporter med generisk mall på INCA, se https://statistik.incanet.se/generiskmall/ (SNY-104)
+* Lagt till info om bortfiltrering av query-delen i adressen i Google Analytics, se
+https://statistik.incanet.se/ga/ och "Använda Google Analytics tillsammans med möjligheten att spara val mellan appar" (SNY-111)
 
 ## Mindre förbättringar och felrättningar
 
