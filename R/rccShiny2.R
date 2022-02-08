@@ -38,6 +38,7 @@
 #' @param periodLabel change the default label of the period widget in the sidebar panel. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
 #' @param periodDefaultStart optional value which specifies the preselected default start of the period of interest. Default is NULL.
 #' @param periodDefaultEnd optional value which specifies the preselected default end of the period of interest. Default is NULL.
+#' @param periodSplitDefault Should period be split by default? Default is FALSE.
 #' @param varOtherComparison optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).
 #' @param varOther optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all available values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE), sliderStep (interval between each selectable value on the slider for a numeric variable, default is 1). Observe that observations with missing values for varOthers are not included in the output.
 #' @param allLabel change the default label for the total in all plots and tables. Should be a character vector of length 1 or a vector with a label corresponding to each language. Default is NULL.
@@ -50,10 +51,11 @@
 #' @param propWithinValue vector with default value(s) shown for numeric outcome(s) when "Andel inom..."/"Proportion within..." is selected. The length of the vector should be either 1 or the length of outcome. Default is 30.
 #' @param prob a vector of quantiles for summarizing indicator if indicator is numeric. Defaults to c(0.25,0.5,0.75).
 #' @param hideLessThan value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.
+#' @param hideLessThanGroup should groups smaller than hideLessThan be grouped together in the comparison figure? Default is FALSE.
 #' @param hideLessThanCell if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).
 #' @param gaPath optional path to Google Analytics .js-file. Default is NULL.
 #' @param npcrGroupPrivateOthers deprecated argument, see geoUnitsHospitalAlt.
-#' @param outputHighcharts should Highcharts be used to draw the figures? Default is FALSE.
+#' @param outputHighcharts should Highcharts be used to draw the figures? A logical vector of length 1 or a character vector with tab names ("compare", "map" and/or "trend"). Default is FALSE.
 #' @param includeTabs vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").
 #' @param includeMissingColumn Include a column in Table tab for the number of post with a missing value. Default is FALSE.
 #'
@@ -224,6 +226,7 @@ rccShiny2 <-
     periodLabel = NULL,
     periodDefaultStart = NULL,
     periodDefaultEnd = NULL,
+    periodSplitDefault = FALSE,
     varOtherComparison = NULL,
     varOther = NULL,
     allLabel = NULL,
@@ -236,6 +239,7 @@ rccShiny2 <-
     propWithinValue = 30,
     prob = c(0.25, 0.50, 0.75),
     hideLessThan = 5,
+    hideLessThanGroup = FALSE,
     hideLessThanCell = 0,
     gaPath = NULL,
     npcrGroupPrivateOthers = FALSE,
@@ -464,6 +468,10 @@ rccShiny2 <-
     if (!is.null(periodDefaultEnd) & length(periodDefaultEnd) != 1)
       stop("'periodDefaultEnd' should be either NULL or a vector of length 1", call. = FALSE)
 
+    # periodSplitDefault
+    if (is.null(periodSplitDefault) | !is.logical(periodSplitDefault) | length(periodSplitDefault) != 1)
+      stop("'periodSplitDefault' should be a logical vector of length 1", call. = FALSE)
+
     # varOtherComparison
     if (!is.null(varOtherComparison) & (!is.list(varOtherComparison) | length(varOtherComparison) < 1))
       stop("'varOtherComparison' should be either NULL or a list with at least one element", call. = FALSE)
@@ -550,6 +558,10 @@ rccShiny2 <-
     if (is.null(hideLessThan) | !is.numeric(hideLessThan) | length(hideLessThan) != 1)
       stop("'hideLessThan' should be a numeric vector of length 1", call. = FALSE)
 
+    # hideLessThanGroup
+    if (is.null(hideLessThanGroup) | !is.logical(hideLessThanGroup) | length(hideLessThanGroup) != 1)
+      stop("'hideLessThanGroup' should be a logical vector of length 1", call. = FALSE)
+
     # hideLessThanCell
     if (is.null(hideLessThanCell) | !is.numeric(hideLessThanCell) | length(hideLessThanCell) != 1)
       stop("'hideLessThanCell' should be a numeric vector of length 1", call. = FALSE)
@@ -564,8 +576,8 @@ rccShiny2 <-
     npcrGroupPrivateOthers <- FALSE
 
     # outputHighcharts
-    if (is.null(outputHighcharts) | !is.logical(outputHighcharts) | length(outputHighcharts) != 1)
-      stop("'outputHighcharts' should be a logical vector of length 1", call. = FALSE)
+    if (is.null(outputHighcharts) | (!is.logical(outputHighcharts) | length(outputHighcharts) != 1) & (!is.character(outputHighcharts)))
+      stop("'outputHighcharts' should be a logical vector of length 1 or a character vector", call. = FALSE)
 
     # includeTabs
     if (is.null(includeTabs) | !is.character(includeTabs))
@@ -623,6 +635,7 @@ rccShiny2 <-
           periodLabel = periodLabel,
           periodDefaultStart = periodDefaultStart,
           periodDefaultEnd = periodDefaultEnd,
+          periodSplitDefault = periodSplitDefault,
           varOtherComparison = varOtherComparison,
           varOther = varOther,
           allLabel = allLabel,
@@ -635,6 +648,7 @@ rccShiny2 <-
           propWithinValue = propWithinValue,
           prob = prob,
           hideLessThan = hideLessThan,
+          hideLessThanGroup = hideLessThanGroup,
           hideLessThanCell = hideLessThanCell,
           gaPath = gaPath,
           npcrGroupPrivateOthers = npcrGroupPrivateOthers,

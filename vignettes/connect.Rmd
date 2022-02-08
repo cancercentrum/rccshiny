@@ -1,0 +1,17 @@
+---
+title: "Publicera rccShiny-applikationer via RStudio Connect"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Publicera rccShiny-applikationer via RStudio Connect}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+En guide finns på https://statistik.incanet.se/guide/

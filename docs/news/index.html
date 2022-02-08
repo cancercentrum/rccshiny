@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -94,7 +94,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/connect.html">Publicera rccShiny-applikationer via RStudio Connect</a>
+    </li>
+    <li>
       <a href="../articles/ga.html">Använda Google Analytics med rccShiny</a>
+    </li>
+    <li>
+      <a href="../articles/generiskmall.html">Generisk mall för rccShiny-rapporter på INCA</a>
     </li>
     <li>
       <a href="../articles/startsida.html">Skapa startsida för interaktiv årsrapport</a>
@@ -127,6 +133,37 @@
       
     </div>
 
+    <div id="rccshiny-1110" class="section level1">
+<h1 class="page-header" data-toc-text="1.11.0">
+<a href="#rccshiny-1110" class="anchor"></a>rccShiny 1.11.0</h1>
+<div id="ny-funktionalitet" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ny-funktionalitet" class="anchor"></a>Ny funktionalitet</h2>
+<ul>
+<li>Möjlighet att i anropet till rccShiny2 välja ifall de med
+otillräcklig data ska grupperas till en “Övrigt”-kategori i Jämförelse
+för att på så sätt kunna få en renare figur (SNY-80)</li>
+<li>Möjlighet att välja vilja flikar som ska använda Highcharts
+(SNY-110)</li>
+<li>Möjlighet att ha redovisning av varje diagnosperiod separat som
+standard med nytt argument periodSplitDefault till rccShiny2
+(SNY-114)</li>
+</ul>
+</div>
+<div id="ny-dokumentation-och-hjälp" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ny-dokumentation-och-hj%C3%A4lp" class="anchor"></a>Ny dokumentation och hjälp</h2>
+<ul>
+<li>Lagt till guide för att skapa rccShiny-rapporter med generisk mall
+på INCA, se <a href="https://statistik.incanet.se/generiskmall/" class="uri">https://statistik.incanet.se/generiskmall/</a>
+(SNY-104)</li>
+<li>Lagt till info om bortfiltrering av query-delen i adressen i Google
+Analytics, se <a href="https://statistik.incanet.se/ga/" class="uri">https://statistik.incanet.se/ga/</a> och “Använda Google
+Analytics tillsammans med möjligheten att spara val mellan appar”
+(SNY-111)</li>
+</ul>
+</div>
+</div>
     <div id="rccshiny-1101" class="section level1">
 <h1 class="page-header" data-toc-text="1.10.1">
 <a href="#rccshiny-1101" class="anchor"></a>rccShiny 1.10.1</h1>
@@ -135,20 +172,26 @@
     <div id="rccshiny-1100" class="section level1">
 <h1 class="page-header" data-toc-text="1.10.0">
 <a href="#rccshiny-1100" class="anchor"></a>rccShiny 1.10.0</h1>
-<div id="ny-funktionalitet" class="section level2">
+<div id="ny-funktionalitet-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-1" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
-<li>Slutanvändarens urval kan sparas mellan interaktiva rapporter om de används tillsammans med en ny version av startsidan (index.html), se guiden <a href="https://statistik.incanet.se/startsida/" class="uri">https://statistik.incanet.se/startsida/</a> (SNY-103)</li>
+<li>Slutanvändarens urval kan sparas mellan interaktiva rapporter om de
+används tillsammans med en ny version av startsidan (index.html), se
+guiden <a href="https://statistik.incanet.se/startsida/" class="uri">https://statistik.incanet.se/startsida/</a> (SNY-103)</li>
 </ul>
 </div>
 <div id="mindre-förbättringar-och-felrättningar" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
-<li>Data för <code><a href="../reference/rccShiny2.html">rccShiny2()</a></code> (argumentet <code>data</code>) kan vara av en underklass till klassen <code>data.frame</code>, t.ex. <code><a href="https://tibble.tidyverse.org/reference/tbl_df-class.html">tibble::tbl_df</a></code> (SNY-109)</li>
-<li>Färger i grafer är anpassade till den grafiska manualen för INCA-plattformen (SNY-94)</li>
-<li>Den gamla funktionen <code>rccShiny()</code> är nu helt utfasad (SNY-90, SNY-101)</li>
+<li>Data för <code><a href="../reference/rccShiny2.html">rccShiny2()</a></code> (argumentet <code>data</code>) kan
+vara av en underklass till klassen <code>data.frame</code>, t.ex.
+<code><a href="https://tibble.tidyverse.org/reference/tbl_df-class.html">tibble::tbl_df</a></code> (SNY-109)</li>
+<li>Färger i grafer är anpassade till den grafiska manualen för
+INCA-plattformen (SNY-94)</li>
+<li>Den gamla funktionen <code>rccShiny()</code> är nu helt utfasad
+(SNY-90, SNY-101)</li>
 </ul>
 </div>
 </div>
@@ -157,12 +200,15 @@
 <a href="#rccshiny-191" class="anchor"></a>rccShiny 1.9.1</h1>
 <p>En liten felrättningsversion (främst).</p>
 <ul>
-<li><p>Rättat fel då presentationsform “antal fall” kraschar när sjukhus är NA (SNY-105)</p></li>
+<li><p>Rättat fel då presentationsform “antal fall” kraschar när sjukhus
+är NA (SNY-105)</p></li>
 <li>
-<p>Interna funktioner i paketet är numera strikt interna. För bakgrund, se t.ex.</p>
+<p>Interna funktioner i paketet är numera strikt interna. För
+bakgrund, se t.ex.</p>
 <ul>
 <li>
-<a href="https://www.r-bloggers.com/2019/12/internal-functions-in-r-packages/" class="uri">https://www.r-bloggers.com/2019/12/internal-functions-in-r-packages/</a> och</li>
+<a href="https://www.r-bloggers.com/2019/12/internal-functions-in-r-packages/" class="uri">https://www.r-bloggers.com/2019/12/internal-functions-in-r-packages/</a>
+och</li>
 <li><a href="https://style.tidyverse.org/documentation.html#internal-functions" class="uri">https://style.tidyverse.org/documentation.html#internal-functions</a></li>
 </ul>
 </li>
@@ -171,20 +217,24 @@
     <div id="rccshiny-190" class="section level1">
 <h1 class="page-header" data-toc-text="1.9.0">
 <a href="#rccshiny-190" class="anchor"></a>rccShiny 1.9.0</h1>
-<div id="ny-funktionalitet-1" class="section level2">
+<div id="ny-funktionalitet-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-1" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-2" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
 <li><p>Lagt till presentationsform: Antal fall (SNY-51)</p></li>
-<li><p>Lagt till möjlighet att ersätta “Sjukhus”, “Region” och “Sjukvårdsregion” med egna etiketter (SNY-78)</p></li>
+<li><p>Lagt till möjlighet att ersätta “Sjukhus”, “Region” och
+“Sjukvårdsregion” med egna etiketter (SNY-78)</p></li>
 </ul>
 </div>
 <div id="mindre-förbättringar-och-felrättningar-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-1" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
-<li><p>Rättat fel när urvalstexten under figurrubriken inte syntes om “reglage”-urval fanns längst ner bland urvalen (SNY-95)</p></li>
-<li><p>Rättat fel så att labels i varOtherComparison kan vara de som normalt används för sjukvårdsregion, region, län, sjukhus givet den jämförelsenivån inte är inkluderad i figuren. (SNY-92)</p></li>
+<li><p>Rättat fel när urvalstexten under figurrubriken inte syntes om
+“reglage”-urval fanns längst ner bland urvalen (SNY-95)</p></li>
+<li><p>Rättat fel så att labels i varOtherComparison kan vara de som
+normalt används för sjukvårdsregion, region, län, sjukhus givet den
+jämförelsenivån inte är inkluderad i figuren. (SNY-92)</p></li>
 </ul>
 </div>
 </div>
@@ -193,22 +243,30 @@
 <a href="#rccshiny-181" class="anchor"></a>rccShiny 1.8.1</h1>
 <p>En liten felrättningsversion (främst).</p>
 <ul>
-<li><p>Fixat problem med numerisk extra urvalsvariabel varOther när variabeln inte bara innehåller heltal (SNY-102)</p></li>
-<li><p>Lagt till alternativ för att justera intervallet mellan varje valbart värde på skjutreglaget för varje numerisk variabel i varOther</p></li>
-<li><p>Färgen på siffror i kartor anpassas efter bakgrundsfärgens ljusstyrka (05c3519)</p></li>
+<li><p>Fixat problem med numerisk extra urvalsvariabel varOther när
+variabeln inte bara innehåller heltal (SNY-102)</p></li>
+<li><p>Lagt till alternativ för att justera intervallet mellan varje
+valbart värde på skjutreglaget för varje numerisk variabel i
+varOther</p></li>
+<li><p>Färgen på siffror i kartor anpassas efter bakgrundsfärgens
+ljusstyrka (05c3519)</p></li>
 </ul>
 </div>
     <div id="rccshiny-180" class="section level1">
 <h1 class="page-header" data-toc-text="1.8.0">
 <a href="#rccshiny-180" class="anchor"></a>rccShiny 1.8.0</h1>
 <ul>
-<li>Den gamla funktionen <code>rccShiny()</code> börjar nu gradvis fasas ut (SNY-90), använd <code><a href="../reference/rccShiny2.html">rccShiny2()</a></code> istället</li>
+<li>Den gamla funktionen <code>rccShiny()</code> börjar nu gradvis fasas
+ut (SNY-90), använd <code><a href="../reference/rccShiny2.html">rccShiny2()</a></code> istället</li>
 </ul>
-<div id="ny-funktionalitet-2" class="section level2">
+<div id="ny-funktionalitet-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-2" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-3" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
-<li>Justerat presentation när hideLessThanCell&gt; 1 och utfallet är en kategorisk variabel. Det totala antalet visas nu alltid om N &gt;= hideLessThan medan enskilda celler är dolda (i tabell) om någon n &lt; hideLessThanCell (SNY-89)</li>
+<li>Justerat presentation när hideLessThanCell&gt; 1 och utfallet är en
+kategorisk variabel. Det totala antalet visas nu alltid om N &gt;=
+hideLessThan medan enskilda celler är dolda (i tabell) om någon n &lt;
+hideLessThanCell (SNY-89)</li>
 </ul>
 </div>
 <div id="mindre-förbättringar-och-felrättningar-2" class="section level2">
@@ -216,8 +274,10 @@
 <a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-2" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
 <li><p>Förbättrat färgskalor för kartor (SNY-85)</p></li>
-<li><p>Uppdaterat Google Analytics-guiden med vägledning om anonymizeIp</p></li>
-<li><p>Tagit bort “Begränsa till sjukvårdsregion” i trendfliken när utfallet är en kategorisk variabel (SNY-93)</p></li>
+<li><p>Uppdaterat Google Analytics-guiden med vägledning om
+anonymizeIp</p></li>
+<li><p>Tagit bort “Begränsa till sjukvårdsregion” i trendfliken när
+utfallet är en kategorisk variabel (SNY-93)</p></li>
 </ul>
 </div>
 </div>
@@ -226,28 +286,36 @@
 <a href="#rccshiny-171" class="anchor"></a>rccShiny 1.7.1</h1>
 <p>En liten felrättningsversion (främst).</p>
 <ul>
-<li><p>Ett fel meddelas om <em>labels</em> i varOtherComparison är i konflikt med de som används för sjukvårdsregion/bostadslän/region/sjukhus (SNY-91)</p></li>
-<li><p>Innehållet i vinjetten “Tolkningsmanual för interaktiva Shinyrapporter” har flyttat till <a href="https://statistik.incanet.se/tolkningsmanual/" class="uri">https://statistik.incanet.se/tolkningsmanual/</a></p></li>
-<li><p>Innehållet i vinjetten “Använda Google Analytics med rccShiny” har flyttat till <a href="https://statistik.incanet.se/ga/" class="uri">https://statistik.incanet.se/ga/</a></p></li>
+<li><p>Ett fel meddelas om <em>labels</em> i varOtherComparison är i
+konflikt med de som används för
+sjukvårdsregion/bostadslän/region/sjukhus (SNY-91)</p></li>
+<li><p>Innehållet i vinjetten “Tolkningsmanual för interaktiva
+Shinyrapporter” har flyttat till <a href="https://statistik.incanet.se/tolkningsmanual/" class="uri">https://statistik.incanet.se/tolkningsmanual/</a></p></li>
+<li><p>Innehållet i vinjetten “Använda Google Analytics med rccShiny”
+har flyttat till <a href="https://statistik.incanet.se/ga/" class="uri">https://statistik.incanet.se/ga/</a></p></li>
 </ul>
 </div>
     <div id="rccshiny-170" class="section level1">
 <h1 class="page-header" data-toc-text="1.7.0">
 <a href="#rccshiny-170" class="anchor"></a>rccShiny 1.7.0</h1>
-<div id="ny-funktionalitet-3" class="section level2">
+<div id="ny-funktionalitet-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-3" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-4" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
-<li><p>Lagt till alternativ för att inkludera andra variabler som presentationsnivå (SNY-9, SNY-45)</p></li>
-<li><p>Döpt om sjukvårdsregionen “Uppsala-Örebro” till “Mellansverige” i alla presentationer (SNY-88)</p></li>
-<li><p>“folder” används nu som webbsidans titel och kan ses i Google Analytics. Om INCA sätts ingen sidrubrik (SNY-86)</p></li>
+<li><p>Lagt till alternativ för att inkludera andra variabler som
+presentationsnivå (SNY-9, SNY-45)</p></li>
+<li><p>Döpt om sjukvårdsregionen “Uppsala-Örebro” till “Mellansverige” i
+alla presentationer (SNY-88)</p></li>
+<li><p>“folder” används nu som webbsidans titel och kan ses i Google
+Analytics. Om INCA sätts ingen sidrubrik (SNY-86)</p></li>
 </ul>
 </div>
 <div id="mindre-förbättringar-och-felrättningar-3" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-3" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
-<li>includeMissingColumn = TRUE + outcome som faktor med en nivå = “Uppgift saknas” orsakar krasch (SNY-81)</li>
+<li>includeMissingColumn = TRUE + outcome som faktor med en nivå =
+“Uppgift saknas” orsakar krasch (SNY-81)</li>
 </ul>
 </div>
 </div>
@@ -263,12 +331,13 @@
     <div id="rccshiny-160" class="section level1">
 <h1 class="page-header" data-toc-text="1.6.0">
 <a href="#rccshiny-160" class="anchor"></a>rccShiny 1.6.0</h1>
-<div id="ny-funktionalitet-4" class="section level2">
+<div id="ny-funktionalitet-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-4" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-5" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
 <li><p>Redovisning av missing - entydigt och med antal (SNY-8)</p></li>
-<li><p>Ny parameter med alternativa sjukhusnamn som kan ersätta fullösningen <code>npcrGroupPrivateOthers</code> (SNY-61)</p></li>
+<li><p>Ny parameter med alternativa sjukhusnamn som kan ersätta
+fullösningen <code>npcrGroupPrivateOthers</code> (SNY-61)</p></li>
 </ul>
 </div>
 </div>
@@ -283,21 +352,25 @@
     <div id="rccshiny-150" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.0">
 <a href="#rccshiny-150" class="anchor"></a>rccShiny 1.5.0</h1>
-<div id="ny-funktionalitet-5" class="section level2">
+<div id="ny-funktionalitet-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#ny-funktionalitet-5" class="anchor"></a>Ny funktionalitet</h2>
+<a href="#ny-funktionalitet-6" class="anchor"></a>Ny funktionalitet</h2>
 <ul>
-<li><p>Namnsättning av percentiler i figurer och tabeller (SNY-63)</p></li>
-<li><p>Vinjett om hur man får Google Analytics att logga besök på varje enskild app (parametern <code>gaPath</code>) (SNY-62)</p></li>
+<li><p>Namnsättning av percentiler i figurer och tabeller
+(SNY-63)</p></li>
+<li><p>Vinjett om hur man får Google Analytics att logga besök på varje
+enskild app (parametern <code>gaPath</code>) (SNY-62)</p></li>
 </ul>
 </div>
 <div id="mindre-förbättringar-och-felrättningar-4" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mindre-f%C3%B6rb%C3%A4ttringar-och-felr%C3%A4ttningar-4" class="anchor"></a>Mindre förbättringar och felrättningar</h2>
 <ul>
-<li><p>Lagt till <code>selectAll</code> och <code>deselectAll</code> i <code>rccShinyTXT()</code> (SNY-73)</p></li>
+<li><p>Lagt till <code>selectAll</code> och <code>deselectAll</code> i
+<code>rccShinyTXT()</code> (SNY-73)</p></li>
 <li><p>Rättat felstavningar i engelska versionen (SNY-69)</p></li>
-<li><p>Justerat filnamn samt rubriker i exporterade filer (Excel, PDF) (SNY-50)</p></li>
+<li><p>Justerat filnamn samt rubriker i exporterade filer (Excel, PDF)
+(SNY-50)</p></li>
 </ul>
 </div>
 </div>
@@ -306,9 +379,12 @@
 <a href="#rccshiny-142" class="anchor"></a>rccShiny 1.4.2</h1>
 <p>En liten felrättningsversion (främst).</p>
 <ul>
-<li><p>Justerat assign så att problemet med generisk parametriserad mall avhjälps (SNY-71)</p></li>
-<li><p>Rättat fel som gjorde att Javaskript-error från conditionalPanel ledde till att app ibland inte laddas på INCA (SNY-70)</p></li>
-<li><p>Skapat vinjetter för anslutningsinfo och tolkningsmanual (SNY-72)</p></li>
+<li><p>Justerat assign så att problemet med generisk parametriserad mall
+avhjälps (SNY-71)</p></li>
+<li><p>Rättat fel som gjorde att Javaskript-error från conditionalPanel
+ledde till att app ibland inte laddas på INCA (SNY-70)</p></li>
+<li><p>Skapat vinjetter för anslutningsinfo och tolkningsmanual
+(SNY-72)</p></li>
 </ul>
 </div>
     <div id="rccshiny-141" class="section level1">
@@ -324,7 +400,8 @@
 <a href="#rccshiny-140" class="anchor"></a>rccShiny 1.4.0</h1>
 <ul>
 <li><p>Justerat hur data läses in på INCA (SNY-68)</p></li>
-<li><p>Lagt till <code>local = TRUE</code> till source av incaScript (?) + ta bort <code>shinycssloaders::withSpinner</code> (SNY-65)</p></li>
+<li><p>Lagt till <code>local = TRUE</code> till source av incaScript (?)
++ ta bort <code>shinycssloaders::withSpinner</code> (SNY-65)</p></li>
 </ul>
 </div>
     <div id="rccshiny-13" class="section level1">
@@ -332,25 +409,42 @@
 <a href="#rccshiny-13" class="anchor"></a>rccShiny 1.3</h1>
 <p>Nyheter i version 1.3 och tidigare versioner.</p>
 <ul>
-<li><p>Döpt om “landsting” till “region” och “region” till “sjukvårdsregion” (SNY-56)</p></li>
+<li><p>Döpt om “landsting” till “region” och “region” till
+“sjukvårdsregion” (SNY-56)</p></li>
 <li><p>Kan ange percentiler i anropet till funktionen (SNY-22)</p></li>
 <li><p>Skapat webbplats för R-paketet (SNY-66)</p></li>
-<li><p>Lagt till “Markera alla” och “Avmarkera alla”” i pickerinputs (SNY-59, 4cfc0e7)</p></li>
-<li><p>Lagt till möjlighet att exkludera flikar (SNY-39, 54dbd9f)</p></li>
-<li><p>Röjandekontroll: Möjlighet att dölja absoluta antal i figurer/tabeller där antalet i en cell är mindre än gränsvärde (SNY-55, cc51329)</p></li>
-<li><p>Återinfört möjlighet att få ut länktext (SNY-57, a8f9dc7)</p></li>
-<li><p>Skapat manual för användning/tolkning av Shiny-rapporter (SNY-38, 81cb132)</p></li>
-<li><p>Möjlighet att i appen växla mellan urval på period utifrån kvartal eller år (SNY-53, f19f7db)</p></li>
-<li><p>Gör textstorlek i jämförelse-figuren dynamisk (SNY-54, ae7d801)</p></li>
-<li><p>Möjlighet att frångå kravet på minst 5 i nämnaren om <code>INCA = TRUE</code> (SNY-52)</p></li>
-<li><p>Möjlighet att använda Highcharts i samtliga figurer (SNY-46)</p></li>
-<li><p>Namnsättning av totalen via parameter (möjliggör t.ex. regionala rapporter) (SNY-43)</p></li>
-<li><p>Möjlighet att ändra defaultval för “Period” i anropet till rccShiny (SNY-41)</p></li>
-<li><p>Möjlighet att ändra defaultval för “Begränsa till region” och “Jämförelsenivå” i anropet till `rccShiny (SNY-42)</p></li>
-<li><p>Lägg tillbaka urvalsdialogen i vänstermarginalen, samt lägg tillbaka “Kommentar” (SNY-48)</p></li>
-<li><p>Synka layout med IPÖ-rapporterna (Shiny Dashboard) (SNY-47)</p></li>
+<li><p>Lagt till “Markera alla” och “Avmarkera alla”” i pickerinputs
+(SNY-59, 4cfc0e7)</p></li>
+<li><p>Lagt till möjlighet att exkludera flikar (SNY-39,
+54dbd9f)</p></li>
+<li><p>Röjandekontroll: Möjlighet att dölja absoluta antal i
+figurer/tabeller där antalet i en cell är mindre än gränsvärde (SNY-55,
+cc51329)</p></li>
+<li><p>Återinfört möjlighet att få ut länktext (SNY-57,
+a8f9dc7)</p></li>
+<li><p>Skapat manual för användning/tolkning av Shiny-rapporter (SNY-38,
+81cb132)</p></li>
+<li><p>Möjlighet att i appen växla mellan urval på period utifrån
+kvartal eller år (SNY-53, f19f7db)</p></li>
+<li><p>Gör textstorlek i jämförelse-figuren dynamisk (SNY-54,
+ae7d801)</p></li>
+<li><p>Möjlighet att frångå kravet på minst 5 i nämnaren om
+<code>INCA = TRUE</code> (SNY-52)</p></li>
+<li><p>Möjlighet att använda Highcharts i samtliga figurer
+(SNY-46)</p></li>
+<li><p>Namnsättning av totalen via parameter (möjliggör t.ex. regionala
+rapporter) (SNY-43)</p></li>
+<li><p>Möjlighet att ändra defaultval för “Period” i anropet till
+rccShiny (SNY-41)</p></li>
+<li><p>Möjlighet att ändra defaultval för “Begränsa till region” och
+“Jämförelsenivå” i anropet till `rccShiny (SNY-42)</p></li>
+<li><p>Lägg tillbaka urvalsdialogen i vänstermarginalen, samt lägg
+tillbaka “Kommentar” (SNY-48)</p></li>
+<li><p>Synka layout med IPÖ-rapporterna (Shiny Dashboard)
+(SNY-47)</p></li>
 <li><p>Färg vid enbart en målnivå (SNY-27)</p></li>
-<li><p>Ändra färgerna för regionerna i trend-figuren när outcome är dikotom/kontinuerlig (SNY-44)</p></li>
+<li><p>Ändra färgerna för regionerna i trend-figuren när outcome är
+dikotom/kontinuerlig (SNY-44)</p></li>
 <li><p>Sortering (SNY-10)</p></li>
 <li><p>Ytterligare flik Kommentar (SNY-26)</p></li>
 </ul>

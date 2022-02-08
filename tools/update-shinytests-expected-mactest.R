@@ -1,4 +1,4 @@
-# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "a9c2d4a", type = "binary")
+# remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", type = "binary")
 
 library(testthat)
 library(shinytest)
@@ -6,9 +6,10 @@ library(rccShiny)
 
 sysname <- tolower(Sys.info()[["sysname"]])
 
-if (packageVersion("rccShiny") == "1.9.1.9001" & sysname == "darwin") {
+# Use latest release/stable version
+if (packageVersion("rccShiny") == "1.10.1" & sysname == "darwin") {
 
-  # Run tests using the latest release/stable version
+  # Run tests
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
 
   # Update snapshots of expected shinytest results
@@ -17,24 +18,6 @@ if (packageVersion("rccShiny") == "1.9.1.9001" & sysname == "darwin") {
     file.path("tests", "testthat", "apps", "sv", "app1hc"),
     file.path("tests", "testthat", "apps", "sv", "inca1"),
     file.path("tests", "testthat", "apps", "sv", "inca1hc"),
-    file.path("tests", "testthat", "apps", "sv", "legacy1-1.3"),
-    file.path("tests", "testthat", "apps", "sv", "legacy2-1.3"),
-    file.path("tests", "testthat", "apps", "en", "legacy2-1.3"),
-    file.path("tests", "testthat", "apps", "sv", "legacy1-1.4.2"),
-    file.path("tests", "testthat", "apps", "sv", "legacy2-1.4.2"),
-    file.path("tests", "testthat", "apps", "en", "legacy2-1.4.2"),
-    file.path("tests", "testthat", "apps", "sv", "legacy1-1.5.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy2-1.5.1"),
-    file.path("tests", "testthat", "apps", "en", "legacy2-1.5.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy1-1.6.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy2-1.6.1"),
-    file.path("tests", "testthat", "apps", "en", "legacy2-1.6.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy1-1.7.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy2-1.7.1"),
-    file.path("tests", "testthat", "apps", "en", "legacy2-1.7.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy1-1.8.1"),
-    file.path("tests", "testthat", "apps", "sv", "legacy2-1.8.1"),
-    file.path("tests", "testthat", "apps", "en", "legacy2-1.8.1"),
     file.path("tests", "testthat", "apps", "sv", "legacy1-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy1hc-latest"),
     file.path("tests", "testthat", "apps", "sv", "legacy2-latest"),

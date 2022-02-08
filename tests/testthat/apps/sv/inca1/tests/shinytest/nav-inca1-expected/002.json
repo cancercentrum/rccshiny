@@ -127,7 +127,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.6.2",
+          "version": "0.6.4",
           "src": {
             "href": "shinyWidgets"
           },
@@ -399,7 +399,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.2",
+          "version": "0.6.4",
           "src": {
             "href": "shinyWidgets"
           },
@@ -412,7 +412,7 @@
         },
         {
           "name": "bootstrap-select",
-          "version": "1.13.18",
+          "version": "1.13.8",
           "src": {
             "href": "shinyWidgets/bootstrap-select"
           },

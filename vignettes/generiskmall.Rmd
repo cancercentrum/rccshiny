@@ -1,0 +1,17 @@
+---
+title: "Generisk mall för rccShiny-rapporter på INCA"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Generisk mall för rccShiny-rapporter på INCA}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+En guide finns på https://statistik.incanet.se/generiskmall/

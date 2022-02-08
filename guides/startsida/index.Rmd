@@ -5,8 +5,6 @@ output:
     theme: cosmo
     toc: yes
     toc_float: yes
-resource_files:
-- zip/startsida.zip
 ---
 
 ## Vad menas med "startsida"?
@@ -60,3 +58,15 @@ I senaste versionen av rccShiny finns möjligheten att spara användarens parame
 Längst upp till höger på startsidan finns en knapp för att sätta på/stänga av sparandet av val mellan appar. Är valet aktiverat visas sparade val i en tooltip om muspekaren hålls över knappen:
 
 ![](figures/html-ex-retain.png){width="100%"}
+
+### Använda Google Analytics tillsammans med möjligheten att spara val mellan appar
+
+Möjligheten att tillåta användaren att spara sina parameterval mellan olika appar använder sig av så kallade *URL query parameters*, dvs. värdet på de olika parametrarna skickas med i webbadressen till respektive app. När detta används tillsammans med Google Analytics uppstår ett problem, då hela adressen, inklusive parameterval, sparas och redovisas som separata webbsidor i Google Analytics. Som tur är finns en enkel workaround för detta, och det är att helt enkelt instruera Google Analytics att i redovisningen filtrera bort hela strängen med parameterval. Besök på samma app men med olika parameterval redovisas då under samma webbadress. Observera dock att hela adressen, inklusive *URL query parameters*, med denna lösning sparas av Google Analytics, då det bara är själva redovisningen som filtreras. Ingen information går alltså förlorad.
+
+Logga in på Google Analytics, gå till *Admin* (kugghjulet längst ner till vänster), välj *All filters* och sedan *Add filter*. Sätt ett valfritt filternamn, välj *Search and replace*, välj sedan *Request URI* under *Filter Field* och skriv följande under *Search String*:
+```
+\?.*
+```
+Lämna allt övrigt som det är (se exempel nedan). Gå sedan tillbaka till besöksstatistiken och verifiera att parametersträngen är bortfiltrerad i redovisningen.
+
+![](figures/html-ex-ga-uriquery.png){width="100%"}

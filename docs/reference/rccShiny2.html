@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rccShiny</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.10.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.11.0</span>
       </span>
     </div>
 
@@ -95,7 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/connect.html">Publicera rccShiny-applikationer via RStudio Connect</a>
+    </li>
+    <li>
       <a href="../articles/ga.html">Använda Google Analytics med rccShiny</a>
+    </li>
+    <li>
+      <a href="../articles/generiskmall.html">Generisk mall för rccShiny-rapporter på INCA</a>
     </li>
     <li>
       <a href="../articles/startsida.html">Skapa startsida för interaktiv årsrapport</a>
@@ -171,6 +177,7 @@
   periodLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
   periodDefaultStart <span class='op'>=</span> <span class='cn'>NULL</span>,
   periodDefaultEnd <span class='op'>=</span> <span class='cn'>NULL</span>,
+  periodSplitDefault <span class='op'>=</span> <span class='cn'>FALSE</span>,
   varOtherComparison <span class='op'>=</span> <span class='cn'>NULL</span>,
   varOther <span class='op'>=</span> <span class='cn'>NULL</span>,
   allLabel <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -183,6 +190,7 @@
   propWithinValue <span class='op'>=</span> <span class='fl'>30</span>,
   prob <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span><span class='op'>)</span>,
   hideLessThan <span class='op'>=</span> <span class='fl'>5</span>,
+  hideLessThanGroup <span class='op'>=</span> <span class='cn'>FALSE</span>,
   hideLessThanCell <span class='op'>=</span> <span class='fl'>0</span>,
   gaPath <span class='op'>=</span> <span class='cn'>NULL</span>,
   npcrGroupPrivateOthers <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -343,6 +351,10 @@
       <td><p>optional value which specifies the preselected default end of the period of interest. Default is NULL.</p></td>
     </tr>
     <tr>
+      <th>periodSplitDefault</th>
+      <td><p>Should period be split by default? Default is FALSE.</p></td>
+    </tr>
+    <tr>
       <th>varOtherComparison</th>
       <td><p>optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).</p></td>
     </tr>
@@ -391,6 +403,10 @@
       <td><p>value under which groups are supressed. Default is 5 and all values &lt; 5 are set to 5 unless inca = TRUE.</p></td>
     </tr>
     <tr>
+      <th>hideLessThanGroup</th>
+      <td><p>should groups smaller than hideLessThan be grouped together in the comparison figure? Default is FALSE.</p></td>
+    </tr>
+    <tr>
       <th>hideLessThanCell</th>
       <td><p>if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).</p></td>
     </tr>
@@ -404,7 +420,7 @@
     </tr>
     <tr>
       <th>outputHighcharts</th>
-      <td><p>should Highcharts be used to draw the figures? Default is FALSE.</p></td>
+      <td><p>should Highcharts be used to draw the figures? A logical vector of length 1 or a character vector with tab names ("compare", "map" and/or "trend"). Default is FALSE.</p></td>
     </tr>
     <tr>
       <th>includeTabs</th>

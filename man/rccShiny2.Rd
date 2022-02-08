@@ -42,6 +42,7 @@ rccShiny2(
   periodLabel = NULL,
   periodDefaultStart = NULL,
   periodDefaultEnd = NULL,
+  periodSplitDefault = FALSE,
   varOtherComparison = NULL,
   varOther = NULL,
   allLabel = NULL,
@@ -54,6 +55,7 @@ rccShiny2(
   propWithinValue = 30,
   prob = c(0.25, 0.5, 0.75),
   hideLessThan = 5,
+  hideLessThanGroup = FALSE,
   hideLessThanCell = 0,
   gaPath = NULL,
   npcrGroupPrivateOthers = FALSE,
@@ -137,6 +139,8 @@ rccShiny2(
 
 \item{periodDefaultEnd}{optional value which specifies the preselected default end of the period of interest. Default is NULL.}
 
+\item{periodSplitDefault}{Should period be split by default? Default is FALSE.}
+
 \item{varOtherComparison}{optional list of variable(s) which beside geoUnits is to be available as level of comparison in the sidebar panel. Arguments to the list are: var (name of variable in data) and label (optional label shown in the list in sidebar panel, defaults to var if not given).}
 
 \item{varOther}{optional list of variable(s), other than period and geoUnits, to be shown in the sidebar panel. Arguments to the list are: var (name of variable in data), label (label shown over widget in sidebar panel), choices (which values of var should be shown, min, max for continuous variables), selected (which values should be selected when app is launched, default is all available values), multiple (should multiple choises be availible, default is TRUE), showInTitle (should selection be displayed in subtitle, default is TRUE), sliderStep (interval between each selectable value on the slider for a numeric variable, default is 1). Observe that observations with missing values for varOthers are not included in the output.}
@@ -161,13 +165,15 @@ rccShiny2(
 
 \item{hideLessThan}{value under which groups are supressed. Default is 5 and all values < 5 are set to 5 unless inca = TRUE.}
 
+\item{hideLessThanGroup}{should groups smaller than hideLessThan be grouped together in the comparison figure? Default is FALSE.}
+
 \item{hideLessThanCell}{if a cell for a group falls below this value, the absolute number for the group is supressed and only proportion or median etc. is displayed. Default is 0 (disabled).}
 
 \item{gaPath}{optional path to Google Analytics .js-file. Default is NULL.}
 
 \item{npcrGroupPrivateOthers}{deprecated argument, see geoUnitsHospitalAlt.}
 
-\item{outputHighcharts}{should Highcharts be used to draw the figures? Default is FALSE.}
+\item{outputHighcharts}{should Highcharts be used to draw the figures? A logical vector of length 1 or a character vector with tab names ("compare", "map" and/or "trend"). Default is FALSE.}
 
 \item{includeTabs}{vector containing names of which tabs should be included in the shiny app. Default is c("compare", "table", "map", "trend", "description").}
 

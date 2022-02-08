@@ -142,6 +142,11 @@ rccShinyApp <-
           )
         }
 
+        # For backward compatibility with apps built before 1.11.0
+        if (is.null(optionsList$periodSplitDefault)) {
+          optionsList$periodSplitDefault <- FALSE
+        }
+
         # Hotfix for backward compatibility with apps built before 1.5.0
         if (is.null(optionsList$prob)) {
           optionsList$prob <- c(0.25, 0.50, 0.75)
@@ -175,6 +180,9 @@ rccShinyApp <-
         }
         if (!("geoUnitsRegionLabel" %in% names(optionsList))) {
           optionsList["geoUnitsRegionLabel"] <- list(NULL)
+        }
+        if (!("hideLessThanGroup" %in% names(optionsList))) {
+          optionsList["hideLessThanGroup"] <- FALSE
         }
 
         for (i in 1:length(optionsList)) {
@@ -415,7 +423,7 @@ rccShinyApp <-
                   ifelse(varOtherComparisonChosen(), "input.tab=='fig_trend'", "true"), " & ",
                   ifelse(GLOBAL_geoUnitsHospitalInclude, "true", "false"), " & ",
                   "!(", ifelse(GLOBAL_geoUnitsPatient, "true", "false"), " & input.param_levelpresent != '", rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel), "' & input.tab == 'fig_compare') & ",
-                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA(), "true", "false"), " & ", ifelse(GLOBAL_outputHighcharts, "true", "false"), ")"
+                  "!(input.tab=='fig_trend' & ", ifelse(GLOBAL_outcomeClass[whichOutcome()] == "factor" | outcomeClassNA(), "true", "false"), " & ", ifelse(any(c("TRUE", "trend") %in% as.character(GLOBAL_outputHighcharts)), "true", "false"), ")"
                 ),
                 selectInput(
                   inputId = "param_ownhospital",
@@ -579,7 +587,7 @@ rccShinyApp <-
                   ),
                   value = inputInitialValuesSelected(
                     name = "param_periodSplit",
-                    valueDefault = FALSE,
+                    valueDefault = GLOBAL_periodSplitDefault,
                     valuesValid = c(TRUE, FALSE)
                   ),
                   width = "100%"
@@ -821,7 +829,7 @@ rccShinyApp <-
             theTabs <- list()
 
             if ("compare" %in% GLOBAL_includeTabs) {
-              if (GLOBAL_outputHighcharts) {
+              if (any(c("TRUE", "compare") %in% as.character(GLOBAL_outputHighcharts))) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", highcharter::highchartOutput("indPlot", height = "980px"), icon = icon("chart-bar"))
               } else {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_compare, value = "fig_compare", plotOutput("indPlot", height = "auto"), icon = icon("chart-bar"))
@@ -837,7 +845,7 @@ rccShinyApp <-
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$tab, value = "table", DT::dataTableOutput("indTable"), icon = icon("table"))
               }
               if (GLOBAL_geoUnitsCountyInclude & "map" %in% GLOBAL_includeTabs & !outcomeClassNA()) {
-                if (GLOBAL_outputHighcharts) {
+                if (any(c("TRUE", "map") %in% as.character(GLOBAL_outputHighcharts))) {
                   theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", highcharter::highchartOutput("indMap", height = "980px"), icon = icon("map-marker"))
                 } else {
                   theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$map, value = "fig_map", plotOutput("indMap", height = "auto"), icon = icon("map-marker"))
@@ -845,14 +853,14 @@ rccShinyApp <-
               }
             }
             if (GLOBAL_periodInclude & "trend" %in% GLOBAL_includeTabs & !outcomeClassNA()) {
-              if (GLOBAL_outputHighcharts) {
+              if (any(c("TRUE", "trend") %in% as.character(GLOBAL_outputHighcharts))) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("chart-line"))
               } else {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
               }
             }
             if (GLOBAL_periodInclude & "trend" %in% GLOBAL_includeTabs & outcomeClassNA()) {
-              if (GLOBAL_outputHighcharts) {
+              if (any(c("TRUE", "trend") %in% as.character(GLOBAL_outputHighcharts))) {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", highcharter::highchartOutput("indPlotTrend", height = "630px"), icon = icon("chart-line"))
               } else {
                 theTabs[[length(theTabs) + 1]] <- tabPanel(rccShinyTabsNames(language = GLOBAL_language)$fig_trend, value = "fig_trend", plotOutput("indPlotTrend", height = "auto"), icon = icon("chart-line"))
@@ -990,7 +998,7 @@ rccShinyApp <-
 
         output$indPlot <-
 
-          if (GLOBAL_outputHighcharts) {
+          if (any(c("TRUE", "compare") %in% as.character(GLOBAL_outputHighcharts))) {
 
             highcharter::renderHighchart({
 
@@ -1008,6 +1016,8 @@ rccShinyApp <-
                 rcc2PlotInd(
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
+                  groupHideLessThanGroup = GLOBAL_hideLessThanGroup,
+                  groupHideLessThanGroupLabel = rccShinyTXT(language = GLOBAL_language)$others,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
                   groupHideLessThanCell = GLOBAL_hideLessThanCell,
                   allLab = GLOBAL_allLabel,
@@ -1055,7 +1065,7 @@ rccShinyApp <-
                   sort = GLOBAL_sort,
                   subset = tempSubset,
                   subsetLab = paste(input[["param_region"]], collapse = "/"),
-                  outputHighchart = GLOBAL_outputHighcharts
+                  outputHighchart = any(c("TRUE", "compare") %in% as.character(GLOBAL_outputHighcharts))
                 )
 
               }
@@ -1086,6 +1096,8 @@ rccShinyApp <-
                 rcc2PlotInd(
                   group = dfuse$group,
                   groupHideLessThan = GLOBAL_hideLessThan,
+                  groupHideLessThanGroup = GLOBAL_hideLessThanGroup,
+                  groupHideLessThanGroupLabel = rccShinyTXT(language = GLOBAL_language)$others,
                   groupHideLessThanLabel = rccShinyTXT(language = GLOBAL_language)$grouphidelessthan,
                   groupHideLessThanCell = GLOBAL_hideLessThanCell,
                   allLab = GLOBAL_allLabel,
@@ -1152,7 +1164,7 @@ rccShinyApp <-
 
         output$indPlotTrend <-
 
-          if (GLOBAL_outputHighcharts) {
+          if (any(c("TRUE", "trend") %in% as.character(GLOBAL_outputHighcharts))) {
 
             highcharter::renderHighchart({
 
@@ -1940,7 +1952,7 @@ rccShinyApp <-
 
         output$indMap <-
 
-          if (GLOBAL_outputHighcharts) {
+          if (any(c("TRUE", "map") %in% as.character(GLOBAL_outputHighcharts))) {
 
             highcharter::renderHighchart({
 
