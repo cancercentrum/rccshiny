@@ -86,9 +86,9 @@
             {
               "mapData": {
                 "title": "Sweden",
-                "version": "1.1.4",
+                "version": "2.0.0",
                 "type": "FeatureCollection",
-                "copyright": "Copyright (c) 2021 Highsoft AS, Based on data from Natural Earth",
+                "copyright": "Copyright (c) 2022 Highsoft AS, Based on data from Natural Earth",
                 "copyrightShort": "Natural Earth",
                 "copyrightUrl": "http://www.naturalearthdata.com",
                 "crs": {
@@ -9870,7 +9870,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.6.3",
+          "version": "0.6.4",
           "src": {
             "href": "shinyWidgets"
           },
@@ -10220,7 +10220,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.3",
+          "version": "0.6.4",
           "src": {
             "href": "shinyWidgets"
           },
@@ -10233,7 +10233,7 @@
         },
         {
           "name": "bootstrap-select",
-          "version": "1.13.18",
+          "version": "1.13.8",
           "src": {
             "href": "shinyWidgets/bootstrap-select"
           },

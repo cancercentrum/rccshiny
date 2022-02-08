@@ -1,4 +1,4 @@
-# rccShiny (development version)
+# rccShiny 1.11.0
 
 ## Ny funktionalitet
 
@@ -11,10 +11,6 @@
 * Lagt till guide för att skapa rccShiny-rapporter med generisk mall på INCA, se https://statistik.incanet.se/generiskmall/ (SNY-104)
 * Lagt till info om bortfiltrering av query-delen i adressen i Google Analytics, se
 https://statistik.incanet.se/ga/ och "Använda Google Analytics tillsammans med möjligheten att spara val mellan appar" (SNY-111)
-
-## Mindre förbättringar och felrättningar
-
-
 
 # rccShiny 1.10.1
 

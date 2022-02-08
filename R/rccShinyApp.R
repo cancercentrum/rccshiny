@@ -142,7 +142,7 @@ rccShinyApp <-
           )
         }
 
-        # For backward compatibility with apps built before 1.10.2
+        # For backward compatibility with apps built before 1.11.0
         if (is.null(optionsList$periodSplitDefault)) {
           optionsList$periodSplitDefault <- FALSE
         }
