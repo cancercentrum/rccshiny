@@ -7,7 +7,7 @@ library(rccShiny)
 sysname <- tolower(Sys.info()[["sysname"]])
 
 # Use latest release/stable version
-if (packageVersion("rccShiny") == "1.10.1" & sysname == "windows") {
+if (packageVersion("rccShiny") == "1.11.0" & sysname == "windows") {
 
   # Run tests
   testthat::test_dir("tests/testthat", reporter = "minimal", stop_on_failure = FALSE, package = "rccShiny")
