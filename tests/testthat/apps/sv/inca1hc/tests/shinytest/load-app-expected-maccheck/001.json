@@ -914,7 +914,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.6.3",
+          "version": "0.6.4",
           "src": {
             "href": "shinyWidgets"
           },
@@ -1191,9 +1191,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.20",
+          "version": "0.22",
           "src": {
-            "href": "datatables-binding-0.20"
+            "href": "datatables-binding-0.22"
           },
           "meta": null,
           "script": "datatables.js",
@@ -1264,7 +1264,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.3",
+          "version": "0.6.4",
           "src": {
             "href": "shinyWidgets"
           },
@@ -1277,7 +1277,7 @@
         },
         {
           "name": "bootstrap-select",
-          "version": "1.13.18",
+          "version": "1.13.8",
           "src": {
             "href": "shinyWidgets/bootstrap-select"
           },
