@@ -35,7 +35,7 @@
       ]
     },
     "indMap": {
-      "src": "[image data sha1: dec1da06451fca3a9ea9609e1e33a35144b57dc2]",
+      "src": "[image data sha1: e32ca8fba0ac30817cae330f9d20082deb4633c9]",
       "width": 694,
       "height": 971.6
     },
@@ -132,7 +132,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.6.4",
+          "version": "0.7.0",
           "src": {
             "href": "shinyWidgets"
           },
@@ -318,9 +318,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.22",
+          "version": "0.23",
           "src": {
-            "href": "datatables-binding-0.22"
+            "href": "datatables-binding-0.23"
           },
           "meta": null,
           "script": "datatables.js",
@@ -404,7 +404,7 @@
         },
         {
           "name": "shinyWidgets",
-          "version": "0.6.4",
+          "version": "0.7.0",
           "src": {
             "href": "shinyWidgets"
           },
