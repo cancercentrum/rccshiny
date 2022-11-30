@@ -22,7 +22,7 @@ jobs:
           - {os: windows-latest, r: 'release'}
           # - {os: ubuntu-latest,   r: 'release'}
           # Installed on INCA RCC, https://rcc.incanet.se/
-          - {os: ubuntu-latest,   r: '4.2.1'}
+          # - {os: ubuntu-latest,   r: '4.2.1'}
           # Also installed on https://statistik.incanet.se/
           - {os: ubuntu-latest,   r: '4.0.3'}
           # - {os: ubuntu-latest,   r: '3.6.3'}
