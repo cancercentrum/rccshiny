@@ -376,13 +376,13 @@ rccShinyApp <-
                     if (GLOBAL_geoUnitsRegionInclude & GLOBAL_geoUnitsDefault %in% "region") {
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
-                        valueDefault = rccShinyLevelNames("region", language = GLOBAL_language),
+                        valueDefault = rccShinyLevelNames("region", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsRegionLabel),
                         valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     } else if (GLOBAL_geoUnitsHospitalInclude & GLOBAL_geoUnitsDefault %in% "hospital") {
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
-                        valueDefault = rccShinyLevelNames("hospital", language = GLOBAL_language),
+                        valueDefault = rccShinyLevelNames("hospital", language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsHospitalLabel),
                         valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     } else if (GLOBAL_geoUnitsDefault %in% GLOBAL_varOtherComparisonVariables) {
@@ -394,7 +394,7 @@ rccShinyApp <-
                     } else {
                       inputInitialValuesSelected(
                         name = "param_levelpresent",
-                        valueDefault = rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language),
+                        valueDefault = rccShinyLevelNames(ifelse(GLOBAL_geoUnitsPatient, "county_lkf", "county"), language = GLOBAL_language, optionalLabel = GLOBAL_geoUnitsCountyLabel),
                         valuesValid = unlist(tempChoices, use.names = FALSE)
                       )
                     },
