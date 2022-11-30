@@ -4,7 +4,7 @@ library(shiny)
 library(rccShiny)
 
 # Use latest release
-if (packageVersion("rccShiny") == "1.10.1") {
+if (packageVersion("rccShiny") == "1.11.0") {
 
   # Create legacy1-latest
   # Adopted from https://bitbucket.org/cancercentrum/rccshiny/src/1.6.0/R/rccShiny2.R#lines-94

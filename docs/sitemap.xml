@@ -1,33 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//index.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/404.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//reference/rccShiny-package.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/articles/connect.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//reference/rccShiny2.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/articles/ga.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//reference/rccShinyApp.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/articles/generiskmall.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//reference/rccShinyData.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//articles/connect.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/articles/startsida.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//articles/ga.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/articles/tolkningsmanual.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//articles/generiskmall.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/authors.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//articles/startsida.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/index.html</loc>
   </url>
   <url>
-    <loc>https://cancercentrum.bitbucket.io/rccshiny//articles/tolkningsmanual.html</loc>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/reference/rccShiny-package.html</loc>
+  </url>
+  <url>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/reference/rccShiny2.html</loc>
+  </url>
+  <url>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/reference/rccShinyApp.html</loc>
+  </url>
+  <url>
+    <loc>https://cancercentrum.bitbucket.io/rccshiny/reference/rccShinyData.html</loc>
   </url>
 </urlset>

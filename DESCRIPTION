@@ -1,6 +1,6 @@
 Package: rccShiny
 Title: Shiny Apps for RCC
-Version: 1.11.0
+Version: 1.11.1
 Authors@R: 
     c(person(given = "Fredrik",
              family = "Sandin",
@@ -57,4 +57,4 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.2

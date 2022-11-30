@@ -99,7 +99,7 @@ Genom att ange **forceUpdate = TRUE** behöver vi inte bekräfta att vi vill upp
 
 ### Kommentar kring långa laddningstider för publicering av applikation
 
-Att publicera en applikation baserad på rccShiny kan ta ganska lång tid, räkna med ca 2 minuter per applikation. Det steg som tar lång tid är inte själva uppladdningen till servern, utan steget innan där applikationens paketberoenden ska bestämmas. Det verkar inte finnas någon bra lösning på detta i dagsläget, men det är ett känt problem och vi hoppas på en förbättring i kommande versioner av *rsconnect*.
+I tidigare versioner av paketet *rsconnect* fanns ett problem med långa laddningstider  vid publicering (ca 2 minuter per applikation). Detta är nu löst och numera tar det ca 10-15 sekunder per applikation, vilket får anses vara acceptabelt. Upplever du långa laddningstider vid publicering, vänligen kontrollera att du har senaste versionen av paketet installerad.
 
 ## Inställningar
 
@@ -212,7 +212,7 @@ devtools::install_local("connectapi-master.zip")
 
 ### Justera *Sharing settings*, skrivrättigheter och *Content URL* med API-anrop
 
-Som nämndes tidigare krävs det för att en publicerad applikation ska bli publik att *Sharing settings* ändras till *Anyone - no login required*. I nedanstående kodexempel hämtas först en lista över samtliga publicerade applikationer på servern. Detta görs för att vi behöver leta upp GUID till de applikationer vi vill justera. Ur listan väljs sedan de applikationer som man vill justera ut, till exempel endast de vars namn har ett visst prefix (här kan såklart andra urval göras, t.ex. på användarnamn). En loop går sedan igenom applikationerna och justerar *Sharing settings*.
+Som nämndes tidigare krävs det för att en publicerad applikation ska bli publik att *Sharing settings* ändras till *Anyone - no login required*. I nedanstående kodexempel hämtas först en lista över publicerade applikationer på servern. <span style="color:red;">Pga. en begränsning i hur mycket information som kan returneras av anropet som hämtar denna lista behöver vi begränsa förfrågan. På servern finns numera så många applikationer publicerade att om man försöker hämta hela denna lista via API-anrop returneras endast ett error. Vi får därför begränsa förfrågan till applikationer med en specifik ägare.</span> Ur listan väljs sedan de applikationer som man vill justera ut, till exempel endast de vars namn har ett visst prefix (här kan såklart andra urval göras, t.ex. på användarnamn). En loop går sedan igenom applikationerna och justerar *Sharing settings*.
 
 I samma loop justeras även så att de användarnamn och gruppnamn som angetts i **tempListAddCollaboratorUsers** respektive **tempListAddCollaboratorGroups** ges skrivrättigheter till applikationerna.
 
@@ -232,14 +232,17 @@ client <- connectapi::connect(
   api_key = connectAPIKey
 )
 
-# Hämta lista på alla applikationer på servern och välj ut de där namnet innehåller "registernamn_sv_"
-# (Observera att ens användare måste ha skrivrättigheter till de applikationer man önskas justera)
-tempListApplications <- connectapi::get_content(client, limit = Inf, page_size = 999999) %>% 
-  dplyr::filter(stringr::str_detect(name, "registernamn_sv_"))
-
 # Hämta lista på användare och grupper på servern
 tempUsers <- connectapi::get_users(client)
 tempGroups <- connectapi::get_groups(client)
+
+# Hämta GUID för den användare vars appar man vill lista
+tempOwnerGUID <- tempUsers$guid[tempUsers$username %in% "..."]
+
+# Hämta lista på alla applikationer på servern och välj ut de där namnet innehåller "registernamn_sv_"
+# (Observera att ens användare måste ha skrivrättigheter till de applikationer man önskas justera)
+tempListApplications <- connectapi::get_content(client, owner_guid = tempOwnerGUID) %>% 
+  dplyr::filter(stringr::str_detect(name, "registernamn_sv_"))
 
 # Definiera vilka användarnamn respektive gruppnamn som ska ges skrivrättigheter till applikationerna
 tempListAddCollaboratorUsers <- c("testUser1", "testUser2")
@@ -345,9 +348,16 @@ client <- connectapi::connect(
   api_key = connectAPIKey
 )
 
+# Hämta lista på användare och grupper på servern
+tempUsers <- connectapi::get_users(client)
+tempGroups <- connectapi::get_groups(client)
+
+# Hämta GUID för den användare vars appar man vill lista
+tempOwnerGUID <- tempUsers$guid[tempUsers$username %in% "..."]
+
 # Hämta lista på alla applikationer på servern och välj ut de där namnet innehåller prefix
 # (Observera att ens användare måste ha skrivrättigheter till de applikationer man önskas justera)
-tempListApplications <- connectapi::get_content(client, limit = Inf, page_size = 999999) %>% 
+tempListApplications <- connectapi::get_content(client, owner_guid = tempOwnerGUID) %>% 
   dplyr::filter(stringr::str_detect(name, globalRegisterPrefix))
 
 # Publicera appar --------------------------------------------------------------
