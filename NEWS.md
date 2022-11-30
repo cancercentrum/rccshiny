@@ -6,7 +6,7 @@
 
 ## Mindre förbättringar och felrättningar
 
-
+* Åtgärdat att default redovisningsnivå inte funkar när andra labels på nivåer är angivna (SNY-118)
 
 # rccShiny 1.11.0
 
