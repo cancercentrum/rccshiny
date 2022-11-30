@@ -9794,7 +9794,7 @@
           "name": "selectize",
           "version": "0.12.4",
           "src": {
-            "href": "shared/selectize"
+            "href": "selectize-0.12.4"
           },
           "meta": null,
           "script": [
@@ -9804,7 +9804,6 @@
           "stylesheet": "css/selectize.bootstrap3.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         }
       ]
@@ -9828,7 +9827,7 @@
           "name": "selectize",
           "version": "0.12.4",
           "src": {
-            "href": "shared/selectize"
+            "href": "selectize-0.12.4"
           },
           "meta": null,
           "script": [
@@ -9838,7 +9837,6 @@
           "stylesheet": "css/selectize.bootstrap3.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         }
       ]
@@ -9850,7 +9848,7 @@
           "name": "selectize",
           "version": "0.12.4",
           "src": {
-            "href": "shared/selectize"
+            "href": "selectize-0.12.4"
           },
           "meta": null,
           "script": [
@@ -9860,7 +9858,6 @@
           "stylesheet": "css/selectize.bootstrap3.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         }
       ]
@@ -9870,7 +9867,7 @@
       "deps": [
         {
           "name": "shinyWidgets",
-          "version": "0.7.0",
+          "version": "0.7.5",
           "src": {
             "href": "shinyWidgets"
           },
@@ -9885,42 +9882,39 @@
           "name": "ionrangeslider-javascript",
           "version": "2.3.1",
           "src": {
-            "href": "shared/ionrangeslider"
+            "href": "ionrangeslider-javascript-2.3.1"
           },
           "meta": null,
           "script": "js/ion.rangeSlider.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "strftime",
           "version": "0.9.2",
           "src": {
-            "href": "shared/strftime"
+            "href": "strftime-0.9.2"
           },
           "meta": null,
           "script": "strftime-min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "ionrangeslider-css",
           "version": "2.3.1",
           "src": {
-            "href": "shared/ionrangeslider"
+            "href": "ionrangeslider-css-2.3.1"
           },
           "meta": null,
           "script": null,
           "stylesheet": "css/ion.rangeSlider.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         }
       ]
@@ -9932,42 +9926,39 @@
           "name": "ionrangeslider-javascript",
           "version": "2.3.1",
           "src": {
-            "href": "shared/ionrangeslider"
+            "href": "ionrangeslider-javascript-2.3.1"
           },
           "meta": null,
           "script": "js/ion.rangeSlider.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "strftime",
           "version": "0.9.2",
           "src": {
-            "href": "shared/strftime"
+            "href": "strftime-0.9.2"
           },
           "meta": null,
           "script": "strftime-min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "ionrangeslider-css",
           "version": "2.3.1",
           "src": {
-            "href": "shared/ionrangeslider"
+            "href": "ionrangeslider-css-2.3.1"
           },
           "meta": null,
           "script": null,
           "stylesheet": "css/ion.rangeSlider.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         }
       ]
@@ -9991,7 +9982,7 @@
           "name": "selectize",
           "version": "0.12.4",
           "src": {
-            "href": "shared/selectize"
+            "href": "selectize-0.12.4"
           },
           "meta": null,
           "script": [
@@ -10001,7 +9992,6 @@
           "stylesheet": "css/selectize.bootstrap3.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         }
       ]
@@ -10010,13 +10000,13 @@
     "text1": "Period: <strong>2012-2016<\/strong>. ",
     "text2": "Stadium: <strong>I<\/strong>. ",
     "theTabs": {
-      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"1170\">\n      <li class=\"active\">\n        <a href=\"#tab-1170-1\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_compare\">\n          <i aria-label=\"chart-bar icon\" class=\"fa fa-chart-bar fa-fw\" role=\"presentation\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"table\">\n          <i aria-label=\"table icon\" class=\"fa fa-table fa-fw\" role=\"presentation\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-3\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_map\">\n          <i aria-label=\"map-marker icon\" class=\"fa fa-map-marker fa-fw\" role=\"presentation\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_trend\">\n          <i aria-label=\"chart-line icon\" class=\"fa fa-chart-line fa-fw\" role=\"presentation\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-5\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"description\">\n          <i aria-label=\"info-circle icon\" class=\"fa fa-info-circle fa-fw\" role=\"presentation\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"1170\">\n      <div class=\"tab-pane active\" data-icon-class=\"fa fa-chart-bar fa-fw\" data-value=\"fig_compare\" id=\"tab-1170-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fa fa-table fa-fw\" id=\"tab-1170-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fa fa-map-marker fa-fw\" id=\"tab-1170-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fa fa-chart-line fa-fw\" id=\"tab-1170-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fa fa-info-circle fa-fw\" id=\"tab-1170-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
+      "html": "<div class=\"col-sm-9\">\n  <div class=\"nav-tabs-custom\">\n    <ul class=\"nav nav-tabs shiny-tab-input\" id=\"tab\" data-tabsetid=\"1170\">\n      <li class=\"active\">\n        <a href=\"#tab-1170-1\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_compare\">\n          <i aria-label=\"chart-bar icon\" class=\"far fa-chart-bar fa-fw\" role=\"presentation\"><\/i>\n          Jämförelse\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"table\">\n          <i aria-label=\"table icon\" class=\"fas fa-table fa-fw\" role=\"presentation\"><\/i>\n          Tabell\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-3\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_map\">\n          <i aria-label=\"location-pin icon\" class=\"fas fa-location-pin fa-fw\" role=\"presentation\"><\/i>\n          Karta\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"fig_trend\">\n          <i aria-label=\"chart-line icon\" class=\"fas fa-chart-line fa-fw\" role=\"presentation\"><\/i>\n          Trend\n        <\/a>\n      <\/li>\n      <li>\n        <a href=\"#tab-1170-5\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"description\">\n          <i aria-label=\"circle-info icon\" class=\"fas fa-circle-info fa-fw\" role=\"presentation\"><\/i>\n          Beskrivning\n        <\/a>\n      <\/li>\n    <\/ul>\n    <div class=\"tab-content\" data-tabsetid=\"1170\">\n      <div class=\"tab-pane active\" data-icon-class=\"far fa-chart-bar fa-fw\" data-value=\"fig_compare\" id=\"tab-1170-1\">\n        <div id=\"indPlot\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"table\" data-icon-class=\"fas fa-table fa-fw\" id=\"tab-1170-2\">\n        <div id=\"indTable\" style=\"width:100%; height:auto; \" class=\"datatables html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_map\" data-icon-class=\"fas fa-location-pin fa-fw\" id=\"tab-1170-3\">\n        <div id=\"indMap\" style=\"width:100%; height:980px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"fig_trend\" data-icon-class=\"fas fa-chart-line fa-fw\" id=\"tab-1170-4\">\n        <div id=\"indPlotTrend\" style=\"width:100%; height:630px; \" class=\"highchart html-widget html-widget-output\"><\/div>\n      <\/div>\n      <div class=\"tab-pane\" data-value=\"description\" data-icon-class=\"fas fa-circle-info fa-fw\" id=\"tab-1170-5\">\n        <div id=\"description\" class=\"shiny-html-output\"><\/div>\n      <\/div>\n    <\/div>\n  <\/div>\n<\/div>",
       "deps": [
         {
           "name": "font-awesome",
-          "version": "5.15.3",
+          "version": "6.2.0",
           "src": {
-            "href": "font-awesome-5.15.3"
+            "href": "font-awesome-6.2.0"
           },
           "meta": null,
           "script": null,
@@ -10147,9 +10137,9 @@
         },
         {
           "name": "datatables-binding",
-          "version": "0.23",
+          "version": "0.26",
           "src": {
-            "href": "datatables-binding-0.23"
+            "href": "datatables-binding-0.26"
           },
           "meta": null,
           "script": "datatables.js",
@@ -10180,47 +10170,44 @@
           "name": "ionrangeslider-javascript",
           "version": "2.3.1",
           "src": {
-            "href": "shared/ionrangeslider"
+            "href": "ionrangeslider-javascript-2.3.1"
           },
           "meta": null,
           "script": "js/ion.rangeSlider.min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "strftime",
           "version": "0.9.2",
           "src": {
-            "href": "shared/strftime"
+            "href": "strftime-0.9.2"
           },
           "meta": null,
           "script": "strftime-min.js",
           "stylesheet": null,
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "ionrangeslider-css",
           "version": "2.3.1",
           "src": {
-            "href": "shared/ionrangeslider"
+            "href": "ionrangeslider-css-2.3.1"
           },
           "meta": null,
           "script": null,
           "stylesheet": "css/ion.rangeSlider.css",
           "head": null,
           "attachment": null,
-          "package": null,
           "all_files": true
         },
         {
           "name": "shinyWidgets",
-          "version": "0.7.0",
+          "version": "0.7.5",
           "src": {
             "href": "shinyWidgets"
           },
