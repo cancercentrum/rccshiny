@@ -1,10 +1,6 @@
-# rccShiny (development version) 
+# rccShiny 1.11.1
 
-## Ny funktionalitet
-
-
-
-## Mindre förbättringar och felrättningar
+En liten felrättningsversion.
 
 * Åtgärdat att default redovisningsnivå inte funkar när andra labels på nivåer är angivna (SNY-118)
 
