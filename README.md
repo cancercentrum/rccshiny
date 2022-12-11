@@ -1,6 +1,6 @@
 # rccShiny
 
-[![R-CMD-check](https://github.com/cancercentrum/rccshiny/workflows/R-CMD-check/badge.svg)](https://github.com/cancercentrum/rccshiny/actions)
+[![R-CMD-check](https://github.com/cancercentrum/rccshiny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cancercentrum/rccshiny/actions/workflows/R-CMD-check.yaml)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/develop?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
 
@@ -13,7 +13,7 @@ flexibelt sätt, se
 
 ## Installation
 
-``` {.r}
+``` r
 if (!requireNamespace("remotes")) {
   install.packages("remotes")
 }
@@ -25,12 +25,12 @@ remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
 
 Ladda paketet.
 
-``` {.r}
+``` r
 library(rccShiny)
 ```
 
 Läs hjälpfil.
 
-``` {.r}
+``` r
 ?rccShiny::rccShiny2
 ```
