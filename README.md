@@ -1,6 +1,6 @@
 # rccShiny
 
-[![R-CMD-check](https://github.com/oc1lojo/rccshiny/workflows/R-CMD-check/badge.svg)](https://github.com/oc1lojo/rccshiny/actions)
+[![R-CMD-check](https://github.com/cancercentrum/rccshiny/workflows/R-CMD-check/badge.svg)](https://github.com/cancercentrum/rccshiny/actions)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/h81m5d2ie1p7tqt2/branch/develop?svg=true)](https://ci.appveyor.com/project/oc1lojo/rccshiny)
 
