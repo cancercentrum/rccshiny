@@ -8,3 +8,4 @@ guides/tolkningsmanual/rsconnect/
 renv/
 vignettes/*.html
 vignettes/*.R
+*.new.json

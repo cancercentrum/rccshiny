@@ -49,9 +49,8 @@ Suggests:
     knitr,
     rmarkdown,
     rsconnect,
-    shinytest,
-    testthat,
-    webdriver
+    shinytest2,
+    testthat
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
