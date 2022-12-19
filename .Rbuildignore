@@ -7,5 +7,4 @@
 ^/\.gitattributes$
 ^guides$
 ^pkgdown$
-^renv$
 ^\.github$
