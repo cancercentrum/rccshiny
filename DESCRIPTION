@@ -8,13 +8,15 @@ Authors@R:
              email = "fredrik.sandin@rccmellan.se"),
       person(given = "Lina",
              family = "Benson",
-             role = "ctb"),
+             role = "ctb",
+             comment = c(ORCID = "0000-0002-5393-0055")),
       person(given = "Erik",
              family = "Lindberg",
              role = "ctb"),
       person(given = "John",
              family = "Lövrot",
-             role = "ctb"),
+             role = "ctb",
+             comment = c(ORCID = "0000-0002-9339-8059")),
       person(given = "Chenyang",
              family = "Zhang",
              role = "ctb"),
@@ -23,8 +25,7 @@ Authors@R:
 Description: Creates shiny apps used as a complement to the
     annual reports from the cancer quality registries in Sweden.
 License: GPL-3
-URL: https://cancercentrum.bitbucket.io/rccshiny/,
-    http://bitbucket.org/cancercentrum/rccshiny
+URL: http://bitbucket.org/cancercentrum/rccshiny
 Depends: 
     R (>= 3.5.0),
     shiny
@@ -56,4 +57,4 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
