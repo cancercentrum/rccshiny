@@ -18,7 +18,7 @@ if (!requireNamespace("remotes")) {
   install.packages("remotes")
 }
 
-remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master")
+remotes::install_bitbucket("cancercentrum/rccshiny", ref = "master", build_vignettes = TRUE)
 ```
 
 ## Användning
@@ -33,4 +33,10 @@ Läs hjälpfil.
 
 ``` r
 ?rccShiny::rccShiny2
+```
+
+Lista guider.
+
+``` r
+browseVignettes("rccShiny")
 ```
