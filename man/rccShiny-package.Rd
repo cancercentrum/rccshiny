@@ -11,7 +11,6 @@ Creates shiny apps used as a complement to the annual reports from the cancer qu
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://cancercentrum.bitbucket.io/rccshiny/}
   \item \url{http://bitbucket.org/cancercentrum/rccshiny}
 }
 
@@ -21,9 +20,9 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Lina Benson [contributor]
+  \item Lina Benson (\href{https://orcid.org/0000-0002-5393-0055}{ORCID}) [contributor]
   \item Erik Lindberg [contributor]
-  \item John Lövrot [contributor]
+  \item John Lövrot (\href{https://orcid.org/0000-0002-9339-8059}{ORCID}) [contributor]
   \item Chenyang Zhang [contributor]
   \item RCC [copyright holder, funder]
 }
